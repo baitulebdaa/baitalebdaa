@@ -218,7 +218,7 @@ export default function ServiceLocationPage({ lang, row }) {
             ))}
           </Reveal>
         </section>
-
+{/* add seo setting and also keywords for the page, and also add meta description and title for the page */}
         {/* What's included */}
         <section className="shell slp-included-section">
           <Reveal>
