@@ -1,7 +1,0 @@
-:HL["/_next/static/chunks/1_5zqd058k6oh.css","style"]
-:HL["/_next/static/media/48e6fa8a5baca31f-s.p.14yttwb5hb7vt.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-:HL["/_next/static/media/4b676bcffc00356a-s.p.24y4-vc3jpn8m.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-:HL["/_next/static/media/5c285b27cdda1fe8-s.p.2_mbdogr7ni8i.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-:HL["/_next/static/media/a343f882a40d2cc9-s.p.1sj6eobyi31rd.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-:HL["/_next/static/media/d54db18e8cd5f74f-s.p.0ji0xjltb6ro5.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-0:{"tree":{"name":"","param":null,"prefetchHints":4176,"slots":{"children":{"name":"lang","param":{"type":"d","key":"en","siblings":[]},"prefetchHints":4208,"slots":{"children":{"name":"service","param":{"type":"d","key":"custom-wardrobes","siblings":["media","our-projects","our-services","process"]},"prefetchHints":4192,"slots":{"children":{"name":"location","param":{"type":"d","key":"deira","siblings":[]},"prefetchHints":4192,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}}}}}},"staleTime":300,"buildId":"yEQ-D1XwG0fIIOQkI64xY"}

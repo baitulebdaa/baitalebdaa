@@ -29,7 +29,7 @@ export default function OurServices() {
         <section className="services-hero-section">
           <Reveal className="services-hero-wrapper" delay={100}>
             <Image 
-              src="/assets/hero-penthouse.png" 
+              src="/assets/hero-penthouse.jpg" 
               alt="Services Hero" 
               fill 
               sizes="100vw" 

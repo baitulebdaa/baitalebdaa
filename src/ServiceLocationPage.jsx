@@ -11,23 +11,23 @@ import { locationContent } from "./data/location-content";
 import { getService, getLocation, getSiblingLocations, getSiblingServices, getEmirateName, getEmirateAuthority } from "./lib/seo-pages";
 
 const HERO_IMAGE_BY_SERVICE = {
-  "interior-design": "/assets/hero-penthouse.png",
-  "fit-out": "/assets/hero-penthouse.png",
-  "office-fit-out": "/assets/project-office.png",
-  "restaurant-fit-out": "/assets/hero-penthouse.png",
-  "retail-fit-out": "/assets/hero-penthouse.png",
-  "commercial-interior-design": "/assets/project-office.png",
-  "residential-interior-design": "/assets/project-villa.png",
-  "office-interior-design": "/assets/project-office.png",
-  "restaurant-interior-design": "/assets/hero-penthouse.png",
-  "retail-interior-design": "/assets/hero-penthouse.png",
-  "villa-renovation": "/assets/project-villa.png",
-  "apartment-renovation": "/assets/project-villa.png",
-  "office-renovation": "/assets/project-office.png",
-  joinery: "/assets/joinery-factory.png",
-  "custom-wardrobes": "/assets/joinery-factory.png",
-  "kitchen-design": "/assets/cad-render.png",
-  "kitchen-renovation": "/assets/cad-render.png",
+  "interior-design": "/assets/hero-penthouse.jpg",
+  "fit-out": "/assets/hero-penthouse.jpg",
+  "office-fit-out": "/assets/project-office.jpg",
+  "restaurant-fit-out": "/assets/hero-penthouse.jpg",
+  "retail-fit-out": "/assets/hero-penthouse.jpg",
+  "commercial-interior-design": "/assets/project-office.jpg",
+  "residential-interior-design": "/assets/project-villa.jpg",
+  "office-interior-design": "/assets/project-office.jpg",
+  "restaurant-interior-design": "/assets/hero-penthouse.jpg",
+  "retail-interior-design": "/assets/hero-penthouse.jpg",
+  "villa-renovation": "/assets/project-villa.jpg",
+  "apartment-renovation": "/assets/project-villa.jpg",
+  "office-renovation": "/assets/project-office.jpg",
+  joinery: "/assets/joinery-factory.jpg",
+  "custom-wardrobes": "/assets/joinery-factory.jpg",
+  "kitchen-design": "/assets/cad-render.jpg",
+  "kitchen-renovation": "/assets/cad-render.jpg",
 };
 
 // Real completed-work photography, grouped by the service it actually documents.
@@ -120,7 +120,7 @@ export default function ServiceLocationPage({ lang, row }) {
   const home = dict.ourProjectsPage.home;
   const gallery = WORK_GALLERY_BY_SERVICE[row.serviceSlug] || [];
   const heroPhoto = pickByLocation(gallery, row.locationSlug);
-  const heroImage = heroPhoto?.src || HERO_IMAGE_BY_SERVICE[row.serviceSlug] || "/assets/hero-penthouse.png";
+  const heroImage = heroPhoto?.src || HERO_IMAGE_BY_SERVICE[row.serviceSlug] || "/assets/hero-penthouse.jpg";
   const heroAlt = heroPhoto?.alt || row.h1;
   const galleryPhotos = gallery.filter((photo) => photo.src !== heroImage).slice(0, 3);
 

@@ -273,10 +273,10 @@ export const dictionaries = {
             service: "Interior Fit-Out + MEP Works"
           },
           images: [
-            "/assets/project-office.png",
-            "/assets/hero-penthouse.png",
-            "/assets/project-villa.png",
-            "/assets/cad-render.png"
+            "/assets/project-office.jpg",
+            "/assets/hero-penthouse.jpg",
+            "/assets/project-villa.jpg",
+            "/assets/cad-render.jpg"
           ]
         }
       }
@@ -289,16 +289,16 @@ export const dictionaries = {
       featuredArticle: {
         title: "Inside Red Sea Global Residences' Experience Center",
         description: "Red Sea Global Residences Experience Center is an immersive center crafted to connect potential buyers with the essence of barefoot luxury. Guided by the Memories of Tomorrow concept, space integrates a natural material palette with state-of-the-art technology to create a sales experience that feels as authentic as the lifestyle it represents.",
-        image: "/assets/hero-penthouse.png",
+        image: "/assets/hero-penthouse.jpg",
         link: "#"
       },
       articles: [
-        { title: "A&T Group Interiors Recognized in the 2026 CID Fit-Out Firm Powerlist", image: "/assets/project-office.png", link: "#" },
-        { title: "A&T Group Interiors Earns Four CID Hospitality Awards 2026 Nominations", image: "/assets/project-villa.png", link: "#" },
-        { title: "Pastamamma Expands to Riyadh with A&T Group Interiors Fit-Out", image: "/assets/cad-render.png", link: "#" },
-        { title: "A&T Group Interiors Completes Fit-Out for Tattu Restaurant, Dubai", image: "/assets/hero-penthouse.png", link: "#" },
-        { title: "L'ETO Caffe Arrives at Dubai Creek Harbour", image: "/assets/project-office.png", link: "#" },
-        { title: "A&T Group Interiors Delivers Cloud Spaces in Riyadh", image: "/assets/project-villa.png", link: "#" }
+        { title: "A&T Group Interiors Recognized in the 2026 CID Fit-Out Firm Powerlist", image: "/assets/project-office.jpg", link: "#" },
+        { title: "A&T Group Interiors Earns Four CID Hospitality Awards 2026 Nominations", image: "/assets/project-villa.jpg", link: "#" },
+        { title: "Pastamamma Expands to Riyadh with A&T Group Interiors Fit-Out", image: "/assets/cad-render.jpg", link: "#" },
+        { title: "A&T Group Interiors Completes Fit-Out for Tattu Restaurant, Dubai", image: "/assets/hero-penthouse.jpg", link: "#" },
+        { title: "L'ETO Caffe Arrives at Dubai Creek Harbour", image: "/assets/project-office.jpg", link: "#" },
+        { title: "A&T Group Interiors Delivers Cloud Spaces in Riyadh", image: "/assets/project-villa.jpg", link: "#" }
       ]
     },
     ourServicesPage: {
@@ -341,7 +341,7 @@ export const dictionaries = {
           title: "3D Spatial Design & DM Approval",
           description: "Photorealistic 3D renders matched with 100% Dubai Municipality & Civil Defense compliance.",
           meta: "Timeline: 5–7 Days",
-          image: "/assets/hero-penthouse.png",
+          image: "/assets/hero-penthouse.jpg",
           link: "#"
         },
         {
@@ -349,7 +349,7 @@ export const dictionaries = {
           title: "15k sqft Factory Fabrication",
           description: "Precision CNC cutting, European walnut joinery, and custom Italian curtain stitching in our Dubai facility.",
           meta: "Timeline: 10–14 Days",
-          image: "/assets/project-office.png",
+          image: "/assets/project-office.jpg",
           link: "#"
         },
         {
@@ -646,10 +646,10 @@ export const dictionaries = {
             service: "التجهيزات الداخلية والأعمال الكهروميكانيكية"
           },
           images: [
-            "/assets/project-office.png",
-            "/assets/hero-penthouse.png",
-            "/assets/project-villa.png",
-            "/assets/cad-render.png"
+            "/assets/project-office.jpg",
+            "/assets/hero-penthouse.jpg",
+            "/assets/project-villa.jpg",
+            "/assets/cad-render.jpg"
           ]
         }
       }
@@ -662,16 +662,16 @@ export const dictionaries = {
       featuredArticle: {
         title: "داخل مركز تجربة ريزيدنسز البحر الأحمر العالمية",
         description: "مركز تجربة ريزيدنسز البحر الأحمر العالمية هو مركز غامر تم تصميمه لربط المشترين المحتملين بجوهر الفخامة. مسترشدًا بمفهوم ذكريات الغد، تدمج المساحة لوحة مواد طبيعية مع أحدث التقنيات لخلق تجربة مبيعات تبدو أصلية مثل أسلوب الحياة الذي تمثله.",
-        image: "/assets/hero-penthouse.png",
+        image: "/assets/hero-penthouse.jpg",
         link: "#"
       },
       articles: [
-        { title: "مجموعة إيه آند تي للتصميم الداخلي ضمن قائمة أقوى شركات التجهيزات لعام 2026", image: "/assets/project-office.png", link: "#" },
-        { title: "مجموعة إيه آند تي للتصميم الداخلي تحصل على أربعة ترشيحات لجوائز الضيافة 2026", image: "/assets/project-villa.png", link: "#" },
-        { title: "باستاماما تتوسع إلى الرياض بتجهيزات من مجموعة إيه آند تي للتصميم الداخلي", image: "/assets/cad-render.png", link: "#" },
-        { title: "مجموعة إيه آند تي للتصميم الداخلي تكمل تجهيزات مطعم تاتو، دبي", image: "/assets/hero-penthouse.png", link: "#" },
-        { title: "مقهى ليتو يصل إلى ميناء خور دبي", image: "/assets/project-office.png", link: "#" },
-        { title: "مجموعة إيه آند تي للتصميم الداخلي تسلم مساحات السحابة في الرياض", image: "/assets/project-villa.png", link: "#" }
+        { title: "مجموعة إيه آند تي للتصميم الداخلي ضمن قائمة أقوى شركات التجهيزات لعام 2026", image: "/assets/project-office.jpg", link: "#" },
+        { title: "مجموعة إيه آند تي للتصميم الداخلي تحصل على أربعة ترشيحات لجوائز الضيافة 2026", image: "/assets/project-villa.jpg", link: "#" },
+        { title: "باستاماما تتوسع إلى الرياض بتجهيزات من مجموعة إيه آند تي للتصميم الداخلي", image: "/assets/cad-render.jpg", link: "#" },
+        { title: "مجموعة إيه آند تي للتصميم الداخلي تكمل تجهيزات مطعم تاتو، دبي", image: "/assets/hero-penthouse.jpg", link: "#" },
+        { title: "مقهى ليتو يصل إلى ميناء خور دبي", image: "/assets/project-office.jpg", link: "#" },
+        { title: "مجموعة إيه آند تي للتصميم الداخلي تسلم مساحات السحابة في الرياض", image: "/assets/project-villa.jpg", link: "#" }
       ]
     },
     ourServicesPage: {
@@ -714,7 +714,7 @@ export const dictionaries = {
           title: "تصميم مكاني ثلاثي الأبعاد وموافقة بلدية دبي",
           description: "تصاميم ثلاثية الأبعاد واقعية مطابقة بنسبة 100% لمتطلبات بلدية دبي والدفاع المدني.",
           meta: "المدة الزمنية: 5–7 أيام",
-          image: "/assets/hero-penthouse.png",
+          image: "/assets/hero-penthouse.jpg",
           link: "#"
         },
         {
@@ -722,7 +722,7 @@ export const dictionaries = {
           title: "تصنيع في مصنع بمساحة 15 ألف قدم مربع",
           description: "قطع دقيق بتقنية CNC، ونجارة جوز أوروبي، وخياطة ستائر إيطالية مخصصة في منشأتنا بدبي.",
           meta: "المدة الزمنية: 10–14 يوماً",
-          image: "/assets/project-office.png",
+          image: "/assets/project-office.jpg",
           link: "#"
         },
         {

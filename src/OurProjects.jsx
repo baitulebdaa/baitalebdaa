@@ -14,9 +14,9 @@ export default function OurProjects() {
   const t = dict.ourProjectsPage;
   const projects = dict.projectsSection.items;
   const projectImages = [
-    "/assets/project-villa.png",
-    "/assets/hero-penthouse.png",
-    "/assets/project-office.png",
+    "/assets/project-villa.jpg",
+    "/assets/hero-penthouse.jpg",
+    "/assets/project-office.jpg",
     "/assets/dressing-unit-2.jpeg",
     "/assets/cabinet-joinery.jpeg",
   ];
@@ -44,7 +44,7 @@ export default function OurProjects() {
         />
         
         <div className="our-projects-hero-image">
-          <Image src="/assets/project-office.png" alt="Projects Hero" fill sizes="100vw" priority style={{ objectFit: 'cover' }} />
+          <Image src="/assets/project-office.jpg" alt="Projects Hero" fill sizes="100vw" priority style={{ objectFit: 'cover' }} />
         </div>
 
         {/* Intro Section */}

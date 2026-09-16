@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "next dev --hostname 0.0.0.0",
-    "build": "next build && node scripts/export-next-build.mjs && node scripts/prepare-sites-build.mjs",
+    "build": "next build",
+    "start": "next start",
     "preview": "next dev --hostname 0.0.0.0",
     "test:sites": "node --test tests/sites-worker.test.mjs"
   },
@@ -16,6 +17,7 @@
     "react-dom": "19.2.0"
   },
   "devDependencies": {
+    "sharp": "^0.35.4",
     "xlsx": "^0.18.5"
   }
 }
