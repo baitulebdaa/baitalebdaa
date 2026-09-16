@@ -59,7 +59,7 @@ export function QuoteModal({ open, onClose }) {
           </div>
         </div>
 
-        <form className="quote-modal-form" onSubmit={submit}>
+        <form className="quote-modal-form" method="post" onSubmit={submit}>
           <label className="quote-modal-field">
             <span>{t.fullName} *</span>
             <input name="name" required placeholder={t.fullNamePlaceholder} />

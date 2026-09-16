@@ -74,7 +74,7 @@ function Sectors() {
 function Projects() {
   const { lang, dict } = useI18n();
   const images = ["/assets/project-office.jpg", "/assets/project-villa.jpg", "/assets/hero-penthouse.jpg"];
-  return <section className="section projects" id="projects"><div className="shell projects__heading"><Reveal><p className="micro">{dict.projectsSection.micro}</p><h2 className="section-title" style={{whiteSpace: 'pre-wrap'}}>{dict.projectsSection.title}</h2></Reveal><Reveal className="projects__tools" delay={100} style={{display: 'flex', alignItems: 'flex-end'}}><a href={`/${lang}/our-projects`} className="outline-button outline-button--dark">{dict.projectsSection.viewAll} <ArrowUpRight size={16} /></a></Reveal></div><div className="shell project-grid-home">{dict.projectsSection.items.slice(0, 3).map((p, i) => <article className="project-card-home" key={i}><a href={`/${lang}/our-projects/government-authority`} style={{ textDecoration: 'none', color: 'inherit' }}><div className="project-card-home__image"><Image src={images[i]} alt={`${p.title}, ${p.place}`} fill sizes="(max-width: 700px) 100vw, 33vw" /></div><div className="project-card-home__meta"><h3>{p.title}{p.place ? `, ${p.place}` : ''} <ArrowUpRight size={16} style={{display: 'inline-block', verticalAlign: 'middle', marginLeft: '5px'}} /></h3></div></a></article>)}</div></section>;
+  return <section className="section projects" id="projects"><div className="shell projects__heading"><Reveal><p className="micro">{dict.projectsSection.micro}</p><h2 className="section-title" style={{whiteSpace: 'pre-wrap'}}>{dict.projectsSection.title}</h2></Reveal><Reveal className="projects__tools" delay={100} style={{display: 'flex', alignItems: 'flex-end'}}><a href={`/${lang}/our-projects`} className="outline-button outline-button--dark">{dict.projectsSection.viewAll} <ArrowUpRight size={16} /></a></Reveal></div><div className="shell project-grid-home">{dict.projectsSection.items.slice(0, 3).map((p, i) => <article className="project-card-home" key={i}><a href={`/${lang}/our-projects`} style={{ textDecoration: 'none', color: 'inherit' }}><div className="project-card-home__image"><Image src={images[i]} alt={`${p.title}, ${p.place}`} fill sizes="(max-width: 700px) 100vw, 33vw" /></div><div className="project-card-home__meta"><h3>{p.title}{p.place ? `, ${p.place}` : ''} <ArrowUpRight size={16} style={{display: 'inline-block', verticalAlign: 'middle', marginLeft: '5px'}} /></h3></div></a></article>)}</div></section>;
 }
 
 function Capabilities() {
@@ -126,9 +126,9 @@ function Contact() {
   const typeIndex = t.types.indexOf(type) !== -1 ? t.types.indexOf(type) : 1;
 
   const submit = (event) => { event.preventDefault(); if (!event.currentTarget.reportValidity()) return; setSent(true); event.currentTarget.reset(); window.setTimeout(() => setSent(false), 5000); };
-  return <section className="contact" id="contact"><div className="shell contact__centered"><Reveal as="form" className="project-form" delay={100} onSubmit={submit}>
-    <h1 className="form-main-heading">{t.mainHeading}</h1>
-    <h2 className="form-heading">{t.heading}</h2>
+  return <section className="contact" id="contact"><div className="shell contact__centered"><Reveal as="form" className="project-form" delay={100} method="post" onSubmit={submit}>
+    <h2 className="form-main-heading">{t.mainHeading}</h2>
+    <h3 className="form-heading">{t.heading}</h3>
     <div className="project-types" dir="ltr">
       {/* We keep the tabs LTR internally just so the visual ordering doesn't break the rounded corners mapping */}
       {t.types.map((item, i) => <button type="button" key={i} className={type === item ? "is-active" : ""} onClick={() => setType(item)}>{item}</button>)}

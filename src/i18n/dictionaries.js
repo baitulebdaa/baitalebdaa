@@ -237,6 +237,8 @@ export const dictionaries = {
       copy: "Copyright © 2026 Bait Al Ebdaa. All Rights Reserved."
     },
     ourProjectsPage: {
+      metaTitle: "Our Projects | Bait Al Ebdaa",
+      metaDescription: "Browse Bait Al Ebdaa's portfolio of villa, office and hospitality interior fit-out projects across the UAE, from concept to handover.",
       home: "Home",
       ourProjects: "Our Projects",
       explorePortfolio: "Explore Our Project Portfolio",
@@ -264,7 +266,7 @@ export const dictionaries = {
       projects: {
         "government-authority": {
           title: "Confidential Government Authority Headquarters, Dubai Academic City",
-          description: "This confidential government authority headquarters located in Academic City, Dubai, was recently fitted out as a 50,500 sq. ft. workplace spanning three floors.\n\nDelivered with a minimalist, home-like aesthetic, the space embraces soft beige, brown, and white tones, along with natural textures to create an environment that prioritizes employee well-being.\n\nThe workplace was thoughtfully delivered by A&T to foster identity, collaboration, and teamwork. Distinctive department zones encourage interaction and knowledge sharing while reinforcing each team's values and objectives.\n\nEmployee comfort is supported through ergonomic workstations, sit-stand desks, privacy-enhancing elements, and noise-control solutions that promote both focus and flexibility.\n\nA variety of collaboration spaces cater to different work styles and needs, encouraging creativity, inclusivity, and effective collaboration.",
+          description: "This confidential government authority headquarters located in Academic City, Dubai, was recently fitted out as a 50,500 sq. ft. workplace spanning three floors.\n\nDelivered with a minimalist, home-like aesthetic, the space embraces soft beige, brown, and white tones, along with natural textures to create an environment that prioritizes employee well-being.\n\nThe workplace was thoughtfully delivered by Bait Al Ebdaa to foster identity, collaboration, and teamwork. Distinctive department zones encourage interaction and knowledge sharing while reinforcing each team's values and objectives.\n\nEmployee comfort is supported through ergonomic workstations, sit-stand desks, privacy-enhancing elements, and noise-control solutions that promote both focus and flexibility.\n\nA variety of collaboration spaces cater to different work styles and needs, encouraging creativity, inclusivity, and effective collaboration.",
           metadata: {
             location: "Academic City, Dubai, UAE",
             sector: "Commercial",
@@ -282,26 +284,27 @@ export const dictionaries = {
       }
     },
     mediaPage: {
+      metaTitle: "Media & Insights | Bait Al Ebdaa",
+      metaDescription: "News, project updates and insights from Bait Al Ebdaa's interior design and fit-out studio in the UAE.",
       newsAndInsights: "News & Insights",
       latestNewsAndInsights: "Latest News & Insights",
       readMore: "Read More ↗",
       viewMore: "View More ↗",
       featuredArticle: {
-        title: "Inside Red Sea Global Residences' Experience Center",
-        description: "Red Sea Global Residences Experience Center is an immersive center crafted to connect potential buyers with the essence of barefoot luxury. Guided by the Memories of Tomorrow concept, space integrates a natural material palette with state-of-the-art technology to create a sales experience that feels as authentic as the lifestyle it represents.",
-        image: "/assets/hero-penthouse.jpg",
-        link: "#"
+        title: "Inside Our 15,000 Sq Ft Dubai Joinery Facility",
+        description: "A look inside the in-house manufacturing facility where our CNC machinery, European timber and master carpenters produce every custom joinery piece we install.",
+        image: "/assets/joinery-factory.jpg",
+        link: "/en/process"
       },
       articles: [
-        { title: "A&T Group Interiors Recognized in the 2026 CID Fit-Out Firm Powerlist", image: "/assets/project-office.jpg", link: "#" },
-        { title: "A&T Group Interiors Earns Four CID Hospitality Awards 2026 Nominations", image: "/assets/project-villa.jpg", link: "#" },
-        { title: "Pastamamma Expands to Riyadh with A&T Group Interiors Fit-Out", image: "/assets/cad-render.jpg", link: "#" },
-        { title: "A&T Group Interiors Completes Fit-Out for Tattu Restaurant, Dubai", image: "/assets/hero-penthouse.jpg", link: "#" },
-        { title: "L'ETO Caffe Arrives at Dubai Creek Harbour", image: "/assets/project-office.jpg", link: "#" },
-        { title: "A&T Group Interiors Delivers Cloud Spaces in Riyadh", image: "/assets/project-villa.jpg", link: "#" }
+        { title: "How We Manage Dubai Municipality & Civil Defense Approvals", image: "/assets/project-office.jpg", link: "/en/process" },
+        { title: "Custom Joinery, Made In-House From Start to Finish", image: "/assets/cabinet-joinery.jpeg", link: "/en/joinery/uae/" },
+        { title: "Inside Our First Published Project: A Government Authority HQ", image: "/assets/project-office.jpg", link: "/en/our-projects/government-authority" }
       ]
     },
     ourServicesPage: {
+      metaTitle: "Our Services | Bait Al Ebdaa",
+      metaDescription: "Explore Bait Al Ebdaa's interior design, turnkey fit-out and custom joinery services across Dubai and Abu Dhabi, from concept to handover.",
       navTitle: "Our Services",
       pageTitle: "Our Services & Interior Solutions",
       whatWeOffer: "What Do We Offer",
@@ -329,6 +332,8 @@ export const dictionaries = {
       ]
     },
     ourProcessPage: {
+      metaTitle: "Our Process | Bait Al Ebdaa",
+      metaDescription: "See how Bait Al Ebdaa delivers projects from 3D design and municipality approvals to in-house manufacturing and handover.",
       navTitle: "Our Process",
       pageTitle: "How We Work",
       whatWeDo: "Step-by-Step",
@@ -610,6 +615,8 @@ export const dictionaries = {
       copy: "حقوق الطبع والنشر © 2026 بيت الإبداع. جميع الحقوق محفوظة."
     },
     ourProjectsPage: {
+      metaTitle: "مشاريعنا | بيت الإبداع",
+      metaDescription: "تصفح محفظة أعمال بيت الإبداع من مشاريع تجهيز الفلل والمكاتب والضيافة في الإمارات، من المفهوم حتى التسليم.",
       home: "الرئيسية",
       ourProjects: "مشاريعنا",
       explorePortfolio: "استكشف محفظة مشاريعنا",
@@ -655,26 +662,27 @@ export const dictionaries = {
       }
     },
     mediaPage: {
+      metaTitle: "الإعلام والرؤى | بيت الإبداع",
+      metaDescription: "أخبار وتحديثات المشاريع ورؤى من استوديو بيت الإبداع للتصميم الداخلي والتجهيز في الإمارات.",
       newsAndInsights: "الأخبار والرؤى",
       latestNewsAndInsights: "أحدث الأخبار والرؤى",
       readMore: "اقرأ المزيد ↗",
       viewMore: "عرض المزيد ↗",
       featuredArticle: {
-        title: "داخل مركز تجربة ريزيدنسز البحر الأحمر العالمية",
-        description: "مركز تجربة ريزيدنسز البحر الأحمر العالمية هو مركز غامر تم تصميمه لربط المشترين المحتملين بجوهر الفخامة. مسترشدًا بمفهوم ذكريات الغد، تدمج المساحة لوحة مواد طبيعية مع أحدث التقنيات لخلق تجربة مبيعات تبدو أصلية مثل أسلوب الحياة الذي تمثله.",
-        image: "/assets/hero-penthouse.jpg",
-        link: "#"
+        title: "نظرة داخل مصنع النجارة الخاص بنا في دبي بمساحة 15,000 قدم مربع",
+        description: "نظرة داخل منشأة التصنيع الخاصة بنا، حيث تنتج آلات CNC والأخشاب الأوروبية ونجارونا المحترفون كل قطعة نجارة مخصصة نقوم بتركيبها.",
+        image: "/assets/joinery-factory.jpg",
+        link: "/ar/process"
       },
       articles: [
-        { title: "مجموعة إيه آند تي للتصميم الداخلي ضمن قائمة أقوى شركات التجهيزات لعام 2026", image: "/assets/project-office.jpg", link: "#" },
-        { title: "مجموعة إيه آند تي للتصميم الداخلي تحصل على أربعة ترشيحات لجوائز الضيافة 2026", image: "/assets/project-villa.jpg", link: "#" },
-        { title: "باستاماما تتوسع إلى الرياض بتجهيزات من مجموعة إيه آند تي للتصميم الداخلي", image: "/assets/cad-render.jpg", link: "#" },
-        { title: "مجموعة إيه آند تي للتصميم الداخلي تكمل تجهيزات مطعم تاتو، دبي", image: "/assets/hero-penthouse.jpg", link: "#" },
-        { title: "مقهى ليتو يصل إلى ميناء خور دبي", image: "/assets/project-office.jpg", link: "#" },
-        { title: "مجموعة إيه آند تي للتصميم الداخلي تسلم مساحات السحابة في الرياض", image: "/assets/project-villa.jpg", link: "#" }
+        { title: "كيف ندير موافقات بلدية دبي والدفاع المدني", image: "/assets/project-office.jpg", link: "/ar/process" },
+        { title: "نجارة مخصصة، مصنوعة بالكامل داخلياً", image: "/assets/cabinet-joinery.jpeg", link: "/ar/joinery/uae/" },
+        { title: "داخل أول مشروع ننشره: مقر هيئة حكومية", image: "/assets/project-office.jpg", link: "/ar/our-projects/government-authority" }
       ]
     },
     ourServicesPage: {
+      metaTitle: "خدماتنا | بيت الإبداع",
+      metaDescription: "استكشف خدمات بيت الإبداع في التصميم الداخلي والتجهيز الشامل والنجارة المخصصة في دبي وأبوظبي، من المفهوم حتى التسليم.",
       navTitle: "خدماتنا",
       pageTitle: "خدماتنا وحلول التصميم الداخلي",
       whatWeOffer: "ماذا نقدم",
@@ -702,6 +710,8 @@ export const dictionaries = {
       ]
     },
     ourProcessPage: {
+      metaTitle: "عمليتنا | بيت الإبداع",
+      metaDescription: "تعرف على كيفية تنفيذ بيت الإبداع للمشاريع من التصميم ثلاثي الأبعاد وموافقات البلدية إلى التصنيع الداخلي والتسليم.",
       navTitle: "عمليتنا",
       pageTitle: "كيف نعمل",
       whatWeDo: "خطوة بخطوة",

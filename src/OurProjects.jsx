@@ -83,7 +83,7 @@ export default function OurProjects() {
             {filteredProjects.length > 0 ? (
               filteredProjects.map((p, i) => (
                 <Reveal className="project-grid-card" key={i} delay={i * 100}>
-                  <a href={`/${lang}/our-projects/${p.slug || 'government-authority'}`} className="project-card-link">
+                  <a href={p.slug ? `/${lang}/our-projects/${p.slug}` : `/${lang}/our-projects`} className="project-card-link">
                     <div className="project-image-wrapper">
                       {p.place && <span className="project-grid-badge">{p.place}</span>}
                       <Image src={p.image} alt={p.title} fill sizes="(max-width: 700px) 100vw, (max-width: 980px) 50vw, 33vw" style={{ objectFit: 'cover' }} />

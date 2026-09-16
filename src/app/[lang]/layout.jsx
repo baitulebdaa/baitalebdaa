@@ -1,6 +1,7 @@
 import { DM_Sans, Manrope, Tajawal } from "next/font/google";
 import "../../styles.css";
 import { I18nProvider } from "../../i18n/I18nProvider";
+import { organizationJsonLd } from "../../lib/page-metadata";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -71,6 +72,7 @@ export default async function RootLayout({ children, params }) {
   return (
     <html lang={lang} dir={isRtl ? "rtl" : "ltr"} className={`${dmSans.variable} ${manrope.variable} ${tajawal.variable}`}>
       <body>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd()) }} />
         <I18nProvider lang={lang}>
           {children}
         </I18nProvider>

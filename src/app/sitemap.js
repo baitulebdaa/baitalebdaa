@@ -4,7 +4,9 @@ export const dynamic = "force-static";
 
 const BASE = "https://baitalebdaa.com";
 
-const STATIC_PATHS = ["our-services", "our-projects", "our-projects/government-authority", "process", "media"];
+// "media" is deliberately excluded — it's noindexed until the placeholder
+// articles are replaced with real content (see [lang]/media/page.jsx).
+const STATIC_PATHS = ["our-services", "our-projects", "our-projects/government-authority", "process"];
 
 export default function sitemap() {
   const now = new Date();
