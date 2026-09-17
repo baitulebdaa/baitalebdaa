@@ -30,7 +30,7 @@ export function generateStaticParams() {
 export const dynamicParams = false;
 
 export const metadata = {
-  metadataBase: new URL('https://baitalebdaa.com'),
+  metadataBase: new URL('https://www.baitalebdaa.com'),
   title: {
     default: "Bait Al Ebdaa | Turnkey Interior Design Dubai",
     template: "%s | Bait Al Ebdaa",
@@ -41,7 +41,7 @@ export const metadata = {
   openGraph: {
     title: "Bait Al Ebdaa | Turnkey Interior Design Dubai",
     description: "Refined villa and office interiors across Dubai and Abu Dhabi.",
-    url: 'https://baitalebdaa.com',
+    url: 'https://www.baitalebdaa.com',
     siteName: 'Bait Al Ebdaa',
     locale: 'en_AE',
     type: "website",

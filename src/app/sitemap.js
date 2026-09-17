@@ -2,7 +2,7 @@ import seoData from "../data/seo-pages.json";
 
 export const dynamic = "force-static";
 
-const BASE = "https://baitalebdaa.com";
+const BASE = "https://www.baitalebdaa.com";
 
 // "media" is deliberately excluded — it's noindexed until the placeholder
 // articles are replaced with real content (see [lang]/media/page.jsx).
@@ -10,21 +10,23 @@ const STATIC_PATHS = ["our-services", "our-projects", "our-projects/government-a
 
 export default function sitemap() {
   const now = new Date();
+  // The English homepage's canonical URL is the bare root (middleware rewrites
+  // "/" to "/en" internally — see src/middleware.js and src/lib/page-metadata.js),
+  // so /en is not listed separately here; it would just be a near-duplicate of BASE.
   const entries = [
-    { url: BASE, lastModified: now, changeFrequency: "weekly", priority: 1 },
     {
-      url: `${BASE}/en`,
+      url: BASE,
       lastModified: now,
       changeFrequency: "weekly",
-      priority: 0.9,
-      alternates: { languages: { en: `${BASE}/en`, ar: `${BASE}/ar` } },
+      priority: 1,
+      alternates: { languages: { en: BASE, ar: `${BASE}/ar/` } },
     },
     {
-      url: `${BASE}/ar`,
+      url: `${BASE}/ar/`,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.9,
-      alternates: { languages: { en: `${BASE}/en`, ar: `${BASE}/ar` } },
+      alternates: { languages: { en: BASE, ar: `${BASE}/ar/` } },
     },
   ];
 

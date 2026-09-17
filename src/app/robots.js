@@ -5,6 +5,6 @@ export default function robots() {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://baitalebdaa.com/sitemap.xml',
+    sitemap: 'https://www.baitalebdaa.com/sitemap.xml',
   }
 }

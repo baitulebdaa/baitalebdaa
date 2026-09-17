@@ -163,15 +163,15 @@ export default function ServiceLocationPage({ lang, row }) {
         name: row.h1,
         serviceType: serviceName,
         areaServed: locationName,
-        provider: { "@type": "Organization", name: "Bait Al Ebdaa", url: "https://baitalebdaa.com" },
+        provider: { "@type": "Organization", name: "Bait Al Ebdaa", url: "https://www.baitalebdaa.com" },
         url: row.canonical,
         description: row.metaDescription,
       },
       {
         "@type": "BreadcrumbList",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: home, item: `https://baitalebdaa.com/${lang}/` },
-          { "@type": "ListItem", position: 2, name: serviceName, item: `https://baitalebdaa.com/${lang}/${row.serviceSlug}/uae/` },
+          { "@type": "ListItem", position: 1, name: home, item: `https://www.baitalebdaa.com/${lang}/` },
+          { "@type": "ListItem", position: 2, name: serviceName, item: `https://www.baitalebdaa.com/${lang}/${row.serviceSlug}/uae/` },
           { "@type": "ListItem", position: 3, name: locationName, item: row.canonical },
         ],
       },

@@ -78,7 +78,7 @@ export async function POST(request) {
   const html = `
     <div style="font-family:sans-serif;max-width:560px;">
       <h2 style="margin-bottom:4px;">New ${escapeHtml(subjectLabel)}</h2>
-      <p style="color:#666;margin-top:0;">Submitted from baitalebdaa.com</p>
+      <p style="color:#666;margin-top:0;">Submitted from www.baitalebdaa.com</p>
       <table style="border-collapse:collapse;width:100%;">${renderFieldsHtml(fields)}</table>
     </div>
   `;

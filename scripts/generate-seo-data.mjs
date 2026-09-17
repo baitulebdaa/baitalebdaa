@@ -33,10 +33,11 @@ const CORE_LOCATIONS = new Set([
 ]);
 
 // The sheet's own URL / Canonical / Hreflang Pair columns are written against
-// baitalebdaa.ae, but the real production domain is baitalebdaa.com — rewrite the
-// domain on every URL we take from the sheet rather than editing the sheet itself.
+// baitalebdaa.ae, but the real production hostname is www.baitalebdaa.com (canonical
+// host — non-www redirects to it, see next.config.mjs) — rewrite the domain on every
+// URL we take from the sheet rather than editing the sheet itself.
 const SHEET_DOMAIN = "baitalebdaa.ae";
-const PRODUCTION_DOMAIN = "baitalebdaa.com";
+const PRODUCTION_DOMAIN = "www.baitalebdaa.com";
 const toProductionDomain = (url) => String(url || "").replace(SHEET_DOMAIN, PRODUCTION_DOMAIN);
 
 const URL_RE = /^https:\/\/baitalebdaa\.ae\/(en|ar)\/([^/]+)\/([^/]+)\/$/;

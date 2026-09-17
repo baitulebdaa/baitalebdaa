@@ -1,14 +1,21 @@
-const BASE = "https://baitalebdaa.com";
+const BASE = "https://www.baitalebdaa.com";
 
 // Builds a complete, self-referencing metadata object for a static page (one not
 // covered by the SEO map's generateMetadata in [service]/[location]/page.jsx).
 // `path` is the route under /{lang}/, e.g. "our-services", "" for the home page,
 // or "our-projects/government-authority" for a project detail page.
 export function buildPageMetadata({ lang, path, title, description }) {
-  const otherLang = lang === "en" ? "ar" : "en";
   const cleanPath = path ? `/${path}` : "";
-  const selfUrl = `${BASE}/${lang}${cleanPath}/`;
-  const otherUrl = `${BASE}/${otherLang}${cleanPath}/`;
+  const isHome = path === "";
+
+  // The homepage's English version lives at the bare domain root — middleware
+  // rewrites "/" to "/en" internally so it renders, but Google should index the
+  // clean https://www.baitalebdaa.com/ URL, not .../en/. Both the English and
+  // Arabic renders of the homepage need to agree on that same URL for hreflang
+  // to self-reference correctly in both directions.
+  const enUrl = isHome ? `${BASE}/` : `${BASE}/en${cleanPath}/`;
+  const arUrl = `${BASE}/ar${cleanPath}/`;
+  const selfUrl = lang === "en" ? enUrl : arUrl;
 
   return {
     title: { absolute: title },
@@ -16,9 +23,9 @@ export function buildPageMetadata({ lang, path, title, description }) {
     alternates: {
       canonical: selfUrl,
       languages: {
-        [lang]: selfUrl,
-        [otherLang]: otherUrl,
-        "x-default": lang === "en" ? selfUrl : otherUrl,
+        en: enUrl,
+        ar: arUrl,
+        "x-default": enUrl,
       },
     },
     openGraph: {
