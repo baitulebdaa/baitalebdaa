@@ -74,7 +74,8 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
           <div className="menu-overlay__info-list">
             <span style={{whiteSpace: "pre-wrap"}}>{dict.nav.studioLocation}</span>
             <a href="tel:+971524621919">UAE | +971 52 462 1919</a>
-            <a href="mailto:sales@baitalebdaa.ae">sales@baitalebdaa.ae</a>
+            <a href="tel:0582621717">UAE | 058 262 1717</a>
+            <a href="mailto:info@baitalebdaa.com">info@baitalebdaa.com</a>
           </div>
         </div>
         <div>
@@ -118,8 +119,9 @@ export function Footer() {
       <div className="footer-links-col">
         <p className="footer-col-title">{f.contactInfo}</p>
         <span className="footer-loc">{f.loc}</span>
-        <a href="mailto:sales@baitalebdaa.ae">sales@baitalebdaa.ae</a>
+        <a href="mailto:info@baitalebdaa.com">info@baitalebdaa.com</a>
         <a href="tel:+971524621919">T: +971 52 462 1919</a>
+        <a href="tel:0582621717">T: 058 262 1717</a>
       </div>
     </div>
     <div className="shell footer-mid">

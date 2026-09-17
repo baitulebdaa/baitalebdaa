@@ -48,7 +48,7 @@ export function organizationJsonLd() {
     logo: `${BASE}/assets/logo.png`,
     image: `${BASE}/assets/hero-penthouse.jpg`,
     telephone: "+971524621919",
-    email: "sales@baitalebdaa.ae",
+    email: "info@baitalebdaa.com",
     address: {
       "@type": "PostalAddress",
       streetAddress: "Showroom No. 052004009, Jurf Industrial 2",
