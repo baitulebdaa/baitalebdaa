@@ -184,6 +184,8 @@ export const dictionaries = {
       submit: "Get My Quote",
       whatsappCta: "Or chat on WhatsApp",
       success: "Thank you — we'll respond within 24 hours.",
+      sending: "Sending...",
+      error: "Something went wrong. Please try WhatsApp instead.",
     },
     contactSection: {
       mainHeading: "Let's Talk",
@@ -218,7 +220,9 @@ export const dictionaries = {
       companyDetails: "Company Details",
       uploadCV: "Upload CV",
       sendRequest: "Send Request",
-      success: "Thank you—your request has been sent."
+      success: "Thank you—your request has been sent.",
+      sending: "Sending...",
+      error: "Something went wrong. Please try again or WhatsApp us."
     },
     footer: {
       newsletter: "Newsletter",
@@ -562,6 +566,8 @@ export const dictionaries = {
       submit: "احصل على عرض السعر",
       whatsappCta: "أو تحدث عبر واتساب",
       success: "شكراً لك — سنرد خلال 24 ساعة.",
+      sending: "جارٍ الإرسال...",
+      error: "حدث خطأ ما. يرجى المحاولة عبر واتساب بدلاً من ذلك.",
     },
     contactSection: {
       mainHeading: "لنتحدث",
@@ -596,7 +602,9 @@ export const dictionaries = {
       companyDetails: "تفاصيل الشركة",
       uploadCV: "رفع السيرة الذاتية",
       sendRequest: "إرسال الطلب",
-      success: "شكراً لك - تم إرسال طلبك."
+      success: "شكراً لك - تم إرسال طلبك.",
+      sending: "جارٍ الإرسال...",
+      error: "حدث خطأ ما. يرجى المحاولة مرة أخرى أو التواصل عبر واتساب."
     },
     footer: {
       newsletter: "النشرة الإخبارية",

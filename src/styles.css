@@ -1946,9 +1946,22 @@ h1,h2,h3,.menu-overlay__main>a,.studio__facts strong,.project-form legend,.foote
   border-radius: 10px;
 }
 
+.quote-modal-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 .quote-modal-whatsapp {
   width: 100%;
   justify-content: center;
+}
+
+.quote-modal-error {
+  color: #c0392b;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-align: center;
+  margin: 0;
 }
 
 @media (max-width: 560px) {

@@ -117,15 +117,88 @@ function Comparison() {
 }
 
 
+const FIELD_LABELS = {
+  name: "Full Name",
+  email: "Email",
+  phone: "Phone",
+  jobTitle: "Job Title",
+  country: "Country",
+  location: "Location",
+  applyingFor: "Applying For",
+  linkedin: "LinkedIn",
+  message: "Message",
+  companyName: "Company Name",
+  companyDomain: "Company Domain",
+  companyPhone: "Company Phone",
+  companyEmail: "Company Email",
+  companyLinkedin: "Company LinkedIn",
+  companyAddress: "Company Address",
+  companyCity: "City",
+  companyRegion: "Region",
+  description: "Description",
+};
+
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(String(reader.result).split(",")[1] || "");
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
 function Contact() {
   const { dict } = useI18n();
   const t = dict.contactSection;
-  const [sent, setSent] = useState(false); const [type, setType] = useState(t.types[0]); // Default Project Form
-  
+  const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
+  const [type, setType] = useState(t.types[0]); // Default Project Form
+
   // Track selected type index to conditionally map
   const typeIndex = t.types.indexOf(type) !== -1 ? t.types.indexOf(type) : 1;
+  const formTypeKey = ["project", "procurement", "careers"][typeIndex] || "project";
 
-  const submit = (event) => { event.preventDefault(); if (!event.currentTarget.reportValidity()) return; setSent(true); event.currentTarget.reset(); window.setTimeout(() => setSent(false), 5000); };
+  const submit = async (event) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    if (!form.reportValidity()) return;
+
+    const data = new FormData(form);
+    const name = data.get("name");
+    const email = data.get("email");
+    const fields = {};
+    for (const [key, value] of data.entries()) {
+      if (key === "cv" || key === "formType" || !value) continue;
+      fields[FIELD_LABELS[key] || key] = value;
+    }
+
+    let attachments = [];
+    const cvFile = data.get("cv");
+    if (cvFile instanceof File && cvFile.size > 0) {
+      attachments = [{ filename: cvFile.name, content: await fileToBase64(cvFile) }];
+    }
+
+    setSending(true);
+    setError("");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ formType: formTypeKey, name, email, fields, attachments }),
+      });
+      const result = await res.json();
+      if (!res.ok || !result.success) throw new Error(result.error || "Failed to send");
+
+      setSent(true);
+      form.reset();
+      window.setTimeout(() => setSent(false), 5000);
+    } catch {
+      setError(t.error || "Something went wrong. Please try again or WhatsApp us.");
+    } finally {
+      setSending(false);
+    }
+  };
   return <section className="contact" id="contact"><div className="shell contact__centered"><Reveal as="form" className="project-form" delay={100} method="post" onSubmit={submit}>
     <h2 className="form-main-heading">{t.mainHeading}</h2>
     <h3 className="form-heading">{t.heading}</h3>
@@ -215,10 +288,10 @@ function Contact() {
       </>
     )}
 
-    <input type="hidden" name="formType" value={type} />
     <div className="form-submit-wrapper">
-      <button className="submit-button submit-button--outline" type="submit">{t.sendRequest} <ArrowUpRight size={14} /></button>
+      <button className="submit-button submit-button--outline" type="submit" disabled={sending}>{sending ? (t.sending || "Sending...") : t.sendRequest} <ArrowUpRight size={14} /></button>
     </div>
+    {error && <p className="quote-modal-error" role="status">{error}</p>}
     <p className={`form-success ${sent ? "is-visible" : ""}`} role="status"><Check size={18} /> {t.success}</p>
   </Reveal></div></section>;
 }

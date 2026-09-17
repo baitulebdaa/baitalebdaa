@@ -11,6 +11,8 @@ export function QuoteModal({ open, onClose }) {
   const [size, setSize] = useState(3500);
   const [service, setService] = useState(0);
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
   const [desc, setDesc] = useState("");
 
   useEffect(() => {
@@ -21,13 +23,42 @@ export function QuoteModal({ open, onClose }) {
   const sizeFraction = (size - 500) / (15000 - 500);
   const sizeFillPos = `calc(${sizeFraction} * (100% - 20px) + 10px)`;
 
-  const submit = (event) => {
+  const submit = async (event) => {
     event.preventDefault();
-    if (!event.currentTarget.reportValidity()) return;
-    setSent(true);
-    event.currentTarget.reset();
-    setDesc("");
-    window.setTimeout(() => { setSent(false); onClose(); }, 2500);
+    const form = event.currentTarget;
+    if (!form.reportValidity()) return;
+
+    const data = new FormData(form);
+    const fields = {
+      name: data.get("name"),
+      email: data.get("email"),
+      phone: data.get("phone"),
+      propertySize: `${size.toLocaleString()} sqft`,
+      serviceType: t.serviceOptions[service],
+      location: data.get("location"),
+      description: data.get("description"),
+    };
+
+    setSending(true);
+    setError("");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ formType: "quote", name: fields.name, email: fields.email, fields }),
+      });
+      const result = await res.json();
+      if (!res.ok || !result.success) throw new Error(result.error || "Failed to send");
+
+      setSent(true);
+      form.reset();
+      setDesc("");
+      window.setTimeout(() => { setSent(false); onClose(); }, 2500);
+    } catch {
+      setError(t.error || "Something went wrong. Please try WhatsApp instead.");
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -128,7 +159,9 @@ export function QuoteModal({ open, onClose }) {
             <span className="quote-modal-char-count">{desc.length}/300</span>
           </label>
 
-          <button type="submit" className="submit-button quote-modal-submit">{t.submit}</button>
+          <button type="submit" className="submit-button quote-modal-submit" disabled={sending}>
+            {sending ? t.sending || "Sending..." : t.submit}
+          </button>
           <a
             href="https://wa.me/971524621919"
             target="_blank"
@@ -138,6 +171,7 @@ export function QuoteModal({ open, onClose }) {
             {t.whatsappCta} <ArrowUpRight size={15} />
           </a>
 
+          {error && <p className="quote-modal-error">{error}</p>}
           <p className={`form-success ${sent ? "is-visible" : ""}`}>{t.success}</p>
         </form>
       </div>
