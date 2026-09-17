@@ -1,9 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { ArrowUpRight, Check } from "lucide-react";
 import { useI18n } from "../i18n/I18nProvider";
 import { Reveal } from "./Shared";
+
+const WHATSAPP_NUMBER = "971524621919";
 
 const FIELD_LABELS = {
   name: "Full Name",
@@ -36,10 +39,22 @@ function fileToBase64(file) {
 }
 
 // Shared, Resend-wired contact form — used on both the homepage's inline #contact
-// section and the standalone /contact page (src/ContactPage.jsx).
+// section and the standalone /contact page (src/ContactPage.jsx). Wrapped in
+// Suspense because useSearchParams() (reading ?service= from a pricing-page
+// CTA) requires it in a statically-generated route.
 export function ContactForm() {
-  const { dict } = useI18n();
+  return (
+    <Suspense fallback={null}>
+      <ContactFormBody />
+    </Suspense>
+  );
+}
+
+function ContactFormBody() {
+  const { lang, dict } = useI18n();
   const t = dict.contactSection;
+  const searchParams = useSearchParams();
+  const presetService = searchParams.get("service") || "";
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
@@ -48,6 +63,13 @@ export function ContactForm() {
   // Track selected type index to conditionally map
   const typeIndex = t.types.indexOf(type) !== -1 ? t.types.indexOf(type) : 1;
   const formTypeKey = ["project", "procurement", "careers"][typeIndex] || "project";
+
+  const waMessage = presetService
+    ? (lang === "ar"
+        ? `مرحباً! أرغب بالاستفسار عن: ${presetService}.`
+        : `Hello! I'd like to enquire about: ${presetService}.`)
+    : (lang === "ar" ? "مرحباً! أرغب بالتواصل بخصوص مشروعي." : "Hello! I'd like to get in touch about my project.");
+  const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(waMessage)}`;
 
   const submit = async (event) => {
     event.preventDefault();
@@ -62,6 +84,7 @@ export function ContactForm() {
       if (key === "cv" || key === "formType" || !value) continue;
       fields[FIELD_LABELS[key] || key] = value;
     }
+    if (presetService) fields["Interested Service"] = presetService;
 
     let attachments = [];
     const cvFile = data.get("cv");
@@ -93,6 +116,11 @@ export function ContactForm() {
   return <section className="contact" id="contact"><div className="shell contact__centered"><Reveal as="form" className="project-form" delay={100} method="post" onSubmit={submit}>
     <h2 className="form-main-heading">{t.mainHeading}</h2>
     <h3 className="form-heading">{t.heading}</h3>
+    {presetService && (
+      <p className="contact-preset-service">
+        {lang === "ar" ? "بخصوص: " : "Regarding: "}<strong>{presetService}</strong>
+      </p>
+    )}
     <div className="project-types" dir="ltr">
       {/* We keep the tabs LTR internally just so the visual ordering doesn't break the rounded corners mapping */}
       {t.types.map((item, i) => <button type="button" key={i} className={type === item ? "is-active" : ""} onClick={() => setType(item)}>{item}</button>)}
@@ -181,6 +209,9 @@ export function ContactForm() {
 
     <div className="form-submit-wrapper">
       <button className="submit-button submit-button--outline" type="submit" disabled={sending}>{sending ? (t.sending || "Sending...") : t.sendRequest} <ArrowUpRight size={14} /></button>
+      <a href={waHref} target="_blank" rel="noopener noreferrer" className="outline-button contact-whatsapp-link">
+        {dict.quoteModal.whatsappCta} <ArrowUpRight size={14} />
+      </a>
     </div>
     {error && <p className="quote-modal-error" role="status">{error}</p>}
     <p className={`form-success ${sent ? "is-visible" : ""}`} role="status"><Check size={18} /> {t.success}</p>

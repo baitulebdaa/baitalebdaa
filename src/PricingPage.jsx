@@ -4,8 +4,19 @@ import { useState } from "react";
 import { ArrowUpRight, Check } from "lucide-react";
 import { useI18n } from "./i18n/I18nProvider";
 import { Header, Footer, Reveal, PageHeader } from "./components/Shared";
+import { Estimator } from "./components/Estimator";
+import { pricingGroups } from "./data/pricing";
+import { formatPrice } from "./lib/pricing";
 
-function PricingTable({ headers, rows }) {
+// Matches the WhatsApp number already used site-wide (Hero, Header, QuoteModal).
+const WHATSAPP_NUMBER = "971524621919";
+
+function findGroup(id) {
+  return pricingGroups.find((group) => group.id === id);
+}
+
+function PricingTable({ headers, groupId, itemLabels, lang }) {
+  const group = findGroup(groupId);
   return (
     <Reveal className="comparison-table-wrap" delay={100}>
       <table className="comparison-table">
@@ -16,10 +27,10 @@ function PricingTable({ headers, rows }) {
           </tr>
         </thead>
         <tbody>
-          {rows.map((row, i) => (
-            <tr key={i}>
-              <td className="comparison-feature">{row[0]}</td>
-              <td className="comparison-standard">{row[1]}</td>
+          {group.items.map((item) => (
+            <tr key={item.id}>
+              <td className="comparison-feature">{itemLabels[item.id]}</td>
+              <td className="comparison-standard">{formatPrice(item, lang)}</td>
             </tr>
           ))}
         </tbody>
@@ -41,13 +52,36 @@ function ChecklistGrid({ items }) {
   );
 }
 
-function CategoryCta({ lang, label, dark = false }) {
+// CTAs carry the selected service through to the Contact page as a query
+// param, which ContactForm reads to preselect + submit + include on WhatsApp.
+function CategoryCta({ lang, label, service }) {
   return (
     <Reveal className="pricing-category-cta" delay={120}>
-      <a href={`/${lang}/contact`} className={`outline-button ${dark ? "outline-button--dark" : "outline-button--light"}`}>
+      <a
+        href={`/${lang}/contact?service=${encodeURIComponent(service)}`}
+        className="outline-button outline-button--dark"
+      >
         {label} <ArrowUpRight size={16} />
       </a>
     </Reveal>
+  );
+}
+
+function PricingCategory({ id, lang, t, light = false }) {
+  const g = t.groups[id];
+  return (
+    <section className={`pricing-section${light ? " pricing-section--light" : ""}`}>
+      <div className="shell">
+        <Reveal className="pricing-category-heading" delay={80}>
+          <p className="micro">{g.kicker}</p>
+          <h2 className="section-title" style={{ fontSize: "clamp(2rem,3vw,3rem)" }}>{g.title}</h2>
+          <p style={{ color: "var(--muted)", lineHeight: 1.6, maxWidth: 640 }}>{g.subtitle}</p>
+        </Reveal>
+        <PricingTable headers={t.tableHeaders} groupId={id} itemLabels={t.items} lang={lang} />
+        {g.note && <p className="pricing-note">{g.note}</p>}
+        <CategoryCta lang={lang} label={g.cta} service={g.title} />
+      </div>
+    </section>
   );
 }
 
@@ -55,6 +89,8 @@ export default function PricingPage() {
   const { lang, dict } = useI18n();
   const [menuOpen, setMenuOpen] = useState(false);
   const t = dict.pricingPage;
+
+  const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(t.whatsappMessage)}`;
 
   return (
     <>
@@ -64,117 +100,59 @@ export default function PricingPage() {
           kicker={t.navTitle}
           breadcrumbs={<>{dict.ourProjectsPage.home} &nbsp;&#9656;&nbsp; <strong>{t.navTitle}</strong></>}
           title={t.pageTitle}
-        />
-
-        {/* Intro */}
-        <section className="pricing-section">
-          <Reveal className="shell offerings-header-wrapper" delay={100}>
-            <h2 className="offerings-title">{t.introTitle}</h2>
-            <p className="offerings-subtitle">{t.introBody}</p>
-          </Reveal>
-        </section>
-
-        {/* Curtains & Somfy */}
-        <section className="pricing-section pricing-section--light">
-          <div className="shell">
-            <Reveal className="pricing-category-heading" delay={80}>
-              <p className="micro">{t.curtains.kicker}</p>
-              <h2 className="section-title" style={{ fontSize: "clamp(2rem,3vw,3rem)" }}>{t.curtains.title}</h2>
-              <p style={{ color: "var(--muted)", lineHeight: 1.6, maxWidth: 640 }}>{t.curtains.subtitle}</p>
-            </Reveal>
-            <PricingTable headers={t.tableHeaders} rows={t.curtains.rows} />
-            <p className="pricing-subheading">{t.curtains.somfyInclusionsTitle}</p>
-            <ChecklistGrid items={t.curtains.somfyInclusions} />
-            <p className="pricing-note">{t.curtains.note}</p>
-            <CategoryCta lang={lang} label={t.curtains.cta} dark />
-          </div>
-        </section>
-
-        {/* Joinery */}
-        <section className="pricing-section">
-          <div className="shell">
-            <Reveal className="pricing-category-heading" delay={80}>
-              <p className="micro">{t.joinery.kicker}</p>
-              <h2 className="section-title" style={{ fontSize: "clamp(2rem,3vw,3rem)" }}>{t.joinery.title}</h2>
-              <p style={{ color: "var(--muted)", lineHeight: 1.6, maxWidth: 640 }}>{t.joinery.subtitle}</p>
-            </Reveal>
-            <PricingTable headers={t.tableHeaders} rows={t.joinery.rows} />
-            <p className="pricing-subheading">{t.joinery.hardwareTitle}</p>
-            <ChecklistGrid items={t.joinery.hardwareLevels} />
-            <CategoryCta lang={lang} label={t.joinery.cta} dark />
-          </div>
-        </section>
-
-        {/* Design & Visualization */}
-        <section className="pricing-section pricing-section--light">
-          <div className="shell">
-            <Reveal className="pricing-category-heading" delay={80}>
-              <p className="micro">{t.design.kicker}</p>
-              <h2 className="section-title" style={{ fontSize: "clamp(2rem,3vw,3rem)" }}>{t.design.title}</h2>
-              <p style={{ color: "var(--muted)", lineHeight: 1.6, maxWidth: 640 }}>{t.design.subtitle}</p>
-            </Reveal>
-            <PricingTable headers={t.tableHeaders} rows={t.design.rows} />
-            <Reveal className="pricing-callout" delay={140}>
-              <h3>{t.design.calloutTitle}</h3>
-              <p>{t.design.calloutBody}</p>
-              <a href={`/${lang}/contact`} className="outline-button outline-button--light" style={{ marginTop: 20 }}>
-                {t.design.cta} <ArrowUpRight size={16} />
+        >
+          <Reveal className="pricing-hero-support" delay={100}>
+            <p className="pricing-hero-body">{t.heroBody}</p>
+            <div className="pricing-hero-ctas">
+              <a href="#estimate" className="outline-button outline-button--dark">
+                {t.heroPrimaryCta} <ArrowUpRight size={16} />
               </a>
-            </Reveal>
-          </div>
-        </section>
-
-        {/* Approvals */}
-        <section className="pricing-section">
-          <div className="shell">
-            <Reveal className="pricing-category-heading" delay={80}>
-              <p className="micro">{t.approvals.kicker}</p>
-              <h2 className="section-title" style={{ fontSize: "clamp(2rem,3vw,3rem)" }}>{t.approvals.title}</h2>
-              <p style={{ color: "var(--muted)", lineHeight: 1.6, maxWidth: 640 }}>{t.approvals.subtitle}</p>
-            </Reveal>
-            <PricingTable headers={t.tableHeaders} rows={t.approvals.rows} />
-            <p className="pricing-note">{t.approvals.note}</p>
-            <CategoryCta lang={lang} label={t.approvals.cta} dark />
-          </div>
-        </section>
-
-        {/* Turnkey Fit-Out */}
-        <section className="pricing-section pricing-section--light">
-          <div className="shell">
-            <Reveal className="pricing-category-heading" delay={80}>
-              <p className="micro">{t.turnkey.kicker}</p>
-              <h2 className="section-title" style={{ fontSize: "clamp(2rem,3vw,3rem)" }}>{t.turnkey.title}</h2>
-              <p style={{ color: "var(--muted)", lineHeight: 1.6, maxWidth: 640 }}>{t.turnkey.subtitle}</p>
-            </Reveal>
-            <p className="pricing-subheading">{t.turnkey.officeLabel}</p>
-            <PricingTable headers={t.tableHeaders} rows={t.turnkey.officeRows} />
-            <p className="pricing-subheading">{t.turnkey.villaLabel}</p>
-            <PricingTable headers={t.tableHeaders} rows={t.turnkey.villaRows} />
-            <p className="pricing-note">{t.turnkey.note}</p>
-            <CategoryCta lang={lang} label={t.turnkey.cta} dark />
-          </div>
-        </section>
-
-        {/* VAT */}
-        <section className="pricing-section">
-          <div className="shell">
-            <Reveal className="pricing-category-heading" delay={80}>
-              <p className="micro">{t.vat.title}</p>
-            </Reveal>
-            <div className="pricing-vat-grid">
-              <p className="pricing-note">{t.vat.residential}</p>
-              <p className="pricing-note">{t.vat.commercial}</p>
+              <a href={waHref} target="_blank" rel="noopener noreferrer" className="outline-button outline-button--dark">
+                {t.heroSecondaryCta} <ArrowUpRight size={16} />
+              </a>
             </div>
+            <p className="pricing-hero-trust">{t.heroTrust}</p>
+          </Reveal>
+        </PageHeader>
+
+        {/* Global pricing disclaimer — visible on the page, not hidden behind legal terms */}
+        <section className="pricing-section" style={{ paddingBottom: 0 }}>
+          <div className="shell">
+            <p className="pricing-note pricing-note--global">{t.globalDisclaimer}</p>
           </div>
         </section>
+
+        {/* Existing homepage cost estimator, reused here in compact mode */}
+        <div id="estimate">
+          <Estimator compact ctaHref={`/${lang}/contact`} />
+        </div>
+
+        <PricingCategory id="curtainsManual" lang={lang} t={t} light />
+        <PricingCategory id="curtainsSomfy" lang={lang} t={t} />
+
+        <PricingCategory id="joineryWardrobes" lang={lang} t={t} light />
+        <PricingCategory id="joineryMedia" lang={lang} t={t} />
+        <PricingCategory id="joineryKitchens" lang={lang} t={t} light />
+        <section className="pricing-section" style={{ paddingTop: 0 }}>
+          <div className="shell">
+            <p className="pricing-subheading">{t.hardwareTitle}</p>
+            <ChecklistGrid items={t.hardwareLevels} />
+            <p className="pricing-note">{t.joineryDisclaimer}</p>
+          </div>
+        </section>
+
+        <PricingCategory id="design" lang={lang} t={t} light />
+        <PricingCategory id="villa" lang={lang} t={t} />
+        <PricingCategory id="office" lang={lang} t={t} light />
+        <PricingCategory id="approvals" lang={lang} t={t} />
 
         {/* Final CTA */}
         <section className="pricing-section" style={{ paddingTop: 0 }}>
           <Reveal className="shell pricing-callout pricing-cta" delay={100}>
-            <h3>{t.cta.title}</h3>
-            <p>{t.cta.body}</p>
+            <h3>{t.finalCta.title}</h3>
+            <p>{t.finalCta.body}</p>
             <a href={`/${lang}/contact`} className="outline-button outline-button--light">
-              {t.cta.button} <ArrowUpRight size={16} />
+              {t.finalCta.button} <ArrowUpRight size={16} />
             </a>
           </Reveal>
         </section>

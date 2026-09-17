@@ -1665,6 +1665,53 @@ h1,h2,h3,.menu-overlay__main>a,.studio__facts strong,.project-form legend,.foote
   margin-top: 28px;
 }
 
+.form-submit-wrapper {
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.contact-preset-service {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px 16px;
+  margin: 0 0 24px;
+}
+
+.contact-preset-service strong {
+  color: var(--ink);
+}
+
+.pricing-hero-support {
+  max-width: 420px;
+}
+
+.pricing-hero-body {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0 0 20px;
+}
+
+.pricing-hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.pricing-hero-trust {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+.pricing-note--global {
+  background: #fbfaf7;
+}
+
 .pricing-note {
   margin-top: 24px;
   padding: 18px 24px;
