@@ -61,7 +61,7 @@ export function Estimator({ compact = false, defaultLocationIndex = 0, ctaHref =
 
             <div className="estimator-control-group">
               <label>{t.scope}</label>
-              <div className="project-types" dir="ltr" style={{ width: '100%', margin: '0' }}>
+              <div className="project-types" dir="ltr" style={{ width: '100%', margin: '0', justifyContent: 'flex-start' }}>
                 {t.scopeOptions.map((opt, i) => (
                   <button type="button" key={i} className={scope === i ? "is-active" : ""} onClick={() => setScope(i)}>{opt}</button>
                 ))}
@@ -70,7 +70,7 @@ export function Estimator({ compact = false, defaultLocationIndex = 0, ctaHref =
 
             <div className="estimator-control-group">
               <label>{t.location}</label>
-              <div className="project-types" dir="ltr" style={{ width: '100%', margin: '0' }}>
+              <div className="project-types" dir="ltr" style={{ width: '100%', margin: '0', justifyContent: 'flex-start' }}>
                 {t.locationOptions.map((opt, i) => (
                   <button type="button" key={i} className={location === i ? "is-active" : ""} onClick={() => setLocation(i)}>{opt}</button>
                 ))}
