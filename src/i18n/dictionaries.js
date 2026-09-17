@@ -156,6 +156,12 @@ export const dictionaries = {
         }
       ]
     },
+    contactPage: {
+      navTitle: "Contact Us",
+      pageTitle: "Let's Talk About Your Project",
+      metaTitle: "Contact Us | Bait Al Ebdaa",
+      metaDescription: "Get in touch with Bait Al Ebdaa for interior design, turnkey fit-out and joinery projects across the UAE — request a quote, discuss procurement, or apply for a role."
+    },
     quoteModal: {
       title: "Get Your Free Quote",
       subtitle: "Bait Al Ebdaa // 24-Hour Response Guarantee",
@@ -537,6 +543,12 @@ export const dictionaries = {
           a: "نعم، نحن نفخر بتقديم مسح أولي مجاني للموقع واستشارة شخصية شاملة لفهم متطلباتك المكانية الفريدة بعمق. سيناقش خبراء التصميم ذوو الخبرة لدينا رؤيتك بدقة، ويقيمون ظروف الموقع، ويقدمون نظرة عامة مفاهيمية أولية. بمجرد التوافق على الاتجاه الأولي، ننتقل بعد ذلك إلى تطوير حزم عروض CAD ثلاثية الأبعاد المفصلة والواقعية للغاية."
         }
       ]
+    },
+    contactPage: {
+      navTitle: "اتصل بنا",
+      pageTitle: "لنتحدث عن مشروعك",
+      metaTitle: "اتصل بنا | بيت الإبداع",
+      metaDescription: "تواصل مع بيت الإبداع لخدمات التصميم الداخلي والتشطيبات الكاملة والنجارة في جميع أنحاء الإمارات — اطلب عرض سعر، أو ناقش التوريد، أو تقدم لوظيفة."
     },
     quoteModal: {
       title: "احصل على عرض سعر مجاني",

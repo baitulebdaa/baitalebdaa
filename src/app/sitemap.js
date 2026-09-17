@@ -6,7 +6,7 @@ const BASE = "https://www.baitalebdaa.com";
 
 // "media" is deliberately excluded — it's noindexed until the placeholder
 // articles are replaced with real content (see [lang]/media/page.jsx).
-const STATIC_PATHS = ["our-services", "our-projects", "our-projects/government-authority", "process"];
+const STATIC_PATHS = ["our-services", "our-projects", "our-projects/government-authority", "process", "contact"];
 
 export default function sitemap() {
   const now = new Date();

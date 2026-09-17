@@ -64,7 +64,7 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
           if (item === "Projects") href = `/${lang}/our-projects`;
           else if (item === "Services") href = `/${lang}/our-services`;
           else if (item === "Process") href = `/${lang}/process`;
-          else if (item === "Contact") href = `/${lang}#contact`;
+          else if (item === "Contact") href = `/${lang}/contact`;
           return <a key={item} href={href} onClick={() => setMenuOpen(false)}>{dict.menuItems[i]}</a>
         })}
       </div>
