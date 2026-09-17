@@ -94,9 +94,17 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
 }
 
 export function Footer() {
-  const { dict } = useI18n();
+  const { lang, dict } = useI18n();
   const f = dict.footer;
   const [email, setEmail] = useState("");
+  const exploreHref = (item) => {
+    if (item === "Projects" || item === "المشاريع") return `/${lang}/our-projects`;
+    if (item === "Services" || item === "الخدمات") return `/${lang}/our-services`;
+    if (item === "Pricing" || item === "الأسعار") return `/${lang}/pricing`;
+    if (item === "Contact" || item === "اتصل بنا") return `/${lang}/contact`;
+    if (item === "Home" || item === "الرئيسية") return `/${lang}`;
+    return "#top";
+  };
   return <footer>
     <div className="shell footer-top">
       <div className="footer-newsletter">
@@ -111,7 +119,7 @@ export function Footer() {
       </div>
       <div className="footer-links-col">
         <p className="footer-col-title">{f.explore}</p>
-        {f.exploreLinks.map((link, i) => <a key={i} href="#top">{link}</a>)}
+        {f.exploreLinks.map((link, i) => <a key={i} href={exploreHref(link)}>{link}</a>)}
       </div>
       <div className="footer-links-col">
         <p className="footer-col-title">{f.importantLinks}</p>
