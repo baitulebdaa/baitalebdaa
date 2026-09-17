@@ -189,7 +189,8 @@ export const dictionaries = {
         ],
         somfyInclusionsTitle: "Every Somfy motorized package includes:",
         somfyInclusions: ["Genuine Somfy motor", "Motorized track", "Selected fabric and stitching", "Remote control", "Installation and programming", "Written motor warranty"],
-        note: "Electrical point and concealed wiring are excluded unless quoted separately."
+        note: "Electrical point and concealed wiring are excluded unless quoted separately.",
+        cta: "Book a Curtains Consultation"
       },
       joinery: {
         kicker: "Custom Joinery",
@@ -211,7 +212,8 @@ export const dictionaries = {
           ["Premium kitchen joinery", "From AED 5,500 / linear metre"]
         ],
         hardwareTitle: "Hardware is specified in three levels:",
-        hardwareLevels: ["Standard — quality soft-close hardware", "Premium — Häfele / Hettich", "Luxury — Blum or equivalent specified range"]
+        hardwareLevels: ["Standard — quality soft-close hardware", "Premium — Häfele / Hettich", "Luxury — Blum or equivalent specified range"],
+        cta: "Get a Joinery Quote"
       },
       design: {
         kicker: "Design & Visualization",
@@ -229,7 +231,8 @@ export const dictionaries = {
           ["Material specification schedule", "From AED 3,500"]
         ],
         calloutTitle: "Design fees, credited to your project",
-        calloutBody: "Design fees paid are credited toward your project when Bait Al Ebdaa is appointed for the full fit-out, subject to project value and contract terms."
+        calloutBody: "Design fees paid are credited toward your project when Bait Al Ebdaa is appointed for the full fit-out, subject to project value and contract terms.",
+        cta: "Book a Design Package"
       },
       approvals: {
         kicker: "Approvals",
@@ -241,7 +244,8 @@ export const dictionaries = {
           ["Complete office fit-out approval package", "From AED 7,500"],
           ["Civil Defence / MEP approval coordination", "Custom quotation"]
         ],
-        note: "Authority, developer, consultant and statutory fees are charged separately at actual cost. Approval timelines remain subject to the relevant authority — we provide end-to-end approval coordination, not a guarantee of approval."
+        note: "Authority, developer, consultant and statutory fees are charged separately at actual cost. Approval timelines remain subject to the relevant authority — we provide end-to-end approval coordination, not a guarantee of approval.",
+        cta: "Start Approval Coordination"
       },
       turnkey: {
         kicker: "Turnkey Fit-Out",
@@ -261,7 +265,8 @@ export const dictionaries = {
           ["Luxury villa fit-out", "AED 500–750 / sq ft"],
           ["Fully bespoke villa interiors", "AED 800–1,200+ / sq ft"]
         ],
-        note: "Final rates depend on whether the property is shell-and-core, newly handed over, or an occupied renovation."
+        note: "Final rates depend on whether the property is shell-and-core, newly handed over, or an occupied renovation.",
+        cta: "Get a Turnkey Fit-Out Quote"
       },
       vat: {
         title: "VAT",
@@ -690,7 +695,8 @@ export const dictionaries = {
         ],
         somfyInclusionsTitle: "تشمل كل باقة سومفي الكهربائية:",
         somfyInclusions: ["محرك سومفي أصلي", "سكة كهربائية متحركة", "القماش والخياطة المختارة", "جهاز تحكم عن بعد", "التركيب والبرمجة", "ضمان مكتوب على المحرك"],
-        note: "نقطة الكهرباء والأسلاك المخفية غير مشمولة ما لم يتم تسعيرها بشكل منفصل."
+        note: "نقطة الكهرباء والأسلاك المخفية غير مشمولة ما لم يتم تسعيرها بشكل منفصل.",
+        cta: "احجز استشارة ستائر"
       },
       joinery: {
         kicker: "النجارة المخصصة",
@@ -712,7 +718,8 @@ export const dictionaries = {
           ["مطبخ فاخر", "تبدأ من 5,500 درهم / متر طولي"]
         ],
         hardwareTitle: "الإكسسوارات مصنفة على ثلاثة مستويات:",
-        hardwareLevels: ["قياسي — إكسسوارات إغلاق ناعم عالية الجودة", "متميز — Häfele / Hettich", "فاخر — Blum أو ما يعادلها من نطاق محدد"]
+        hardwareLevels: ["قياسي — إكسسوارات إغلاق ناعم عالية الجودة", "متميز — Häfele / Hettich", "فاخر — Blum أو ما يعادلها من نطاق محدد"],
+        cta: "اطلب عرض سعر نجارة"
       },
       design: {
         kicker: "التصميم والتصور ثلاثي الأبعاد",
@@ -730,7 +737,8 @@ export const dictionaries = {
           ["جدول مواصفات المواد", "يبدأ من 3,500 درهم"]
         ],
         calloutTitle: "رسوم التصميم تُخصم من مشروعك",
-        calloutBody: "تُخصم رسوم التصميم المدفوعة من قيمة مشروعك عند تعيين بيت الإبداع لتنفيذ التشطيب الكامل، وذلك وفقًا لقيمة المشروع وشروط العقد."
+        calloutBody: "تُخصم رسوم التصميم المدفوعة من قيمة مشروعك عند تعيين بيت الإبداع لتنفيذ التشطيب الكامل، وذلك وفقًا لقيمة المشروع وشروط العقد.",
+        cta: "احجز باقة تصميم"
       },
       approvals: {
         kicker: "الموافقات",
@@ -742,7 +750,8 @@ export const dictionaries = {
           ["باقة موافقة تشطيب مكتب كاملة", "تبدأ من 7,500 درهم"],
           ["تنسيق موافقة الدفاع المدني / الأنظمة الكهروميكانيكية", "عرض سعر مخصص"]
         ],
-        note: "رسوم الجهات الحكومية والمطورين والاستشاريين والرسوم النظامية تُحتسب منفصلة وبسعرها الفعلي. تبقى مدد الموافقات خاضعة للجهة المختصة — نحن نقدم تنسيقًا متكاملاً للموافقات، وليس ضمانًا للموافقة."
+        note: "رسوم الجهات الحكومية والمطورين والاستشاريين والرسوم النظامية تُحتسب منفصلة وبسعرها الفعلي. تبقى مدد الموافقات خاضعة للجهة المختصة — نحن نقدم تنسيقًا متكاملاً للموافقات، وليس ضمانًا للموافقة.",
+        cta: "ابدأ تنسيق الموافقات"
       },
       turnkey: {
         kicker: "التشطيب الكامل",
@@ -762,7 +771,8 @@ export const dictionaries = {
           ["تشطيب فيلا فاخر", "500–750 درهم / قدم مربع"],
           ["تشطيب فيلا مصمم بالكامل حسب الطلب", "800–1,200+ درهم / قدم مربع"]
         ],
-        note: "تعتمد الأسعار النهائية على ما إذا كان العقار في حالة هيكل خرساني، أو حديث التسليم، أو تجديدًا لعقار مأهول."
+        note: "تعتمد الأسعار النهائية على ما إذا كان العقار في حالة هيكل خرساني، أو حديث التسليم، أو تجديدًا لعقار مأهول.",
+        cta: "اطلب عرض سعر تشطيب كامل"
       },
       vat: {
         title: "ضريبة القيمة المضافة",

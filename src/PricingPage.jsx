@@ -41,6 +41,16 @@ function ChecklistGrid({ items }) {
   );
 }
 
+function CategoryCta({ lang, label, dark = false }) {
+  return (
+    <Reveal className="pricing-category-cta" delay={120}>
+      <a href={`/${lang}/contact`} className={`outline-button ${dark ? "outline-button--dark" : "outline-button--light"}`}>
+        {label} <ArrowUpRight size={16} />
+      </a>
+    </Reveal>
+  );
+}
+
 export default function PricingPage() {
   const { lang, dict } = useI18n();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -76,6 +86,7 @@ export default function PricingPage() {
             <p className="pricing-subheading">{t.curtains.somfyInclusionsTitle}</p>
             <ChecklistGrid items={t.curtains.somfyInclusions} />
             <p className="pricing-note">{t.curtains.note}</p>
+            <CategoryCta lang={lang} label={t.curtains.cta} dark />
           </div>
         </section>
 
@@ -90,6 +101,7 @@ export default function PricingPage() {
             <PricingTable headers={t.tableHeaders} rows={t.joinery.rows} />
             <p className="pricing-subheading">{t.joinery.hardwareTitle}</p>
             <ChecklistGrid items={t.joinery.hardwareLevels} />
+            <CategoryCta lang={lang} label={t.joinery.cta} dark />
           </div>
         </section>
 
@@ -105,6 +117,9 @@ export default function PricingPage() {
             <Reveal className="pricing-callout" delay={140}>
               <h3>{t.design.calloutTitle}</h3>
               <p>{t.design.calloutBody}</p>
+              <a href={`/${lang}/contact`} className="outline-button outline-button--light" style={{ marginTop: 20 }}>
+                {t.design.cta} <ArrowUpRight size={16} />
+              </a>
             </Reveal>
           </div>
         </section>
@@ -119,6 +134,7 @@ export default function PricingPage() {
             </Reveal>
             <PricingTable headers={t.tableHeaders} rows={t.approvals.rows} />
             <p className="pricing-note">{t.approvals.note}</p>
+            <CategoryCta lang={lang} label={t.approvals.cta} dark />
           </div>
         </section>
 
@@ -135,6 +151,7 @@ export default function PricingPage() {
             <p className="pricing-subheading">{t.turnkey.villaLabel}</p>
             <PricingTable headers={t.tableHeaders} rows={t.turnkey.villaRows} />
             <p className="pricing-note">{t.turnkey.note}</p>
+            <CategoryCta lang={lang} label={t.turnkey.cta} dark />
           </div>
         </section>
 

@@ -1661,6 +1661,10 @@ h1,h2,h3,.menu-overlay__main>a,.studio__facts strong,.project-form legend,.foote
   margin: 0 0 40px;
 }
 
+.pricing-category-cta {
+  margin-top: 28px;
+}
+
 .pricing-note {
   margin-top: 24px;
   padding: 18px 24px;
