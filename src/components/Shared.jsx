@@ -129,6 +129,7 @@ export function Footer() {
         <p className="footer-col-title">{f.contactInfo}</p>
         <span className="footer-loc">{f.loc}</span>
         <a href="mailto:info@baitalebdaa.com">info@baitalebdaa.com</a>
+        <a href="mailto:sales@baitalebdaa.com">{f.salesLabel} sales@baitalebdaa.com</a>
         <a href="tel:+971524621919">T: +971 52 462 1919</a>
         <a href="tel:0582621717">T: 058 262 1717</a>
       </div>
