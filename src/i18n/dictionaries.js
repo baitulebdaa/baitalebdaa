@@ -12,7 +12,7 @@ export const dictionaries = {
       newEnquiries: "New enquiries",
       menuNote: "Design · Approvals · Fit-out · Joinery"
     },
-    menuItems: ["Home", "Services", "Projects", "Process", "Contact"],
+    menuItems: ["Home", "Services", "Projects", "Process", "Pricing", "Contact"],
     hero: {
       slides: [
         { eyebrow: "Dubai · Abu Dhabi", title: "UAE Turnkey Fit-out & Custom Architectural Joinery", body: "From first sketch to final handover, we design, approve and manufacture singular spaces for modern Gulf living." },
@@ -161,6 +161,119 @@ export const dictionaries = {
       pageTitle: "Let's Talk About Your Project",
       metaTitle: "Contact Us | Bait Al Ebdaa",
       metaDescription: "Get in touch with Bait Al Ebdaa for interior design, turnkey fit-out and joinery projects across the UAE — request a quote, discuss procurement, or apply for a role."
+    },
+    pricingPage: {
+      navTitle: "Pricing",
+      pageTitle: "Transparent Starting Prices",
+      metaTitle: "Pricing | Bait Al Ebdaa",
+      metaDescription: "Starting prices for Somfy motorized curtains, custom joinery, design packages, approvals and turnkey fit-out across the UAE — transparent from-prices, bespoke final quotations.",
+      introTitle: "Transparent Starting Prices. Bespoke Final Results.",
+      introBody: "Every Bait Al Ebdaa project is individually measured, designed and manufactured. Displayed prices are starting estimates based on standard dimensions and selected finishes. Your final proposal will clearly define materials, quantities, installation, warranty and project timeline.",
+      tableHeaders: { product: "Product / Service", price: "Starting Price" },
+      curtains: {
+        kicker: "Curtains & Motorization",
+        title: "Curtains & Somfy Motorized Systems",
+        subtitle: "Starting prices for a standard window up to 2m × 3m, with standard installation access and our curated fabric range. Final pricing depends on exact dimensions, fabric and finish selected.",
+        rows: [
+          ["Pinch-pleat sheer curtains", "From AED 650"],
+          ["Wave sheer curtains", "From AED 750"],
+          ["Pinch-pleat blackout curtains", "From AED 850"],
+          ["Wave blackout curtains", "From AED 975"],
+          ["Pinch-pleat layered curtains", "From AED 1,450"],
+          ["Wave layered curtains", "From AED 1,750"],
+          ["Somfy motorized sheer curtains", "From AED 1,850"],
+          ["Somfy motorized blackout curtains", "From AED 2,100"],
+          ["Somfy motorized layered curtains", "From AED 3,500"],
+          ["Somfy smart hub / app integration", "From AED 750 extra"],
+          ["Additional Somfy remote / channel", "From AED 250 extra"]
+        ],
+        somfyInclusionsTitle: "Every Somfy motorized package includes:",
+        somfyInclusions: ["Genuine Somfy motor", "Motorized track", "Selected fabric and stitching", "Remote control", "Installation and programming", "Written motor warranty"],
+        note: "Electrical point and concealed wiring are excluded unless quoted separately."
+      },
+      joinery: {
+        kicker: "Custom Joinery",
+        title: "Custom Joinery & Built-In Furniture",
+        subtitle: "Priced per linear metre for wardrobes, kitchens and built-in seating, or as a starting price for bespoke furniture pieces manufactured in our own factory.",
+        rows: [
+          ["Laminate wardrobe", "From AED 1,800 / linear metre"],
+          ["Premium lacquer / veneer wardrobe", "From AED 2,800 / linear metre"],
+          ["Luxury wardrobe with premium hardware", "From AED 4,000 / linear metre"],
+          ["Basic TV console / media wall", "From AED 4,500"],
+          ["Media wall with storage and LED", "From AED 7,500"],
+          ["Luxury stone-and-joinery media wall", "From AED 12,500"],
+          ["Custom upholstered bed / headboard", "From AED 4,000"],
+          ["Dressing table / vanity", "From AED 3,500"],
+          ["Custom three-seat sofa", "From AED 4,500"],
+          ["Banquette / built-in seating", "From AED 1,500 / linear metre"],
+          ["Laminate kitchen joinery", "From AED 2,400 / linear metre"],
+          ["Lacquer / veneer kitchen", "From AED 3,800 / linear metre"],
+          ["Premium kitchen joinery", "From AED 5,500 / linear metre"]
+        ],
+        hardwareTitle: "Hardware is specified in three levels:",
+        hardwareLevels: ["Standard — quality soft-close hardware", "Premium — Häfele / Hettich", "Luxury — Blum or equivalent specified range"]
+      },
+      design: {
+        kicker: "Design & Visualization",
+        title: "Design & Visualization Packages",
+        subtitle: "From free initial consultations to full villa design packages, delivered with photorealistic 3D visuals before production begins.",
+        rows: [
+          ["Initial consultation", "Free"],
+          ["Site survey and measurement", "Free within Dubai"],
+          ["Single-room concept + photorealistic 3D", "From AED 2,500"],
+          ["Apartment design package", "From AED 12,000"],
+          ["Townhouse design package", "From AED 20,000"],
+          ["Villa design package", "From AED 30,000"],
+          ["Office design package", "From AED 20 / sq ft"],
+          ["Detailed working drawings", "From AED 12 / sq ft"],
+          ["Material specification schedule", "From AED 3,500"]
+        ],
+        calloutTitle: "Design fees, credited to your project",
+        calloutBody: "Design fees paid are credited toward your project when Bait Al Ebdaa is appointed for the full fit-out, subject to project value and contract terms."
+      },
+      approvals: {
+        kicker: "Approvals",
+        title: "Approvals & Authority Coordination",
+        subtitle: "End-to-end coordination with landlords, communities and government authorities across the UAE.",
+        rows: [
+          ["Landlord / community NOC coordination", "From AED 2,500"],
+          ["Dubai Municipality approval support", "From AED 4,500"],
+          ["Complete office fit-out approval package", "From AED 7,500"],
+          ["Civil Defence / MEP approval coordination", "Custom quotation"]
+        ],
+        note: "Authority, developer, consultant and statutory fees are charged separately at actual cost. Approval timelines remain subject to the relevant authority — we provide end-to-end approval coordination, not a guarantee of approval."
+      },
+      turnkey: {
+        kicker: "Turnkey Fit-Out",
+        title: "Turnkey Fit-Out Budget Ranges",
+        subtitle: "Indicative budget ranges to help you plan — your final quotation is shaped by scope, finish level and site conditions.",
+        officeLabel: "Office Fit-Out",
+        officeRows: [
+          ["Essential office fit-out", "AED 220–350 / sq ft"],
+          ["Premium office fit-out", "AED 400–650 / sq ft"],
+          ["Executive / luxury office", "AED 700+ / sq ft"]
+        ],
+        villaLabel: "Villa & Residential Interiors",
+        villaRows: [
+          ["Selective interior upgrade", "From AED 150,000"],
+          ["Townhouse turnkey interiors", "From AED 275,000"],
+          ["Standard villa fit-out", "AED 300–450 / sq ft"],
+          ["Luxury villa fit-out", "AED 500–750 / sq ft"],
+          ["Fully bespoke villa interiors", "AED 800–1,200+ / sq ft"]
+        ],
+        note: "Final rates depend on whether the property is shell-and-core, newly handed over, or an occupied renovation."
+      },
+      vat: {
+        title: "VAT",
+        residential: "Residential prices shown are inclusive of 5% UAE VAT.",
+        commercial: "Commercial fit-out and joinery quotations are shown excluding 5% VAT and authority fees, which are itemized separately in your proposal."
+      },
+      cta: {
+        title: "Book a Complimentary Site Visit",
+        body: "Receive measurements, material recommendations and a detailed quotation with no hidden scope items.",
+        button: "Book a Site Visit"
+      },
+      finalQuoteNote: "Every quotation is finalized only after measurement and material selection."
     },
     quoteModal: {
       title: "Get Your Free Quote",
@@ -399,7 +512,7 @@ export const dictionaries = {
       newEnquiries: "استفسارات جديدة",
       menuNote: "تصميم · موافقات · تجهيز · نجارة"
     },
-    menuItems: ["الرئيسية", "الخدمات", "المشاريع", "العملية", "اتصل بنا"],
+    menuItems: ["الرئيسية", "الخدمات", "المشاريع", "العملية", "الأسعار", "اتصل بنا"],
     hero: {
       slides: [
         { eyebrow: "دبي · أبوظبي", title: "تجهيز متكامل ونجارة معمارية مخصصة في الإمارات", body: "من المخطط الأول إلى التسليم النهائي، نقوم بتصميم واعتماد وتصنيع مساحات فريدة للحياة الخليجية الحديثة." },
@@ -549,6 +662,119 @@ export const dictionaries = {
       pageTitle: "لنتحدث عن مشروعك",
       metaTitle: "اتصل بنا | بيت الإبداع",
       metaDescription: "تواصل مع بيت الإبداع لخدمات التصميم الداخلي والتشطيبات الكاملة والنجارة في جميع أنحاء الإمارات — اطلب عرض سعر، أو ناقش التوريد، أو تقدم لوظيفة."
+    },
+    pricingPage: {
+      navTitle: "الأسعار",
+      pageTitle: "أسعار ابتدائية شفافة",
+      metaTitle: "الأسعار | بيت الإبداع",
+      metaDescription: "أسعار ابتدائية لستائر سومفي الكهربائية، النجارة المخصصة، باقات التصميم، الموافقات والتشطيب الكامل في الإمارات — أسعار ابتدائية شفافة وعروض أسعار نهائية مخصصة.",
+      introTitle: "أسعار ابتدائية شفافة. نتائج نهائية مصممة خصيصًا لك.",
+      introBody: "كل مشروع لدى بيت الإبداع يُقاس ويُصمم ويُصنّع بشكل فردي. الأسعار المعروضة هي تقديرات ابتدائية مبنية على أبعاد قياسية وتشطيبات مختارة. سيحدد عرضنا النهائي بوضوح المواد والكميات والتركيب والضمان والجدول الزمني للمشروع.",
+      tableHeaders: { product: "المنتج / الخدمة", price: "السعر الابتدائي" },
+      curtains: {
+        kicker: "الستائر والتحكم الآلي",
+        title: "الستائر وأنظمة سومفي الكهربائية",
+        subtitle: "أسعار ابتدائية لنافذة قياسية حتى 2×3 متر، مع إمكانية تركيب عادية ومجموعة أقمشة مختارة. يعتمد السعر النهائي على الأبعاد الدقيقة والقماش والتشطيب المختار.",
+        rows: [
+          ["ستائر شفافة مطوية (Pinch-pleat)", "تبدأ من 650 درهم"],
+          ["ستائر شفافة موجية (Wave)", "تبدأ من 750 درهم"],
+          ["ستائر بلاك اوت مطوية", "تبدأ من 850 درهم"],
+          ["ستائر بلاك اوت موجية", "تبدأ من 975 درهم"],
+          ["ستائر متعددة الطبقات مطوية", "تبدأ من 1,450 درهم"],
+          ["ستائر متعددة الطبقات موجية", "تبدأ من 1,750 درهم"],
+          ["ستائر شفافة كهربائية سومفي", "تبدأ من 1,850 درهم"],
+          ["ستائر بلاك اوت كهربائية سومفي", "تبدأ من 2,100 درهم"],
+          ["ستائر متعددة الطبقات كهربائية سومفي", "تبدأ من 3,500 درهم"],
+          ["وحدة التحكم الذكية سومفي (Hub / تطبيق)", "تبدأ من 750 درهم إضافية"],
+          ["جهاز تحكم / قناة إضافية سومفي", "تبدأ من 250 درهم إضافية"]
+        ],
+        somfyInclusionsTitle: "تشمل كل باقة سومفي الكهربائية:",
+        somfyInclusions: ["محرك سومفي أصلي", "سكة كهربائية متحركة", "القماش والخياطة المختارة", "جهاز تحكم عن بعد", "التركيب والبرمجة", "ضمان مكتوب على المحرك"],
+        note: "نقطة الكهرباء والأسلاك المخفية غير مشمولة ما لم يتم تسعيرها بشكل منفصل."
+      },
+      joinery: {
+        kicker: "النجارة المخصصة",
+        title: "النجارة المخصصة والأثاث المدمج",
+        subtitle: "يُسعّر بالمتر الطولي للخزائن والمطابخ والمقاعد المدمجة، أو كسعر ابتدائي لقطع الأثاث المصممة خصيصًا والمصنّعة في مصنعنا الخاص.",
+        rows: [
+          ["خزانة لامينيت", "تبدأ من 1,800 درهم / متر طولي"],
+          ["خزانة لاكيه / فينير فاخرة", "تبدأ من 2,800 درهم / متر طولي"],
+          ["خزانة فاخرة بإكسسوارات متميزة", "تبدأ من 4,000 درهم / متر طولي"],
+          ["وحدة تلفزيون / حائط إعلامي أساسية", "تبدأ من 4,500 درهم"],
+          ["حائط إعلامي مع تخزين وإضاءة LED", "تبدأ من 7,500 درهم"],
+          ["حائط إعلامي فاخر بالحجر والنجارة", "تبدأ من 12,500 درهم"],
+          ["سرير مخصص منجد / لوح رأس", "تبدأ من 4,000 درهم"],
+          ["طاولة تسريحة", "تبدأ من 3,500 درهم"],
+          ["كنبة ثلاثية مقاعد مخصصة", "تبدأ من 4,500 درهم"],
+          ["مقاعد مدمجة (Banquette)", "تبدأ من 1,500 درهم / متر طولي"],
+          ["مطبخ لامينيت", "تبدأ من 2,400 درهم / متر طولي"],
+          ["مطبخ لاكيه / فينير", "تبدأ من 3,800 درهم / متر طولي"],
+          ["مطبخ فاخر", "تبدأ من 5,500 درهم / متر طولي"]
+        ],
+        hardwareTitle: "الإكسسوارات مصنفة على ثلاثة مستويات:",
+        hardwareLevels: ["قياسي — إكسسوارات إغلاق ناعم عالية الجودة", "متميز — Häfele / Hettich", "فاخر — Blum أو ما يعادلها من نطاق محدد"]
+      },
+      design: {
+        kicker: "التصميم والتصور ثلاثي الأبعاد",
+        title: "باقات التصميم والتصور ثلاثي الأبعاد",
+        subtitle: "من الاستشارة الأولية المجانية إلى باقات تصميم الفلل الكاملة، مع تصورات ثلاثية الأبعاد واقعية قبل بدء التنفيذ.",
+        rows: [
+          ["استشارة أولية", "مجانية"],
+          ["مسح الموقع والقياس", "مجاني داخل دبي"],
+          ["تصور غرفة واحدة + رندر ثلاثي الأبعاد واقعي", "يبدأ من 2,500 درهم"],
+          ["باقة تصميم شقة", "تبدأ من 12,000 درهم"],
+          ["باقة تصميم تاون هاوس", "تبدأ من 20,000 درهم"],
+          ["باقة تصميم فيلا", "تبدأ من 30,000 درهم"],
+          ["باقة تصميم مكتب", "تبدأ من 20 درهم / قدم مربع"],
+          ["مخططات تنفيذية تفصيلية", "تبدأ من 12 درهم / قدم مربع"],
+          ["جدول مواصفات المواد", "يبدأ من 3,500 درهم"]
+        ],
+        calloutTitle: "رسوم التصميم تُخصم من مشروعك",
+        calloutBody: "تُخصم رسوم التصميم المدفوعة من قيمة مشروعك عند تعيين بيت الإبداع لتنفيذ التشطيب الكامل، وذلك وفقًا لقيمة المشروع وشروط العقد."
+      },
+      approvals: {
+        kicker: "الموافقات",
+        title: "الموافقات وتنسيق الجهات المختصة",
+        subtitle: "تنسيق متكامل مع الملاك والمجتمعات السكنية والجهات الحكومية في جميع أنحاء الإمارات.",
+        rows: [
+          ["تنسيق عدم ممانعة المالك / المجتمع السكني", "يبدأ من 2,500 درهم"],
+          ["دعم الحصول على موافقة بلدية دبي", "يبدأ من 4,500 درهم"],
+          ["باقة موافقة تشطيب مكتب كاملة", "تبدأ من 7,500 درهم"],
+          ["تنسيق موافقة الدفاع المدني / الأنظمة الكهروميكانيكية", "عرض سعر مخصص"]
+        ],
+        note: "رسوم الجهات الحكومية والمطورين والاستشاريين والرسوم النظامية تُحتسب منفصلة وبسعرها الفعلي. تبقى مدد الموافقات خاضعة للجهة المختصة — نحن نقدم تنسيقًا متكاملاً للموافقات، وليس ضمانًا للموافقة."
+      },
+      turnkey: {
+        kicker: "التشطيب الكامل",
+        title: "نطاقات ميزانية التشطيب الكامل",
+        subtitle: "نطاقات ميزانية إرشادية لمساعدتك على التخطيط — يتشكل عرض السعر النهائي وفقًا للنطاق ومستوى التشطيب وظروف الموقع.",
+        officeLabel: "تشطيب المكاتب",
+        officeRows: [
+          ["تشطيب مكتب أساسي", "220–350 درهم / قدم مربع"],
+          ["تشطيب مكتب متميز", "400–650 درهم / قدم مربع"],
+          ["مكتب تنفيذي / فاخر", "700+ درهم / قدم مربع"]
+        ],
+        villaLabel: "الفلل والتشطيبات السكنية",
+        villaRows: [
+          ["تحديث داخلي انتقائي", "يبدأ من 150,000 درهم"],
+          ["تشطيب تاون هاوس كامل", "يبدأ من 275,000 درهم"],
+          ["تشطيب فيلا قياسي", "300–450 درهم / قدم مربع"],
+          ["تشطيب فيلا فاخر", "500–750 درهم / قدم مربع"],
+          ["تشطيب فيلا مصمم بالكامل حسب الطلب", "800–1,200+ درهم / قدم مربع"]
+        ],
+        note: "تعتمد الأسعار النهائية على ما إذا كان العقار في حالة هيكل خرساني، أو حديث التسليم، أو تجديدًا لعقار مأهول."
+      },
+      vat: {
+        title: "ضريبة القيمة المضافة",
+        residential: "الأسعار السكنية المعروضة شاملة ضريبة القيمة المضافة 5٪.",
+        commercial: "عروض أسعار التشطيب والنجارة التجارية معروضة غير شاملة ضريبة القيمة المضافة 5٪ ورسوم الجهات الحكومية، والتي تُدرج بشكل منفصل ومفصل في عرضنا."
+      },
+      cta: {
+        title: "احجز زيارة موقع مجانية",
+        body: "احصل على القياسات وتوصيات المواد وعرض سعر تفصيلي دون أي بنود عمل خفية.",
+        button: "احجز زيارة موقع"
+      },
+      finalQuoteNote: "يتم تحديد كل عرض سعر بشكل نهائي فقط بعد القياس واختيار المواد."
     },
     quoteModal: {
       title: "احصل على عرض سعر مجاني",
