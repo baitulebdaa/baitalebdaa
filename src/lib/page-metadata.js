@@ -13,8 +13,14 @@ export function buildPageMetadata({ lang, path, title, description }) {
   // clean https://www.baitalebdaa.com/ URL, not .../en/. Both the English and
   // Arabic renders of the homepage need to agree on that same URL for hreflang
   // to self-reference correctly in both directions.
-  const enUrl = isHome ? `${BASE}/` : `${BASE}/en${cleanPath}/`;
-  const arUrl = `${BASE}/ar${cleanPath}/`;
+  //
+  // No trailing slash on non-home paths: this app has no trailingSlash config,
+  // so a route only serves 200 without one — a trailing-slash URL 308-redirects
+  // to it instead, which makes an unsuitable canonical/hreflang target (Google
+  // treats "canonical points to a redirecting URL" as a real issue). The
+  // homepage root ("/") is the one legitimate exception since "/" IS the route.
+  const enUrl = isHome ? `${BASE}/` : `${BASE}/en${cleanPath}`;
+  const arUrl = isHome ? `${BASE}/ar` : `${BASE}/ar${cleanPath}`;
   const selfUrl = lang === "en" ? enUrl : arUrl;
 
   return {

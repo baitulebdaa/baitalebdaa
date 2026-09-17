@@ -38,7 +38,14 @@ const CORE_LOCATIONS = new Set([
 // URL we take from the sheet rather than editing the sheet itself.
 const SHEET_DOMAIN = "baitalebdaa.ae";
 const PRODUCTION_DOMAIN = "www.baitalebdaa.com";
-const toProductionDomain = (url) => String(url || "").replace(SHEET_DOMAIN, PRODUCTION_DOMAIN);
+// The sheet's own URLs end in a trailing slash, but this Next.js app has no
+// trailingSlash config and serves every route WITHOUT one — a bare canonical/
+// hreflang URL with a trailing slash 308-redirects to the real page instead of
+// resolving directly, which is exactly what Google's docs warn against for a
+// canonical target. Strip it here so canonical/hreflang/sitemap all point at
+// the URL that actually serves 200, matching every internal <a href> already
+// in the codebase (none of which use a trailing slash either).
+const toProductionDomain = (url) => String(url || "").replace(SHEET_DOMAIN, PRODUCTION_DOMAIN).replace(/\/$/, "");
 
 const URL_RE = /^https:\/\/baitalebdaa\.ae\/(en|ar)\/([^/]+)\/([^/]+)\/$/;
 

@@ -19,14 +19,14 @@ export default function sitemap() {
       lastModified: now,
       changeFrequency: "weekly",
       priority: 1,
-      alternates: { languages: { en: BASE, ar: `${BASE}/ar/` } },
+      alternates: { languages: { en: BASE, ar: `${BASE}/ar` } },
     },
     {
-      url: `${BASE}/ar/`,
+      url: `${BASE}/ar`,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.9,
-      alternates: { languages: { en: BASE, ar: `${BASE}/ar/` } },
+      alternates: { languages: { en: BASE, ar: `${BASE}/ar` } },
     },
   ];
 

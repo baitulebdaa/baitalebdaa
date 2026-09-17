@@ -111,7 +111,7 @@ export default function OurServices() {
 
           <div className="explore-services-grid">
             {seoServices.map((service, i) => (
-              <Reveal as="a" key={service.slug} href={`/${lang}/${service.slug}/uae/`} className="explore-service-card" delay={60 + (i % 4) * 40}>
+              <Reveal as="a" key={service.slug} href={`/${lang}/${service.slug}/uae`} className="explore-service-card" delay={60 + (i % 4) * 40}>
                 <span>{lang === "ar" ? service.ar : service.en}</span>
                 <ArrowUpRight size={16} />
               </Reveal>

@@ -170,8 +170,8 @@ export default function ServiceLocationPage({ lang, row }) {
       {
         "@type": "BreadcrumbList",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: home, item: `https://www.baitalebdaa.com/${lang}/` },
-          { "@type": "ListItem", position: 2, name: serviceName, item: `https://www.baitalebdaa.com/${lang}/${row.serviceSlug}/uae/` },
+          { "@type": "ListItem", position: 1, name: home, item: lang === "en" ? "https://www.baitalebdaa.com" : "https://www.baitalebdaa.com/ar" },
+          { "@type": "ListItem", position: 2, name: serviceName, item: `https://www.baitalebdaa.com/${lang}/${row.serviceSlug}/uae` },
           { "@type": "ListItem", position: 3, name: locationName, item: row.canonical },
         ],
       },
@@ -189,7 +189,7 @@ export default function ServiceLocationPage({ lang, row }) {
           breadcrumbs={
             <>
               {home} &nbsp;&#9656;&nbsp;
-              <a href={`/${lang}/${row.serviceSlug}/uae/`}> {serviceName} </a>
+              <a href={`/${lang}/${row.serviceSlug}/uae`}> {serviceName} </a>
               &nbsp;&#9656;&nbsp; <strong>{locationName}</strong>
             </>
           }
@@ -339,7 +339,7 @@ export default function ServiceLocationPage({ lang, row }) {
               <h3>{lang === "ar" ? `${serviceName} في مناطق أخرى` : `${serviceName} in other areas`}</h3>
               <div className="slp-links-pills">
                 {[...coreAreas, ...nearbyAreas].map((entry) => (
-                  <a key={entry.location.slug} href={`/${lang}/${row.serviceSlug}/${entry.location.slug}/`}>
+                  <a key={entry.location.slug} href={`/${lang}/${row.serviceSlug}/${entry.location.slug}`}>
                     {lang === "ar" ? entry.location.ar : entry.location.en}
                   </a>
                 ))}
@@ -351,7 +351,7 @@ export default function ServiceLocationPage({ lang, row }) {
               <h3>{lang === "ar" ? `خدمات أخرى في ${locationName}` : `Other services in ${locationName}`}</h3>
               <div className="slp-links-pills">
                 {otherServices.map((entry) => (
-                  <a key={entry.service.slug} href={`/${lang}/${entry.service.slug}/${row.locationSlug}/`}>
+                  <a key={entry.service.slug} href={`/${lang}/${entry.service.slug}/${row.locationSlug}`}>
                     {lang === "ar" ? entry.service.ar : entry.service.en}
                   </a>
                 ))}
