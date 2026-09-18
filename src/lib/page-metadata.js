@@ -8,7 +8,7 @@ export function buildPageMetadata({ lang, path, title, description }) {
   const cleanPath = path ? `/${path}` : "";
   const isHome = path === "";
 
-  // The homepage's English version lives at the bare domain root — middleware
+  // The homepage's English version lives at the bare domain root — src/proxy.js
   // rewrites "/" to "/en" internally so it renders, but Google should index the
   // clean https://www.baitalebdaa.com/ URL, not .../en/. Both the English and
   // Arabic renders of the homepage need to agree on that same URL for hreflang
@@ -67,6 +67,21 @@ export function organizationJsonLd() {
       streetAddress: "Showroom No. 052004009, Jurf Industrial 2",
       addressLocality: "Ajman",
       addressCountry: "AE",
+    },
+    // District-level approximation for Jurf Industrial 2, Ajman — not the exact
+    // showroom pin. Replace with the precise lat/long from your Google Business
+    // Profile listing (Maps > right-click your pin > coordinates shown at top).
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 25.40447,
+      longitude: 55.491127,
+    },
+    priceRange: "$$$",
+    openingHoursSpecification: {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
+      opens: "09:00",
+      closes: "18:00",
     },
     areaServed: ["Dubai", "Abu Dhabi", "Sharjah", "Ajman", "Ras Al Khaimah", "Fujairah", "Umm Al Quwain"],
     sameAs: [

@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { ArrowUp, ArrowUpRight, ChevronDown, ChevronUp, Menu, X, Globe } from "lucide-react";
 import { useI18n } from "../i18n/I18nProvider";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 export function Brand({ light = false, priority = false, customSrc = null }) {
   return <a className={`brand ${light ? "brand--light" : ""}`} href="/" aria-label="Bait Al Ebdaa home"><Image className="brand__logo" src={customSrc || "/assets/logo.png"} alt="Bait Al Ebdaa - Luxury Interior Design and Joinery Logo" width={2170} height={725} priority={priority} /></a>;
@@ -28,13 +28,21 @@ export function Reveal({ as: Tag = "div", className = "", children, delay = 0, .
 export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLogo = false, lightTheme = false }) {
   const { lang, dict } = useI18n();
   const router = useRouter();
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => { const onScroll = () => setScrolled(window.scrollY > 40); onScroll(); window.addEventListener("scroll", onScroll, { passive: true }); return () => window.removeEventListener("scroll", onScroll); }, []);
   useEffect(() => { document.body.style.overflow = menuOpen ? "hidden" : ""; return () => { document.body.style.overflow = ""; }; }, [menuOpen]);
-  
+
+  // Swaps only the /en//ar segment so switching language keeps you on the equivalent
+  // page (e.g. /en/interior-design/dubai-marina -> /ar/interior-design/dubai-marina)
+  // instead of always bouncing to the homepage — this is what makes the per-page
+  // hreflang tags actually reachable from the UI.
   const toggleLanguage = () => {
     const newLang = lang === "en" ? "ar" : "en";
-    router.push(`/${newLang}`);
+    const segments = pathname.split("/").filter(Boolean);
+    const rest = segments[0] === "en" || segments[0] === "ar" ? segments.slice(1) : segments;
+    const target = rest.length === 0 && newLang === "en" ? "/" : `/${[newLang, ...rest].join("/")}`;
+    router.push(target);
   };
 
   return <>

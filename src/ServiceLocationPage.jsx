@@ -175,6 +175,14 @@ export default function ServiceLocationPage({ lang, row }) {
           { "@type": "ListItem", position: 3, name: locationName, item: row.canonical },
         ],
       },
+      {
+        "@type": "FAQPage",
+        mainEntity: [...content.faqs, ...extraFaqs].map((item) => ({
+          "@type": "Question",
+          name: item.q,
+          acceptedAnswer: { "@type": "Answer", text: item.a },
+        })),
+      },
     ],
   };
 
@@ -218,7 +226,7 @@ export default function ServiceLocationPage({ lang, row }) {
             ))}
           </Reveal>
         </section>
-{/* add seo setting and also keywords for the page, and also add meta description and title for the page */}
+
         {/* What's included */}
         <section className="shell slp-included-section">
           <Reveal>

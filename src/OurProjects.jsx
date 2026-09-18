@@ -21,9 +21,13 @@ export default function OurProjects() {
     "/assets/cabinet-joinery.jpeg",
   ];
 
-  const filteredProjects = activeFilter === "all"
-    ? projects.map((p, i) => ({ ...p, image: projectImages[i % projectImages.length] }))
-    : projects.map((p, i) => ({ ...p, image: projectImages[i % projectImages.length] })).filter(p => p.category === activeFilter);
+  // The real published project (government-authority) uses its own detail-page hero
+  // photo instead of the placeholder rotation, so the card matches what it links to.
+  const withImages = projects.map((p, i) => ({
+    ...p,
+    image: p.slug === "government-authority" ? "/assets/project-office.jpg" : projectImages[i % projectImages.length],
+  }));
+  const filteredProjects = activeFilter === "all" ? withImages : withImages.filter((p) => p.category === activeFilter);
 
   const filterOptions = [
     { id: "all", label: t.filters.all },

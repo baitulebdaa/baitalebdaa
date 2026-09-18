@@ -8,11 +8,18 @@ const BASE = "https://www.baitalebdaa.com";
 // articles are replaced with real content (see [lang]/media/page.jsx).
 const STATIC_PATHS = ["our-services", "our-projects", "our-projects/government-authority", "process", "contact", "pricing"];
 
+// The date seo-pages.json / service-content.js / location-content.js content last
+// actually changed — bump this (not `now`) when that content changes. Stamping all
+// 1,020 templated pages with the current build date on every deploy (even ones that
+// only touch styling) tells Google everything changed when it didn't, which dilutes
+// the freshness signal instead of helping it.
+const SEO_CONTENT_UPDATED = new Date("2026-09-17");
+
 export default function sitemap() {
   const now = new Date();
-  // The English homepage's canonical URL is the bare root (middleware rewrites
-  // "/" to "/en" internally — see src/middleware.js and src/lib/page-metadata.js),
-  // so /en is not listed separately here; it would just be a near-duplicate of BASE.
+  // The English homepage's canonical URL is the bare root (src/proxy.js rewrites
+  // "/" to "/en" internally — see that file and src/lib/page-metadata.js), so /en
+  // is not listed separately here; it would just be a near-duplicate of BASE.
   const entries = [
     {
       url: BASE,
@@ -47,22 +54,24 @@ export default function sitemap() {
     });
   }
 
-  // Only approved (emirate-level) service+location pages ship in the sitemap; the
-  // 22 district/neighborhood pages per service stay noindex,follow until real local
-  // content is added — see src/data/service-content.js and scripts/generate-seo-data.mjs.
+  // Only pages flagged `approved` in seo-pages.json ship in the sitemap; any future
+  // service+location combo added without content ready should stay `approved: false`
+  // (robots noindex,follow — see generateMetadata in [service]/[location]/page.jsx)
+  // until it has real content, then get added here. All 510 combos are approved as
+  // of the 2026-09-17 SEO pass — see scripts/generate-seo-data.mjs.
   for (const [key, enPage] of Object.entries(seoData.pages.en)) {
     if (!enPage.approved) continue;
     const arPage = seoData.pages.ar[key];
     entries.push({
       url: enPage.canonical,
-      lastModified: now,
+      lastModified: SEO_CONTENT_UPDATED,
       changeFrequency: "monthly",
       priority: 0.6,
       alternates: { languages: { en: enPage.canonical, ar: arPage.canonical } },
     });
     entries.push({
       url: arPage.canonical,
-      lastModified: now,
+      lastModified: SEO_CONTENT_UPDATED,
       changeFrequency: "monthly",
       priority: 0.6,
       alternates: { languages: { en: enPage.canonical, ar: arPage.canonical } },

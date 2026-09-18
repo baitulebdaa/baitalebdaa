@@ -74,7 +74,8 @@ export const dictionaries = {
         { title: "Palm Jumeirah Beachfront Penthouse", place: "Palm Jumeirah", subtitle: "Somfy Motorized Drapes & Italian Panelling" },
         { title: "Downtown Dubai Tech HQ Office", place: "Downtown Dubai", subtitle: "Commercial Fit-out & DM Approval" },
         { title: "Al Barari Eco-Villa Suite", place: "Al Barari", subtitle: "Bespoke Walnut Wardrobes & Soft Furnishings" },
-        { title: "Emirates Hills Mansion Wing", place: "Emirates Hills", subtitle: "Full Turnkey Architecture & Joinery" }
+        { title: "Emirates Hills Mansion Wing", place: "Emirates Hills", subtitle: "Full Turnkey Architecture & Joinery" },
+        { title: "Confidential Government Authority Headquarters", place: "Academic City, Dubai", subtitle: "Interior Fit-Out + MEP Works", slug: "government-authority" }
       ]
     },
     capabilitiesSection: {
@@ -591,7 +592,8 @@ export const dictionaries = {
         { title: "بنتهاوس على الواجهة البحرية في نخلة جميرا", place: "نخلة جميرا", subtitle: "ستائر سومفي الآلية وألواح إيطالية" },
         { title: "مقر شركة تقنية في وسط مدينة دبي", place: "وسط مدينة دبي", subtitle: "تجهيز تجاري وموافقة بلدية دبي" },
         { title: "جناح فيلا صديقة للبيئة في البراري", place: "البراري", subtitle: "خزائن جوز مخصصة ومفروشات ناعمة" },
-        { title: "جناح قصر في تلال الإمارات", place: "تلال الإمارات", subtitle: "عمارة تسليم مفتاح كاملة ونجارة" }
+        { title: "جناح قصر في تلال الإمارات", place: "تلال الإمارات", subtitle: "عمارة تسليم مفتاح كاملة ونجارة" },
+        { title: "المقر الرئيسي السري لهيئة حكومية", place: "مدينة دبي الأكاديمية", subtitle: "التجهيزات الداخلية والأعمال الكهروميكانيكية", slug: "government-authority" }
       ]
     },
     capabilitiesSection: {
