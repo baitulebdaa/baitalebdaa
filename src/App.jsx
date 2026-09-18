@@ -8,9 +8,10 @@ import { Header, Footer, Reveal } from "./components/Shared";
 import { Estimator } from "./components/Estimator";
 import { QuoteModal } from "./components/QuoteModal";
 import { ContactForm } from "./components/ContactForm";
+import { formatIndex } from "./lib/format";
 
 function Hero({ onGetQuote }) {
-  const { dict } = useI18n();
+  const { lang, dict } = useI18n();
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const slides = dict.hero.slides;
@@ -19,10 +20,14 @@ function Hero({ onGetQuote }) {
 
   useEffect(() => { if (paused) return undefined; const timer = window.setInterval(() => setActive((v) => (v + 1) % slides.length), 7000); return () => window.clearInterval(timer); }, [paused, slides.length]);
   const slide = slides[active]; const select = (i) => setActive((i + slides.length) % slides.length);
+  const progressLabel = lang === "ar" ? `الشريحة ${formatIndex(active + 1, lang)} من ${formatIndex(slides.length, lang)}` : `Slide ${active + 1} of ${slides.length}`;
+  const goToSlideLabel = (i) => (lang === "ar" ? `الانتقال إلى الشريحة ${formatIndex(i + 1, lang)}` : `Go to slide ${i + 1}`);
+  const prevSlideLabel = lang === "ar" ? "الشريحة السابقة" : "Previous hero slide";
+  const nextSlideLabel = lang === "ar" ? "الشريحة التالية" : "Next hero slide";
   return <section className="hero" id="top" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
     <div className="hero__media" aria-live="polite">{slides.map((item, i) => <Image key={i} className={i === active ? "is-active" : ""} src={heroImages[i]} alt="Luxury residential and commercial interiors in Dubai" fill sizes="100vw" priority={i === 0} />)}<div className="hero__shade" /></div>
-    <div className="hero__content shell"><p className="hero__eyebrow" key={`e-${active}`}>{slide.eyebrow}</p><h1 key={`t-${active}`}>{slide.title}</h1><div style={{display: 'flex', gap: '16px', flexWrap: 'wrap'}}><a className="outline-button outline-button--light" href="https://wa.me/971524621919" target="_blank" rel="noopener noreferrer">WhatsApp Now <ArrowUpRight size={16} /></a><button type="button" className="outline-button outline-button--light" onClick={onGetQuote}>Get Free Quote <ArrowUpRight size={16} /></button></div></div>
-    <div className="hero__controls shell"><div className="hero__progress" aria-label={`Slide ${active + 1} of ${slides.length}`}><span>0{active + 1}</span><div>{slides.map((_, i) => <button key={i} aria-label={`Go to slide ${i + 1}`} className={i === active ? "is-active" : ""} onClick={() => select(i)} />)}</div><span>0{slides.length}</span></div><div className="hero__summary"><div className="arrow-pair"><button aria-label="Previous hero slide" onClick={() => select(active - 1)}><ArrowLeft /></button><button aria-label="Next hero slide" onClick={() => select(active + 1)}><ArrowRight /></button></div><p key={`b-${active}`}>{slide.body}</p></div></div>
+    <div className="hero__content shell"><p className="hero__eyebrow" key={`e-${active}`}>{slide.eyebrow}</p><h1 key={`t-${active}`}>{slide.title}</h1><div style={{display: 'flex', gap: '16px', flexWrap: 'wrap'}}><a className="outline-button outline-button--light" href="https://wa.me/971524621919" target="_blank" rel="noopener noreferrer">{dict.nav.startProject} <ArrowUpRight size={16} /></a><button type="button" className="outline-button outline-button--light" onClick={onGetQuote}>{dict.nav.getFreeQuote} <ArrowUpRight size={16} /></button></div></div>
+    <div className="hero__controls shell"><div className="hero__progress" aria-label={progressLabel}><span>{formatIndex(active + 1, lang)}</span><div>{slides.map((_, i) => <button key={i} aria-label={goToSlideLabel(i)} className={i === active ? "is-active" : ""} onClick={() => select(i)} />)}</div><span>{formatIndex(slides.length, lang)}</span></div><div className="hero__summary"><div className="arrow-pair"><button aria-label={prevSlideLabel} onClick={() => select(active - 1)}><ArrowLeft /></button><button aria-label={nextSlideLabel} onClick={() => select(active + 1)}><ArrowRight /></button></div><p key={`b-${active}`}>{slide.body}</p></div></div>
   </section>;
 }
 
@@ -66,10 +71,10 @@ function Factory() {
 }
 
 function Sectors() {
-  const { dict } = useI18n();
+  const { lang, dict } = useI18n();
   const [active, setActive] = useState(0);
   const images = ["/assets/project-villa.jpg", "/assets/project-office.jpg", "/assets/curtains-4.jpeg"];
-  return <section className="section sector-section"><div className="shell sectors"><Reveal className="sectors__copy"><p className="micro">{dict.sectorsSection.micro}</p><h2 className="section-title" style={{whiteSpace: 'pre-wrap'}}>{dict.sectorsSection.title}</h2><div className="sector-tabs" role="tablist" aria-label="Project sectors">{dict.sectorsSection.items.map((s, i) => <button key={i} role="tab" aria-selected={i === active} onClick={() => setActive(i)}><span>0{i + 1}</span>{s.label}</button>)}</div><div className="sector-description"><p>{dict.sectorsSection.items[active].body}</p><a href="#contact">{dict.sectorsSection.explore} <ArrowUpRight size={16} /></a></div></Reveal><Reveal className="sectors__image" delay={120}>{dict.sectorsSection.items.map((s, i) => <Image key={i} className={i === active ? "is-active" : ""} src={images[i]} alt={s.label} fill sizes="(max-width: 700px) 100vw, 60vw" />)}</Reveal></div></section>;
+  return <section className="section sector-section"><div className="shell sectors"><Reveal className="sectors__copy"><p className="micro">{dict.sectorsSection.micro}</p><h2 className="section-title" style={{whiteSpace: 'pre-wrap'}}>{dict.sectorsSection.title}</h2><div className="sector-tabs" role="tablist" aria-label="Project sectors">{dict.sectorsSection.items.map((s, i) => <button key={i} role="tab" aria-selected={i === active} onClick={() => setActive(i)}><span>{formatIndex(i + 1, lang)}</span>{s.label}</button>)}</div><div className="sector-description"><p>{dict.sectorsSection.items[active].body}</p><a href="#contact">{dict.sectorsSection.explore} <ArrowUpRight size={16} /></a></div></Reveal><Reveal className="sectors__image" delay={120}>{dict.sectorsSection.items.map((s, i) => <Image key={i} className={i === active ? "is-active" : ""} src={images[i]} alt={s.label} fill sizes="(max-width: 700px) 100vw, 60vw" />)}</Reveal></div></section>;
 }
 
 function Projects() {
@@ -79,13 +84,13 @@ function Projects() {
 }
 
 function Capabilities() {
-  const { dict } = useI18n();
-  return <section className="capabilities"><div className="shell capabilities__top"><Reveal><p className="micro micro--light">{dict.capabilitiesSection.micro}</p><h2 className="section-title" style={{whiteSpace: 'pre-wrap'}}>{dict.capabilitiesSection.title}</h2></Reveal><Reveal className="capabilities__image" delay={100}><Image src="/assets/cad-render.jpg" alt="Interior concept transitioning from CAD to photorealistic render" fill sizes="(max-width: 700px) 100vw, 58vw" /></Reveal></div><div className="shell capability-list">{dict.capabilitiesSection.items.map(([title, body], i) => <Reveal className="capability-row" key={i} delay={i * 80}><span>0{i + 1}</span><h3>{title}</h3><p>{body}</p><Check size={20} /></Reveal>)}</div></section>;
+  const { lang, dict } = useI18n();
+  return <section className="capabilities"><div className="shell capabilities__top"><Reveal><p className="micro micro--light">{dict.capabilitiesSection.micro}</p><h2 className="section-title" style={{whiteSpace: 'pre-wrap'}}>{dict.capabilitiesSection.title}</h2></Reveal><Reveal className="capabilities__image" delay={100}><Image src="/assets/cad-render.jpg" alt="Interior concept transitioning from CAD to photorealistic render" fill sizes="(max-width: 700px) 100vw, 58vw" /></Reveal></div><div className="shell capability-list">{dict.capabilitiesSection.items.map(([title, body], i) => <Reveal className="capability-row" key={i} delay={i * 80}><span>{formatIndex(i + 1, lang)}</span><h3>{title}</h3><p>{body}</p><Check size={20} /></Reveal>)}</div></section>;
 }
 
 function Process() {
-  const { dict } = useI18n();
-  return <section className="section process" id="process"><div className="shell"><Reveal className="process__heading"><p className="micro">{dict.processSection.micro}</p><h2 className="section-title" style={{whiteSpace: 'pre-wrap'}}>{dict.processSection.title}</h2></Reveal><div className="process-grid">{dict.processSection.items.map(([title, body], i) => <Reveal className="process-step" key={i} delay={i * 80}><span>0{i + 1}</span><h3>{title}</h3><p>{body}</p></Reveal>)}</div></div></section>;
+  const { lang, dict } = useI18n();
+  return <section className="section process" id="process"><div className="shell"><Reveal className="process__heading"><p className="micro">{dict.processSection.micro}</p><h2 className="section-title" style={{whiteSpace: 'pre-wrap'}}>{dict.processSection.title}</h2></Reveal><div className="process-grid">{dict.processSection.items.map(([title, body], i) => <Reveal className="process-step" key={i} delay={i * 80}><span>{formatIndex(i + 1, lang)}</span><h3>{title}</h3><p>{body}</p></Reveal>)}</div></div></section>;
 }
 
 function Comparison() {

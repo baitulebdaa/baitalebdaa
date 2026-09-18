@@ -45,6 +45,12 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
     router.push(target);
   };
 
+  const headerWaMessage = encodeURIComponent(
+    lang === "ar"
+      ? "مرحباً! أرغب بمعرفة المزيد عن خدمات التجهيز الداخلي الكامل والنجارة المعمارية التي تقدمونها."
+      : "Hello! I'm interested in learning more about your turnkey fit-out and architectural joinery services."
+  );
+
   return <>
     <header className={`site-header ${scrolled || menuOpen || alwaysSolid ? "site-header--solid" : ""} ${lightTheme ? "site-header--light-theme" : ""}`}>
       <Brand light={!menuOpen && !useFooterLogo && !alwaysSolid && !lightTheme} priority customSrc={useFooterLogo ? "/assets/footer logo.png" : null} />
@@ -59,7 +65,7 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
       </nav>
       <button className="menu-button" type="button" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-controls="site-menu"><span>{menuOpen ? dict.nav.close : dict.nav.menu}</span>{menuOpen ? <X size={24} /> : <Menu size={25} />}</button>
       <div className="header-actions">
-        <a className="outline-button header-cta" href="https://wa.me/971524621919?text=Hello!%20I'm%20interested%20in%20learning%20more%20about%20your%20turnkey%20fit-out%20and%20architectural%20joinery%20services." target="_blank" rel="noopener noreferrer">
+        <a className="outline-button header-cta" href={`https://wa.me/971524621919?text=${headerWaMessage}`} target="_blank" rel="noopener noreferrer">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           {dict.nav.startProject} <ArrowUpRight size={15} />
         </a>
@@ -79,16 +85,16 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
       </div>
       <div className="menu-overlay__aside">
         <div>
-          <p className="menu-overlay__heading">Contact Info</p>
+          <p className="menu-overlay__heading">{dict.nav.contactInfo}</p>
           <div className="menu-overlay__info-list">
             <span style={{whiteSpace: "pre-wrap"}}>{dict.nav.studioLocation}</span>
-            <a href="tel:+971524621919">UAE | +971 52 462 1919</a>
-            <a href="tel:0582621717">UAE | 058 262 1717</a>
+            <a href="tel:+971524621919">{dict.nav.phoneLabel} | +971 52 462 1919</a>
+            <a href="tel:0582621717">{dict.nav.phoneLabel} | 058 262 1717</a>
             <a href="mailto:info@baitalebdaa.com">info@baitalebdaa.com</a>
           </div>
         </div>
         <div>
-          <p className="menu-overlay__heading">Social Media</p>
+          <p className="menu-overlay__heading">{dict.nav.socialMedia}</p>
           <div className="menu-overlay__social">
             <a href="https://www.facebook.com/baitalebdaa" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
             <a href="https://www.instagram.com/baitalebdaa" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5"/></svg></a>
@@ -150,7 +156,7 @@ export function Footer() {
       <div className="footer-bottom-left">
         <a href="#top">{f.privacy}</a>
         <span className="footer-divider">|</span>
-        <a href="#top">Terms &amp; Conditions</a>
+        <a href="#top">{f.terms}</a>
       </div>
       <div className="footer-social">
         <a href="https://www.facebook.com/baitalebdaa" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>

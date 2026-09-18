@@ -27,7 +27,7 @@ export default function Media() {
       <main className="media-page">
         <PageHeader 
           kicker={t.newsAndInsights}
-          breadcrumbs={<>{dict.ourProjectsPage.home} &nbsp;&#9656;&nbsp; <strong>Media</strong></>}
+          breadcrumbs={<>{dict.ourProjectsPage.home} &nbsp;&#9656;&nbsp; <strong>{dict.nav.media || "Media"}</strong></>}
           title={t.latestNewsAndInsights}
         />
 

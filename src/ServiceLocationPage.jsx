@@ -9,6 +9,7 @@ import { Estimator } from "./components/Estimator";
 import { serviceContent } from "./data/service-content";
 import { locationContent } from "./data/location-content";
 import { getService, getLocation, getSiblingLocations, getSiblingServices, getEmirateName, getEmirateAuthority } from "./lib/seo-pages";
+import { formatIndex } from "./lib/format";
 
 const HERO_IMAGE_BY_SERVICE = {
   "interior-design": "/assets/hero-penthouse.jpg",
@@ -74,6 +75,17 @@ const WORK_GALLERY_BY_SERVICE = {
   "kitchen-renovation": [{ src: "/assets/dining-table.jpeg", alt: "Dining area adjoining a renovated kitchen" }],
 };
 
+// The 5 pages the SEO strategy concentrates authority on — see the money-page plan.
+// Only these get FAQPage structured data (see jsonLd below); the other ~1,015
+// service/location combos keep Service + BreadcrumbList only.
+const PRIORITY_MONEY_PAGES = new Set([
+  "fit-out/dubai",
+  "office-fit-out/dubai",
+  "joinery/dubai",
+  "villa-renovation/dubai",
+  "interior-design/dubai",
+]);
+
 // Deterministic pick so the same location always shows the same photo (stable across
 // rebuilds/CDN caching) while different locations in the same service show different genuine photos.
 function pickByLocation(list, locationSlug) {
@@ -94,6 +106,7 @@ export default function ServiceLocationPage({ lang, row }) {
   const authority = getEmirateAuthority(lang, row.emirate);
   const content = serviceContent[row.serviceSlug]?.[lang];
   const isEmirateItself = location.tier === "core";
+  const isPriorityMoneyPage = PRIORITY_MONEY_PAGES.has(`${row.serviceSlug}/${row.locationSlug}`);
 
   // Genuinely location-specific clause (real jurisdiction + real area character, not a
   // swapped city name) — added to the category-level summary so the intro isn't identical
@@ -175,14 +188,22 @@ export default function ServiceLocationPage({ lang, row }) {
           { "@type": "ListItem", position: 3, name: locationName, item: row.canonical },
         ],
       },
-      {
-        "@type": "FAQPage",
-        mainEntity: [...content.faqs, ...extraFaqs].map((item) => ({
-          "@type": "Question",
-          name: item.q,
-          acceptedAnswer: { "@type": "Answer", text: item.a },
-        })),
-      },
+      // FAQPage is scoped to only the 5 priority money pages (see PRIORITY_MONEY_PAGES
+      // below) — applying it to all 1,020 templated pages meant ~1,015 pages carried
+      // near-duplicate FAQ structured data, which overstates AEO relevance the
+      // templated pages don't actually have.
+      ...(isPriorityMoneyPage
+        ? [
+            {
+              "@type": "FAQPage",
+              mainEntity: [...content.faqs, ...extraFaqs].map((item) => ({
+                "@type": "Question",
+                name: item.q,
+                acceptedAnswer: { "@type": "Answer", text: item.a },
+              })),
+            },
+          ]
+        : []),
     ],
   };
 
@@ -277,7 +298,7 @@ export default function ServiceLocationPage({ lang, row }) {
           <div className="process-grid">
             {dict.processSection.items.map(([title, body], i) => (
               <Reveal className="process-step" key={i} delay={i * 80}>
-                <span>0{i + 1}</span>
+                <span>{formatIndex(i + 1, lang)}</span>
                 <h3>{title}</h3>
                 <p>{body}</p>
               </Reveal>

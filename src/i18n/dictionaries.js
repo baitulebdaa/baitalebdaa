@@ -8,9 +8,14 @@ export const dictionaries = {
       startProject: "WhatsApp Now",
       navigate: "Navigate",
       studio: "Studio",
-      studioLocation: "Dubai, United Arab Emirates\nServing Dubai & Abu Dhabi",
+      studioLocation: "Ajman, United Arab Emirates\nServing Dubai & Abu Dhabi",
       newEnquiries: "New enquiries",
-      menuNote: "Design · Approvals · Fit-out · Joinery"
+      menuNote: "Design · Approvals · Fit-out · Joinery",
+      contactInfo: "Contact Info",
+      socialMedia: "Social Media",
+      phoneLabel: "UAE",
+      getFreeQuote: "Get Free Quote",
+      media: "Media"
     },
     menuItems: ["Home", "Services", "Projects", "Process", "Pricing", "Contact"],
     hero: {
@@ -45,14 +50,14 @@ export const dictionaries = {
     },
     factorySection: {
       badge: "15,000 sq ft Manufacturing Facility",
-      title: "Our In-House Dubai Joinery Factory",
-      description: "Unlike contractors who outsource wood fabrication, Bait Al Ebdaa owns and operates a state-of-the-art 15,000 sq ft manufacturing facility in Dubai with 50+ master carpenters.",
+      title: "Our In-House Joinery Factory",
+      description: "Unlike contractors who outsource wood fabrication, Bait Al Ebdaa owns and operates a state-of-the-art 15,000 sq ft manufacturing facility in Ajman with 50+ master carpenters.",
       features: [
         { title: "German CNC Machinery", desc: "Sub-millimeter cutting accuracy" },
         { title: "European Walnut & Oak", desc: "Direct timber import from Italy" }
       ],
       cta: "Schedule Guided Factory Visit",
-      captionLocation: "Dubai Investment Park // Facility #4",
+      captionLocation: "Jurf Industrial 2, Ajman",
       captionBadge: "Live Production"
     },
     sectorsSection: {
@@ -82,7 +87,7 @@ export const dictionaries = {
       micro: "Expertise",
       title: "Built to Execute",
       items: [
-        ["Architectural Joinery", "From complex acoustic panelling to bespoke hospitality millwork, our DIP-2 facility delivers flawless precision at scale."],
+        ["Architectural Joinery", "From complex acoustic panelling to bespoke hospitality millwork, our Ajman facility delivers flawless precision at scale."],
         ["Turnkey Fit-out", "End-to-end delivery of luxury interiors. We manage the MEP, civil works, and finishes so you can focus on your business."],
         ["FF&E Procurement", "Global sourcing networks that bring you exclusive materials and furnishings without the typical supply chain delays."]
       ]
@@ -96,7 +101,7 @@ export const dictionaries = {
       rows: [
         ["Photorealistic 3D Architectural Renders", "Basic 2D Floorplan", "99.4% Accuracy 3D Renders"],
         ["Dubai Municipality (DM NOC) Submissions", "Client Handled", "100% Managed by Bait Al Ebdaa"],
-        ["15,000 sq ft Joinery Manufacturing", "Outsourced Subcontractors", "In-House DIP 2 German CNC Production"],
+        ["15,000 sq ft Joinery Manufacturing", "Outsourced Subcontractors", "In-House Ajman German CNC Production"],
         ["Somfy Motorized Drapery Integration", "Manual Tracks Only", "Somfy Glydea Ultra Smart Motorization"],
         ["Workmanship Warranty Package", "1 Year Basic", "5-Year Complete Warranty"]
       ]
@@ -115,7 +120,7 @@ export const dictionaries = {
       inclusions: [
         "3D Architectural CAD Package",
         "100% Municipality NOC",
-        "15k sqft DIP 2 Joinery Production",
+        "15k sqft Ajman Joinery Production",
         "5-Year Workmanship Guarantee"
       ],
       bookSurvey: "Book Survey & Formal Quote"
@@ -140,8 +145,8 @@ export const dictionaries = {
           a: "Yes, absolutely. We take full ownership of the entire approvals process on your behalf. Our dedicated in-house compliance team meticulously manages all end-to-end NOC permits, complex structural drawings, and final completion certificates directly with Dubai Municipality (DM), Dubai Development Authority (DDA), Trakhees, Abu Dhabi Municipality (ADM), and Civil Defense, ensuring complete regulatory peace of mind and strict adherence to timelines."
         },
         {
-          q: "What materials and wood types are used in your 15,000 sq ft Dubai factory?",
-          a: "We exclusively source and utilize high-quality, sustainable materials tailored to luxury environments. This includes premium solid hardwoods, meticulously matched custom veneers, and resilient engineered woods sourced from trusted global suppliers. Our state-of-the-art DIP-2 manufacturing facility is fully equipped with advanced machinery to handle incredibly complex acoustic panelling and bespoke hospitality millwork, ensuring flawless precision, durability, and a truly premium finish."
+          q: "What materials and wood types are used in your 15,000 sq ft Ajman factory?",
+          a: "We exclusively source and utilize high-quality, sustainable materials tailored to luxury environments. This includes premium solid hardwoods, meticulously matched custom veneers, and resilient engineered woods sourced from trusted global suppliers. Our state-of-the-art Ajman manufacturing facility is fully equipped with advanced machinery to handle incredibly complex acoustic panelling and bespoke hospitality millwork, ensuring flawless precision, durability, and a truly premium finish."
         },
         {
           q: "Are motorized curtains compatible with smart home automation systems?",
@@ -369,12 +374,13 @@ export const dictionaries = {
       explore: "Explore",
       exploreLinks: ["Home", "About Us", "Projects", "Services", "Pricing", "Contact"],
       importantLinks: "Important Links",
-      importantLinksItems: ["DED License #121113", "Dubai Municipality (DM) NOC", "Trakhees Approval NOC"],
+      importantLinksItems: ["Privacy Policy", "Terms & Conditions"],
       contactInfo: "Contact Info",
       salesLabel: "Sales:",
       loc: "Jurf Industrial 2, Ajman, UAE:",
       backToTop: "Back to the top",
       privacy: "Privacy Policy",
+      terms: "Terms & Conditions",
       copy: "Copyright © 2026 Bait Al Ebdaa. All Rights Reserved."
     },
     ourProjectsPage: {
@@ -432,7 +438,7 @@ export const dictionaries = {
       readMore: "Read More ↗",
       viewMore: "View More ↗",
       featuredArticle: {
-        title: "Inside Our 15,000 Sq Ft Dubai Joinery Facility",
+        title: "Inside Our 15,000 Sq Ft Ajman Joinery Facility",
         description: "A look inside the in-house manufacturing facility where our CNC machinery, European timber and master carpenters produce every custom joinery piece we install.",
         image: "/assets/joinery-factory.jpg",
         link: "/en/process"
@@ -526,9 +532,14 @@ export const dictionaries = {
       startProject: "واتساب الآن",
       navigate: "تصفح",
       studio: "الاستوديو",
-      studioLocation: "دبي، الإمارات العربية المتحدة\nنخدم دبي وأبوظبي",
+      studioLocation: "عجمان، الإمارات العربية المتحدة\nنخدم دبي وأبوظبي",
       newEnquiries: "استفسارات جديدة",
-      menuNote: "تصميم · موافقات · تجهيز · نجارة"
+      menuNote: "تصميم · موافقات · تجهيز · نجارة",
+      contactInfo: "معلومات الاتصال",
+      socialMedia: "وسائل التواصل الاجتماعي",
+      phoneLabel: "الإمارات",
+      getFreeQuote: "احصل على عرض سعر مجاني",
+      media: "الإعلام"
     },
     menuItems: ["الرئيسية", "الخدمات", "المشاريع", "العملية", "الأسعار", "اتصل بنا"],
     hero: {
@@ -563,14 +574,14 @@ export const dictionaries = {
     },
     factorySection: {
       badge: "منشأة تصنيع بمساحة 15,000 قدم مربع",
-      title: "مصنع النجارة الخاص بنا في دبي",
-      description: "على عكس المقاولين الذين يوكلون تصنيع الأخشاب لجهات خارجية، تمتلك بيت الإبداع وتدير منشأة تصنيع متطورة بمساحة 15,000 قدم مربع في دبي مع أكثر من 50 نجاراً محترفاً.",
+      title: "مصنع النجارة الخاص بنا",
+      description: "على عكس المقاولين الذين يوكلون تصنيع الأخشاب لجهات خارجية، تمتلك بيت الإبداع وتدير منشأة تصنيع متطورة بمساحة 15,000 قدم مربع في عجمان مع أكثر من 50 نجاراً محترفاً.",
       features: [
         { title: "آلات CNC ألمانية", desc: "دقة قطع دون المليمتر" },
         { title: "جوز وبلوط أوروبي", desc: "استيراد مباشر للأخشاب من إيطاليا" }
       ],
       cta: "احجز جولة موجهة في المصنع",
-      captionLocation: "مجمع دبي للاستثمار // المنشأة رقم 4",
+      captionLocation: "الجرف الصناعية 2، عجمان",
       captionBadge: "إنتاج مباشر"
     },
     sectorsSection: {
@@ -625,7 +636,7 @@ export const dictionaries = {
       rows: [
         ["تصاميم معمارية ثلاثية الأبعاد واقعية", "مخطط أرضي ثنائي الأبعاد أساسي", "تصاميم ثلاثية الأبعاد بدقة 99.4%"],
         ["تقديمات شهادة عدم ممانعة بلدية دبي", "يتولاها العميل", "تدار بالكامل من قبل بيت الإبداع"],
-        ["تصنيع نجارة بمساحة 15,000 قدم مربع", "مقاولون من الباطن خارجيون", "إنتاج داخلي بتقنية CNC ألمانية DIP 2"],
+        ["تصنيع نجارة بمساحة 15,000 قدم مربع", "مقاولون من الباطن خارجيون", "إنتاج داخلي بتقنية CNC ألمانية في عجمان"],
         ["دمج ستائر سومفي الآلية", "مسارات يدوية فقط", "تحريك سومفي Glydea Ultra الذكي"],
         ["حزمة ضمان جودة التصنيع", "سنة واحدة أساسية", "ضمان شامل لمدة 5 سنوات"]
       ]
@@ -659,8 +670,8 @@ export const dictionaries = {
           a: "نعم، بالتأكيد. نحن نتحمل المسؤولية الكاملة عن عملية الموافقات بأكملها نيابة عنك. يدير فريق الامتثال الداخلي المخصص لدينا بدقة جميع تصاريح عدم الممانعة الشاملة والرسومات الهيكلية المعقدة وشهادات الإنجاز النهائية مباشرة مع بلدية دبي وسلطة دبي للتطوير وتراخيص وبلدية أبوظبي والدفاع المدني، مما يضمن راحة البال التنظيمية التامة والالتزام الصارم بالجداول الزمنية."
         },
         {
-          q: "ما هي المواد وأنواع الأخشاب المستخدمة في مصنعكم بدبي الذي تبلغ مساحته 15,000 قدم مربع؟",
-          a: "نحن نستورد ونستخدم حصريًا مواد عالية الجودة ومستدامة مصممة للبيئات الفاخرة. يشمل ذلك الأخشاب الصلبة الممتازة والقشور المخصصة المتطابقة بدقة والأخشاب الهندسية المرنة من موردين عالميين موثوقين. تم تجهيز منشأة التصنيع المتطورة لدينا في مجمع دبي للاستثمار بآلات متقدمة للتعامل مع الألواح الصوتية المعقدة وأعمال النجارة المخصصة للضيافة، مما يضمن الدقة والمتانة والتشطيب الممتاز."
+          q: "ما هي المواد وأنواع الأخشاب المستخدمة في مصنعكم بعجمان الذي تبلغ مساحته 15,000 قدم مربع؟",
+          a: "نحن نستورد ونستخدم حصريًا مواد عالية الجودة ومستدامة مصممة للبيئات الفاخرة. يشمل ذلك الأخشاب الصلبة الممتازة والقشور المخصصة المتطابقة بدقة والأخشاب الهندسية المرنة من موردين عالميين موثوقين. تم تجهيز منشأة التصنيع المتطورة لدينا في عجمان بآلات متقدمة للتعامل مع الألواح الصوتية المعقدة وأعمال النجارة المخصصة للضيافة، مما يضمن الدقة والمتانة والتشطيب الممتاز."
         },
         {
           q: "هل الستائر الآلية متوافقة مع أنظمة أتمتة المنازل الذكية؟",
@@ -888,12 +899,13 @@ export const dictionaries = {
       explore: "استكشف",
       exploreLinks: ["الرئيسية", "من نحن", "المشاريع", "الخدمات", "الأسعار", "اتصل بنا"],
       importantLinks: "روابط مهمة",
-      importantLinksItems: ["رخصة دائرة التنمية الاقتصادية رقم 121113", "شهادة عدم ممانعة بلدية دبي", "شهادة عدم ممانعة تراخيص"],
+      importantLinksItems: ["سياسة الخصوصية", "الشروط والأحكام"],
       contactInfo: "معلومات الاتصال",
       salesLabel: "المبيعات:",
       loc: "الجرف الصناعية 2، عجمان، الإمارات:",
       backToTop: "العودة للأعلى",
       privacy: "سياسة الخصوصية",
+      terms: "الشروط والأحكام",
       copy: "حقوق الطبع والنشر © 2026 بيت الإبداع. جميع الحقوق محفوظة."
     },
     ourProjectsPage: {
@@ -951,7 +963,7 @@ export const dictionaries = {
       readMore: "اقرأ المزيد ↗",
       viewMore: "عرض المزيد ↗",
       featuredArticle: {
-        title: "نظرة داخل مصنع النجارة الخاص بنا في دبي بمساحة 15,000 قدم مربع",
+        title: "نظرة داخل مصنع النجارة الخاص بنا في عجمان بمساحة 15,000 قدم مربع",
         description: "نظرة داخل منشأة التصنيع الخاصة بنا، حيث تنتج آلات CNC والأخشاب الأوروبية ونجارونا المحترفون كل قطعة نجارة مخصصة نقوم بتركيبها.",
         image: "/assets/joinery-factory.jpg",
         link: "/ar/process"

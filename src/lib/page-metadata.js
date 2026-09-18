@@ -83,7 +83,9 @@ export function organizationJsonLd() {
       opens: "09:00",
       closes: "18:00",
     },
-    areaServed: ["Dubai", "Abu Dhabi", "Sharjah", "Ajman", "Ras Al Khaimah", "Fujairah", "Umm Al Quwain"],
+    // Confirmed 2026-09-18: genuine delivery area is Dubai and Abu Dhabi. Narrowed from
+    // all 7 emirates, which overstated coverage relative to the header nav's own claim.
+    areaServed: ["Dubai", "Abu Dhabi"],
     sameAs: [
       "https://www.facebook.com/baitalebdaa",
       "https://www.instagram.com/baitalebdaa",
