@@ -116,6 +116,12 @@ export default function OurServices() {
                 <ArrowUpRight size={16} />
               </Reveal>
             ))}
+            {/* Not part of the service x location matrix (single standalone page, not
+                30 location pages) — linked directly to its own URL instead of /uae. */}
+            <Reveal as="a" href={`/${lang}/furniture-maintenance-care`} className="explore-service-card" delay={60 + (seoServices.length % 4) * 40}>
+              <span>{dict.furnitureMaintenancePage.navTitle}</span>
+              <ArrowUpRight size={16} />
+            </Reveal>
           </div>
         </section>
 
