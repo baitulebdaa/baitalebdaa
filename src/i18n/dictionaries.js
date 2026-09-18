@@ -180,13 +180,6 @@ export const dictionaries = {
         "On-site assessment and written condition report before any work is scoped",
         "Care guidance for owners — day-to-day upkeep that protects your warranty"
       ],
-      howItWorksKicker: "How It Works",
-      howItWorksTitle: "A Straightforward Aftercare Process",
-      steps: [
-        { num: "01", title: "Site Assessment", description: "Our team inspects the joinery or furniture in person and confirms what's covered under warranty versus general wear." },
-        { num: "02", title: "Scope & Quote", description: "You receive a clear written scope before any work starts — no work proceeds without your approval." },
-        { num: "03", title: "Service & Quality Check", description: "Repairs, refinishing or hardware servicing carried out by the same team that manufactures our joinery, finished with a final quality check." }
-      ],
       faqHeading: "Furniture Maintenance: FAQs",
       faqs: [
         { q: "Do you maintain furniture you didn't originally manufacture?", a: "We assess this case by case during the site visit. We can generally service comparable custom joinery and fitted furniture, but priority and warranty coverage apply to pieces we manufactured ourselves." },
@@ -748,13 +741,6 @@ export const dictionaries = {
         "إصلاحات مشمولة بالضمان للنجارة التي صنّعتها بيت الإبداع أصلاً",
         "تقييم في الموقع وتقرير حالة مكتوب قبل تحديد نطاق أي عمل",
         "إرشادات عناية لأصحاب المنازل — صيانة يومية تحافظ على ضمانكم"
-      ],
-      howItWorksKicker: "آلية العمل",
-      howItWorksTitle: "عملية صيانة واضحة ومباشرة",
-      steps: [
-        { num: "01", title: "تقييم الموقع", description: "يقوم فريقنا بمعاينة النجارة أو الأثاث في الموقع ويحدد ما هو مشمول بالضمان مقابل التآكل العادي." },
-        { num: "02", title: "تحديد النطاق والعرض", description: "تحصل على نطاق عمل مكتوب وواضح قبل بدء أي عمل — لا يبدأ العمل دون موافقتك." },
-        { num: "03", title: "الخدمة وفحص الجودة", description: "يتم تنفيذ الإصلاحات أو إعادة التشطيب أو صيانة التجهيزات من قبل نفس الفريق الذي يصنّع نجارتنا، مع فحص جودة نهائي." }
       ],
       faqHeading: "الأسئلة الشائعة حول صيانة الأثاث",
       faqs: [

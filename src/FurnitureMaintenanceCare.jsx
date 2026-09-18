@@ -97,18 +97,18 @@ export default function FurnitureMaintenanceCare() {
           </div>
         </section>
 
-        {/* How it works */}
+        {/* Process — same 4-stage process used site-wide, for consistency */}
         <section className="shell section slp-process-section">
           <Reveal className="section-heading">
-            <p className="micro">{t.howItWorksKicker}</p>
-            <h2 className="section-title">{t.howItWorksTitle}</h2>
+            <p className="micro">{dict.processSection.micro}</p>
+            <h2 className="section-title">{dict.ourProcessPage.pageTitle}</h2>
           </Reveal>
           <div className="process-grid">
-            {t.steps.map((step, i) => (
+            {dict.processSection.items.map(([title, body], i) => (
               <Reveal className="process-step" key={i} delay={i * 80}>
                 <span>{formatIndex(i + 1, lang)}</span>
-                <h3>{step.title}</h3>
-                <p>{step.description}</p>
+                <h3>{title}</h3>
+                <p>{body}</p>
               </Reveal>
             ))}
           </div>
