@@ -1104,18 +1104,22 @@ h1,h2,h3,.menu-overlay__main>a,.studio__facts strong,.project-form legend,.foote
   appearance: none;
   width: 20px;
   height: 20px;
+  box-sizing: border-box;
   border-radius: 50%;
   background: #000;
-  border: none;
+  border: 3px solid #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }
 
 .estimator-slider::-moz-range-thumb {
   width: 20px;
   height: 20px;
+  box-sizing: border-box;
   border-radius: 50%;
   background: #000;
-  border: none;
+  border: 3px solid #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }
 

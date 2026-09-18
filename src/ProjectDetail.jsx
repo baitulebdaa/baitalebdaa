@@ -2,19 +2,28 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { Facebook, Instagram, Linkedin, Youtube, ArrowLeft, ArrowRight } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Youtube, ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { useI18n } from "./i18n/I18nProvider";
 import { Header, Footer, Reveal, PageHeader } from "./components/Shared";
+import { QuoteModal } from "./components/QuoteModal";
 
 export default function ProjectDetail({ slug }) {
   const { lang, dict } = useI18n();
   const [menuOpen, setMenuOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [quoteOpen, setQuoteOpen] = useState(false);
 
   const t = dict.projectDetailPage;
   // Use government-authority as fallback if slug not found
   const projectData = t.projects[slug] || t.projects['government-authority'];
   const images = projectData.images;
+
+  const waMessage = encodeURIComponent(
+    lang === "ar"
+      ? `مرحباً! أرغب بالاستفسار عن مشروع مشابه لـ "${projectData.title}".`
+      : `Hello! I'd like to enquire about a project similar to "${projectData.title}".`
+  );
+  const waHref = `https://wa.me/971524621919?text=${waMessage}`;
 
   // Simple carousel logic
   const nextImage = () => setCurrentImageIndex((prev) => (prev + 1) % images.length);
@@ -111,8 +120,24 @@ export default function ProjectDetail({ slug }) {
           </Reveal>
         </section>
 
+        {/* CTA */}
+        <section className="shell slp-cta-section">
+          <Reveal className="slp-cta-card">
+            <h2>{lang === "ar" ? "أعجبك هذا المشروع؟ لنبدأ مشروعك" : "Like what you see? Let's start your project"}</h2>
+            <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", justifyContent: "center" }}>
+              <a className="outline-button header-cta" href={waHref} target="_blank" rel="noopener noreferrer">
+                {dict.nav.startProject} <ArrowUpRight size={15} />
+              </a>
+              <button type="button" className="outline-button header-cta" onClick={() => setQuoteOpen(true)}>
+                {dict.nav.getFreeQuote} <ArrowUpRight size={15} />
+              </button>
+            </div>
+          </Reveal>
+        </section>
+
       </main>
       <Footer />
+      <QuoteModal open={quoteOpen} onClose={() => setQuoteOpen(false)} />
     </>
   );
 }
