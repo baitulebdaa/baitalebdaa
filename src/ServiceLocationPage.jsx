@@ -387,6 +387,16 @@ export default function ServiceLocationPage({ lang, row }) {
               </div>
             </Reveal>
           )}
+          {(row.serviceSlug === "joinery" || row.serviceSlug === "custom-wardrobes") && (
+            <Reveal className="slp-links-block" delay={150}>
+              <h3>{lang === "ar" ? "خدمات ذات صلة" : "Related services"}</h3>
+              <div className="slp-links-pills">
+                <a href={`/${lang}/furniture-maintenance-care`}>
+                  {lang === "ar" ? "صيانة والعناية بالأثاث" : "Furniture Maintenance & Care"}
+                </a>
+              </div>
+            </Reveal>
+          )}
         </section>
       </main>
       <Footer />

@@ -162,6 +162,43 @@ export const dictionaries = {
         }
       ]
     },
+    furnitureMaintenancePage: {
+      metaTitle: "Furniture Maintenance & Care Dubai | Bait Al Ebdaa",
+      metaDescription: "Aftercare, repair and maintenance for custom joinery and furniture, backed by the same in-house Ajman factory and 5-year workmanship guarantee behind every Bait Al Ebdaa fit-out.",
+      navTitle: "Furniture Maintenance & Care",
+      pageTitle: "Furniture Maintenance & Care",
+      kicker: "Aftercare",
+      intro: "Custom joinery and furniture need periodic care to keep hinges, finishes and mechanisms working the way they did on handover day. Because we manufacture everything in-house at our Ajman factory, our aftercare team knows the exact materials, hardware and finishes used in your project — and any joinery we originally built is covered by our 5-year workmanship guarantee.",
+      whatWeOffer: "What's Included",
+      offeringsTitle: "Maintenance & Aftercare Services",
+      offeringsSubtitle: "Practical upkeep for the joinery, furniture and fittings we manufacture and install — assessed on site before any work begins.",
+      included: [
+        "Hardware and mechanism servicing — hinges, soft-close drawer runners, wardrobe sliders and cabinet mechanisms adjusted or replaced",
+        "Finish touch-ups — veneer, lacquer and paint finishes refreshed to match the original specification",
+        "Motorized curtain and track servicing for Somfy-fitted installations",
+        "Warranty-covered repairs on joinery originally manufactured by Bait Al Ebdaa",
+        "On-site assessment and written condition report before any work is scoped",
+        "Care guidance for owners — day-to-day upkeep that protects your warranty"
+      ],
+      howItWorksKicker: "How It Works",
+      howItWorksTitle: "A Straightforward Aftercare Process",
+      steps: [
+        { num: "01", title: "Site Assessment", description: "Our team inspects the joinery or furniture in person and confirms what's covered under warranty versus general wear." },
+        { num: "02", title: "Scope & Quote", description: "You receive a clear written scope before any work starts — no work proceeds without your approval." },
+        { num: "03", title: "Service & Quality Check", description: "Repairs, refinishing or hardware servicing carried out by the same team that manufactures our joinery, finished with a final quality check." }
+      ],
+      faqHeading: "Furniture Maintenance: FAQs",
+      faqs: [
+        { q: "Do you maintain furniture you didn't originally manufacture?", a: "We assess this case by case during the site visit. We can generally service comparable custom joinery and fitted furniture, but priority and warranty coverage apply to pieces we manufactured ourselves." },
+        { q: "Is maintenance covered under warranty?", a: "Joinery we manufacture and install carries our 5-year workmanship guarantee. Repairs falling under that guarantee are covered; general wear-and-tear servicing outside the warranty period is quoted after assessment." },
+        { q: "What does a maintenance visit include?", a: "A technician inspects the piece on site, checks hardware and finishes, and provides a written report and scope before any repair work is carried out." },
+        { q: "How do I book a maintenance visit?", a: "Send us your project details and location on WhatsApp or through the contact form, and we'll arrange a site assessment." }
+      ],
+      ctaTitle: "Book a Furniture Maintenance Assessment",
+      relatedServices: "Related services",
+      relatedJoinery: "Architectural joinery",
+      relatedWardrobes: "Custom wardrobes"
+    },
     contactPage: {
       navTitle: "Contact Us",
       pageTitle: "Let's Talk About Your Project",
@@ -475,6 +512,13 @@ export const dictionaries = {
           description: "We provide complete design and interior fit-out services in full turnkey solutions helping to reduce project risks and costs, and can lead to faster completion.",
           image: "/assets/dressing-unit-1.jpeg",
           link: "#"
+        },
+        {
+          num: "03",
+          title: "Furniture Maintenance & Care",
+          description: "Aftercare, repair and hardware servicing for custom joinery and furniture, backed by our in-house Ajman factory and 5-year workmanship guarantee.",
+          image: "/assets/cabinet-joinery.jpeg",
+          link: "/en/furniture-maintenance-care"
         }
       ]
     },
@@ -499,7 +543,7 @@ export const dictionaries = {
         {
           num: "02",
           title: "15k sqft Factory Fabrication",
-          description: "Precision CNC cutting, European walnut joinery, and custom Italian curtain stitching in our Dubai facility.",
+          description: "Precision CNC cutting, European walnut joinery, and custom Italian curtain stitching in our Ajman facility.",
           meta: "Timeline: 10–14 Days",
           image: "/assets/project-office.jpg",
           link: "#"
@@ -686,6 +730,43 @@ export const dictionaries = {
           a: "نعم، نحن نفخر بتقديم مسح أولي مجاني للموقع واستشارة شخصية شاملة لفهم متطلباتك المكانية الفريدة بعمق. سيناقش خبراء التصميم ذوو الخبرة لدينا رؤيتك بدقة، ويقيمون ظروف الموقع، ويقدمون نظرة عامة مفاهيمية أولية. بمجرد التوافق على الاتجاه الأولي، ننتقل بعد ذلك إلى تطوير حزم عروض CAD ثلاثية الأبعاد المفصلة والواقعية للغاية."
         }
       ]
+    },
+    furnitureMaintenancePage: {
+      metaTitle: "صيانة والعناية بالأثاث دبي | بيت الإبداع",
+      metaDescription: "خدمات الصيانة والإصلاح والعناية بالنجارة والأثاث المخصص، مدعومة بمصنعنا الخاص في عجمان وضمان الجودة لمدة 5 سنوات على كل مشروع تجهيز ننفذه.",
+      navTitle: "صيانة والعناية بالأثاث",
+      pageTitle: "صيانة والعناية بالأثاث",
+      kicker: "خدمات ما بعد التسليم",
+      intro: "تحتاج النجارة والأثاث المخصص إلى عناية دورية للحفاظ على المفصلات والتشطيبات والآليات تعمل كما كانت يوم التسليم. ولأننا نصنّع كل شيء داخلياً في مصنعنا بعجمان، يعرف فريق الصيانة لدينا بالضبط المواد والتجهيزات والتشطيبات المستخدمة في مشروعك — وأي نجارة قمنا بتصنيعها مشمولة بضمان جودة الصنعة لمدة 5 سنوات.",
+      whatWeOffer: "ما تشمله الخدمة",
+      offeringsTitle: "خدمات الصيانة والعناية",
+      offeringsSubtitle: "عناية عملية بالنجارة والأثاث والتجهيزات التي نصنّعها ونركّبها — يتم تقييمها في الموقع قبل بدء أي عمل.",
+      included: [
+        "صيانة المفصلات والآليات — تعديل أو استبدال المفصلات وأدراج الإغلاق الناعم ومنزلقات الخزائن وآليات الكبائن",
+        "لمسات تجميلية للتشطيبات — تجديد تشطيبات القشرة والورنيش والطلاء لمطابقة المواصفات الأصلية",
+        "صيانة ستائر سومفي الآلية والسكك الخاصة بها",
+        "إصلاحات مشمولة بالضمان للنجارة التي صنّعتها بيت الإبداع أصلاً",
+        "تقييم في الموقع وتقرير حالة مكتوب قبل تحديد نطاق أي عمل",
+        "إرشادات عناية لأصحاب المنازل — صيانة يومية تحافظ على ضمانكم"
+      ],
+      howItWorksKicker: "آلية العمل",
+      howItWorksTitle: "عملية صيانة واضحة ومباشرة",
+      steps: [
+        { num: "01", title: "تقييم الموقع", description: "يقوم فريقنا بمعاينة النجارة أو الأثاث في الموقع ويحدد ما هو مشمول بالضمان مقابل التآكل العادي." },
+        { num: "02", title: "تحديد النطاق والعرض", description: "تحصل على نطاق عمل مكتوب وواضح قبل بدء أي عمل — لا يبدأ العمل دون موافقتك." },
+        { num: "03", title: "الخدمة وفحص الجودة", description: "يتم تنفيذ الإصلاحات أو إعادة التشطيب أو صيانة التجهيزات من قبل نفس الفريق الذي يصنّع نجارتنا، مع فحص جودة نهائي." }
+      ],
+      faqHeading: "الأسئلة الشائعة حول صيانة الأثاث",
+      faqs: [
+        { q: "هل تقومون بصيانة أثاث لم تصنّعوه أنتم؟", a: "نقيّم ذلك حسب كل حالة أثناء زيارة الموقع. يمكننا عادة صيانة نجارة وأثاث مخصص مماثل، لكن الأولوية وتغطية الضمان تنطبق على القطع التي صنّعناها بأنفسنا." },
+        { q: "هل الصيانة مشمولة بالضمان؟", a: "النجارة التي نصنّعها ونركّبها مشمولة بضمان جودة الصنعة لمدة 5 سنوات. الإصلاحات المشمولة بالضمان مغطاة بالكامل؛ أما الصيانة الناتجة عن التآكل العادي خارج فترة الضمان فيتم تسعيرها بعد المعاينة." },
+        { q: "ماذا تتضمن زيارة الصيانة؟", a: "يقوم فني بمعاينة القطعة في الموقع، وفحص التجهيزات والتشطيبات، وتقديم تقرير مكتوب ونطاق عمل قبل تنفيذ أي إصلاح." },
+        { q: "كيف أحجز زيارة صيانة؟", a: "أرسل لنا تفاصيل مشروعك وموقعك عبر واتساب أو نموذج التواصل، وسنقوم بترتيب معاينة في الموقع." }
+      ],
+      ctaTitle: "احجز تقييم صيانة للأثاث",
+      relatedServices: "خدمات ذات صلة",
+      relatedJoinery: "النجارة المعمارية",
+      relatedWardrobes: "خزائن مخصصة"
     },
     contactPage: {
       navTitle: "اتصل بنا",
@@ -1000,6 +1081,13 @@ export const dictionaries = {
           description: "نحن نقدم خدمات تصميم وتجهيزات داخلية كاملة في حلول جاهزة بالكامل تساعد في تقليل مخاطر المشروع وتكاليفه، ويمكن أن تؤدي إلى إنجاز أسرع.",
           image: "/assets/dressing-unit-1.jpeg",
           link: "#"
+        },
+        {
+          num: "03",
+          title: "صيانة والعناية بالأثاث",
+          description: "خدمات ما بعد التسليم وإصلاح وصيانة تجهيزات النجارة والأثاث المخصص، مدعومة بمصنعنا الخاص في عجمان وضمان جودة الصنعة لمدة 5 سنوات.",
+          image: "/assets/cabinet-joinery.jpeg",
+          link: "/ar/furniture-maintenance-care"
         }
       ]
     },
@@ -1024,7 +1112,7 @@ export const dictionaries = {
         {
           num: "02",
           title: "تصنيع في مصنع بمساحة 15 ألف قدم مربع",
-          description: "قطع دقيق بتقنية CNC، ونجارة جوز أوروبي، وخياطة ستائر إيطالية مخصصة في منشأتنا بدبي.",
+          description: "قطع دقيق بتقنية CNC، ونجارة جوز أوروبي، وخياطة ستائر إيطالية مخصصة في منشأتنا بعجمان.",
           meta: "المدة الزمنية: 10–14 يوماً",
           image: "/assets/project-office.jpg",
           link: "#"
