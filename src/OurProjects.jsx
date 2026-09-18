@@ -21,11 +21,19 @@ export default function OurProjects() {
     "/assets/cabinet-joinery.jpeg",
   ];
 
-  // The real published project (government-authority) uses its own detail-page hero
-  // photo instead of the placeholder rotation, so the card matches what it links to.
+  // Every card whose project has a real detail page uses that page's own hero photo
+  // (first image in its images array), so the card matches what it links to.
+  const HERO_IMAGE_BY_SLUG = {
+    "government-authority": "/assets/project-office.jpg",
+    "dubai-hills-estate-villa": "/assets/project-villa.jpg",
+    "palm-jumeirah-penthouse": "/assets/hero-penthouse.jpg",
+    "downtown-dubai-tech-hq": "/assets/project-office.jpg",
+    "al-barari-eco-villa": "/assets/project-villa.jpg",
+    "saadiyat-island-villa": "/assets/project-villa.jpg",
+  };
   const withImages = projects.map((p, i) => ({
     ...p,
-    image: p.slug === "government-authority" ? "/assets/project-office.jpg" : projectImages[i % projectImages.length],
+    image: HERO_IMAGE_BY_SLUG[p.slug] || projectImages[i % projectImages.length],
   }));
   const filteredProjects = activeFilter === "all" ? withImages : withImages.filter((p) => p.category === activeFilter);
 
