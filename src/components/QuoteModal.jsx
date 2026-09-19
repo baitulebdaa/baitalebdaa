@@ -119,6 +119,7 @@ export function QuoteModal({ open, onClose }) {
               value={size}
               onChange={(e) => setSize(Number(e.target.value))}
               className="estimator-slider"
+              aria-label={t.propertySize}
               style={{ background: `linear-gradient(to right, #000 ${sizeFillPos}, rgba(0,0,0,.12) ${sizeFillPos})` }}
             />
             <div className="estimator-slider-ticks">

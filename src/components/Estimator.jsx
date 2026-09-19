@@ -51,6 +51,7 @@ export function Estimator({ compact = false, defaultLocationIndex = 0, ctaHref =
                 value={size}
                 onChange={(e) => setSize(Number(e.target.value))}
                 className="estimator-slider"
+                aria-label={t.propertySize}
                 style={{ background: `linear-gradient(to right, #2d2d2a ${sizeFillPos}, rgba(0,0,0,.08) ${sizeFillPos})` }}
               />
               <div className="estimator-slider-ticks">

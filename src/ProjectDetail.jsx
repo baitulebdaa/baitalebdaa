@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { Facebook, Instagram, Linkedin, Youtube, ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Youtube, ArrowLeft, ArrowRight, ArrowUpRight, Check } from "lucide-react";
 import { useI18n } from "./i18n/I18nProvider";
 import { Header, Footer, Reveal, PageHeader } from "./components/Shared";
 import { QuoteModal } from "./components/QuoteModal";
@@ -44,10 +44,10 @@ export default function ProjectDetail({ slug }) {
           <div className="project-social">
             <span className="stay-connected">{t.stayConnected}</span>
             <div className="social-icons">
-              <a href="#" aria-label="Facebook"><Facebook size={18} /></a>
-              <a href="#" aria-label="Instagram"><Instagram size={18} /></a>
-              <a href="#" aria-label="LinkedIn"><Linkedin size={18} /></a>
-              <a href="#" aria-label="YouTube"><Youtube size={18} /></a>
+              <a href="https://www.facebook.com/baitalebdaa" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><Facebook size={18} /></a>
+              <a href="https://www.instagram.com/baitalebdaa" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><Instagram size={18} /></a>
+              <a href="https://www.linkedin.com/company/baitalebdaa" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><Linkedin size={18} /></a>
+              <a href="https://www.youtube.com/baitalebdaa" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><Youtube size={18} /></a>
             </div>
           </div>
         </PageHeader>
@@ -120,6 +120,28 @@ export default function ProjectDetail({ slug }) {
           </Reveal>
         </section>
 
+        {/* Scope of work */}
+        {projectData.scope?.length > 0 && (
+          <section className="shell slp-included-section">
+            <Reveal>
+              <div className="offerings-header-wrapper">
+                <div className="offerings-kicker">
+                  <span>{t.labels.scope}</span>
+                  <div className="kicker-underline"></div>
+                </div>
+              </div>
+            </Reveal>
+            <div className="included-grid">
+              {projectData.scope.map((item, i) => (
+                <Reveal className="included-item" key={i} delay={80 + i * 60}>
+                  <Check size={18} className="included-check" />
+                  <span>{item}</span>
+                </Reveal>
+              ))}
+            </div>
+          </section>
+        )}
+
         {/* CTA */}
         <section className="shell slp-cta-section">
           <Reveal className="slp-cta-card">
@@ -134,6 +156,20 @@ export default function ProjectDetail({ slug }) {
             </div>
           </Reveal>
         </section>
+
+        {/* Related services (contextual links to the matching service pages) */}
+        {projectData.related?.length > 0 && (
+          <section className="shell slp-links-section">
+            <Reveal className="slp-links-block">
+              <h3>{t.labels.relatedServices}</h3>
+              <div className="slp-links-pills">
+                {projectData.related.map((link) => (
+                  <a key={link.href} href={link.href}>{link.label}</a>
+                ))}
+              </div>
+            </Reveal>
+          </section>
+        )}
 
       </main>
       <Footer />

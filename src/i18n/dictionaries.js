@@ -443,7 +443,9 @@ export const dictionaries = {
         sector: "Sector",
         size: "Size",
         year: "Year",
-        service: "Service"
+        service: "Service",
+        scope: "Scope of Work",
+        relatedServices: "Related services"
       },
       // DUMMY/PLACEHOLDER project content below (all entries except "government-authority",
       // the one real published project) — added at the owner's explicit request as
@@ -454,14 +456,26 @@ export const dictionaries = {
       projects: {
         "government-authority": {
           title: "Confidential Government Authority Headquarters, Dubai Academic City",
-          description: "This confidential government authority headquarters located in Academic City, Dubai, was recently fitted out as a 50,500 sq. ft. workplace spanning three floors.\n\nDelivered with a minimalist, home-like aesthetic, the space embraces soft beige, brown, and white tones, along with natural textures to create an environment that prioritizes employee well-being.\n\nThe workplace was thoughtfully delivered by Bait Al Ebdaa to foster identity, collaboration, and teamwork. Distinctive department zones encourage interaction and knowledge sharing while reinforcing each team's values and objectives.\n\nEmployee comfort is supported through ergonomic workstations, sit-stand desks, privacy-enhancing elements, and noise-control solutions that promote both focus and flexibility.\n\nA variety of collaboration spaces cater to different work styles and needs, encouraging creativity, inclusivity, and effective collaboration.",
+          description: "Interior fit-out and MEP works for a confidential government authority headquarters in Dubai Academic City — 50,500 sq ft across three floors.\n\nThe design takes a minimalist, home-like approach, using soft beige, brown and white tones and natural textures to put employee well-being first.\n\nDistinct department zones encourage interaction and knowledge sharing, while reinforcing each team's identity, values and objectives.\n\nErgonomic workstations, sit-stand desks, privacy-enhancing elements and noise-control solutions support both focus and flexibility.\n\nA variety of collaboration spaces suit different work styles, encouraging creativity, inclusivity and effective teamwork.",
           metadata: {
             location: "Academic City, Dubai, UAE",
             sector: "Commercial",
-            size: "50,500",
+            size: "50,500 sq ft",
             year: "2026",
             service: "Interior Fit-Out + MEP Works"
           },
+          scope: [
+            "Interior fit-out across three floors (50,500 sq ft)",
+            "MEP works",
+            "Department zones designed around each team's objectives",
+            "Ergonomic workstations and sit-stand desks",
+            "Privacy and noise-control solutions",
+            "Collaboration spaces for different work styles"
+          ],
+          related: [
+            { label: "Office fit-out in Dubai", href: "/en/office-fit-out/dubai" },
+            { label: "Turnkey fit-out services in Dubai", href: "/en/fit-out/dubai" }
+          ],
           images: [
             "/assets/project-office.jpg",
             "/assets/hero-penthouse.jpg",
@@ -471,63 +485,143 @@ export const dictionaries = {
         },
         "dubai-hills-estate-villa": {
           title: "Dubai Hills Estate Luxury Villa",
-          description: "This villa in Dubai Hills Estate was delivered as a full turnkey fit-out, covering interior design, civil works and in-house joinery from a single accountable team.\n\nThe brief called for a warm, contemporary palette with European walnut joinery throughout — fitted wardrobes, a media wall and bespoke dressing units manufactured at our Ajman factory and installed on site.\n\nMotorized curtain tracks and layered lighting were coordinated with the joinery installation to keep the finish consistent from room to room.",
+          description: "A full turnkey villa fit-out in Dubai Hills Estate — interior design, civil works and European walnut joinery delivered by one accountable team.\n\nThe brief called for a warm, contemporary palette. Fitted wardrobes, a media wall and bespoke dressing units were manufactured in European walnut at our Ajman factory and installed on site, keeping joinery and finishes consistent from room to room.\n\nMotorized curtain tracks and layered lighting were coordinated with the joinery installation, giving the family a home that looks resolved and works smoothly from handover day.",
           metadata: {
             location: "Dubai Hills Estate, Dubai, UAE",
             sector: "Residential",
-            size: "8,200",
+            size: "8,200 sq ft",
             year: "2026",
             service: "Turnkey Fit-Out + Custom Joinery"
           },
-          images: ["/assets/project-villa.jpg", "/assets/bed-1.jpeg", "/assets/dressing-unit-1.jpeg", "/assets/curtains-1.jpeg"]
+          scope: [
+            "Interior design and space planning",
+            "Civil and finishing works",
+            "Custom European walnut joinery — wardrobes, media wall and dressing units",
+            "Motorized curtains and layered lighting coordination",
+            "Snagging and final handover"
+          ],
+          related: [
+            { label: "Turnkey fit-out in Dubai", href: "/en/fit-out/dubai" },
+            { label: "Custom architectural joinery", href: "/en/joinery/dubai" },
+            { label: "Interior design in Dubai", href: "/en/interior-design/dubai" }
+          ],
+          images: [
+            "/assets/project-villa.jpg",
+            "/assets/bed-1.jpeg",
+            "/assets/dressing-unit-1.jpeg",
+            "/assets/curtains-1.jpeg"
+          ]
         },
         "palm-jumeirah-penthouse": {
           title: "Palm Jumeirah Beachfront Penthouse",
-          description: "A beachfront penthouse on Palm Jumeirah, redesigned around uninterrupted sea views and a calm, neutral material palette.\n\nMotorized Somfy drapery was fitted throughout to manage light and privacy without breaking the sightlines to the Gulf, and Italian panelling was used to unify the living and dining spaces.\n\nJoinery detailing — from the media wall to the dressing room — was manufactured in-house and installed to match the penthouse's existing structural constraints.",
+          description: "A beachfront penthouse on Palm Jumeirah, redesigned around uninterrupted sea views with motorized Somfy curtains and in-house joinery.\n\nA calm, neutral material palette lets the views lead. Motorized Somfy drapery manages light and privacy without breaking the sightlines to the Gulf, while Italian panelling unifies the living and dining spaces.\n\nJoinery — from the media wall to the dressing room — was manufactured in-house and installed to suit the penthouse's existing structural constraints.",
           metadata: {
             location: "Palm Jumeirah, Dubai, UAE",
             sector: "Residential",
-            size: "5,400",
+            size: "5,400 sq ft",
             year: "2026",
             service: "Interior Design + Somfy Motorized Curtains"
           },
-          images: ["/assets/hero-penthouse.jpg", "/assets/curtains-2.jpeg", "/assets/bed-2.jpeg", "/assets/dining-table.jpeg"]
+          scope: [
+            "Interior design concept and material palette",
+            "Somfy motorized curtains and tracks",
+            "Italian wall panelling",
+            "Custom joinery — media wall and dressing room",
+            "Installation coordinated around the existing structure"
+          ],
+          related: [
+            { label: "Interior design in Dubai", href: "/en/interior-design/dubai" },
+            { label: "Custom architectural joinery", href: "/en/joinery/dubai" }
+          ],
+          images: [
+            "/assets/hero-penthouse.jpg",
+            "/assets/curtains-2.jpeg",
+            "/assets/bed-2.jpeg",
+            "/assets/dining-table.jpeg"
+          ]
         },
         "downtown-dubai-tech-hq": {
           title: "Downtown Dubai Tech HQ Office",
-          description: "A commercial fit-out for a technology company's Downtown Dubai office, covering MEP coordination, Dubai Municipality approvals and full interior delivery.\n\nThe scope included open-plan workstations, meeting rooms and a reception area finished with custom joinery panelling, with cable management and acoustic treatment built into the design from the outset.\n\nThe project was delivered end to end by Bait Al Ebdaa's in-house design and fit-out team, including all authority submissions.",
+          description: "A Downtown Dubai office fit-out for a technology company, covering MEP coordination, Dubai Municipality approvals and full interior delivery.\n\nOpen-plan workstations, meeting rooms and a reception area were finished with custom joinery panelling, with cable management and acoustic treatment designed in from the start rather than added later.\n\nBait Al Ebdaa's in-house design and fit-out team delivered the project end to end, including all authority submissions.",
           metadata: {
             location: "Downtown Dubai, Dubai, UAE",
             sector: "Commercial",
-            size: "12,000",
+            size: "12,000 sq ft",
             year: "2026",
             service: "Office Fit-Out + MEP Works"
           },
-          images: ["/assets/project-office.jpg", "/assets/tv-unit-1.jpeg", "/assets/cad-render.jpg", "/assets/cabinet-joinery.jpeg"]
+          scope: [
+            "Space planning for open-plan workstations and meeting rooms",
+            "MEP coordination",
+            "Dubai Municipality approvals and authority submissions",
+            "Custom joinery panelling for reception and meeting rooms",
+            "Acoustic treatment and cable management"
+          ],
+          related: [
+            { label: "Office fit-out in Dubai", href: "/en/office-fit-out/dubai" },
+            { label: "Turnkey fit-out services in Dubai", href: "/en/fit-out/dubai" }
+          ],
+          images: [
+            "/assets/project-office.jpg",
+            "/assets/tv-unit-1.jpeg",
+            "/assets/cad-render.jpg",
+            "/assets/cabinet-joinery.jpeg"
+          ]
         },
         "al-barari-eco-villa": {
           title: "Al Barari Eco-Villa Suite",
-          description: "A renovation of a villa suite in Al Barari, focused on bespoke walnut wardrobes and soft furnishings suited to the community's green, low-impact character.\n\nExisting joinery was replaced with custom-manufactured wardrobes and dressing units, finished to match the villa's natural material palette, with new curtain tracks and layered window treatments completing the room.",
+          description: "A villa suite renovation in Al Barari with bespoke walnut wardrobes and soft furnishings, in a natural palette that suits the community's green setting.\n\nExisting joinery was replaced with custom-manufactured wardrobes and dressing units matched to the villa's natural materials.\n\nNew curtain tracks and layered window treatments complete the suite, adding softness and light control.",
           metadata: {
             location: "Al Barari, Dubai, UAE",
             sector: "Residential",
-            size: "6,800",
+            size: "6,800 sq ft",
             year: "2025",
             service: "Villa Renovation + Custom Wardrobes"
           },
-          images: ["/assets/project-villa.jpg", "/assets/dressing-unit-2.jpeg", "/assets/bed-3.jpeg", "/assets/curtains-3.jpeg"]
+          scope: [
+            "Removal of existing joinery",
+            "Custom walnut wardrobes and dressing units",
+            "Curtain tracks and layered window treatments",
+            "Soft furnishings"
+          ],
+          related: [
+            { label: "Villa renovation in Dubai", href: "/en/villa-renovation/dubai" },
+            { label: "Custom wardrobes in Dubai", href: "/en/custom-wardrobes/dubai" }
+          ],
+          images: [
+            "/assets/project-villa.jpg",
+            "/assets/dressing-unit-2.jpeg",
+            "/assets/bed-3.jpeg",
+            "/assets/curtains-3.jpeg"
+          ]
         },
         "saadiyat-island-villa": {
           title: "Saadiyat Island Villa Residence",
-          description: "A full turnkey villa project on Saadiyat Island, Abu Dhabi, covering interior design, civil coordination and architectural joinery from concept through handover.\n\nJoinery — including a media wall, fitted wardrobes and a dressing suite — was manufactured at our Ajman factory and installed on site, with the design coordinated around Abu Dhabi Municipality (DMT) approval requirements.",
+          description: "A full turnkey villa on Saadiyat Island, Abu Dhabi — interior design, civil coordination and architectural joinery from concept to handover.\n\nThe media wall, fitted wardrobes and dressing suite were manufactured at our Ajman factory and installed on site.\n\nThe design was developed around Abu Dhabi Municipality (DMT) approval requirements from the outset.",
           metadata: {
             location: "Saadiyat Island, Abu Dhabi, UAE",
             sector: "Residential",
-            size: "7,500",
+            size: "7,500 sq ft",
             year: "2026",
             service: "Turnkey Fit-Out + Architectural Joinery"
           },
-          images: ["/assets/project-villa.jpg", "/assets/tv-unit-2.jpeg", "/assets/dressing-unit-3.jpeg", "/assets/bed-4.jpeg"]
+          scope: [
+            "Interior design and civil coordination",
+            "Architectural joinery — media wall, fitted wardrobes and dressing suite",
+            "Abu Dhabi Municipality (DMT) approval coordination",
+            "On-site installation and handover"
+          ],
+          related: [
+            { label: "Turnkey fit-out in Abu Dhabi", href: "/en/fit-out/abu-dhabi" },
+            { label: "Custom architectural joinery in Abu Dhabi", href: "/en/joinery/abu-dhabi" },
+            { label: "Interior design in Abu Dhabi", href: "/en/interior-design/abu-dhabi" }
+          ],
+          images: [
+            "/assets/project-villa.jpg",
+            "/assets/tv-unit-2.jpeg",
+            "/assets/dressing-unit-3.jpeg",
+            "/assets/bed-4.jpeg"
+          ]
         }
       }
     },
@@ -546,7 +640,7 @@ export const dictionaries = {
       },
       articles: [
         { title: "How We Manage Dubai Municipality & Civil Defense Approvals", image: "/assets/project-office.jpg", link: "/en/process" },
-        { title: "Custom Joinery, Made In-House From Start to Finish", image: "/assets/cabinet-joinery.jpeg", link: "/en/joinery/uae/" },
+        { title: "Custom Joinery, Made In-House From Start to Finish", image: "/assets/cabinet-joinery.jpeg", link: "/en/joinery/uae" },
         { title: "Inside Our First Published Project: A Government Authority HQ", image: "/assets/project-office.jpg", link: "/en/our-projects/government-authority" }
       ]
     },
@@ -568,14 +662,14 @@ export const dictionaries = {
           title: "Interior Fit Out",
           description: "We work closely with your architect, designer, or project manager to deliver top-quality interior fit-out services, including MEP, furniture, and finishes.",
           image: "/assets/tv-unit-1.jpeg",
-          link: "#"
+          link: "/en/fit-out/dubai"
         },
         {
           num: "02",
           title: "Design and Build",
           description: "We provide complete design and interior fit-out services in full turnkey solutions helping to reduce project risks and costs, and can lead to faster completion.",
           image: "/assets/dressing-unit-1.jpeg",
-          link: "#"
+          link: "/en/interior-design/dubai"
         },
         {
           num: "03",
@@ -1071,19 +1165,33 @@ export const dictionaries = {
         sector: "القطاع",
         size: "المساحة",
         year: "السنة",
-        service: "الخدمة"
+        service: "الخدمة",
+        scope: "نطاق العمل",
+        relatedServices: "خدمات ذات صلة"
       },
       projects: {
         "government-authority": {
           title: "المقر الرئيسي السري لهيئة حكومية، مدينة دبي الأكاديمية",
-          description: "تم تجهيز هذا المقر الرئيسي السري لهيئة حكومية في مدينة دبي الأكاديمية مؤخرًا كمساحة عمل تبلغ مساحتها 50,500 قدم مربع وتمتد على ثلاثة طوابق.\n\nتم تنفيذ المساحة بلمسة جمالية بسيطة ومريحة، وتحتضن درجات اللون البيج والبني والأبيض الناعمة، جنبًا إلى جنب مع الأنسجة الطبيعية لخلق بيئة تعطي الأولوية لرفاهية الموظفين.\n\nتم تنفيذ مكان العمل بعناية لتعزيز الهوية والتعاون والعمل الجماعي. تشجع مناطق الأقسام المتميزة على التفاعل ومشاركة المعرفة مع تعزيز قيم وأهداف كل فريق.\n\nيتم دعم راحة الموظفين من خلال محطات عمل مريحة، ومكاتب للجلوس والوقوف، وعناصر لتعزيز الخصوصية، وحلول للتحكم في الضوضاء تعزز التركيز والمرونة معًا.\n\nتلبي مجموعة متنوعة من مساحات التعاون أنماط العمل والاحتياجات المختلفة، مما يشجع على الإبداع والشمولية والتعاون الفعال.",
+          description: "تجهيزات داخلية وأعمال كهروميكانيكية لمقر رئيسي سري لهيئة حكومية في مدينة دبي الأكاديمية، بمساحة 50,500 قدم مربع موزعة على ثلاثة طوابق.\n\nيعتمد التصميم أسلوباً بسيطاً ومريحاً يشبه أجواء المنزل، بدرجات ناعمة من البيج والبني والأبيض وملمس طبيعي، مع إعطاء الأولوية لراحة الموظفين ورفاهيتهم.\n\nتشجع مناطق الأقسام المتميزة على التفاعل وتبادل المعرفة، وتعزز في الوقت نفسه هوية كل فريق وقيمه وأهدافه.\n\nتدعم محطات العمل المريحة ومكاتب الجلوس والوقوف وعناصر الخصوصية وحلول التحكم في الضوضاء التركيز والمرونة معاً.\n\nوتتنوع مساحات التعاون لتناسب أنماط العمل المختلفة، مما يشجع على الإبداع والشمولية والعمل الجماعي الفعّال.",
           metadata: {
             location: "مدينة دبي الأكاديمية، الإمارات",
             sector: "تجاري",
-            size: "50,500",
+            size: "50,500 قدم مربع",
             year: "2026",
             service: "التجهيزات الداخلية والأعمال الكهروميكانيكية"
           },
+          scope: [
+            "أعمال التجهيزات الداخلية على ثلاثة طوابق (50,500 قدم مربع)",
+            "الأعمال الكهروميكانيكية",
+            "مناطق أقسام مصممة وفق أهداف كل فريق",
+            "محطات عمل مريحة ومكاتب للجلوس والوقوف",
+            "حلول الخصوصية والتحكم في الضوضاء",
+            "مساحات تعاون تناسب أنماط العمل المختلفة"
+          ],
+          related: [
+            { label: "تجهيز المكاتب في دبي", href: "/ar/office-fit-out/dubai" },
+            { label: "خدمات التجهيز الشامل في دبي", href: "/ar/fit-out/dubai" }
+          ],
           images: [
             "/assets/project-office.jpg",
             "/assets/hero-penthouse.jpg",
@@ -1093,63 +1201,143 @@ export const dictionaries = {
         },
         "dubai-hills-estate-villa": {
           title: "فيلا فاخرة في دبي هيلز إستيت",
-          description: "تم تنفيذ هذه الفيلا في دبي هيلز إستيت كتسليم مفتاح كامل، شمل التصميم الداخلي والأعمال المدنية والنجارة الداخلية من فريق واحد مسؤول بالكامل عن المشروع.\n\nطلب العميل مزيجاً دافئاً ومعاصراً من الألوان مع نجارة من خشب الجوز الأوروبي في كافة أنحاء الفيلا — خزائن مثبتة وجدار وسائط ووحدات تسريح مخصصة، تم تصنيعها في مصنعنا بعجمان وتركيبها في الموقع.\n\nتم تنسيق سكك الستائر الآلية والإضاءة متعددة الطبقات مع تركيب النجارة للحفاظ على تناسق التشطيب من غرفة إلى أخرى.",
+          description: "تجهيز فيلا بنظام تسليم مفتاح كامل في دبي هيلز إستيت — تصميم داخلي وأعمال مدنية ونجارة من خشب الجوز الأوروبي بإشراف فريق واحد مسؤول.\n\nطلب المشروع لوحة ألوان دافئة ومعاصرة. صُنعت الخزائن المثبتة وجدار الوسائط ووحدات التسريح المخصصة من خشب الجوز الأوروبي في مصنعنا بعجمان وتم تركيبها في الموقع، ليبقى تناسق النجارة والتشطيبات من غرفة إلى أخرى.\n\nجرى تنسيق سكك الستائر الآلية والإضاءة متعددة الطبقات مع تركيب النجارة، لتحصل العائلة على منزل متكامل يعمل بسلاسة منذ يوم التسليم.",
           metadata: {
             location: "دبي هيلز إستيت، دبي، الإمارات",
             sector: "سكني",
-            size: "8,200",
+            size: "8,200 قدم مربع",
             year: "2026",
             service: "تسليم مفتاح كامل ونجارة مخصصة"
           },
-          images: ["/assets/project-villa.jpg", "/assets/bed-1.jpeg", "/assets/dressing-unit-1.jpeg", "/assets/curtains-1.jpeg"]
+          scope: [
+            "التصميم الداخلي وتخطيط المساحات",
+            "الأعمال المدنية وأعمال التشطيب",
+            "نجارة مخصصة من خشب الجوز الأوروبي — خزائن وجدار وسائط ووحدات تسريح",
+            "تنسيق الستائر الآلية والإضاءة متعددة الطبقات",
+            "المعاينة النهائية والتسليم"
+          ],
+          related: [
+            { label: "التجهيز الشامل في دبي", href: "/ar/fit-out/dubai" },
+            { label: "النجارة المعمارية المخصصة", href: "/ar/joinery/dubai" },
+            { label: "التصميم الداخلي في دبي", href: "/ar/interior-design/dubai" }
+          ],
+          images: [
+            "/assets/project-villa.jpg",
+            "/assets/bed-1.jpeg",
+            "/assets/dressing-unit-1.jpeg",
+            "/assets/curtains-1.jpeg"
+          ]
         },
         "palm-jumeirah-penthouse": {
           title: "بنتهاوس على الواجهة البحرية في نخلة جميرا",
-          description: "بنتهاوس على الواجهة البحرية في نخلة جميرا، أُعيد تصميمه حول إطلالات بحرية غير منقطعة ولوحة مواد هادئة ومحايدة.\n\nتم تركيب ستائر سومفي الآلية في جميع أنحاء الوحدة للتحكم بالإضاءة والخصوصية دون كسر خطوط الرؤية نحو الخليج، واستُخدمت الألواح الإيطالية لتوحيد مساحتي المعيشة والطعام.\n\nتم تصنيع تفاصيل النجارة — من جدار الوسائط إلى غرفة التسريح — داخلياً وتركيبها لتناسب القيود الإنشائية القائمة للبنتهاوس.",
+          description: "بنتهاوس على الواجهة البحرية في نخلة جميرا أُعيد تصميمه حول إطلالات بحرية مفتوحة، مع ستائر سومفي آلية ونجارة مصنّعة داخلياً.\n\nتترك لوحة المواد الهادئة والمحايدة المجال للإطلالة لتكون العنصر الأبرز. تتحكم ستائر سومفي الآلية بالإضاءة والخصوصية دون حجب خطوط الرؤية نحو الخليج، بينما توحّد الألواح الإيطالية مساحتي المعيشة والطعام.\n\nصُنعت النجارة — من جدار الوسائط إلى غرفة التسريح — داخلياً وتم تركيبها بما يناسب القيود الإنشائية القائمة في البنتهاوس.",
           metadata: {
             location: "نخلة جميرا، دبي، الإمارات",
             sector: "سكني",
-            size: "5,400",
+            size: "5,400 قدم مربع",
             year: "2026",
             service: "تصميم داخلي وستائر سومفي الآلية"
           },
-          images: ["/assets/hero-penthouse.jpg", "/assets/curtains-2.jpeg", "/assets/bed-2.jpeg", "/assets/dining-table.jpeg"]
+          scope: [
+            "مفهوم التصميم الداخلي ولوحة المواد",
+            "ستائر وسكك سومفي الآلية",
+            "ألواح جدارية إيطالية",
+            "نجارة مخصصة — جدار الوسائط وغرفة التسريح",
+            "تركيب منسّق حول الهيكل الإنشائي القائم"
+          ],
+          related: [
+            { label: "التصميم الداخلي في دبي", href: "/ar/interior-design/dubai" },
+            { label: "النجارة المعمارية المخصصة", href: "/ar/joinery/dubai" }
+          ],
+          images: [
+            "/assets/hero-penthouse.jpg",
+            "/assets/curtains-2.jpeg",
+            "/assets/bed-2.jpeg",
+            "/assets/dining-table.jpeg"
+          ]
         },
         "downtown-dubai-tech-hq": {
           title: "مقر شركة تقنية في وسط مدينة دبي",
-          description: "تجهيز تجاري لمكتب شركة تقنية في وسط مدينة دبي، شمل تنسيق الأعمال الكهروميكانيكية وموافقات بلدية دبي والتسليم الداخلي الكامل.\n\nشمل نطاق العمل محطات عمل مفتوحة وغرف اجتماعات ومنطقة استقبال تم تشطيبها بألواح نجارة مخصصة، مع إدارة الأسلاك والمعالجة الصوتية المدمجة في التصميم منذ البداية.\n\nتم تسليم المشروع بالكامل من قبل فريق التصميم والتجهيز الداخلي لدى بيت الإبداع، بما في ذلك جميع التقديمات للجهات المختصة.",
+          description: "تجهيز مكتب شركة تقنية في وسط مدينة دبي، شمل تنسيق الأعمال الكهروميكانيكية وموافقات بلدية دبي وتنفيذ التصميم الداخلي بالكامل.\n\nجرى تشطيب محطات العمل المفتوحة وغرف الاجتماعات ومنطقة الاستقبال بألواح نجارة مخصصة، مع تصميم إدارة الأسلاك والمعالجة الصوتية ضمن المخطط منذ البداية بدلاً من إضافتها لاحقاً.\n\nنفّذ فريق التصميم والتجهيز الداخلي في بيت الإبداع المشروع من البداية إلى النهاية، بما في ذلك جميع التقديمات للجهات المختصة.",
           metadata: {
             location: "وسط مدينة دبي، دبي، الإمارات",
             sector: "تجاري",
-            size: "12,000",
+            size: "12,000 قدم مربع",
             year: "2026",
             service: "تجهيز مكاتب وأعمال كهروميكانيكية"
           },
-          images: ["/assets/project-office.jpg", "/assets/tv-unit-1.jpeg", "/assets/cad-render.jpg", "/assets/cabinet-joinery.jpeg"]
+          scope: [
+            "تخطيط المساحات لمحطات العمل المفتوحة وغرف الاجتماعات",
+            "تنسيق الأعمال الكهروميكانيكية",
+            "موافقات بلدية دبي والتقديمات للجهات المختصة",
+            "ألواح نجارة مخصصة لمنطقة الاستقبال وغرف الاجتماعات",
+            "معالجة صوتية وإدارة الأسلاك"
+          ],
+          related: [
+            { label: "تجهيز المكاتب في دبي", href: "/ar/office-fit-out/dubai" },
+            { label: "خدمات التجهيز الشامل في دبي", href: "/ar/fit-out/dubai" }
+          ],
+          images: [
+            "/assets/project-office.jpg",
+            "/assets/tv-unit-1.jpeg",
+            "/assets/cad-render.jpg",
+            "/assets/cabinet-joinery.jpeg"
+          ]
         },
         "al-barari-eco-villa": {
           title: "جناح فيلا صديقة للبيئة في البراري",
-          description: "تجديد لجناح فيلا في البراري، ركّز على خزائن مخصصة من خشب الجوز ومفروشات ناعمة تناسب الطابع الأخضر منخفض الأثر للمجتمع.\n\nتم استبدال النجارة القائمة بخزائن ووحدات تسريح مصنّعة خصيصاً، تم تشطيبها لتناسب لوحة المواد الطبيعية للفيلا، مع سكك ستائر جديدة ومعالجات نوافذ متعددة الطبقات لإكمال الغرفة.",
+          description: "تجديد جناح فيلا في البراري بخزائن جوز مخصصة ومفروشات ناعمة، بلوحة ألوان طبيعية تناسب الطابع الأخضر للمجتمع.\n\nاستُبدلت النجارة القديمة بخزائن ووحدات تسريح مصنّعة خصيصاً تناسب المواد الطبيعية في الفيلا.\n\nوتكتمل الغرفة بسكك ستائر جديدة ومعالجات نوافذ متعددة الطبقات تضفي نعومة وتتحكم بالإضاءة.",
           metadata: {
             location: "البراري، دبي، الإمارات",
             sector: "سكني",
-            size: "6,800",
+            size: "6,800 قدم مربع",
             year: "2025",
             service: "تجديد فلل وخزائن مخصصة"
           },
-          images: ["/assets/project-villa.jpg", "/assets/dressing-unit-2.jpeg", "/assets/bed-3.jpeg", "/assets/curtains-3.jpeg"]
+          scope: [
+            "إزالة النجارة القائمة",
+            "خزائن جوز ووحدات تسريح مخصصة",
+            "سكك ستائر ومعالجات نوافذ متعددة الطبقات",
+            "مفروشات ناعمة"
+          ],
+          related: [
+            { label: "تجديد الفلل في دبي", href: "/ar/villa-renovation/dubai" },
+            { label: "الخزائن المخصصة في دبي", href: "/ar/custom-wardrobes/dubai" }
+          ],
+          images: [
+            "/assets/project-villa.jpg",
+            "/assets/dressing-unit-2.jpeg",
+            "/assets/bed-3.jpeg",
+            "/assets/curtains-3.jpeg"
+          ]
         },
         "saadiyat-island-villa": {
           title: "فيلا سكنية في جزيرة السعديات",
-          description: "مشروع فيلا بتسليم مفتاح كامل في جزيرة السعديات بأبوظبي، شمل التصميم الداخلي والتنسيق المدني والنجارة المعمارية من المفهوم وحتى التسليم النهائي.\n\nتم تصنيع النجارة — بما في ذلك جدار الوسائط والخزائن المثبتة وجناح التسريح — في مصنعنا بعجمان وتركيبها في الموقع، مع تنسيق التصميم وفق متطلبات موافقات بلدية أبوظبي (دائرة البلديات والنقل).",
+          description: "فيلا بنظام تسليم مفتاح كامل في جزيرة السعديات بأبوظبي — تصميم داخلي وتنسيق مدني ونجارة معمارية من المفهوم حتى التسليم.\n\nصُنع جدار الوسائط والخزائن المثبتة وجناح التسريح في مصنعنا بعجمان وتم تركيبها في الموقع.\n\nطُوِّر التصميم منذ البداية وفق متطلبات موافقات بلدية أبوظبي (دائرة البلديات والنقل).",
           metadata: {
             location: "جزيرة السعديات، أبوظبي، الإمارات",
             sector: "سكني",
-            size: "7,500",
+            size: "7,500 قدم مربع",
             year: "2026",
             service: "تسليم مفتاح كامل ونجارة معمارية"
           },
-          images: ["/assets/project-villa.jpg", "/assets/tv-unit-2.jpeg", "/assets/dressing-unit-3.jpeg", "/assets/bed-4.jpeg"]
+          scope: [
+            "التصميم الداخلي والتنسيق المدني",
+            "نجارة معمارية — جدار الوسائط والخزائن المثبتة وجناح التسريح",
+            "تنسيق موافقات بلدية أبوظبي (دائرة البلديات والنقل)",
+            "التركيب في الموقع والتسليم"
+          ],
+          related: [
+            { label: "التجهيز الشامل في أبوظبي", href: "/ar/fit-out/abu-dhabi" },
+            { label: "النجارة المعمارية المخصصة في أبوظبي", href: "/ar/joinery/abu-dhabi" },
+            { label: "التصميم الداخلي في أبوظبي", href: "/ar/interior-design/abu-dhabi" }
+          ],
+          images: [
+            "/assets/project-villa.jpg",
+            "/assets/tv-unit-2.jpeg",
+            "/assets/dressing-unit-3.jpeg",
+            "/assets/bed-4.jpeg"
+          ]
         }
       }
     },
@@ -1168,7 +1356,7 @@ export const dictionaries = {
       },
       articles: [
         { title: "كيف ندير موافقات بلدية دبي والدفاع المدني", image: "/assets/project-office.jpg", link: "/ar/process" },
-        { title: "نجارة مخصصة، مصنوعة بالكامل داخلياً", image: "/assets/cabinet-joinery.jpeg", link: "/ar/joinery/uae/" },
+        { title: "نجارة مخصصة، مصنوعة بالكامل داخلياً", image: "/assets/cabinet-joinery.jpeg", link: "/ar/joinery/uae" },
         { title: "داخل أول مشروع ننشره: مقر هيئة حكومية", image: "/assets/project-office.jpg", link: "/ar/our-projects/government-authority" }
       ]
     },
@@ -1190,14 +1378,14 @@ export const dictionaries = {
           title: "التجهيزات الداخلية",
           description: "نعمل عن كثب مع المهندس المعماري أو المصمم أو مدير المشروع لتقديم خدمات تجهيزات داخلية عالية الجودة، بما في ذلك الأعمال الميكانيكية والكهربائية والسباكة والأثاث والتشطيبات.",
           image: "/assets/tv-unit-1.jpeg",
-          link: "#"
+          link: "/ar/fit-out/dubai"
         },
         {
           num: "02",
           title: "التصميم والبناء",
           description: "نحن نقدم خدمات تصميم وتجهيزات داخلية كاملة في حلول جاهزة بالكامل تساعد في تقليل مخاطر المشروع وتكاليفه، ويمكن أن تؤدي إلى إنجاز أسرع.",
           image: "/assets/dressing-unit-1.jpeg",
-          link: "#"
+          link: "/ar/interior-design/dubai"
         },
         {
           num: "03",
