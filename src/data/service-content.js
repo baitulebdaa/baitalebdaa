@@ -310,3 +310,52 @@ export const serviceContent = {
     },
   },
 };
+
+// Extra sentence appended to the intro on ONLY the 5 priority money pages (see
+// PRIORITY_MONEY_PAGES in ServiceLocationPage.jsx) — works the sheet's secondary
+// keywords ("...contractor", "...company") naturally into the copy, rather than
+// stuffing them into the shared summary that all 30 sibling locations reuse.
+export const priorityIntroExtra = {
+  "fit-out": {
+    en: "We work as a single fit-out contractor and interior fit-out company — not a broker coordinating between multiple fit out companies on your behalf.",
+    ar: "بصفتنا شركة فيت اوت في دبي، ننفّذ خدمات شركة فيت اوت في دبي بالكامل ضمن فريق واحد، دون تنسيق بين مقاولين من الباطن.",
+  },
+  "office-fit-out": {
+    en: "As an office fit-out company and office fit-out contractor, we deliver the full range of office fit-out services in-house, from space planning to final handover.",
+    ar: "بصفتنا شركة متخصصة في تجهيز مكاتب دبي، نقدّم خدمات تجهيز مكاتب في دبي بشكل متكامل، من التخطيط وحتى التسليم النهائي.",
+  },
+  joinery: {
+    en: "Our architectural joinery Dubai clients see firsthand: every piece of custom joinery and bespoke joinery work is manufactured in our own Ajman factory, not outsourced to a third-party joinery works subcontractor.",
+    ar: "بصفتنا شركة نجارة في دبي، نقدّم خدمات شركة نجارة في دبي تشمل النجارة المعمارية في دبي، المصنّعة بالكامل في مصنعنا الخاص بعجمان.",
+  },
+  "villa-renovation": {
+    en: "As a villa renovation company handling villa remodeling and villa refurbishment projects across Dubai, we run survey, design, build and joinery under one contract.",
+    ar: "بصفتنا شركة متخصصة في تجديد فلل دبي، نقدّم خدمات تجديد فلل في دبي ضمن عقد واحد يشمل التصميم والتنفيذ والنجارة.",
+  },
+  "interior-design": {
+    en: "As an interior design company and interior designer working across Dubai, our interior design services extend beyond concept — we also manufacture and install what we design.",
+    ar: "بصفتنا شركة تصميم داخلي في دبي، تمتد خدمات تصميم داخلي في دبي لدينا إلى التصنيع والتركيب الفعلي لما نصممه.",
+  },
+};
+
+// Shared "Why choose Bait Al Ebdaa" facts — reused across all service/location pages to
+// fulfil the sheet's "Why choose Bait Al Ebdaa" H2 theme (see row.h2Themes[4]). Company-
+// level, not location-specific, so it doesn't need to be unique per page; every claim here
+// is one already established and verified elsewhere on the site (factory, guarantee,
+// approvals, published project) — no invented stats, years of experience or counts.
+export const whyChooseFacts = {
+  en: [
+    "In-house manufacturing — every joinery piece is produced in our own 15,000 sq ft Ajman factory, not outsourced.",
+    "One accountable team — design, approvals, build and joinery run under a single contract, not multiple subcontractors.",
+    "Approvals handled in-house — our compliance team manages Dubai Municipality, DDA, Trakhees and Civil Defense submissions directly.",
+    "5-year workmanship guarantee on joinery we manufacture and install.",
+    "Real project experience, including a 50,500 sq ft government authority headquarters delivered in Dubai Academic City.",
+  ],
+  ar: [
+    "تصنيع داخلي — يتم إنتاج كل قطعة نجارة في مصنعنا الخاص بعجمان البالغة مساحته 15,000 قدم مربع، دون تعهيدها لجهات خارجية.",
+    "فريق واحد مسؤول — التصميم والموافقات والتنفيذ والنجارة، كل ذلك ضمن عقد واحد، دون تعدد المقاولين من الباطن.",
+    "إدارة الموافقات داخلياً — يتولى فريق الامتثال لدينا التقديم المباشر لدى بلدية دبي وسلطة دبي للتطوير وتراخيص والدفاع المدني.",
+    "ضمان جودة الصنعة لمدة 5 سنوات على النجارة التي نصنّعها ونركّبها.",
+    "خبرة حقيقية في مشاريع فعلية، بما في ذلك مقر لهيئة حكومية بمساحة 50,500 قدم مربع تم تنفيذه في مدينة دبي الأكاديمية.",
+  ],
+};

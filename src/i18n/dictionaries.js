@@ -207,8 +207,8 @@ export const dictionaries = {
       navTitle: "Pricing",
       pageTitle: "Clear Starting Prices. Bespoke Final Results.",
       metaTitle: "Interior Design & Fit-Out Prices Dubai | Bait Al Ebdaa",
-      metaDescription: "Explore indicative prices for custom joinery, Somfy motorized curtains, interior design, villa interiors and office fit-out services in Dubai.",
-      heroBody: "Explore indicative pricing for curtains, custom joinery, interior design and turnkey fit-out services across Dubai and Abu Dhabi. Every project is individually measured, specified and quoted.",
+      metaDescription: "Indicative fit-out, interior design, villa renovation and joinery cost in Dubai — plus starting prices for wardrobes, kitchen cabinets and Somfy curtains.",
+      heroBody: "See indicative fit-out cost, joinery cost and interior design cost guidance for villas, offices and custom furniture in Dubai and Abu Dhabi. Every project is individually measured, specified and quoted.",
       heroPrimaryCta: "Get My Project Estimate",
       heroSecondaryCta: "Discuss on WhatsApp",
       heroTrust: "Complimentary initial consultation • Detailed scope • Transparent quotation",
@@ -279,39 +279,39 @@ export const dictionaries = {
         joineryWardrobes: {
           kicker: "Custom Joinery",
           title: "Wardrobes",
-          subtitle: "Priced per linear metre, manufactured in our own factory.",
+          subtitle: "Custom wardrobes price per linear metre, manufactured in our own Ajman factory.",
           cta: "Estimate My Wardrobe"
         },
         joineryMedia: {
           kicker: "Custom Joinery",
           title: "Media Walls & Custom Furniture",
-          subtitle: "Starting prices for bespoke media walls, beds, seating and built-in furniture.",
+          subtitle: "Starting prices for bespoke media walls, beds, seating and other custom furniture in Dubai.",
           cta: "Share Wall Dimensions"
         },
         joineryKitchens: {
           kicker: "Custom Joinery",
           title: "Kitchens",
-          subtitle: "Priced per linear metre of kitchen joinery.",
+          subtitle: "Custom kitchen and kitchen cabinets priced per linear metre of kitchen joinery in Dubai.",
           cta: "Request Kitchen Estimate"
         },
         design: {
           kicker: "Design & 3D Visualization",
           title: "Design & Visualization Packages",
-          subtitle: "From a complimentary initial consultation to full villa design packages, delivered with photorealistic 3D visuals before production begins.",
+          subtitle: "Indicative interior design cost and interior design price ranges, from a complimentary initial consultation to full villa design packages, delivered with photorealistic 3D visuals before production begins.",
           note: "Eligible design fees may be credited toward the project when Bait Al Ebdaa is appointed for the complete fit-out, subject to contract value and agreed terms.",
           cta: "Book Design Consultation"
         },
         villa: {
           kicker: "Villa Interiors",
           title: "Villa & Residential Fit-Out",
-          subtitle: "Indicative budget ranges for villa and residential interiors.",
+          subtitle: "Indicative villa renovation cost and villa renovation price ranges for villa and residential interiors in Dubai.",
           note: "Final budgets depend on property condition, project size, structural or MEP changes, kitchens, bathrooms, joinery, furniture and finish level.",
           cta: "Plan My Villa Project"
         },
         office: {
           kicker: "Office Fit-Out",
           title: "Office Fit-Out Budget Ranges",
-          subtitle: "Indicative budget ranges for commercial office fit-out.",
+          subtitle: "Indicative office fit-out cost and office fit-out price ranges for commercial projects in Dubai.",
           note: "Budget ranges vary according to base-build condition, MEP scope, authority requirements, joinery, furniture, technology and selected finishes.",
           cta: "Request Fit-Out Budget"
         },
@@ -929,8 +929,8 @@ export const dictionaries = {
       navTitle: "الأسعار",
       pageTitle: "أسعار ابتدائية واضحة. نتائج نهائية مصممة خصيصًا لك.",
       metaTitle: "أسعار التصميم الداخلي والتشطيب في دبي | بيت الإبداع",
-      metaDescription: "اطّلع على أسعار ابتدائية للنجارة المخصصة، ستائر سومفي الكهربائية، التصميم الداخلي، تشطيب الفلل والمكاتب في دبي.",
-      heroBody: "اكتشف الأسعار الابتدائية للستائر والنجارة المخصصة والتصميم الداخلي وخدمات التشطيب الكامل في دبي وأبوظبي. كل مشروع يُقاس ويُحدد نطاقه ويُسعّر بشكل فردي.",
+      metaDescription: "تكلفة تقديرية للتجهيز الشامل والتصميم الداخلي وتجديد الفلل والنجارة في دبي — إضافة إلى أسعار ابتدائية للخزائن وخزائن المطبخ وستائر سومفي.",
+      heroBody: "اطّلع على تكلفة التجهيز الشامل وتكلفة النجارة وتكلفة التصميم الداخلي للفلل والمكاتب والأثاث المخصص في دبي وأبوظبي. كل مشروع يُقاس ويُحدد نطاقه ويُسعّر بشكل فردي.",
       heroPrimaryCta: "احصل على تقدير مشروعي",
       heroSecondaryCta: "تحدث عبر واتساب",
       heroTrust: "استشارة أولية مجانية • نطاق عمل تفصيلي • عرض سعر شفاف",
@@ -1001,39 +1001,39 @@ export const dictionaries = {
         joineryWardrobes: {
           kicker: "النجارة المخصصة",
           title: "الخزائن",
-          subtitle: "تُسعّر بالمتر الطولي، ومُصنّعة في مصنعنا الخاص.",
+          subtitle: "سعر الخزائن المخصصة بالمتر الطولي، ومُصنّعة في مصنعنا الخاص بعجمان.",
           cta: "قدّر خزانتي"
         },
         joineryMedia: {
           kicker: "النجارة المخصصة",
           title: "الحوائط الإعلامية والأثاث المخصص",
-          subtitle: "أسعار ابتدائية للحوائط الإعلامية المخصصة والأسرّة والمقاعد والأثاث المدمج.",
+          subtitle: "أسعار ابتدائية للحوائط الإعلامية المخصصة والأسرّة والمقاعد وقطع الأثاث المخصص الأخرى في دبي.",
           cta: "شارك أبعاد الحائط"
         },
         joineryKitchens: {
           kicker: "النجارة المخصصة",
           title: "المطابخ",
-          subtitle: "تُسعّر بالمتر الطولي لنجارة المطبخ.",
+          subtitle: "سعر المطبخ المخصص وخزائن المطبخ بالمتر الطولي لنجارة المطبخ في دبي.",
           cta: "اطلب تقدير مطبخ"
         },
         design: {
           kicker: "التصميم والتصور ثلاثي الأبعاد",
           title: "باقات التصميم والتصور ثلاثي الأبعاد",
-          subtitle: "من الاستشارة الأولية المجانية إلى باقات تصميم الفلل الكاملة، مع تصورات ثلاثية الأبعاد واقعية قبل بدء التنفيذ.",
+          subtitle: "نطاقات إرشادية لتكلفة وسعر التصميم الداخلي، من الاستشارة الأولية المجانية إلى باقات تصميم الفلل الكاملة، مع تصورات ثلاثية الأبعاد واقعية قبل بدء التنفيذ.",
           note: "قد تُخصم رسوم التصميم المستحقة من قيمة المشروع عند تعيين بيت الإبداع لتنفيذ التشطيب الكامل، وذلك وفقًا لقيمة العقد والشروط المتفق عليها.",
           cta: "احجز استشارة تصميم"
         },
         villa: {
           kicker: "تشطيب الفلل",
           title: "تشطيب الفلل والمساكن",
-          subtitle: "نطاقات ميزانية إرشادية لتشطيب الفلل والمساكن.",
+          subtitle: "نطاقات إرشادية لتكلفة وسعر تجديد الفلل في دبي والمساكن السكنية.",
           note: "تعتمد الميزانيات النهائية على حالة العقار وحجم المشروع والتغييرات الإنشائية أو الكهروميكانيكية والمطابخ والحمامات والنجارة والأثاث ومستوى التشطيب.",
           cta: "خطط لمشروع فيلتي"
         },
         office: {
           kicker: "تشطيب المكاتب",
           title: "نطاقات ميزانية تشطيب المكاتب",
-          subtitle: "نطاقات ميزانية إرشادية لتشطيب المكاتب التجارية.",
+          subtitle: "نطاقات إرشادية لتكلفة وسعر تجهيز المكاتب التجارية في دبي.",
           note: "تختلف نطاقات الميزانية وفقًا لحالة الهيكل الأساسي ونطاق الأنظمة الكهروميكانيكية ومتطلبات الجهات الحكومية والنجارة والأثاث والتقنية والتشطيبات المختارة.",
           cta: "اطلب ميزانية تشطيب"
         },

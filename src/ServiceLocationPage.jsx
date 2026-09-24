@@ -6,7 +6,7 @@ import { ArrowUpRight, Check } from "lucide-react";
 import { useI18n } from "./i18n/I18nProvider";
 import { Header, Footer, Reveal, PageHeader, FaqItem } from "./components/Shared";
 import { Estimator } from "./components/Estimator";
-import { serviceContent } from "./data/service-content";
+import { serviceContent, priorityIntroExtra, whyChooseFacts } from "./data/service-content";
 import { locationContent } from "./data/location-content";
 import { getService, getLocation, getSiblingLocations, getSiblingServices, getEmirateName, getEmirateAuthority } from "./lib/seo-pages";
 import { formatIndex } from "./lib/format";
@@ -107,6 +107,7 @@ export default function ServiceLocationPage({ lang, row }) {
   const content = serviceContent[row.serviceSlug]?.[lang];
   const isEmirateItself = location.tier === "core";
   const isPriorityMoneyPage = PRIORITY_MONEY_PAGES.has(`${row.serviceSlug}/${row.locationSlug}`);
+  const introExtra = isPriorityMoneyPage ? priorityIntroExtra[row.serviceSlug]?.[lang] : null;
 
   // Genuinely location-specific clause (real jurisdiction + real area character, not a
   // swapped city name) — added to the category-level summary so the intro isn't identical
@@ -234,8 +235,9 @@ export default function ServiceLocationPage({ lang, row }) {
         {/* Intro + proof stats */}
         <section className="shell slp-intro-section">
           <Reveal>
+            <h2 className="slp-intro-title">{row.h2Themes[0]}</h2>
             <p className="slp-intro-text">
-              {content.summary} {locationClause}
+              {content.summary} {locationClause} {introExtra}
             </p>
           </Reveal>
           <Reveal className="proof-stats-grid" delay={120}>
@@ -253,10 +255,10 @@ export default function ServiceLocationPage({ lang, row }) {
           <Reveal>
             <div className="offerings-header-wrapper">
               <div className="offerings-kicker">
-                <span>{row.h2Themes[1] || serviceName}</span>
+                <span>{serviceName}</span>
                 <div className="kicker-underline"></div>
               </div>
-              <h2 className="offerings-title">{row.h2Themes[0]}</h2>
+              <h2 className="offerings-title">{row.h2Themes[1]}</h2>
             </div>
           </Reveal>
           <div className="included-grid">
@@ -292,8 +294,8 @@ export default function ServiceLocationPage({ lang, row }) {
         {/* Process (compact) */}
         <section className="shell section slp-process-section">
           <Reveal className="section-heading">
-            <p className="micro">{row.h2Themes[2] || dict.processSection.micro}</p>
-            <h2 className="section-title">{dict.ourProcessPage.pageTitle}</h2>
+            <p className="micro">{dict.processSection.micro}</p>
+            <h2 className="section-title">{row.h2Themes[2]}</h2>
           </Reveal>
           <div className="process-grid">
             {dict.processSection.items.map(([title, body], i) => (
@@ -308,9 +310,31 @@ export default function ServiceLocationPage({ lang, row }) {
 
         {/* Cost context */}
         <Reveal as="div" delay={100}>
-          <p className="slp-section-label shell">{row.h2Themes[3] || ""}</p>
+          <h2 className="slp-section-label shell">{row.h2Themes[3]}</h2>
         </Reveal>
         <Estimator compact defaultLocationIndex={row.emirate === "Abu Dhabi" ? 1 : 0} ctaHref={waHref} />
+
+        {/* Why choose Bait Al Ebdaa — company-level facts, reused site-wide (not
+            location-specific by nature), same "included" checklist styling as above */}
+        <section className="shell slp-included-section">
+          <Reveal>
+            <div className="offerings-header-wrapper">
+              <div className="offerings-kicker">
+                <span>{lang === "ar" ? "بيت الإبداع" : "Bait Al Ebdaa"}</span>
+                <div className="kicker-underline"></div>
+              </div>
+              <h2 className="offerings-title">{row.h2Themes[4]}</h2>
+            </div>
+          </Reveal>
+          <div className="included-grid">
+            {whyChooseFacts[lang].map((item, i) => (
+              <Reveal className="included-item" key={i} delay={80 + i * 60}>
+                <Check size={18} className="included-check" />
+                <span>{item}</span>
+              </Reveal>
+            ))}
+          </div>
+        </section>
 
         {/* Project proof */}
         <section className="shell slp-proof-section">

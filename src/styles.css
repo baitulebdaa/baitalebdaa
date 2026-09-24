@@ -1412,6 +1412,15 @@ h1,h2,h3,.menu-overlay__main>a,.studio__facts strong,.project-form legend,.foote
   margin-bottom: 50px;
 }
 
+.slp-intro-title {
+  max-width: 780px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  margin-bottom: 14px;
+}
+
 .proof-stats-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

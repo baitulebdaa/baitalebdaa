@@ -54,11 +54,11 @@ export default function sitemap() {
     });
   }
 
-  // Only pages flagged `approved` in seo-pages.json ship in the sitemap; any future
-  // service+location combo added without content ready should stay `approved: false`
-  // (robots noindex,follow — see generateMetadata in [service]/[location]/page.jsx)
-  // until it has real content, then get added here. All 510 combos are approved as
-  // of the 2026-09-17 SEO pass — see scripts/generate-seo-data.mjs.
+  // Only pages flagged `approved` in seo-pages.json ship in the sitemap. As of the
+  // 2026-09-22 SEO pass, that's the 8 emirate-level locations per service (136 pages x
+  // 2 languages = 272); the 22 district/neighborhood locations per service stay
+  // noindex,follow (robots — see generateMetadata in [service]/[location]/page.jsx)
+  // until they have real unique local content — see scripts/generate-seo-data.mjs.
   for (const [key, enPage] of Object.entries(seoData.pages.en)) {
     if (!enPage.approved) continue;
     const arPage = seoData.pages.ar[key];

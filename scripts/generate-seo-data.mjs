@@ -105,8 +105,11 @@ for (const row of rows) {
     canonical: toProductionDomain(row.Canonical),
     hreflang: toProductionDomain(row["Hreflang Pair"]),
     intent: row.Intent,
-    // Client directive: index all 1,020 pages, not just the emirate-level tier.
-    approved: true,
+    // 2026-09-22 SEO decision: only the 8 emirate-level pages per service are indexable.
+    // The 22 district/neighborhood pages per service stay noindex,follow (still built and
+    // linked, just not indexed) until they have real unique local content — measured
+    // against Search Console demand per district rather than published in bulk.
+    approved: isCore,
   };
 }
 
