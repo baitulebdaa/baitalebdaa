@@ -1471,6 +1471,17 @@ h1,h2,h3,.menu-overlay__main>a,.studio__facts strong,.project-form legend,.foote
   color: var(--ink);
 }
 
+.about-fact-item {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.about-fact-item__title {
+  display: block;
+  font-size: 1rem;
+}
+
 .slp-gallery-section {
   padding: 0 0 60px;
 }

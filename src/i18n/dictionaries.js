@@ -197,6 +197,70 @@ export const dictionaries = {
       relatedJoinery: "Architectural joinery",
       relatedWardrobes: "Custom wardrobes"
     },
+    aboutPage: {
+      navTitle: "About Us",
+      pageTitle: "About Bait Al Ebdaa",
+      metaTitle: "About Us | Bait Al Ebdaa",
+      metaDescription: "Bait Al Ebdaa is a turnkey interior design, fit-out and architectural joinery company based in Ajman, serving Dubai and Abu Dhabi with in-house manufacturing.",
+      intro: "Bait Al Ebdaa is a turnkey interior design, fit-out and architectural joinery company serving Dubai and Abu Dhabi. We deliver villa and office interiors from initial concept through to final handover, with design, approvals, joinery manufacturing and installation coordinated by one accountable team rather than a chain of separate subcontractors.",
+      sections: {
+        whatWeDo: { title: "What We Do", body: "Our work covers interior design, turnkey fit-out, office fit-out, villa and apartment renovation, and custom architectural joinery — including bespoke wardrobes and kitchens. Each project is scoped, designed and quoted individually; nothing is templated." },
+        manufacturing: { title: "In-House Manufacturing", body: "We operate a 15,000 sq ft joinery factory at Jurf Industrial 2, Ajman, equipped with CNC machinery and staffed by 50+ carpenters, using European timber and veneers. Producing joinery ourselves — rather than outsourcing it — is what lets us offer a 5-year workmanship guarantee on the pieces we manufacture and install." },
+        serviceAreas: { title: "Service Areas", body: "We deliver projects across Dubai and Abu Dhabi. Our registered address and manufacturing facility are in Ajman." },
+        approvals: { title: "Authority Approvals", body: "Our in-house compliance team manages submissions and follow-up with Dubai Municipality (DM), the Dubai Development Authority (DDA), Trakhees, Abu Dhabi Municipality (DMT) and Civil Defense directly, so clients aren't required to navigate authority paperwork themselves." },
+        projects: { title: "Project Experience", body: "Recent work includes a confidential government authority headquarters in Dubai Academic City — a 50,500 sq ft interior fit-out and MEP project spanning three floors. See our projects page for details." },
+      },
+      companyDetailsTitle: "Company Details",
+      companyDetails: {
+        name: "Legal name",
+        nameValue: "Bait Al Ebdaa",
+        address: "Registered address",
+        addressValue: "Showroom No. 052004009, Jurf Industrial 2, Ajman, UAE",
+        phone: "Phone",
+        email: "Email",
+      },
+      projectsCta: "View our projects",
+      contactCta: "Get in touch",
+    },
+    privacyPolicyPage: {
+      navTitle: "Privacy Policy",
+      pageTitle: "Privacy Policy",
+      metaTitle: "Privacy Policy | Bait Al Ebdaa",
+      metaDescription: "How Bait Al Ebdaa collects, uses and protects the personal information submitted through our website forms and contact channels.",
+      lastUpdated: "Last updated: 24 September 2026",
+      intro: "This page explains what information Bait Al Ebdaa ('we', 'us') collects when you use www.baitalebdaa.com, and how we use it. We collect only what's needed to respond to your enquiry.",
+      sections: [
+        {
+          title: "Information We Collect",
+          body: "We collect information you submit directly through our contact form, quote request form and careers form: your name, email address, phone number, and any details you choose to share about your project, company or job application (including a CV file, for careers applications). We do not require you to create an account, and we do not collect payment information on this site.",
+        },
+        {
+          title: "How We Use Your Information",
+          body: "Form submissions are sent as an email directly to our team using Resend, a transactional email service, so we can respond to your enquiry, quote request or job application. We do not sell, rent or share your information with third parties for marketing purposes.",
+        },
+        {
+          title: "WhatsApp",
+          body: "WhatsApp buttons on this site open a chat in WhatsApp with a pre-filled message. This opens WhatsApp's own service, which has its own privacy policy; we do not control how WhatsApp itself handles your data. Any details you send us over WhatsApp are used the same way as a website enquiry: to respond to you.",
+        },
+        {
+          title: "Cookies and Analytics",
+          body: "This site does not currently set tracking or advertising cookies, and does not use browser local storage. If we enable Google Analytics in the future, this policy will be updated to describe the cookies it sets and how to opt out.",
+        },
+        {
+          title: "Data Retention",
+          body: "We retain enquiry and application emails for as long as reasonably necessary to respond to your enquiry and for our business records, and delete them on request.",
+        },
+        {
+          title: "Your Rights",
+          body: "You can ask us at any time what information we hold about you, ask us to correct it, or ask us to delete it, by emailing info@baitalebdaa.com.",
+        },
+        {
+          title: "Contact",
+          body: "Questions about this policy can be sent to info@baitalebdaa.com or Showroom No. 052004009, Jurf Industrial 2, Ajman, UAE.",
+        },
+      ],
+      legalReviewNote: "This policy describes the site's actual current data handling and has not been reviewed by a lawyer. Confirm it meets any UAE PDPL or other regulatory requirements that apply to your business before relying on it.",
+    },
     contactPage: {
       navTitle: "Contact Us",
       pageTitle: "Let's Talk About Your Project",
@@ -918,6 +982,70 @@ export const dictionaries = {
       relatedServices: "خدمات ذات صلة",
       relatedJoinery: "النجارة المعمارية",
       relatedWardrobes: "خزائن مخصصة"
+    },
+    aboutPage: {
+      navTitle: "من نحن",
+      pageTitle: "عن بيت الإبداع",
+      metaTitle: "من نحن | بيت الإبداع",
+      metaDescription: "بيت الإبداع شركة تصميم داخلي وتجهيز شامل ونجارة معمارية مقرها عجمان، تخدم دبي وأبوظبي بتصنيع داخلي خاص.",
+      intro: "بيت الإبداع شركة تصميم داخلي وتجهيز شامل ونجارة معمارية تخدم دبي وأبوظبي. ننفّذ تصاميم الفلل والمكاتب من المفهوم الأولي وحتى التسليم النهائي، بإدارة فريق واحد مسؤول عن التصميم والموافقات والتصنيع والتركيب، دون سلسلة من مقاولين من الباطن منفصلين.",
+      sections: {
+        whatWeDo: { title: "ماذا نقدّم", body: "يشمل عملنا التصميم الداخلي، والتجهيز الشامل، وتجهيز المكاتب، وتجديد الفلل والشقق، والنجارة المعمارية المخصصة — بما في ذلك الخزائن والمطابخ المصممة حسب الطلب. يتم تحديد نطاق كل مشروع وتصميمه وتسعيره بشكل فردي، دون أي قوالب جاهزة." },
+        manufacturing: { title: "تصنيع داخلي خاص", body: "نُدير مصنع نجارة بمساحة 15,000 قدم مربع في الجرف الصناعية 2، عجمان، مجهّزاً بآلات CNC وبأكثر من 50 نجاراً، باستخدام خشب وقشرة أوروبية. تصنيع النجارة داخلياً — بدلاً من تعهيدها لجهات خارجية — هو ما يتيح لنا تقديم ضمان جودة الصنعة لمدة 5 سنوات على القطع التي نصنّعها ونركّبها." },
+        serviceAreas: { title: "مناطق الخدمة", body: "ننفّذ مشاريعنا في دبي وأبوظبي. عنواننا المسجّل ومنشأة التصنيع الخاصة بنا في عجمان." },
+        approvals: { title: "موافقات الجهات الحكومية", body: "يتولى فريق الامتثال الداخلي لدينا تقديم الطلبات والمتابعة مباشرة مع بلدية دبي وسلطة دبي للتطوير وتراخيص وبلدية أبوظبي (دائرة البلديات والنقل) والدفاع المدني، بحيث لا يحتاج العميل للتعامل مع إجراءات الجهات الحكومية بنفسه." },
+        projects: { title: "خبرة في المشاريع الفعلية", body: "من أعمالنا الأخيرة مقر لهيئة حكومية سرية في مدينة دبي الأكاديمية — مشروع تجهيز داخلي وأعمال كهروميكانيكية بمساحة 50,500 قدم مربع على ثلاثة طوابق. راجع صفحة مشاريعنا للتفاصيل." },
+      },
+      companyDetailsTitle: "بيانات الشركة",
+      companyDetails: {
+        name: "الاسم القانوني",
+        nameValue: "بيت الإبداع",
+        address: "العنوان المسجّل",
+        addressValue: "معرض رقم 052004009، الجرف الصناعية 2، عجمان، الإمارات",
+        phone: "الهاتف",
+        email: "البريد الإلكتروني",
+      },
+      projectsCta: "استعرض مشاريعنا",
+      contactCta: "تواصل معنا",
+    },
+    privacyPolicyPage: {
+      navTitle: "سياسة الخصوصية",
+      pageTitle: "سياسة الخصوصية",
+      metaTitle: "سياسة الخصوصية | بيت الإبداع",
+      metaDescription: "كيف تجمع بيت الإبداع وتستخدم وتحمي المعلومات الشخصية المُرسلة عبر نماذج الموقع وقنوات التواصل.",
+      lastUpdated: "آخر تحديث: 24 سبتمبر 2026",
+      intro: "توضّح هذه الصفحة المعلومات التي تجمعها بيت الإبداع ('نحن') عند استخدامك لموقع www.baitalebdaa.com، وكيفية استخدامها. نجمع فقط ما هو ضروري للرد على استفسارك.",
+      sections: [
+        {
+          title: "المعلومات التي نجمعها",
+          body: "نجمع المعلومات التي ترسلها مباشرة عبر نموذج التواصل، ونموذج طلب عرض السعر، ونموذج التوظيف: اسمك، بريدك الإلكتروني، رقم هاتفك، وأي تفاصيل تختار مشاركتها عن مشروعك أو شركتك أو طلب التوظيف (بما في ذلك ملف السيرة الذاتية لطلبات التوظيف). لا نطلب إنشاء حساب، ولا نجمع معلومات الدفع على هذا الموقع.",
+        },
+        {
+          title: "كيف نستخدم معلوماتك",
+          body: "تُرسل نماذج الموقع كبريد إلكتروني مباشر إلى فريقنا باستخدام Resend، وهي خدمة بريد إلكتروني تشغيلية، لنتمكن من الرد على استفسارك أو طلب عرض السعر أو طلب التوظيف. لا نبيع أو نؤجر أو نشارك معلوماتك مع أطراف ثالثة لأغراض تسويقية.",
+        },
+        {
+          title: "واتساب",
+          body: "أزرار واتساب على هذا الموقع تفتح محادثة في واتساب برسالة معبأة مسبقاً. هذا يفتح خدمة واتساب الخاصة، التي لها سياسة خصوصية مستقلة؛ لا نتحكم في كيفية معالجة واتساب لبياناتك. أي تفاصيل ترسلها لنا عبر واتساب تُستخدم بنفس طريقة استفسار الموقع: للرد عليك.",
+        },
+        {
+          title: "ملفات تعريف الارتباط والتحليلات",
+          body: "لا يستخدم هذا الموقع حالياً ملفات تعريف ارتباط للتتبع أو الإعلانات، ولا يستخدم التخزين المحلي في المتصفح. إذا فعّلنا Google Analytics في المستقبل، سنحدّث هذه السياسة لوصف ملفات تعريف الارتباط التي يستخدمها وكيفية إلغاء الاشتراك.",
+        },
+        {
+          title: "الاحتفاظ بالبيانات",
+          body: "نحتفظ برسائل الاستفسارات وطلبات التوظيف للمدة اللازمة بشكل معقول للرد على استفسارك ولسجلاتنا التجارية، ونحذفها عند الطلب.",
+        },
+        {
+          title: "حقوقك",
+          body: "يمكنك في أي وقت أن تسألنا عن المعلومات التي نحتفظ بها عنك، أو تطلب تصحيحها، أو تطلب حذفها، عبر البريد الإلكتروني info@baitalebdaa.com.",
+        },
+        {
+          title: "التواصل",
+          body: "يمكن إرسال الأسئلة حول هذه السياسة إلى info@baitalebdaa.com أو معرض رقم 052004009، الجرف الصناعية 2، عجمان، الإمارات.",
+        },
+      ],
+      legalReviewNote: "تصف هذه السياسة المعالجة الفعلية الحالية لبيانات الموقع ولم تتم مراجعتها من قبل محامٍ. يرجى التأكد من توافقها مع قانون حماية البيانات الشخصية الإماراتي (PDPL) أو أي متطلبات تنظيمية أخرى تنطبق على نشاطك قبل الاعتماد عليها.",
     },
     contactPage: {
       navTitle: "اتصل بنا",

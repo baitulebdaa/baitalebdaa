@@ -118,6 +118,7 @@ export function Footer() {
     if (item === "Pricing" || item === "الأسعار") return `/${lang}/pricing`;
     if (item === "Contact" || item === "اتصل بنا") return `/${lang}/contact`;
     if (item === "Home" || item === "الرئيسية") return lang === "en" ? "/" : `/${lang}`;
+    if (item === "About Us" || item === "من نحن") return `/${lang}/about`;
     return "#top";
   };
   return <footer>
@@ -138,7 +139,7 @@ export function Footer() {
       </div>
       <div className="footer-links-col">
         <p className="footer-col-title">{f.importantLinks}</p>
-        {f.importantLinksItems.map((link, i) => <a key={i} href="#top">{link}</a>)}
+        {f.importantLinksItems.map((link, i) => <a key={i} href={link === f.privacy ? `/${lang}/privacy-policy` : "#top"}>{link}</a>)}
       </div>
       <div className="footer-links-col">
         <p className="footer-col-title">{f.contactInfo}</p>
@@ -155,7 +156,7 @@ export function Footer() {
     </div>
     <div className="shell footer-bottom">
       <div className="footer-bottom-left">
-        <a href="#top">{f.privacy}</a>
+        <a href={`/${lang}/privacy-policy`}>{f.privacy}</a>
         <span className="footer-divider">|</span>
         <a href="#top">{f.terms}</a>
       </div>
