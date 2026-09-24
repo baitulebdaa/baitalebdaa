@@ -236,7 +236,7 @@ export const dictionaries = {
         },
         {
           title: "How We Use Your Information",
-          body: "Form submissions are sent as an email directly to our team using Resend, a transactional email service, so we can respond to your enquiry, quote request or job application. We do not sell, rent or share your information with third parties for marketing purposes.",
+          body: "Form submissions are sent as an email directly to our team using Resend, a transactional email service that processes your message on our behalf in order to deliver it to us — Resend's own handling of that data is governed by Resend's privacy policy (resend.com/legal/privacy-policy), not this one. We use the information you submit only to respond to your enquiry, quote request or job application, and we do not sell, rent or share it with third parties for marketing purposes.",
         },
         {
           title: "WhatsApp",
@@ -248,11 +248,11 @@ export const dictionaries = {
         },
         {
           title: "Data Retention",
-          body: "We retain enquiry and application emails for as long as reasonably necessary to respond to your enquiry and for our business records, and delete them on request.",
+          body: "We retain enquiry and application emails only for as long as reasonably necessary for the purpose for which they were received and for legitimate business or legal requirements. You may contact us to request deletion of your personal information, subject to any retention we are required or permitted to maintain. We don't control, and haven't verified, how long Resend itself retains data while it's processing your message on our behalf — see Resend's privacy policy for that.",
         },
         {
           title: "Your Rights",
-          body: "You can ask us at any time what information we hold about you, ask us to correct it, or ask us to delete it, by emailing info@baitalebdaa.com.",
+          body: "You can ask us at any time what information we hold about you, ask us to correct it, or request deletion of it, subject to any retention we are required or permitted to maintain, by emailing info@baitalebdaa.com.",
         },
         {
           title: "Contact",
@@ -1022,7 +1022,7 @@ export const dictionaries = {
         },
         {
           title: "كيف نستخدم معلوماتك",
-          body: "تُرسل نماذج الموقع كبريد إلكتروني مباشر إلى فريقنا باستخدام Resend، وهي خدمة بريد إلكتروني تشغيلية، لنتمكن من الرد على استفسارك أو طلب عرض السعر أو طلب التوظيف. لا نبيع أو نؤجر أو نشارك معلوماتك مع أطراف ثالثة لأغراض تسويقية.",
+          body: "تُرسل نماذج الموقع كبريد إلكتروني مباشر إلى فريقنا باستخدام Resend، وهي خدمة بريد إلكتروني تشغيلية تعالج رسالتك نيابةً عنا لتوصيلها إلينا — تخضع معالجة Resend لهذه البيانات لسياسة الخصوصية الخاصة بها (resend.com/legal/privacy-policy)، لا لهذه السياسة. نستخدم المعلومات التي ترسلها فقط للرد على استفسارك أو طلب عرض السعر أو طلب التوظيف، ولا نبيع أو نؤجر أو نشارك معلوماتك مع أطراف ثالثة لأغراض تسويقية.",
         },
         {
           title: "واتساب",
@@ -1034,11 +1034,11 @@ export const dictionaries = {
         },
         {
           title: "الاحتفاظ بالبيانات",
-          body: "نحتفظ برسائل الاستفسارات وطلبات التوظيف للمدة اللازمة بشكل معقول للرد على استفسارك ولسجلاتنا التجارية، ونحذفها عند الطلب.",
+          body: "نحتفظ برسائل الاستفسارات وطلبات التوظيف فقط للمدة اللازمة بشكل معقول للغرض الذي استُلمت من أجله، ووفقاً لمتطلبات العمل أو المتطلبات القانونية المشروعة. يمكنك التواصل معنا لطلب حذف معلوماتك الشخصية، مع مراعاة أي احتفاظ بالبيانات نكون ملزمين أو مسموحاً لنا بالاحتفاظ به. لا نتحكم، ولم نتحقق من، مدة احتفاظ Resend نفسها بالبيانات أثناء معالجة رسالتك نيابةً عنا — يُرجى مراجعة سياسة خصوصية Resend لذلك.",
         },
         {
           title: "حقوقك",
-          body: "يمكنك في أي وقت أن تسألنا عن المعلومات التي نحتفظ بها عنك، أو تطلب تصحيحها، أو تطلب حذفها، عبر البريد الإلكتروني info@baitalebdaa.com.",
+          body: "يمكنك في أي وقت أن تسألنا عن المعلومات التي نحتفظ بها عنك، أو تطلب تصحيحها، أو تطلب حذفها مع مراعاة أي احتفاظ بالبيانات نكون ملزمين أو مسموحاً لنا بالاحتفاظ به، عبر البريد الإلكتروني info@baitalebdaa.com.",
         },
         {
           title: "التواصل",
