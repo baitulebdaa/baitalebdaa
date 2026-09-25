@@ -50,9 +50,9 @@ export default function BlogDetailClient({ article, breadcrumbs, newsAndInsights
                 />
               </div>
               
-              <div 
-                className="article-body" 
-                style={{ fontSize: '1.1rem', lineHeight: '1.8', color: 'var(--foreground)' }}
+              <div
+                className="article-body"
+                style={{ fontSize: '1.1rem', lineHeight: '1.8', color: 'var(--ink)' }}
                 dangerouslySetInnerHTML={{ __html: article.content }}
               />
             </Reveal>
@@ -62,8 +62,8 @@ export default function BlogDetailClient({ article, breadcrumbs, newsAndInsights
           <aside className="article-sidebar" style={{ flex: '0 0 350px', minWidth: '280px' }}>
             <Reveal delay={200}>
               {/* Recent Articles Widget */}
-              <div className="sidebar-widget" style={{ padding: '30px', backgroundColor: 'var(--background-alt)', borderRadius: '12px', marginBottom: '40px' }}>
-                <h3 style={{ marginBottom: '25px', fontSize: '1.2rem' }}>{newsAndInsights}</h3>
+              <div className="sidebar-widget" style={{ padding: '30px', backgroundColor: 'var(--paper)', borderRadius: '12px', marginBottom: '40px' }}>
+                <h3 style={{ marginBottom: '25px', fontSize: '1.2rem', color: 'var(--ink)' }}>{newsAndInsights}</h3>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                   {recentArticles.map((ra, idx) => (
                     <a key={idx} href={`/${lang}/media/${ra.slug}`} style={{ display: 'flex', gap: '15px', alignItems: 'center', textDecoration: 'none' }}>
@@ -71,7 +71,7 @@ export default function BlogDetailClient({ article, breadcrumbs, newsAndInsights
                         <Image src={ra.image} alt={ra.title} fill sizes="80px" style={{ objectFit: 'cover' }} />
                       </div>
                       <div>
-                        <h4 style={{ fontSize: '0.95rem', margin: '0 0 5px 0', lineHeight: '1.4', color: 'var(--foreground)' }}>{ra.title}</h4>
+                        <h4 style={{ fontSize: '0.95rem', margin: '0 0 5px 0', lineHeight: '1.4', color: 'var(--ink)' }}>{ra.title}</h4>
                         <span style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>{ra.date}</span>
                       </div>
                     </a>
@@ -80,12 +80,12 @@ export default function BlogDetailClient({ article, breadcrumbs, newsAndInsights
               </div>
 
               {/* CTA Widget */}
-              <div className="sidebar-cta" style={{ padding: '30px', backgroundColor: 'var(--foreground)', color: 'var(--background)', borderRadius: '12px', textAlign: 'center' }}>
-                <h3 style={{ marginBottom: '15px', color: 'var(--background)' }}>{discuss}</h3>
+              <div className="sidebar-cta" style={{ padding: '30px', backgroundColor: 'var(--ink)', color: '#fff', borderRadius: '12px', textAlign: 'center' }}>
+                <h3 style={{ marginBottom: '15px', color: '#fff' }}>{discuss}</h3>
                 <p style={{ fontSize: '0.9rem', marginBottom: '25px', opacity: 0.8 }}>
                   {lang === 'ar' ? 'هل لديك مشروع في الاعتبار؟ تواصل مع خبرائنا اليوم.' : 'Have a project in mind? Speak to our experts today.'}
                 </p>
-                <a href={waHref} target="_blank" rel="noopener noreferrer" className="button button--light" style={{ width: '100%', justifyContent: 'center', gap: '10px' }}>
+                <a href={waHref} target="_blank" rel="noopener noreferrer" className="outline-button outline-button--light" style={{ width: '100%', justifyContent: 'center' }}>
                   {lang === 'ar' ? 'تواصل معنا' : 'Contact Us'} <ArrowUpRight size={16} />
                 </a>
               </div>

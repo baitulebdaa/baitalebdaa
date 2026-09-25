@@ -4,9 +4,23 @@ export const dynamic = "force-static";
 
 const BASE = "https://www.baitalebdaa.com";
 
-// "media" is deliberately excluded — it's noindexed until the placeholder
-// articles are replaced with real content (see [lang]/media/page.jsx).
-const STATIC_PATHS = ["our-services", "our-projects", "our-projects/government-authority", "process", "contact", "pricing", "furniture-maintenance-care", "about", "privacy-policy", "terms-and-conditions"];
+const STATIC_PATHS = [
+  "our-services",
+  "our-projects",
+  "our-projects/government-authority",
+  "process",
+  "contact",
+  "pricing",
+  "furniture-maintenance-care",
+  "about",
+  "privacy-policy",
+  "terms-and-conditions",
+  "media",
+  "media/luxury-interior-fit-out-guide-dubai",
+  "media/bespoke-architectural-joinery-uae",
+  "media/furniture-maintenance-care-humid-climate",
+  "media/government-authority-hq-case-study",
+];
 
 // The date seo-pages.json / service-content.js / location-content.js content last
 // actually changed — bump this (not `now`) when that content changes. Stamping all
