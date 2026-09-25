@@ -236,9 +236,19 @@ export default function ServiceLocationPage({ lang, row }) {
         <section className="shell slp-intro-section">
           <Reveal>
             <h2 className="slp-intro-title">{row.h2Themes[0]}</h2>
-            <p className="slp-intro-text">
-              {content.summary} {locationClause} {introExtra}
-            </p>
+            <div className="slp-intro-body">
+              <p className="slp-intro-text">
+                {content.summary} {locationClause} {introExtra}
+              </p>
+              <div className="slp-intro-actions">
+                <a className="outline-button header-cta" href={waHref} target="_blank" rel="noopener noreferrer">
+                  {lang === "ar" ? "واتساب الآن" : "WhatsApp Now"} <ArrowUpRight size={15} />
+                </a>
+                <a className="outline-button header-cta" href="tel:+971524621919">
+                  {lang === "ar" ? "اتصل الآن" : "Call Now"} <ArrowUpRight size={15} />
+                </a>
+              </div>
+            </div>
           </Reveal>
           <Reveal className="proof-stats-grid" delay={120}>
             {dict.studioSection.facts.map((f, i) => (

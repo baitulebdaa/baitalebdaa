@@ -71,7 +71,17 @@ export default function FurnitureMaintenanceCare() {
         {/* Intro */}
         <section className="shell slp-intro-section">
           <Reveal>
-            <p className="slp-intro-text">{t.intro}</p>
+            <div className="slp-intro-body">
+              <p className="slp-intro-text">{t.intro}</p>
+              <div className="slp-intro-actions">
+                <a className="outline-button header-cta" href={waHref} target="_blank" rel="noopener noreferrer">
+                  {lang === "ar" ? "واتساب الآن" : "WhatsApp Now"} <ArrowUpRight size={15} />
+                </a>
+                <a className="outline-button header-cta" href="tel:+971524621919">
+                  {lang === "ar" ? "اتصل الآن" : "Call Now"} <ArrowUpRight size={15} />
+                </a>
+              </div>
+            </div>
           </Reveal>
         </section>
 

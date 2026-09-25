@@ -727,20 +727,6 @@ export const dictionaries = {
           description: "We work closely with your architect, designer, or project manager to deliver top-quality interior fit-out services, including MEP, furniture, and finishes.",
           image: "/assets/tv-unit-1.jpeg",
           link: "/en/fit-out/dubai"
-        },
-        {
-          num: "02",
-          title: "Design and Build",
-          description: "We provide complete design and interior fit-out services in full turnkey solutions helping to reduce project risks and costs, and can lead to faster completion.",
-          image: "/assets/dressing-unit-1.jpeg",
-          link: "/en/interior-design/dubai"
-        },
-        {
-          num: "03",
-          title: "Furniture Maintenance & Care",
-          description: "Aftercare, repair and hardware servicing for custom joinery and furniture, backed by our in-house Ajman factory and 5-year workmanship guarantee.",
-          image: "/assets/cabinet-joinery.jpeg",
-          link: "/en/furniture-maintenance-care"
         }
       ]
     },
@@ -1507,20 +1493,6 @@ export const dictionaries = {
           description: "نعمل عن كثب مع المهندس المعماري أو المصمم أو مدير المشروع لتقديم خدمات تجهيزات داخلية عالية الجودة، بما في ذلك الأعمال الميكانيكية والكهربائية والسباكة والأثاث والتشطيبات.",
           image: "/assets/tv-unit-1.jpeg",
           link: "/ar/fit-out/dubai"
-        },
-        {
-          num: "02",
-          title: "التصميم والبناء",
-          description: "نحن نقدم خدمات تصميم وتجهيزات داخلية كاملة في حلول جاهزة بالكامل تساعد في تقليل مخاطر المشروع وتكاليفه، ويمكن أن تؤدي إلى إنجاز أسرع.",
-          image: "/assets/dressing-unit-1.jpeg",
-          link: "/ar/interior-design/dubai"
-        },
-        {
-          num: "03",
-          title: "صيانة والعناية بالأثاث",
-          description: "خدمات ما بعد التسليم وإصلاح وصيانة تجهيزات النجارة والأثاث المخصص، مدعومة بمصنعنا الخاص في عجمان وضمان جودة الصنعة لمدة 5 سنوات.",
-          image: "/assets/cabinet-joinery.jpeg",
-          link: "/ar/furniture-maintenance-care"
         }
       ]
     },

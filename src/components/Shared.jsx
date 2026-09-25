@@ -42,7 +42,7 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
     const segments = pathname.split("/").filter(Boolean);
     const rest = segments[0] === "en" || segments[0] === "ar" ? segments.slice(1) : segments;
     const target = rest.length === 0 && newLang === "en" ? "/" : `/${[newLang, ...rest].join("/")}`;
-    router.push(target);
+    window.location.href = target;
   };
 
   const headerWaMessage = encodeURIComponent(
