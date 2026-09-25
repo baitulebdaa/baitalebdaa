@@ -494,6 +494,12 @@ h1,h2,h3,.menu-overlay__main>a,.studio__facts strong,.project-form legend,.foote
 
 .article-body p {
   margin: 0 0 20px;
+  text-align: justify;
+  text-align-last: left;
+}
+
+[dir="rtl"] .article-body p {
+  text-align-last: right;
 }
 
 .article-body ul {
@@ -1806,6 +1812,68 @@ button.estimator-submit-btn {
   padding: 40px 0 clamp(80px, 9vw, 140px);
 }
 
+.slp-pricing-section {
+  padding: 0 0 clamp(90px, 10vw, 150px);
+}
+
+.slp-pricing-card {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: clamp(28px, 4vw, 44px);
+  background: #fbfaf7;
+}
+
+.slp-pricing-header h3 {
+  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+
+.slp-pricing-header p {
+  max-width: 640px;
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: 0.92rem;
+  margin-bottom: 28px;
+}
+
+.slp-pricing-list {
+  list-style: none;
+  margin: 0 0 30px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.slp-pricing-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 20px;
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+  font-size: 0.92rem;
+}
+
+.slp-pricing-list li:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.slp-pricing-list strong {
+  flex: none;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+@media (max-width: 700px) {
+  .slp-pricing-list li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}
+
 .slp-proof-section {
   padding: 40px 0;
 }
@@ -2037,20 +2105,129 @@ button.estimator-submit-btn {
    ========================================================================== */
 
 .pricing-section {
-  padding: 70px 0;
+  padding: 32px 0;
 }
 
-.pricing-section--light {
-  background: #fbfaf7;
+.pricing-section--tight {
+  padding: 12px 0;
+}
+
+.pricing-card {
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: clamp(28px, 4vw, 48px);
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(17, 17, 15, 0.04), 0 16px 40px -24px rgba(17, 17, 15, 0.16);
 }
 
 .pricing-category-heading {
   max-width: 720px;
-  margin: 0 0 40px;
+  margin: 0 0 32px;
+}
+
+.pricing-kicker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 18px;
+  margin-bottom: 18px;
+  border-radius: 999px;
+  background: var(--sand);
+  color: var(--ink);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.pricing-category-title {
+  font-size: clamp(1.7rem, 2.6vw, 2.4rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin-bottom: 12px;
+}
+
+.pricing-category-subtitle {
+  color: var(--muted);
+  line-height: 1.65;
+  font-size: 0.94rem;
+  max-width: 640px;
 }
 
 .pricing-category-cta {
   margin-top: 28px;
+}
+
+.pricing-table-wrap {
+  margin-top: 8px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.pricing-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.pricing-table th,
+.pricing-table td {
+  padding: 18px 24px;
+  font-size: 0.92rem;
+  text-align: left;
+}
+
+.pricing-table thead tr {
+  background: var(--paper);
+}
+
+.pricing-table th {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.pricing-table th:last-child,
+.pricing-table td:last-child {
+  text-align: right;
+}
+
+.pricing-table tbody tr {
+  transition: background 0.15s;
+}
+
+.pricing-table tbody tr td {
+  border-top: 1px solid var(--line);
+}
+
+.pricing-table tbody tr:hover {
+  background: #fbfaf7;
+}
+
+.pricing-table td:first-child {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.pricing-table td:last-child {
+  color: var(--ink);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+[dir="rtl"] .pricing-table th,
+[dir="rtl"] .pricing-table td {
+  text-align: right;
+}
+
+[dir="rtl"] .pricing-table th:last-child,
+[dir="rtl"] .pricing-table td:last-child {
+  text-align: left;
 }
 
 .form-submit-wrapper {
@@ -2097,17 +2274,26 @@ button.estimator-submit-btn {
 }
 
 .pricing-note--global {
-  background: #fbfaf7;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .pricing-note {
   margin-top: 24px;
-  padding: 18px 24px;
-  border: 1px solid var(--line);
-  border-radius: 12px;
+  padding: 16px 20px;
+  border: 0;
+  border-left: 3px solid var(--sand);
+  border-radius: 4px 10px 10px 4px;
+  background: var(--paper);
   color: var(--muted);
   font-size: 0.85rem;
   line-height: 1.6;
+}
+
+[dir="rtl"] .pricing-note {
+  border-left: 0;
+  border-right: 3px solid var(--sand);
+  border-radius: 10px 4px 4px 10px;
 }
 
 .pricing-subheading {
@@ -2116,15 +2302,16 @@ button.estimator-submit-btn {
   letter-spacing: 0.06em;
   font-weight: 600;
   color: var(--muted);
-  margin: 40px 0 18px;
+  margin: 0 0 18px;
 }
 
 .pricing-callout {
   background: var(--ink);
   color: #fff;
-  border-radius: 14px;
+  border-radius: 20px;
   padding: 36px 40px;
   margin-top: 32px;
+  box-shadow: 0 1px 2px rgba(17, 17, 15, 0.04), 0 16px 40px -24px rgba(17, 17, 15, 0.3);
 }
 
 .pricing-callout h3 {

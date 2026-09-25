@@ -10,6 +10,32 @@ import { serviceContent, priorityIntroExtra, whyChooseFacts } from "./data/servi
 import { locationContent } from "./data/location-content";
 import { getService, getLocation, getSiblingLocations, getSiblingServices, getEmirateName, getEmirateAuthority } from "./lib/seo-pages";
 import { formatIndex } from "./lib/format";
+import { pricingGroups } from "./data/pricing";
+import { formatPrice } from "./lib/pricing";
+
+// Maps each service slug to the /pricing page category most relevant to it, so this
+// page can show real indicative starting prices (not just the estimator's calculated
+// figure) alongside a link to the full pricing page. Falls back to "design" — every
+// service starts with a design/consultation step, so it's a safe default.
+const PRICING_GROUP_BY_SERVICE = {
+  "interior-design": "design",
+  "residential-interior-design": "design",
+  "office-interior-design": "office",
+  "restaurant-interior-design": "office",
+  "retail-interior-design": "office",
+  "commercial-interior-design": "office",
+  "fit-out": "villa",
+  "villa-renovation": "villa",
+  "apartment-renovation": "villa",
+  "office-fit-out": "office",
+  "office-renovation": "office",
+  "restaurant-fit-out": "office",
+  "retail-fit-out": "office",
+  joinery: "joineryWardrobes",
+  "custom-wardrobes": "joineryWardrobes",
+  "kitchen-design": "joineryKitchens",
+  "kitchen-renovation": "joineryKitchens",
+};
 
 const HERO_IMAGE_BY_SERVICE = {
   "interior-design": "/assets/hero-penthouse.jpg",
@@ -131,6 +157,10 @@ export default function ServiceLocationPage({ lang, row }) {
   const nearbyAreas = otherAreas.filter((entry) => entry.location.tier === "district" && entry.location.emirate === row.emirate);
   const otherServices = getSiblingServices(lang, row.locationSlug, row.serviceSlug);
   const blogPosts = [dict.mediaPage.featuredArticle, ...dict.mediaPage.articles];
+
+  const pricingGroupId = PRICING_GROUP_BY_SERVICE[row.serviceSlug] || "design";
+  const pricingGroup = pricingGroups.find((g) => g.id === pricingGroupId);
+  const pricingCopy = dict.pricingPage.groups[pricingGroupId];
 
   const home = dict.ourProjectsPage.home;
   const gallery = WORK_GALLERY_BY_SERVICE[row.serviceSlug] || [];
@@ -341,6 +371,35 @@ export default function ServiceLocationPage({ lang, row }) {
           <h2 className="slp-section-label shell">{row.h2Themes[3]}</h2>
         </Reveal>
         <Estimator compact defaultLocationIndex={row.emirate === "Abu Dhabi" ? 1 : 0} ctaHref={waHref} />
+
+        {/* Indicative starting prices — real published figures from the pricing page
+            (not just the estimator's calculated total), so pricing is visible on the
+            service page itself, not only after clicking through. */}
+        {pricingGroup && pricingCopy && (
+          <section className="shell slp-pricing-section">
+            <Reveal className="slp-pricing-card">
+              <div className="slp-pricing-header">
+                <div className="offerings-kicker">
+                  <span>{pricingCopy.kicker}</span>
+                  <div className="kicker-underline"></div>
+                </div>
+                <h3>{lang === "ar" ? `أسعار ${serviceName} الاسترشادية` : `${serviceName} starting prices`}</h3>
+                <p>{pricingCopy.subtitle}</p>
+              </div>
+              <ul className="slp-pricing-list">
+                {pricingGroup.items.slice(0, 4).map((item) => (
+                  <li key={item.id}>
+                    <span>{dict.pricingPage.items[item.id]}</span>
+                    <strong>{formatPrice(item, lang)}</strong>
+                  </li>
+                ))}
+              </ul>
+              <a href={`/${lang}/pricing`} className="outline-button outline-button--dark">
+                {lang === "ar" ? "عرض جميع الأسعار" : "See full pricing"} <ArrowUpRight size={15} />
+              </a>
+            </Reveal>
+          </section>
+        )}
 
         {/* Why choose Bait Al Ebdaa — company-level facts, reused site-wide (not
             location-specific by nature), same "included" checklist styling as above */}

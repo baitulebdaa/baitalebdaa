@@ -18,8 +18,8 @@ function findGroup(id) {
 function PricingTable({ headers, groupId, itemLabels, lang }) {
   const group = findGroup(groupId);
   return (
-    <Reveal className="comparison-table-wrap" delay={100}>
-      <table className="comparison-table">
+    <Reveal className="pricing-table-wrap" delay={100}>
+      <table className="pricing-table">
         <thead>
           <tr>
             <th>{headers.product}</th>
@@ -29,8 +29,8 @@ function PricingTable({ headers, groupId, itemLabels, lang }) {
         <tbody>
           {group.items.map((item) => (
             <tr key={item.id}>
-              <td className="comparison-feature">{itemLabels[item.id]}</td>
-              <td className="comparison-standard">{formatPrice(item, lang)}</td>
+              <td>{itemLabels[item.id]}</td>
+              <td>{formatPrice(item, lang)}</td>
             </tr>
           ))}
         </tbody>
@@ -67,19 +67,21 @@ function CategoryCta({ lang, label, service }) {
   );
 }
 
-function PricingCategory({ id, lang, t, light = false }) {
+function PricingCategory({ id, lang, t }) {
   const g = t.groups[id];
   return (
-    <section className={`pricing-section${light ? " pricing-section--light" : ""}`}>
+    <section className="pricing-section">
       <div className="shell">
-        <Reveal className="pricing-category-heading" delay={80}>
-          <p className="micro">{g.kicker}</p>
-          <h2 className="section-title" style={{ fontSize: "clamp(2rem,3vw,3rem)" }}>{g.title}</h2>
-          <p style={{ color: "var(--muted)", lineHeight: 1.6, maxWidth: 640 }}>{g.subtitle}</p>
+        <Reveal className="pricing-card" delay={80}>
+          <div className="pricing-category-heading">
+            <span className="pricing-kicker">{g.kicker}</span>
+            <h2 className="pricing-category-title">{g.title}</h2>
+            <p className="pricing-category-subtitle">{g.subtitle}</p>
+          </div>
+          <PricingTable headers={t.tableHeaders} groupId={id} itemLabels={t.items} lang={lang} />
+          {g.note && <p className="pricing-note">{g.note}</p>}
+          <CategoryCta lang={lang} label={g.cta} service={g.title} />
         </Reveal>
-        <PricingTable headers={t.tableHeaders} groupId={id} itemLabels={t.items} lang={lang} />
-        {g.note && <p className="pricing-note">{g.note}</p>}
-        <CategoryCta lang={lang} label={g.cta} service={g.title} />
       </div>
     </section>
   );
@@ -116,7 +118,7 @@ export default function PricingPage() {
         </PageHeader>
 
         {/* Global pricing disclaimer — visible on the page, not hidden behind legal terms */}
-        <section className="pricing-section" style={{ paddingBottom: 0 }}>
+        <section className="pricing-section pricing-section--tight">
           <div className="shell">
             <p className="pricing-note pricing-note--global">{t.globalDisclaimer}</p>
           </div>
@@ -127,27 +129,29 @@ export default function PricingPage() {
           <Estimator compact ctaHref={`/${lang}/contact`} />
         </div>
 
-        <PricingCategory id="curtainsManual" lang={lang} t={t} light />
+        <PricingCategory id="curtainsManual" lang={lang} t={t} />
         <PricingCategory id="curtainsSomfy" lang={lang} t={t} />
 
-        <PricingCategory id="joineryWardrobes" lang={lang} t={t} light />
+        <PricingCategory id="joineryWardrobes" lang={lang} t={t} />
         <PricingCategory id="joineryMedia" lang={lang} t={t} />
-        <PricingCategory id="joineryKitchens" lang={lang} t={t} light />
-        <section className="pricing-section" style={{ paddingTop: 0 }}>
+        <PricingCategory id="joineryKitchens" lang={lang} t={t} />
+        <section className="pricing-section pricing-section--tight">
           <div className="shell">
-            <p className="pricing-subheading">{t.hardwareTitle}</p>
-            <ChecklistGrid items={t.hardwareLevels} />
-            <p className="pricing-note">{t.joineryDisclaimer}</p>
+            <Reveal className="pricing-card">
+              <p className="pricing-subheading">{t.hardwareTitle}</p>
+              <ChecklistGrid items={t.hardwareLevels} />
+              <p className="pricing-note">{t.joineryDisclaimer}</p>
+            </Reveal>
           </div>
         </section>
 
-        <PricingCategory id="design" lang={lang} t={t} light />
+        <PricingCategory id="design" lang={lang} t={t} />
         <PricingCategory id="villa" lang={lang} t={t} />
-        <PricingCategory id="office" lang={lang} t={t} light />
+        <PricingCategory id="office" lang={lang} t={t} />
         <PricingCategory id="approvals" lang={lang} t={t} />
 
         {/* Final CTA */}
-        <section className="pricing-section" style={{ paddingTop: 0 }}>
+        <section className="pricing-section pricing-section--tight">
           <Reveal className="shell pricing-callout pricing-cta" delay={100}>
             <h3>{t.finalCta.title}</h3>
             <p>{t.finalCta.body}</p>
