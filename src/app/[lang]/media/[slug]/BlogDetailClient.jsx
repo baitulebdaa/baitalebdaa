@@ -30,7 +30,11 @@ export default function BlogDetailClient({ article, breadcrumbs, newsAndInsights
         
         <section className="shell article-layout" style={{ display: 'flex', flexWrap: 'wrap', gap: '60px', padding: '60px 0' }}>
           
-          {/* Main Content */}
+          {/* Main Content — not wrapped in <Reveal>: that component only shows its
+              content once an IntersectionObserver sees 14% of its (very tall, for a
+              full article) height on screen at once, which a multi-thousand-word
+              article can never satisfy in a normal viewport, leaving it permanently
+              opacity:0. Fade in just the compact meta/image row instead. */}
           <div className="article-main" style={{ flex: '1 1 600px', minWidth: 0 }}>
             <Reveal>
               <div className="article-meta" style={{ display: 'flex', gap: '20px', color: 'var(--muted)', marginBottom: '30px', fontSize: '0.9rem' }}>
@@ -38,10 +42,10 @@ export default function BlogDetailClient({ article, breadcrumbs, newsAndInsights
                 <span>•</span>
                 <span>{article.author}</span>
               </div>
-              
+
               <div className="article-featured-image" style={{ position: 'relative', width: '100%', height: '400px', marginBottom: '50px', borderRadius: '12px', overflow: 'hidden' }}>
-                <Image 
-                  src={article.image} 
+                <Image
+                  src={article.image}
                   alt={article.title}
                   fill
                   sizes="(max-width: 800px) 100vw, 800px"
@@ -49,13 +53,13 @@ export default function BlogDetailClient({ article, breadcrumbs, newsAndInsights
                   priority
                 />
               </div>
-              
-              <div
-                className="article-body"
-                style={{ fontSize: '1.1rem', lineHeight: '1.8', color: 'var(--ink)' }}
-                dangerouslySetInnerHTML={{ __html: article.content }}
-              />
             </Reveal>
+
+            <div
+              className="article-body"
+              style={{ fontSize: '1.1rem', lineHeight: '1.8', color: 'var(--ink)' }}
+              dangerouslySetInnerHTML={{ __html: article.content }}
+            />
           </div>
 
           {/* Sidebar */}

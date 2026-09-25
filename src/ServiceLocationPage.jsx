@@ -130,6 +130,7 @@ export default function ServiceLocationPage({ lang, row }) {
   const coreAreas = otherAreas.filter((entry) => entry.location.tier === "core");
   const nearbyAreas = otherAreas.filter((entry) => entry.location.tier === "district" && entry.location.emirate === row.emirate);
   const otherServices = getSiblingServices(lang, row.locationSlug, row.serviceSlug);
+  const blogPosts = [dict.mediaPage.featuredArticle, ...dict.mediaPage.articles];
 
   const home = dict.ourProjectsPage.home;
   const gallery = WORK_GALLERY_BY_SERVICE[row.serviceSlug] || [];
@@ -449,6 +450,35 @@ export default function ServiceLocationPage({ lang, row }) {
             </Reveal>
           )}
         </section>
+
+        {/* Further reading — points into the blog so a visitor who isn't ready
+            to enquire yet has somewhere else on-site to go, and it's another
+            internal link into the long-form articles for SEO. */}
+        {blogPosts.length > 0 && (
+          <section className="shell slp-blog-section">
+            <Reveal>
+              <p className="micro">{lang === "ar" ? "اقرأ المزيد" : "Further reading"}</p>
+              <h2 className="slp-section-label" style={{ marginBottom: "32px" }}>
+                {lang === "ar" ? "من مدونتنا" : "From our blog"}
+              </h2>
+            </Reveal>
+            <div className="slp-blog-grid">
+              {blogPosts.map((post, i) => (
+                <Reveal className="slp-blog-card" key={post.slug} delay={80 + i * 60}>
+                  <a href={`/${lang}/media/${post.slug}`} className="slp-blog-card__link">
+                    <div className="slp-blog-card__image">
+                      <Image src={post.image} alt={post.title} fill sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 25vw" style={{ objectFit: "cover" }} />
+                    </div>
+                    <div className="slp-blog-card__content">
+                      <h3>{post.title}</h3>
+                      <span className="read-more">{dict.mediaPage.readMore}</span>
+                    </div>
+                  </a>
+                </Reveal>
+              ))}
+            </div>
+          </section>
+        )}
       </main>
       <Footer />
     </>
