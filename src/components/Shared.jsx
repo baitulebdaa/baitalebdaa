@@ -58,7 +58,7 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
         <a href={`/${lang}/our-projects`}>{dict.nav.projects} <ArrowUpRight size={14} /></a>
         <a href={`/${lang}/our-services`}>{dict.nav.services} <ArrowUpRight size={14} /></a>
         <a href={`/${lang}/process`}>{dict.menuItems[3]} <ArrowUpRight size={14} /></a>
-        <a href={`/${lang}/media`}>{dict.nav.media || "Media"} <ArrowUpRight size={14} /></a>
+        <a href={`/${lang}/pricing`}>{dict.menuItems[4]} <ArrowUpRight size={14} /></a>
         <button type="button" onClick={toggleLanguage} className="lang-switcher" style={{display: 'flex', alignItems: 'center', gap: '6px', background: 'transparent', border: 'none', color: 'inherit', cursor: 'pointer', fontFamily: 'inherit', fontSize: 'inherit'}}>
           <Globe size={14} /> {lang === "en" ? "العربية" : "English"}
         </button>
@@ -112,6 +112,28 @@ export function Footer() {
   const { lang, dict } = useI18n();
   const f = dict.footer;
   const [email, setEmail] = useState("");
+  const [newsletterStatus, setNewsletterStatus] = useState("idle"); // idle | sending | sent | error
+
+  const subscribe = async (event) => {
+    event.preventDefault();
+    if (newsletterStatus === "sending") return;
+    setNewsletterStatus("sending");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ formType: "newsletter", email, fields: { Email: email } }),
+      });
+      const result = await res.json();
+      if (!res.ok || !result.success) throw new Error(result.error || "Failed to subscribe");
+      setNewsletterStatus("sent");
+      setEmail("");
+      window.setTimeout(() => setNewsletterStatus("idle"), 6000);
+    } catch {
+      setNewsletterStatus("error");
+    }
+  };
+
   const exploreHref = (item) => {
     if (item === "Projects" || item === "المشاريع") return `/${lang}/our-projects`;
     if (item === "Services" || item === "الخدمات") return `/${lang}/our-services`;
@@ -126,12 +148,27 @@ export function Footer() {
       <div className="footer-newsletter">
         <p className="footer-label">{f.newsletter}</p>
         <h2 className="footer-headline" style={{whiteSpace: 'pre-wrap'}}>{f.headline}</h2>
-        <label className="footer-email-label">{f.emailLabel}
-          <div className="footer-email-row">
-            <input type="email" placeholder={f.emailPlaceholder} value={email} onChange={(e) => setEmail(e.target.value)} className="footer-email-input" />
-            <button type="button" className="footer-subscribe">{f.subscribe} <ArrowUpRight size={15} /></button>
-          </div>
-        </label>
+        <form onSubmit={subscribe}>
+          <label className="footer-email-label" htmlFor="footer-newsletter-email">{f.emailLabel}
+            <div className="footer-email-row">
+              <input
+                id="footer-newsletter-email"
+                type="email"
+                required
+                placeholder={f.emailPlaceholder}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="footer-email-input"
+                disabled={newsletterStatus === "sending"}
+              />
+              <button type="submit" className="footer-subscribe" disabled={newsletterStatus === "sending"}>
+                {newsletterStatus === "sending" ? f.subscribing : f.subscribe} <ArrowUpRight size={15} />
+              </button>
+            </div>
+          </label>
+          {newsletterStatus === "sent" && <p className="footer-newsletter-status" role="status">{f.subscribed}</p>}
+          {newsletterStatus === "error" && <p className="footer-newsletter-status footer-newsletter-status--error" role="status">{f.subscribeError}</p>}
+        </form>
       </div>
       <div className="footer-links-col">
         <p className="footer-col-title">{f.explore}</p>
@@ -139,7 +176,7 @@ export function Footer() {
       </div>
       <div className="footer-links-col">
         <p className="footer-col-title">{f.importantLinks}</p>
-        {f.importantLinksItems.map((link, i) => <a key={i} href={link === f.privacy ? `/${lang}/privacy-policy` : "#top"}>{link}</a>)}
+        {f.importantLinksItems.map((link, i) => <a key={i} href={link === f.privacy ? `/${lang}/privacy-policy` : `/${lang}/terms-and-conditions`}>{link}</a>)}
       </div>
       <div className="footer-links-col">
         <p className="footer-col-title">{f.contactInfo}</p>
@@ -158,7 +195,7 @@ export function Footer() {
       <div className="footer-bottom-left">
         <a href={`/${lang}/privacy-policy`}>{f.privacy}</a>
         <span className="footer-divider">|</span>
-        <a href="#top">{f.terms}</a>
+        <a href={`/${lang}/terms-and-conditions`}>{f.terms}</a>
       </div>
       <div className="footer-social">
         <a href="https://www.facebook.com/baitalebdaa" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>

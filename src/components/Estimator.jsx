@@ -4,12 +4,17 @@ import { useState } from "react";
 import { Check } from "lucide-react";
 import { useI18n } from "../i18n/I18nProvider";
 import { Reveal } from "./Shared";
+import { sliderFillPosition } from "../lib/slider";
 
 // Base cost per sqft varies by scope; location multiplier accounts for emirate-level fee differences.
 const BASE_RATE_BY_SCOPE = [220, 150, 80]; // Full Turnkey, Factory Joinery, Somfy Curtains
 const LOCATION_MULTIPLIER = [1, 1.05]; // Dubai, Abu Dhabi
 
-export function Estimator({ compact = false, defaultLocationIndex = 0, ctaHref = "#contact" }) {
+// onBookSurvey, when passed (the homepage instance), hands the selected size straight
+// to the "Get Free Quote" modal instead of the CTA duplicating a second lead form —
+// ctaHref stays for the other instances (pricing page, service+location pages) that
+// link out to a real /contact page or WhatsApp instead.
+export function Estimator({ compact = false, defaultLocationIndex = 0, ctaHref = "#contact", onBookSurvey }) {
   const { dict } = useI18n();
   const t = dict.estimatorSection;
 
@@ -19,11 +24,7 @@ export function Estimator({ compact = false, defaultLocationIndex = 0, ctaHref =
 
   const totalCost = size * BASE_RATE_BY_SCOPE[scope] * LOCATION_MULTIPLIER[location];
   const formattedCost = new Intl.NumberFormat('en-AE', { style: 'currency', currency: 'AED', maximumFractionDigits: 0 }).format(totalCost);
-  // Matches the native thumb's own position formula (thumbRadius + fraction * (trackWidth
-  // - thumbWidth)) so the fill edge lines up with the thumb center exactly, not just
-  // approximately — a plain percentage leaves a gap near the low/high ends.
-  const sizeFraction = (size - 500) / (15000 - 500);
-  const sizeFillPos = `calc(${sizeFraction} * (100% - 20px) + 10px)`;
+  const sizeFillPos = sliderFillPosition(size, 500, 15000);
 
   return (
     <section className={`section estimator-section${compact ? " estimator-section--compact" : ""}`}>
@@ -93,9 +94,15 @@ export function Estimator({ compact = false, defaultLocationIndex = 0, ctaHref =
               ))}
             </ul>
 
-            <a href={ctaHref} className="estimator-submit-btn">
-              {t.bookSurvey}
-            </a>
+            {onBookSurvey ? (
+              <button type="button" className="estimator-submit-btn" onClick={() => onBookSurvey(size)}>
+                {t.bookSurvey}
+              </button>
+            ) : (
+              <a href={ctaHref} className="estimator-submit-btn">
+                {t.bookSurvey}
+              </a>
+            )}
           </Reveal>
         </div>
       </div>

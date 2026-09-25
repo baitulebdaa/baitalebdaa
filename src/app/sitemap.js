@@ -6,7 +6,7 @@ const BASE = "https://www.baitalebdaa.com";
 
 // "media" is deliberately excluded — it's noindexed until the placeholder
 // articles are replaced with real content (see [lang]/media/page.jsx).
-const STATIC_PATHS = ["our-services", "our-projects", "our-projects/government-authority", "process", "contact", "pricing", "furniture-maintenance-care", "about", "privacy-policy"];
+const STATIC_PATHS = ["our-services", "our-projects", "our-projects/government-authority", "process", "contact", "pricing", "furniture-maintenance-care", "about", "privacy-policy", "terms-and-conditions"];
 
 // The date seo-pages.json / service-content.js / location-content.js content last
 // actually changed — bump this (not `now`) when that content changes. Stamping all

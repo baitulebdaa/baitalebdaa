@@ -25,16 +25,23 @@ function Hero({ onGetQuote }) {
   const prevSlideLabel = lang === "ar" ? "الشريحة السابقة" : "Previous hero slide";
   const nextSlideLabel = lang === "ar" ? "الشريحة التالية" : "Next hero slide";
   return <section className="hero" id="top" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
-    <div className="hero__media" aria-live="polite">{slides.map((item, i) => <Image key={i} className={i === active ? "is-active" : ""} src={heroImages[i]} alt="Luxury residential and commercial interiors in Dubai" fill sizes="100vw" priority={i === 0} />)}<div className="hero__shade" /></div>
+    <div className="hero__media">{slides.map((item, i) => <Image key={i} className={i === active ? "is-active" : ""} src={heroImages[i]} alt="Luxury residential and commercial interiors in Dubai" fill sizes="100vw" priority={i === 0} />)}<div className="hero__shade" /></div>
+    <p className="sr-only" aria-live="polite">{slide.eyebrow} — {slide.title}. {slide.body}</p>
     <div className="hero__content shell"><p className="hero__eyebrow" key={`e-${active}`}>{slide.eyebrow}</p><h1 key={`t-${active}`}>{slide.title}</h1><div style={{display: 'flex', gap: '16px', flexWrap: 'wrap'}}><a className="outline-button outline-button--light" href="https://wa.me/971524621919" target="_blank" rel="noopener noreferrer">{dict.nav.startProject} <ArrowUpRight size={16} /></a><button type="button" className="outline-button outline-button--light" onClick={onGetQuote}>{dict.nav.getFreeQuote} <ArrowUpRight size={16} /></button></div></div>
     <div className="hero__controls shell"><div className="hero__progress" aria-label={progressLabel}><span>{formatIndex(active + 1, lang)}</span><div>{slides.map((_, i) => <button key={i} aria-label={goToSlideLabel(i)} className={i === active ? "is-active" : ""} onClick={() => select(i)} />)}</div><span>{formatIndex(slides.length, lang)}</span></div><div className="hero__summary"><div className="arrow-pair"><button aria-label={prevSlideLabel} onClick={() => select(active - 1)}><ArrowLeft /></button><button aria-label={nextSlideLabel} onClick={() => select(active + 1)}><ArrowRight /></button></div><p key={`b-${active}`}>{slide.body}</p></div></div>
   </section>;
 }
 
 function Services() {
-  const { dict } = useI18n();
+  const { lang, dict } = useI18n();
+  const waMessage = encodeURIComponent(
+    lang === "ar"
+      ? "مرحباً! أرغب بمناقشة مشروعي معكم."
+      : "Hello! I'd like to discuss my project with you."
+  );
+  const waHref = `https://wa.me/971524621919?text=${waMessage}`;
   const images = ["/assets/cad-render.jpg", "/assets/project-office.jpg", "/assets/cabinet-joinery.jpeg"];
-  return <section className="section section--light" id="services"><div className="shell"><Reveal className="section-heading section-heading--center"><p className="micro">{dict.servicesSection.micro}</p><h2 className="section-title" style={{whiteSpace: 'pre-wrap'}}>{dict.servicesSection.title}</h2><p className="lede">{dict.servicesSection.lede}</p></Reveal><div className="service-grid">{dict.servicesSection.items.map((s, i) => <Reveal className={`service-card service-card--${i + 1}`} delay={i * 110} key={i}><div className="service-card__image"><Image src={images[i]} alt={s.title} fill sizes="(max-width: 700px) 100vw, (max-width: 980px) 50vw, 33vw" /></div><div className="service-card__copy"><span>{s.number}</span><h3>{s.title}</h3><p>{s.body}</p><a href="#contact">{dict.servicesSection.discuss} <ArrowUpRight size={16} /></a></div></Reveal>)}</div></div></section>;
+  return <section className="section section--light" id="services"><div className="shell"><Reveal className="section-heading section-heading--center"><p className="micro">{dict.servicesSection.micro}</p><h2 className="section-title" style={{whiteSpace: 'pre-wrap'}}>{dict.servicesSection.title}</h2><p className="lede">{dict.servicesSection.lede}</p></Reveal><div className="service-grid">{dict.servicesSection.items.map((s, i) => <Reveal className={`service-card service-card--${i + 1}`} delay={i * 110} key={i}><div className="service-card__image"><Image src={images[i]} alt={s.title} fill sizes="(max-width: 700px) 100vw, (max-width: 980px) 50vw, 33vw" /></div><div className="service-card__copy"><span>{s.number}</span><h3>{s.title}</h3><p>{s.body}</p><a href={waHref} target="_blank" rel="noopener noreferrer">{dict.servicesSection.discuss} <ArrowUpRight size={16} /></a></div></Reveal>)}</div></div></section>;
 }
 
 function Studio() {
@@ -122,15 +129,21 @@ function Comparison() {
   </div></section>;
 }
 
+function LatestNews() {
+  const { dict, lang } = useI18n();
+  const t = dict.mediaPage;
+  const articles = t.articles.slice(0, 3);
+  return <section className="section latest-news-section" id="news"><div className="shell"><Reveal className="section-heading section-heading--center"><p className="micro">{t.newsAndInsights}</p><h2 className="section-title" style={{whiteSpace: 'pre-wrap'}}>{t.latestNewsAndInsights}</h2></Reveal><div className="media-grid" style={{ marginTop: '40px' }}>{articles.map((article, index) => <Reveal className="media-card" key={index} delay={100 + index * 100}><a href={article.link} className="media-card-link"><div className="media-image-wrapper"><Image src={article.image} alt={article.title} fill sizes="(max-width: 768px) 100vw, 33vw" style={{ objectFit: 'cover' }} /></div><div className="media-card-content"><h3>{article.title}</h3><span className="read-more">{t.readMore}</span></div></a></Reveal>)}</div><Reveal className="news-tools" delay={200} style={{ display: 'flex', justifyContent: 'center', marginTop: '40px' }}><a href={`/${lang}/media`} className="outline-button outline-button--dark">{dict.nav.media || "Media"} <ArrowUpRight size={16} /></a></Reveal></div></section>;
+}
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [quoteOpen, setQuoteOpen] = useState(false);
+  const [quotePrefillSize, setQuotePrefillSize] = useState(undefined);
   return <>
     <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-    <main><Hero onGetQuote={() => setQuoteOpen(true)} /><Services /><Studio /><Factory /><Sectors /><Projects /><Capabilities /><Process /><Comparison /><Estimator />
-        <ContactForm /></main>
+    <main><Hero onGetQuote={() => setQuoteOpen(true)} /><Services /><Studio /><Factory /><Sectors /><Projects /><Process /><Comparison /><Estimator onBookSurvey={(size) => { setQuotePrefillSize(size); setQuoteOpen(true); }} /><LatestNews /></main>
     <Footer />
-    <QuoteModal open={quoteOpen} onClose={() => setQuoteOpen(false)} />
+    <QuoteModal open={quoteOpen} onClose={() => setQuoteOpen(false)} initialSize={quotePrefillSize} />
   </>;
 }

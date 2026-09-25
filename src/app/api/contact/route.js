@@ -48,14 +48,24 @@ export async function POST(request) {
     return Response.json({ success: false, error: "Missing form fields." }, { status: 400 });
   }
 
-  if (!name || typeof name !== "string" || !isValidEmail(email)) {
+  // The newsletter signup only collects an email address, so it skips the name check
+  // every other form goes through.
+  if (formType === "newsletter") {
+    if (!isValidEmail(email)) {
+      return Response.json({ success: false, error: "A valid email is required." }, { status: 400 });
+    }
+  } else if (!name || typeof name !== "string" || !isValidEmail(email)) {
     return Response.json({ success: false, error: "A valid name and email are required." }, { status: 400 });
   }
 
   const subjectLabel =
-    { quote: "Free Quote Request", project: "Project Enquiry", procurement: "Procurement Enquiry", careers: "Careers Application" }[
-      formType
-    ] || "Website Enquiry";
+    {
+      quote: "Free Quote Request",
+      project: "Project Enquiry",
+      procurement: "Procurement Enquiry",
+      careers: "Careers Application",
+      newsletter: "Newsletter Signup",
+    }[formType] || "Website Enquiry";
 
   // Only pass through well-formed, size-capped attachments (~7MB base64 ≈ 5MB file) —
   // used for the Careers form's CV upload.
@@ -94,7 +104,7 @@ export async function POST(request) {
         from: `Bait Al Ebdaa Website <${fromEmail}>`,
         to: [toEmail],
         reply_to: email,
-        subject: `${subjectLabel} — ${name}`,
+        subject: `${subjectLabel} — ${name || email}`,
         html,
         ...(safeAttachments.length > 0 ? { attachments: safeAttachments } : {}),
       }),

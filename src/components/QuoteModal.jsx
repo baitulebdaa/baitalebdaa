@@ -3,12 +3,15 @@
 import { useEffect, useState } from "react";
 import { ArrowUpRight, Star, X } from "lucide-react";
 import { useI18n } from "../i18n/I18nProvider";
+import { sliderFillPosition } from "../lib/slider";
 
-export function QuoteModal({ open, onClose }) {
+// initialSize lets the homepage estimator hand its selected size straight into this
+// modal (see Estimator's onBookSurvey) instead of the two duplicating a lead form.
+export function QuoteModal({ open, onClose, initialSize }) {
   const { dict } = useI18n();
   const t = dict.quoteModal;
 
-  const [size, setSize] = useState(3500);
+  const [size, setSize] = useState(initialSize || 3500);
   const [service, setService] = useState(0);
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
@@ -17,11 +20,11 @@ export function QuoteModal({ open, onClose }) {
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
+    if (open && initialSize) setSize(initialSize);
     return () => { document.body.style.overflow = ""; };
-  }, [open]);
+  }, [open, initialSize]);
 
-  const sizeFraction = (size - 500) / (15000 - 500);
-  const sizeFillPos = `calc(${sizeFraction} * (100% - 20px) + 10px)`;
+  const sizeFillPos = sliderFillPosition(size, 500, 15000);
 
   const submit = async (event) => {
     event.preventDefault();
