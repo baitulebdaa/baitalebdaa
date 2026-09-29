@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Calendar, Check, Wrench } from "lucide-react";
 import { useI18n } from "./i18n/I18nProvider";
-import { Header, Footer, Reveal, FaqSplit } from "./components/Shared";
+import { Header, Footer, Reveal, FaqSplit, ProcessTimeline } from "./components/Shared";
 import { Estimator } from "./components/Estimator";
 import { QuoteModal } from "./components/QuoteModal";
 import { ContactForm } from "./components/ContactForm";
@@ -96,22 +96,9 @@ function Capabilities() {
 }
 
 function Process() {
-  const { lang, dict } = useI18n();
+  const { dict } = useI18n();
   return <section className="section process-timeline-section" id="process"><div className="shell">
-    <Reveal className="process__heading"><p className="micro">{dict.processSection.micro}</p><h2 className="section-title" style={{whiteSpace: 'pre-wrap'}}>{dict.processSection.title}</h2></Reveal>
-    <div className="process-timeline">
-      {dict.processSection.items.map(([title, body, meta], i) => (
-        <Reveal className="process-timeline__step" key={i} delay={i * 80}>
-          <span className="process-timeline__num">{formatIndex(i + 1, lang)}</span>
-          <span className="process-timeline__track" aria-hidden="true">
-            <span className="process-timeline__marker" />
-          </span>
-          <h3 className="process-timeline__title">{title}</h3>
-          <p className="process-timeline__body">{body}</p>
-          {meta && <p className="process-timeline__meta">{meta}</p>}
-        </Reveal>
-      ))}
-    </div>
+    <ProcessTimeline kicker={dict.processSection.micro} title={dict.processSection.title} items={dict.processSection.items} headingClassName="process__heading" titleStyle={{ whiteSpace: 'pre-wrap' }} />
   </div></section>;
 }
 

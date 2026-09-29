@@ -4,12 +4,11 @@ import Image from "next/image";
 import { useState } from "react";
 import { ArrowUpRight, Check, Phone } from "lucide-react";
 import { useI18n } from "./i18n/I18nProvider";
-import { Header, Footer, Reveal, PageHeader, FaqItem } from "./components/Shared";
+import { Header, Footer, Reveal, PageHeader, FaqItem, ProcessTimeline } from "./components/Shared";
 import { Estimator } from "./components/Estimator";
 import { serviceContent, priorityIntroExtra, whyChooseFacts } from "./data/service-content";
 import { locationContent } from "./data/location-content";
 import { getService, getLocation, getSiblingLocations, getSiblingServices, getEmirateName, getEmirateAuthority } from "./lib/seo-pages";
-import { formatIndex } from "./lib/format";
 import { pricingGroups } from "./data/pricing";
 import { formatPrice } from "./lib/pricing";
 
@@ -351,19 +350,7 @@ export default function ServiceLocationPage({ lang, row }) {
 
         {/* Process (compact) */}
         <section className="shell section slp-process-section">
-          <Reveal className="section-heading">
-            <p className="micro">{dict.processSection.micro}</p>
-            <h2 className="section-title">{row.h2Themes[2]}</h2>
-          </Reveal>
-          <div className="process-grid">
-            {dict.processSection.items.map(([title, body], i) => (
-              <Reveal className="process-step" key={i} delay={i * 80}>
-                <span>{formatIndex(i + 1, lang)}</span>
-                <h3>{title}</h3>
-                <p>{body}</p>
-              </Reveal>
-            ))}
-          </div>
+          <ProcessTimeline kicker={dict.processSection.micro} title={row.h2Themes[2]} items={dict.processSection.items} />
         </section>
 
         {/* Cost context */}

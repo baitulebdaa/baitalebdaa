@@ -4,8 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { ArrowUpRight, Check } from "lucide-react";
 import { useI18n } from "./i18n/I18nProvider";
-import { Header, Footer, Reveal, PageHeader, FaqSplit } from "./components/Shared";
-import { formatIndex } from "./lib/format";
+import { Header, Footer, Reveal, PageHeader, FaqSplit, ProcessTimeline } from "./components/Shared";
 
 export default function FurnitureMaintenanceCare() {
   const { lang, dict } = useI18n();
@@ -109,19 +108,7 @@ export default function FurnitureMaintenanceCare() {
 
         {/* Process — same 4-stage process used site-wide, for consistency */}
         <section className="shell section slp-process-section">
-          <Reveal className="section-heading">
-            <p className="micro">{dict.processSection.micro}</p>
-            <h2 className="section-title">{dict.ourProcessPage.pageTitle}</h2>
-          </Reveal>
-          <div className="process-grid">
-            {dict.processSection.items.map(([title, body], i) => (
-              <Reveal className="process-step" key={i} delay={i * 80}>
-                <span>{formatIndex(i + 1, lang)}</span>
-                <h3>{title}</h3>
-                <p>{body}</p>
-              </Reveal>
-            ))}
-          </div>
+          <ProcessTimeline kicker={dict.processSection.micro} title={dict.ourProcessPage.pageTitle} items={dict.processSection.items} />
         </section>
 
         {/* FAQ */}

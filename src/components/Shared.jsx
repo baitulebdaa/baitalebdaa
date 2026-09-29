@@ -6,6 +6,7 @@ import { ArrowUp, ArrowUpRight, ChevronDown, Plus, Menu, X, Globe, Sparkles } fr
 import { useI18n } from "../i18n/I18nProvider";
 import { useRouter, usePathname } from "next/navigation";
 import { getService } from "../lib/seo-pages";
+import { formatIndex } from "../lib/format";
 
 // Desktop "Services" dropdown groups (Header). Grouped rather than one long
 // column — 17 services in a single list would make the panel unreasonably
@@ -370,5 +371,41 @@ export function FaqSplit({ kicker, title, subtitle, items, idPrefix = "faq" }) {
         </div>
       </div>
     </section>
+  );
+}
+
+// The homepage's "How a project works" dashed-line timeline, reused everywhere
+// the site describes its process — previously each page (the 1,020 service
+// pages, the maintenance page) duplicated the older bordered-column
+// .process-grid/.process-step markup; this is the one shared version so the
+// visual only needs fixing in one place. Renders just the heading + timeline,
+// not an outer <section> — callers keep their own wrapper/classes/id, since
+// the homepage, the service pages and the maintenance page each already use
+// a different outer section pattern with its own spacing. `items` is
+// dict.processSection.items ([title, body, meta] tuples) — kicker/title stay
+// props since some pages need contextual SEO-targeted headings (e.g.
+// ServiceLocationPage's row.h2Themes[2]) instead of the generic homepage title.
+export function ProcessTimeline({ kicker, title, items, headingClassName = "section-heading", titleStyle }) {
+  const { lang } = useI18n();
+  return (
+    <>
+      <Reveal className={headingClassName}>
+        <p className="micro">{kicker}</p>
+        <h2 className="section-title" style={titleStyle}>{title}</h2>
+      </Reveal>
+      <div className="process-timeline">
+        {items.map(([itemTitle, body, meta], i) => (
+          <Reveal className="process-timeline__step" key={i} delay={i * 80}>
+            <span className="process-timeline__num">{formatIndex(i + 1, lang)}</span>
+            <span className="process-timeline__track" aria-hidden="true">
+              <span className="process-timeline__marker" />
+            </span>
+            <h3 className="process-timeline__title">{itemTitle}</h3>
+            <p className="process-timeline__body">{body}</p>
+            {meta && <p className="process-timeline__meta">{meta}</p>}
+          </Reveal>
+        ))}
+      </div>
+    </>
   );
 }
