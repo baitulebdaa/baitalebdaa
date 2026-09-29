@@ -2601,16 +2601,17 @@ button.estimator-submit-btn {
 .ask-ai-launcher {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
-  height: 52px;
-  padding: 0 22px;
+  gap: 12px;
+  height: 58px;
+  padding: 0 24px 0 10px;
   border-radius: 999px;
   border: none;
   background: var(--ink);
   color: #fff;
   font-family: inherit;
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
   cursor: pointer;
   box-shadow: 0 10px 26px rgba(17, 17, 15, 0.25);
   transition: transform 0.2s;
@@ -2618,6 +2619,21 @@ button.estimator-submit-btn {
 
 .ask-ai-launcher:hover {
   transform: translateY(-2px);
+}
+
+.ask-ai-launcher__icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.9);
+  color: #fff;
+}
+
+[dir="rtl"] .ask-ai-launcher {
+  padding: 0 10px 0 24px;
 }
 
 .ask-ai-scrim {

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Sparkles, X, RotateCcw, ArrowUp, ImagePlus, ThumbsUp, ThumbsDown } from "lucide-react";
+import { X, RotateCcw, ArrowUp, ImagePlus, ThumbsUp, ThumbsDown } from "lucide-react";
 import { useI18n } from "../i18n/I18nProvider";
 
 const WHATSAPP_NUMBER = "971524621919";
@@ -287,7 +287,12 @@ export function AskAIWidget() {
 
       {!open && (
         <button type="button" onClick={() => setOpen(true)} aria-expanded="false" className="ask-ai-launcher">
-          <Sparkles size={19} />
+          <span className="ask-ai-launcher__icon" aria-hidden="true">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+              <path d="M4 4.5h16a1 1 0 0 1 1 1V16a1 1 0 0 1-1 1H9.5L5 21v-4H4a1 1 0 0 1-1-1V5.5a1 1 0 0 1 1-1z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+              <text x="12.5" y="12.5" textAnchor="middle" dominantBaseline="central" fontSize="7" fontWeight="700" fill="currentColor" fontFamily="Arial, sans-serif">AI</text>
+            </svg>
+          </span>
           {t.buttonLabel}
         </button>
       )}

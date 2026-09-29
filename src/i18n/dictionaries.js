@@ -298,8 +298,8 @@ export const dictionaries = {
       legalReviewNote: "These terms describe the site's actual current setup and have not been reviewed by a lawyer. Have them reviewed against UAE consumer-protection and contract law before relying on them commercially.",
     },
     askAi: {
-      buttonLabel: "Ask AI",
-      title: "Ask AI",
+      buttonLabel: "Ask Ali",
+      title: "Ask Ali",
       subtitle: "Bait Al Ebdaa assistant",
       intro: "Hi! Ask me about our services, pricing or process, and I'll help you find the right starting point.",
       starters: ["Villa renovation in Dubai", "What are your starting prices?", "How does the free consultation work?"],
@@ -1571,8 +1571,8 @@ export const dictionaries = {
       legalReviewNote: "تصف هذه الشروط الإعداد الفعلي الحالي للموقع ولم تتم مراجعتها من قبل محامٍ. يُرجى مراجعتها مقابل قانون حماية المستهلك وقانون العقود الإماراتي قبل الاعتماد عليها تجارياً.",
     },
     askAi: {
-      buttonLabel: "اسأل الذكاء الاصطناعي",
-      title: "اسأل الذكاء الاصطناعي",
+      buttonLabel: "اسأل علي",
+      title: "اسأل علي",
       subtitle: "مساعد بيت الإبداع",
       intro: "مرحباً! اسألني عن خدماتنا أو الأسعار أو آلية العمل، وسأساعدك على إيجاد نقطة البداية المناسبة.",
       starters: ["تجديد فيلا في دبي", "ما هي أسعاركم الابتدائية؟", "كيف تتم الاستشارة المجانية؟"],
