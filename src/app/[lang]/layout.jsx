@@ -3,6 +3,7 @@ import { DM_Sans, Manrope, Tajawal } from "next/font/google";
 import "../../styles.css";
 import { I18nProvider } from "../../i18n/I18nProvider";
 import { organizationJsonLd } from "../../lib/page-metadata";
+import { AskAIWidget } from "../../components/AskAIWidget";
 
 // Set in .env.local / hosting env vars once you have real IDs — see .env.example.
 // Left unset by default so nothing fake ships to production.
@@ -103,6 +104,7 @@ export default async function RootLayout({ children, params }) {
         )}
         <I18nProvider lang={lang}>
           {children}
+          <AskAIWidget />
         </I18nProvider>
       </body>
     </html>
