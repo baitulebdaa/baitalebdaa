@@ -926,30 +926,11 @@ h1,h2,h3,.menu-overlay__main>a,.studio__facts strong,.project-form legend,.foote
   cursor: pointer;
 }
 
-.faq-question-text {
-  display: grid;
-  grid-template-columns: 58px minmax(0, 1fr);
-  gap: 24px;
-  align-items: center;
-}
-
-.faq-num {
-  display: grid;
-  place-items: center;
-  width: 58px;
-  height: 58px;
-  border-radius: 50%;
-  background: var(--sand);
-  color: var(--ink);
-  font-size: 1.12rem;
-  font-weight: 600;
-}
-
 .faq-question h3 {
   margin: 0;
-  font-size: clamp(1.2rem, 1.8vw, 1.7rem);
-  line-height: 1.3;
-  letter-spacing: -0.025em;
+  font-size: clamp(1.02rem, 1.35vw, 1.3rem);
+  line-height: 1.35;
+  letter-spacing: -0.02em;
 }
 
 .faq-icon-wrapper {
@@ -959,12 +940,17 @@ h1,h2,h3,.menu-overlay__main>a,.studio__facts strong,.project-form legend,.foote
   height: 42px;
   border-radius: 50%;
   color: var(--ink);
-  transition: background-color 0.25s ease;
+  transition: background-color 0.25s ease, transform 0.3s ease;
 }
 
 .faq-question:hover .faq-icon-wrapper,
 .faq-question:focus-visible .faq-icon-wrapper {
   background: rgba(17, 17, 15, 0.07);
+}
+
+/* Plus rotates 45° into a close cross when open, instead of swapping icons. */
+.faq-item.is-open .faq-icon-wrapper {
+  transform: rotate(45deg);
 }
 
 .faq-question:focus-visible {
@@ -992,10 +978,11 @@ h1,h2,h3,.menu-overlay__main>a,.studio__facts strong,.project-form legend,.foote
 
 .faq-answer p {
   margin: 0;
-  padding: 0 104px 32px 112px;
+  max-width: 640px;
+  padding: 0 34px 32px 30px;
   color: #716f69;
-  font-size: clamp(0.98rem, 1.3vw, 1.12rem);
-  line-height: 1.7;
+  font-size: clamp(0.88rem, 1vw, 0.98rem);
+  line-height: 1.65;
 }
 
 [dir="rtl"] .faq-question {
@@ -1004,8 +991,8 @@ h1,h2,h3,.menu-overlay__main>a,.studio__facts strong,.project-form legend,.foote
 }
 
 [dir="rtl"] .faq-answer p {
-  padding-right: 112px;
-  padding-left: 104px;
+  padding-right: 30px;
+  padding-left: 34px;
 }
 
 @media (max-width: 700px) {
@@ -1047,19 +1034,8 @@ h1,h2,h3,.menu-overlay__main>a,.studio__facts strong,.project-form legend,.foote
     padding: 18px;
   }
 
-  .faq-question-text {
-    grid-template-columns: 44px minmax(0, 1fr);
-    gap: 14px;
-  }
-
-  .faq-num {
-    width: 44px;
-    height: 44px;
-    font-size: 0.95rem;
-  }
-
   .faq-question h3 {
-    font-size: 1rem;
+    font-size: 0.92rem;
     line-height: 1.4;
   }
 
@@ -1073,20 +1049,14 @@ h1,h2,h3,.menu-overlay__main>a,.studio__facts strong,.project-form legend,.foote
     height: 18px;
   }
 
-  .faq-answer p,
-  [dir="rtl"] .faq-answer p {
-    padding: 0 18px 24px 76px;
-    font-size: 0.92rem;
-    line-height: 1.65;
+  .faq-answer p {
+    padding: 0 18px 24px;
+    font-size: 0.85rem;
+    line-height: 1.6;
   }
 
   [dir="rtl"] .faq-question {
     padding: 18px;
-  }
-
-  [dir="rtl"] .faq-answer p {
-    padding-right: 76px;
-    padding-left: 18px;
   }
 }
 
@@ -2033,75 +2003,7 @@ button.estimator-submit-btn {
 }
 
 /* ==========================================================================
-   Homepage: Scope Packages & Features Matrix (comparison table)
-   ========================================================================== */
-#comparison {
-  padding: clamp(60px, 7vw, 110px) 0 40px;
-}
-
-#comparison .section-heading--center {
-  margin-bottom: 40px;
-}
-
-.comparison-table-wrap {
-  overflow-x: auto;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-}
-
-.comparison-table {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 640px;
-}
-
-.comparison-table th,
-.comparison-table td {
-  padding: 22px 28px;
-  text-align: left;
-  border-top: 1px solid var(--line);
-  font-size: 0.92rem;
-}
-
-.comparison-table thead tr {
-  background: #fbfaf7;
-}
-
-.comparison-table th {
-  border-top: 0;
-  font-weight: 600;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--muted);
-}
-
-.comparison-table th:first-child,
-.comparison-feature {
-  color: var(--ink);
-  font-weight: 600;
-}
-
-.comparison-standard {
-  color: var(--muted);
-}
-
-.comparison-vip-col {
-  background: #fbfaf7;
-}
-
-.comparison-vip {
-  color: var(--ink);
-  font-weight: 600;
-}
-
-[dir="rtl"] .comparison-table th,
-[dir="rtl"] .comparison-table td {
-  text-align: right;
-}
-
-/* ==========================================================================
-   PRICING PAGE — reuses .offerings-* / .comparison-table / .included-* patterns
+   PRICING PAGE — reuses .offerings-* / .included-* patterns
    ========================================================================== */
 
 .pricing-section {
@@ -3040,5 +2942,358 @@ button.estimator-submit-btn {
   [dir="rtl"] .ask-ai-panel {
     right: auto;
     left: 24px;
+  }
+}
+
+/* ==========================================================================
+   Homepage FAQ (src/App.jsx Faq()) — sticky heading + "ask AI" card beside
+   the scrolling answer list, reusing .faq-item/.faq-list from the FAQ
+   pattern already used on /our-services, the money pages and /pricing.
+   Grid direction flips automatically under [dir="rtl"] (see .sectors for
+   the same existing pattern), so no RTL override is needed here.
+   ========================================================================== */
+.faq-split {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.faq-split__aside {
+  position: sticky;
+  top: calc(var(--header-h) + 40px);
+}
+
+.faq-split__ask-card {
+  margin-top: 40px;
+  padding: 26px;
+  border-radius: 14px;
+  background: #fff;
+}
+
+.faq-split__ask-card h3 {
+  margin: 0 0 8px;
+  font-family: var(--font-dm-sans), Arial, sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: normal;
+}
+
+.faq-split__ask-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.faq-split__ask-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  height: 46px;
+  padding: 0 20px;
+  border-radius: 999px;
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.faq-split__ask-btn:hover {
+  background: var(--ink);
+  color: #fff;
+}
+
+/* Display serif (Cormorant Garamond) for the FAQ heading, matching the reference
+   site's image exactly. Scoped to [dir="ltr"] because the font has no Arabic
+   glyphs — the global [dir="rtl"] h1/h2/h3 rule (near the top of this file) already
+   forces Tajawal for Arabic and takes priority there untouched. */
+[dir="ltr"] .faq-split__aside .section-title,
+[dir="ltr"] .faq-split__ask-card h3 {
+  font-family: var(--font-cormorant), Georgia, "Times New Roman", serif;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+@media (max-width: 980px) {
+  .faq-split {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .faq-split__aside {
+    position: static;
+  }
+}
+
+/* ==========================================================================
+   Homepage "How a project works" timeline (src/App.jsx Process()) — replaces
+   the old bordered-column process-grid on the homepage only; the shared
+   .process-grid/.process-step classes stay untouched for the 1,020 service
+   pages and the maintenance page, which still use the simpler version.
+   ========================================================================== */
+.process-timeline-section {
+  background: var(--paper);
+}
+
+.process-timeline {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 32px;
+}
+
+.process-timeline__num {
+  display: block;
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(2.1rem, 2.8vw, 2.8rem);
+  font-weight: 500;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.process-timeline__track {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 26px;
+  margin: 18px 0 26px;
+}
+
+.process-timeline__marker {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--sand);
+}
+
+.process-timeline__marker::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ink);
+}
+
+.process-timeline__track::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 26px;
+  right: -32px;
+  border-top: 2px dashed var(--sand);
+  transform: translateY(-50%);
+}
+
+/* The last step's line trails off and fades, instead of connecting to a
+   step that doesn't exist or stopping dead at the marker. */
+.process-timeline__step:last-child .process-timeline__track::after {
+  right: auto;
+  width: 90px;
+  -webkit-mask-image: linear-gradient(to right, #000 35%, transparent);
+  mask-image: linear-gradient(to right, #000 35%, transparent);
+}
+
+.process-timeline__title {
+  margin: 0 0 8px;
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(1.25rem, 1.6vw, 1.5rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.process-timeline__body {
+  margin: 0 0 16px;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.process-timeline__meta {
+  margin: auto 0 0;
+  color: var(--ink);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+[dir="rtl"] .process-timeline__track::after {
+  left: -32px;
+  right: 26px;
+}
+
+[dir="rtl"] .process-timeline__step:last-child .process-timeline__track::after {
+  left: auto;
+  right: 26px;
+  width: 90px;
+  -webkit-mask-image: linear-gradient(to left, #000 35%, transparent);
+  mask-image: linear-gradient(to left, #000 35%, transparent);
+}
+
+@media (max-width: 980px) {
+  .process-timeline {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 36px;
+  }
+
+  /* No clean way to connect a wrapped 2x2 grid with one continuous line —
+     drop it rather than let it visually run off the row's right edge. */
+  .process-timeline__track::after {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .process-timeline {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   Header "Services" dropdown (src/components/Shared.jsx Header()) — desktop
+   only; .header-links already hides on mobile in favor of the hamburger
+   menu, so this panel does too automatically.
+   ========================================================================== */
+.header-nav-dropdown {
+  position: relative;
+}
+
+.header-nav-dropdown__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.header-nav-dropdown__trigger::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.25s;
+}
+
+.header-nav-dropdown__trigger:hover::after,
+.header-nav-dropdown__trigger[aria-expanded="true"]::after {
+  width: 100%;
+}
+
+.header-nav-dropdown__trigger svg {
+  transition: transform 0.25s ease;
+}
+
+.header-nav-dropdown__trigger svg.is-open {
+  transform: rotate(180deg);
+}
+
+.header-nav-panel {
+  position: absolute;
+  top: calc(100% + 22px);
+  left: 0;
+  z-index: 60;
+  min-width: 620px;
+  padding: 28px 32px;
+  border-radius: 16px;
+  background: #fff;
+  color: var(--ink);
+  box-shadow: 0 24px 60px rgba(17, 17, 15, 0.18);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+}
+
+.header-nav-panel.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.header-nav-panel__columns {
+  display: flex;
+  gap: 36px;
+}
+
+.header-nav-panel__col {
+  min-width: 160px;
+}
+
+.header-nav-panel__heading {
+  margin: 0 0 14px;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.header-nav-panel__col ul {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.header-nav-panel__col a {
+  display: block;
+  padding: 7px 0;
+  color: var(--ink);
+  font-size: 0.85rem;
+  transition: color 0.2s;
+}
+
+.header-nav-panel__col a:hover {
+  color: var(--muted);
+}
+
+.header-nav-panel__all {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+[dir="rtl"] .header-nav-panel {
+  left: auto;
+  right: 0;
+}
+
+@media (max-width: 1240px) {
+  .header-nav-panel {
+    min-width: 540px;
+  }
+
+  .header-nav-panel__columns {
+    gap: 26px;
+  }
+
+  .header-nav-panel__col {
+    min-width: 140px;
   }
 }

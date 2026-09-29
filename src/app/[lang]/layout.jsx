@@ -1,5 +1,5 @@
 import Script from "next/script";
-import { DM_Sans, Manrope, Tajawal } from "next/font/google";
+import { DM_Sans, Manrope, Tajawal, Cormorant_Garamond } from "next/font/google";
 import "../../styles.css";
 import { I18nProvider } from "../../i18n/I18nProvider";
 import { organizationJsonLd } from "../../lib/page-metadata";
@@ -29,6 +29,18 @@ const tajawal = Tajawal({
   subsets: ["arabic"],
   weight: ["400", "500", "700"],
   variable: "--font-tajawal",
+  display: "swap",
+});
+
+// Display serif for the FAQ section heading only (see src/App.jsx Faq()) — matches
+// the reference site's heading face exactly. Latin-only (no Arabic glyphs), so it's
+// applied via [dir="ltr"] in styles.css rather than the site-wide h1/h2/h3 rule —
+// Arabic pages keep the existing Tajawal heading font untouched.
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["500"],
+  style: ["normal", "italic"],
+  variable: "--font-cormorant",
   display: "swap",
 });
 
@@ -86,7 +98,7 @@ export default async function RootLayout({ children, params }) {
   const isRtl = lang === "ar";
   
   return (
-    <html lang={lang} dir={isRtl ? "rtl" : "ltr"} className={`${dmSans.variable} ${manrope.variable} ${tajawal.variable}`}>
+    <html lang={lang} dir={isRtl ? "rtl" : "ltr"} className={`${dmSans.variable} ${manrope.variable} ${tajawal.variable} ${cormorant.variable}`}>
       <body>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd()) }} />
         {GA_MEASUREMENT_ID && (

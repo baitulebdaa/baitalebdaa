@@ -15,7 +15,13 @@ export const dictionaries = {
       socialMedia: "Social Media",
       phoneLabel: "UAE",
       getFreeQuote: "Get Free Quote",
-      media: "Media"
+      media: "Media",
+      serviceGroups: {
+        interiorDesign: "Interior Design",
+        fitOut: "Fit-Out",
+        renovationJoinery: "Renovation & Joinery",
+        aftercare: "Aftercare"
+      }
     },
     menuItems: ["Home", "Services", "Projects", "Process", "Pricing", "Contact"],
     hero: {
@@ -97,20 +103,6 @@ export const dictionaries = {
         ["FF&E Procurement", "Global sourcing networks that bring you exclusive materials and furnishings without the typical supply chain delays."]
       ]
     },
-    comparisonSection: {
-      micro: "Transparent Package Comparison",
-      title: "Scope Packages & Features Matrix",
-      featureLabel: "Fit-out Service Feature",
-      standardLabel: "Standard Fit-out",
-      vipLabel: "Bait Al Ebdaa VIP Turnkey",
-      rows: [
-        ["Photorealistic 3D Architectural Renders", "Basic 2D Floorplan", "99.4% Accuracy 3D Renders"],
-        ["Dubai Municipality (DM NOC) Submissions", "Client Handled", "100% Managed by Bait Al Ebdaa"],
-        ["15,000 sq ft Joinery Manufacturing", "Outsourced Subcontractors", "In-House Ajman German CNC Production"],
-        ["Somfy Motorized Drapery Integration", "Manual Tracks Only", "Somfy Glydea Ultra Smart Motorization"],
-        ["Workmanship Warranty Package", "1 Year Basic", "5-Year Complete Warranty"]
-      ]
-    },
     estimatorSection: {
       kicker: "Instant Cost Estimator",
       title: "Turnkey Investment Estimator Engine",
@@ -134,10 +126,10 @@ export const dictionaries = {
       micro: "A controlled journey",
       title: "Four stages.\nOne accountable team.",
       items: [
-        ["Discover", "Site review, brief, priorities and investment alignment."],
-        ["Visualize", "Plans, materials and photorealistic 3D CAD renders."],
-        ["Approve", "Technical packages, Dubai Municipality and NOC coordination."],
-        ["Make", "Joinery production, fit-out, installation and considered handover."]
+        ["Discover", "Site review, brief, priorities and investment alignment.", "At your site"],
+        ["Visualize", "Plans, materials and photorealistic 3D CAD renders.", "In our studio"],
+        ["Approve", "Technical packages, Dubai Municipality and NOC coordination.", "With the authorities"],
+        ["Make", "Joinery production, fit-out, installation and considered handover.", "At our Ajman factory"]
       ]
     },
     faqSection: {
@@ -186,6 +178,7 @@ export const dictionaries = {
         "Care guidance for owners — day-to-day upkeep that protects your warranty"
       ],
       faqHeading: "Furniture Maintenance: FAQs",
+      faqSubtitle: "Straight answers about servicing the joinery and furniture we make.",
       faqs: [
         { q: "Do you maintain furniture you didn't originally manufacture?", a: "We assess this case by case during the site visit. We can generally service comparable custom joinery and fitted furniture, but priority and warranty coverage apply to pieces we manufactured ourselves." },
         { q: "Is maintenance covered under warranty?", a: "Joinery we manufacture and install carries our 5-year workmanship guarantee. Repairs falling under that guarantee are covered; general wear-and-tear servicing outside the warranty period is quoted after assessment." },
@@ -1299,7 +1292,13 @@ export const dictionaries = {
       socialMedia: "وسائل التواصل الاجتماعي",
       phoneLabel: "الإمارات",
       getFreeQuote: "احصل على عرض سعر مجاني",
-      media: "الإعلام"
+      media: "الإعلام",
+      serviceGroups: {
+        interiorDesign: "التصميم الداخلي",
+        fitOut: "التجهيز الشامل",
+        renovationJoinery: "التجديد والنجارة",
+        aftercare: "خدمات ما بعد التسليم"
+      }
     },
     menuItems: ["الرئيسية", "الخدمات", "المشاريع", "العملية", "الأسعار", "اتصل بنا"],
     hero: {
@@ -1381,24 +1380,10 @@ export const dictionaries = {
       micro: "رحلة مسيطر عليها",
       title: "أربع مراحل.\nفريق واحد مسؤول.",
       items: [
-        ["اكتشف", "مراجعة الموقع، موجز، أولويات وتوافق الاستثمار."],
-        ["تصور", "خطط، مواد وتصاميم CAD ثلاثية الأبعاد واقعية."],
-        ["اعتمد", "حزم تقنية، تنسيق مع بلدية دبي وشهادات عدم الممانعة."],
-        ["اصنع", "إنتاج النجارة، التجهيز، التركيب وتسليم مدروس."]
-      ]
-    },
-    comparisonSection: {
-      micro: "مقارنة شفافة للباقات",
-      title: "مصفوفة باقات النطاق والمزايا",
-      featureLabel: "ميزة خدمة التجهيز",
-      standardLabel: "تجهيز قياسي",
-      vipLabel: "بيت الإبداع VIP تسليم مفتاح",
-      rows: [
-        ["تصاميم معمارية ثلاثية الأبعاد واقعية", "مخطط أرضي ثنائي الأبعاد أساسي", "تصاميم ثلاثية الأبعاد بدقة 99.4%"],
-        ["تقديمات شهادة عدم ممانعة بلدية دبي", "يتولاها العميل", "تدار بالكامل من قبل بيت الإبداع"],
-        ["تصنيع نجارة بمساحة 15,000 قدم مربع", "مقاولون من الباطن خارجيون", "إنتاج داخلي بتقنية CNC ألمانية في عجمان"],
-        ["دمج ستائر سومفي الآلية", "مسارات يدوية فقط", "تحريك سومفي Glydea Ultra الذكي"],
-        ["حزمة ضمان جودة التصنيع", "سنة واحدة أساسية", "ضمان شامل لمدة 5 سنوات"]
+        ["اكتشف", "مراجعة الموقع، موجز، أولويات وتوافق الاستثمار.", "في موقعك"],
+        ["تصور", "خطط، مواد وتصاميم CAD ثلاثية الأبعاد واقعية.", "في استوديونا"],
+        ["اعتمد", "حزم تقنية، تنسيق مع بلدية دبي وشهادات عدم الممانعة.", "مع الجهات المختصة"],
+        ["اصنع", "إنتاج النجارة، التجهيز، التركيب وتسليم مدروس.", "في مصنعنا بعجمان"]
       ]
     },
     estimatorSection: {
@@ -1466,6 +1451,7 @@ export const dictionaries = {
         "إرشادات عناية لأصحاب المنازل — صيانة يومية تحافظ على ضمانكم"
       ],
       faqHeading: "الأسئلة الشائعة حول صيانة الأثاث",
+      faqSubtitle: "إجابات مباشرة حول صيانة النجارة والأثاث الذي نصنّعه.",
       faqs: [
         { q: "هل تقومون بصيانة أثاث لم تصنّعوه أنتم؟", a: "نقيّم ذلك حسب كل حالة أثناء زيارة الموقع. يمكننا عادة صيانة نجارة وأثاث مخصص مماثل، لكن الأولوية وتغطية الضمان تنطبق على القطع التي صنّعناها بأنفسنا." },
         { q: "هل الصيانة مشمولة بالضمان؟", a: "النجارة التي نصنّعها ونركّبها مشمولة بضمان جودة الصنعة لمدة 5 سنوات. الإصلاحات المشمولة بالضمان مغطاة بالكامل؛ أما الصيانة الناتجة عن التآكل العادي خارج فترة الضمان فيتم تسعيرها بعد المعاينة." },

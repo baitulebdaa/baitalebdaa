@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Calendar, Check, Wrench } from "lucide-react";
 import { useI18n } from "./i18n/I18nProvider";
-import { Header, Footer, Reveal } from "./components/Shared";
+import { Header, Footer, Reveal, FaqSplit } from "./components/Shared";
 import { Estimator } from "./components/Estimator";
 import { QuoteModal } from "./components/QuoteModal";
 import { ContactForm } from "./components/ContactForm";
@@ -97,36 +97,28 @@ function Capabilities() {
 
 function Process() {
   const { lang, dict } = useI18n();
-  return <section className="section process" id="process"><div className="shell"><Reveal className="process__heading"><p className="micro">{dict.processSection.micro}</p><h2 className="section-title" style={{whiteSpace: 'pre-wrap'}}>{dict.processSection.title}</h2></Reveal><div className="process-grid">{dict.processSection.items.map(([title, body], i) => <Reveal className="process-step" key={i} delay={i * 80}><span>{formatIndex(i + 1, lang)}</span><h3>{title}</h3><p>{body}</p></Reveal>)}</div></div></section>;
+  return <section className="section process-timeline-section" id="process"><div className="shell">
+    <Reveal className="process__heading"><p className="micro">{dict.processSection.micro}</p><h2 className="section-title" style={{whiteSpace: 'pre-wrap'}}>{dict.processSection.title}</h2></Reveal>
+    <div className="process-timeline">
+      {dict.processSection.items.map(([title, body, meta], i) => (
+        <Reveal className="process-timeline__step" key={i} delay={i * 80}>
+          <span className="process-timeline__num">{formatIndex(i + 1, lang)}</span>
+          <span className="process-timeline__track" aria-hidden="true">
+            <span className="process-timeline__marker" />
+          </span>
+          <h3 className="process-timeline__title">{title}</h3>
+          <p className="process-timeline__body">{body}</p>
+          {meta && <p className="process-timeline__meta">{meta}</p>}
+        </Reveal>
+      ))}
+    </div>
+  </div></section>;
 }
 
-function Comparison() {
+function Faq() {
   const { dict } = useI18n();
-  const c = dict.comparisonSection;
-  return <section className="section section--light" id="comparison"><div className="shell">
-    <Reveal className="section-heading section-heading--center">
-      <p className="micro">{c.micro}</p>
-      <h2 className="section-title" style={{ whiteSpace: 'pre-wrap' }}>{c.title}</h2>
-    </Reveal>
-    <Reveal className="comparison-table-wrap" delay={100}>
-      <table className="comparison-table">
-        <thead>
-          <tr>
-            <th>{c.featureLabel}</th>
-            <th>{c.standardLabel}</th>
-            <th className="comparison-vip-col">{c.vipLabel}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {c.rows.map((row, i) => <tr key={i}>
-            <td className="comparison-feature">{row[0]}</td>
-            <td className="comparison-standard">{row[1]}</td>
-            <td className="comparison-vip-col comparison-vip">{row[2]}</td>
-          </tr>)}
-        </tbody>
-      </table>
-    </Reveal>
-  </div></section>;
+  const faq = dict.faqSection;
+  return <FaqSplit kicker={faq.kicker} title={faq.title} subtitle={faq.subtitle} items={faq.items} idPrefix="home" />;
 }
 
 function LatestNews() {
@@ -142,7 +134,7 @@ export default function App() {
   const [quotePrefillSize, setQuotePrefillSize] = useState(undefined);
   return <>
     <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-    <main><Hero onGetQuote={() => setQuoteOpen(true)} /><Services /><Studio /><Factory /><Sectors /><Projects /><Process /><Comparison /><Estimator onBookSurvey={(size) => { setQuotePrefillSize(size); setQuoteOpen(true); }} /><LatestNews /></main>
+    <main><Hero onGetQuote={() => setQuoteOpen(true)} /><Services /><Studio /><Factory /><Sectors /><Projects /><Process /><Estimator onBookSurvey={(size) => { setQuotePrefillSize(size); setQuoteOpen(true); }} /><Faq /><LatestNews /></main>
     <Footer />
     <QuoteModal open={quoteOpen} onClose={() => setQuoteOpen(false)} initialSize={quotePrefillSize} />
   </>;

@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { ArrowUpRight, Check } from "lucide-react";
 import { useI18n } from "./i18n/I18nProvider";
-import { Header, Footer, Reveal, PageHeader, FaqItem } from "./components/Shared";
+import { Header, Footer, Reveal, PageHeader, FaqSplit } from "./components/Shared";
 import { formatIndex } from "./lib/format";
 
 export default function FurnitureMaintenanceCare() {
@@ -125,22 +125,7 @@ export default function FurnitureMaintenanceCare() {
         </section>
 
         {/* FAQ */}
-        <section className="faq-section" aria-labelledby="fmc-faq-title">
-          <div className="shell faq-shell">
-            <Reveal className="faq-header" delay={100}>
-              <div className="offerings-kicker">
-                <span>{dict.faqSection.kicker}</span>
-                <div className="kicker-underline"></div>
-              </div>
-              <h2 id="fmc-faq-title">{t.faqHeading}</h2>
-            </Reveal>
-            <div className="faq-list">
-              {t.faqs.map((item, index) => (
-                <FaqItem key={item.q} index={index} faq={item} idPrefix="fmc" />
-              ))}
-            </div>
-          </div>
-        </section>
+        <FaqSplit kicker={dict.faqSection.kicker} title={t.faqHeading} subtitle={t.faqSubtitle} items={t.faqs} idPrefix="fmc" />
 
         {/* CTA */}
         <section className="shell slp-cta-section">

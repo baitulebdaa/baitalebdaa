@@ -2,9 +2,21 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { ArrowUp, ArrowUpRight, ChevronDown, ChevronUp, Menu, X, Globe } from "lucide-react";
+import { ArrowUp, ArrowUpRight, ChevronDown, Plus, Menu, X, Globe, Sparkles } from "lucide-react";
 import { useI18n } from "../i18n/I18nProvider";
 import { useRouter, usePathname } from "next/navigation";
+import { getService } from "../lib/seo-pages";
+
+// Desktop "Services" dropdown groups (Header). Grouped rather than one long
+// column — 17 services in a single list would make the panel unreasonably
+// tall. Furniture Maintenance & Care isn't part of the service x location
+// matrix (see FurnitureMaintenanceCare.jsx), so it's added as its own short
+// column pointing straight at its real standalone page instead of /uae.
+const SERVICE_MENU_GROUPS = [
+  { headingKey: "interiorDesign", slugs: ["interior-design", "residential-interior-design", "commercial-interior-design", "office-interior-design", "restaurant-interior-design", "retail-interior-design"] },
+  { headingKey: "fitOut", slugs: ["fit-out", "office-fit-out", "restaurant-fit-out", "retail-fit-out"] },
+  { headingKey: "renovationJoinery", slugs: ["villa-renovation", "apartment-renovation", "office-renovation", "joinery", "custom-wardrobes", "kitchen-design", "kitchen-renovation"] },
+];
 
 export function Brand({ light = false, priority = false, customSrc = null }) {
   return <a className={`brand ${light ? "brand--light" : ""}`} href="/" aria-label="Bait Al Ebdaa home"><Image className="brand__logo" src={customSrc || "/assets/logo.png"} alt="Bait Al Ebdaa - Luxury Interior Design and Joinery Logo" width={2170} height={725} priority={priority} /></a>;
@@ -30,8 +42,21 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
   const router = useRouter();
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const servicesRef = useRef(null);
   useEffect(() => { const onScroll = () => setScrolled(window.scrollY > 40); onScroll(); window.addEventListener("scroll", onScroll, { passive: true }); return () => window.removeEventListener("scroll", onScroll); }, []);
   useEffect(() => { document.body.style.overflow = menuOpen ? "hidden" : ""; return () => { document.body.style.overflow = ""; }; }, [menuOpen]);
+
+  // Services dropdown: closes on outside click and on Escape, in addition to
+  // the hover/click handlers on the trigger itself below.
+  useEffect(() => {
+    if (!servicesOpen) return;
+    const onPointer = (event) => { if (servicesRef.current && !servicesRef.current.contains(event.target)) setServicesOpen(false); };
+    const onKey = (event) => { if (event.key === "Escape") setServicesOpen(false); };
+    document.addEventListener("mousedown", onPointer);
+    document.addEventListener("keydown", onKey);
+    return () => { document.removeEventListener("mousedown", onPointer); document.removeEventListener("keydown", onKey); };
+  }, [servicesOpen]);
 
   // Swaps only the /en//ar segment so switching language keeps you on the equivalent
   // page (e.g. /en/interior-design/dubai-marina -> /ar/interior-design/dubai-marina)
@@ -56,7 +81,57 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
       <Brand light={!menuOpen && !useFooterLogo && !alwaysSolid && !lightTheme} priority customSrc={useFooterLogo ? "/assets/footer logo.png" : null} />
       <nav className="header-links" aria-label="Primary navigation">
         <a href={`/${lang}/our-projects`}>{dict.nav.projects} <ArrowUpRight size={14} /></a>
-        <a href={`/${lang}/our-services`}>{dict.nav.services} <ArrowUpRight size={14} /></a>
+        <div
+          className="header-nav-dropdown"
+          ref={servicesRef}
+          onMouseEnter={() => setServicesOpen(true)}
+          onMouseLeave={() => setServicesOpen(false)}
+        >
+          <button
+            type="button"
+            className="header-nav-dropdown__trigger"
+            aria-expanded={servicesOpen}
+            aria-controls="header-services-panel"
+            onClick={() => setServicesOpen((open) => !open)}
+          >
+            {dict.nav.services} <ChevronDown size={14} className={servicesOpen ? "is-open" : ""} />
+          </button>
+          <div id="header-services-panel" className={`header-nav-panel ${servicesOpen ? "is-open" : ""}`}>
+            <div className="header-nav-panel__columns">
+              {SERVICE_MENU_GROUPS.map((group) => (
+                <div className="header-nav-panel__col" key={group.headingKey}>
+                  <p className="header-nav-panel__heading">{dict.nav.serviceGroups[group.headingKey]}</p>
+                  <ul>
+                    {group.slugs.map((slug) => {
+                      const service = getService(slug);
+                      if (!service) return null;
+                      return (
+                        <li key={slug}>
+                          <a href={`/${lang}/${slug}/uae`} onClick={() => setServicesOpen(false)}>
+                            {lang === "ar" ? service.ar : service.en}
+                          </a>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              ))}
+              <div className="header-nav-panel__col">
+                <p className="header-nav-panel__heading">{dict.nav.serviceGroups.aftercare}</p>
+                <ul>
+                  <li>
+                    <a href={`/${lang}/furniture-maintenance-care`} onClick={() => setServicesOpen(false)}>
+                      {dict.furnitureMaintenancePage.navTitle}
+                    </a>
+                  </li>
+                </ul>
+                <a href={`/${lang}/our-services`} onClick={() => setServicesOpen(false)} className="header-nav-panel__all">
+                  {dict.servicesSection.viewAllServices} <ArrowUpRight size={13} />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
         <a href={`/${lang}/process`}>{dict.menuItems[3]} <ArrowUpRight size={14} /></a>
         <a href={`/${lang}/pricing`}>{dict.menuItems[4]} <ArrowUpRight size={14} /></a>
         <button type="button" onClick={toggleLanguage} className="lang-switcher" style={{display: 'flex', alignItems: 'center', gap: '6px', background: 'transparent', border: 'none', color: 'inherit', cursor: 'pointer', fontFamily: 'inherit', fontSize: 'inherit'}}>
@@ -246,12 +321,9 @@ export function FaqItem({ index, faq, idPrefix = "faq" }) {
         aria-expanded={isOpen}
         aria-controls={answerId}
       >
-        <div className="faq-question-text">
-          <span className="faq-num" aria-hidden="true">{index + 1}</span>
-          <h3>{faq.q}</h3>
-        </div>
+        <h3>{faq.q}</h3>
         <span className="faq-icon-wrapper" aria-hidden="true">
-          {isOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+          <Plus size={20} />
         </span>
       </button>
 
@@ -261,5 +333,42 @@ export function FaqItem({ index, faq, idPrefix = "faq" }) {
         </div>
       </div>
     </Reveal>
+  );
+}
+
+// Sticky two-column FAQ block: heading + "Something else? Ask AI" card on the
+// left stays in place while the questions scroll past on the right. Used on
+// the homepage and any other page that wants this treatment instead of the
+// simpler centered .faq-section/.faq-header pattern (OurServices, the money
+// pages, /pricing) — one shared component so the layout only needs fixing
+// in one place. idPrefix keeps each page's FaqItem answer ids unique.
+export function FaqSplit({ kicker, title, subtitle, items, idPrefix = "faq" }) {
+  const { lang, dict } = useI18n();
+  return (
+    <section className="section section--light" id="faq">
+      <div className="shell">
+        <div className="faq-split">
+          <div className="faq-split__aside">
+            <Reveal>
+              <p className="micro">{kicker}</p>
+              <h2 className="section-title" style={{ marginBottom: "14px" }}>{title}</h2>
+              <p className="lede" style={{ margin: 0 }}>{subtitle}</p>
+            </Reveal>
+            <Reveal className="faq-split__ask-card" delay={100}>
+              <h3>{lang === "ar" ? "لديك سؤال آخر؟" : "Something else?"}</h3>
+              <p>{lang === "ar" ? "مساعدنا الذكي يجيب على أسئلتك حول خدماتنا في أي وقت." : "Our AI assistant answers questions about our services at any hour."}</p>
+              <button type="button" onClick={() => window.dispatchEvent(new Event("askai:open"))} className="faq-split__ask-btn">
+                <Sparkles size={17} /> {dict.askAi.buttonLabel}
+              </button>
+            </Reveal>
+          </div>
+          <div className="faq-list">
+            {items.map((item, index) => (
+              <FaqItem key={item.q} index={index} faq={item} idPrefix={idPrefix} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
