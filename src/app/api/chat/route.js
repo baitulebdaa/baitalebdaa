@@ -1,7 +1,7 @@
 // "Ask AI" chat backend — uses Gemini function calling so the assistant can
 // collect visitor details conversationally and submit a quote/survey request
 // directly, rather than only pointing to WhatsApp or the form.
-const MODEL = "gemini-2.0-flash-lite";
+const MODEL = "gemini-3.5-flash-lite";
 const MAX_MESSAGES = 14;
 const MAX_MESSAGE_LENGTH = 600;
 const MAX_IMAGE_BASE64_LENGTH = 2_000_000;
