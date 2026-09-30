@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { useI18n } from "./i18n/I18nProvider";
-import { Header, Footer, Reveal, PageHeader, FaqItem } from "./components/Shared";
+import { Header, Footer, Reveal, PageHeader, FaqSplit } from "./components/Shared";
 import { services as seoServices } from "./lib/seo-pages";
 
 const SERVICE_IMAGES = {
@@ -129,24 +129,13 @@ export default function OurServices() {
         </section>
 
         {/* FAQ Section */}
-        <section className="faq-section" aria-labelledby="services-faq-title">
-          <div className="shell faq-shell">
-            <Reveal className="faq-header" delay={100}>
-              <div className="offerings-kicker">
-                <span>{faq.kicker}</span>
-                <div className="kicker-underline"></div>
-              </div>
-              <h2 id="services-faq-title">{faq.title}</h2>
-              <p className="faq-subtitle">{faq.subtitle}</p>
-            </Reveal>
-
-            <div className="faq-list">
-              {faq.items.map((item, index) => (
-                <FaqItem key={item.q} index={index} faq={item} />
-              ))}
-            </div>
-          </div>
-        </section>
+        <FaqSplit
+          kicker={faq.kicker}
+          title={faq.title}
+          subtitle={faq.subtitle}
+          items={faq.items}
+          idPrefix="our-services-faq"
+        />
 
       </main>
       <Footer />

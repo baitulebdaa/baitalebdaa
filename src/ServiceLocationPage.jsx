@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { ArrowUpRight, Check, Phone } from "lucide-react";
 import { useI18n } from "./i18n/I18nProvider";
-import { Header, Footer, Reveal, PageHeader, FaqItem, ProcessTimeline } from "./components/Shared";
+import { Header, Footer, Reveal, PageHeader, FaqSplit, ProcessTimeline } from "./components/Shared";
 import { Estimator } from "./components/Estimator";
 import { serviceContent, priorityIntroExtra, whyChooseFacts } from "./data/service-content";
 import { locationContent } from "./data/location-content";
@@ -427,27 +427,13 @@ export default function ServiceLocationPage({ lang, row }) {
         </section>
 
         {/* FAQ */}
-        <section className="faq-section" aria-labelledby="slp-faq-title">
-          <div className="shell faq-shell">
-            <Reveal className="faq-header" delay={100}>
-              <div className="offerings-kicker">
-                <span>{dict.faqSection.kicker}</span>
-                <div className="kicker-underline"></div>
-              </div>
-              <h2 id="slp-faq-title">
-                {lang === "ar" ? `الأسئلة الشائعة حول ${serviceName} في ${locationName}` : `${serviceName} in ${locationName}: FAQs`}
-              </h2>
-            </Reveal>
-            <div className="faq-list">
-              {content.faqs.map((item, index) => (
-                <FaqItem key={item.q} index={index} faq={item} idPrefix={`slp-${row.serviceSlug}-${row.locationSlug}`} />
-              ))}
-              {extraFaqs.map((item, index) => (
-                <FaqItem key={item.q} index={content.faqs.length + index} faq={item} idPrefix={`slp-${row.serviceSlug}-${row.locationSlug}`} />
-              ))}
-            </div>
-          </div>
-        </section>
+        <FaqSplit
+          kicker={dict.faqSection.kicker}
+          title={lang === "ar" ? `الأسئلة الشائعة حول ${serviceName} في ${locationName}` : `${serviceName} in ${locationName}: FAQs`}
+          subtitle={dict.faqSection.subtitle}
+          items={[...content.faqs, ...extraFaqs]}
+          idPrefix={`slp-${row.serviceSlug}-${row.locationSlug}`}
+        />
 
         {/* CTA */}
         <section className="shell slp-cta-section">
