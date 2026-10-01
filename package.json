@@ -11,6 +11,7 @@
     "test:sites": "node --test tests/sites-worker.test.mjs"
   },
   "dependencies": {
+    "iconsax-reactjs": "^0.0.8",
     "lucide-react": "^0.468.0",
     "next": "^16.0.0",
     "react": "19.2.0",

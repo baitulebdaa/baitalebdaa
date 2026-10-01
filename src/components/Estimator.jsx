@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Check } from "lucide-react";
+import { Check } from "./icons";
 import { useI18n } from "../i18n/I18nProvider";
 import { Reveal } from "./Shared";
 import { sliderFillPosition } from "../lib/slider";

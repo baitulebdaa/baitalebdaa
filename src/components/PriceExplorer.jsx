@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useId, useRef, useState } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "./icons";
 import { useI18n } from "../i18n/I18nProvider";
 import { Reveal } from "./Shared";
 import { pricingGroups, CURRENCY } from "../data/pricing";

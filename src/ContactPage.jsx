@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { ArrowUpRight, Check, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowUpRight, Check, Mail, MapPin, Phone } from "./components/icons";
 import { useI18n } from "./i18n/I18nProvider";
 import { Header, Footer, Reveal } from "./components/Shared";
 import { ContactForm } from "./components/ContactForm";

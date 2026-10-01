@@ -2,7 +2,7 @@
 
 import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { ArrowUpRight, Check } from "lucide-react";
+import { ArrowUpRight, Check, Paperclip } from "./icons";
 import { useI18n } from "../i18n/I18nProvider";
 import { Reveal } from "./Shared";
 
@@ -146,7 +146,7 @@ function ContactFormBody() {
         <textarea name="message" rows="3" placeholder={t.placeholders.message} required />
         <div className="file-upload-wrapper">
           <label className="file-upload-label">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"/></svg>
+            <Paperclip size={12} />
             {t.uploadCV}
             <input type="file" name="cv" accept=".pdf,.doc,.docx" required />
           </label>

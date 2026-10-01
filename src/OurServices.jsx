@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { useI18n } from "./i18n/I18nProvider";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "./components/icons";
 import { Header, Footer, Reveal, FaqSplit } from "./components/Shared";
 import { services as seoServices } from "./lib/seo-pages";
 import { pricingGroups } from "./data/pricing";

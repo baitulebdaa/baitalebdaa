@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "../../../../components/icons";
 import { Header, Footer, Reveal, PageHeader } from "../../../../components/Shared";
 
 export default function BlogDetailClient({ article, breadcrumbs, newsAndInsights, allArticles, lang, discuss }) {
