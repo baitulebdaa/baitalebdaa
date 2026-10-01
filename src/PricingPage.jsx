@@ -168,6 +168,16 @@ export default function PricingPage() {
               </span>
               <h1 className="slp-hero__title">{t.pageTitle}</h1>
               <p className="slp-hero__lead">{t.heroBody}</p>
+              <p className="slp-hero__lead slp-hero__lead--sub">{extra.intro2}</p>
+              <h2 className="cp-topics__title">{extra.includesTitle}</h2>
+              <ul className="slp-hero__points">
+                {extra.includes.map((item) => (
+                  <li key={item}>
+                    <Check size={16} />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
             </Reveal>
             <Reveal delay={120} className="slp-hero__foot pp-hero__foot">
               <div className="slp-hero__actions">

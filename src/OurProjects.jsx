@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { useI18n } from "./i18n/I18nProvider";
-import { Header, Footer, Reveal, PageHeader } from "./components/Shared";
+import { Header, Footer, Reveal } from "./components/Shared";
 
 export default function OurProjects() {
   const { lang, dict } = useI18n();
@@ -12,6 +12,7 @@ export default function OurProjects() {
   const [activeFilter, setActiveFilter] = useState("all");
 
   const t = dict.ourProjectsPage;
+  const ui = dict.projectsPageLayout;
   const projects = dict.projectsSection.items;
   const projectImages = [
     "/assets/project-villa.jpg",
@@ -49,15 +50,54 @@ export default function OurProjects() {
     <>
       <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} useFooterLogo={true} lightTheme={true} />
       <main className="our-projects-page">
-        <PageHeader 
-          kicker={t.ourProjects}
-          breadcrumbs={<>{t.home} &nbsp;&#9656;&nbsp; <strong>{t.ourProjects}</strong></>}
-          title={t.explorePortfolio}
-        />
-        
-        <div className="our-projects-hero-image">
-          <Image src="/assets/project-office.jpg" alt="Projects Hero" fill sizes="100vw" priority style={{ objectFit: 'cover' }} />
-        </div>
+        {/* Hero */}
+        <section className="shell slp-hero">
+          <div className="slp-hero__copy">
+            <Reveal>
+              <p className="slp-crumbs">
+                {t.home} &nbsp;&#9656;&nbsp; <strong>{t.ourProjects}</strong>
+              </p>
+              <span className="slp-chip">
+                <i aria-hidden="true" />
+                {t.ourProjects}
+              </span>
+              <h1 className="slp-hero__title">{t.explorePortfolio}</h1>
+              <p className="slp-hero__lead">{ui.intro}</p>
+              <p className="slp-hero__lead slp-hero__lead--sub">{ui.intro2}</p>
+            </Reveal>
+            <Reveal delay={120} className="cp-hero__actions">
+              <a className="slp-btn slp-btn--solid" href={`https://wa.me/971524621919?text=${encodeURIComponent(ui.whatsappMessage)}`} target="_blank" rel="noopener noreferrer">
+                {dict.nav.startProject} <ArrowUpRight size={15} />
+              </a>
+              <a className="slp-btn" href="#projects-grid">
+                {ui.browse} <ArrowUpRight size={15} />
+              </a>
+            </Reveal>
+          </div>
+          <Reveal className="slp-mosaic" delay={100}>
+            <div className="slp-mosaic__main">
+              <Image src="/assets/project-office.jpg" alt={t.explorePortfolio} fill sizes="(max-width: 980px) 100vw, 55vw" style={{ objectFit: "cover" }} priority />
+            </div>
+            <div className="slp-mosaic__small">
+              <Image src="/assets/project-villa.jpg" alt="" fill sizes="(max-width: 980px) 50vw, 22vw" style={{ objectFit: "cover" }} />
+            </div>
+            <div className="slp-mosaic__small">
+              <Image src="/assets/hero-penthouse.jpg" alt="" fill sizes="(max-width: 980px) 50vw, 22vw" style={{ objectFit: "cover" }} />
+            </div>
+          </Reveal>
+        </section>
+
+        {/* Proof stats band */}
+        <section className="slp-band" aria-label={ui.statsLabel}>
+          <Reveal className="shell slp-band__grid">
+            {dict.studioSection.facts.map((f, i) => (
+              <div className="slp-band__stat" key={i}>
+                <strong>{f.strong}</strong>
+                <span>{f.span}</span>
+              </div>
+            ))}
+          </Reveal>
+        </section>
 
         {/* Intro Section */}
         <section className="shell our-projects-intro section">
@@ -90,7 +130,7 @@ export default function OurProjects() {
         </section>
 
         {/* Project Grid */}
-        <section className="shell projects-grid-section">
+        <section className="shell projects-grid-section" id="projects-grid">
           <div className="projects-grid">
             {filteredProjects.length > 0 ? (
               filteredProjects.map((p, i) => (

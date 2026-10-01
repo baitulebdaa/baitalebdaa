@@ -3,7 +3,8 @@
 import Image from "next/image";
 import { useState } from "react";
 import { useI18n } from "./i18n/I18nProvider";
-import { Header, Footer, Reveal, PageHeader, FaqSplit } from "./components/Shared";
+import { ArrowUpRight } from "lucide-react";
+import { Header, Footer, Reveal, FaqSplit } from "./components/Shared";
 import { services as seoServices } from "./lib/seo-pages";
 import { pricingGroups } from "./data/pricing";
 import { formatPrice, PRICING_GROUP_BY_SERVICE } from "./lib/pricing";
@@ -100,6 +101,7 @@ export default function OurServices() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const t = dict.ourServicesPage;
+  const ui = dict.servicesPageLayout;
   const faq = dict.faqSection;
   
   return (
@@ -107,27 +109,57 @@ export default function OurServices() {
       <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} useFooterLogo={true} lightTheme={true} />
       
       <main className="services-page">
-        <PageHeader 
-          kicker={t.navTitle}
-          breadcrumbs={<>{dict.ourProjectsPage.home} &nbsp;&#9656;&nbsp; <strong>{t.navTitle}</strong></>}
-          title={t.pageTitle}
-        />
-
-        {/* Hero Section */}
-        <section className="services-hero-section">
-          <Reveal className="services-hero-wrapper" delay={100}>
-            <Image 
-              src="/assets/hero-penthouse.jpg" 
-              alt="Services Hero" 
-              fill 
-              sizes="100vw" 
-              style={{ objectFit: 'cover' }} 
-              priority
-            />
+        {/* Hero */}
+        <section className="shell slp-hero">
+          <div className="slp-hero__copy">
+            <Reveal>
+              <p className="slp-crumbs">
+                {dict.ourProjectsPage.home} &nbsp;&#9656;&nbsp; <strong>{t.navTitle}</strong>
+              </p>
+              <span className="slp-chip">
+                <i aria-hidden="true" />
+                {t.whatWeOffer}
+              </span>
+              <h1 className="slp-hero__title">{t.pageTitle}</h1>
+              <p className="slp-hero__lead">{t.offeringsSubtitle}</p>
+              <p className="slp-hero__lead slp-hero__lead--sub">{ui.intro2}</p>
+            </Reveal>
+            <Reveal delay={120} className="cp-hero__actions">
+              <a className="slp-btn slp-btn--solid" href={`https://wa.me/971524621919?text=${encodeURIComponent(ui.whatsappMessage)}`} target="_blank" rel="noopener noreferrer">
+                {dict.nav.startProject} <ArrowUpRight size={15} />
+              </a>
+              <a className="slp-btn" href="#all-services">
+                {ui.browse} <ArrowUpRight size={15} />
+              </a>
+            </Reveal>
+          </div>
+          <Reveal className="slp-mosaic" delay={100}>
+            <div className="slp-mosaic__main">
+              <Image src="/assets/hero-penthouse.jpg" alt={t.pageTitle} fill sizes="(max-width: 980px) 100vw, 55vw" style={{ objectFit: "cover" }} priority />
+            </div>
+            <div className="slp-mosaic__small">
+              <Image src="/assets/joinery-factory.jpg" alt="" fill sizes="(max-width: 980px) 50vw, 22vw" style={{ objectFit: "cover" }} />
+            </div>
+            <div className="slp-mosaic__small">
+              <Image src="/assets/project-office.jpg" alt="" fill sizes="(max-width: 980px) 50vw, 22vw" style={{ objectFit: "cover" }} />
+            </div>
           </Reveal>
         </section>
+
+        {/* Proof stats band */}
+        <section className="slp-band" aria-label={ui.statsLabel}>
+          <Reveal className="shell slp-band__grid">
+            {dict.studioSection.facts.map((f, i) => (
+              <div className="slp-band__stat" key={i}>
+                <strong>{f.strong}</strong>
+                <span>{f.span}</span>
+              </div>
+            ))}
+          </Reveal>
+        </section>
+
         {/* Services Grid */}
-        <section className="shell services-offerings-section">
+        <section className="shell services-offerings-section" id="all-services">
           <Reveal delay={100}>
             <div className="offerings-header-wrapper">
               <div className="offerings-kicker">

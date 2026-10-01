@@ -15,8 +15,9 @@ const LOCATION_MULTIPLIER = [1, 1.05]; // Dubai, Abu Dhabi
 // ctaHref stays for the other instances (pricing page, service+location pages) that
 // link out to a real /contact page or WhatsApp instead.
 export function Estimator({ compact = false, defaultLocationIndex = 0, ctaHref = "#contact", onBookSurvey }) {
-  const { dict } = useI18n();
+  const { lang, dict } = useI18n();
   const t = dict.estimatorSection;
+  const unit = lang === "ar" ? "قدم²" : "sqft";
 
   const [size, setSize] = useState(3500);
   const [scope, setScope] = useState(0);
@@ -42,7 +43,7 @@ export function Estimator({ compact = false, defaultLocationIndex = 0, ctaHref =
             <div className="estimator-control-group">
               <div className="estimator-label-row">
                 <label>{t.propertySize}</label>
-                <div className="estimator-value-badge">{size.toLocaleString()} sqft</div>
+                <div className="estimator-value-badge">{size.toLocaleString()} {unit}</div>
               </div>
               <input
                 type="range"
@@ -56,8 +57,8 @@ export function Estimator({ compact = false, defaultLocationIndex = 0, ctaHref =
                 style={{ background: `linear-gradient(to right, #000 ${sizeFillPos}, rgba(0,0,0,.12) ${sizeFillPos})` }}
               />
               <div className="estimator-slider-ticks">
-                <span>500 sqft</span>
-                <span>15,000 sqft</span>
+                <span>500 {unit}</span>
+                <span>15,000 {unit}</span>
               </div>
             </div>
 
