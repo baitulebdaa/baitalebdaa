@@ -37,6 +37,9 @@ import {
   Calendar as IsxCalendar,
   Whatsapp as IsxWhatsapp,
   Paperclip2,
+  Home2,
+  Category,
+  Building3,
 } from "iconsax-reactjs";
 import { useI18n } from "../i18n/I18nProvider";
 
@@ -73,6 +76,9 @@ export const Clock = wrap(IsxClock);
 export const Calendar = wrap(IsxCalendar);
 export const Whatsapp = wrap(IsxWhatsapp, { variant: "Bold" });
 export const Paperclip = wrap(Paperclip2);
+export const Home = wrap(Home2);
+export const Services = wrap(Category);
+export const Projects = wrap(Building3);
 
 export function ArrowUpRight({ size = 24, style, ...props }) {
   let rtl = false;

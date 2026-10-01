@@ -5360,3 +5360,58 @@ button.estimator-submit-btn {
 .sector-section + .projects {
   padding-top: clamp(48px, 5vw, 80px);
 }
+
+/* ==========================================================================
+   Mobile bottom navigation (rendered by Header in components/Shared.jsx)
+   ========================================================================== */
+.mobile-bottom-nav {
+  display: none;
+}
+
+@media (max-width: 980px) {
+  .mobile-bottom-nav {
+    position: fixed;
+    inset-inline: 0;
+    bottom: 0;
+    z-index: 58;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 6px 8px calc(6px + env(safe-area-inset-bottom));
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--line);
+    box-shadow: 0 -10px 30px -18px rgba(17, 17, 15, 0.35);
+  }
+
+  .mobile-bottom-nav a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    padding: 6px 4px;
+    border-radius: 12px;
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: var(--muted);
+    transition: color 0.2s, background 0.2s;
+  }
+
+  .mobile-bottom-nav a.is-active {
+    color: var(--ink);
+    background: #f1ede5;
+    font-weight: 700;
+  }
+
+  /* Reserve room so content, the footer and floating buttons clear the bar */
+  body {
+    padding-bottom: calc(66px + env(safe-area-inset-bottom));
+  }
+
+  .ask-ai-root {
+    bottom: calc(78px + env(safe-area-inset-bottom));
+  }
+
+  .slp-sticky-sidebar {
+    bottom: calc(90px + env(safe-area-inset-bottom));
+  }
+}

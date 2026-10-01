@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { ArrowUp, ArrowUpRight, ChevronDown, Plus, Menu, X, Globe, Sparkles, Facebook, Instagram, Linkedin, Youtube, Whatsapp } from "./icons";
+import { ArrowUp, ArrowUpRight, ChevronDown, Plus, Menu, X, Globe, Sparkles, Facebook, Instagram, Linkedin, Youtube, Whatsapp, Home, Services, Projects, Phone } from "./icons";
 import { useI18n } from "../i18n/I18nProvider";
 import { useRouter, usePathname } from "next/navigation";
 import { getService } from "../lib/seo-pages";
@@ -232,6 +232,19 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
         </div>
       </div>
     </div>
+    <nav className="mobile-bottom-nav" aria-label={lang === "ar" ? "التنقل السريع" : "Quick navigation"}>
+      {[
+        { key: "home", Icon: Home, label: dict.menuItems[0], href: lang === "en" ? "/" : `/${lang}`, active: pathname === "/" || pathname === `/${lang}` },
+        { key: "services", Icon: Services, label: dict.menuItems[1], href: `/${lang}/our-services`, active: pathname.includes("/our-services") },
+        { key: "projects", Icon: Projects, label: dict.menuItems[2], href: `/${lang}/our-projects`, active: pathname.includes("/our-projects") },
+        { key: "contact", Icon: Phone, label: dict.menuItems[5], href: `/${lang}/contact`, active: pathname.includes("/contact") },
+      ].map(({ key, Icon, label, href, active }) => (
+        <a key={key} href={href} className={active ? "is-active" : ""} aria-current={active ? "page" : undefined}>
+          <Icon size={22} variant={active ? "Bold" : "Linear"} aria-hidden="true" />
+          <span>{label}</span>
+        </a>
+      ))}
+    </nav>
   </>;
 }
 
