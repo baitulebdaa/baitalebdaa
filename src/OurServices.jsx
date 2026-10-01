@@ -2,10 +2,11 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { ArrowUpRight } from "lucide-react";
 import { useI18n } from "./i18n/I18nProvider";
 import { Header, Footer, Reveal, PageHeader, FaqSplit } from "./components/Shared";
 import { services as seoServices } from "./lib/seo-pages";
+import { pricingGroups } from "./data/pricing";
+import { formatPrice, PRICING_GROUP_BY_SERVICE } from "./lib/pricing";
 
 const SERVICE_IMAGES = {
   "interior-design": "/assets/hero-penthouse.jpg",
@@ -47,6 +48,52 @@ const SERVICE_DESCS = {
   "kitchen-renovation":           { en: "Full kitchen remodel & upgrades",                    ar: "إعادة تجديد وترقية المطابخ بالكامل" },
   "furniture-maintenance-care":   { en: "Aftercare, repair & hardware servicing",             ar: "صيانة وإصلاح وخدمة ما بعد التسليم" },
 };
+
+// Small round material/finish thumbnails shown beside each tile title. Picked
+// deterministically per tile so the set is stable across renders.
+const SWATCH_POOL = [
+  "/assets/curtains-1.jpeg",
+  "/assets/curtains-2.jpeg",
+  "/assets/bed-2.jpeg",
+  "/assets/dressing-unit-2.jpeg",
+  "/assets/tv-unit-1.jpeg",
+  "/assets/dining-table.jpeg",
+  "/assets/cabinet-joinery.jpeg",
+];
+
+function swatchesFor(index) {
+  return [0, 1, 2].map((n) => SWATCH_POOL[(index * 2 + n * 3) % SWATCH_POOL.length]);
+}
+
+// First numeric published price of the service's pricing group, as a "From AED …" line.
+function startingPrice(slug, lang) {
+  const group = pricingGroups.find((g) => g.id === (PRICING_GROUP_BY_SERVICE[slug] || "design"));
+  const item = group?.items.find((i) => i.priceType === "from" || i.priceType === "range");
+  return item ? formatPrice({ ...item, priceType: "from" }, lang) : null;
+}
+
+function ServiceTile({ href, image, name, desc, price, swatches, sizes, delay }) {
+  return (
+    <Reveal as="a" href={href} className="service-tile" delay={delay}>
+      <div className="service-tile__image">
+        <Image src={image} alt={name} fill sizes={sizes} style={{ objectFit: "cover" }} />
+      </div>
+      <div className="service-tile__body">
+        <div className="service-tile__text">
+          <h3 className="service-tile__title">{name}</h3>
+          <p className="service-tile__meta">{price || desc}</p>
+        </div>
+        <div className="service-tile__swatches" aria-hidden="true">
+          {swatches.map((src, n) => (
+            <span key={n}>
+              <Image src={src} alt="" fill sizes="40px" style={{ objectFit: "cover" }} />
+            </span>
+          ))}
+        </div>
+      </div>
+    </Reveal>
+  );
+}
 
 export default function OurServices() {
   const { lang, dict } = useI18n();
@@ -93,38 +140,28 @@ export default function OurServices() {
           </Reveal>
 
           <div className="services-grid-visual">
-            {seoServices.map((service, i) => {
-              const desc = SERVICE_DESCS[service.slug];
-              return (
-                <Reveal as="a" key={service.slug} href={`/${lang}/${service.slug}/uae`} className="service-grid-card" delay={60 + (i % 4) * 50}>
-                  <Image src={SERVICE_IMAGES[service.slug] || "/assets/hero-penthouse.jpg"} alt={lang === "ar" ? service.ar : service.en} fill sizes="(max-width: 700px) 100vw, (max-width: 980px) 50vw, 25vw" style={{ objectFit: 'cover' }} />
-                  <div className="service-grid-card__overlay" />
-                  <div className="service-grid-card__content">
-                    <div>
-                      <span className="service-grid-card__title">{lang === "ar" ? service.ar : service.en}</span>
-                      {desc && <p className="service-grid-card__desc">{lang === "ar" ? desc.ar : desc.en}</p>}
-                    </div>
-                    <ArrowUpRight size={18} />
-                  </div>
-                </Reveal>
-              );
-            })}
-            {(() => {
-              const desc = SERVICE_DESCS["furniture-maintenance-care"];
-              return (
-                <Reveal as="a" href={`/${lang}/furniture-maintenance-care`} className="service-grid-card" delay={60 + (seoServices.length % 4) * 50}>
-                  <Image src="/assets/cabinet-joinery.jpeg" alt={dict.furnitureMaintenancePage.navTitle} fill sizes="(max-width: 700px) 100vw, (max-width: 980px) 50vw, 25vw" style={{ objectFit: 'cover' }} />
-                  <div className="service-grid-card__overlay" />
-                  <div className="service-grid-card__content">
-                    <div>
-                      <span className="service-grid-card__title">{dict.furnitureMaintenancePage.navTitle}</span>
-                      {desc && <p className="service-grid-card__desc">{lang === "ar" ? desc.ar : desc.en}</p>}
-                    </div>
-                    <ArrowUpRight size={18} />
-                  </div>
-                </Reveal>
-              );
-            })()}
+            {seoServices.map((service, i) => (
+              <ServiceTile
+                key={service.slug}
+                href={`/${lang}/${service.slug}/uae`}
+                image={SERVICE_IMAGES[service.slug] || "/assets/hero-penthouse.jpg"}
+                name={lang === "ar" ? service.ar : service.en}
+                desc={lang === "ar" ? SERVICE_DESCS[service.slug]?.ar : SERVICE_DESCS[service.slug]?.en}
+                price={startingPrice(service.slug, lang)}
+                swatches={swatchesFor(i)}
+                sizes="(max-width: 700px) 50vw, (max-width: 980px) 33vw, 25vw"
+                delay={60 + (i % 4) * 50}
+              />
+            ))}
+            <ServiceTile
+              href={`/${lang}/furniture-maintenance-care`}
+              image="/assets/cabinet-joinery.jpeg"
+              name={dict.furnitureMaintenancePage.navTitle}
+              desc={lang === "ar" ? SERVICE_DESCS["furniture-maintenance-care"].ar : SERVICE_DESCS["furniture-maintenance-care"].en}
+              swatches={swatchesFor(seoServices.length)}
+              sizes="(max-width: 700px) 50vw, (max-width: 980px) 33vw, 25vw"
+              delay={60 + (seoServices.length % 4) * 50}
+            />
           </div>
         </section>
 

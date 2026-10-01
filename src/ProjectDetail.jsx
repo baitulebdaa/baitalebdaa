@@ -4,8 +4,10 @@ import Image from "next/image";
 import { useState } from "react";
 import { Facebook, Instagram, Linkedin, Youtube, ArrowLeft, ArrowRight, ArrowUpRight, Check } from "lucide-react";
 import { useI18n } from "./i18n/I18nProvider";
-import { Header, Footer, Reveal, PageHeader } from "./components/Shared";
+import { Header, Footer, Reveal, PageHeader, ProcessTimeline } from "./components/Shared";
 import { QuoteModal } from "./components/QuoteModal";
+
+const SITE_URL = "https://www.baitalebdaa.com";
 
 export default function ProjectDetail({ slug }) {
   const { lang, dict } = useI18n();
@@ -14,9 +16,12 @@ export default function ProjectDetail({ slug }) {
   const [quoteOpen, setQuoteOpen] = useState(false);
 
   const t = dict.projectDetailPage;
+  const ui = t.ui;
   // Use government-authority as fallback if slug not found
-  const projectData = t.projects[slug] || t.projects['government-authority'];
+  const resolvedSlug = t.projects[slug] ? slug : "government-authority";
+  const projectData = t.projects[resolvedSlug];
   const images = projectData.images;
+  const paragraphs = projectData.description.split("\n\n");
 
   const waMessage = encodeURIComponent(
     lang === "ar"
@@ -25,20 +30,43 @@ export default function ProjectDetail({ slug }) {
   );
   const waHref = `https://wa.me/971524621919?text=${waMessage}`;
 
-  // Simple carousel logic
+  // Other projects that have their own detail page, shown as cards at the foot.
+  const otherProjects = dict.projectsSection.items
+    .filter((item) => item.slug && item.slug !== resolvedSlug && t.projects[item.slug])
+    .slice(0, 3)
+    .map((item) => ({ ...item, image: t.projects[item.slug].images[0] }));
+
+  const facts = [
+    { label: t.labels.location, value: projectData.metadata.location },
+    { label: t.labels.sector, value: projectData.metadata.sector },
+    { label: t.labels.size, value: projectData.metadata.size },
+    { label: t.labels.year, value: projectData.metadata.year },
+    { label: t.labels.service, value: projectData.metadata.service },
+  ];
+
   const nextImage = () => setCurrentImageIndex((prev) => (prev + 1) % images.length);
   const prevImage = () => setCurrentImageIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
-
   const progressPercentage = ((currentImageIndex + 1) / images.length) * 100;
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: dict.ourProjectsPage.home, item: lang === "en" ? SITE_URL : `${SITE_URL}/ar` },
+      { "@type": "ListItem", position: 2, name: dict.ourProjectsPage.ourProjects, item: `${SITE_URL}/${lang}/our-projects` },
+      { "@type": "ListItem", position: 3, name: projectData.title, item: `${SITE_URL}/${lang}/our-projects/${resolvedSlug}` },
+    ],
+  };
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} useFooterLogo={true} lightTheme={true} />
-      
+
       <main className="project-detail-page">
-        <PageHeader 
+        <PageHeader
           kicker={t.projectOverview}
-          breadcrumbs={<>{dict.ourProjectsPage.home} &nbsp;&#9656;&nbsp; {t.projectOverview} &nbsp;&#9656;&nbsp; <strong>{projectData.title.length > 30 ? projectData.title.substring(0, 30) + '...' : projectData.title}</strong></>}
+          breadcrumbs={<>{dict.ourProjectsPage.home} &nbsp;&#9656;&nbsp; <a href={`/${lang}/our-projects`}>{t.projectOverview}</a> &nbsp;&#9656;&nbsp; <strong>{projectData.title.length > 30 ? projectData.title.substring(0, 30) + "..." : projectData.title}</strong></>}
           title={projectData.title}
         >
           <div className="project-social">
@@ -53,20 +81,20 @@ export default function ProjectDetail({ slug }) {
         </PageHeader>
 
         {/* Hero Carousel */}
-        <section className="project-hero-carousel">
+        <section className="project-hero-carousel" aria-roledescription="carousel" aria-label={projectData.title}>
           {images.length > 0 && (
             <>
               <div className="carousel-image-container">
-                <Image 
-                  src={images[currentImageIndex]} 
-                  alt={`${projectData.title} image ${currentImageIndex + 1}`} 
-                  fill 
-                  sizes="100vw" 
-                  priority 
-                  style={{ objectFit: 'cover' }} 
+                <Image
+                  src={images[currentImageIndex]}
+                  alt={`${projectData.title} — ${ui.photo} ${currentImageIndex + 1}`}
+                  fill
+                  sizes="(max-width: 980px) 100vw, 1600px"
+                  priority
+                  style={{ objectFit: "cover" }}
                 />
               </div>
-              
+
               <div className="carousel-controls shell">
                 <div className="carousel-progress">
                   <span className="carousel-counter">{currentImageIndex + 1}/{images.length}</span>
@@ -75,102 +103,149 @@ export default function ProjectDetail({ slug }) {
                   </div>
                 </div>
                 <div className="carousel-arrows">
-                  <button onClick={prevImage} aria-label="Previous Image" className="arrow-btn"><ArrowLeft size={24} /></button>
-                  <button onClick={nextImage} aria-label="Next Image" className="arrow-btn"><ArrowRight size={24} /></button>
+                  <button type="button" onClick={prevImage} aria-label={ui.previous} className="arrow-btn"><ArrowLeft size={24} /></button>
+                  <button type="button" onClick={nextImage} aria-label={ui.next} className="arrow-btn"><ArrowRight size={24} /></button>
                 </div>
               </div>
             </>
           )}
         </section>
 
-        {/* Info Grid */}
-        <section className="shell project-info-grid section">
-          <Reveal className="project-description">
-            {projectData.description.split('\n\n').map((paragraph, index) => (
-              <p key={index}>{paragraph}</p>
+        {/* Thumbnails */}
+        {images.length > 1 && (
+          <div className="shell pd-thumbs" role="group" aria-label={ui.gallery}>
+            {images.map((src, i) => (
+              <button
+                key={src}
+                type="button"
+                className={i === currentImageIndex ? "is-active" : ""}
+                onClick={() => setCurrentImageIndex(i)}
+                aria-label={`${ui.photo} ${i + 1}`}
+                aria-current={i === currentImageIndex ? "true" : undefined}
+              >
+                <Image src={src} alt="" fill sizes="120px" style={{ objectFit: "cover" }} />
+              </button>
             ))}
-          </Reveal>
-          
-          <Reveal className="project-metadata-grid" delay={200}>
-            <div className="metadata-item">
-              <span className="metadata-label">{t.labels.location}</span>
-              <div className="metadata-line"></div>
-              <span className="metadata-value">{projectData.metadata.location}</span>
-            </div>
-            <div className="metadata-item">
-              <span className="metadata-label">{t.labels.sector}</span>
-              <div className="metadata-line"></div>
-              <span className="metadata-value">{projectData.metadata.sector}</span>
-            </div>
-            <div className="metadata-item">
-              <span className="metadata-label">{t.labels.size}</span>
-              <div className="metadata-line"></div>
-              <span className="metadata-value">{projectData.metadata.size}</span>
-            </div>
-            <div className="metadata-item">
-              <span className="metadata-label">{t.labels.year}</span>
-              <div className="metadata-line"></div>
-              <span className="metadata-value">{projectData.metadata.year}</span>
-            </div>
-            <div className="metadata-item service-item">
-              <span className="metadata-label">{t.labels.service}</span>
-              <div className="metadata-line"></div>
-              <span className="metadata-value">{projectData.metadata.service}</span>
-            </div>
+          </div>
+        )}
+
+        {/* Key facts */}
+        <section className="pd-facts" aria-label={ui.keyFacts}>
+          <Reveal className="shell pd-facts__grid">
+            {facts.map((f) => (
+              <div className="pd-facts__item" key={f.label}>
+                <span>{f.label}</span>
+                <strong>{f.value}</strong>
+              </div>
+            ))}
           </Reveal>
         </section>
 
-        {/* Scope of work */}
-        {projectData.scope?.length > 0 && (
-          <section className="shell slp-included-section">
+        {/* About + scope */}
+        <section className="shell slp-scope pd-overview">
+          <div className="slp-scope__aside">
             <Reveal>
-              <div className="offerings-header-wrapper">
-                <div className="offerings-kicker">
-                  <span>{t.labels.scope}</span>
-                  <div className="kicker-underline"></div>
-                </div>
-              </div>
-            </Reveal>
-            <div className="included-grid">
-              {projectData.scope.map((item, i) => (
-                <Reveal className="included-item" key={i} delay={80 + i * 60}>
-                  <Check size={18} className="included-check" />
-                  <span>{item}</span>
-                </Reveal>
+              <p className="micro">{t.projectOverview}</p>
+              <h2 className="slp-h2">{ui.overview}</h2>
+              {paragraphs.map((paragraph, index) => (
+                <p className="slp-scope__text pd-overview__para" key={index}>{paragraph}</p>
               ))}
+            </Reveal>
+          </div>
+
+          {projectData.scope?.length > 0 && (
+            <div className="slp-scope__list">
+              <Reveal>
+                <h3 className="slp-scope__label">{t.labels.scope}</h3>
+              </Reveal>
+              <ol>
+                {projectData.scope.map((item, i) => (
+                  <Reveal as="li" className="slp-scope__row" key={i} delay={60 + i * 50}>
+                    <span className="slp-scope__num">{String(i + 1).padStart(2, "0")}</span>
+                    <span className="slp-scope__item">{item}</span>
+                    <Check size={18} className="slp-scope__check" />
+                  </Reveal>
+                ))}
+              </ol>
+            </div>
+          )}
+        </section>
+
+        {/* Services behind this project */}
+        {projectData.related?.length > 0 && (
+          <section className="pd-services">
+            <div className="shell">
+              <Reveal>
+                <p className="micro">{t.labels.relatedServices}</p>
+                <h2 className="slp-h2">{ui.servicesBehind}</h2>
+              </Reveal>
+              <div className="pd-services__grid">
+                {projectData.related.map((link, i) => (
+                  <Reveal as="a" className="pd-services__card" href={link.href} key={link.href} delay={80 + i * 60}>
+                    <span>{String(i + 1).padStart(2, "0")}</span>
+                    <strong>{link.label}</strong>
+                    <ArrowUpRight size={20} aria-hidden="true" />
+                  </Reveal>
+                ))}
+              </div>
             </div>
           </section>
         )}
+
+        {/* How we deliver (the studio's standard four-stage process) */}
+        <section className="section process-timeline-section pd-process">
+          <div className="shell">
+            <ProcessTimeline
+              kicker={dict.processSection.micro}
+              title={dict.processSection.title}
+              items={dict.processSection.items}
+              headingClassName="process__heading"
+              titleStyle={{ whiteSpace: "pre-wrap" }}
+            />
+          </div>
+        </section>
 
         {/* CTA */}
         <section className="shell slp-cta-section">
           <Reveal className="slp-cta-card">
             <h2>{lang === "ar" ? "أعجبك هذا المشروع؟ لنبدأ مشروعك" : "Like what you see? Let's start your project"}</h2>
-            <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", justifyContent: "center" }}>
-              <a className="outline-button header-cta" href={waHref} target="_blank" rel="noopener noreferrer">
+            <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
+              <a className="slp-btn slp-btn--light" href={waHref} target="_blank" rel="noopener noreferrer">
                 {dict.nav.startProject} <ArrowUpRight size={15} />
               </a>
-              <button type="button" className="outline-button header-cta" onClick={() => setQuoteOpen(true)}>
+              <button type="button" className="slp-btn slp-btn--light" onClick={() => setQuoteOpen(true)}>
                 {dict.nav.getFreeQuote} <ArrowUpRight size={15} />
               </button>
             </div>
           </Reveal>
         </section>
 
-        {/* Related services (contextual links to the matching service pages) */}
-        {projectData.related?.length > 0 && (
-          <section className="shell slp-links-section">
-            <Reveal className="slp-links-block">
-              <h3>{t.labels.relatedServices}</h3>
-              <div className="slp-links-pills">
-                {projectData.related.map((link) => (
-                  <a key={link.href} href={link.href}>{link.label}</a>
-                ))}
+        {/* More projects */}
+        {otherProjects.length > 0 && (
+          <section className="shell pd-more">
+            <Reveal className="pd-more__head">
+              <div>
+                <p className="micro">{dict.ourProjectsPage.ourProjects}</p>
+                <h2 className="slp-h2">{ui.moreProjects}</h2>
               </div>
+              <a href={`/${lang}/our-projects`} className="slp-btn">
+                {ui.viewAll} <ArrowUpRight size={15} />
+              </a>
             </Reveal>
+            <div className="pd-more__grid">
+              {otherProjects.map((item, i) => (
+                <Reveal as="a" className="pd-more__card" href={`/${lang}/our-projects/${item.slug}`} key={item.slug} delay={80 + i * 60}>
+                  <div className="pd-more__image">
+                    <Image src={item.image} alt={item.title} fill sizes="(max-width: 700px) 100vw, 33vw" style={{ objectFit: "cover" }} />
+                  </div>
+                  <h3>{item.title}</h3>
+                  <p>{item.place}</p>
+                  <span>{ui.viewProject} <ArrowUpRight size={14} /></span>
+                </Reveal>
+              ))}
+            </div>
           </section>
         )}
-
       </main>
       <Footer />
       <QuoteModal open={quoteOpen} onClose={() => setQuoteOpen(false)} />

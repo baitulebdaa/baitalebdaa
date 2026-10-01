@@ -16,6 +16,8 @@ export const dictionaries = {
       phoneLabel: "UAE",
       getFreeQuote: "Get Free Quote",
       media: "Media",
+      projectGroups: { featured: "Featured Projects", services: "Services Behind Them" },
+      viewAllProjects: "View all projects",
       serviceGroups: {
         interiorDesign: "Interior Design",
         fitOut: "Fit-Out",
@@ -26,7 +28,7 @@ export const dictionaries = {
     menuItems: ["Home", "Services", "Projects", "Process", "Pricing", "Contact"],
     hero: {
       slides: [
-        { eyebrow: "Dubai · Abu Dhabi", title: "UAE Turnkey Fit-out & Custom Architectural Joinery", body: "From first sketch to final handover, we design, approve and manufacture singular spaces for modern Gulf living." },
+        { eyebrow: "Dubai · Abu Dhabi", title: "UAE Turnkey Fit-out & Custom Architectural Joinery", body: "Made to measure in our own workshop and installed across the UAE. Upholstery, wallpaper, gypsum ceilings and full fit-outs too." },
         { eyebrow: "Workplace", title: "Executive Workplaces Designed with Quiet Authority & Flow", body: "High-performing workplaces shaped around your people, brand and commercial priorities." },
         { eyebrow: "Private residences", title: "Luxury Private Villas Resolved to the Last Detail", body: "Architecture, bespoke joinery and intelligent furnishing brought together by one accountable team." }
       ],
@@ -102,6 +104,23 @@ export const dictionaries = {
         ["Turnkey Fit-out", "End-to-end delivery of luxury interiors. We manage the MEP, civil works, and finishes so you can focus on your business."],
         ["FF&E Procurement", "Global sourcing networks that bring you exclusive materials and furnishings without the typical supply chain delays."]
       ]
+    },
+    priceExplorerSection: {
+      kicker: "Price Guide",
+      title: "See What Your Project Starts At",
+      subtitle: "Pick a service to see its published starting price, what the range covers and a rough budget for your quantity.",
+      startingFrom: "Starting from",
+      includedLabel: "In this price range",
+      dependsLabel: "Price depends on",
+      roughBudget: "Rough starting budget",
+      entryNote: "At the entry specification; your quote follows measurement.",
+      fewer: "Fewer",
+      more: "More",
+      cta: "Get an exact quote",
+      fullPricing: "See full pricing",
+      whatsappMessage: "Hello! I'd like an exact quote for {service}.",
+      units: { window: "per window", linearMetre: "per linear metre", sqft: "per sq ft" },
+      quantityLabels: { window: "Number of windows", linearMetre: "Linear metres", sqft: "Area (sq ft)", default: "Quantity" },
     },
     estimatorSection: {
       kicker: "Instant Cost Estimator",
@@ -322,6 +341,11 @@ export const dictionaries = {
       pageTitle: "Let's Talk About Your Project",
       metaTitle: "Contact Us | Bait Al Ebdaa",
       metaDescription: "Get in touch with Bait Al Ebdaa for interior design, turnkey fit-out and joinery projects across the UAE — request a quote, discuss procurement, or apply for a role."
+    },
+    pricingPageLayout: {
+      startingFrom: "Starting from",
+      noticeTitle: "How to read these prices",
+      navLabel: "Price categories",
     },
     pricingPage: {
       navTitle: "Pricing",
@@ -559,6 +583,18 @@ export const dictionaries = {
       }
     },
     projectDetailPage: {
+      ui: {
+        overview: "About this project",
+        keyFacts: "Project at a glance",
+        gallery: "Project gallery",
+        photo: "Photo",
+        previous: "Previous image",
+        next: "Next image",
+        servicesBehind: "Services behind this project",
+        moreProjects: "More projects",
+        viewProject: "View project",
+        viewAll: "View all projects"
+      },
       projectOverview: "Project Overview",
       stayConnected: "Stay Connected",
       labels: {
@@ -871,6 +907,81 @@ export const dictionaries = {
 <p>Contact <a href="/en/contact">Bait Al Ebdaa</a> today to discuss your vision for a luxury interior space, or use our <a href="/en/pricing">cost estimator</a> to get an indicative starting figure before your site survey.</p>`
       },
       articles: [
+        {
+          title: "Motorized Curtains in Dubai: A Practical Buyer's Guide to Somfy Automation",
+          slug: "motorized-curtains-somfy-dubai-guide",
+          link: "/en/media/motorized-curtains-somfy-dubai-guide",
+          description: "How motorized curtains work, what a Somfy package typically includes, how fabric choice affects price, and what to check before ordering for your Dubai villa or apartment.",
+          image: "/assets/somfy-curtains.jpg",
+          date: "October 1, 2026",
+          author: "Bait Al Ebdaa Design Team",
+          content: `<p><strong>Motorized curtains</strong> have moved from a luxury extra to a standard request in Dubai villas and apartments. Floor-to-ceiling glazing, strong afternoon sun and heavy air-conditioning use all make window treatments that open and close at the touch of a button genuinely useful, not just impressive. This guide explains how automation works, what you are paying for, and what to settle before you order.</p>
+
+<h2>Why Motorized Curtains Make Sense in the UAE</h2>
+<p>Large windows and balcony doors are common in UAE homes, and the curtains that cover them are often wide, tall and heavy. Drawing them by hand every morning and evening is a chore, and in practice many households leave them half-open, which defeats their purpose. Motorization solves three everyday problems:</p>
+<ul>
+<li style='margin-bottom: 10px;'><strong>Heat and glare control.</strong> Closing blackout or layered curtains at the hottest part of the day reduces solar gain and protects flooring, furniture and artwork from fading.</li>
+<li style='margin-bottom: 10px;'><strong>Convenience on large spans.</strong> A wide living room window or a double-height wall is difficult to operate manually. A motor does it smoothly and evenly.</li>
+<li style='margin-bottom: 10px;'><strong>Privacy and routine.</strong> Schedules and scenes let curtains open with the morning and close at sunset without anyone touching them.</li>
+</ul>
+
+<h2>How a Motorized Curtain System Works</h2>
+<p>A motorized system has four main parts that need to be specified together, which is why the supplier matters as much as the product:</p>
+<h3>The Motor</h3>
+<p>A quiet electric motor sits inside or at the end of the track and pulls the curtain along it. <strong>Somfy</strong> is one of the most widely recognised motor brands worldwide, and choosing a genuine branded motor matters because it determines noise level, lifting capacity and long-term reliability.</p>
+<h3>The Track</h3>
+<p>Motorized tracks are built to carry the motor and the weight of the fabric. A standard manual rail is not a substitute: the track and motor must be matched to the width and weight of the curtain.</p>
+<h3>The Controls</h3>
+<p>Control can be as simple as a wall switch or handheld remote, or as connected as a smart hub that links to a phone app and to wider smart-home scenes.</p>
+<h3>The Power Supply</h3>
+<p>Every motor needs a power point at the window. In a new build this can be planned in advance; in an existing home it may require concealed wiring, which is worth confirming at the survey stage.</p>
+
+<h2>What a Somfy Package Typically Includes</h2>
+<p>At Bait Al Ebdaa, a Somfy motorized curtain package can include a genuine Somfy motor, a compatible motorized track, a selected fabric range, professional installation, initial programming and applicable written product and workmanship warranty. Smart hub and app integration, and additional remotes or channels, are priced as add-ons.</p>
+
+<h2>Choosing Fabric: Sheer, Blackout or Layered</h2>
+<p>The motor is only half the decision. The fabric you choose changes both the look of the room and the price.</p>
+<ul>
+<li style='margin-bottom: 10px;'><strong>Sheer:</strong> Light and airy, softening daylight while keeping the view. Best for living areas where you want brightness with a little privacy.</li>
+<li style='margin-bottom: 10px;'><strong>Blackout:</strong> Blocks light and reduces heat. The usual choice for bedrooms and media rooms.</li>
+<li style='margin-bottom: 10px;'><strong>Layered:</strong> A sheer and a blackout panel on separate tracks, giving flexibility through the day. This is the most versatile option and also the highest in cost.</li>
+</ul>
+<p>Heavier fabrics place more load on the motor, so fabric and motor should always be confirmed together rather than chosen separately.</p>
+
+<h2>Wave Fold or Pinch Pleat?</h2>
+<p>Heading style affects the silhouette. Pinch pleat gives a classic, tailored fold, while wave fold produces a clean, continuous ripple that suits contemporary interiors. Both can be motorized, and both are priced slightly differently, as the starting prices below show.</p>
+
+<h2>Starting Prices for Manual and Somfy Curtains</h2>
+<p>Our published starting prices are for a standard window of up to approximately 2m × 3m. They are entry prices; final pricing depends on exact dimensions, fabric and finish.</p>
+<ul>
+<li style='margin-bottom: 10px;'><strong>Manual pinch-pleat sheer:</strong> from AED 650</li>
+<li style='margin-bottom: 10px;'><strong>Manual wave sheer:</strong> from AED 750</li>
+<li style='margin-bottom: 10px;'><strong>Manual pinch-pleat blackout:</strong> from AED 850</li>
+<li style='margin-bottom: 10px;'><strong>Somfy motorized sheer:</strong> from AED 1,850</li>
+<li style='margin-bottom: 10px;'><strong>Somfy motorized blackout:</strong> from AED 2,100</li>
+<li style='margin-bottom: 10px;'><strong>Somfy motorized layered:</strong> from AED 3,500</li>
+<li style='margin-bottom: 10px;'><strong>Somfy smart hub / app integration:</strong> from AED 750 additional</li>
+</ul>
+<p>Prices exclude 5% VAT. Electrical points, concealed wiring, premium fabrics, specialist access and advanced smart-home integration are quoted separately. See our full <a href="/en/pricing">pricing page</a> for the complete list.</p>
+
+<h2>What to Settle Before You Order</h2>
+<ul>
+<li style='margin-bottom: 10px;'><strong>Power at the window.</strong> Confirm where the motor will be powered and whether wiring can be concealed.</li>
+<li style='margin-bottom: 10px;'><strong>Ceiling or wall fixing.</strong> Check the fixing surface and whether a pelmet or recess is needed to hide the track.</li>
+<li style='margin-bottom: 10px;'><strong>Control preference.</strong> Decide between remote only, wall switch, or app and smart-home control, because it affects the hardware.</li>
+<li style='margin-bottom: 10px;'><strong>Fabric and motor match.</strong> Ask the supplier to confirm the motor is rated for the weight of the chosen fabric and width.</li>
+<li style='margin-bottom: 10px;'><strong>Warranty and aftercare.</strong> Ask what is covered, for how long, and who services the motor if it needs attention.</li>
+</ul>
+
+<h2>How the Process Works With Us</h2>
+<p>We start with a measurement visit, where we confirm dimensions, power points and fixing surfaces. You then choose fabric, heading style and controls, we confirm the specification in writing, and our team manufactures and installs the curtains, then programs the motors and walks you through using them. If you are planning curtains as part of a larger project, they can be coordinated with joinery and lighting through our <a href="/en/process">design and delivery process</a>.</p>
+
+<h2>Looking After Motorized Curtains</h2>
+<p>Dust and sunlight are the main enemies of any curtain. Vacuum fabric gently, keep tracks free of obstruction, and avoid pulling curtains by hand when the motor is engaged. For care of other furniture and fittings in the UAE climate, read our guide to <a href="/en/furniture-maintenance-care">furniture maintenance and care</a>.</p>
+
+<h3>Ready to start your project?</h3>
+<p>Contact <a href="/en/contact">Bait Al Ebdaa</a> to book a free measurement visit, or use the price guide on our <a href="/en">homepage</a> to see a rough starting budget for your windows.</p>`
+        },
         {
           title: "The Impact of Bespoke Joinery on Modern UAE Homes",
           slug: "bespoke-architectural-joinery-uae",
@@ -1293,6 +1404,8 @@ export const dictionaries = {
       phoneLabel: "الإمارات",
       getFreeQuote: "احصل على عرض سعر مجاني",
       media: "الإعلام",
+      projectGroups: { featured: "مشاريع مختارة", services: "الخدمات وراءها" },
+      viewAllProjects: "عرض جميع المشاريع",
       serviceGroups: {
         interiorDesign: "التصميم الداخلي",
         fitOut: "التجهيز الشامل",
@@ -1303,7 +1416,7 @@ export const dictionaries = {
     menuItems: ["الرئيسية", "الخدمات", "المشاريع", "العملية", "الأسعار", "اتصل بنا"],
     hero: {
       slides: [
-        { eyebrow: "دبي · أبوظبي", title: "تجهيز متكامل ونجارة معمارية مخصصة في الإمارات", body: "من المخطط الأول إلى التسليم النهائي، نقوم بتصميم واعتماد وتصنيع مساحات فريدة للحياة الخليجية الحديثة." },
+        { eyebrow: "دبي · أبوظبي", title: "تجهيز متكامل ونجارة معمارية مخصصة في الإمارات", body: "مصنوعة حسب الطلب في ورشتنا الخاصة ويتم تركيبها في جميع أنحاء الإمارات. بالإضافة إلى التنجيد، ورق الجدران، أسقف الجبس، والتجهيزات الكاملة." },
         { eyebrow: "مساحات العمل", title: "مساحات عمل تنفيذية مصممة بهيبة هادئة وتدفق سلس", body: "مساحات عمل عالية الأداء مصممة حول موظفيك وعلامتك التجارية وأولوياتك التجارية." },
         { eyebrow: "مساكن خاصة", title: "فلل خاصة فاخرة مصممة بأدق التفاصيل المعمارية المميزة", body: "هندسة معمارية ونجارة مخصصة وأثاث ذكي يجمعها فريق واحد مسؤول." }
       ],
@@ -1385,6 +1498,23 @@ export const dictionaries = {
         ["اعتمد", "حزم تقنية، تنسيق مع بلدية دبي وشهادات عدم الممانعة.", "مع الجهات المختصة"],
         ["اصنع", "إنتاج النجارة، التجهيز، التركيب وتسليم مدروس.", "في مصنعنا بعجمان"]
       ]
+    },
+    priceExplorerSection: {
+      kicker: "دليل الأسعار",
+      title: "اعرف من أين يبدأ سعر مشروعك",
+      subtitle: "اختر خدمة لتعرف سعرها الابتدائي المعلن، وما يشمله هذا النطاق، وميزانية تقريبية حسب الكمية.",
+      startingFrom: "يبدأ من",
+      includedLabel: "ضمن هذا النطاق السعري",
+      dependsLabel: "يعتمد السعر على",
+      roughBudget: "ميزانية ابتدائية تقريبية",
+      entryNote: "بالمواصفات الأساسية؛ ويصدر عرض السعر بعد المعاينة والقياس.",
+      fewer: "أقل",
+      more: "أكثر",
+      cta: "احصل على عرض سعر دقيق",
+      fullPricing: "عرض جميع الأسعار",
+      whatsappMessage: "مرحباً! أرغب بالحصول على عرض سعر دقيق لخدمة {service}.",
+      units: { window: "للنافذة", linearMetre: "للمتر الطولي", sqft: "للقدم المربع" },
+      quantityLabels: { window: "عدد النوافذ", linearMetre: "الأمتار الطولية", sqft: "المساحة (قدم مربع)", default: "الكمية" },
     },
     estimatorSection: {
       kicker: "حاسبة التكلفة الفورية",
@@ -1595,6 +1725,11 @@ export const dictionaries = {
       pageTitle: "لنتحدث عن مشروعك",
       metaTitle: "اتصل بنا | بيت الإبداع",
       metaDescription: "تواصل مع بيت الإبداع لخدمات التصميم الداخلي والتشطيبات الكاملة والنجارة في جميع أنحاء الإمارات — اطلب عرض سعر، أو ناقش التوريد، أو تقدم لوظيفة."
+    },
+    pricingPageLayout: {
+      startingFrom: "يبدأ من",
+      noticeTitle: "كيف تقرأ هذه الأسعار",
+      navLabel: "فئات الأسعار",
     },
     pricingPage: {
       navTitle: "الأسعار",
@@ -1832,6 +1967,18 @@ export const dictionaries = {
       }
     },
     projectDetailPage: {
+      ui: {
+        overview: "عن هذا المشروع",
+        keyFacts: "المشروع في لمحة",
+        gallery: "معرض صور المشروع",
+        photo: "صورة",
+        previous: "الصورة السابقة",
+        next: "الصورة التالية",
+        servicesBehind: "الخدمات وراء هذا المشروع",
+        moreProjects: "مشاريع أخرى",
+        viewProject: "عرض المشروع",
+        viewAll: "عرض جميع المشاريع"
+      },
       projectOverview: "نظرة عامة على المشروع",
       stayConnected: "ابق على تواصل",
       labels: {
@@ -2147,6 +2294,81 @@ export const dictionaries = {
 <p>تواصل مع <a href="/ar/contact">بيت الإبداع</a> اليوم لمناقشة رؤيتك لمساحة داخلية فاخرة، أو استخدم <a href="/ar/pricing">حاسبة التكلفة</a> للحصول على رقم أولي استرشادي قبل معاينة موقعك.</p>`
       },
       articles: [
+        {
+          title: "الستائر الكهربائية في دبي: دليل عملي لاختيار أنظمة سومفي",
+          slug: "motorized-curtains-somfy-dubai-guide",
+          link: "/ar/media/motorized-curtains-somfy-dubai-guide",
+          image: "/assets/somfy-curtains.jpg",
+          date: "١ أكتوبر ٢٠٢٦",
+          author: "فريق التصميم في بيت الإبداع",
+          description: "كيف تعمل الستائر الكهربائية، وماذا تشمل باقة سومفي عادةً، وكيف يؤثر اختيار القماش في السعر، وما يجب التأكد منه قبل الطلب لفيلتك أو شقتك في دبي.",
+          content: `<p>انتقلت <strong>الستائر الكهربائية</strong> من كونها إضافة فاخرة إلى طلب شائع في الفلل والشقق في دبي. فالنوافذ الزجاجية الكبيرة وأشعة الشمس القوية بعد الظهر والاستخدام المكثف للتكييف تجعل الستائر التي تُفتح وتُغلق بضغطة زر مفيدة فعلاً وليست مجرد لمسة مبهرة. يشرح هذا الدليل كيف تعمل الأتمتة، وما الذي تدفع مقابله، وما يجب حسمه قبل الطلب.</p>
+
+<h2>لماذا تناسب الستائر الكهربائية أجواء الإمارات</h2>
+<p>النوافذ الكبيرة وأبواب الشرفات شائعة في المنازل الإماراتية، والستائر التي تغطيها غالباً عريضة وطويلة وثقيلة. وسحبها يدوياً كل صباح ومساء أمر مرهق، وفي الواقع يترك كثير من الأسر الستائر مفتوحة جزئياً مما يُفقدها فائدتها. وتحل الستائر الكهربائية ثلاث مشكلات يومية:</p>
+<ul>
+<li style='margin-bottom: 10px;'><strong>التحكم بالحرارة والوهج.</strong> إغلاق الستائر المعتمة أو متعددة الطبقات في أشد ساعات النهار حرارة يقلل الحرارة الداخلة ويحمي الأرضيات والأثاث واللوحات من البهتان.</li>
+<li style='margin-bottom: 10px;'><strong>الراحة مع المساحات الكبيرة.</strong> يصعب تشغيل نافذة عريضة أو جدار بارتفاع مزدوج يدوياً، أما المحرك فيؤدي المهمة بسلاسة وانتظام.</li>
+<li style='margin-bottom: 10px;'><strong>الخصوصية والروتين.</strong> تتيح الجداول والمشاهد المبرمجة فتح الستائر مع الصباح وإغلاقها عند الغروب دون لمسها.</li>
+</ul>
+
+<h2>كيف يعمل نظام الستائر الكهربائية</h2>
+<p>يتكون النظام من أربعة أجزاء رئيسية يجب تحديدها معاً، ولهذا فإن اختيار المورّد لا يقل أهمية عن اختيار المنتج:</p>
+<h3>المحرك</h3>
+<p>محرك كهربائي هادئ يوضع داخل المسار أو في طرفه ويسحب الستارة على امتداده. تُعد <strong>سومفي</strong> من أشهر علامات المحركات عالمياً، واختيار محرك أصلي يحدد مستوى الضجيج وقدرة التحميل والاعتمادية على المدى الطويل.</p>
+<h3>المسار</h3>
+<p>تُصمم المسارات الكهربائية لتحمل المحرك ووزن القماش. ولا يصلح المسار اليدوي العادي بديلاً، إذ يجب أن يتوافق المسار والمحرك مع عرض الستارة ووزنها.</p>
+<h3>أدوات التحكم</h3>
+<p>قد يكون التحكم بسيطاً عبر مفتاح جداري أو جهاز تحكم عن بعد، أو متقدماً عبر وحدة ذكية تربط النظام بتطبيق الهاتف ومشاهد المنزل الذكي.</p>
+<h3>مصدر الطاقة</h3>
+<p>يحتاج كل محرك إلى نقطة كهرباء عند النافذة. في المباني الجديدة يمكن التخطيط لها مسبقاً، أما في المنازل القائمة فقد يتطلب الأمر تمديدات مخفية، ويُفضّل التأكد من ذلك أثناء المعاينة.</p>
+
+<h2>ماذا تشمل باقة سومفي عادةً</h2>
+<p>في بيت الإبداع، يمكن أن تشمل باقة الستائر الكهربائية من سومفي محرك سومفي أصلياً ومساراً كهربائياً متوافقاً ومجموعة أقمشة مختارة وتركيباً احترافياً وبرمجة أولية وضماناً مكتوباً للمنتج والتنفيذ عند انطباقه. أما الوحدة الذكية والتطبيق وأجهزة التحكم أو القنوات الإضافية فتُسعَّر كإضافات.</p>
+
+<h2>اختيار القماش: شفاف أم معتم أم متعدد الطبقات</h2>
+<p>المحرك نصف القرار فقط، أما القماش فيغيّر مظهر الغرفة والسعر معاً.</p>
+<ul>
+<li style='margin-bottom: 10px;'><strong>شفاف:</strong> خفيف ويلطّف ضوء النهار مع الحفاظ على الإطلالة. مناسب لمساحات المعيشة التي تريد فيها إضاءة مع قدر من الخصوصية.</li>
+<li style='margin-bottom: 10px;'><strong>معتم (بلاك اوت):</strong> يحجب الضوء ويقلل الحرارة. الخيار المعتاد لغرف النوم وغرف الوسائط.</li>
+<li style='margin-bottom: 10px;'><strong>متعدد الطبقات:</strong> طبقة شفافة وأخرى معتمة على مسارين منفصلين لمرونة على مدار اليوم. وهو الأكثر تنوعاً والأعلى تكلفة.</li>
+</ul>
+<p>الأقمشة الأثقل تضع حملاً أكبر على المحرك، لذا يجب تأكيد القماش والمحرك معاً لا كلاً على حدة.</p>
+
+<h2>طيات الموجة أم الطيات المضغوطة؟</h2>
+<p>يؤثر شكل الرأس في هيئة الستارة. تمنح الطيات المضغوطة (Pinch pleat) طية كلاسيكية مفصّلة، بينما ينتج نمط الموجة (Wave) تموجاً متصلاً نظيفاً يناسب التصاميم العصرية. ويمكن تحويل كليهما إلى كهربائي، ويختلف سعرهما قليلاً كما توضح الأسعار الابتدائية أدناه.</p>
+
+<h2>الأسعار الابتدائية للستائر اليدوية وستائر سومفي</h2>
+<p>أسعارنا المعلنة لنافذة قياسية بحدود ٢م × ٣م تقريباً. وهي أسعار ابتدائية؛ ويعتمد السعر النهائي على الأبعاد الدقيقة والقماش والتشطيب.</p>
+<ul>
+<li style='margin-bottom: 10px;'><strong>شفاف مطوي يدوي:</strong> يبدأ من ٦٥٠ درهماً</li>
+<li style='margin-bottom: 10px;'><strong>شفاف موجي يدوي:</strong> يبدأ من ٧٥٠ درهماً</li>
+<li style='margin-bottom: 10px;'><strong>بلاك اوت مطوي يدوي:</strong> يبدأ من ٨٥٠ درهماً</li>
+<li style='margin-bottom: 10px;'><strong>شفاف كهربائي سومفي:</strong> يبدأ من ١٬٨٥٠ درهماً</li>
+<li style='margin-bottom: 10px;'><strong>بلاك اوت كهربائي سومفي:</strong> يبدأ من ٢٬١٠٠ درهم</li>
+<li style='margin-bottom: 10px;'><strong>متعدد الطبقات كهربائي سومفي:</strong> يبدأ من ٣٬٥٠٠ درهم</li>
+<li style='margin-bottom: 10px;'><strong>وحدة سومفي الذكية / التطبيق:</strong> يبدأ من ٧٥٠ درهماً إضافية</li>
+</ul>
+<p>الأسعار لا تشمل ضريبة القيمة المضافة ٥٪. أما النقاط الكهربائية والتمديدات المخفية والأقمشة المميزة والوصول المتخصص وتكامل المنزل الذكي المتقدم فتُسعَّر بشكل منفصل. راجع <a href="/ar/pricing">صفحة الأسعار</a> للاطلاع على القائمة الكاملة.</p>
+
+<h2>ما يجب حسمه قبل الطلب</h2>
+<ul>
+<li style='margin-bottom: 10px;'><strong>الكهرباء عند النافذة.</strong> تأكد من مكان تغذية المحرك وإمكانية إخفاء التمديدات.</li>
+<li style='margin-bottom: 10px;'><strong>التثبيت في السقف أو الجدار.</strong> افحص سطح التثبيت وهل تحتاج إلى براويز أو تجويف لإخفاء المسار.</li>
+<li style='margin-bottom: 10px;'><strong>طريقة التحكم.</strong> حدد بين جهاز تحكم فقط أو مفتاح جداري أو تطبيق ومنزل ذكي، لأن ذلك يؤثر في المعدات.</li>
+<li style='margin-bottom: 10px;'><strong>توافق القماش والمحرك.</strong> اطلب من المورّد تأكيد أن المحرك مناسب لوزن القماش المختار وعرضه.</li>
+<li style='margin-bottom: 10px;'><strong>الضمان وما بعد البيع.</strong> اسأل عمّا يغطيه الضمان ومدته ومن يتولى صيانة المحرك عند الحاجة.</li>
+</ul>
+
+<h2>كيف نعمل معك</h2>
+<p>نبدأ بزيارة قياس نؤكد خلالها الأبعاد ونقاط الكهرباء وأسطح التثبيت. بعدها تختار القماش ونمط الرأس وأدوات التحكم، ونؤكد المواصفات كتابياً، ثم يصنّع فريقنا الستائر ويركّبها ويبرمج المحركات ويشرح لك طريقة الاستخدام. وإذا كانت الستائر جزءاً من مشروع أكبر، فيمكن تنسيقها مع النجارة والإضاءة عبر <a href="/ar/process">مراحل التصميم والتنفيذ</a> لدينا.</p>
+
+<h2>العناية بالستائر الكهربائية</h2>
+<p>الغبار وأشعة الشمس هما العدوان الرئيسيان لأي ستارة. نظّف القماش بلطف بالمكنسة، وأبقِ المسارات خالية من العوائق، وتجنب سحب الستائر يدوياً أثناء تشغيل المحرك. وللعناية بباقي الأثاث والتجهيزات في مناخ الإمارات اطلع على دليلنا عن <a href="/ar/furniture-maintenance-care">صيانة الأثاث والعناية به</a>.</p>
+
+<h3>هل أنت مستعد لبدء مشروعك؟</h3>
+<p>تواصل مع <a href="/ar/contact">بيت الإبداع</a> لحجز زيارة قياس مجانية، أو استخدم دليل الأسعار في <a href="/ar">الصفحة الرئيسية</a> لمعرفة ميزانية ابتدائية تقريبية لنوافذك.</p>`
+        },
         { 
           title: "تأثير النجارة المعمارية المخصصة على المنازل الحديثة في الإمارات", 
           slug: "bespoke-architectural-joinery-uae",

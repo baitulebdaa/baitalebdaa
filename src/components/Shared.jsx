@@ -45,19 +45,24 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
   const [scrolled, setScrolled] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const servicesRef = useRef(null);
+  const [projectsOpen, setProjectsOpen] = useState(false);
+  const projectsRef = useRef(null);
   useEffect(() => { const onScroll = () => setScrolled(window.scrollY > 40); onScroll(); window.addEventListener("scroll", onScroll, { passive: true }); return () => window.removeEventListener("scroll", onScroll); }, []);
   useEffect(() => { document.body.style.overflow = menuOpen ? "hidden" : ""; return () => { document.body.style.overflow = ""; }; }, [menuOpen]);
 
-  // Services dropdown: closes on outside click and on Escape, in addition to
-  // the hover/click handlers on the trigger itself below.
+  // Services and Projects dropdowns: close on outside click and on Escape, in
+  // addition to the hover/click handlers on the triggers themselves below.
   useEffect(() => {
-    if (!servicesOpen) return;
-    const onPointer = (event) => { if (servicesRef.current && !servicesRef.current.contains(event.target)) setServicesOpen(false); };
-    const onKey = (event) => { if (event.key === "Escape") setServicesOpen(false); };
+    if (!servicesOpen && !projectsOpen) return;
+    const onPointer = (event) => {
+      if (servicesRef.current && !servicesRef.current.contains(event.target)) setServicesOpen(false);
+      if (projectsRef.current && !projectsRef.current.contains(event.target)) setProjectsOpen(false);
+    };
+    const onKey = (event) => { if (event.key === "Escape") { setServicesOpen(false); setProjectsOpen(false); } };
     document.addEventListener("mousedown", onPointer);
     document.addEventListener("keydown", onKey);
     return () => { document.removeEventListener("mousedown", onPointer); document.removeEventListener("keydown", onKey); };
-  }, [servicesOpen]);
+  }, [servicesOpen, projectsOpen]);
 
   // Swaps only the /en//ar segment so switching language keeps you on the equivalent
   // page (e.g. /en/interior-design/dubai-marina -> /ar/interior-design/dubai-marina)
@@ -81,22 +86,68 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
     <header className={`site-header ${scrolled || menuOpen || alwaysSolid ? "site-header--solid" : ""} ${lightTheme ? "site-header--light-theme" : ""}`}>
       <Brand light={!menuOpen && !useFooterLogo && !alwaysSolid && !lightTheme} priority customSrc={useFooterLogo ? "/assets/footer logo.png" : null} />
       <nav className="header-links" aria-label="Primary navigation">
-        <a href={`/${lang}/our-projects`}>{dict.nav.projects} <ArrowUpRight size={14} /></a>
+        <div
+          className="header-nav-dropdown"
+          ref={projectsRef}
+          onMouseEnter={() => setProjectsOpen(true)}
+          onMouseLeave={() => setProjectsOpen(false)}
+        >
+          <a
+            href={`/${lang}/our-projects`}
+            className="header-nav-dropdown__trigger"
+            aria-expanded={projectsOpen}
+            aria-controls="header-projects-panel"
+            onClick={() => setProjectsOpen(false)}
+          >
+            {dict.nav.projects} <ChevronDown size={14} className={projectsOpen ? "is-open" : ""} />
+          </a>
+          <div id="header-projects-panel" className={`header-nav-panel header-nav-panel--projects ${projectsOpen ? "is-open" : ""}`}>
+            <div className="header-nav-panel__columns">
+              <div className="header-nav-panel__col">
+                <p className="header-nav-panel__heading">{dict.nav.projectGroups.featured}</p>
+                <ul>
+                  {dict.projectsSection.items.filter((item) => item.slug).map((item) => (
+                    <li key={item.slug}>
+                      <a href={`/${lang}/our-projects/${item.slug}`} onClick={() => setProjectsOpen(false)}>{item.title}</a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="header-nav-panel__col">
+                <p className="header-nav-panel__heading">{dict.nav.projectGroups.services}</p>
+                <ul>
+                  {["residential-interior-design", "commercial-interior-design", "villa-renovation", "office-fit-out", "joinery"].map((slug) => {
+                    const service = getService(slug);
+                    if (!service) return null;
+                    return (
+                      <li key={slug}>
+                        <a href={`/${lang}/${slug}/uae`} onClick={() => setProjectsOpen(false)}>{lang === "ar" ? service.ar : service.en}</a>
+                      </li>
+                    );
+                  })}
+                </ul>
+                <a href={`/${lang}/our-projects`} onClick={() => setProjectsOpen(false)} className="header-nav-panel__all">
+                  {dict.nav.viewAllProjects} <ArrowUpRight size={13} />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
         <div
           className="header-nav-dropdown"
           ref={servicesRef}
           onMouseEnter={() => setServicesOpen(true)}
           onMouseLeave={() => setServicesOpen(false)}
         >
-          <button
-            type="button"
+          <a
+            href={`/${lang}/our-services`}
             className="header-nav-dropdown__trigger"
             aria-expanded={servicesOpen}
             aria-controls="header-services-panel"
-            onClick={() => setServicesOpen((open) => !open)}
+            onClick={() => setServicesOpen(false)}
           >
             {dict.nav.services} <ChevronDown size={14} className={servicesOpen ? "is-open" : ""} />
-          </button>
+          </a>
           <div id="header-services-panel" className={`header-nav-panel ${servicesOpen ? "is-open" : ""}`}>
             <div className="header-nav-panel__columns">
               {SERVICE_MENU_GROUPS.map((group) => (

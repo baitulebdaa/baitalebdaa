@@ -1,86 +1,123 @@
 "use client";
 
-import { useState } from "react";
-import { ArrowUpRight, Check } from "lucide-react";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { ArrowUpRight, Check, Info } from "lucide-react";
 import { useI18n } from "./i18n/I18nProvider";
-import { Header, Footer, Reveal, PageHeader } from "./components/Shared";
+import { Header, Footer, Reveal } from "./components/Shared";
 import { Estimator } from "./components/Estimator";
-import { pricingGroups } from "./data/pricing";
+import { pricingGroups, CURRENCY, VAT_INCLUSIVE } from "./data/pricing";
 import { formatPrice } from "./lib/pricing";
 
 // Matches the WhatsApp number already used site-wide (Hero, Header, QuoteModal).
 const WHATSAPP_NUMBER = "971524621919";
+const SITE_URL = "https://www.baitalebdaa.com";
+
+// Page order, each category's photograph, and the pricing item whose entry
+// price is shown as the badge on that photograph.
+const CATEGORIES = [
+  { id: "curtainsManual", image: "/assets/curtains-1.jpeg", headline: "curtain-pinch-sheer" },
+  { id: "curtainsSomfy", image: "/assets/somfy-curtains.jpg", headline: "somfy-sheer" },
+  { id: "joineryWardrobes", image: "/assets/dressing-unit-1.jpeg", headline: "wardrobe-laminate" },
+  { id: "joineryMedia", image: "/assets/tv-unit-1.jpeg", headline: "media-basic" },
+  { id: "joineryKitchens", image: "/assets/tv-unit-3.jpeg", headline: "kitchen-laminate" },
+  { id: "design", image: "/assets/cad-render.jpg", headline: "design-single-room" },
+  { id: "villa", image: "/assets/project-villa.jpg", headline: "villa-standard" },
+  { id: "office", image: "/assets/project-office.jpg", headline: "office-essential" },
+  { id: "approvals", image: "/assets/hero-penthouse.jpg", headline: "approval-noc" },
+];
+
+const HERO_IMAGES = ["/assets/hero-penthouse.jpg", "/assets/curtains-2.jpeg", "/assets/dressing-unit-3.jpeg"];
+
+const fmt = new Intl.NumberFormat("en-AE");
 
 function findGroup(id) {
   return pricingGroups.find((group) => group.id === id);
 }
 
-function PricingTable({ headers, groupId, itemLabels, lang }) {
+// Structured data: one Offer per published numeric price, with the minimum
+// stated as minPrice and the VAT basis declared, so search engines read the
+// "from" prices as starting prices rather than fixed ones.
+function buildSchema(t) {
+  const offers = [];
+  CATEGORIES.forEach(({ id }) => {
+    findGroup(id).items.forEach((item) => {
+      if (item.priceType !== "from" && item.priceType !== "range") return;
+      offers.push({
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: t.items[item.id] },
+        priceSpecification: {
+          "@type": "PriceSpecification",
+          priceCurrency: CURRENCY,
+          minPrice: item.min,
+          ...(item.max ? { maxPrice: item.max } : {}),
+          valueAddedTaxIncluded: VAT_INCLUSIVE,
+        },
+        seller: { "@type": "Organization", name: "Bait Al Ebdaa", url: SITE_URL },
+      });
+    });
+  });
+  return {
+    "@context": "https://schema.org",
+    "@type": "OfferCatalog",
+    name: t.pageTitle,
+    itemListElement: offers,
+  };
+}
+
+function PriceTable({ headers, groupId, itemLabels, caption, lang }) {
   const group = findGroup(groupId);
   return (
-    <Reveal className="pricing-table-wrap" delay={100}>
-      <table className="pricing-table">
-        <thead>
-          <tr>
-            <th>{headers.product}</th>
-            <th>{headers.price}</th>
+    <table className="pp-table">
+      <caption className="sr-only">{caption}</caption>
+      <thead>
+        <tr>
+          <th scope="col">{headers.product}</th>
+          <th scope="col">{headers.price}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {group.items.map((item) => (
+          <tr key={item.id}>
+            <th scope="row">{itemLabels[item.id]}</th>
+            <td>{formatPrice(item, lang)}</td>
           </tr>
-        </thead>
-        <tbody>
-          {group.items.map((item) => (
-            <tr key={item.id}>
-              <td>{itemLabels[item.id]}</td>
-              <td>{formatPrice(item, lang)}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </Reveal>
+        ))}
+      </tbody>
+    </table>
   );
 }
 
-function ChecklistGrid({ items }) {
+function Category({ cfg, index, lang, t, extra }) {
+  const g = t.groups[cfg.id];
+  const headline = findGroup(cfg.id).items.find((i) => i.id === cfg.headline);
+  const headingId = `pp-${cfg.id}-title`;
   return (
-    <div className="included-grid">
-      {items.map((item, i) => (
-        <Reveal className="included-item" key={i} delay={80 + i * 60}>
-          <Check size={18} className="included-check" />
-          <span>{item}</span>
-        </Reveal>
-      ))}
-    </div>
-  );
-}
-
-// CTAs carry the selected service through to the Contact page as a query
-// param, which ContactForm reads to preselect + submit + include on WhatsApp.
-function CategoryCta({ lang, label, service }) {
-  return (
-    <Reveal className="pricing-category-cta" delay={120}>
-      <a
-        href={`/${lang}/contact?service=${encodeURIComponent(service)}`}
-        className="outline-button outline-button--dark"
-      >
-        {label} <ArrowUpRight size={16} />
-      </a>
-    </Reveal>
-  );
-}
-
-function PricingCategory({ id, lang, t }) {
-  const g = t.groups[id];
-  return (
-    <section className="pricing-section">
-      <div className="shell">
-        <Reveal className="pricing-card" delay={80}>
-          <div className="pricing-category-heading">
-            <span className="pricing-kicker">{g.kicker}</span>
-            <h2 className="pricing-category-title">{g.title}</h2>
-            <p className="pricing-category-subtitle">{g.subtitle}</p>
+    <section id={cfg.id} className={`pp-category${index % 2 ? " pp-category--flip" : ""}`} aria-labelledby={headingId}>
+      <div className="shell pp-category__grid">
+        <Reveal className="pp-category__media">
+          <div className="pp-category__image">
+            <Image src={cfg.image} alt={g.title} fill sizes="(max-width: 980px) 100vw, 38vw" style={{ objectFit: "cover" }} />
+            <div className="pp-category__badge">
+              <span>{extra.startingFrom}</span>
+              <strong>
+                {CURRENCY} {fmt.format(headline.min)}
+              </strong>
+            </div>
           </div>
-          <PricingTable headers={t.tableHeaders} groupId={id} itemLabels={t.items} lang={lang} />
-          {g.note && <p className="pricing-note">{g.note}</p>}
-          <CategoryCta lang={lang} label={g.cta} service={g.title} />
+        </Reveal>
+
+        <Reveal className="pp-category__body" delay={100}>
+          <p className="pp-category__kicker">{g.kicker}</p>
+          <h2 id={headingId} className="pp-category__title">
+            {g.title}
+          </h2>
+          <p className="pp-category__subtitle">{g.subtitle}</p>
+          <PriceTable headers={t.tableHeaders} groupId={cfg.id} itemLabels={t.items} caption={g.title} lang={lang} />
+          {g.note && <p className="pp-category__note">{g.note}</p>}
+          <a href={`/${lang}/contact?service=${encodeURIComponent(g.title)}`} className="slp-btn slp-btn--solid">
+            {g.cta} <ArrowUpRight size={15} />
+          </a>
         </Reveal>
       </div>
     </section>
@@ -90,73 +127,134 @@ function PricingCategory({ id, lang, t }) {
 export default function PricingPage() {
   const { lang, dict } = useI18n();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeId, setActiveId] = useState(CATEGORIES[0].id);
   const t = dict.pricingPage;
+  const extra = dict.pricingPageLayout;
 
   const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(t.whatsappMessage)}`;
 
+  // Highlights the jump-nav chip for the category currently in view.
+  useEffect(() => {
+    const sections = CATEGORIES.map(({ id }) => document.getElementById(id)).filter(Boolean);
+    if (!sections.length || typeof IntersectionObserver === "undefined") return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveId(entry.target.id);
+        });
+      },
+      { rootMargin: "-30% 0px -60% 0px" }
+    );
+    sections.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(buildSchema(t)) }} />
       <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} useFooterLogo={true} lightTheme={true} />
-      <main className="services-page">
-        <PageHeader
-          kicker={t.navTitle}
-          breadcrumbs={<>{dict.ourProjectsPage.home} &nbsp;&#9656;&nbsp; <strong>{t.navTitle}</strong></>}
-          title={t.pageTitle}
-        >
-          <Reveal className="pricing-hero-support" delay={100}>
-            <p className="pricing-hero-body">{t.heroBody}</p>
-            <div className="pricing-hero-ctas">
-              <a href="#estimate" className="outline-button outline-button--dark">
-                {t.heroPrimaryCta} <ArrowUpRight size={16} />
-              </a>
-              <a href={waHref} target="_blank" rel="noopener noreferrer" className="outline-button outline-button--dark">
-                {t.heroSecondaryCta} <ArrowUpRight size={16} />
-              </a>
-            </div>
-            <p className="pricing-hero-trust">{t.heroTrust}</p>
-          </Reveal>
-        </PageHeader>
 
-        {/* Global pricing disclaimer — visible on the page, not hidden behind legal terms */}
-        <section className="pricing-section pricing-section--tight">
-          <div className="shell">
-            <p className="pricing-note pricing-note--global">{t.globalDisclaimer}</p>
+      <main className="services-page pp-page">
+        {/* Hero */}
+        <section className="shell slp-hero pp-hero">
+          <div className="slp-hero__copy">
+            <Reveal>
+              <p className="slp-crumbs">
+                {dict.ourProjectsPage.home} &nbsp;&#9656;&nbsp; <strong>{t.navTitle}</strong>
+              </p>
+              <span className="slp-chip">
+                <i aria-hidden="true" />
+                {t.navTitle}
+              </span>
+              <h1 className="slp-hero__title">{t.pageTitle}</h1>
+              <p className="slp-hero__lead">{t.heroBody}</p>
+            </Reveal>
+            <Reveal delay={120} className="slp-hero__foot pp-hero__foot">
+              <div className="slp-hero__actions">
+                <a href="#estimate" className="slp-btn slp-btn--solid">
+                  {t.heroPrimaryCta} <ArrowUpRight size={15} />
+                </a>
+                <a href={waHref} target="_blank" rel="noopener noreferrer" className="slp-btn">
+                  {t.heroSecondaryCta} <ArrowUpRight size={15} />
+                </a>
+              </div>
+              <p className="pp-hero__trust">{t.heroTrust}</p>
+            </Reveal>
           </div>
+
+          <Reveal className="slp-mosaic" delay={100}>
+            <div className="slp-mosaic__main">
+              <Image src={HERO_IMAGES[0]} alt={t.pageTitle} fill sizes="(max-width: 980px) 100vw, 55vw" style={{ objectFit: "cover" }} priority />
+            </div>
+            {HERO_IMAGES.slice(1).map((src) => (
+              <div className="slp-mosaic__small" key={src}>
+                <Image src={src} alt="" fill sizes="(max-width: 980px) 50vw, 22vw" style={{ objectFit: "cover" }} />
+              </div>
+            ))}
+          </Reveal>
         </section>
 
-        {/* Existing homepage cost estimator, reused here in compact mode */}
-        <div id="estimate">
+        {/* Price basis notice — visible on the page, not hidden behind legal terms */}
+        <section className="shell pp-notice-wrap">
+          <Reveal className="pp-notice" role="note">
+            <Info size={20} aria-hidden="true" />
+            <div>
+              <strong>{extra.noticeTitle}</strong>
+              <p>{t.globalDisclaimer}</p>
+            </div>
+          </Reveal>
+        </section>
+
+        {/* Jump navigation between price categories */}
+        <nav className="pp-nav" aria-label={extra.navLabel}>
+          <div className="shell pp-nav__inner">
+            {CATEGORIES.map(({ id }) => (
+              <a key={id} href={`#${id}`} className={activeId === id ? "is-active" : ""} aria-current={activeId === id ? "location" : undefined}>
+                {t.groups[id].title}
+              </a>
+            ))}
+          </div>
+        </nav>
+
+        {/* Categories */}
+        {CATEGORIES.slice(0, 5).map((cfg, i) => (
+          <Category key={cfg.id} cfg={cfg} index={i} lang={lang} t={t} extra={extra} />
+        ))}
+
+        {/* Joinery hardware levels, shown after the joinery categories */}
+        <section className="shell pp-hardware" aria-label={t.hardwareTitle}>
+          <Reveal className="pp-hardware__card">
+            <h2 className="pp-hardware__title">{t.hardwareTitle}</h2>
+            <ul>
+              {t.hardwareLevels.map((level, i) => (
+                <li key={i}>
+                  <Check size={16} aria-hidden="true" />
+                  <span>{level}</span>
+                </li>
+              ))}
+            </ul>
+            <p>{t.joineryDisclaimer}</p>
+          </Reveal>
+        </section>
+
+        {CATEGORIES.slice(5).map((cfg, i) => (
+          <Category key={cfg.id} cfg={cfg} index={i + 5} lang={lang} t={t} extra={extra} />
+        ))}
+
+        {/* Cost estimator */}
+        <div id="estimate" className="pp-estimate">
           <Estimator compact ctaHref={`/${lang}/contact`} />
         </div>
 
-        <PricingCategory id="curtainsManual" lang={lang} t={t} />
-        <PricingCategory id="curtainsSomfy" lang={lang} t={t} />
-
-        <PricingCategory id="joineryWardrobes" lang={lang} t={t} />
-        <PricingCategory id="joineryMedia" lang={lang} t={t} />
-        <PricingCategory id="joineryKitchens" lang={lang} t={t} />
-        <section className="pricing-section pricing-section--tight">
-          <div className="shell">
-            <Reveal className="pricing-card">
-              <p className="pricing-subheading">{t.hardwareTitle}</p>
-              <ChecklistGrid items={t.hardwareLevels} />
-              <p className="pricing-note">{t.joineryDisclaimer}</p>
-            </Reveal>
-          </div>
-        </section>
-
-        <PricingCategory id="design" lang={lang} t={t} />
-        <PricingCategory id="villa" lang={lang} t={t} />
-        <PricingCategory id="office" lang={lang} t={t} />
-        <PricingCategory id="approvals" lang={lang} t={t} />
-
         {/* Final CTA */}
-        <section className="pricing-section pricing-section--tight">
-          <Reveal className="shell pricing-callout pricing-cta" delay={100}>
-            <h3>{t.finalCta.title}</h3>
-            <p>{t.finalCta.body}</p>
-            <a href={`/${lang}/contact`} className="outline-button outline-button--light">
-              {t.finalCta.button} <ArrowUpRight size={16} />
+        <section className="shell slp-cta-section">
+          <Reveal className="slp-cta-card">
+            <div>
+              <h2>{t.finalCta.title}</h2>
+              <p className="pp-cta__body">{t.finalCta.body}</p>
+            </div>
+            <a href={`/${lang}/contact`} className="slp-btn slp-btn--light">
+              {t.finalCta.button} <ArrowUpRight size={15} />
             </a>
           </Reveal>
         </section>

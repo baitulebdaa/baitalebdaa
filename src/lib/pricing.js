@@ -32,3 +32,26 @@ export function formatPrice(item, lang = "en") {
   const extra = item.additional ? ` ${ADDITIONAL_LABEL[lang]}` : "";
   return `${FROM_LABEL[lang]} ${CURRENCY} ${numberFormatter.format(item.min)}${unit}${extra}`;
 }
+
+// Maps each service slug to the /pricing page category most relevant to it, so service
+// pages and tiles can show real indicative starting prices. Every service starts with a
+// design/consultation step, so "design" is the safe fallback.
+export const PRICING_GROUP_BY_SERVICE = {
+  "interior-design": "design",
+  "residential-interior-design": "design",
+  "office-interior-design": "office",
+  "restaurant-interior-design": "office",
+  "retail-interior-design": "office",
+  "commercial-interior-design": "office",
+  "fit-out": "villa",
+  "villa-renovation": "villa",
+  "apartment-renovation": "villa",
+  "office-fit-out": "office",
+  "office-renovation": "office",
+  "restaurant-fit-out": "office",
+  "retail-fit-out": "office",
+  joinery: "joineryWardrobes",
+  "custom-wardrobes": "joineryWardrobes",
+  "kitchen-design": "joineryKitchens",
+  "kitchen-renovation": "joineryKitchens",
+};

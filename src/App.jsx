@@ -6,6 +6,7 @@ import { ArrowLeft, ArrowRight, ArrowUpRight, Calendar, Check, Wrench } from "lu
 import { useI18n } from "./i18n/I18nProvider";
 import { Header, Footer, Reveal, FaqSplit, ProcessTimeline } from "./components/Shared";
 import { Estimator } from "./components/Estimator";
+import { PriceExplorer } from "./components/PriceExplorer";
 import { QuoteModal } from "./components/QuoteModal";
 import { ContactForm } from "./components/ContactForm";
 import { formatIndex } from "./lib/format";
@@ -111,7 +112,7 @@ function Faq() {
 function LatestNews() {
   const { dict, lang } = useI18n();
   const t = dict.mediaPage;
-  const articles = t.articles.slice(0, 3);
+  const articles = t.articles.slice(0, 4);
   return <section className="section latest-news-section" id="news"><div className="shell"><Reveal className="section-heading section-heading--center"><p className="micro">{t.newsAndInsights}</p><h2 className="section-title" style={{whiteSpace: 'pre-wrap'}}>{t.latestNewsAndInsights}</h2></Reveal><div className="media-grid" style={{ marginTop: '40px' }}>{articles.map((article, index) => <Reveal className="media-card" key={index} delay={100 + index * 100}><a href={article.link} className="media-card-link"><div className="media-image-wrapper"><Image src={article.image} alt={article.title} fill sizes="(max-width: 768px) 100vw, 33vw" style={{ objectFit: 'cover' }} /></div><div className="media-card-content"><h3>{article.title}</h3><span className="read-more">{t.readMore}</span></div></a></Reveal>)}</div><Reveal className="news-tools" delay={200} style={{ display: 'flex', justifyContent: 'center', marginTop: '40px' }}><a href={`/${lang}/media`} className="outline-button outline-button--dark">{dict.nav.media || "Media"} <ArrowUpRight size={16} /></a></Reveal></div></section>;
 }
 
@@ -121,7 +122,7 @@ export default function App() {
   const [quotePrefillSize, setQuotePrefillSize] = useState(undefined);
   return <>
     <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-    <main><Hero onGetQuote={() => setQuoteOpen(true)} /><Services /><Studio /><Factory /><Sectors /><Projects /><Process /><Estimator onBookSurvey={(size) => { setQuotePrefillSize(size); setQuoteOpen(true); }} /><Faq /><LatestNews /></main>
+    <main><Hero onGetQuote={() => setQuoteOpen(true)} /><Services /><Studio /><Factory /><Sectors /><Projects /><Process /><PriceExplorer /><Estimator onBookSurvey={(size) => { setQuotePrefillSize(size); setQuoteOpen(true); }} /><Faq /><LatestNews /></main>
     <Footer />
     <QuoteModal open={quoteOpen} onClose={() => setQuoteOpen(false)} initialSize={quotePrefillSize} />
   </>;

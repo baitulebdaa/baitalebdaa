@@ -24,7 +24,7 @@ export function Estimator({ compact = false, defaultLocationIndex = 0, ctaHref =
 
   const totalCost = size * BASE_RATE_BY_SCOPE[scope] * LOCATION_MULTIPLIER[location];
   const formattedCost = new Intl.NumberFormat('en-AE', { style: 'currency', currency: 'AED', maximumFractionDigits: 0 }).format(totalCost);
-  const sizeFillPos = sliderFillPosition(size, 500, 15000);
+  const sizeFillPos = sliderFillPosition(size, 500, 15000, 28);
 
   return (
     <section className={`section estimator-section${compact ? " estimator-section--compact" : ""}`}>
@@ -53,7 +53,7 @@ export function Estimator({ compact = false, defaultLocationIndex = 0, ctaHref =
                 onChange={(e) => setSize(Number(e.target.value))}
                 className="estimator-slider"
                 aria-label={t.propertySize}
-                style={{ background: `linear-gradient(to right, #2d2d2a ${sizeFillPos}, rgba(0,0,0,.08) ${sizeFillPos})` }}
+                style={{ background: `linear-gradient(to right, #000 ${sizeFillPos}, rgba(0,0,0,.12) ${sizeFillPos})` }}
               />
               <div className="estimator-slider-ticks">
                 <span>500 sqft</span>

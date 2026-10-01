@@ -4,37 +4,13 @@ import Image from "next/image";
 import { useState } from "react";
 import { ArrowUpRight, Check, Phone } from "lucide-react";
 import { useI18n } from "./i18n/I18nProvider";
-import { Header, Footer, Reveal, PageHeader, FaqSplit, ProcessTimeline } from "./components/Shared";
+import { Header, Footer, Reveal, FaqSplit, ProcessTimeline } from "./components/Shared";
 import { Estimator } from "./components/Estimator";
 import { serviceContent, priorityIntroExtra, whyChooseFacts } from "./data/service-content";
 import { locationContent } from "./data/location-content";
 import { getService, getLocation, getSiblingLocations, getSiblingServices, getEmirateName, getEmirateAuthority } from "./lib/seo-pages";
 import { pricingGroups } from "./data/pricing";
-import { formatPrice } from "./lib/pricing";
-
-// Maps each service slug to the /pricing page category most relevant to it, so this
-// page can show real indicative starting prices (not just the estimator's calculated
-// figure) alongside a link to the full pricing page. Falls back to "design" — every
-// service starts with a design/consultation step, so it's a safe default.
-const PRICING_GROUP_BY_SERVICE = {
-  "interior-design": "design",
-  "residential-interior-design": "design",
-  "office-interior-design": "office",
-  "restaurant-interior-design": "office",
-  "retail-interior-design": "office",
-  "commercial-interior-design": "office",
-  "fit-out": "villa",
-  "villa-renovation": "villa",
-  "apartment-renovation": "villa",
-  "office-fit-out": "office",
-  "office-renovation": "office",
-  "restaurant-fit-out": "office",
-  "retail-fit-out": "office",
-  joinery: "joineryWardrobes",
-  "custom-wardrobes": "joineryWardrobes",
-  "kitchen-design": "joineryKitchens",
-  "kitchen-renovation": "joineryKitchens",
-};
+import { formatPrice, PRICING_GROUP_BY_SERVICE } from "./lib/pricing";
 
 const HERO_IMAGE_BY_SERVICE = {
   "interior-design": "/assets/hero-penthouse.jpg",
@@ -166,7 +142,8 @@ export default function ServiceLocationPage({ lang, row }) {
   const heroPhoto = pickByLocation(gallery, row.locationSlug);
   const heroImage = heroPhoto?.src || HERO_IMAGE_BY_SERVICE[row.serviceSlug] || "/assets/hero-penthouse.jpg";
   const heroAlt = heroPhoto?.alt || row.h1;
-  const galleryPhotos = gallery.filter((photo) => photo.src !== heroImage).slice(0, 3);
+  const mosaicPhotos = gallery.filter((photo) => photo.src !== heroImage).slice(0, 2);
+  const startingItem = pricingGroup?.items?.[0];
 
   const waMessage = encodeURIComponent(
     lang === "ar"
@@ -261,45 +238,67 @@ export default function ServiceLocationPage({ lang, row }) {
       </aside>
 
       <main className="services-page slp-page">
-        <PageHeader
-          kicker={serviceName}
-          breadcrumbs={
-            <>
-              {home} &nbsp;&#9656;&nbsp;
-              <a href={`/${lang}/${row.serviceSlug}/uae`}> {serviceName} </a>
-              &nbsp;&#9656;&nbsp; <strong>{locationName}</strong>
-            </>
-          }
-          title={row.h1}
-        />
+        {/* Hero — split: copy, starting price and actions beside a photo mosaic */}
+        <section className="shell slp-hero">
+          <div className="slp-hero__copy">
+            <Reveal>
+              <p className="slp-crumbs">
+                {home} &nbsp;&#9656;&nbsp;
+                <a href={`/${lang}/${row.serviceSlug}/uae`}> {serviceName} </a>
+                &nbsp;&#9656;&nbsp; <strong>{locationName}</strong>
+              </p>
+              <span className="slp-chip">
+                <i aria-hidden="true" />
+                {locationName === emirateName ? locationName : `${locationName} · ${emirateName}`}
+              </span>
+              <h1 className="slp-hero__title">{row.h1}</h1>
+              <p className="slp-hero__lead">{content.summary}</p>
+              <p className="slp-hero__lead slp-hero__lead--sub">{locationClause}</p>
+              <ul className="slp-hero__points">
+                {content.included.slice(0, 4).map((item, i) => (
+                  <li key={i}>
+                    <Check size={16} />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+            <Reveal delay={120} className="slp-hero__foot">
+              {startingItem && (
+                <div className="slp-hero__price">
+                  <span>{lang === "ar" ? "الأسعار الاسترشادية" : "Indicative pricing"}</span>
+                  <strong>{formatPrice(startingItem, lang)}</strong>
+                  <em>{dict.pricingPage.items[startingItem.id]}</em>
+                </div>
+              )}
+              <div className="slp-hero__actions">
+                <a className="slp-btn slp-btn--solid" href={waHref} target="_blank" rel="noopener noreferrer">
+                  {lang === "ar" ? "واتساب الآن" : "WhatsApp Now"} <ArrowUpRight size={15} />
+                </a>
+                <a className="slp-btn" href="tel:+971524621919">
+                  {lang === "ar" ? "اتصل الآن" : "Call Now"} <Phone size={15} />
+                </a>
+              </div>
+            </Reveal>
+          </div>
 
-        <section className="shell slp-hero-section">
-          <Reveal className="slp-hero-wrapper" delay={100}>
-            <Image src={heroImage} alt={heroAlt} fill sizes="(max-width: 1600px) 100vw, 1600px" style={{ objectFit: "cover" }} priority />
+          <Reveal className={`slp-mosaic${mosaicPhotos.length ? "" : " slp-mosaic--single"}`} delay={100}>
+            <div className="slp-mosaic__main">
+              <Image src={heroImage} alt={heroAlt} fill sizes="(max-width: 980px) 100vw, 55vw" style={{ objectFit: "cover" }} priority />
+            </div>
+            {mosaicPhotos.map((photo) => (
+              <div className="slp-mosaic__small" key={photo.src}>
+                <Image src={photo.src} alt={photo.alt} fill sizes="(max-width: 980px) 50vw, 22vw" style={{ objectFit: "cover" }} />
+              </div>
+            ))}
           </Reveal>
         </section>
 
-        {/* Intro + proof stats */}
-        <section className="shell slp-intro-section">
-          <Reveal>
-            <h2 className="slp-intro-title">{row.h2Themes[0]}</h2>
-            <div className="slp-intro-body">
-              <p className="slp-intro-text">
-                {content.summary} {locationClause} {introExtra}
-              </p>
-              <div className="slp-intro-actions">
-                <a className="outline-button header-cta" href={waHref} target="_blank" rel="noopener noreferrer">
-                  {lang === "ar" ? "واتساب الآن" : "WhatsApp Now"} <ArrowUpRight size={15} />
-                </a>
-                <a className="outline-button header-cta" href="tel:+971524621919">
-                  {lang === "ar" ? "اتصل الآن" : "Call Now"} <ArrowUpRight size={15} />
-                </a>
-              </div>
-            </div>
-          </Reveal>
-          <Reveal className="proof-stats-grid" delay={120}>
+        {/* Proof stats band */}
+        <section className="slp-band">
+          <Reveal className="shell slp-band__grid">
             {dict.studioSection.facts.map((f, i) => (
-              <div className="proof-stat" key={i}>
+              <div className="slp-band__stat" key={i}>
                 <strong>{f.strong}</strong>
                 <span>{f.span}</span>
               </div>
@@ -307,46 +306,32 @@ export default function ServiceLocationPage({ lang, row }) {
           </Reveal>
         </section>
 
-        {/* What's included */}
-        <section className="shell slp-included-section">
-          <Reveal>
-            <div className="offerings-header-wrapper">
-              <div className="offerings-kicker">
-                <span>{serviceName}</span>
-                <div className="kicker-underline"></div>
-              </div>
-              <h2 className="offerings-title">{row.h2Themes[1]}</h2>
-            </div>
-          </Reveal>
-          <div className="included-grid">
-            {content.included.map((item, i) => (
-              <Reveal className="included-item" key={i} delay={80 + i * 60}>
-                <Check size={18} className="included-check" />
-                <span>{item}</span>
-              </Reveal>
-            ))}
-            <Reveal className="included-item" delay={80 + content.included.length * 60}>
-              <Check size={18} className="included-check" />
-              <span>{lang === "ar" ? `التغطية في ${locationName} وما حولها` : `Coverage across ${locationName} and nearby areas`}</span>
+        {/* Scope — sticky intro beside the numbered list of what's included */}
+        <section className="shell slp-scope">
+          <div className="slp-scope__aside">
+            <Reveal>
+              <p className="micro">{serviceName}</p>
+              <h2 className="slp-h2">{row.h2Themes[0]}</h2>
+              <p className="slp-scope__text">
+                {locationClause} {introExtra}
+              </p>
             </Reveal>
           </div>
-        </section>
-
-        {/* From our recent work (real project photography for this service) */}
-        {galleryPhotos.length > 0 && (
-          <section className="shell slp-gallery-section">
+          <div className="slp-scope__list">
             <Reveal>
-              <p className="micro">{lang === "ar" ? "من أعمالنا" : "From our recent work"}</p>
+              <h3 className="slp-scope__label">{row.h2Themes[1]}</h3>
             </Reveal>
-            <div className="slp-gallery-grid">
-              {galleryPhotos.map((photo, i) => (
-                <Reveal className="slp-gallery-item" key={photo.src} delay={80 + i * 60}>
-                  <Image src={photo.src} alt={photo.alt} fill sizes="(max-width: 768px) 100vw, 33vw" style={{ objectFit: "cover" }} />
+            <ol>
+              {[...content.included, lang === "ar" ? `التغطية في ${locationName} وما حولها` : `Coverage across ${locationName} and nearby areas`].map((item, i) => (
+                <Reveal as="li" className="slp-scope__row" key={i} delay={60 + i * 50}>
+                  <span className="slp-scope__num">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="slp-scope__item">{item}</span>
+                  <Check size={18} className="slp-scope__check" />
                 </Reveal>
               ))}
-            </div>
-          </section>
-        )}
+            </ol>
+          </div>
+        </section>
 
         {/* Process (compact) */}
         <section className="shell section slp-process-section">
@@ -359,19 +344,17 @@ export default function ServiceLocationPage({ lang, row }) {
         </Reveal>
         <Estimator compact defaultLocationIndex={row.emirate === "Abu Dhabi" ? 1 : 0} ctaHref={waHref} />
 
-        {/* Indicative starting prices — real published figures from the pricing page
-            (not just the estimator's calculated total), so pricing is visible on the
-            service page itself, not only after clicking through. */}
+        {/* Indicative starting prices — real published figures from the pricing page */}
         {pricingGroup && pricingCopy && (
           <section className="shell slp-pricing-section">
             <Reveal className="slp-pricing-card">
               <div className="slp-pricing-header">
-                <div className="offerings-kicker">
-                  <span>{pricingCopy.kicker}</span>
-                  <div className="kicker-underline"></div>
-                </div>
+                <p className="slp-pricing-kicker">{pricingCopy.kicker}</p>
                 <h3>{lang === "ar" ? `أسعار ${serviceName} الاسترشادية` : `${serviceName} starting prices`}</h3>
                 <p>{pricingCopy.subtitle}</p>
+                <a href={`/${lang}/pricing`} className="slp-btn slp-btn--light">
+                  {lang === "ar" ? "عرض جميع الأسعار" : "See full pricing"} <ArrowUpRight size={15} />
+                </a>
               </div>
               <ul className="slp-pricing-list">
                 {pricingGroup.items.slice(0, 4).map((item) => (
@@ -381,32 +364,25 @@ export default function ServiceLocationPage({ lang, row }) {
                   </li>
                 ))}
               </ul>
-              <a href={`/${lang}/pricing`} className="outline-button outline-button--dark">
-                {lang === "ar" ? "عرض جميع الأسعار" : "See full pricing"} <ArrowUpRight size={15} />
-              </a>
             </Reveal>
           </section>
         )}
 
-        {/* Why choose Bait Al Ebdaa — company-level facts, reused site-wide (not
-            location-specific by nature), same "included" checklist styling as above */}
-        <section className="shell slp-included-section">
-          <Reveal>
-            <div className="offerings-header-wrapper">
-              <div className="offerings-kicker">
-                <span>{lang === "ar" ? "بيت الإبداع" : "Bait Al Ebdaa"}</span>
-                <div className="kicker-underline"></div>
-              </div>
-              <h2 className="offerings-title">{row.h2Themes[4]}</h2>
+        {/* Why choose Bait Al Ebdaa — company-level facts, reused site-wide */}
+        <section className="slp-why">
+          <div className="shell">
+            <Reveal>
+              <p className="micro">{lang === "ar" ? "بيت الإبداع" : "Bait Al Ebdaa"}</p>
+              <h2 className="slp-h2">{row.h2Themes[4]}</h2>
+            </Reveal>
+            <div className="slp-why__grid">
+              {whyChooseFacts[lang].map((item, i) => (
+                <Reveal className="slp-why__item" key={i} delay={80 + i * 60}>
+                  <span>{String(i + 1).padStart(2, "0")}</span>
+                  <p>{item}</p>
+                </Reveal>
+              ))}
             </div>
-          </Reveal>
-          <div className="included-grid">
-            {whyChooseFacts[lang].map((item, i) => (
-              <Reveal className="included-item" key={i} delay={80 + i * 60}>
-                <Check size={18} className="included-check" />
-                <span>{item}</span>
-              </Reveal>
-            ))}
           </div>
         </section>
 
@@ -439,7 +415,7 @@ export default function ServiceLocationPage({ lang, row }) {
         <section className="shell slp-cta-section">
           <Reveal className="slp-cta-card">
             <h2>{lang === "ar" ? `ابدأ مشروع ${serviceName} في ${locationName} اليوم` : `Start your ${serviceName} project in ${locationName} today`}</h2>
-            <a className="outline-button header-cta" href={waHref} target="_blank" rel="noopener noreferrer">
+            <a className="slp-btn slp-btn--light" href={waHref} target="_blank" rel="noopener noreferrer">
               {dict.nav.startProject} <ArrowUpRight size={15} />
             </a>
           </Reveal>
@@ -483,9 +459,7 @@ export default function ServiceLocationPage({ lang, row }) {
           )}
         </section>
 
-        {/* Further reading — points into the blog so a visitor who isn't ready
-            to enquire yet has somewhere else on-site to go, and it's another
-            internal link into the long-form articles for SEO. */}
+        {/* Further reading */}
         {blogPosts.length > 0 && (
           <section className="shell slp-blog-section">
             <Reveal>
