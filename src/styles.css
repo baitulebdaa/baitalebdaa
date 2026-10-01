@@ -5415,3 +5415,24 @@ button.estimator-submit-btn {
     bottom: calc(90px + env(safe-area-inset-bottom));
   }
 }
+
+/* Mobile: stack the floating buttons in one column above the bottom nav:
+   bottom nav -> Ask Ali -> WhatsApp / Call (no overlap). */
+@media (max-width: 980px) {
+  .slp-sticky-sidebar {
+    right: 20px;
+    bottom: calc(132px + env(safe-area-inset-bottom));
+    align-items: flex-end;
+  }
+
+  [dir="rtl"] .slp-sticky-sidebar {
+    right: auto;
+    left: 20px;
+    align-items: flex-start;
+  }
+
+  .slp-sticky-sidebar__btn {
+    width: 46px;
+    height: 46px;
+  }
+}
