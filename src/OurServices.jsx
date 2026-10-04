@@ -123,6 +123,7 @@ export default function OurServices() {
               <h1 className="slp-hero__title">{t.pageTitle}</h1>
               <p className="slp-hero__lead">{t.offeringsSubtitle}</p>
               <p className="slp-hero__lead slp-hero__lead--sub">{ui.intro2}</p>
+              <p className="slp-hero__lead slp-hero__lead--sub">{ui.intro3}</p>
             </Reveal>
             <Reveal delay={120} className="cp-hero__actions">
               <a className="slp-btn slp-btn--solid" href={`https://wa.me/971524621919?text=${encodeURIComponent(ui.whatsappMessage)}`} target="_blank" rel="noopener noreferrer">

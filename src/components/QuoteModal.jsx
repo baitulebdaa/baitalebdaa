@@ -8,7 +8,7 @@ import { sliderFillPosition } from "../lib/slider";
 // initialSize lets the homepage estimator hand its selected size straight into this
 // modal (see Estimator's onBookSurvey) instead of the two duplicating a lead form.
 export function QuoteModal({ open, onClose, initialSize }) {
-  const { dict } = useI18n();
+  const { lang, dict } = useI18n();
   const t = dict.quoteModal;
 
   const [size, setSize] = useState(initialSize || 3500);
@@ -123,7 +123,7 @@ export function QuoteModal({ open, onClose, initialSize }) {
               onChange={(e) => setSize(Number(e.target.value))}
               className="estimator-slider"
               aria-label={t.propertySize}
-              style={{ background: `linear-gradient(to right, #000 ${sizeFillPos}, rgba(0,0,0,.12) ${sizeFillPos})` }}
+              style={{ background: `linear-gradient(to ${lang === "ar" ? "left" : "right"}, #000 ${sizeFillPos}, rgba(0,0,0,.12) ${sizeFillPos})` }}
             />
             <div className="estimator-slider-ticks">
               <span>500 sqft</span>

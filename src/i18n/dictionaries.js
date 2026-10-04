@@ -345,18 +345,21 @@ export const dictionaries = {
     projectsPageLayout: {
       intro: "A selection of residential and commercial interiors delivered by one accountable team, from 3D design and approvals to in-house joinery and handover.",
       intro2: "Browse the projects below to see the finishes, joinery and detailing we deliver, then talk to us about your own space.",
+      intro3: "Our portfolio spans villas, penthouses, offices and government headquarters across Dubai and Abu Dhabi, each with the same attention to material selection, lighting and fit. Open any project to see the scope, the finishes we used and the timeline we delivered to, and filter by category to find work closest to what you have in mind.",
       browse: "Browse projects",
       whatsappMessage: "Hello! I viewed your projects and would like to discuss mine.",
       statsLabel: "Bait Al Ebdaa at a glance",
     },
     servicesPageLayout: {
       intro2: "From concept design to turnkey fit-out and custom joinery, every service is delivered by one accountable team, with approvals and in-house manufacturing included.",
+      intro3: "Our team covers interior design, commercial and residential fit-out, villa, apartment and office renovation, bespoke joinery, kitchens, wardrobes and motorized curtains across Dubai, Abu Dhabi and the wider UAE. Pick a service below to see its scope, typical timelines, published starting prices and answers to common questions, or message us on WhatsApp for a free site visit and quotation.",
       browse: "Browse services",
       whatsappMessage: "Hello! I would like to know more about your services.",
       statsLabel: "Bait Al Ebdaa at a glance",
     },
     processPageLayout: {
       intro2: "Design, approvals, manufacturing and installation sit under one roof, so decisions move quickly and one team is accountable from the first sketch to handover.",
+      intro3: "Every project moves through the same clear stages: a site visit and measurement, 3D design and Dubai Municipality approvals, in-house joinery manufacturing at our Ajman facility, then careful installation and a final snagging walkthrough. You get a fixed timeline, a dedicated project manager and regular updates, so you always know what happens next and when.",
       viewPricing: "See pricing",
       whatsappMessage: "Hello! I would like to understand the process for my project with Bait Al Ebdaa.",
       overviewLabel: "The four stages at a glance",
@@ -1775,18 +1778,21 @@ export const dictionaries = {
     projectsPageLayout: {
       intro: "مختارات من التصاميم الداخلية السكنية والتجارية التي نفذها فريق واحد مسؤول، من التصميم ثلاثي الأبعاد والموافقات إلى النجارة الداخلية والتسليم.",
       intro2: "تصفح المشاريع أدناه لترى التشطيبات والنجارة والتفاصيل التي ننفذها، ثم حدثنا عن مساحتك.",
+      intro3: "تشمل أعمالنا الفلل والبنتهاوس والمكاتب ومقار الجهات الحكومية في دبي وأبوظبي، وفي كل منها العناية نفسها باختيار المواد والإضاءة ودقة التنفيذ. افتح أي مشروع لتطّلع على نطاق العمل والتشطيبات المستخدمة والمدة التي سلّمنا خلالها، وصفّ المشاريع حسب الفئة لتجد الأقرب إلى ما تفكر به.",
       browse: "تصفح المشاريع",
       whatsappMessage: "مرحباً! اطلعت على مشاريعكم وأرغب بمناقشة مشروعي.",
       statsLabel: "بيت الإبداع في لمحة",
     },
     servicesPageLayout: {
       intro2: "من التصميم المبدئي إلى التجهيز الشامل والنجارة المخصصة، يقدم فريق واحد مسؤول كل خدمة، مع الموافقات والتصنيع الداخلي.",
+      intro3: "يغطي فريقنا التصميم الداخلي والتجهيز التجاري والسكني وتجديد الفلل والشقق والمكاتب والنجارة المخصصة والمطابخ وخزائن الملابس والستائر الكهربائية في دبي وأبوظبي وسائر أنحاء الإمارات. اختر خدمة من الأسفل لتطّلع على نطاق العمل والمدد الزمنية المعتادة وأسعار البدء المعلنة وإجابات الأسئلة الشائعة، أو راسلنا عبر واتساب لزيارة موقع وعرض سعر مجانيين.",
       browse: "تصفح الخدمات",
       whatsappMessage: "مرحباً! أرغب بمعرفة المزيد عن خدماتكم.",
       statsLabel: "بيت الإبداع في لمحة",
     },
     processPageLayout: {
       intro2: "التصميم والموافقات والتصنيع والتركيب تحت سقف واحد، فتتحرك القرارات بسرعة ويكون فريق واحد مسؤولاً من أول رسم حتى التسليم.",
+      intro3: "يمر كل مشروع بالمراحل الواضحة نفسها: زيارة الموقع وأخذ المقاسات، ثم التصميم ثلاثي الأبعاد وموافقات بلدية دبي، فتصنيع النجارة داخلياً في منشأتنا بعجمان، ثم التركيب بعناية وجولة تسليم نهائية لمعالجة الملاحظات. ستحصل على جدول زمني ثابت ومدير مشروع مخصص وتحديثات منتظمة لتعرف دائماً ما الخطوة التالية وموعدها.",
       viewPricing: "عرض الأسعار",
       whatsappMessage: "مرحباً! أرغب بفهم مراحل تنفيذ مشروعي مع بيت الإبداع.",
       overviewLabel: "المراحل الأربع في لمحة",
