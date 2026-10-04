@@ -10,23 +10,23 @@ import { pricingGroups } from "./data/pricing";
 import { formatPrice, PRICING_GROUP_BY_SERVICE } from "./lib/pricing";
 
 const SERVICE_IMAGES = {
-  "interior-design": "/assets/hero-penthouse.jpg",
-  "fit-out": "/assets/tv-unit-1.jpeg",
-  "office-fit-out": "/assets/project-office.jpg",
-  "restaurant-fit-out": "/assets/dining-table.jpeg",
-  "retail-fit-out": "/assets/dressing-unit-1.jpeg",
-  "commercial-interior-design": "/assets/project-office.jpg",
-  "residential-interior-design": "/assets/project-villa.jpg",
-  "office-interior-design": "/assets/cad-render.jpg",
-  "restaurant-interior-design": "/assets/dining-table.jpeg",
-  "retail-interior-design": "/assets/curtains-1.jpeg",
-  "villa-renovation": "/assets/project-villa.jpg",
-  "apartment-renovation": "/assets/hero-penthouse.jpg",
-  "office-renovation": "/assets/project-office.jpg",
-  "joinery": "/assets/joinery-factory.jpg",
-  "custom-wardrobes": "/assets/dressing-unit-3.jpeg",
-  "kitchen-design": "/assets/tv-unit-3.jpeg",
-  "kitchen-renovation": "/assets/tv-unit-2.jpeg",
+  "interior-design": "/assets/luxury-living-room-chandelier-wall-panelling.jpeg",
+  "fit-out": "/assets/luxury-living-room-stone-tv-wall-fireplace.jpeg",
+  "office-fit-out": "/assets/built-in-wardrobe-study-desk-wood-shelves.jpeg",
+  "restaurant-fit-out": "/assets/luxury-lounge-feature-wall-led-sconces.jpeg",
+  "retail-fit-out": "/assets/walk-in-closet-island-led-ceiling.jpeg",
+  "commercial-interior-design": "/assets/tv-wall-unit-led-display-shelves.jpeg",
+  "residential-interior-design": "/assets/living-room-curved-sofa-wood-slat-wall.jpeg",
+  "office-interior-design": "/assets/minimalist-living-room-fluted-wall-panel-cove-lighting.jpeg",
+  "restaurant-interior-design": "/assets/contemporary-living-room-wall-panelling-track-lighting.jpeg",
+  "retail-interior-design": "/assets/living-room-tv-unit-floating-shelves-curtains.jpeg",
+  "villa-renovation": "/assets/living-room-wood-slat-wall-lounge-seating.jpeg",
+  "apartment-renovation": "/assets/modern-living-room-beige-sofa-curtain-wall-panels.jpeg",
+  "office-renovation": "/assets/tv-media-wall-floating-console-fireplace.jpeg",
+  "joinery": "/assets/l-shaped-walk-in-closet-led-drawers.jpeg",
+  "custom-wardrobes": "/assets/corner-wardrobe-glass-doors-black-handles.jpeg",
+  "kitchen-design": "/assets/corner-coffee-bar-black-fluted-cabinet-led-lighting.jpeg",
+  "kitchen-renovation": "/assets/coffee-corner-white-cabinet-wine-cooler-led-shelves.jpeg",
 };
 
 const SERVICE_DESCS = {
@@ -53,13 +53,13 @@ const SERVICE_DESCS = {
 // Small round material/finish thumbnails shown beside each tile title. Picked
 // deterministically per tile so the set is stable across renders.
 const SWATCH_POOL = [
-  "/assets/curtains-1.jpeg",
-  "/assets/curtains-2.jpeg",
-  "/assets/bed-2.jpeg",
-  "/assets/dressing-unit-2.jpeg",
-  "/assets/tv-unit-1.jpeg",
-  "/assets/dining-table.jpeg",
-  "/assets/cabinet-joinery.jpeg",
+  "/assets/double-height-tv-wall-fireplace-curtains.jpeg",
+  "/assets/living-room-tv-unit-floating-shelves-curtains.jpeg",
+  "/assets/modern-bedroom-upholstered-headboard-wall-panels.jpeg",
+  "/assets/built-in-wardrobe-study-desk-wood-shelves.jpeg",
+  "/assets/travertine-tv-wall-linear-fireplace.jpeg",
+  "/assets/walnut-coffee-bar-cabinet-led-shelving.jpeg",
+  "/assets/glass-door-wardrobe-matte-handles.jpeg",
 ];
 
 function swatchesFor(index) {
@@ -135,13 +135,13 @@ export default function OurServices() {
           </div>
           <Reveal className="slp-mosaic" delay={100}>
             <div className="slp-mosaic__main">
-              <Image src="/assets/hero-penthouse.jpg" alt={t.pageTitle} fill sizes="(max-width: 980px) 100vw, 55vw" style={{ objectFit: "cover" }} priority />
+              <Image src="/assets/villa-majlis-living-room-wood-wall-cove-ceiling.jpeg" alt={t.pageTitle} fill sizes="(max-width: 980px) 100vw, 55vw" style={{ objectFit: "cover" }} priority />
             </div>
             <div className="slp-mosaic__small">
-              <Image src="/assets/joinery-factory.jpg" alt="" fill sizes="(max-width: 980px) 50vw, 22vw" style={{ objectFit: "cover" }} />
+              <Image src="/assets/walk-in-closet-island-led-ceiling.jpeg" alt="" fill sizes="(max-width: 980px) 50vw, 22vw" style={{ objectFit: "cover" }} />
             </div>
             <div className="slp-mosaic__small">
-              <Image src="/assets/project-office.jpg" alt="" fill sizes="(max-width: 980px) 50vw, 22vw" style={{ objectFit: "cover" }} />
+              <Image src="/assets/study-nook-wardrobe-led-shelving-wood-slats.jpeg" alt="" fill sizes="(max-width: 980px) 50vw, 22vw" style={{ objectFit: "cover" }} />
             </div>
           </Reveal>
         </section>
@@ -176,7 +176,7 @@ export default function OurServices() {
               <ServiceTile
                 key={service.slug}
                 href={`/${lang}/${service.slug}/uae`}
-                image={SERVICE_IMAGES[service.slug] || "/assets/hero-penthouse.jpg"}
+                image={SERVICE_IMAGES[service.slug] || "/assets/luxury-lounge-feature-wall-led-sconces.jpeg"}
                 name={lang === "ar" ? service.ar : service.en}
                 desc={lang === "ar" ? SERVICE_DESCS[service.slug]?.ar : SERVICE_DESCS[service.slug]?.en}
                 price={startingPrice(service.slug, lang)}
@@ -187,7 +187,7 @@ export default function OurServices() {
             ))}
             <ServiceTile
               href={`/${lang}/furniture-maintenance-care`}
-              image="/assets/cabinet-joinery.jpeg"
+              image="/assets/corner-wardrobe-glass-doors-black-handles.jpeg"
               name={dict.furnitureMaintenancePage.navTitle}
               desc={lang === "ar" ? SERVICE_DESCS["furniture-maintenance-care"].ar : SERVICE_DESCS["furniture-maintenance-care"].en}
               swatches={swatchesFor(seoServices.length)}

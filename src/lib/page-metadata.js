@@ -41,13 +41,13 @@ export function buildPageMetadata({ lang, path, title, description }) {
       siteName: "Bait Al Ebdaa",
       locale: lang === "ar" ? "ar_AE" : "en_AE",
       type: "website",
-      images: [{ url: "/assets/hero-penthouse.jpg", width: 1672, height: 941, alt: title }],
+      images: [{ url: "/assets/bait-al-ebdaa-luxury-interior-design-dubai-og.jpg", width: 1200, height: 630, alt: title }],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: ["/assets/hero-penthouse.jpg"],
+      images: ["/assets/bait-al-ebdaa-luxury-interior-design-dubai-og.jpg"],
     },
   };
 }
@@ -59,7 +59,7 @@ export function organizationJsonLd() {
     name: "Bait Al Ebdaa",
     url: BASE,
     logo: `${BASE}/assets/logo.png`,
-    image: `${BASE}/assets/hero-penthouse.jpg`,
+    image: `${BASE}/assets/bait-al-ebdaa-luxury-interior-design-dubai-og.jpg`,
     telephone: "+971524621919",
     email: "info@baitalebdaa.com",
     address: {

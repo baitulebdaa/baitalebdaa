@@ -34,7 +34,7 @@ export default function About() {
 
         <section className="services-hero-section">
           <Reveal className="services-hero-wrapper" delay={100}>
-            <Image src="/assets/joinery-factory.jpg" alt={t.navTitle} fill sizes="100vw" style={{ objectFit: "cover" }} priority />
+            <Image src="/assets/l-shaped-walk-in-closet-led-drawers.jpeg" alt={t.navTitle} fill sizes="100vw" style={{ objectFit: "cover" }} priority />
           </Reveal>
         </section>
 

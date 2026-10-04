@@ -17,15 +17,15 @@ import { formatPrice } from "../lib/pricing";
 // `headline` is the pricing item whose entry price leads the panel; `qty`
 // (optional) turns that rate into the rough-budget stepper.
 const EXPLORER = [
-  { id: "curtainsManual", image: "/assets/curtains-1.jpeg", headline: "curtain-pinch-sheer", qty: { start: 5, min: 1, max: 30, step: 1 } },
-  { id: "curtainsSomfy", image: "/assets/somfy-curtains.jpg", headline: "somfy-sheer", qty: { start: 5, min: 1, max: 30, step: 1 } },
-  { id: "joineryWardrobes", image: "/assets/dressing-unit-1.jpeg", headline: "wardrobe-laminate", qty: { start: 4, min: 1, max: 30, step: 1 } },
-  { id: "joineryMedia", image: "/assets/tv-unit-1.jpeg", headline: "media-basic" },
-  { id: "joineryKitchens", image: "/assets/tv-unit-3.jpeg", headline: "kitchen-laminate", qty: { start: 4, min: 1, max: 30, step: 1 } },
-  { id: "design", image: "/assets/cad-render.jpg", headline: "design-single-room" },
-  { id: "villa", image: "/assets/project-villa.jpg", headline: "villa-standard", qty: { start: 3500, min: 500, max: 15000, step: 100 } },
-  { id: "office", image: "/assets/project-office.jpg", headline: "office-essential", qty: { start: 3000, min: 500, max: 15000, step: 100 } },
-  { id: "approvals", image: "/assets/hero-penthouse.jpg", headline: "approval-noc" },
+  { id: "curtainsManual", image: "/assets/living-room-tv-unit-floating-shelves-curtains.jpeg", headline: "curtain-pinch-sheer", qty: { start: 5, min: 1, max: 30, step: 1 } },
+  { id: "curtainsSomfy", image: "/assets/double-height-tv-wall-fireplace-curtains.jpeg", headline: "somfy-sheer", qty: { start: 5, min: 1, max: 30, step: 1 } },
+  { id: "joineryWardrobes", image: "/assets/walk-in-closet-island-led-ceiling.jpeg", headline: "wardrobe-laminate", qty: { start: 4, min: 1, max: 30, step: 1 } },
+  { id: "joineryMedia", image: "/assets/tv-feature-wall-travertine-bio-fireplace.jpeg", headline: "media-basic" },
+  { id: "joineryKitchens", image: "/assets/walnut-coffee-bar-cabinet-led-shelving.jpeg", headline: "kitchen-laminate", qty: { start: 4, min: 1, max: 30, step: 1 } },
+  { id: "design", image: "/assets/minimalist-living-room-fluted-wall-panel-cove-lighting.jpeg", headline: "design-single-room" },
+  { id: "villa", image: "/assets/living-room-curved-sofa-wood-slat-wall.jpeg", headline: "villa-standard", qty: { start: 3500, min: 500, max: 15000, step: 100 } },
+  { id: "office", image: "/assets/built-in-wardrobe-study-desk-wood-shelves.jpeg", headline: "office-essential", qty: { start: 3000, min: 500, max: 15000, step: 100 } },
+  { id: "approvals", image: "/assets/luxury-living-room-chandelier-wall-panelling.jpeg", headline: "approval-noc" },
 ];
 
 const fmt = new Intl.NumberFormat("en-AE");

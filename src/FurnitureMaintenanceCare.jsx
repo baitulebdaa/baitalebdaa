@@ -63,7 +63,7 @@ export default function FurnitureMaintenanceCare() {
         {/* Hero */}
         <section className="services-hero-section">
           <Reveal className="services-hero-wrapper" delay={100}>
-            <Image src="/assets/cabinet-joinery.jpeg" alt={t.navTitle} fill sizes="100vw" style={{ objectFit: "cover" }} priority />
+            <Image src="/assets/glass-door-wardrobe-matte-handles.jpeg" alt={t.navTitle} fill sizes="100vw" style={{ objectFit: "cover" }} priority />
           </Reveal>
         </section>
 

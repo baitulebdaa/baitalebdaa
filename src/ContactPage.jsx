@@ -59,7 +59,7 @@ export default function ContactPage() {
             </Reveal>
           </div>
           <Reveal className="cp-hero__image" delay={100}>
-            <Image src="/assets/hero-penthouse.jpg" alt={t.pageTitle} fill sizes="(max-width: 980px) 100vw, 50vw" style={{ objectFit: "cover" }} priority />
+            <Image src="/assets/luxury-living-room-chandelier-wall-panelling.jpeg" alt={t.pageTitle} fill sizes="(max-width: 980px) 100vw, 50vw" style={{ objectFit: "cover" }} priority />
           </Reveal>
         </section>
 

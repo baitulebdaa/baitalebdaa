@@ -15,22 +15,22 @@ export default function OurProjects() {
   const ui = dict.projectsPageLayout;
   const projects = dict.projectsSection.items;
   const projectImages = [
-    "/assets/project-villa.jpg",
-    "/assets/hero-penthouse.jpg",
-    "/assets/project-office.jpg",
-    "/assets/dressing-unit-2.jpeg",
-    "/assets/cabinet-joinery.jpeg",
+    "/assets/living-room-curved-sofa-wood-slat-wall.jpeg",
+    "/assets/luxury-living-room-chandelier-wall-panelling.jpeg",
+    "/assets/built-in-wardrobe-study-desk-wood-shelves.jpeg",
+    "/assets/tv-wall-marble-panel-bedroom-divider.jpeg",
+    "/assets/glass-door-wardrobe-matte-handles.jpeg",
   ];
 
   // Every card whose project has a real detail page uses that page's own hero photo
   // (first image in its images array), so the card matches what it links to.
   const HERO_IMAGE_BY_SLUG = {
-    "government-authority": "/assets/project-office.jpg",
-    "dubai-hills-estate-villa": "/assets/project-villa.jpg",
-    "palm-jumeirah-penthouse": "/assets/hero-penthouse.jpg",
-    "downtown-dubai-tech-hq": "/assets/project-office.jpg",
-    "al-barari-eco-villa": "/assets/project-villa.jpg",
-    "saadiyat-island-villa": "/assets/project-villa.jpg",
+    "government-authority": "/assets/tv-wall-unit-led-display-shelves.jpeg",
+    "dubai-hills-estate-villa": "/assets/living-room-wood-slat-wall-lounge-seating.jpeg",
+    "palm-jumeirah-penthouse": "/assets/luxury-living-room-stone-tv-wall-fireplace.jpeg",
+    "downtown-dubai-tech-hq": "/assets/tv-media-wall-floating-console-fireplace.jpeg",
+    "al-barari-eco-villa": "/assets/contemporary-living-room-wall-panelling-track-lighting.jpeg",
+    "saadiyat-island-villa": "/assets/modern-living-room-beige-sofa-curtain-wall-panels.jpeg",
   };
   const withImages = projects.map((p, i) => ({
     ...p,
@@ -76,13 +76,13 @@ export default function OurProjects() {
           </div>
           <Reveal className="slp-mosaic" delay={100}>
             <div className="slp-mosaic__main">
-              <Image src="/assets/project-office.jpg" alt={t.explorePortfolio} fill sizes="(max-width: 980px) 100vw, 55vw" style={{ objectFit: "cover" }} priority />
+              <Image src="/assets/study-nook-wardrobe-led-shelving-wood-slats.jpeg" alt={t.explorePortfolio} fill sizes="(max-width: 980px) 100vw, 55vw" style={{ objectFit: "cover" }} priority />
             </div>
             <div className="slp-mosaic__small">
-              <Image src="/assets/project-villa.jpg" alt="" fill sizes="(max-width: 980px) 50vw, 22vw" style={{ objectFit: "cover" }} />
+              <Image src="/assets/living-room-curved-sofa-wood-slat-wall.jpeg" alt="" fill sizes="(max-width: 980px) 50vw, 22vw" style={{ objectFit: "cover" }} />
             </div>
             <div className="slp-mosaic__small">
-              <Image src="/assets/hero-penthouse.jpg" alt="" fill sizes="(max-width: 980px) 50vw, 22vw" style={{ objectFit: "cover" }} />
+              <Image src="/assets/villa-majlis-living-room-wood-wall-cove-ceiling.jpeg" alt="" fill sizes="(max-width: 980px) 50vw, 22vw" style={{ objectFit: "cover" }} />
             </div>
           </Reveal>
         </section>

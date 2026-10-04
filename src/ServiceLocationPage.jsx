@@ -13,23 +13,23 @@ import { pricingGroups } from "./data/pricing";
 import { formatPrice, PRICING_GROUP_BY_SERVICE } from "./lib/pricing";
 
 const HERO_IMAGE_BY_SERVICE = {
-  "interior-design": "/assets/hero-penthouse.jpg",
-  "fit-out": "/assets/hero-penthouse.jpg",
-  "office-fit-out": "/assets/project-office.jpg",
-  "restaurant-fit-out": "/assets/hero-penthouse.jpg",
-  "retail-fit-out": "/assets/hero-penthouse.jpg",
-  "commercial-interior-design": "/assets/project-office.jpg",
-  "residential-interior-design": "/assets/project-villa.jpg",
-  "office-interior-design": "/assets/project-office.jpg",
-  "restaurant-interior-design": "/assets/hero-penthouse.jpg",
-  "retail-interior-design": "/assets/hero-penthouse.jpg",
-  "villa-renovation": "/assets/project-villa.jpg",
-  "apartment-renovation": "/assets/project-villa.jpg",
-  "office-renovation": "/assets/project-office.jpg",
-  joinery: "/assets/joinery-factory.jpg",
-  "custom-wardrobes": "/assets/joinery-factory.jpg",
-  "kitchen-design": "/assets/cad-render.jpg",
-  "kitchen-renovation": "/assets/cad-render.jpg",
+  "interior-design": "/assets/luxury-living-room-chandelier-wall-panelling.jpeg",
+  "fit-out": "/assets/luxury-living-room-stone-tv-wall-fireplace.jpeg",
+  "office-fit-out": "/assets/built-in-wardrobe-study-desk-wood-shelves.jpeg",
+  "restaurant-fit-out": "/assets/luxury-lounge-feature-wall-led-sconces.jpeg",
+  "retail-fit-out": "/assets/villa-majlis-living-room-wood-wall-cove-ceiling.jpeg",
+  "commercial-interior-design": "/assets/tv-wall-unit-led-display-shelves.jpeg",
+  "residential-interior-design": "/assets/living-room-curved-sofa-wood-slat-wall.jpeg",
+  "office-interior-design": "/assets/study-nook-wardrobe-led-shelving-wood-slats.jpeg",
+  "restaurant-interior-design": "/assets/contemporary-living-room-wall-panelling-track-lighting.jpeg",
+  "retail-interior-design": "/assets/minimalist-living-room-fluted-wall-panel-cove-lighting.jpeg",
+  "villa-renovation": "/assets/living-room-wood-slat-wall-lounge-seating.jpeg",
+  "apartment-renovation": "/assets/modern-living-room-beige-sofa-curtain-wall-panels.jpeg",
+  "office-renovation": "/assets/tv-media-wall-floating-console-fireplace.jpeg",
+  joinery: "/assets/l-shaped-walk-in-closet-led-drawers.jpeg",
+  "custom-wardrobes": "/assets/walk-in-closet-island-led-ceiling.jpeg",
+  "kitchen-design": "/assets/corner-coffee-bar-black-fluted-cabinet-led-lighting.jpeg",
+  "kitchen-renovation": "/assets/coffee-corner-white-cabinet-wine-cooler-led-shelves.jpeg",
 };
 
 // Real completed-work photography, grouped by the service it actually documents.
@@ -38,42 +38,51 @@ const HERO_IMAGE_BY_SERVICE = {
 // fabricated per-location proof: these are real photos, just not tied to one specific city.
 const WORK_GALLERY_BY_SERVICE = {
   "custom-wardrobes": [
-    { src: "/assets/dressing-unit-1.jpeg", alt: "Custom dressing unit with backlit LED mirror and fitted wardrobe" },
-    { src: "/assets/dressing-unit-2.jpeg", alt: "Fitted dressing table and wardrobe with wood-slat panelling" },
-    { src: "/assets/cabinet-joinery.jpeg", alt: "Mirrored wardrobe doors with integrated LED lighting" },
-    { src: "/assets/dressing-unit-3.jpeg", alt: "Custom dressing unit joinery with backlit mirror" },
-    { src: "/assets/dressing-unit-4.jpeg", alt: "Bespoke dressing table and open wardrobe unit" },
+    { src: "/assets/walk-in-closet-island-led-ceiling.jpeg", alt: "Walk-in closet with central island and LED ceiling lighting" },
+    { src: "/assets/l-shaped-walk-in-closet-led-drawers.jpeg", alt: "L-shaped walk-in closet with brass-handled drawers and LED shelves" },
+    { src: "/assets/corner-wardrobe-glass-doors-black-handles.jpeg", alt: "Corner wardrobe with smoked glass doors and black handles" },
+    { src: "/assets/glass-door-wardrobe-matte-handles.jpeg", alt: "Custom wardrobe with glass door and matte handles" },
+    { src: "/assets/hallway-wardrobe-bench-upholstered-panel.jpeg", alt: "Hallway wardrobe with built-in bench and upholstered wall panel" },
+    { src: "/assets/built-in-wardrobe-study-desk-wood-shelves.jpeg", alt: "Built-in wardrobe with study desk and open wood shelves" },
+    { src: "/assets/study-nook-wardrobe-led-shelving-wood-slats.jpeg", alt: "Wardrobe and study nook with LED shelving and wood-slat panelling" },
   ],
   joinery: [
-    { src: "/assets/cabinet-joinery.jpeg", alt: "Custom joinery wardrobe with mirrored glass doors" },
-    { src: "/assets/tv-unit-1.jpeg", alt: "Custom joinery TV media wall with backlit display shelving" },
-    { src: "/assets/tv-unit-2.jpeg", alt: "Bespoke TV unit joinery with LED-lit shelves" },
-    { src: "/assets/tv-unit-3.jpeg", alt: "Custom joinery TV wall panel installation" },
-    { src: "/assets/dining-table.jpeg", alt: "Fitted joinery detailing around a dining space" },
+    { src: "/assets/glass-door-wardrobe-matte-handles.jpeg", alt: "Custom joinery wardrobe with glass door" },
+    { src: "/assets/tv-wall-unit-led-display-shelves.jpeg", alt: "Custom joinery TV wall with backlit display shelving" },
+    { src: "/assets/tv-media-wall-floating-console-fireplace.jpeg", alt: "Bespoke TV media wall with floating console joinery" },
+    { src: "/assets/tv-feature-wall-travertine-bio-fireplace.jpeg", alt: "Custom joinery TV feature wall with travertine panel" },
+    { src: "/assets/walnut-coffee-bar-cabinet-led-shelving.jpeg", alt: "Walnut coffee bar cabinet with LED-lit shelves" },
   ],
   "interior-design": [
-    { src: "/assets/bed-5.jpeg", alt: "Residential bedroom interior design concept" },
-    { src: "/assets/dining-table.jpeg", alt: "Dining area interior design with custom furniture" },
-    { src: "/assets/curtains-3.jpeg", alt: "Living room interior design with floor-to-ceiling curtains" },
+    { src: "/assets/minimalist-bedroom-grey-bed-stone-wall.jpeg", alt: "Residential bedroom interior design concept" },
+    { src: "/assets/modern-dining-room-pendant-lights-oak-table.jpeg", alt: "Dining area interior design with custom furniture" },
+    { src: "/assets/living-room-tv-unit-floating-shelves-curtains.jpeg", alt: "Living room interior design with floor-to-ceiling curtains" },
   ],
   "residential-interior-design": [
-    { src: "/assets/bed-1.jpeg", alt: "Residential bedroom interior design with fitted wardrobe" },
-    { src: "/assets/bed-2.jpeg", alt: "Bedroom interior design with ambient cove lighting" },
-    { src: "/assets/dining-table.jpeg", alt: "Dining area interior design with custom furniture" },
-    { src: "/assets/curtains-1.jpeg", alt: "Living room with motorized floor-to-ceiling curtains" },
+    { src: "/assets/bedroom-wardrobe-led-shelves-pouf.jpeg", alt: "Residential bedroom interior design with fitted wardrobe" },
+    { src: "/assets/modern-bedroom-upholstered-headboard-wall-panels.jpeg", alt: "Bedroom interior design with ambient cove lighting" },
+    { src: "/assets/double-height-tv-wall-fireplace-curtains.jpeg", alt: "Living room with double-height TV wall and floor-to-ceiling curtains" },
+    { src: "/assets/master-bedroom-tufted-wall-panels-ceiling.jpeg", alt: "Master bedroom with tufted wall panels and feature ceiling" },
   ],
   "villa-renovation": [
-    { src: "/assets/bed-3.jpeg", alt: "Renovated villa bedroom interior" },
-    { src: "/assets/curtains-2.jpeg", alt: "Villa window treatment after renovation" },
-    { src: "/assets/tv-unit-2.jpeg", alt: "Renovated villa living room TV unit" },
+    { src: "/assets/bedroom-wood-headboard-floating-nightstand.jpeg", alt: "Renovated villa bedroom with wood headboard wall" },
+    { src: "/assets/travertine-tv-wall-linear-fireplace.jpeg", alt: "Renovated villa living room TV wall" },
+    { src: "/assets/luxury-lounge-feature-wall-led-sconces.jpeg", alt: "Villa lounge feature wall after renovation" },
   ],
   "apartment-renovation": [
-    { src: "/assets/bed-4.jpeg", alt: "Renovated apartment bedroom" },
-    { src: "/assets/tv-unit-3.jpeg", alt: "Apartment living room TV unit after renovation" },
-    { src: "/assets/dressing-unit-2.jpeg", alt: "Apartment dressing area after renovation" },
+    { src: "/assets/minimalist-bedroom-grey-bed-stone-wall.jpeg", alt: "Renovated apartment bedroom" },
+    { src: "/assets/tv-wall-marble-panel-bedroom-divider.jpeg", alt: "Apartment marble TV wall after renovation" },
+    { src: "/assets/hallway-wardrobe-bench-upholstered-panel.jpeg", alt: "Apartment hallway wardrobe after renovation" },
   ],
-  "kitchen-design": [{ src: "/assets/dining-table.jpeg", alt: "Dining area adjoining a designed kitchen" }],
-  "kitchen-renovation": [{ src: "/assets/dining-table.jpeg", alt: "Dining area adjoining a renovated kitchen" }],
+  "kitchen-design": [
+    { src: "/assets/corner-coffee-bar-black-fluted-cabinet-led-lighting.jpeg", alt: "Corner pantry and coffee bar with fluted black cabinetry" },
+    { src: "/assets/corner-coffee-station-walnut-stone-cabinet.jpeg", alt: "Corner coffee station with walnut and stone cabinetry" },
+    { src: "/assets/home-bar-cabinet-wine-fridge-led-shelves.jpeg", alt: "Home bar cabinet with wine fridge and LED shelves" },
+  ],
+  "kitchen-renovation": [
+    { src: "/assets/coffee-corner-white-cabinet-wine-cooler-led-shelves.jpeg", alt: "Renovated coffee corner with white cabinet and wine cooler" },
+    { src: "/assets/walnut-coffee-bar-cabinet-led-shelving.jpeg", alt: "Walnut pantry cabinet with LED shelving after renovation" },
+  ],
 };
 
 // The 5 pages the SEO strategy concentrates authority on — see the money-page plan.
@@ -140,7 +149,7 @@ export default function ServiceLocationPage({ lang, row }) {
   const home = dict.ourProjectsPage.home;
   const gallery = WORK_GALLERY_BY_SERVICE[row.serviceSlug] || [];
   const heroPhoto = pickByLocation(gallery, row.locationSlug);
-  const heroImage = heroPhoto?.src || HERO_IMAGE_BY_SERVICE[row.serviceSlug] || "/assets/hero-penthouse.jpg";
+  const heroImage = heroPhoto?.src || HERO_IMAGE_BY_SERVICE[row.serviceSlug] || "/assets/luxury-living-room-chandelier-wall-panelling.jpeg";
   const heroAlt = heroPhoto?.alt || row.h1;
   const mosaicPhotos = gallery.filter((photo) => photo.src !== heroImage).slice(0, 2);
   const startingItem = pricingGroup?.items?.[0];

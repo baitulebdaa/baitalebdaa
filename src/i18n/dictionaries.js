@@ -682,10 +682,10 @@ export const dictionaries = {
             { label: "Turnkey fit-out services in Dubai", href: "/en/fit-out/dubai" }
           ],
           images: [
-            "/assets/project-office.jpg",
-            "/assets/hero-penthouse.jpg",
-            "/assets/project-villa.jpg",
-            "/assets/cad-render.jpg"
+            "/assets/built-in-wardrobe-study-desk-wood-shelves.jpeg",
+            "/assets/luxury-living-room-chandelier-wall-panelling.jpeg",
+            "/assets/living-room-curved-sofa-wood-slat-wall.jpeg",
+            "/assets/minimalist-living-room-fluted-wall-panel-cove-lighting.jpeg"
           ]
         },
         "dubai-hills-estate-villa": {
@@ -711,10 +711,10 @@ export const dictionaries = {
             { label: "Interior design in Dubai", href: "/en/interior-design/dubai" }
           ],
           images: [
-            "/assets/project-villa.jpg",
-            "/assets/bed-1.jpeg",
-            "/assets/dressing-unit-1.jpeg",
-            "/assets/curtains-1.jpeg"
+            "/assets/living-room-wood-slat-wall-lounge-seating.jpeg",
+            "/assets/master-bedroom-tufted-wall-panels-ceiling.jpeg",
+            "/assets/walk-in-closet-island-led-ceiling.jpeg",
+            "/assets/living-room-tv-unit-floating-shelves-curtains.jpeg"
           ]
         },
         "palm-jumeirah-penthouse": {
@@ -739,10 +739,10 @@ export const dictionaries = {
             { label: "Custom architectural joinery", href: "/en/joinery/dubai" }
           ],
           images: [
-            "/assets/hero-penthouse.jpg",
-            "/assets/curtains-2.jpeg",
-            "/assets/bed-2.jpeg",
-            "/assets/dining-table.jpeg"
+            "/assets/luxury-living-room-stone-tv-wall-fireplace.jpeg",
+            "/assets/double-height-tv-wall-fireplace-curtains.jpeg",
+            "/assets/modern-bedroom-upholstered-headboard-wall-panels.jpeg",
+            "/assets/modern-dining-room-pendant-lights-oak-table.jpeg"
           ]
         },
         "downtown-dubai-tech-hq": {
@@ -767,10 +767,10 @@ export const dictionaries = {
             { label: "Turnkey fit-out services in Dubai", href: "/en/fit-out/dubai" }
           ],
           images: [
-            "/assets/project-office.jpg",
-            "/assets/tv-unit-1.jpeg",
-            "/assets/cad-render.jpg",
-            "/assets/cabinet-joinery.jpeg"
+            "/assets/tv-wall-unit-led-display-shelves.jpeg",
+            "/assets/tv-feature-wall-travertine-bio-fireplace.jpeg",
+            "/assets/corner-coffee-bar-black-fluted-cabinet-led-lighting.jpeg",
+            "/assets/glass-door-wardrobe-matte-handles.jpeg"
           ]
         },
         "al-barari-eco-villa": {
@@ -794,10 +794,10 @@ export const dictionaries = {
             { label: "Custom wardrobes in Dubai", href: "/en/custom-wardrobes/dubai" }
           ],
           images: [
-            "/assets/project-villa.jpg",
-            "/assets/dressing-unit-2.jpeg",
-            "/assets/bed-3.jpeg",
-            "/assets/curtains-3.jpeg"
+            "/assets/contemporary-living-room-wall-panelling-track-lighting.jpeg",
+            "/assets/built-in-wardrobe-study-desk-wood-shelves.jpeg",
+            "/assets/bedroom-wood-headboard-floating-nightstand.jpeg",
+            "/assets/living-room-wood-slat-wall-lounge-seating.jpeg"
           ]
         },
         "saadiyat-island-villa": {
@@ -822,10 +822,10 @@ export const dictionaries = {
             { label: "Interior design in Abu Dhabi", href: "/en/interior-design/abu-dhabi" }
           ],
           images: [
-            "/assets/project-villa.jpg",
-            "/assets/tv-unit-2.jpeg",
-            "/assets/dressing-unit-3.jpeg",
-            "/assets/bed-4.jpeg"
+            "/assets/modern-living-room-beige-sofa-curtain-wall-panels.jpeg",
+            "/assets/tv-wall-marble-panel-bedroom-divider.jpeg",
+            "/assets/corner-wardrobe-glass-doors-black-handles.jpeg",
+            "/assets/bedroom-wardrobe-led-shelves-pouf.jpeg"
           ]
         }
       }
@@ -842,7 +842,7 @@ export const dictionaries = {
         description: "Discover the essential steps, costs, and timeline for a seamless turnkey interior fit-out for your villa or office in Dubai. Learn how we handle DM approvals and deliver European standards.",
         slug: "luxury-interior-fit-out-guide-dubai",
         link: "/en/media/luxury-interior-fit-out-guide-dubai",
-        image: "/assets/hero-penthouse.jpg",
+        image: "/assets/villa-majlis-living-room-wood-wall-cove-ceiling.jpeg",
         date: "September 25, 2026",
         author: "Bait Al Ebdaa Design Team",
         content: `<p>Embarking on a <strong>luxury interior fit-out in Dubai</strong> requires more than just a vision; it demands precision, local regulatory expertise, and a flawless execution strategy. Whether you are transforming a high-end villa in Dubai Hills, Emirates Hills or Palm Jumeirah, or building out a corporate headquarters in Downtown Dubai or DIFC, understanding how the fit-out process actually works — not just what it costs — is what separates a smooth six-to-ten-week project from a stressful, budget-blown ordeal that drags on for months. This guide walks through everything a homeowner, facilities manager or business owner needs to know before signing a contract with a <strong>turnkey fit-out contractor in Dubai</strong>.</p>
@@ -958,7 +958,7 @@ export const dictionaries = {
           slug: "motorized-curtains-somfy-dubai-guide",
           link: "/en/media/motorized-curtains-somfy-dubai-guide",
           description: "How motorized curtains work, what a Somfy package typically includes, how fabric choice affects price, and what to check before ordering for your Dubai villa or apartment.",
-          image: "/assets/somfy-curtains.jpg",
+          image: "/assets/double-height-tv-wall-fireplace-curtains.jpeg",
           date: "October 1, 2026",
           author: "Bait Al Ebdaa Design Team",
           content: `<p><strong>Motorized curtains</strong> have moved from a luxury extra to a standard request in Dubai villas and apartments. Floor-to-ceiling glazing, strong afternoon sun and heavy air-conditioning use all make window treatments that open and close at the touch of a button genuinely useful, not just impressive. This guide explains how automation works, what you are paying for, and what to settle before you order.</p>
@@ -1033,7 +1033,7 @@ export const dictionaries = {
           slug: "bespoke-architectural-joinery-uae",
           link: "/en/media/bespoke-architectural-joinery-uae",
           description: "Why bespoke architectural joinery — custom kitchens, wardrobes and millwork built in Dubai and Abu Dhabi — defines luxury in modern UAE homes, and how in-house manufacturing changes the outcome.",
-          image: "/assets/cabinet-joinery.jpeg",
+          image: "/assets/corner-wardrobe-glass-doors-black-handles.jpeg",
           date: "September 10, 2026",
           author: "Bait Al Ebdaa Manufacturing Team",
           content: `<p><strong>Bespoke architectural joinery</strong> is the defining element of true luxury in modern UAE homes. From custom-built walk-in wardrobes to acoustic wood panelling, expertly crafted millwork transforms a standard property into a distinctive, high-value space in a way that loose, imported furniture simply cannot replicate. This guide explains what architectural joinery actually is, why it matters so much in the UAE market specifically, and what separates joinery that lasts fifteen years from joinery that starts failing within two.</p>
@@ -1159,7 +1159,7 @@ export const dictionaries = {
           slug: "furniture-maintenance-care-humid-climate",
           link: "/en/media/furniture-maintenance-care-humid-climate",
           description: "A practical, room-by-room guide to furniture maintenance in the UAE — protecting custom joinery, wood finishes and soft furnishings from heat, humidity and UV exposure.",
-          image: "/assets/dining-table.jpeg",
+          image: "/assets/home-bar-cabinet-wine-fridge-led-shelves.jpeg",
           date: "August 28, 2026",
           author: "Bait Al Ebdaa Aftercare Team",
           content: `<p>The UAE's demanding climate — characterized by intense heat, high UV exposure and fluctuating indoor humidity as air-conditioning cycles on and off — poses a unique challenge for luxury interiors that simply doesn't exist in temperate markets. Proper <strong>furniture maintenance in the UAE</strong> is essential to preserve the integrity and beauty of custom woodwork and soft furnishings, and the good news is that most of what protects a significant joinery investment is inexpensive, routine care rather than costly intervention. This guide covers what actually matters, room by room.</p>
@@ -1265,7 +1265,7 @@ export const dictionaries = {
           slug: "government-authority-hq-case-study",
           link: "/en/media/government-authority-hq-case-study",
           description: "A case study on delivering a 50,500 sq ft government authority headquarters fit-out in Dubai — security, acoustic joinery, DDA/DM approvals and Somfy automation under a strict deadline.",
-          image: "/assets/project-office.jpg",
+          image: "/assets/tv-media-wall-floating-console-fireplace.jpeg",
           date: "July 15, 2026",
           author: "Bait Al Ebdaa Projects",
           content: `<p>Executing a <strong>commercial fit-out in Dubai</strong> for a prominent government authority demands a higher level of security, precision and regulatory compliance than almost any other project type in the market. This case study walks through how Bait Al Ebdaa delivered a 50,500 sq ft turnkey interior fit-out across three floors of a confidential government authority headquarters in Dubai Academic City, under a strict, non-negotiable deadline — and what the project reveals about what actually matters in <strong>government and corporate office fit-out in the UAE</strong>. See the full project in our <a href="/en/our-projects/government-authority">portfolio</a>.</p>
@@ -1383,7 +1383,7 @@ export const dictionaries = {
           num: "01",
           title: "Interior Fit Out",
           description: "We work closely with your architect, designer, or project manager to deliver top-quality interior fit-out services, including MEP, furniture, and finishes.",
-          image: "/assets/tv-unit-1.jpeg",
+          image: "/assets/travertine-tv-wall-linear-fireplace.jpeg",
           link: "/en/fit-out/dubai"
         }
       ]
@@ -1403,7 +1403,7 @@ export const dictionaries = {
           title: "3D Spatial Design & DM Approval",
           description: "Photorealistic 3D renders matched with 100% Dubai Municipality & Civil Defense compliance.",
           meta: "Timeline: 5–7 Days",
-          image: "/assets/hero-penthouse.jpg",
+          image: "/assets/luxury-lounge-feature-wall-led-sconces.jpeg",
           link: "#"
         },
         {
@@ -1411,7 +1411,7 @@ export const dictionaries = {
           title: "15k sqft Factory Fabrication",
           description: "Precision CNC cutting, European walnut joinery, and custom Italian curtain stitching in our Ajman facility.",
           meta: "Timeline: 10–14 Days",
-          image: "/assets/project-office.jpg",
+          image: "/assets/study-nook-wardrobe-led-shelving-wood-slats.jpeg",
           link: "#"
         },
         {
@@ -1419,7 +1419,7 @@ export const dictionaries = {
           title: "On-Site Turnkey Installation",
           description: "Clean installation by certified site engineers with daily photo feeds pushed to your customer portal.",
           meta: "Timeline: 7–10 Days",
-          image: "/assets/cabinet-joinery.jpeg",
+          image: "/assets/hallway-wardrobe-bench-upholstered-panel.jpeg",
           link: "#"
         },
         {
@@ -1427,7 +1427,7 @@ export const dictionaries = {
           title: "Final Handover & Guarantee",
           description: "Final walk-through, municipality completion certificate, and 5-year warranty package.",
           meta: "Warranty: 5 Years Included",
-          image: "/assets/dining-table.jpeg",
+          image: "/assets/walnut-coffee-bar-cabinet-led-shelving.jpeg",
           link: "#"
         }
       ]
@@ -2106,10 +2106,10 @@ export const dictionaries = {
             { label: "خدمات التجهيز الشامل في دبي", href: "/ar/fit-out/dubai" }
           ],
           images: [
-            "/assets/project-office.jpg",
-            "/assets/hero-penthouse.jpg",
-            "/assets/project-villa.jpg",
-            "/assets/cad-render.jpg"
+            "/assets/built-in-wardrobe-study-desk-wood-shelves.jpeg",
+            "/assets/luxury-living-room-chandelier-wall-panelling.jpeg",
+            "/assets/living-room-curved-sofa-wood-slat-wall.jpeg",
+            "/assets/minimalist-living-room-fluted-wall-panel-cove-lighting.jpeg"
           ]
         },
         "dubai-hills-estate-villa": {
@@ -2135,10 +2135,10 @@ export const dictionaries = {
             { label: "التصميم الداخلي في دبي", href: "/ar/interior-design/dubai" }
           ],
           images: [
-            "/assets/project-villa.jpg",
-            "/assets/bed-1.jpeg",
-            "/assets/dressing-unit-1.jpeg",
-            "/assets/curtains-1.jpeg"
+            "/assets/living-room-wood-slat-wall-lounge-seating.jpeg",
+            "/assets/master-bedroom-tufted-wall-panels-ceiling.jpeg",
+            "/assets/walk-in-closet-island-led-ceiling.jpeg",
+            "/assets/living-room-tv-unit-floating-shelves-curtains.jpeg"
           ]
         },
         "palm-jumeirah-penthouse": {
@@ -2163,10 +2163,10 @@ export const dictionaries = {
             { label: "النجارة المعمارية المخصصة", href: "/ar/joinery/dubai" }
           ],
           images: [
-            "/assets/hero-penthouse.jpg",
-            "/assets/curtains-2.jpeg",
-            "/assets/bed-2.jpeg",
-            "/assets/dining-table.jpeg"
+            "/assets/luxury-living-room-stone-tv-wall-fireplace.jpeg",
+            "/assets/double-height-tv-wall-fireplace-curtains.jpeg",
+            "/assets/modern-bedroom-upholstered-headboard-wall-panels.jpeg",
+            "/assets/modern-dining-room-pendant-lights-oak-table.jpeg"
           ]
         },
         "downtown-dubai-tech-hq": {
@@ -2191,10 +2191,10 @@ export const dictionaries = {
             { label: "خدمات التجهيز الشامل في دبي", href: "/ar/fit-out/dubai" }
           ],
           images: [
-            "/assets/project-office.jpg",
-            "/assets/tv-unit-1.jpeg",
-            "/assets/cad-render.jpg",
-            "/assets/cabinet-joinery.jpeg"
+            "/assets/tv-wall-unit-led-display-shelves.jpeg",
+            "/assets/tv-feature-wall-travertine-bio-fireplace.jpeg",
+            "/assets/corner-coffee-bar-black-fluted-cabinet-led-lighting.jpeg",
+            "/assets/glass-door-wardrobe-matte-handles.jpeg"
           ]
         },
         "al-barari-eco-villa": {
@@ -2218,10 +2218,10 @@ export const dictionaries = {
             { label: "الخزائن المخصصة في دبي", href: "/ar/custom-wardrobes/dubai" }
           ],
           images: [
-            "/assets/project-villa.jpg",
-            "/assets/dressing-unit-2.jpeg",
-            "/assets/bed-3.jpeg",
-            "/assets/curtains-3.jpeg"
+            "/assets/contemporary-living-room-wall-panelling-track-lighting.jpeg",
+            "/assets/built-in-wardrobe-study-desk-wood-shelves.jpeg",
+            "/assets/bedroom-wood-headboard-floating-nightstand.jpeg",
+            "/assets/living-room-wood-slat-wall-lounge-seating.jpeg"
           ]
         },
         "saadiyat-island-villa": {
@@ -2246,10 +2246,10 @@ export const dictionaries = {
             { label: "التصميم الداخلي في أبوظبي", href: "/ar/interior-design/abu-dhabi" }
           ],
           images: [
-            "/assets/project-villa.jpg",
-            "/assets/tv-unit-2.jpeg",
-            "/assets/dressing-unit-3.jpeg",
-            "/assets/bed-4.jpeg"
+            "/assets/modern-living-room-beige-sofa-curtain-wall-panels.jpeg",
+            "/assets/tv-wall-marble-panel-bedroom-divider.jpeg",
+            "/assets/corner-wardrobe-glass-doors-black-handles.jpeg",
+            "/assets/bedroom-wardrobe-led-shelves-pouf.jpeg"
           ]
         }
       }
@@ -2266,7 +2266,7 @@ export const dictionaries = {
         description: "اكتشف الخطوات الأساسية والتكاليف والجدول الزمني لتجهيز داخلي متكامل لفيلا أو مكتبك في دبي.",
         slug: "luxury-interior-fit-out-guide-dubai",
         link: "/ar/media/luxury-interior-fit-out-guide-dubai",
-        image: "/assets/hero-penthouse.jpg",
+        image: "/assets/villa-majlis-living-room-wood-wall-cove-ceiling.jpeg",
         date: "٢٥ سبتمبر ٢٠٢٦",
         author: "فريق تصميم بيت الإبداع",
         content: `<p>يتطلب البدء في مشروع <strong>التجهيز الداخلي الفاخر في دبي</strong> أكثر من مجرد رؤية؛ إنه يتطلب دقة، وخبرة محلية بالأنظمة، واستراتيجية تنفيذ خالية من العيوب. سواء كنت تقوم بتجديد فيلا راقية في دبي هيلز أو الإمارات هيلز أو نخلة جميرا، أو تجهيز مقر شركة في وسط مدينة دبي أو مركز دبي المالي العالمي، فإن فهم آلية عمل عملية التجهيز الداخلي — وليس فقط تكلفتها — هو ما يفرق بين مشروع سلس يستغرق ستة إلى عشرة أسابيع، وتجربة مرهقة تتجاوز ميزانيتها وتمتد لأشهر. يستعرض هذا الدليل كل ما يحتاج مالك المنزل أو مدير المرافق أو صاحب العمل معرفته قبل التوقيع مع <strong>مقاول تجهيز داخلي متكامل في دبي</strong>.</p>
@@ -2390,7 +2390,7 @@ export const dictionaries = {
           title: "الستائر الكهربائية في دبي: دليل عملي لاختيار أنظمة سومفي",
           slug: "motorized-curtains-somfy-dubai-guide",
           link: "/ar/media/motorized-curtains-somfy-dubai-guide",
-          image: "/assets/somfy-curtains.jpg",
+          image: "/assets/double-height-tv-wall-fireplace-curtains.jpeg",
           date: "١ أكتوبر ٢٠٢٦",
           author: "فريق التصميم في بيت الإبداع",
           description: "كيف تعمل الستائر الكهربائية، وماذا تشمل باقة سومفي عادةً، وكيف يؤثر اختيار القماش في السعر، وما يجب التأكد منه قبل الطلب لفيلتك أو شقتك في دبي.",
@@ -2465,7 +2465,7 @@ export const dictionaries = {
           title: "تأثير النجارة المعمارية المخصصة على المنازل الحديثة في الإمارات", 
           slug: "bespoke-architectural-joinery-uae",
           link: "/ar/media/bespoke-architectural-joinery-uae",
-          image: "/assets/cabinet-joinery.jpeg",
+          image: "/assets/corner-wardrobe-glass-doors-black-handles.jpeg",
           date: "١٠ سبتمبر ٢٠٢٦",
           author: "فريق تصنيع بيت الإبداع",
           description: "لماذا تُعرّف النجارة المعمارية المخصصة — المطابخ وغرف الملابس والأعمال الخشبية المُصنّعة في دبي وأبوظبي — الفخامة في المنازل الحديثة بالإمارات، وكيف يغيّر التصنيع الداخلي النتيجة.",
@@ -2602,7 +2602,7 @@ export const dictionaries = {
           title: "كيفية صيانة النجارة المخصصة والأثاث في المناخات الرطبة", 
           slug: "furniture-maintenance-care-humid-climate",
           link: "/ar/media/furniture-maintenance-care-humid-climate",
-          image: "/assets/dining-table.jpeg",
+          image: "/assets/home-bar-cabinet-wine-fridge-led-shelves.jpeg",
           date: "٢٨ أغسطس ٢٠٢٦",
           author: "فريق العناية اللاحقة ببيت الإبداع",
           description: "دليل عملي، غرفة بغرفة، لصيانة الأثاث في الإمارات — حماية النجارة المخصصة والتشطيبات الخشبية والمفروشات من الحرارة والرطوبة والتعرض للأشعة فوق البنفسجية.",
@@ -2712,7 +2712,7 @@ export const dictionaries = {
           title: "داخل أول مشروع ننشر عنه: مقر هيئة حكومية", 
           slug: "government-authority-hq-case-study",
           link: "/ar/media/government-authority-hq-case-study",
-          image: "/assets/project-office.jpg",
+          image: "/assets/tv-media-wall-floating-console-fireplace.jpeg",
           date: "١٥ يوليو ٢٠٢٦",
           author: "مشاريع بيت الإبداع",
           description: "دراسة حالة عن تنفيذ تجهيز مقر هيئة حكومية بمساحة 50,500 قدم مربع في دبي — الأمان، النجارة الصوتية، موافقات DDA/بلدية دبي وأتمتة Somfy ضمن موعد نهائي صارم.",
@@ -2831,7 +2831,7 @@ export const dictionaries = {
           num: "01",
           title: "التجهيزات الداخلية",
           description: "نعمل عن كثب مع المهندس المعماري أو المصمم أو مدير المشروع لتقديم خدمات تجهيزات داخلية عالية الجودة، بما في ذلك الأعمال الميكانيكية والكهربائية والسباكة والأثاث والتشطيبات.",
-          image: "/assets/tv-unit-1.jpeg",
+          image: "/assets/travertine-tv-wall-linear-fireplace.jpeg",
           link: "/ar/fit-out/dubai"
         }
       ]
@@ -2851,7 +2851,7 @@ export const dictionaries = {
           title: "تصميم مكاني ثلاثي الأبعاد وموافقة بلدية دبي",
           description: "تصاميم ثلاثية الأبعاد واقعية مطابقة بنسبة 100% لمتطلبات بلدية دبي والدفاع المدني.",
           meta: "المدة الزمنية: 5–7 أيام",
-          image: "/assets/hero-penthouse.jpg",
+          image: "/assets/luxury-lounge-feature-wall-led-sconces.jpeg",
           link: "#"
         },
         {
@@ -2859,7 +2859,7 @@ export const dictionaries = {
           title: "تصنيع في مصنع بمساحة 15 ألف قدم مربع",
           description: "قطع دقيق بتقنية CNC، ونجارة جوز أوروبي، وخياطة ستائر إيطالية مخصصة في منشأتنا بعجمان.",
           meta: "المدة الزمنية: 10–14 يوماً",
-          image: "/assets/project-office.jpg",
+          image: "/assets/study-nook-wardrobe-led-shelving-wood-slats.jpeg",
           link: "#"
         },
         {
@@ -2867,7 +2867,7 @@ export const dictionaries = {
           title: "تركيب تسليم مفتاح في الموقع",
           description: "تركيب نظيف بواسطة مهندسي موقع معتمدين مع بث صور يومي إلى بوابة العميل الخاصة بك.",
           meta: "المدة الزمنية: 7–10 أيام",
-          image: "/assets/cabinet-joinery.jpeg",
+          image: "/assets/hallway-wardrobe-bench-upholstered-panel.jpeg",
           link: "#"
         },
         {
@@ -2875,7 +2875,7 @@ export const dictionaries = {
           title: "التسليم النهائي والضمان",
           description: "جولة تفقد نهائية، وشهادة إنجاز من البلدية، وحزمة ضمان لمدة 5 سنوات.",
           meta: "الضمان: 5 سنوات شاملة",
-          image: "/assets/dining-table.jpeg",
+          image: "/assets/walnut-coffee-bar-cabinet-led-shelving.jpeg",
           link: "#"
         }
       ]

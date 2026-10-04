@@ -16,18 +16,18 @@ const SITE_URL = "https://www.baitalebdaa.com";
 // Page order, each category's photograph, and the pricing item whose entry
 // price is shown as the badge on that photograph.
 const CATEGORIES = [
-  { id: "curtainsManual", image: "/assets/curtains-1.jpeg", headline: "curtain-pinch-sheer" },
-  { id: "curtainsSomfy", image: "/assets/somfy-curtains.jpg", headline: "somfy-sheer" },
-  { id: "joineryWardrobes", image: "/assets/dressing-unit-1.jpeg", headline: "wardrobe-laminate" },
-  { id: "joineryMedia", image: "/assets/tv-unit-1.jpeg", headline: "media-basic" },
-  { id: "joineryKitchens", image: "/assets/tv-unit-3.jpeg", headline: "kitchen-laminate" },
-  { id: "design", image: "/assets/cad-render.jpg", headline: "design-single-room" },
-  { id: "villa", image: "/assets/project-villa.jpg", headline: "villa-standard" },
-  { id: "office", image: "/assets/project-office.jpg", headline: "office-essential" },
-  { id: "approvals", image: "/assets/hero-penthouse.jpg", headline: "approval-noc" },
+  { id: "curtainsManual", image: "/assets/living-room-tv-unit-floating-shelves-curtains.jpeg", headline: "curtain-pinch-sheer" },
+  { id: "curtainsSomfy", image: "/assets/double-height-tv-wall-fireplace-curtains.jpeg", headline: "somfy-sheer" },
+  { id: "joineryWardrobes", image: "/assets/walk-in-closet-island-led-ceiling.jpeg", headline: "wardrobe-laminate" },
+  { id: "joineryMedia", image: "/assets/tv-feature-wall-travertine-bio-fireplace.jpeg", headline: "media-basic" },
+  { id: "joineryKitchens", image: "/assets/walnut-coffee-bar-cabinet-led-shelving.jpeg", headline: "kitchen-laminate" },
+  { id: "design", image: "/assets/minimalist-living-room-fluted-wall-panel-cove-lighting.jpeg", headline: "design-single-room" },
+  { id: "villa", image: "/assets/living-room-curved-sofa-wood-slat-wall.jpeg", headline: "villa-standard" },
+  { id: "office", image: "/assets/built-in-wardrobe-study-desk-wood-shelves.jpeg", headline: "office-essential" },
+  { id: "approvals", image: "/assets/luxury-living-room-chandelier-wall-panelling.jpeg", headline: "approval-noc" },
 ];
 
-const HERO_IMAGES = ["/assets/hero-penthouse.jpg", "/assets/curtains-2.jpeg", "/assets/dressing-unit-3.jpeg"];
+const HERO_IMAGES = ["/assets/luxury-living-room-stone-tv-wall-fireplace.jpeg", "/assets/double-height-tv-wall-fireplace-curtains.jpeg", "/assets/corner-wardrobe-glass-doors-black-handles.jpeg"];
 
 const fmt = new Intl.NumberFormat("en-AE");
 
