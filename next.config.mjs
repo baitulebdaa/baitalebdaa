@@ -11,6 +11,14 @@ const nextConfig = {
   skipTrailingSlashRedirect: true,
   async redirects() {
     return [
+      // Apex-domain requests for legacy URLs that have a final destination go there in
+      // ONE hop (apex -> final), instead of apex -> www -> final. Must sit above the
+      // generic apex rule. Covers /luxury-interior-design (the only URL that ever
+      // existed in that namespace: a single WordPress page with no child pages) and /en/privacy.
+      { source: "/luxury-interior-design", has: [{ type: "host", value: "baitalebdaa.com" }], destination: "https://www.baitalebdaa.com/en/interior-design/dubai", permanent: true },
+      { source: "/luxury-interior-design/", has: [{ type: "host", value: "baitalebdaa.com" }], destination: "https://www.baitalebdaa.com/en/interior-design/dubai", permanent: true },
+      { source: "/en/privacy", has: [{ type: "host", value: "baitalebdaa.com" }], destination: "https://www.baitalebdaa.com/en/privacy-policy", permanent: true },
+      { source: "/en/privacy/", has: [{ type: "host", value: "baitalebdaa.com" }], destination: "https://www.baitalebdaa.com/en/privacy-policy", permanent: true },
       // www.baitalebdaa.com is the canonical hostname — send every apex-domain
       // request there permanently so there's only ever one indexable URL per page.
       {
@@ -28,6 +36,9 @@ const nextConfig = {
       { source: "/about-us/", destination: "/en/about", permanent: true },
       { source: "/privacy-policy", destination: "/en/privacy-policy", permanent: true },
       { source: "/privacy-policy/", destination: "/en/privacy-policy", permanent: true },
+      // /en/privacy was never a real page; it is the natural guess for the policy URL.
+      { source: "/en/privacy", destination: "/en/privacy-policy", permanent: true },
+      { source: "/en/privacy/", destination: "/en/privacy-policy", permanent: true },
       // /furniture-maintenance-care/ was earning real Search Console clicks/impressions
       // at the un-prefixed URL but 404s without an explicit rule below, because the
       // generic trailing-slash catch-all at the bottom of this array strips the slash

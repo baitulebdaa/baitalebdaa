@@ -156,6 +156,14 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
   const waHref = `https://wa.me/971524621919?text=${waMessage}`;
 
   const project = dict.projectDetailPage.projects["government-authority"];
+  // Supporting-evidence link for the office fit-out money page only: the proof card
+  // already features this project, so give it a descriptive contextual link to its page.
+  const caseStudyLinkLabel =
+    row.serviceSlug === "office-fit-out" && row.locationSlug === "dubai"
+      ? lang === "ar"
+        ? "مشروع تجهيز مكاتب بمساحة 50,500 قدم مربع في مدينة دبي الأكاديمية"
+        : "50,500 sq ft Dubai Academic City office fit-out project"
+      : null;
 
   // Two location-specific FAQs (not reused site-wide) so pages don't share identical
   // Q&A text beyond the 2 category-level FAQs already in serviceContent.
@@ -398,6 +406,11 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
             <div className="slp-proof-copy">
               <p className="micro">{dict.ourProjectsPage.ourProjects}</p>
               <h3>{project.title}</h3>
+              {caseStudyLinkLabel && (
+                <a href={`/${lang}/our-projects/government-authority`} className="service-learn-more">
+                  {caseStudyLinkLabel}
+                </a>
+              )}
               <a href={`/${lang}/our-projects`} className="service-learn-more">
                 {dict.ourProjectsPage.explorePortfolio}
               </a>
