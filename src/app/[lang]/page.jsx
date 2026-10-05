@@ -1,11 +1,11 @@
 import App from "../../App";
-import { buildPageMetadata } from "../../lib/page-metadata";
+import { buildPageMetadata, websiteJsonLd } from "../../lib/page-metadata";
 
 const COPY = {
   en: {
     title: "Bait Al Ebdaa | Turnkey Interior Design Dubai",
     description:
-      "Bait Al Ebdaa creates refined villa and office interiors across Dubai and Abu Dhabi, with in-house joinery, photorealistic 3D visualization, approvals and luxury fit-out.",
+      "Bait Al Ebdaa delivers villa and office interior design, turnkey fit-out and in-house joinery across Dubai and Abu Dhabi.",
   },
   ar: {
     title: "بيت الإبداع | تجهيزات ونجارة معمارية فاخرة في دبي",
@@ -21,5 +21,13 @@ export async function generateMetadata({ params }) {
 }
 
 export default function Home() {
-  return <App />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd()).replace(/</g, "\\u003c") }}
+      />
+      <App />
+    </>
+  );
 }

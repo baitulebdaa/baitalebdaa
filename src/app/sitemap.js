@@ -1,8 +1,11 @@
 import seoData from "../data/seo-pages.json";
+import { ARTICLE_DATES } from "../data/article-catalog";
+import { dictionaries } from "../i18n/dictionaries";
 
 export const dynamic = "force-static";
 
 const BASE = "https://www.baitalebdaa.com";
+const CONTENT_UPDATED = new Date("2026-10-05");
 
 const STATIC_PATHS = [
   "our-services",
@@ -16,76 +19,75 @@ const STATIC_PATHS = [
   "privacy-policy",
   "terms-and-conditions",
   "media",
-  "media/luxury-interior-fit-out-guide-dubai",
-  "media/bespoke-architectural-joinery-uae",
-  "media/furniture-maintenance-care-humid-climate",
-  "media/government-authority-hq-case-study",
 ];
 
-// The date seo-pages.json / service-content.js / location-content.js content last
-// actually changed — bump this (not `now`) when that content changes. Stamping all
-// 1,020 templated pages with the current build date on every deploy (even ones that
-// only touch styling) tells Google everything changed when it didn't, which dilutes
-// the freshness signal instead of helping it.
-const SEO_CONTENT_UPDATED = new Date("2026-09-17");
+function localizedEntry(path, lastModified = CONTENT_UPDATED, priority = 0.7) {
+  const enUrl = `${BASE}/en/${path}`;
+  const arUrl = `${BASE}/ar/${path}`;
+  return [
+    {
+      url: enUrl,
+      lastModified,
+      changeFrequency: "monthly",
+      priority,
+      alternates: { languages: { en: enUrl, ar: arUrl } },
+    },
+    {
+      url: arUrl,
+      lastModified,
+      changeFrequency: "monthly",
+      priority,
+      alternates: { languages: { en: enUrl, ar: arUrl } },
+    },
+  ];
+}
 
 export default function sitemap() {
-  const now = new Date();
-  // The English homepage's canonical URL is the bare root (src/proxy.js rewrites
-  // "/" to "/en" internally — see that file and src/lib/page-metadata.js), so /en
-  // is not listed separately here; it would just be a near-duplicate of BASE.
   const entries = [
     {
       url: BASE,
-      lastModified: now,
+      lastModified: CONTENT_UPDATED,
       changeFrequency: "weekly",
       priority: 1,
       alternates: { languages: { en: BASE, ar: `${BASE}/ar` } },
     },
     {
       url: `${BASE}/ar`,
-      lastModified: now,
+      lastModified: CONTENT_UPDATED,
       changeFrequency: "weekly",
       priority: 0.9,
       alternates: { languages: { en: BASE, ar: `${BASE}/ar` } },
     },
   ];
 
-  for (const path of STATIC_PATHS) {
-    entries.push({
-      url: `${BASE}/en/${path}`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.7,
-      alternates: { languages: { en: `${BASE}/en/${path}`, ar: `${BASE}/ar/${path}` } },
-    });
-    entries.push({
-      url: `${BASE}/ar/${path}`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.7,
-      alternates: { languages: { en: `${BASE}/en/${path}`, ar: `${BASE}/ar/${path}` } },
-    });
+  for (const path of STATIC_PATHS) entries.push(...localizedEntry(path));
+
+  // Derive article URLs from the content source so newly published posts cannot be
+  // forgotten in the sitemap. Publication dates are stable, verifiable lastmod values.
+  const articles = [dictionaries.en.mediaPage.featuredArticle, ...dictionaries.en.mediaPage.articles];
+  for (const article of articles) {
+    const publishedAt = ARTICLE_DATES[article.slug]
+      ? new Date(`${ARTICLE_DATES[article.slug]}T09:00:00+04:00`)
+      : CONTENT_UPDATED;
+    entries.push(...localizedEntry(`media/${article.slug}`, publishedAt));
   }
 
-  // Only pages flagged `approved` in seo-pages.json ship in the sitemap. As of the
-  // 2026-09-22 SEO pass, that's the 8 emirate-level locations per service (136 pages x
-  // 2 languages = 272); the 22 district/neighborhood locations per service stay
-  // noindex,follow (robots — see generateMetadata in [service]/[location]/page.jsx)
-  // until they have real unique local content — see scripts/generate-seo-data.mjs.
+  // Only verified Dubai and Abu Dhabi service pages are indexable. Other generated
+  // locations remain noindex,follow until real delivery coverage and unique local
+  // proof are confirmed.
   for (const [key, enPage] of Object.entries(seoData.pages.en)) {
     if (!enPage.approved) continue;
     const arPage = seoData.pages.ar[key];
     entries.push({
       url: enPage.canonical,
-      lastModified: SEO_CONTENT_UPDATED,
+      lastModified: CONTENT_UPDATED,
       changeFrequency: "monthly",
       priority: 0.6,
       alternates: { languages: { en: enPage.canonical, ar: arPage.canonical } },
     });
     entries.push({
       url: arPage.canonical,
-      lastModified: SEO_CONTENT_UPDATED,
+      lastModified: CONTENT_UPDATED,
       changeFrequency: "monthly",
       priority: 0.6,
       alternates: { languages: { en: enPage.canonical, ar: arPage.canonical } },

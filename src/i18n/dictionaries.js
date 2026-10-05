@@ -180,7 +180,7 @@ export const dictionaries = {
     },
     furnitureMaintenancePage: {
       metaTitle: "Furniture Maintenance & Care Dubai | Bait Al Ebdaa",
-      metaDescription: "Aftercare, repair and maintenance for custom joinery and furniture, backed by the same in-house Ajman factory and 5-year workmanship guarantee behind every Bait Al Ebdaa fit-out.",
+      metaDescription: "Furniture and custom joinery repair, maintenance and aftercare from Bait Al Ebdaa's in-house Ajman workshop, with a 5-year workmanship guarantee.",
       navTitle: "Furniture Maintenance & Care",
       pageTitle: "Furniture Maintenance & Care",
       kicker: "Aftercare",
@@ -340,7 +340,7 @@ export const dictionaries = {
       navTitle: "Contact Us",
       pageTitle: "Let's Talk About Your Project",
       metaTitle: "Contact Us | Bait Al Ebdaa",
-      metaDescription: "Get in touch with Bait Al Ebdaa for interior design, turnkey fit-out and joinery projects across the UAE — request a quote, discuss procurement, or apply for a role."
+      metaDescription: "Contact Bait Al Ebdaa for interior design, turnkey fit-out and joinery projects in Dubai and Abu Dhabi. Request a quote or discuss procurement."
     },
     projectsPageLayout: {
       intro: "A selection of residential and commercial interiors delivered by one accountable team, from 3D design and approvals to in-house joinery and handover.",

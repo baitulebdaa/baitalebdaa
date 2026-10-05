@@ -13,14 +13,12 @@ const BING_SITE_VERIFICATION = process.env.BING_SITE_VERIFICATION;
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
   variable: "--font-dm-sans",
   display: "swap",
 });
 
 const manrope = Manrope({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
   variable: "--font-manrope",
   display: "swap",
 });
@@ -30,6 +28,7 @@ const tajawal = Tajawal({
   weight: ["400", "500", "700"],
   variable: "--font-tajawal",
   display: "swap",
+  preload: false,
 });
 
 // Display serif for the FAQ section heading only (see src/App.jsx Faq()) — matches
@@ -42,6 +41,7 @@ const cormorant = Cormorant_Garamond({
   style: ["normal", "italic"],
   variable: "--font-cormorant",
   display: "swap",
+  preload: false,
 });
 
 export function generateStaticParams() {
@@ -56,11 +56,11 @@ export const metadata = {
     template: "%s | Bait Al Ebdaa",
   },
   description:
-    "Bait Al Ebdaa creates refined villa and office interiors across Dubai and Abu Dhabi, with in-house joinery, photorealistic 3D visualization, approvals and luxury fit-out.",
+    "Bait Al Ebdaa delivers villa and office interior design, turnkey fit-out and in-house joinery across Dubai and Abu Dhabi.",
   keywords: ["Turnkey Interior Design", "Custom Architectural Joinery", "Luxury Fit-out Dubai", "Abu Dhabi Interiors", "Interior Design UAE", "Bait Al Ebdaa"],
   openGraph: {
     title: "Bait Al Ebdaa | Turnkey Interior Design Dubai",
-    description: "Refined villa and office interiors across Dubai and Abu Dhabi.",
+    description: "Villa and office interior design, turnkey fit-out and in-house joinery across Dubai and Abu Dhabi.",
     url: 'https://www.baitalebdaa.com',
     siteName: 'Bait Al Ebdaa',
     locale: 'en_AE',
@@ -69,7 +69,7 @@ export const metadata = {
   twitter: {
     card: 'summary_large_image',
     title: "Bait Al Ebdaa | Turnkey Interior Design Dubai",
-    description: "Refined villa and office interiors across Dubai and Abu Dhabi.",
+    description: "Villa and office interior design, turnkey fit-out and in-house joinery across Dubai and Abu Dhabi.",
   },
   alternates: {
     canonical: '/',

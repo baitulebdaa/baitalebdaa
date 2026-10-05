@@ -5,6 +5,7 @@ import { useState } from "react";
 import { ArrowUpRight } from "./components/icons";
 import { useI18n } from "./i18n/I18nProvider";
 import { Header, Footer, Reveal } from "./components/Shared";
+import { isPublishedProject } from "./data/project-catalog";
 
 export default function OurProjects() {
   const { lang, dict } = useI18n();
@@ -13,7 +14,7 @@ export default function OurProjects() {
 
   const t = dict.ourProjectsPage;
   const ui = dict.projectsPageLayout;
-  const projects = dict.projectsSection.items;
+  const projects = dict.projectsSection.items.filter((project) => isPublishedProject(project.slug));
   const projectImages = [
     "/assets/living-room-curved-sofa-wood-slat-wall.jpeg",
     "/assets/luxury-living-room-chandelier-wall-panelling.jpeg",

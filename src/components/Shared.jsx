@@ -5,7 +5,8 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowUp, ArrowUpRight, ChevronDown, Plus, Menu, X, Globe, Sparkles, Facebook, Instagram, Linkedin, Youtube, Whatsapp, Home, Services, Projects, Phone } from "./icons";
 import { useI18n } from "../i18n/I18nProvider";
 import { useRouter, usePathname } from "next/navigation";
-import { getService } from "../lib/seo-pages";
+import { getServiceLabel } from "../data/service-catalog";
+import { isPublishedProject } from "../data/project-catalog";
 import { formatIndex } from "../lib/format";
 
 // Desktop "Services" dropdown groups (Header). Grouped rather than one long
@@ -20,7 +21,7 @@ const SERVICE_MENU_GROUPS = [
 ];
 
 export function Brand({ light = false, priority = false, customSrc = null }) {
-  return <a className={`brand ${light ? "brand--light" : ""}`} href="/" aria-label="Bait Al Ebdaa home"><Image className="brand__logo" src={customSrc || "/assets/logo.png"} alt="Bait Al Ebdaa - Luxury Interior Design and Joinery Logo" width={2170} height={725} priority={priority} /></a>;
+  return <a className={`brand ${light ? "brand--light" : ""}`} href="/" aria-label="Bait Al Ebdaa home"><Image className="brand__logo" src={customSrc || "/assets/logo.png"} alt="Bait Al Ebdaa - Luxury Interior Design and Joinery Logo" width={2170} height={725} sizes="(max-width: 700px) 140px, 220px" priority={priority} /></a>;
 }
 
 export function Reveal({ as: Tag = "div", className = "", children, delay = 0, ...props }) {
@@ -106,7 +107,7 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
               <div className="header-nav-panel__col">
                 <p className="header-nav-panel__heading">{dict.nav.projectGroups.featured}</p>
                 <ul>
-                  {dict.projectsSection.items.filter((item) => item.slug).map((item) => (
+                  {dict.projectsSection.items.filter((item) => isPublishedProject(item.slug)).map((item) => (
                     <li key={item.slug}>
                       <a href={`/${lang}/our-projects/${item.slug}`} onClick={() => setProjectsOpen(false)}>{item.title}</a>
                     </li>
@@ -117,7 +118,7 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
                 <p className="header-nav-panel__heading">{dict.nav.projectGroups.services}</p>
                 <ul>
                   {["residential-interior-design", "commercial-interior-design", "villa-renovation", "office-fit-out", "joinery"].map((slug) => {
-                    const service = getService(slug);
+                    const service = getServiceLabel(slug);
                     if (!service) return null;
                     return (
                       <li key={slug}>
@@ -155,7 +156,7 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
                   <p className="header-nav-panel__heading">{dict.nav.serviceGroups[group.headingKey]}</p>
                   <ul>
                     {group.slugs.map((slug) => {
-                      const service = getService(slug);
+                      const service = getServiceLabel(slug);
                       if (!service) return null;
                       return (
                         <li key={slug}>

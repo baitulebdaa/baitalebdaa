@@ -18,9 +18,9 @@ if (!existsSync(inputPath)) {
   throw new Error("SEO map not found: " + inputPath);
 }
 
-// The 8 emirate-level locations are approved for indexing at launch (real, provable service
-// coverage). The 22 neighborhood/community rows stay noindex,follow until local proof/content
-// is added for them — see the plan's "Content approach" section.
+// Keep the full emirate list for classifying the source spreadsheet. Only the delivery
+// footprint confirmed below is approved for indexing; every other generated location stays
+// noindex,follow until genuine local proof and coverage are available.
 const CORE_LOCATIONS = new Set([
   "UAE",
   "Dubai",
@@ -31,6 +31,11 @@ const CORE_LOCATIONS = new Set([
   "Fujairah",
   "Umm Al Quwain",
 ]);
+
+// Index only the delivery footprint confirmed in the site's Organization schema
+// and visible contact copy. Other generated location URLs remain noindex,follow
+// until genuine local proof and delivery coverage are confirmed.
+const INDEXABLE_LOCATIONS = new Set(["Dubai", "Abu Dhabi"]);
 
 // The sheet's own URL / Canonical / Hreflang Pair columns are written against
 // baitalebdaa.ae, but the real production hostname is www.baitalebdaa.com (canonical
@@ -71,6 +76,7 @@ for (const row of rows) {
   const category = row["Category / Cluster"];
   const location = row.Location;
   const isCore = CORE_LOCATIONS.has(location);
+  const isIndexable = INDEXABLE_LOCATIONS.has(location);
 
   if (lang === "en") {
     if (!services.has(serviceSlug)) services.set(serviceSlug, { slug: serviceSlug, en: category, ar: "" });
@@ -99,7 +105,9 @@ for (const row of rows) {
     primaryKeyword: row["Primary Keyword"],
     secondaryKeywords: String(row["Secondary Keywords"] || "").split(";").map((s) => s.trim()).filter(Boolean),
     seoTitle: row["SEO Title"],
-    metaDescription: row["Meta Description"],
+    metaDescription: lang === "en"
+      ? `Bait Al Ebdaa delivers ${String(row.H1 || "").toLowerCase()} with tailored design, approvals and end-to-end execution. Request a site survey.`
+      : row["Meta Description"],
     h1: row.H1,
     h2Themes: String(row["H2 Keyword Themes"] || "").split(";").map((s) => s.trim()).filter(Boolean),
     canonical: toProductionDomain(row.Canonical),
@@ -109,7 +117,7 @@ for (const row of rows) {
     // The 22 district/neighborhood pages per service stay noindex,follow (still built and
     // linked, just not indexed) until they have real unique local content — measured
     // against Search Console demand per district rather than published in bulk.
-    approved: isCore,
+    approved: isIndexable,
   };
 }
 

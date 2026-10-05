@@ -8,7 +8,6 @@ import { Header, Footer, Reveal, FaqSplit, ProcessTimeline } from "./components/
 import { Estimator } from "./components/Estimator";
 import { serviceContent, priorityIntroExtra, whyChooseFacts } from "./data/service-content";
 import { locationContent } from "./data/location-content";
-import { getService, getLocation, getSiblingLocations, getSiblingServices, getEmirateName, getEmirateAuthority } from "./lib/seo-pages";
 import { pricingGroups } from "./data/pricing";
 import { formatPrice, PRICING_GROUP_BY_SERVICE } from "./lib/pricing";
 
@@ -104,16 +103,13 @@ function pickByLocation(list, locationSlug) {
   return list[seed % list.length];
 }
 
-export default function ServiceLocationPage({ lang, row }) {
+export default function ServiceLocationPage({ lang, row, seoContext }) {
   const { dict } = useI18n();
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const service = getService(row.serviceSlug);
-  const location = getLocation(row.locationSlug);
+  const { service, location, emirateName, authority, otherAreas, otherServices } = seoContext;
   const serviceName = lang === "ar" ? service.ar : service.en;
   const locationName = lang === "ar" ? location.ar : location.en;
-  const emirateName = getEmirateName(lang, row.emirate);
-  const authority = getEmirateAuthority(lang, row.emirate);
   const content = serviceContent[row.serviceSlug]?.[lang];
   const isEmirateItself = location.tier === "core";
   const isPriorityMoneyPage = PRIORITY_MONEY_PAGES.has(`${row.serviceSlug}/${row.locationSlug}`);
@@ -136,10 +132,8 @@ export default function ServiceLocationPage({ lang, row }) {
         ? `في ${locationName} ضمن إمارة ${emirateName}، ننسق أي موافقات مطلوبة مباشرة مع ${authority}.`
         : `In ${locationName}, part of ${emirateName}, we coordinate any required approvals directly with ${authority}.`;
 
-  const otherAreas = getSiblingLocations(lang, row.serviceSlug, row.locationSlug);
   const coreAreas = otherAreas.filter((entry) => entry.location.tier === "core");
   const nearbyAreas = otherAreas.filter((entry) => entry.location.tier === "district" && entry.location.emirate === row.emirate);
-  const otherServices = getSiblingServices(lang, row.locationSlug, row.serviceSlug);
   const blogPosts = [dict.mediaPage.featuredArticle, ...dict.mediaPage.articles];
 
   const pricingGroupId = PRICING_GROUP_BY_SERVICE[row.serviceSlug] || "design";

@@ -5,10 +5,8 @@ import { useState } from "react";
 import { ArrowUpRight } from "../../../../components/icons";
 import { Header, Footer, Reveal, PageHeader } from "../../../../components/Shared";
 
-export default function BlogDetailClient({ article, breadcrumbs, newsAndInsights, allArticles, lang, discuss }) {
+export default function BlogDetailClient({ article, breadcrumbs, newsAndInsights, recentArticles, lang, discuss }) {
   const [menuOpen, setMenuOpen] = useState(false);
-  
-  const recentArticles = allArticles.filter(a => a.slug !== article.slug).slice(0, 3);
   
   const waMessage = encodeURIComponent(
     lang === "ar"

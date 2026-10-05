@@ -10,6 +10,7 @@ import { PriceExplorer } from "./components/PriceExplorer";
 import { QuoteModal } from "./components/QuoteModal";
 import { ContactForm } from "./components/ContactForm";
 import { formatIndex } from "./lib/format";
+import { isPublishedProject } from "./data/project-catalog";
 
 function Hero({ onGetQuote }) {
   const { lang, dict } = useI18n();
@@ -87,8 +88,9 @@ function Sectors() {
 
 function Projects() {
   const { lang, dict } = useI18n();
-  const images = ["/assets/study-nook-wardrobe-led-shelving-wood-slats.jpeg", "/assets/contemporary-living-room-wall-panelling-track-lighting.jpeg", "/assets/luxury-living-room-stone-tv-wall-fireplace.jpeg"];
-  return <section className="section projects" id="projects"><div className="shell projects__heading"><Reveal><p className="micro">{dict.projectsSection.micro}</p><h2 className="section-title" style={{whiteSpace: 'pre-wrap'}}>{dict.projectsSection.title}</h2></Reveal><Reveal className="projects__tools" delay={100} style={{display: 'flex', alignItems: 'flex-end'}}><a href={`/${lang}/our-projects`} className="outline-button outline-button--dark">{dict.projectsSection.viewAll} <ArrowUpRight size={16} /></a></Reveal></div><div className="shell project-grid-home">{dict.projectsSection.items.slice(0, 3).map((p, i) => <article className="project-card-home" key={i}><a href={`/${lang}/our-projects`} style={{ textDecoration: 'none', color: 'inherit' }}><div className="project-card-home__image"><Image src={images[i]} alt={`${p.title}, ${p.place}`} fill sizes="(max-width: 700px) 100vw, 33vw" /></div><div className="project-card-home__meta"><h3>{p.title}{p.place ? `, ${p.place}` : ''} <ArrowUpRight size={16} style={{display: 'inline-block', verticalAlign: 'middle', marginLeft: '5px'}} /></h3></div></a></article>)}</div></section>;
+  const projects = dict.projectsSection.items.filter((project) => isPublishedProject(project.slug));
+  const imageBySlug = { "government-authority": "/assets/tv-wall-unit-led-display-shelves.jpeg" };
+  return <section className="section projects" id="projects"><div className="shell projects__heading"><Reveal><p className="micro">{dict.projectsSection.micro}</p><h2 className="section-title" style={{whiteSpace: 'pre-wrap'}}>{dict.projectsSection.title}</h2></Reveal><Reveal className="projects__tools" delay={100} style={{display: 'flex', alignItems: 'flex-end'}}><a href={`/${lang}/our-projects`} className="outline-button outline-button--dark">{dict.projectsSection.viewAll} <ArrowUpRight size={16} /></a></Reveal></div><div className="shell project-grid-home">{projects.map((p) => <article className="project-card-home" key={p.slug}><a href={`/${lang}/our-projects/${p.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}><div className="project-card-home__image"><Image src={imageBySlug[p.slug]} alt={`${p.title}, ${p.place}`} fill sizes="(max-width: 700px) 100vw, 33vw" /></div><div className="project-card-home__meta"><h3>{p.title}{p.place ? `, ${p.place}` : ''} <ArrowUpRight size={16} style={{display: 'inline-block', verticalAlign: 'middle', marginLeft: '5px'}} /></h3></div></a></article>)}</div></section>;
 }
 
 function Capabilities() {

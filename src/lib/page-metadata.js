@@ -52,10 +52,24 @@ export function buildPageMetadata({ lang, path, title, description }) {
   };
 }
 
+export function websiteJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${BASE}/#website`,
+    url: `${BASE}/`,
+    name: "Bait Al Ebdaa",
+    alternateName: "Bait Al Ebdaa Interiors",
+    inLanguage: ["en-AE", "ar-AE"],
+    publisher: { "@id": `${BASE}/#organization` },
+  };
+}
+
 export function organizationJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "HomeAndConstructionBusiness",
+    "@id": `${BASE}/#organization`,
     name: "Bait Al Ebdaa",
     url: BASE,
     logo: `${BASE}/assets/logo.png`,

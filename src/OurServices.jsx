@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useI18n } from "./i18n/I18nProvider";
 import { ArrowUpRight } from "./components/icons";
 import { Header, Footer, Reveal, FaqSplit } from "./components/Shared";
-import { services as seoServices } from "./lib/seo-pages";
+import { serviceCatalog as seoServices } from "./data/service-catalog";
 import { pricingGroups } from "./data/pricing";
 import { formatPrice, PRICING_GROUP_BY_SERVICE } from "./lib/pricing";
 
