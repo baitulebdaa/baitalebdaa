@@ -681,7 +681,7 @@ export const dictionaries = {
             "Collaboration spaces for different work styles"
           ],
           related: [
-            { label: "Office fit-out in Dubai", href: "/en/office-fit-out/dubai" },
+            { label: "Office fit-out and MEP services in Dubai", href: "/en/office-fit-out/dubai" },
             { label: "Turnkey fit-out services in Dubai", href: "/en/fit-out/dubai" }
           ],
           images: [
@@ -1299,6 +1299,8 @@ export const dictionaries = {
 
 <h2>Results</h2>
 <p>The completed headquarters delivered a highly functional, secure and visually authoritative space that met every regulatory and security requirement on the fixed deadline, setting an internal benchmark for how Bait Al Ebdaa approaches <strong>turnkey interior solutions in the UAE</strong> for security-sensitive and institutional clients since. The project remains one of the largest single commercial fit-outs completed by the team to date, at 50,500 sq ft across three floors, and continues to inform how new institutional briefs are scoped and staffed from day one.</p>
+
+<p>For a brief of similar scale and complexity, see our <a href="/en/office-fit-out/dubai">office fit-out and MEP services in Dubai</a>, which set out the scope, delivery process and published starting prices.</p>
 
 <h2>Lessons for Any Large-Scale Commercial Fit-out</h2>
 <p>Several practices from this project apply well beyond government work to any large, deadline-critical <strong>office fit-out in Dubai</strong>:</p>
@@ -2108,7 +2110,7 @@ export const dictionaries = {
             "مساحات تعاون تناسب أنماط العمل المختلفة"
           ],
           related: [
-            { label: "تجهيز المكاتب في دبي", href: "/ar/office-fit-out/dubai" },
+            { label: "خدمات تجهيز المكاتب والأعمال الكهروميكانيكية في دبي", href: "/ar/office-fit-out/dubai" },
             { label: "خدمات التجهيز الشامل في دبي", href: "/ar/fit-out/dubai" }
           ],
           images: [
@@ -2752,6 +2754,8 @@ export const dictionaries = {
 
 <h2>النتائج</h2>
 <p>قدّم المقر المُنجز مساحة عالية الوظيفية وآمنة وذات سلطة بصرية استوفت كل متطلب تنظيمي وأمني ضمن الموعد النهائي الثابت، واضعة معياراً داخلياً لكيفية تعامل بيت الإبداع مع <strong>الحلول الداخلية المتكاملة في الإمارات</strong> للعملاء الحساسين أمنياً والمؤسسيين منذ ذلك الحين. يبقى المشروع أحد أكبر التجهيزات التجارية الفردية التي أنجزها الفريق حتى تاريخه، بمساحة 50,500 قدم مربع عبر ثلاثة طوابق.</p>
+
+<p>للمشاريع المشابهة في النطاق والتعقيد، تعرّف على خدمات <a href="/ar/office-fit-out/dubai">تجهيز المكاتب والأعمال الكهروميكانيكية في دبي</a> لدينا، حيث نوضح نطاق العمل ومراحل التنفيذ وأسعار البدء المعلنة.</p>
 
 <h2>الجدول الزمني للمشروع: كيف تم التسليم ضمن موعد ثابت</h2>
 <p>مشروع بهذا الحجم، بهذا العدد من طبقات الموافقة والتصريح، لا يلتزم بموعد نهائي ثابت إلا من خلال تدرج منضبط بدلاً من مجرد العمل بشكل أسرع عند التأخر. انقسم البرنامج إلى أربع مراحل متداخلة: مرحلة تصميم واعتماد أصحاب مصلحة مكثفة مُركّزة في بداية الجدول الزمني تحديداً لأن كل مرحلة لاحقة اعتمدت عليها؛ مرحلة مسار متوازٍ تقدمت فيها تقديمات DDA وبلدية دبي بالتزامن مع تصنيع النجارة الصوتية في عجمان، بدلاً من انتظار التصنيع للموافقة كاعتمادية تسلسلية بحتة؛ مرحلة أعمال موقع مُتسلسلة طابقاً بطابق بحيث يمكن لفرق التركيب البدء في طابق معتمد ومُنجز بينما تستمر أعمال الموقع في طابق آخر؛ ومرحلة تشغيل وفحص عيوب مُضغوطة حيث سار اختبار أتمتة Somfy، والتحقق من بنية تكنولوجيا المعلومات للغرفة الآمنة، وجولات العميل النهائية بالتوازي عبر مناطق مختلفة من الطوابق الثلاثة بدلاً من التسلسل.</p>

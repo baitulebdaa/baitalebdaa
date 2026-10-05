@@ -88,8 +88,12 @@ function Sectors() {
 
 function Projects() {
   const { lang, dict } = useI18n();
-  const projects = dict.projectsSection.items.filter((project) => isPublishedProject(project.slug));
-  const imageBySlug = { "government-authority": "/assets/tv-wall-unit-led-display-shelves.jpeg" };
+  // Homepage shows three cards: the published project first, then the next entries
+  // that have a detail page (placeholders, still noindex — see data/project-catalog.js).
+  const withDetail = dict.projectsSection.items.filter((project) => dict.projectDetailPage.projects[project.slug]);
+  const projects = [...withDetail.filter((p) => isPublishedProject(p.slug)), ...withDetail.filter((p) => !isPublishedProject(p.slug))].slice(0, 3);
+  const imageBySlug = Object.fromEntries(projects.map((p) => [p.slug, dict.projectDetailPage.projects[p.slug].images[0]]));
+  imageBySlug["government-authority"] = "/assets/tv-wall-unit-led-display-shelves.jpeg";
   return <section className="section projects" id="projects"><div className="shell projects__heading"><Reveal><p className="micro">{dict.projectsSection.micro}</p><h2 className="section-title" style={{whiteSpace: 'pre-wrap'}}>{dict.projectsSection.title}</h2></Reveal><Reveal className="projects__tools" delay={100} style={{display: 'flex', alignItems: 'flex-end'}}><a href={`/${lang}/our-projects`} className="outline-button outline-button--dark">{dict.projectsSection.viewAll} <ArrowUpRight size={16} /></a></Reveal></div><div className="shell project-grid-home">{projects.map((p) => <article className="project-card-home" key={p.slug}><a href={`/${lang}/our-projects/${p.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}><div className="project-card-home__image"><Image src={imageBySlug[p.slug]} alt={`${p.title}, ${p.place}`} fill sizes="(max-width: 700px) 100vw, 33vw" /></div><div className="project-card-home__meta"><h3>{p.title}{p.place ? `, ${p.place}` : ''} <ArrowUpRight size={16} style={{display: 'inline-block', verticalAlign: 'middle', marginLeft: '5px'}} /></h3></div></a></article>)}</div></section>;
 }
 
