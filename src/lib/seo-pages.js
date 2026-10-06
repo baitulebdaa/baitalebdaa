@@ -3,11 +3,19 @@ import seoData from "../data/seo-pages.json";
 export const services = seoData.services;
 export const locations = seoData.locations;
 
-// The site's verified delivery footprint is Dubai and Abu Dhabi (matching the
-// Organization schema and visible contact copy). Other generated emirate and
-// district URLs remain available as noindex,follow until genuine local proof and
-// delivery coverage are confirmed.
-const INDEXABLE_LOCATION_SLUGS = new Set(["dubai", "abu-dhabi"]);
+// The business targets the whole UAE (decision 2026-10-06), so the UAE-wide page and
+// every emirate-level page are indexable. District/neighborhood URLs remain available
+// as noindex,follow until they carry real unique local content.
+const INDEXABLE_LOCATION_SLUGS = new Set([
+  "uae",
+  "dubai",
+  "abu-dhabi",
+  "sharjah",
+  "ajman",
+  "ras-al-khaimah",
+  "fujairah",
+  "umm-al-quwain",
+]);
 
 export function getPage(lang, serviceSlug, locationSlug) {
   return seoData.pages[lang]?.[`${serviceSlug}/${locationSlug}`] || null;

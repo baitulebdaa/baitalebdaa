@@ -1,4 +1,5 @@
 import seoData from "../data/seo-pages.json";
+import { isPageIndexable } from "../lib/seo-pages";
 import { ARTICLE_DATES } from "../data/article-catalog";
 import { dictionaries } from "../i18n/dictionaries";
 
@@ -72,12 +73,12 @@ export default function sitemap() {
     entries.push(...localizedEntry(`media/${article.slug}`, publishedAt));
   }
 
-  // Only verified Dubai and Abu Dhabi service pages are indexable. Other generated
-  // locations remain noindex,follow until real delivery coverage and unique local
-  // proof are confirmed.
+  // Only indexable service pages (UAE-wide + emirate level) belong here, decided by the
+  // same isPageIndexable() the page's robots meta uses so the two can never disagree.
+  // District pages stay noindex,follow and out of the sitemap.
   for (const [key, enPage] of Object.entries(seoData.pages.en)) {
-    if (!enPage.approved) continue;
     const arPage = seoData.pages.ar[key];
+    if (!isPageIndexable(enPage) || !isPageIndexable(arPage)) continue;
     entries.push({
       url: enPage.canonical,
       lastModified: CONTENT_UPDATED,

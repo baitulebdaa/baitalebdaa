@@ -32,10 +32,10 @@ const CORE_LOCATIONS = new Set([
   "Umm Al Quwain",
 ]);
 
-// Index only the delivery footprint confirmed in the site's Organization schema
-// and visible contact copy. Other generated location URLs remain noindex,follow
-// until genuine local proof and delivery coverage are confirmed.
-const INDEXABLE_LOCATIONS = new Set(["Dubai", "Abu Dhabi"]);
+// 2026-10-06: the business targets the whole UAE, so every emirate-level page (plus the
+// UAE-wide page) is indexable. The 22 district/neighborhood pages per service stay
+// noindex,follow until they carry real unique local content.
+const INDEXABLE_LOCATIONS = CORE_LOCATIONS;
 
 // The sheet's own URL / Canonical / Hreflang Pair columns are written against
 // baitalebdaa.ae, but the real production hostname is www.baitalebdaa.com (canonical
