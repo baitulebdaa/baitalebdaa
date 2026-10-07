@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { ArrowUp, ArrowUpRight, ChevronDown, Plus, Menu, X, Globe, Sparkles, Facebook, Instagram, Linkedin, Youtube, Whatsapp, Home, Services, Projects, Phone } from "./icons";
+import { ArrowUp, ArrowUpRight, ChevronDown, Plus, Menu, X, Globe, Sparkles, Facebook, Instagram, Linkedin, Youtube, Whatsapp, WhatsappLogo, Home, Services, Projects, Phone } from "./icons";
 import { useI18n } from "../i18n/I18nProvider";
 import { useRouter, usePathname } from "next/navigation";
 import { getServiceLabel } from "../data/service-catalog";
@@ -194,7 +194,7 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
       <button className="menu-button" type="button" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-controls="site-menu" aria-label={menuOpen ? dict.nav.close : dict.nav.menu}><span>{menuOpen ? dict.nav.close : dict.nav.menu}</span>{menuOpen ? <X size={24} /> : <Menu size={25} />}</button>
       <div className="header-actions">
         <a className="outline-button header-cta" href={`https://wa.me/971524621919?text=${headerWaMessage}`} target="_blank" rel="noopener noreferrer">
-          <Whatsapp size={17} />
+          <WhatsappLogo size={20} />
           {dict.nav.startProject} <ArrowUpRight size={15} />
         </a>
       </div>

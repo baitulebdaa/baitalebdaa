@@ -42,6 +42,16 @@ h1,h2,h3,.menu-overlay__main>a,.studio__facts strong,.project-form legend,.foote
 [dir="rtl"] .sector-description {
   padding: 30px 48px 0 0;
 }
+/* Sector tabs: the base rule left-aligns the label and nudges the selected row with
+   padding-left, which in RTL parks the label at the far left, away from its number. */
+[dir="rtl"] .sector-tabs button {
+  text-align: right;
+  transition: color 0.25s, padding-right 0.25s;
+}
+[dir="rtl"] .sector-tabs button[aria-selected="true"] {
+  padding-left: 0;
+  padding-right: 8px;
+}
 
 /* ==========================================================================
    OUR PROJECTS PAGE
