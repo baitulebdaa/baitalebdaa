@@ -19,6 +19,6 @@ export const ARTICLE_SEO_TITLES = {
     "motorized-curtains-somfy-dubai-guide": "دليل ستائر سومفي الكهربائية في دبي | بيت الإبداع",
     "bespoke-architectural-joinery-uae": "النجارة المخصصة للمنازل في الإمارات | بيت الإبداع",
     "furniture-maintenance-care-humid-climate": "صيانة الأثاث في المناخ الرطب | بيت الإبداع",
-    "government-authority-hq-case-study": "تجهيز مقر هيئة حكومية في دبي | بيت الإبداع",
+    "government-authority-hq-case-study": "دراسة حالة: تجهيز مقر هيئة حكومية في دبي | بيت الإبداع",
   },
 };

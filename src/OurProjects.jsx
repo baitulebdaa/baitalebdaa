@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { imageAlt } from "./data/image-alts";
 import { useState } from "react";
 import { ArrowUpRight } from "./components/icons";
 import { useI18n } from "./i18n/I18nProvider";
@@ -81,10 +82,10 @@ export default function OurProjects() {
               <Image src="/assets/study-nook-wardrobe-led-shelving-wood-slats.jpeg" alt={t.explorePortfolio} fill sizes="(max-width: 980px) 100vw, 55vw" style={{ objectFit: "cover" }} priority />
             </div>
             <div className="slp-mosaic__small">
-              <Image src="/assets/living-room-curved-sofa-wood-slat-wall.jpeg" alt="" fill sizes="(max-width: 980px) 50vw, 22vw" style={{ objectFit: "cover" }} />
+              <Image src="/assets/living-room-curved-sofa-wood-slat-wall.jpeg" alt={imageAlt("/assets/living-room-curved-sofa-wood-slat-wall.jpeg", lang)} fill sizes="(max-width: 980px) 50vw, 22vw" style={{ objectFit: "cover" }} />
             </div>
             <div className="slp-mosaic__small">
-              <Image src="/assets/villa-majlis-living-room-wood-wall-cove-ceiling.jpeg" alt="" fill sizes="(max-width: 980px) 50vw, 22vw" style={{ objectFit: "cover" }} />
+              <Image src="/assets/villa-majlis-living-room-wood-wall-cove-ceiling.jpeg" alt={imageAlt("/assets/villa-majlis-living-room-wood-wall-cove-ceiling.jpeg", lang)} fill sizes="(max-width: 980px) 50vw, 22vw" style={{ objectFit: "cover" }} />
             </div>
           </Reveal>
         </section>

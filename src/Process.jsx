@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { imageAlt } from "./data/image-alts";
 import { useState } from "react";
 import { ArrowUpRight, Clock } from "./components/icons";
 import { useI18n } from "./i18n/I18nProvider";
@@ -55,7 +56,7 @@ export default function Process() {
             </div>
             {heroImages.slice(1).map((src) => (
               <div className="slp-mosaic__small" key={src}>
-                <Image src={src} alt="" fill sizes="(max-width: 980px) 50vw, 22vw" style={{ objectFit: "cover" }} />
+                <Image src={src} alt={imageAlt(src, lang)} fill sizes="(max-width: 980px) 50vw, 22vw" style={{ objectFit: "cover" }} />
               </div>
             ))}
           </Reveal>
