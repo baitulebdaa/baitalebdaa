@@ -39,6 +39,20 @@ const nextConfig = {
       // /en/privacy was never a real page; it is the natural guess for the policy URL.
       { source: "/en/privacy", destination: "/en/privacy-policy", permanent: true },
       { source: "/en/privacy/", destination: "/en/privacy-policy", permanent: true },
+      // Legacy URLs found in the Search Console Page-indexing report (5-7 Oct 2026) that still
+      // 404ed. Each maps to its real current equivalent, single hop.
+      { source: "/ar/privacy", destination: "/ar/privacy-policy", permanent: true },
+      { source: "/ar/privacy/", destination: "/ar/privacy-policy", permanent: true },
+      { source: "/terms-conditions", destination: "/en/terms-and-conditions", permanent: true },
+      { source: "/terms-conditions/", destination: "/en/terms-and-conditions", permanent: true },
+      { source: "/commercial-&-office-interiors", destination: "/en/office-fit-out/dubai", permanent: true },
+      { source: "/commercial-&-office-interiors/", destination: "/en/office-fit-out/dubai", permanent: true },
+      { source: "/commercial-%26-office-interiors", destination: "/en/office-fit-out/dubai", permanent: true },
+      { source: "/commercial-%26-office-interiors/", destination: "/en/office-fit-out/dubai", permanent: true },
+      // /luxury-interior-design/services showed real Search Console impressions (position ~7),
+      // proving the URL existed; /luxury-interior-design/pricing has no such evidence and stays 404.
+      { source: "/luxury-interior-design/services", destination: "/en/our-services", permanent: true },
+      { source: "/luxury-interior-design/services/", destination: "/en/our-services", permanent: true },
       // /furniture-maintenance-care/ was earning real Search Console clicks/impressions
       // at the un-prefixed URL but 404s without an explicit rule below, because the
       // generic trailing-slash catch-all at the bottom of this array strips the slash
