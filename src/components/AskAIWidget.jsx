@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { X, RotateCcw, ArrowUp, ImagePlus, ThumbsUp, ThumbsDown, MessageSquare, Check } from "./icons";
 import { useI18n } from "../i18n/I18nProvider";
 
-const WHATSAPP_NUMBER = "971524621919";
+const WHATSAPP_NUMBER = "971582621717";
 const INTRO_ID = 1;
 
 /** Photos are sent to the model as a JPEG no wider than 1280px. */

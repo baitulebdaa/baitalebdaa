@@ -193,7 +193,7 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
       </nav>
       <button className="menu-button" type="button" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-controls="site-menu" aria-label={menuOpen ? dict.nav.close : dict.nav.menu}><span>{menuOpen ? dict.nav.close : dict.nav.menu}</span>{menuOpen ? <X size={24} /> : <Menu size={25} />}</button>
       <div className="header-actions">
-        <a className="outline-button header-cta" href={`https://wa.me/971524621919?text=${headerWaMessage}`} target="_blank" rel="noopener noreferrer">
+        <a className="outline-button header-cta" href={`https://wa.me/971582621717?text=${headerWaMessage}`} target="_blank" rel="noopener noreferrer">
           <WhatsappLogo size={20} />
           {dict.nav.startProject} <ArrowUpRight size={15} />
         </a>
@@ -217,8 +217,7 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
           <p className="menu-overlay__heading">{dict.nav.contactInfo}</p>
           <div className="menu-overlay__info-list">
             <span style={{whiteSpace: "pre-wrap"}}>{dict.nav.studioLocation}</span>
-            <a href="tel:+971524621919">{dict.nav.phoneLabel} | +971 52 462 1919</a>
-            <a href="tel:0582621717">{dict.nav.phoneLabel} | 058 262 1717</a>
+            <a href="tel:+971582621717">{dict.nav.phoneLabel} | +971 58 262 1717</a>
             <a href="mailto:info@baitalebdaa.com">info@baitalebdaa.com</a>
           </div>
         </div>
@@ -324,8 +323,7 @@ export function Footer() {
         <span className="footer-loc">{f.loc}</span>
         <a href="mailto:info@baitalebdaa.com">info@baitalebdaa.com</a>
         <a href="mailto:sales@baitalebdaa.com">{f.salesLabel} sales@baitalebdaa.com</a>
-        <a href="tel:+971524621919">T: +971 52 462 1919</a>
-        <a href="tel:0582621717">T: 058 262 1717</a>
+        <a href="tel:+971582621717">T: +971 58 262 1717</a>
       </div>
     </div>
     <div className="shell footer-mid">

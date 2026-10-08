@@ -8,7 +8,7 @@ import { useI18n } from "./i18n/I18nProvider";
 import { Header, Footer, Reveal } from "./components/Shared";
 import { whyChooseFacts } from "./data/service-content";
 
-const WHATSAPP_NUMBER = "971524621919";
+const WHATSAPP_NUMBER = "971582621717";
 
 export default function Process() {
   const { lang, dict } = useI18n();

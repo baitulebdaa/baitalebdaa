@@ -13,7 +13,7 @@ export default function BlogDetailClient({ article, breadcrumbs, newsAndInsights
       ? "مرحباً! أرغب بمناقشة مشروعي معكم."
       : "Hello! I'd like to discuss my project with you."
   );
-  const waHref = `https://wa.me/971524621919?text=${waMessage}`;
+  const waHref = `https://wa.me/971582621717?text=${waMessage}`;
 
   return (
     <>

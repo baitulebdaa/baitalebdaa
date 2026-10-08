@@ -70,7 +70,7 @@ export function PriceExplorer() {
 
   const setQuantity = (n) => cfg.qty && setQty({ ...qty, [cfg.id]: Math.min(cfg.qty.max, Math.max(cfg.qty.min, n)) });
 
-  const waHref = `https://wa.me/971524621919?text=${encodeURIComponent(t.whatsappMessage.replace("{service}", copy.title))}`;
+  const waHref = `https://wa.me/971582621717?text=${encodeURIComponent(t.whatsappMessage.replace("{service}", copy.title))}`;
 
   return (
     <section className="section price-explorer-section" id="price-guide">

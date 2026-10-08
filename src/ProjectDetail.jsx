@@ -28,7 +28,7 @@ export default function ProjectDetail({ slug }) {
       ? `مرحباً! أرغب بالاستفسار عن مشروع مشابه لـ "${projectData.title}".`
       : `Hello! I'd like to enquire about a project similar to "${projectData.title}".`
   );
-  const waHref = `https://wa.me/971524621919?text=${waMessage}`;
+  const waHref = `https://wa.me/971582621717?text=${waMessage}`;
 
   // Other projects that have their own detail page, shown as cards at the foot.
   const otherProjects = dict.projectsSection.items

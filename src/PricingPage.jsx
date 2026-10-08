@@ -11,7 +11,7 @@ import { pricingGroups, CURRENCY, VAT_INCLUSIVE } from "./data/pricing";
 import { formatPrice } from "./lib/pricing";
 
 // Matches the WhatsApp number already used site-wide (Hero, Header, QuoteModal).
-const WHATSAPP_NUMBER = "971524621919";
+const WHATSAPP_NUMBER = "971582621717";
 const SITE_URL = "https://www.baitalebdaa.com";
 
 // Page order, each category's photograph, and the pricing item whose entry

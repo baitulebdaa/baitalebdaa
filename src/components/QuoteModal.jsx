@@ -167,7 +167,7 @@ export function QuoteModal({ open, onClose, initialSize }) {
             {sending ? t.sending || "Sending..." : t.submit}
           </button>
           <a
-            href="https://wa.me/971524621919"
+            href="https://wa.me/971582621717"
             target="_blank"
             rel="noopener noreferrer"
             className="outline-button quote-modal-whatsapp"

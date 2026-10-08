@@ -6,7 +6,7 @@ import { ArrowUpRight, Check, Paperclip } from "./icons";
 import { useI18n } from "../i18n/I18nProvider";
 import { Reveal } from "./Shared";
 
-const WHATSAPP_NUMBER = "971524621919";
+const WHATSAPP_NUMBER = "971582621717";
 
 const FIELD_LABELS = {
   name: "Full Name",

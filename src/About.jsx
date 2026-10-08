@@ -62,7 +62,7 @@ export default function About() {
               <div className="menu-overlay__info-list">
                 <span><strong>{t.companyDetails.name}: </strong>{t.companyDetails.nameValue}</span>
                 <span><strong>{t.companyDetails.address}: </strong>{t.companyDetails.addressValue}</span>
-                <a href="tel:+971524621919"><strong>{t.companyDetails.phone}: </strong>+971 52 462 1919</a>
+                <a href="tel:+971582621717"><strong>{t.companyDetails.phone}: </strong>+971 58 262 1717</a>
                 <a href="mailto:info@baitalebdaa.com"><strong>{t.companyDetails.email}: </strong>info@baitalebdaa.com</a>
               </div>
             </div>

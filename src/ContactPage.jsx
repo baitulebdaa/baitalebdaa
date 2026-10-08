@@ -7,7 +7,7 @@ import { useI18n } from "./i18n/I18nProvider";
 import { Header, Footer, Reveal } from "./components/Shared";
 import { ContactForm } from "./components/ContactForm";
 
-const WHATSAPP_NUMBER = "971524621919";
+const WHATSAPP_NUMBER = "971582621717";
 
 export default function ContactPage() {
   const { dict } = useI18n();
@@ -17,7 +17,7 @@ export default function ContactPage() {
 
   const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(ui.whatsappMessage)}`;
   const cards = [
-    { icon: Phone, label: ui.callLabel, value: "+971 52 462 1919", href: "tel:+971524621919", sub: "058 262 1717", subHref: "tel:0582621717" },
+    { icon: Phone, label: ui.callLabel, value: "+971 58 262 1717", href: "tel:+971582621717" },
     { icon: Mail, label: ui.emailLabel, value: "info@baitalebdaa.com", href: "mailto:info@baitalebdaa.com", sub: "sales@baitalebdaa.com", subHref: "mailto:sales@baitalebdaa.com" },
     { icon: MapPin, label: ui.visitLabel, value: ui.address },
   ];

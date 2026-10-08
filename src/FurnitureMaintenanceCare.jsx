@@ -16,7 +16,7 @@ export default function FurnitureMaintenanceCare() {
       ? "مرحباً! أرغب بحجز تقييم صيانة للأثاث/النجارة الخاصة بي."
       : "Hello! I'd like to book a furniture/joinery maintenance assessment."
   );
-  const waHref = `https://wa.me/971524621919?text=${waMessage}`;
+  const waHref = `https://wa.me/971582621717?text=${waMessage}`;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -76,7 +76,7 @@ export default function FurnitureMaintenanceCare() {
                 <a className="outline-button header-cta" href={waHref} target="_blank" rel="noopener noreferrer">
                   {lang === "ar" ? "واتساب الآن" : "WhatsApp Now"} <ArrowUpRight size={15} />
                 </a>
-                <a className="outline-button header-cta" href="tel:+971524621919">
+                <a className="outline-button header-cta" href="tel:+971582621717">
                   {lang === "ar" ? "اتصل الآن" : "Call Now"} <ArrowUpRight size={15} />
                 </a>
               </div>

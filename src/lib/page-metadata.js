@@ -74,7 +74,7 @@ export function organizationJsonLd() {
     url: BASE,
     logo: `${BASE}/assets/logo.png`,
     image: `${BASE}/assets/bait-al-ebdaa-luxury-interior-design-dubai-og.jpg`,
-    telephone: "+971524621919",
+    telephone: "+971582621717",
     email: "info@baitalebdaa.com",
     address: {
       "@type": "PostalAddress",

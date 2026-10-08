@@ -178,7 +178,7 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
       ? `مرحباً! أرغب بالاستفسار عن خدمة ${serviceName} في ${locationName}.`
       : `Hello! I'd like to enquire about ${serviceName} in ${locationName}.`
   );
-  const waHref = `https://wa.me/971524621919?text=${waMessage}`;
+  const waHref = `https://wa.me/971582621717?text=${waMessage}`;
 
   const project = dict.projectDetailPage.projects["government-authority"];
   // Supporting-evidence link for the office fit-out money page only: the proof card
@@ -269,7 +269,7 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
           <Whatsapp size={18} />
           <span>{lang === "ar" ? "واتساب الآن" : "WhatsApp Now"}</span>
         </a>
-        <a href="tel:+971524621919" className="slp-sticky-sidebar__btn slp-sticky-sidebar__btn--call" aria-label={lang === "ar" ? "اتصل الآن" : "Call Now"}>
+        <a href="tel:+971582621717" className="slp-sticky-sidebar__btn slp-sticky-sidebar__btn--call" aria-label={lang === "ar" ? "اتصل الآن" : "Call Now"}>
           <Phone size={18} />
           <span>{lang === "ar" ? "اتصل الآن" : "Call Now"}</span>
         </a>
@@ -313,7 +313,7 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
                 <a className="slp-btn slp-btn--solid" href={waHref} target="_blank" rel="noopener noreferrer">
                   {lang === "ar" ? "واتساب الآن" : "WhatsApp Now"} <ArrowUpRight size={15} />
                 </a>
-                <a className="slp-btn" href="tel:+971524621919">
+                <a className="slp-btn" href="tel:+971582621717">
                   {lang === "ar" ? "اتصل الآن" : "Call Now"} <Phone size={15} />
                 </a>
               </div>
