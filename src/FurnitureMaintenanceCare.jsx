@@ -130,7 +130,7 @@ export default function FurnitureMaintenanceCare() {
             <h3>{t.relatedServices}</h3>
             <div className="slp-links-pills">
               <a href={`/${lang}/joinery/dubai`}>{t.relatedJoinery}</a>
-              <a href={`/${lang}/custom-wardrobes/uae`}>{t.relatedWardrobes}</a>
+              <a href={`/${lang}/custom-wardrobes/dubai`}>{t.relatedWardrobes}</a>
             </div>
           </Reveal>
         </section>

@@ -107,7 +107,7 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
   const { dict } = useI18n();
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const { service, location, emirateName, authority, otherAreas, otherServices } = seoContext;
+  const { service, location, emirateName, authority, otherAreas, otherServices, coverage, description } = seoContext;
   const serviceName = lang === "ar" ? service.ar : service.en;
   const locationName = lang === "ar" ? location.ar : location.en;
   const content = serviceContent[row.serviceSlug]?.[lang];
@@ -120,7 +120,7 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
   // across all 30 locations of the same service. See src/lib/seo-pages.js#getEmirateAuthority
   // and src/data/location-content.js for the area-character source.
   const areaProfile = locationContent[row.locationSlug]?.[lang];
-  const locationClause = isEmirateItself
+  const fullLocationClause = isEmirateItself
     ? lang === "ar"
       ? `نغطي ${locationName} بالكامل، وننسق أي موافقات مطلوبة مباشرة مع ${authority}.`
       : `We cover all of ${locationName}, coordinating any required approvals directly with ${authority}.`
@@ -132,6 +132,31 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
         ? `في ${locationName} ضمن إمارة ${emirateName}، ننسق أي موافقات مطلوبة مباشرة مع ${authority}.`
         : `In ${locationName}, part of ${emirateName}, we coordinate any required approvals directly with ${authority}.`;
 
+  // Only Dubai and Abu Dhabi (coverage "full") have verified delivery; the Ajman joinery page is
+  // backed by the factory ("factory"). Everywhere else the page must not claim coverage or
+  // authority experience — it says what is true and invites the visitor to confirm availability.
+  const isFullCoverage = coverage === "full";
+  const unverifiedClause =
+    coverage === "factory"
+      ? lang === "ar"
+        ? "مصنعنا للنجارة بمساحة 15,000 قدم مربع يقع في الجرف الصناعية 2 بعجمان، حيث تُصنع كل قطعة قبل التسليم والتركيب. تواصل مع فريقنا لتأكيد توفر المشروع في موقعك."
+        : "Our 15,000 sq ft joinery factory is in Jurf Industrial 2, Ajman, where every piece is manufactured before delivery and installation. Contact our team to confirm project availability for your location."
+      : lang === "ar"
+        ? `بيت الإبداع مقرها عجمان وتنفّذ مشاريعها في دبي وأبوظبي. تواصل مع فريقنا لتأكيد توفر المشاريع في ${locationName}.`
+        : `Bait Al Ebdaa is based in Ajman and delivers projects in Dubai and Abu Dhabi. Contact our team to confirm project availability in ${locationName}.`;
+  const unverifiedFaqs = [
+    {
+      q: lang === "ar" ? `هل تقدمون خدمة ${serviceName} في ${locationName}؟` : `Do you offer ${serviceName} in ${locationName}?`,
+      a:
+        coverage === "factory"
+          ? lang === "ar"
+            ? "مصنعنا للنجارة في عجمان، حيث تُصنع كل قطعة. تواصل مع فريقنا لتأكيد توفر المشروع وترتيبات التسليم لموقعك."
+            : "Our joinery factory is in Ajman, where every piece is manufactured. Contact our team to confirm project availability and delivery arrangements for your location."
+          : lang === "ar"
+            ? `بيت الإبداع مقرها عجمان وتنفّذ مشاريعها في دبي وأبوظبي. تواصل مع فريقنا لتأكيد إمكانية تنفيذ أعمال ${serviceName} في ${locationName}.`
+            : `Bait Al Ebdaa is based in Ajman and delivers projects in Dubai and Abu Dhabi. Contact our team to confirm whether we can take on ${serviceName} work in ${locationName}.`,
+    },
+  ];
   const coreAreas = otherAreas.filter((entry) => entry.location.tier === "core");
   const nearbyAreas = otherAreas.filter((entry) => entry.location.tier === "district" && entry.location.emirate === row.emirate);
   const blogPosts = [dict.mediaPage.featuredArticle, ...dict.mediaPage.articles];
@@ -158,6 +183,7 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
   const project = dict.projectDetailPage.projects["government-authority"];
   // Supporting-evidence link for the office fit-out money page only: the proof card
   // already features this project, so give it a descriptive contextual link to its page.
+  const locationClause = isFullCoverage ? fullLocationClause : unverifiedClause;
   const caseStudyLinkLabel =
     row.serviceSlug === "office-fit-out" && row.locationSlug === "dubai"
       ? lang === "ar"
@@ -186,6 +212,7 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
           : `Our in-house compliance team handles submissions and follow-up with ${authority} on your behalf in full — from initial permits and the technical drawings they require, through tracking application status and responding to any queries the authority raises, to the final completion certificate. That means you're not required to attend authority meetings yourself or navigate the paperwork alone; it's covered within the project scope.`,
     },
   ];
+  const pageFaqs = isFullCoverage ? extraFaqs : unverifiedFaqs;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -194,16 +221,16 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
         "@type": "Service",
         name: row.h1,
         serviceType: serviceName,
-        areaServed: locationName,
+        ...(isFullCoverage || coverage === "factory" ? { areaServed: locationName } : {}),
         provider: { "@type": "Organization", name: "Bait Al Ebdaa", url: "https://www.baitalebdaa.com" },
         url: row.canonical,
-        description: row.metaDescription,
+        description,
       },
       {
         "@type": "BreadcrumbList",
         itemListElement: [
           { "@type": "ListItem", position: 1, name: home, item: lang === "en" ? "https://www.baitalebdaa.com" : "https://www.baitalebdaa.com/ar" },
-          { "@type": "ListItem", position: 2, name: serviceName, item: `https://www.baitalebdaa.com/${lang}/${row.serviceSlug}/uae` },
+          { "@type": "ListItem", position: 2, name: serviceName, item: `https://www.baitalebdaa.com/${lang}/${row.serviceSlug}/dubai` },
           { "@type": "ListItem", position: 3, name: locationName, item: row.canonical },
         ],
       },
@@ -215,7 +242,7 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
         ? [
             {
               "@type": "FAQPage",
-              mainEntity: [...content.faqs, ...extraFaqs].map((item) => ({
+              mainEntity: [...content.faqs, ...pageFaqs].map((item) => ({
                 "@type": "Question",
                 name: item.q,
                 acceptedAnswer: { "@type": "Answer", text: item.a },
@@ -255,7 +282,7 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
             <Reveal>
               <p className="slp-crumbs">
                 {home} &nbsp;&#9656;&nbsp;
-                <a href={`/${lang}/${row.serviceSlug}/uae`}> {serviceName} </a>
+                <a href={`/${lang}/${row.serviceSlug}/dubai`}> {serviceName} </a>
                 &nbsp;&#9656;&nbsp; <strong>{locationName}</strong>
               </p>
               <span className="slp-chip">
@@ -333,7 +360,7 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
               <h3 className="slp-scope__label">{row.h2Themes[1]}</h3>
             </Reveal>
             <ol>
-              {[...content.included, lang === "ar" ? `التغطية في ${locationName} وما حولها` : `Coverage across ${locationName} and nearby areas`].map((item, i) => (
+              {(isFullCoverage ? [...content.included, lang === "ar" ? `التغطية في ${locationName} وما حولها` : `Coverage across ${locationName} and nearby areas`] : content.included).map((item, i) => (
                 <Reveal as="li" className="slp-scope__row" key={i} delay={60 + i * 50}>
                   <span className="slp-scope__num">{String(i + 1).padStart(2, "0")}</span>
                   <span className="slp-scope__item">{item}</span>
@@ -423,7 +450,7 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
           kicker={dict.faqSection.kicker}
           title={lang === "ar" ? `الأسئلة الشائعة حول ${serviceName} في ${locationName}` : `${serviceName} in ${locationName}: FAQs`}
           subtitle={dict.faqSection.subtitle}
-          items={[...content.faqs, ...extraFaqs]}
+          items={[...content.faqs, ...pageFaqs]}
           idPrefix={`slp-${row.serviceSlug}-${row.locationSlug}`}
         />
 

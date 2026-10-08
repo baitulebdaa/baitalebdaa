@@ -177,7 +177,7 @@ export default function OurServices() {
             {seoServices.map((service, i) => (
               <ServiceTile
                 key={service.slug}
-                href={`/${lang}/${service.slug}/uae`}
+                href={`/${lang}/${service.slug}/dubai`}
                 image={SERVICE_IMAGES[service.slug] || "/assets/luxury-lounge-feature-wall-led-sconces.jpeg"}
                 name={lang === "ar" ? service.ar : service.en}
                 desc={lang === "ar" ? SERVICE_DESCS[service.slug]?.ar : SERVICE_DESCS[service.slug]?.en}

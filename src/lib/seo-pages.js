@@ -3,26 +3,44 @@ import seoData from "../data/seo-pages.json";
 export const services = seoData.services;
 export const locations = seoData.locations;
 
-// The business targets the whole UAE (decision 2026-10-06), so the UAE-wide page and
-// every emirate-level page are indexable. District/neighborhood URLs remain available
-// as noindex,follow until they carry real unique local content.
-const INDEXABLE_LOCATION_SLUGS = new Set([
-  "uae",
-  "dubai",
-  "abu-dhabi",
-  "sharjah",
-  "ajman",
-  "ras-al-khaimah",
-  "fujairah",
-  "umm-al-quwain",
-]);
-
 export function getPage(lang, serviceSlug, locationSlug) {
   return seoData.pages[lang]?.[`${serviceSlug}/${locationSlug}`] || null;
 }
 
+// `approved` is decided once, in scripts/generate-seo-data.mjs (verified coverage only):
+// Dubai and Abu Dhabi for every service, plus Ajman joinery (the factory is there).
+// The robots meta, the sitemap and the sibling-link lists all read it through here.
 export function isPageIndexable(page) {
-  return Boolean(page?.approved && INDEXABLE_LOCATION_SLUGS.has(page.locationSlug));
+  return Boolean(page?.approved);
+}
+
+// How much the site can truthfully say about delivering in a page's location.
+//  "full"       Dubai / Abu Dhabi: verified delivery area
+//  "factory"    Ajman joinery: the 15,000 sq ft factory is there; delivery elsewhere is not claimed
+//  "unverified" everything else: no coverage or authority-experience claims
+export function getCoverageTier(page) {
+  if (!page) return "unverified";
+  if (page.locationSlug === "dubai" || page.locationSlug === "abu-dhabi") return "full";
+  if (page.locationSlug === "ajman" && page.serviceSlug === "joinery") return "factory";
+  return "unverified";
+}
+
+// The sheet-derived description says "Bait Al Ebdaa delivers <service> in <place>", which
+// is only true for verified coverage. Elsewhere use a neutral, accurate sentence.
+export function getSafeMetaDescription(page, lang) {
+  const tier = getCoverageTier(page);
+  if (tier === "full") return page.metaDescription;
+  if (tier === "factory") {
+    return lang === "ar"
+      ? "نجارة معمارية مخصصة تُصنع في مصنع بيت الإبداع بمساحة 15,000 قدم مربع في الجرف الصناعية 2 بعجمان. تواصل مع فريقنا لتأكيد توفر المشروع."
+      : "Custom architectural joinery manufactured in Bait Al Ebdaa's own 15,000 sq ft factory in Jurf Industrial 2, Ajman. Contact our team to confirm project availability.";
+  }
+  const service = getService(page.serviceSlug);
+  const location = getLocation(page.locationSlug);
+  if (!service || !location) return page.metaDescription;
+  return lang === "ar"
+    ? `بيت الإبداع مقرها عجمان وتنفّذ مشاريعها في دبي وأبوظبي. تواصل مع فريقنا لتأكيد توفر ${service.ar} في ${location.ar}.`
+    : `Bait Al Ebdaa is based in Ajman and delivers projects in Dubai and Abu Dhabi. Contact our team to confirm ${service.en} availability in ${location.en}.`;
 }
 
 // For generateStaticParams: all {service, location} pairs that exist for a given lang.

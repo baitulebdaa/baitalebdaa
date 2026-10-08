@@ -32,10 +32,12 @@ const CORE_LOCATIONS = new Set([
   "Umm Al Quwain",
 ]);
 
-// 2026-10-06: the business targets the whole UAE, so every emirate-level page (plus the
-// UAE-wide page) is indexable. The 22 district/neighborhood pages per service stay
-// noindex,follow until they carry real unique local content.
-const INDEXABLE_LOCATIONS = CORE_LOCATIONS;
+// Indexing follows VERIFIED delivery coverage only (site copy + Organization schema state
+// Dubai and Abu Dhabi; the joinery factory is in Ajman). Everything else is generated but
+// stays noindex,follow until real coverage and local proof are confirmed — including the
+// UAE-wide pages, which can return once rewritten as truthful national hubs.
+const isIndexablePage = (location, serviceSlug) =>
+  location === "Dubai" || location === "Abu Dhabi" || (location === "Ajman" && serviceSlug === "joinery");
 
 // The sheet's own URL / Canonical / Hreflang Pair columns are written against
 // baitalebdaa.ae, but the real production hostname is www.baitalebdaa.com (canonical
@@ -76,7 +78,7 @@ for (const row of rows) {
   const category = row["Category / Cluster"];
   const location = row.Location;
   const isCore = CORE_LOCATIONS.has(location);
-  const isIndexable = INDEXABLE_LOCATIONS.has(location);
+  const isIndexable = isIndexablePage(location, serviceSlug);
 
   if (lang === "en") {
     if (!services.has(serviceSlug)) services.set(serviceSlug, { slug: serviceSlug, en: category, ar: "" });

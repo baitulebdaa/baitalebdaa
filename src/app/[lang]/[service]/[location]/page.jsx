@@ -9,6 +9,8 @@ import {
   getSiblingLocations,
   getSiblingServices,
   isPageIndexable,
+  getSafeMetaDescription,
+  getCoverageTier,
 } from "../../../../lib/seo-pages";
 import ServiceLocationPage from "../../../../ServiceLocationPage";
 
@@ -29,6 +31,7 @@ export async function generateMetadata({ params }) {
   const selfUrl = row.canonical;
   const otherUrl = row.hreflang;
   const shouldIndex = isPageIndexable(row);
+  const safeDescription = getSafeMetaDescription(row, lang);
   const socialImage = "/assets/bait-al-ebdaa-luxury-interior-design-dubai-og.jpg";
 
   return {
@@ -36,7 +39,7 @@ export async function generateMetadata({ params }) {
     // sheet's own seoTitle already ends with "| Bait Al Ebdaa", so the template would
     // otherwise double the brand suffix.
     title: { absolute: row.seoTitle },
-    description: row.metaDescription,
+    description: safeDescription,
     alternates: {
       canonical: selfUrl,
       languages: {
@@ -47,7 +50,7 @@ export async function generateMetadata({ params }) {
     },
     openGraph: {
       title: row.seoTitle,
-      description: row.metaDescription,
+      description: safeDescription,
       url: selfUrl,
       siteName: "Bait Al Ebdaa",
       locale: lang === "ar" ? "ar_AE" : "en_AE",
@@ -57,7 +60,7 @@ export async function generateMetadata({ params }) {
     twitter: {
       card: "summary_large_image",
       title: row.seoTitle,
-      description: row.metaDescription,
+      description: safeDescription,
       images: [socialImage],
     },
     robots: shouldIndex
@@ -70,6 +73,7 @@ export default async function Page({ params }) {
   const { lang, service, location } = await params;
   const row = getPage(lang, service, location);
   if (!row) notFound();
+  const safeDescription = getSafeMetaDescription(row, lang);
 
   const serviceEntry = getService(row.serviceSlug);
   const locationEntry = getLocation(row.locationSlug);
@@ -80,6 +84,8 @@ export default async function Page({ params }) {
     location: locationEntry,
     emirateName: getEmirateName(lang, row.emirate),
     authority: getEmirateAuthority(lang, row.emirate),
+    coverage: getCoverageTier(row),
+    description: safeDescription,
     otherAreas: getSiblingLocations(lang, row.serviceSlug, row.locationSlug).filter((entry) => isPageIndexable(entry.page)),
     otherServices: getSiblingServices(lang, row.locationSlug, row.serviceSlug).filter((entry) => isPageIndexable(entry.page)),
   };

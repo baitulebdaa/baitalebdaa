@@ -13,7 +13,7 @@ import { formatIndex } from "../lib/format";
 // column — 17 services in a single list would make the panel unreasonably
 // tall. Furniture Maintenance & Care isn't part of the service x location
 // matrix (see FurnitureMaintenanceCare.jsx), so it's added as its own short
-// column pointing straight at its real standalone page instead of /uae.
+// column pointing straight at its real standalone page instead of the service pages.
 const SERVICE_MENU_GROUPS = [
   { headingKey: "interiorDesign", slugs: ["interior-design", "residential-interior-design", "commercial-interior-design", "office-interior-design", "restaurant-interior-design", "retail-interior-design"] },
   { headingKey: "fitOut", slugs: ["fit-out", "office-fit-out", "restaurant-fit-out", "retail-fit-out"] },
@@ -122,7 +122,7 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
                     if (!service) return null;
                     return (
                       <li key={slug}>
-                        <a href={`/${lang}/${slug}/uae`} onClick={() => setProjectsOpen(false)}>{lang === "ar" ? service.ar : service.en}</a>
+                        <a href={`/${lang}/${slug}/dubai`} onClick={() => setProjectsOpen(false)}>{lang === "ar" ? service.ar : service.en}</a>
                       </li>
                     );
                   })}
@@ -160,7 +160,7 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
                       if (!service) return null;
                       return (
                         <li key={slug}>
-                          <a href={`/${lang}/${slug}/uae`} onClick={() => setServicesOpen(false)}>
+                          <a href={`/${lang}/${slug}/dubai`} onClick={() => setServicesOpen(false)}>
                             {lang === "ar" ? service.ar : service.en}
                           </a>
                         </li>
