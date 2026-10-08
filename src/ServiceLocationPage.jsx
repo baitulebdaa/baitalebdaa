@@ -8,6 +8,7 @@ import { Header, Footer, Reveal, FaqSplit, ProcessTimeline } from "./components/
 import { Estimator } from "./components/Estimator";
 import { serviceContent, priorityIntroExtra, whyChooseFacts } from "./data/service-content";
 import { locationContent } from "./data/location-content";
+import { abuDhabiCopy } from "./data/abu-dhabi-copy";
 import { pricingGroups } from "./data/pricing";
 import { formatPrice, PRICING_GROUP_BY_SERVICE } from "./lib/pricing";
 
@@ -110,7 +111,14 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
   const { service, location, emirateName, authority, otherAreas, otherServices, coverage, description } = seoContext;
   const serviceName = lang === "ar" ? service.ar : service.en;
   const locationName = lang === "ar" ? location.ar : location.en;
-  const content = serviceContent[row.serviceSlug]?.[lang];
+  // Abu Dhabi pages: swap Dubai-authority wording for neutral wording (see data/abu-dhabi-copy.js).
+  const isAbuDhabi = row.locationSlug === "abu-dhabi";
+  const localize = (text) => (isAbuDhabi ? abuDhabiCopy(text, lang) : text);
+  const rawContent = serviceContent[row.serviceSlug]?.[lang];
+  const content =
+    isAbuDhabi && rawContent
+      ? { ...rawContent, summary: localize(rawContent.summary), faqs: rawContent.faqs.map((faq) => ({ ...faq, a: localize(faq.a) })) }
+      : rawContent;
   const isEmirateItself = location.tier === "core";
   const isPriorityMoneyPage = PRIORITY_MONEY_PAGES.has(`${row.serviceSlug}/${row.locationSlug}`);
   const introExtra = isPriorityMoneyPage ? priorityIntroExtra[row.serviceSlug]?.[lang] : null;
@@ -373,7 +381,7 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
 
         {/* Process (compact) */}
         <section className="shell section slp-process-section">
-          <ProcessTimeline kicker={dict.processSection.micro} title={row.h2Themes[2]} items={dict.processSection.items} />
+          <ProcessTimeline kicker={dict.processSection.micro} title={row.h2Themes[2]} items={dict.processSection.items.map(([title, body, meta]) => [title, localize(body), meta])} />
         </section>
 
         {/* Cost context */}
@@ -414,12 +422,12 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
               <h2 className="slp-h2">{row.h2Themes[4]}</h2>
             </Reveal>
             <div className="slp-why__grid">
-              {whyChooseFacts[lang].map((item, i) => (
+              {whyChooseFacts[lang].map((rawItem, i) => { const item = localize(rawItem); return (
                 <Reveal className="slp-why__item" key={i} delay={80 + i * 60}>
                   <span>{String(i + 1).padStart(2, "0")}</span>
                   <p>{item}</p>
                 </Reveal>
-              ))}
+              ); })}
             </div>
           </div>
         </section>
