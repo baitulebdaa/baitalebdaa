@@ -53,6 +53,22 @@ const nextConfig = {
       // proving the URL existed; /luxury-interior-design/pricing has no such evidence and stays 404.
       { source: "/luxury-interior-design/services", destination: "/en/our-services", permanent: true },
       { source: "/luxury-interior-design/services/", destination: "/en/our-services", permanent: true },
+
+      // Old WordPress pages that redirected (via the trailing-slash rule) and then 404ed. Each now goes
+      // to the genuinely equivalent current page. /faq-frequently-asked-questions, /bespoke-upholstery-curtains
+      // and the WordPress system URLs have no real equivalent and stay 404.
+      { source: "/our-process", destination: "/en/process", permanent: true },
+      { source: "/our-process/", destination: "/en/process", permanent: true },
+      { source: "/interior-insights-trends-blog", destination: "/en/media", permanent: true },
+      { source: "/interior-insights-trends-blog/", destination: "/en/media", permanent: true },
+      { source: "/premium-fit-out-works", destination: "/en/fit-out/dubai", permanent: true },
+      { source: "/premium-fit-out-works/", destination: "/en/fit-out/dubai", permanent: true },
+      { source: "/residential-villas", destination: "/en/residential-interior-design/dubai", permanent: true },
+      { source: "/residential-villas/", destination: "/en/residential-interior-design/dubai", permanent: true },
+      { source: "/modern-arabic-majlis-design", destination: "/en/interior-design/dubai", permanent: true },
+      { source: "/modern-arabic-majlis-design/", destination: "/en/interior-design/dubai", permanent: true },
+      { source: "/kitchen-wardrobe-solutions", destination: "/en/our-services", permanent: true },
+      { source: "/kitchen-wardrobe-solutions/", destination: "/en/our-services", permanent: true },
       // /furniture-maintenance-care/ was earning real Search Console clicks/impressions
       // at the un-prefixed URL but 404s without an explicit rule below, because the
       // generic trailing-slash catch-all at the bottom of this array strips the slash
@@ -77,8 +93,8 @@ const nextConfig = {
       { source: "/portfolio/", destination: "/en/our-projects", permanent: true },
       { source: "/our-service-areas", destination: "/en/our-services", permanent: true },
       { source: "/our-service-areas/", destination: "/en/our-services", permanent: true },
-      { source: "/custom-made-furniture", destination: "/en/custom-wardrobes/uae", permanent: true },
-      { source: "/custom-made-furniture/", destination: "/en/custom-wardrobes/uae", permanent: true },
+      { source: "/custom-made-furniture", destination: "/en/custom-wardrobes/dubai", permanent: true },
+      { source: "/custom-made-furniture/", destination: "/en/custom-wardrobes/dubai", permanent: true },
       { source: "/commercial-office-interiors", destination: "/en/office-fit-out/dubai", permanent: true },
       { source: "/commercial-office-interiors/", destination: "/en/office-fit-out/dubai", permanent: true },
       { source: "/luxury-interior-design", destination: "/en/interior-design/dubai", permanent: true },
