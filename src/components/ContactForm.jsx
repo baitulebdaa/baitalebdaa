@@ -29,6 +29,17 @@ const FIELD_LABELS = {
   description: "Description",
 };
 
+// Visible, programmatically-associated label above each control. Replaces placeholder-only fields,
+// which lose their meaning as soon as the visitor starts typing.
+function Field({ label, as: Tag = "input", className = "", children, ...props }) {
+  return (
+    <label className={`ff ${className}`.trim()}>
+      <span className="ff__label">{label}</span>
+      <Tag {...props}>{children}</Tag>
+    </label>
+  );
+}
+
 function fileToBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -129,21 +140,21 @@ function ContactFormBody() {
     {typeIndex === 2 && (
       <>
         <div className="form-row">
-          <input name="name" autoComplete="name" placeholder={t.placeholders.fullName} required />
-          <input type="email" name="email" autoComplete="email" placeholder={t.placeholders.email} required />
+          <Field label={t.placeholders.fullName} name="name" autoComplete="name" required />
+          <Field label={t.placeholders.email} type="email" name="email" autoComplete="email" required />
         </div>
         <div className="form-row">
-          <input name="phone" inputMode="tel" autoComplete="tel" placeholder={t.placeholders.mobile} required />
-          <select name="country" defaultValue="" required>
-            <option value="" disabled hidden>{t.placeholders.selectCountry}</option>
+          <Field label={t.placeholders.mobile} name="phone" inputMode="tel" autoComplete="tel" required />
+          <Field as="select" label={t.placeholders.selectCountry} name="country" defaultValue="" required>
+            <option value="" disabled hidden></option>
             {t.countries.map(c => <option key={c} value={c}>{c}</option>)}
-          </select>
+          </Field>
         </div>
         <div className="form-row">
-          <input name="applyingFor" placeholder={t.placeholders.applyingFor} required />
-          <input name="linkedin" type="url" placeholder={t.placeholders.linkedin} />
+          <Field label={t.placeholders.applyingFor} name="applyingFor" required />
+          <Field label={t.placeholders.linkedin} name="linkedin" type="url" />
         </div>
-        <textarea name="message" rows="3" placeholder={t.placeholders.message} required />
+        <Field label={t.placeholders.message} as="textarea" name="message" rows="3" required />
         <div className="file-upload-wrapper">
           <label className="file-upload-label">
             <Paperclip size={12} />
@@ -158,52 +169,52 @@ function ContactFormBody() {
       <>
         <div className="form-section-header">{t.contactPerson}</div>
         <div className="form-row">
-          <input name="name" placeholder={t.placeholders.fullName} required />
-          <input name="jobTitle" placeholder={t.placeholders.jobTitle} required />
+          <Field label={t.placeholders.fullName} name="name" required />
+          <Field label={t.placeholders.jobTitle} name="jobTitle" required />
         </div>
         <div className="form-row">
-          <input type="email" name="email" placeholder={t.placeholders.email} required />
-          <input type="tel" name="phone" placeholder={t.placeholders.phone} required />
+          <Field label={t.placeholders.email} type="email" name="email" required />
+          <Field label={t.placeholders.phone} type="tel" name="phone" required />
         </div>
         <div className="form-row">
-          <select name="country" defaultValue="" required>
-            <option value="" disabled hidden>{t.placeholders.selectCountry}</option>
+          <Field as="select" label={t.placeholders.selectCountry} name="country" defaultValue="" required>
+            <option value="" disabled hidden></option>
             {t.countries.map(c => <option key={c} value={c}>{c}</option>)}
-          </select>
+          </Field>
         </div>
 
         <div className="form-section-header">{t.companyDetails}</div>
         <div className="form-row form-row--three">
-          <input name="companyName" placeholder={t.placeholders.companyName} required />
-          <input name="companyDomain" placeholder={t.placeholders.companyDomain} />
-          <input name="companyPhone" placeholder={t.placeholders.companyPhone} />
+          <Field label={t.placeholders.companyName} name="companyName" required />
+          <Field label={t.placeholders.companyDomain} name="companyDomain" />
+          <Field label={t.placeholders.companyPhone} name="companyPhone" />
         </div>
         <div className="form-row">
-          <input type="email" name="companyEmail" placeholder={t.placeholders.companyEmail} required />
-          <input type="url" name="companyLinkedin" placeholder={t.placeholders.companyLinkedin} />
+          <Field label={t.placeholders.companyEmail} type="email" name="companyEmail" required />
+          <Field label={t.placeholders.companyLinkedin} type="url" name="companyLinkedin" />
         </div>
         <div className="form-row form-row--three">
-          <input name="companyAddress" placeholder={t.placeholders.companyAddress} />
-          <input name="companyCity" placeholder={t.placeholders.city} />
-          <input name="companyRegion" placeholder={t.placeholders.region} />
+          <Field label={t.placeholders.companyAddress} name="companyAddress" />
+          <Field label={t.placeholders.city} name="companyCity" />
+          <Field label={t.placeholders.region} name="companyRegion" />
         </div>
-        <input name="description" className="full-width-input" placeholder={t.placeholders.description} required />
+        <Field label={t.placeholders.description} name="description" className="full-width-input" required />
       </>
     )}
 
     {typeIndex === 0 && (
       <>
         <div className="form-row">
-          <input name="name" placeholder={t.placeholders.fullName} required />
-          <input type="email" name="email" placeholder={t.placeholders.emailAddress} required />
+          <Field label={t.placeholders.fullName} name="name" required />
+          <Field label={t.placeholders.emailAddress} type="email" name="email" required />
         </div>
         <div className="form-row">
-          <input name="phone" placeholder={t.placeholders.phoneNumber} required />
-          <select name="location" defaultValue={t.locations[0]}>
+          <Field label={t.placeholders.phoneNumber} name="phone" required />
+          <Field as="select" label={dict.quoteModal.locationLabel} name="location" defaultValue={t.locations[0]}>
             {t.locations.map(l => <option key={l}>{l}</option>)}
-          </select>
+          </Field>
         </div>
-        <textarea name="message" rows="3" placeholder={t.placeholders.whatToCreate} required />
+        <Field label={t.placeholders.whatToCreate} as="textarea" name="message" rows="3" required />
       </>
     )}
 
