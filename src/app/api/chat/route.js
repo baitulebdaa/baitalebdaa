@@ -6,10 +6,8 @@ const MAX_MESSAGES = 14;
 const MAX_MESSAGE_LENGTH = 600;
 const MAX_IMAGE_BASE64_LENGTH = 2_000_000;
 const ALLOWED_IMAGE_MIME = new Set(["image/jpeg", "image/png", "image/webp"]);
-
 // ── Resend email helper (reuses the same env vars as /api/contact) ──────────
 const RESEND_API_URL = "https://api.resend.com/emails";
-
 function escapeHtml(value) {
   return String(value ?? "")
     .replace(/&/g, "&amp;")
