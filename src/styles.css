@@ -5446,3 +5446,251 @@ button.estimator-submit-btn {
     height: 46px;
   }
 }
+
+/* ==========================================================================
+   UX quick wins (audit 2026-10-09)
+   1. Mobile: fewer floating elements   2. Hero dots: 44px touch area
+   3. Mobile text no smaller than 12px  4. Contact form: visible labels
+   5. Service page layout fixes
+   ========================================================================== */
+
+/* 4. Contact form fields: visible label above each control */
+.ff {
+  display: block;
+}
+
+.ff__label {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #555;
+}
+
+[dir="rtl"] .ff__label {
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+@media (max-width: 700px) {
+  .form-row > .ff + .ff {
+    margin-top: 22px;
+  }
+}
+
+/* 5. Service page layout fixes */
+.slp-section-label {
+  padding-top: 40px;
+  padding-bottom: 24px;
+}
+
+/* The two links in the project card ran together on one line */
+.slp-proof-copy .service-learn-more {
+  display: block;
+  width: fit-content;
+}
+
+.slp-proof-copy .service-learn-more + .service-learn-more {
+  margin-top: 10px;
+}
+
+/* "Why choose" has 5 facts: 3 + 2 rows instead of 4 + 1 orphan */
+@media (min-width: 1100px) {
+  .slp-why__grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .slp-why__item {
+    grid-column: span 2;
+  }
+
+  .slp-why__item:nth-child(4):nth-last-child(2),
+  .slp-why__item:nth-child(5):last-child {
+    grid-column: span 3;
+  }
+}
+
+/* 2. Hero slide dots: keep the 2px line visually, give it a 44px touch area */
+@media (max-width: 980px), (pointer: coarse) {
+  .hero__progress button {
+    position: relative;
+    height: 44px;
+    margin-block: -21px; /* 44px hit box, same 2px layout footprint as before */
+    background: transparent;
+  }
+
+  .hero__progress button::before {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    top: 50%;
+    height: 2px;
+    margin-top: -1px;
+    background: rgba(255, 255, 255, 0.32);
+  }
+
+  .hero__progress button.is-active {
+    background: transparent;
+  }
+
+  .hero__progress button.is-active::before {
+    background: #fff;
+  }
+}
+
+/* 1 + 3. Mobile: one floating action (Ask Ali, icon only), the bottom nav carries the rest */
+@media (max-width: 980px) {
+  /* WhatsApp is already in the header and the hero; Call is in the hero */
+  .slp-sticky-sidebar {
+    display: none;
+  }
+
+  .ask-ai-launcher {
+    width: 46px;
+    height: 46px;
+    padding: 0;
+    gap: 0;
+    justify-content: center;
+  }
+
+  .ask-ai-launcher__label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  /* Hero copy and slide controls sit above the bottom nav instead of under it */
+  .hero__controls {
+    bottom: calc(25px + 66px + env(safe-area-inset-bottom));
+  }
+
+  /* Slide counter stays clear of the Ask Ali button */
+  .hero__progress {
+    padding-inline-end: 58px;
+  }
+
+  /* Text no smaller than 12px */
+  .mobile-bottom-nav a,
+  .header-cta,
+  .footer-label,
+  .footer-email-label,
+  .footer-back-top,
+  .footer-bottom-left,
+  .footer-divider,
+  .footer-copy,
+  .slp-crumbs,
+  .slp-chip,
+  .estimator-label-row,
+  .estimator-slider-ticks,
+  .estimator-control-group label,
+  .estimator-result-badge,
+  .estimator-result-label,
+  .process-timeline__meta,
+  .cp-topics__title,
+  .hero__eyebrow,
+  .hero__progress,
+  .factory-live-badge,
+  .price-explorer__group,
+  .price-explorer__disclaimer,
+  .slp-scope__num,
+  .pp-category__kicker,
+  .project-grid-badge,
+  .footer-back-top span,
+  .estimator-controls .estimator-slider-ticks,
+  .slp-band__stat span,
+  .service-card__copy > span,
+  .sector-tabs button span,
+  .price-explorer__cols h4,
+  .price-explorer__calc small,
+  .slp-hero__price span,
+  .pp-category__badge span,
+  .pp-table thead th,
+  .slp-why__item span,
+  .cp-card span,
+  .cp-steps__item span,
+  .studio__facts span,
+  .pd-services__card span {
+    font-size: 0.75rem;
+  }
+}
+
+/* Small phones: hero copy clears the raised slide controls; header keeps the menu button on screen */
+@media (max-width: 700px) {
+  .hero__content {
+    padding-top: clamp(180px, 28vh, 300px);
+  }
+}
+
+@media (max-width: 400px) {
+  .site-header {
+    gap: 8px;
+    padding-inline: 16px;
+  }
+
+  .brand {
+    width: 124px;
+  }
+
+  .header-cta {
+    padding: 8px 9px;
+    gap: 6px;
+  }
+
+  .header-cta svg:last-child {
+    display: none;
+  }
+}
+
+/* Desktop: the quick-contact pills were 161px wide and covered card text. Collapse them to 46px
+   circles; the label expands on hover / keyboard focus (aria-label already names each link). */
+@media (min-width: 981px) {
+  .slp-sticky-sidebar {
+    right: 16px;
+    align-items: flex-end;
+  }
+
+  [dir="rtl"] .slp-sticky-sidebar {
+    right: auto;
+    left: 16px;
+    align-items: flex-start;
+  }
+
+  .slp-sticky-sidebar__btn,
+  [dir="rtl"] .slp-sticky-sidebar__btn {
+    height: 46px;
+    max-width: 46px;
+    padding: 0 14px;
+    gap: 12px;
+    overflow: hidden;
+    transition: max-width 0.25s ease, background 0.2s;
+  }
+
+  .slp-sticky-sidebar__btn svg {
+    flex-shrink: 0;
+  }
+
+  .slp-sticky-sidebar__btn span {
+    opacity: 0;
+    transition: opacity 0.15s;
+  }
+
+  .slp-sticky-sidebar__btn:hover,
+  .slp-sticky-sidebar__btn:focus-visible {
+    max-width: 200px;
+    transform: none;
+  }
+
+  .slp-sticky-sidebar__btn:hover span,
+  .slp-sticky-sidebar__btn:focus-visible span {
+    opacity: 1;
+  }
+
+  [dir="rtl"] .slp-sticky-sidebar__btn:hover {
+    transform: none;
+  }
+}

@@ -290,9 +290,9 @@ export function AskAIWidget() {
       )}
 
       {!open && (
-        <button type="button" onClick={() => setOpen(true)} aria-expanded="false" className="ask-ai-launcher">
+        <button type="button" onClick={() => setOpen(true)} aria-expanded="false" aria-label={t.buttonLabel} className="ask-ai-launcher">
           <MessageSquare size={17} aria-hidden="true" />
-          {t.buttonLabel}
+          <span className="ask-ai-launcher__label">{t.buttonLabel}</span>
         </button>
       )}
     </div>
