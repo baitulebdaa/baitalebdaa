@@ -53,7 +53,8 @@ export const dictionaries = {
       facts: [
         { strong: "15,000", span: "sq ft manufacturing facility" },
         { strong: "1:1", span: "design-to-production control" },
-        { strong: "UAE", span: "Dubai & Abu Dhabi delivery" }
+        { strong: "UAE", span: "Dubai & Abu Dhabi delivery" },
+        { strong: "5-year", span: "workmanship guarantee on our joinery" }
       ]
     },
     factorySection: {
@@ -1492,7 +1493,8 @@ export const dictionaries = {
       facts: [
         { strong: "15,000", span: "قدم مربع مساحة منشأة التصنيع" },
         { strong: "1:1", span: "تحكم من التصميم إلى الإنتاج" },
-        { strong: "الإمارات", span: "تسليم في دبي وأبوظبي" }
+        { strong: "الإمارات", span: "تسليم في دبي وأبوظبي" },
+        { strong: "5 سنوات", span: "ضمان جودة الصنعة على نجارتنا" }
       ]
     },
     factorySection: {
