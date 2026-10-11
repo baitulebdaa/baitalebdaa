@@ -248,6 +248,9 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
   </>;
 }
 
+// Order matches dict.footer.importantLinksItems.
+const LEGAL_LINK_SLUGS = ["privacy-policy", "terms-and-conditions", "cookie-policy", "service-level-agreement", "accessibility", "refund-policy", "sustainability"];
+
 export function Footer() {
   const { lang, dict } = useI18n();
   const f = dict.footer;
@@ -316,7 +319,7 @@ export function Footer() {
       </div>
       <div className="footer-links-col">
         <p className="footer-col-title">{f.importantLinks}</p>
-        {f.importantLinksItems.map((link, i) => <a key={i} href={link === f.privacy ? `/${lang}/privacy-policy` : `/${lang}/terms-and-conditions`}>{link}</a>)}
+        {f.importantLinksItems.map((link, i) => <a key={i} href={`/${lang}/${LEGAL_LINK_SLUGS[i]}`}>{link}</a>)}
       </div>
       <div className="footer-links-col">
         <p className="footer-col-title">{f.contactInfo}</p>

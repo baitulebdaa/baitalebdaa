@@ -19,6 +19,11 @@ const STATIC_PATHS = [
   "about",
   "privacy-policy",
   "terms-and-conditions",
+  "cookie-policy",
+  "service-level-agreement",
+  "accessibility",
+  "refund-policy",
+  "sustainability",
   "media",
 ];
 
