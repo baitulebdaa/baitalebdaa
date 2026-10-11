@@ -5447,7 +5447,8 @@ button.estimator-submit-btn {
   }
 }
 
-/* ===================================================================   UX quick wins (audit 2026-10-09)
+/* ==========================================================================
+   UX quick wins (audit 2026-10-09)
    1. Mobile: fewer floating elements   2. Hero dots: 44px touch area
    3. Mobile text no smaller than 12px  4. Contact form: visible labels
    5. Service page layout fixes
@@ -5691,7 +5692,9 @@ button.estimator-submit-btn {
 
   [dir="rtl"] .slp-sticky-sidebar__btn:hover {
     transform: none;
-=======
+  }
+}
+
 /* Studio section: the photo is a 4:5 portrait, so it is shown at its own ratio beside the facts
    instead of being cropped to a wide band (which cut off the drawers and upscaled the picture). */
 .studio__showcase {
