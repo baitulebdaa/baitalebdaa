@@ -4,7 +4,9 @@ import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { ArrowUpRight, Check, Paperclip } from "./icons";
 import { useI18n } from "../i18n/I18nProvider";
-import { Reveal } from "./Shared";
+import { Honeypot, Reveal } from "./Shared";
+import { HONEYPOT_FIELD } from "../lib/request-guard";
+import { apiErrorMessage, readJson } from "../lib/api-errors";
 
 const WHATSAPP_NUMBER = "971582621717";
 
@@ -49,8 +51,8 @@ function fileToBase64(file) {
   });
 }
 
-// Shared, Resend-wired contact form — used on both the homepage's inline #contact
-// section and the standalone /contact page (src/ContactPage.jsx). Wrapped in
+// Shared, Resend-wired contact form, used on the standalone /contact page
+// (src/ContactPage.jsx). Wrapped in
 // Suspense because useSearchParams() (reading ?service= from a pricing-page
 // CTA) requires it in a statically-generated route.
 export function ContactForm() {
@@ -92,7 +94,7 @@ function ContactFormBody() {
     const email = data.get("email");
     const fields = {};
     for (const [key, value] of data.entries()) {
-      if (key === "cv" || key === "formType" || !value) continue;
+      if (key === "cv" || key === "formType" || key === HONEYPOT_FIELD || !value) continue;
       fields[FIELD_LABELS[key] || key] = value;
     }
     if (presetService) fields["Interested Service"] = presetService;
@@ -100,6 +102,15 @@ function ContactFormBody() {
     let attachments = [];
     const cvFile = data.get("cv");
     if (cvFile instanceof File && cvFile.size > 0) {
+      // Catch a wrong file type or size here, before a slow upload the server would refuse.
+      if (!/\.(pdf|docx?)$/i.test(cvFile.name)) {
+        setError(dict.apiErrors.invalid_cv);
+        return;
+      }
+      if (cvFile.size > 5 * 1024 * 1024) {
+        setError(dict.apiErrors.file_too_large);
+        return;
+      }
       attachments = [{ filename: cvFile.name, content: await fileToBase64(cvFile) }];
     }
 
@@ -109,10 +120,13 @@ function ContactFormBody() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ formType: formTypeKey, name, email, fields, attachments }),
+        body: JSON.stringify({ formType: formTypeKey, name, email, fields, attachments, [HONEYPOT_FIELD]: data.get(HONEYPOT_FIELD) || "" }),
       });
-      const result = await res.json();
-      if (!res.ok || !result.success) throw new Error(result.error || "Failed to send");
+      const result = await readJson(res);
+      if (!res.ok || !result.success) {
+        setError(apiErrorMessage(dict, result.code, t.error || "Something went wrong. Please try again or WhatsApp us."));
+        return;
+      }
 
       setSent(true);
       form.reset();
@@ -125,6 +139,7 @@ function ContactFormBody() {
   };
 
   return <section className="contact" id="contact"><div className="shell contact__centered"><Reveal as="form" className="project-form" delay={100} method="post" onSubmit={submit}>
+    <Honeypot />
     <h2 className="form-main-heading">{t.mainHeading}</h2>
     <h3 className="form-heading">{t.heading}</h3>
     {presetService && (

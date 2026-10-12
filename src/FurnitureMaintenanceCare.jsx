@@ -5,6 +5,7 @@ import { useState } from "react";
 import { ArrowUpRight, Check } from "./components/icons";
 import { useI18n } from "./i18n/I18nProvider";
 import { Header, Footer, Reveal, PageHeader, FaqSplit, ProcessTimeline } from "./components/Shared";
+import { ORG_REF } from "./lib/schema-ids";
 
 export default function FurnitureMaintenanceCare() {
   const { lang, dict } = useI18n();
@@ -26,7 +27,7 @@ export default function FurnitureMaintenanceCare() {
         name: t.navTitle,
         serviceType: t.navTitle,
         areaServed: ["Dubai", "Abu Dhabi"],
-        provider: { "@type": "Organization", name: "Bait Al Ebdaa", url: "https://www.baitalebdaa.com" },
+        provider: ORG_REF,
         url: `https://www.baitalebdaa.com/${lang}/furniture-maintenance-care`,
         description: t.metaDescription,
       },

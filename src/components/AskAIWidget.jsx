@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { X, RotateCcw, ArrowUp, ImagePlus, ThumbsUp, ThumbsDown, MessageSquare, Check } from "./icons";
 import { useI18n } from "../i18n/I18nProvider";
+import { apiErrorMessage, readJson } from "../lib/api-errors";
 
 const WHATSAPP_NUMBER = "971582621717";
 const INTRO_ID = 1;
@@ -100,13 +101,14 @@ export function AskAIWidget() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ messages: nextMessages.map(({ role, content }) => ({ role, content })), image }),
       });
-      const data = await response.json();
+      const data = await readJson(response);
       setMessages((current) => [
         ...current,
         {
           id: nextId.current++,
           role: "assistant",
-          content: response.ok && data.reply ? data.reply : data.error || t.unavailable,
+          // Errors use the visitor's language (dict.apiErrors), never the server's English text.
+          content: response.ok && data.reply ? data.reply : apiErrorMessage(dict, data.code, t.unavailable),
           error: !response.ok,
           quoteSent: !!data.quoteSent,
         },

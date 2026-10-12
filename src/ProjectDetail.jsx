@@ -2,9 +2,9 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { Facebook, Instagram, Linkedin, Youtube, ArrowLeft, ArrowRight, ArrowUpRight, Check } from "./components/icons";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Check } from "./components/icons";
 import { useI18n } from "./i18n/I18nProvider";
-import { Header, Footer, Reveal, PageHeader, ProcessTimeline } from "./components/Shared";
+import { Header, Footer, Reveal, PageHeader, ProcessTimeline, SocialLinks } from "./components/Shared";
 import { QuoteModal } from "./components/QuoteModal";
 
 const SITE_URL = "https://www.baitalebdaa.com";
@@ -72,10 +72,7 @@ export default function ProjectDetail({ slug }) {
           <div className="project-social">
             <span className="stay-connected">{t.stayConnected}</span>
             <div className="social-icons">
-              <a href="https://www.facebook.com/baitalebdaa" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><Facebook size={18} /></a>
-              <a href="https://www.instagram.com/baitalebdaa" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><Instagram size={18} /></a>
-              <a href="https://www.linkedin.com/company/baitalebdaa" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><Linkedin size={18} /></a>
-              <a href="https://www.youtube.com/baitalebdaa" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><Youtube size={18} /></a>
+              <SocialLinks />
             </div>
           </div>
         </PageHeader>

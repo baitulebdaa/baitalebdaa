@@ -8,7 +8,6 @@ import { Header, Footer, Reveal, FaqSplit, ProcessTimeline } from "./components/
 import { Estimator } from "./components/Estimator";
 import { PriceExplorer } from "./components/PriceExplorer";
 import { QuoteModal } from "./components/QuoteModal";
-import { ContactForm } from "./components/ContactForm";
 import { formatIndex } from "./lib/format";
 import { isPublishedProject } from "./data/project-catalog";
 
@@ -52,7 +51,7 @@ function Studio() {
 }
 
 function Factory() {
-  const { dict } = useI18n();
+  const { dict, lang } = useI18n();
   const f = dict.factorySection;
   return <section className="section section--light" id="factory">
     <div className="shell factory-grid">
@@ -60,13 +59,14 @@ function Factory() {
         <p className="micro">{f.badge}</p>
         <h2 className="section-title">{f.title}</h2>
         <p className="factory-desc">{f.description}</p>
+        <a href={`/${lang}/joinery/ajman`} className="factory-link">{f.joineryLink} <ArrowUpRight size={14} /></a>
         <div className="factory-feature-grid">
           {f.features.map((item, i) => <div className="factory-feature-card" key={i}>
             <h3>{item.title}</h3>
             <p>{item.desc}</p>
           </div>)}
         </div>
-        <a href="#contact" className="outline-button outline-button--dark factory-cta"><Calendar size={16} /> {f.cta}</a>
+        <a href={`/${lang}/contact#contact-form`} className="outline-button outline-button--dark factory-cta"><Calendar size={16} /> {f.cta}</a>
       </Reveal>
       <Reveal className="factory-image-wrap" delay={120}>
         <Image src="/assets/walk-in-closet-island-led-ceiling.jpeg" alt={f.title} fill sizes="(max-width: 768px) 100vw, 50vw" style={{ objectFit: 'cover' }} />
@@ -83,7 +83,7 @@ function Sectors() {
   const { lang, dict } = useI18n();
   const [active, setActive] = useState(0);
   const images = ["/assets/living-room-wood-slat-wall-lounge-seating.jpeg", "/assets/tv-media-wall-floating-console-fireplace.jpeg", "/assets/modern-living-room-beige-sofa-curtain-wall-panels.jpeg"];
-  return <section className="section sector-section"><div className="shell sectors"><Reveal className="sectors__copy"><p className="micro">{dict.sectorsSection.micro}</p><h2 className="section-title" style={{whiteSpace: 'pre-wrap'}}>{dict.sectorsSection.title}</h2><div className="sector-tabs" role="tablist" aria-label="Project sectors">{dict.sectorsSection.items.map((s, i) => <button key={i} role="tab" aria-selected={i === active} onClick={() => setActive(i)}><span>{formatIndex(i + 1, lang)}</span>{s.label}</button>)}</div><div className="sector-description"><p>{dict.sectorsSection.items[active].body}</p><a href="#contact">{dict.sectorsSection.explore} <ArrowUpRight size={16} /></a></div></Reveal><Reveal className="sectors__image" delay={120}>{dict.sectorsSection.items.map((s, i) => <Image key={i} className={i === active ? "is-active" : ""} src={images[i]} alt={s.label} fill sizes="(max-width: 700px) 100vw, 60vw" />)}</Reveal></div></section>;
+  return <section className="section sector-section"><div className="shell sectors"><Reveal className="sectors__copy"><p className="micro">{dict.sectorsSection.micro}</p><h2 className="section-title" style={{whiteSpace: 'pre-wrap'}}>{dict.sectorsSection.title}</h2><div className="sector-tabs" role="tablist" aria-label="Project sectors">{dict.sectorsSection.items.map((s, i) => <button key={i} role="tab" aria-selected={i === active} onClick={() => setActive(i)}><span>{formatIndex(i + 1, lang)}</span>{s.label}</button>)}</div><div className="sector-description"><p>{dict.sectorsSection.items[active].body}</p><a href={`/${lang}/contact#contact-form`}>{dict.sectorsSection.explore} <ArrowUpRight size={16} /></a></div></Reveal><Reveal className="sectors__image" delay={120}>{dict.sectorsSection.items.map((s, i) => <Image key={i} className={i === active ? "is-active" : ""} src={images[i]} alt={s.label} fill sizes="(max-width: 700px) 100vw, 60vw" />)}</Reveal></div></section>;
 }
 
 function Projects() {

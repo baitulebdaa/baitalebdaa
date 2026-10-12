@@ -9,6 +9,29 @@ const nextConfig = {
   // — slash or no slash — resolves in exactly one hop. Verified against a live local
   // server (see redirect verification pass) after adding this.
   skipTrailingSlashRedirect: true,
+  // The root layout sits under the [lang] segment, so unmatched URLs can only get a branded
+  // 404 through src/app/global-not-found.jsx, which needs this flag (Next 16 docs).
+  experimental: {
+    globalNotFound: true,
+  },
+  // Baseline security headers on every response (HSTS is already added by Vercel).
+  // frame-ancestors/X-Frame-Options stop other sites from framing pages (clickjacking);
+  // the camera/microphone/geolocation APIs are not used anywhere on the site. The chat's
+  // photo upload uses a plain file input, which Permissions-Policy does not affect.
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
+          { key: "Content-Security-Policy", value: "frame-ancestors 'self'" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
+        ],
+      },
+    ];
+  },
   async redirects() {
     return [
       // Apex-domain requests for legacy URLs that have a final destination go there in

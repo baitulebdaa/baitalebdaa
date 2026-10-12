@@ -11,6 +11,9 @@ import { locationContent } from "./data/location-content";
 import { abuDhabiCopy } from "./data/abu-dhabi-copy";
 import { pricingGroups } from "./data/pricing";
 import { formatPrice, PRICING_GROUP_BY_SERVICE } from "./lib/pricing";
+import { CURRENCY, VAT_INCLUSIVE } from "./data/pricing";
+import { ORG_REF, SITE_URL } from "./lib/schema-ids";
+import { faqPageJsonLd } from "./lib/faq-schema";
 
 const HERO_IMAGE_BY_SERVICE = {
   "interior-design": "/assets/luxury-living-room-chandelier-wall-panelling.jpeg",
@@ -86,8 +89,7 @@ const WORK_GALLERY_BY_SERVICE = {
 };
 
 // The 5 pages the SEO strategy concentrates authority on — see the money-page plan.
-// Only these get FAQPage structured data (see jsonLd below); the other ~1,015
-// service/location combos keep Service + BreadcrumbList only.
+// They get the extra intro paragraph (priorityIntroExtra).
 const PRIORITY_MONEY_PAGES = new Set([
   "fit-out/dubai",
   "office-fit-out/dubai",
@@ -174,6 +176,7 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
   const pricingCopy = dict.pricingPage.groups[pricingGroupId];
 
   const home = dict.ourProjectsPage.home;
+  const servicesLabel = dict.nav.services;
   const gallery = WORK_GALLERY_BY_SERVICE[row.serviceSlug] || [];
   const heroPhoto = pickByLocation(gallery, row.locationSlug);
   const heroImage = heroPhoto?.src || HERO_IMAGE_BY_SERVICE[row.serviceSlug] || "/assets/luxury-living-room-chandelier-wall-panelling.jpeg";
@@ -213,7 +216,12 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
           : `Yes — our team covers ${locationName} as part of our full delivery across ${emirateName}, using the same design, execution and compliance standards as every other project we run. We conduct the initial survey at your actual site so real measurements and access conditions are accounted for before any schedule is agreed. Reach out on WhatsApp or request a free site survey to get started.`,
     },
     {
-      q: lang === "ar" ? `من يدير موافقات ${authority} لمشروعي؟` : `Who manages ${authority} approvals for my project?`,
+      q:
+        lang === "ar"
+          ? `من يدير موافقات ${authority} لمشروعي؟`
+          : row.emirate === "Abu Dhabi"
+            ? "Who manages the authority approvals for my Abu Dhabi project?"
+            : `Who manages ${authority} approvals for my project?`,
       a:
         lang === "ar"
           ? `فريق الامتثال الداخلي لدينا يتولى التقديم والمتابعة مع ${authority} نيابة عنك بالكامل، بدءاً من التصاريح الأولية والرسومات الفنية المطلوبة، مروراً بمتابعة حالة الطلب وأي ملاحظات من الجهة، وصولاً إلى شهادة الإنجاز النهائية. هذا يعني أنك لست مضطراً لحضور اجتماعات الجهات بنفسك أو فهم الإجراءات الإدارية المعقدة، فنحن نتحمل هذا الجزء بالكامل ضمن نطاق العقد.`
@@ -230,34 +238,41 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
         name: row.h1,
         serviceType: serviceName,
         ...(isFullCoverage || coverage === "factory" ? { areaServed: locationName } : {}),
-        provider: { "@type": "Organization", name: "Bait Al Ebdaa", url: "https://www.baitalebdaa.com" },
+        provider: ORG_REF,
         url: row.canonical,
         description,
+        image: `${SITE_URL}${heroImage}`,
+        // The page's own published starting price (same figure as the hero's "Indicative pricing").
+        ...(startingItem && (startingItem.priceType === "from" || startingItem.priceType === "range")
+          ? {
+              offers: {
+                "@type": "Offer",
+                url: row.canonical,
+                seller: ORG_REF,
+                priceSpecification: {
+                  "@type": "PriceSpecification",
+                  priceCurrency: CURRENCY,
+                  minPrice: startingItem.min,
+                  ...(startingItem.max ? { maxPrice: startingItem.max } : {}),
+                  valueAddedTaxIncluded: VAT_INCLUSIVE,
+                  ...(startingItem.unit ? { unitText: startingItem.unit === "sqft" ? "per sq ft" : "per linear metre" } : {}),
+                },
+              },
+            }
+          : {}),
       },
       {
         "@type": "BreadcrumbList",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: home, item: lang === "en" ? "https://www.baitalebdaa.com" : "https://www.baitalebdaa.com/ar" },
-          { "@type": "ListItem", position: 2, name: serviceName, item: `https://www.baitalebdaa.com/${lang}/${row.serviceSlug}/dubai` },
-          { "@type": "ListItem", position: 3, name: locationName, item: row.canonical },
+          { "@type": "ListItem", position: 1, name: home, item: lang === "en" ? `${SITE_URL}/` : `${SITE_URL}/ar` },
+          { "@type": "ListItem", position: 2, name: servicesLabel, item: `${SITE_URL}/${lang}/our-services` },
+          { "@type": "ListItem", position: 3, name: row.h1, item: row.canonical },
         ],
       },
-      // FAQPage is scoped to only the 5 priority money pages (see PRIORITY_MONEY_PAGES
-      // below) — applying it to all 1,020 templated pages meant ~1,015 pages carried
-      // near-duplicate FAQ structured data, which overstates AEO relevance the
-      // templated pages don't actually have.
-      ...(isPriorityMoneyPage
-        ? [
-            {
-              "@type": "FAQPage",
-              mainEntity: [...content.faqs, ...pageFaqs].map((item) => ({
-                "@type": "Question",
-                name: item.q,
-                acceptedAnswer: { "@type": "Answer", text: item.a },
-              })),
-            },
-          ]
-        : []),
+      // FAQPage mirrors the FAQ section that is visibly rendered below, on indexable pages
+      // only (Dubai, Abu Dhabi, Ajman joinery). Noindex district/UAE pages carry none, so
+      // the ~950 templated pages that are not in the index never repeat this markup.
+      ...(row.approved ? [faqPageJsonLd([...content.faqs, ...pageFaqs])] : []),
     ],
   };
 
@@ -288,11 +303,11 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
         <section className="shell slp-hero">
           <div className="slp-hero__copy">
             <Reveal>
-              <p className="slp-crumbs">
-                {home} &nbsp;&#9656;&nbsp;
-                <a href={`/${lang}/${row.serviceSlug}/dubai`}> {serviceName} </a>
-                &nbsp;&#9656;&nbsp; <strong>{locationName}</strong>
-              </p>
+              <nav className="slp-crumbs" aria-label={lang === "ar" ? "مسار التنقل" : "Breadcrumb"}>
+                <a href={lang === "en" ? "/" : "/ar"}>{home}</a> &nbsp;&#9656;&nbsp;
+                <a href={`/${lang}/our-services`}>{servicesLabel}</a>
+                &nbsp;&#9656;&nbsp; <strong aria-current="page">{row.h1}</strong>
+              </nav>
               <span className="slp-chip">
                 <i aria-hidden="true" />
                 {locationName === emirateName ? locationName : `${locationName} · ${emirateName}`}

@@ -2619,8 +2619,43 @@ button.estimator-submit-btn {
 .factory-desc {
   color: var(--muted);
   line-height: 1.75;
-  margin-bottom: 32px;
+  margin-bottom: 18px;
   max-width: 460px;
+}
+
+/* Honeypot: clipped in place, never pushed off-screen. An off-screen offset such as
+   left:-10000px becomes scrollable width on RTL (Arabic) pages and shifts the layout. */
+.hp-field {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.media-hub-intro {
+  max-width: 760px;
+  margin: 18px 0 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.factory-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  width: fit-content;
+  margin-bottom: 32px;
+  font-size: 0.78rem;
+  border-bottom: 1px solid;
+  padding-bottom: 4px;
 }
 
 .factory-feature-grid {
@@ -4927,8 +4962,14 @@ button.estimator-submit-btn {
 
 .cp-cards {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
+}
+
+@media (max-width: 1240px) {
+  .cp-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 .cp-card {

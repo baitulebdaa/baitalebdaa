@@ -1,4 +1,5 @@
 import seoData from "../data/seo-pages.json";
+import { SERVICE_META_EN } from "../data/service-meta";
 
 export const services = seoData.services;
 export const locations = seoData.locations;
@@ -25,15 +26,20 @@ export function getCoverageTier(page) {
   return "unverified";
 }
 
-// The sheet-derived description says "Bait Al Ebdaa delivers <service> in <place>", which
-// is only true for verified coverage. Elsewhere use a neutral, accurate sentence.
+// Verified coverage (Dubai / Abu Dhabi) gets a hand-written English description per service
+// (src/data/service-meta.js); the sheet's English template lowercased the H1 into
+// "delivers fit out company in dubai". Arabic keeps the sheet's own descriptions.
+// Unverified locations get a neutral, accurate sentence instead of a delivery claim.
 export function getSafeMetaDescription(page, lang) {
   const tier = getCoverageTier(page);
-  if (tier === "full") return page.metaDescription;
+  if (tier === "full") {
+    const write = lang === "en" ? SERVICE_META_EN[page.serviceSlug] : null;
+    return write ? write(getLocation(page.locationSlug)?.en || page.location) : page.metaDescription;
+  }
   if (tier === "factory") {
     return lang === "ar"
       ? "نجارة معمارية مخصصة تُصنع في مصنع بيت الإبداع بمساحة 15,000 قدم مربع في الجرف الصناعية 2 بعجمان. تواصل مع فريقنا لتأكيد توفر المشروع."
-      : "Custom architectural joinery manufactured in Bait Al Ebdaa's own 15,000 sq ft factory in Jurf Industrial 2, Ajman. Contact our team to confirm project availability.";
+      : "Custom architectural joinery made in Bait Al Ebdaa's own 15,000 sq ft factory in Jurf Industrial 2, Ajman. Contact us to confirm project availability.";
   }
   const service = getService(page.serviceSlug);
   const location = getLocation(page.locationSlug);
@@ -73,7 +79,9 @@ export function getEmirateName(lang, enEmirateName) {
 const EMIRATE_AUTHORITY = {
   UAE: { en: "Dubai Municipality, Abu Dhabi Municipality and other local authorities", ar: "بلدية دبي وبلدية أبوظبي والجهات المحلية الأخرى" },
   Dubai: { en: "Dubai Municipality and the Dubai Development Authority (DDA)", ar: "بلدية دبي وسلطة دبي للتطوير" },
-  "Abu Dhabi": { en: "Abu Dhabi Municipality (DMT) and the Department of Civil Defense", ar: "بلدية أبوظبي (دائرة البلديات والنقل) والدفاع المدني" },
+  // Neutral on purpose: the business has not confirmed which Abu Dhabi authority submissions
+  // it handles, so no names until it does (same rule as src/data/abu-dhabi-copy.js).
+  "Abu Dhabi": { en: "the relevant Abu Dhabi authorities", ar: "الجهات المختصة في أبوظبي" },
   Sharjah: { en: "Sharjah Municipality", ar: "بلدية الشارقة" },
   Ajman: { en: "Ajman Municipality", ar: "بلدية عجمان" },
   "Ras Al Khaimah": { en: "Ras Al Khaimah Municipality", ar: "بلدية رأس الخيمة" },

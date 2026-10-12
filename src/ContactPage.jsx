@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { ArrowUpRight, Check, Mail, MapPin, Phone } from "./components/icons";
+import { ArrowUpRight, Check, Clock, Mail, MapPin, Phone } from "./components/icons";
 import { useI18n } from "./i18n/I18nProvider";
 import { Header, Footer, Reveal } from "./components/Shared";
 import { ContactForm } from "./components/ContactForm";
@@ -20,6 +20,7 @@ export default function ContactPage() {
     { icon: Phone, label: ui.callLabel, value: "+971 58 262 1717", href: "tel:+971582621717" },
     { icon: Mail, label: ui.emailLabel, value: "info@baitalebdaa.com", href: "mailto:info@baitalebdaa.com", sub: "sales@baitalebdaa.com", subHref: "mailto:sales@baitalebdaa.com" },
     { icon: MapPin, label: ui.visitLabel, value: ui.address },
+    { icon: Clock, label: ui.hoursLabel, value: ui.hours },
   ];
 
   return (
@@ -68,7 +69,7 @@ export default function ContactPage() {
             <Reveal className={`cp-card${i === 0 ? " cp-card--dark" : ""}`} key={c.label} delay={60 + i * 70}>
               <div className="cp-card__icon"><c.icon size={20} aria-hidden="true" /></div>
               <span>{c.label}</span>
-              {c.href ? <a href={c.href}>{c.value}</a> : <strong>{c.value}</strong>}
+              {c.href ? <a href={c.href}><bdi dir={c.href.startsWith("tel:") ? "ltr" : undefined}>{c.value}</bdi></a> : <strong>{c.value}</strong>}
               {c.sub && <a href={c.subHref} className="cp-card__sub">{c.sub}</a>}
             </Reveal>
           ))}

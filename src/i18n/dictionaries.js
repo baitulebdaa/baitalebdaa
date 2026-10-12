@@ -25,6 +25,14 @@ export const dictionaries = {
         aftercare: "Aftercare"
       }
     },
+    // Messages for the error codes /api/contact and /api/chat return (see src/lib/request-guard.js).
+    apiErrors: {
+      rate_limited: "You've sent several requests in a short time. Please wait a few minutes and try again, or message us on WhatsApp for a quicker reply.",
+      invalid_cv: "Please upload your CV as a PDF, DOC or DOCX file.",
+      file_too_large: "This file is larger than 5 MB. Please upload a smaller PDF, DOC or DOCX file.",
+      too_long: "Your message is too long. Please shorten it and try again.",
+      invalid_email: "Please check your name and email address and try again.",
+    },
     menuItems: ["Home", "Services", "Projects", "Process", "Pricing", "Contact"],
     hero: {
       slides: [
@@ -39,6 +47,7 @@ export const dictionaries = {
       title: "From imagination\nto installation.",
       lede: "A single, exacting team owns every decision—from the first photorealistic render to the final aligned drawer.",
       discuss: "Discuss your project",
+      viewAllServices: "View all services",
       items: [
         { number: "01", title: "Design & 3D visualization", body: "Photorealistic CAD renders let you approve materials, lighting and spatial decisions before site work begins." },
         { number: "02", title: "Fit-out & approvals", body: "Detailed coordination, authority submissions, Dubai Municipality approvals and NOCs managed end to end." },
@@ -66,6 +75,7 @@ export const dictionaries = {
         { title: "European Walnut & Oak", desc: "Direct timber import from Italy" }
       ],
       cta: "Schedule Guided Factory Visit",
+      joineryLink: "Custom joinery made in our Ajman factory",
       captionLocation: "Jurf Industrial 2, Ajman",
       captionBadge: "Live Production"
     },
@@ -171,7 +181,7 @@ export const dictionaries = {
         },
         {
           q: "What is the typical turnkey execution timeline for a villa in Dubai?",
-          a: "A typical full turnkey execution for a luxury villa in Dubai generally ranges from three to six months. However, this timeline is highly dependent on the overall scope, spatial scale, and the specific, intricate customization requirements of your unique project. During the initial planning phase, we provide a highly detailed, transparent timeline that outlines every critical milestone from concept to final handover."
+          a: "Most full turnkey luxury villa projects in Dubai take three to six months from first consultation to handover. That total includes concept design, 3D sign-off and authority approvals; once the design is approved, the on-site fit-out itself typically runs 6–10 weeks. The exact programme depends on scope, size and the amount of custom joinery, and we confirm it in writing, milestone by milestone, after the site survey."
         },
         {
           q: "Is the initial site survey and 3D layout consultation free of charge?",
@@ -213,7 +223,7 @@ export const dictionaries = {
     aboutPage: {
       navTitle: "About Us",
       pageTitle: "About Bait Al Ebdaa",
-      metaTitle: "About Us | Bait Al Ebdaa",
+      metaTitle: "About Us: Interior Design & Joinery Studio | Bait Al Ebdaa",
       metaDescription: "Bait Al Ebdaa is a turnkey interior design, fit-out and architectural joinery company based in Ajman, serving Dubai and Abu Dhabi with in-house manufacturing.",
       intro: "Bait Al Ebdaa is a turnkey interior design, fit-out and architectural joinery company serving Dubai and Abu Dhabi. We deliver villa and office interiors from initial concept through to final handover, with design, approvals, joinery manufacturing and installation coordinated by one accountable team rather than a chain of separate subcontractors.",
       sections: {
@@ -240,7 +250,7 @@ export const dictionaries = {
       pageTitle: "Privacy Policy",
       metaTitle: "Privacy Policy | Bait Al Ebdaa",
       metaDescription: "How Bait Al Ebdaa collects, uses and protects the personal information submitted through our website forms and contact channels.",
-      lastUpdated: "Last updated: 24 September 2026",
+      lastUpdated: "Last updated: 12 October 2026",
       intro: "This page explains what information Bait Al Ebdaa ('we', 'us') collects when you use www.baitalebdaa.com, and how we use it. We collect only what's needed to respond to your enquiry.",
       sections: [
         {
@@ -254,6 +264,10 @@ export const dictionaries = {
         {
           title: "WhatsApp",
           body: "WhatsApp buttons on this site open a chat in WhatsApp with a pre-filled message. This opens WhatsApp's own service, which has its own privacy policy; we do not control how WhatsApp itself handles your data. Any details you send us over WhatsApp are used the same way as a website enquiry: to respond to you.",
+        },
+        {
+          title: "Ask Ali, our AI chat assistant",
+          body: "The Ask Ali chat on this site is an AI assistant. When you use it, your messages, and any photo you choose to attach, are sent to Google's Gemini API so it can write a reply; Google processes that data under its own terms and privacy policy. We do not store chat conversations on our servers. If you ask the assistant to send a quote request, the name, phone number, email address and project details you give in the chat are emailed to our team through Resend and handled the same way as any other website enquiry. Please do not share sensitive personal information in the chat."
         },
         {
           title: "Cookies and Analytics",
@@ -321,7 +335,7 @@ export const dictionaries = {
       buttonLabel: "Ask Ali",
       title: "Ask Ali",
       subtitle: "Bait Al Ebdaa assistant",
-      intro: "Hi! I'm Ali, your Bait Al Ebdaa assistant. Ask me about services, pricing or timelines — and I can also book a free site survey or send a quote request for you, right here in this chat!",
+      intro: "Hi! I'm Ali, Bait Al Ebdaa's AI assistant. Ask me about services, pricing or timelines — and I can also book a free site survey or send a quote request for you, right here in this chat!",
       starters: ["I want a free quote for my villa", "What are your starting prices?", "Book a free site survey", "How does the process work?"],
       placeholder: "Ask about a service or pricing…",
       inputLabel: "Message",
@@ -340,7 +354,7 @@ export const dictionaries = {
     contactPage: {
       navTitle: "Contact Us",
       pageTitle: "Let's Talk About Your Project",
-      metaTitle: "Contact Us | Bait Al Ebdaa",
+      metaTitle: "Contact Bait Al Ebdaa | Free Site Survey, Dubai & Abu Dhabi",
       metaDescription: "Contact Bait Al Ebdaa for interior design, turnkey fit-out and joinery projects in Dubai and Abu Dhabi. Request a quote or discuss procurement."
     },
     projectsPageLayout: {
@@ -380,6 +394,8 @@ export const dictionaries = {
       emailLabel: "Email us",
       visitLabel: "Visit us",
       address: "Showroom No. 052004009, Jurf Industrial 2, Ajman, UAE",
+      hoursLabel: "Opening hours",
+      hours: "Monday to Saturday, 8:00 AM to 10:00 PM",
       stepsKicker: "What happens next",
       stepsTitle: "From your message to a clear quotation",
       steps: [
@@ -529,10 +545,8 @@ export const dictionaries = {
     quoteModal: {
       title: "Get Your Free Quote",
       subtitle: "Bait Al Ebdaa // 24-Hour Response Guarantee",
-      ratingLabel: "Official Google Rating",
-      reviewsText: "4.9/5 (180+ Reviews)",
       fullName: "Full Name",
-      fullNamePlaceholder: "e.g. Sheikh Mohammed Al Qasimi",
+      fullNamePlaceholder: "Your full name",
       email: "Email Address",
       emailPlaceholder: "e.g. client@domain.ae",
       phone: "UAE Phone Number",
@@ -616,7 +630,7 @@ export const dictionaries = {
       copy: "Copyright © 2026 Bait Al Ebdaa. All Rights Reserved."
     },
     ourProjectsPage: {
-      metaTitle: "Our Projects | Bait Al Ebdaa",
+      metaTitle: "Interior & Fit-Out Projects in Dubai | Bait Al Ebdaa",
       metaDescription: "Browse Bait Al Ebdaa's portfolio of villa, office and hospitality interior fit-out projects across the UAE, from concept to handover.",
       home: "Home",
       ourProjects: "Our Projects",
@@ -835,8 +849,10 @@ export const dictionaries = {
       }
     },
     mediaPage: {
-      metaTitle: "Media & Insights | Bait Al Ebdaa",
-      metaDescription: "News, project updates and insights from Bait Al Ebdaa's interior design and fit-out studio in the UAE.",
+      metaTitle: "Interior Design & Fit-Out Guides, UAE | Bait Al Ebdaa",
+      metaDescription: "Practical guides on luxury fit-out, custom joinery, motorized curtains and furniture care in Dubai and Abu Dhabi, from Bait Al Ebdaa's design and joinery teams.",
+      hubTitle: "Interior Design & Fit-Out Guides",
+      hubIntro: "Practical guides from our design, fit-out and joinery teams: what a luxury fit-out in Dubai involves and costs, how custom joinery is made in our Ajman factory, how motorized curtains work, and how to care for furniture in the UAE climate. Each guide ends with answers to the questions clients ask us most.",
       newsAndInsights: "News & Insights",
       latestNewsAndInsights: "Latest News & Insights",
       readMore: "Read More ↗",
@@ -860,7 +876,7 @@ export const dictionaries = {
 <ul>
 <li style='margin-bottom: 10px;'><strong>One contract, one warranty.</strong> There is no finger-pointing between a designer and a contractor when a drawer doesn't close properly — one team is responsible for the entire outcome.</li>
 <li style='margin-bottom: 10px;'><strong>Faster decision cycles.</strong> A design change can be checked against manufacturing capacity and MEP routing in the same conversation, rather than a week of emails between three companies.</li>
-<li style='margin-bottom: 10px;'><strong>Realistic timelines.</strong> Because the same team plans and builds, published schedules (typically 6–10 weeks for an apartment or villa, longer for large offices) reflect actual production capacity rather than optimistic guesswork.</li>
+<li style='margin-bottom: 10px;'><strong>Realistic timelines.</strong> Because the same team plans and builds, published on-site schedules (typically 6–10 weeks for an apartment or villa once the design is approved, longer for large offices) reflect actual production capacity rather than optimistic guesswork.</li>
 </ul>
 
 <h2>The Fit-out Process, Step by Step</h2>
@@ -1030,7 +1046,7 @@ export const dictionaries = {
 <p>Dust and sunlight are the main enemies of any curtain. Vacuum fabric gently, keep tracks free of obstruction, and avoid pulling curtains by hand when the motor is engaged. For care of other furniture and fittings in the UAE climate, read our guide to <a href="/en/furniture-maintenance-care">furniture maintenance and care</a>.</p>
 
 <h3>Ready to start your project?</h3>
-<p>Contact <a href="/en/contact">Bait Al Ebdaa</a> to book a free measurement visit, or use the price guide on our <a href="/en">homepage</a> to see a rough starting budget for your windows.</p>`
+<p>Contact <a href="/en/contact">Bait Al Ebdaa</a> to book a free measurement visit, or use the price guide on our <a href="/">homepage</a> to see a rough starting budget for your windows.</p>`
         },
         {
           title: "The Impact of Bespoke Joinery on Modern UAE Homes",
@@ -1373,7 +1389,7 @@ export const dictionaries = {
       ]
     },
     ourServicesPage: {
-      metaTitle: "Our Services | Bait Al Ebdaa",
+      metaTitle: "Interior Design, Fit-Out & Joinery Services | Bait Al Ebdaa",
       metaDescription: "Explore Bait Al Ebdaa's interior design, turnkey fit-out and custom joinery services across Dubai and Abu Dhabi, from concept to handover.",
       navTitle: "Our Services",
       pageTitle: "Our Services & Interior Solutions",
@@ -1395,7 +1411,7 @@ export const dictionaries = {
       ]
     },
     ourProcessPage: {
-      metaTitle: "Our Process | Bait Al Ebdaa",
+      metaTitle: "Our Design & Fit-Out Process, Step by Step | Bait Al Ebdaa",
       metaDescription: "See how Bait Al Ebdaa delivers projects from 3D design and municipality approvals to in-house manufacturing and handover.",
       navTitle: "Our Process",
       pageTitle: "How We Work",
@@ -1465,6 +1481,13 @@ export const dictionaries = {
         aftercare: "خدمات ما بعد التسليم"
       }
     },
+    apiErrors: {
+      rate_limited: "أرسلت عدة طلبات خلال وقت قصير. يرجى الانتظار بضع دقائق ثم المحاولة مرة أخرى، أو راسلنا عبر واتساب لرد أسرع.",
+      invalid_cv: "يرجى رفع سيرتك الذاتية بصيغة PDF أو DOC أو DOCX.",
+      file_too_large: "حجم هذا الملف أكبر من 5 ميغابايت. يرجى رفع ملف أصغر بصيغة PDF أو DOC أو DOCX.",
+      too_long: "رسالتك طويلة جداً. يرجى اختصارها والمحاولة مرة أخرى.",
+      invalid_email: "يرجى التحقق من الاسم والبريد الإلكتروني والمحاولة مرة أخرى.",
+    },
     menuItems: ["الرئيسية", "الخدمات", "المشاريع", "العملية", "الأسعار", "اتصل بنا"],
     hero: {
       slides: [
@@ -1479,6 +1502,7 @@ export const dictionaries = {
       title: "من الخيال\nإلى التركيب.",
       lede: "فريق واحد دقيق يمتلك كل قرار - من أول عرض ثلاثي الأبعاد واقعي إلى الدرج النهائي المحاذي.",
       discuss: "ناقش مشروعك",
+      viewAllServices: "عرض جميع الخدمات",
       items: [
         { number: "01", title: "التصميم والتصور ثلاثي الأبعاد", body: "تتيح لك تصاميم CAD الواقعية الموافقة على المواد والإضاءة والقرارات المكانية قبل بدء العمل في الموقع." },
         { number: "02", title: "التجهيز والموافقات", body: "تنسيق مفصل، وتقديمات للسلطات، وموافقات بلدية دبي وشهادات عدم الممانعة تدار بالكامل." },
@@ -1506,6 +1530,7 @@ export const dictionaries = {
         { title: "جوز وبلوط أوروبي", desc: "استيراد مباشر للأخشاب من إيطاليا" }
       ],
       cta: "احجز جولة موجهة في المصنع",
+      joineryLink: "نجارة مخصصة تُصنع في مصنعنا بعجمان",
       captionLocation: "الجرف الصناعية 2، عجمان",
       captionBadge: "إنتاج مباشر"
     },
@@ -1607,7 +1632,7 @@ export const dictionaries = {
         },
         {
           q: "ما هو الجدول الزمني النموذجي لتنفيذ فيلا تسليم مفتاح في دبي؟",
-          a: "يتراوح الجدول الزمني النموذجي للتنفيذ الشامل لفيلا فاخرة في دبي عمومًا من ثلاثة إلى ستة أشهر. ومع ذلك، يعتمد هذا الجدول الزمني بشكل كبير على النطاق العام والحجم المكاني ومتطلبات التخصيص المعقدة والمحددة لمشروعك الفريد. خلال مرحلة التخطيط الأولية، نقدم جدولًا زمنيًا مفصلًا وشفافًا يحدد كل مرحلة حرجة من المفهوم إلى التسليم النهائي."
+          a: "تستغرق معظم مشاريع الفلل الفاخرة بنظام تسليم المفتاح في دبي من ثلاثة إلى ستة أشهر من أول استشارة حتى التسليم. تشمل هذه المدة تصميم المفهوم واعتماد التصاميم ثلاثية الأبعاد والموافقات الرسمية، وبعد اعتماد التصميم تستغرق أعمال التجهيز في الموقع عادةً من 6 إلى 10 أسابيع. يعتمد الجدول الدقيق على النطاق والمساحة وحجم النجارة المخصصة، ونؤكده كتابياً مرحلة بمرحلة بعد المعاينة."
         },
         {
           q: "هل مسح الموقع الأولي واستشارة التخطيط ثلاثي الأبعاد مجانية؟",
@@ -1649,7 +1674,7 @@ export const dictionaries = {
     aboutPage: {
       navTitle: "من نحن",
       pageTitle: "عن بيت الإبداع",
-      metaTitle: "من نحن | بيت الإبداع",
+      metaTitle: "من نحن: استوديو تصميم داخلي ونجارة | بيت الإبداع",
       metaDescription: "بيت الإبداع شركة تصميم داخلي وتجهيز شامل ونجارة معمارية مقرها عجمان، تخدم دبي وأبوظبي بتصنيع داخلي خاص.",
       intro: "بيت الإبداع شركة تصميم داخلي وتجهيز شامل ونجارة معمارية تخدم دبي وأبوظبي. ننفّذ تصاميم الفلل والمكاتب من المفهوم الأولي وحتى التسليم النهائي، بإدارة فريق واحد مسؤول عن التصميم والموافقات والتصنيع والتركيب، دون سلسلة من مقاولين من الباطن منفصلين.",
       sections: {
@@ -1676,7 +1701,7 @@ export const dictionaries = {
       pageTitle: "سياسة الخصوصية",
       metaTitle: "سياسة الخصوصية | بيت الإبداع",
       metaDescription: "كيف تجمع بيت الإبداع وتستخدم وتحمي المعلومات الشخصية المُرسلة عبر نماذج الموقع وقنوات التواصل.",
-      lastUpdated: "آخر تحديث: 24 سبتمبر 2026",
+      lastUpdated: "آخر تحديث: 12 أكتوبر 2026",
       intro: "توضّح هذه الصفحة المعلومات التي تجمعها بيت الإبداع ('نحن') عند استخدامك لموقع www.baitalebdaa.com، وكيفية استخدامها. نجمع فقط ما هو ضروري للرد على استفسارك.",
       sections: [
         {
@@ -1690,6 +1715,10 @@ export const dictionaries = {
         {
           title: "واتساب",
           body: "أزرار واتساب على هذا الموقع تفتح محادثة في واتساب برسالة معبأة مسبقاً. هذا يفتح خدمة واتساب الخاصة، التي لها سياسة خصوصية مستقلة؛ لا نتحكم في كيفية معالجة واتساب لبياناتك. أي تفاصيل ترسلها لنا عبر واتساب تُستخدم بنفس طريقة استفسار الموقع: للرد عليك.",
+        },
+        {
+          title: "Ask Ali، مساعد المحادثة بالذكاء الاصطناعي",
+          body: "محادثة Ask Ali على هذا الموقع هي مساعد يعمل بالذكاء الاصطناعي. عند استخدامها تُرسل رسائلك، وأي صورة تختار إرفاقها، إلى واجهة Gemini من Google لكتابة الرد، وتعالج Google هذه البيانات وفق شروطها وسياسة الخصوصية الخاصة بها. لا نحفظ المحادثات على خوادمنا. إذا طلبت من المساعد إرسال طلب عرض سعر، فإن الاسم ورقم الهاتف والبريد الإلكتروني وتفاصيل المشروع التي تقدمها في المحادثة تُرسل بالبريد الإلكتروني إلى فريقنا عبر Resend، وتُعامل مثل أي استفسار آخر من الموقع. نرجو عدم مشاركة معلومات شخصية حساسة في المحادثة."
         },
         {
           title: "ملفات تعريف الارتباط والتحليلات",
@@ -1757,7 +1786,7 @@ export const dictionaries = {
       buttonLabel: "اسأل علي",
       title: "اسأل علي",
       subtitle: "مساعد بيت الإبداع",
-      intro: "مرحباً! أنا علي، مساعد بيت الإبداع. اسألني عن خدماتنا أو الأسعار أو المواعيد — ويمكنني أيضاً حجز معاينة مجانية أو إرسال طلب عرض سعر لك مباشرة من هنا!",
+      intro: "مرحباً! أنا علي، المساعد الذكي (بالذكاء الاصطناعي) لبيت الإبداع. اسألني عن خدماتنا أو الأسعار أو المواعيد — ويمكنني أيضاً حجز معاينة مجانية أو إرسال طلب عرض سعر لك مباشرة من هنا!",
       starters: ["أريد عرض سعر مجاني لفيلتي", "ما هي أسعاركم الابتدائية؟", "احجز معاينة مجانية", "كيف تتم العملية؟"],
       placeholder: "اسأل عن خدمة أو سعر…",
       inputLabel: "الرسالة",
@@ -1776,7 +1805,7 @@ export const dictionaries = {
     contactPage: {
       navTitle: "اتصل بنا",
       pageTitle: "لنتحدث عن مشروعك",
-      metaTitle: "اتصل بنا | بيت الإبداع",
+      metaTitle: "تواصل معنا: معاينة مجانية في دبي وأبوظبي | بيت الإبداع",
       metaDescription: "تواصل مع بيت الإبداع لخدمات التصميم الداخلي والتشطيبات الكاملة والنجارة في جميع أنحاء الإمارات — اطلب عرض سعر، أو ناقش التوريد، أو تقدم لوظيفة."
     },
     projectsPageLayout: {
@@ -1816,6 +1845,8 @@ export const dictionaries = {
       emailLabel: "راسلنا",
       visitLabel: "زرنا",
       address: "معرض رقم 052004009، الجرف الصناعية 2، عجمان، الإمارات",
+      hoursLabel: "ساعات العمل",
+      hours: "من الاثنين إلى السبت، 8:00 صباحاً إلى 10:00 مساءً",
       stepsKicker: "ماذا يحدث بعد ذلك",
       stepsTitle: "من رسالتك إلى عرض سعر واضح",
       steps: [
@@ -1965,10 +1996,8 @@ export const dictionaries = {
     quoteModal: {
       title: "احصل على عرض سعر مجاني",
       subtitle: "بيت الإبداع // ضمان الرد خلال 24 ساعة",
-      ratingLabel: "تقييم جوجل الرسمي",
-      reviewsText: "4.9/5 (أكثر من 180 تقييماً)",
       fullName: "الاسم الكامل",
-      fullNamePlaceholder: "مثال: الشيخ محمد القاسمي",
+      fullNamePlaceholder: "اسمك الكامل",
       email: "البريد الإلكتروني",
       emailPlaceholder: "مثال: client@domain.ae",
       phone: "رقم الهاتف الإماراتي",
@@ -2052,7 +2081,7 @@ export const dictionaries = {
       copy: "حقوق الطبع والنشر © 2026 بيت الإبداع. جميع الحقوق محفوظة."
     },
     ourProjectsPage: {
-      metaTitle: "مشاريعنا | بيت الإبداع",
+      metaTitle: "مشاريع التصميم الداخلي والتجهيز في دبي | بيت الإبداع",
       metaDescription: "تصفح محفظة أعمال بيت الإبداع من مشاريع تجهيز الفلل والمكاتب والضيافة في الإمارات، من المفهوم حتى التسليم.",
       home: "الرئيسية",
       ourProjects: "مشاريعنا",
@@ -2265,8 +2294,10 @@ export const dictionaries = {
       }
     },
     mediaPage: {
-      metaTitle: "الإعلام والرؤى | بيت الإبداع",
-      metaDescription: "أخبار وتحديثات المشاريع ورؤى من استوديو بيت الإبداع للتصميم الداخلي والتجهيز في الإمارات.",
+      metaTitle: "أدلة التصميم الداخلي والتجهيز في الإمارات | بيت الإبداع",
+      metaDescription: "أدلة عملية حول التجهيز الفاخر والنجارة المخصصة والستائر الآلية والعناية بالأثاث في دبي وأبوظبي، من فرق التصميم والنجارة في بيت الإبداع.",
+      hubTitle: "أدلة التصميم الداخلي والتجهيز",
+      hubIntro: "أدلة عملية من فرق التصميم والتجهيز والنجارة لدينا: ما يتضمنه التجهيز الفاخر في دبي وتكلفته، وكيف تُصنع النجارة المخصصة في مصنعنا بعجمان، وكيف تعمل الستائر الآلية، وكيف تعتني بالأثاث في مناخ الإمارات. ينتهي كل دليل بإجابات عن الأسئلة التي يطرحها علينا العملاء أكثر من غيرها.",
       newsAndInsights: "الأخبار والرؤى",
       latestNewsAndInsights: "أحدث الأخبار والرؤى",
       readMore: "اقرأ المزيد ↗",
@@ -2290,7 +2321,7 @@ export const dictionaries = {
 <ul>
 <li style='margin-bottom: 10px;'><strong>عقد واحد، ضمان واحد:</strong> لا يوجد تراشق بالمسؤولية بين المصمم والمقاول عندما لا يُغلق أحد الأدراج بشكل صحيح — فريق واحد مسؤول عن النتيجة بالكامل.</li>
 <li style='margin-bottom: 10px;'><strong>دورات قرار أسرع:</strong> يمكن مراجعة أي تعديل تصميمي مقابل القدرة التصنيعية ومسارات الأعمال الكهروميكانيكية في نفس الاجتماع، بدلاً من أسبوع من الرسائل بين ثلاث شركات.</li>
-<li style='margin-bottom: 10px;'><strong>جداول زمنية واقعية:</strong> بما أن نفس الفريق يخطط وينفذ، فإن الجداول المعلنة (عادة 6-10 أسابيع لشقة أو فيلا، وأطول للمكاتب الكبيرة) تعكس القدرة الإنتاجية الفعلية بدلاً من التخمين المتفائل.</li>
+<li style='margin-bottom: 10px;'><strong>جداول زمنية واقعية:</strong> بما أن نفس الفريق يخطط وينفذ، فإن جداول التنفيذ المعلنة في الموقع (عادة 6-10 أسابيع لشقة أو فيلا بعد اعتماد التصميم، وأطول للمكاتب الكبيرة) تعكس القدرة الإنتاجية الفعلية بدلاً من التخمين المتفائل.</li>
 </ul>
 
 <h2>عملية التجهيز خطوة بخطوة</h2>
@@ -2827,7 +2858,7 @@ export const dictionaries = {
       ]
     },
     ourServicesPage: {
-      metaTitle: "خدماتنا | بيت الإبداع",
+      metaTitle: "خدمات التصميم الداخلي والتجهيز والنجارة | بيت الإبداع",
       metaDescription: "استكشف خدمات بيت الإبداع في التصميم الداخلي والتجهيز الشامل والنجارة المخصصة في دبي وأبوظبي، من المفهوم حتى التسليم.",
       navTitle: "خدماتنا",
       pageTitle: "خدماتنا وحلول التصميم الداخلي",
@@ -2849,7 +2880,7 @@ export const dictionaries = {
       ]
     },
     ourProcessPage: {
-      metaTitle: "عمليتنا | بيت الإبداع",
+      metaTitle: "مراحل التصميم والتجهيز خطوة بخطوة | بيت الإبداع",
       metaDescription: "تعرف على كيفية تنفيذ بيت الإبداع للمشاريع من التصميم ثلاثي الأبعاد وموافقات البلدية إلى التصنيع الداخلي والتسليم.",
       navTitle: "عمليتنا",
       pageTitle: "كيف نعمل",
