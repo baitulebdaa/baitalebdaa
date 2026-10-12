@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "preview": "next dev --hostname 0.0.0.0",
-    "test:sites": "node --test tests/sites-worker.test.mjs"
+    "test:sites": "node --test tests/sites-worker.test.mjs",
+    "test:seo": "node --test tests/seo.test.mjs tests/site-health.test.mjs"
   },
   "dependencies": {
     "iconsax-reactjs": "^0.0.8",

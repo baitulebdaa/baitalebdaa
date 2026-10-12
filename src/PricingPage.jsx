@@ -9,6 +9,7 @@ import { Header, Footer, Reveal } from "./components/Shared";
 import { Estimator } from "./components/Estimator";
 import { pricingGroups, CURRENCY, VAT_INCLUSIVE } from "./data/pricing";
 import { formatPrice } from "./lib/pricing";
+import { ORG_REF } from "./lib/schema-ids";
 
 // Matches the WhatsApp number already used site-wide (Hero, Header, QuoteModal).
 const WHATSAPP_NUMBER = "971582621717";
@@ -54,7 +55,7 @@ function buildSchema(t) {
           ...(item.max ? { maxPrice: item.max } : {}),
           valueAddedTaxIncluded: VAT_INCLUSIVE,
         },
-        seller: { "@type": "Organization", name: "Bait Al Ebdaa", url: SITE_URL },
+        seller: ORG_REF,
       });
     });
   });

@@ -15,9 +15,9 @@ export const LEGAL_SLUGS = [
 ];
 
 const CONTACT_EN =
-  "Email info@baitalebdaa.com, call or WhatsApp +971 58 262 1717 (Sunday to Thursday, 09:00 to 18:00), or write to us at Showroom No. 052004009, Jurf Industrial 2, Ajman, UAE.";
+  "Email info@baitalebdaa.com, call or WhatsApp +971 58 262 1717 (Monday to Saturday, 08:00 to 22:00), or write to us at Showroom No. 052004009, Jurf Industrial 2, Ajman, UAE.";
 const CONTACT_AR =
-  "راسلنا على info@baitalebdaa.com، أو اتصل أو راسلنا عبر واتساب على +971 58 262 1717 (من الأحد إلى الخميس، 09:00 إلى 18:00)، أو زرنا في: معرض رقم 052004009، الجرف الصناعية 2، عجمان، الإمارات.";
+  "راسلنا على info@baitalebdaa.com، أو اتصل أو راسلنا عبر واتساب على +971 58 262 1717 (من الاثنين إلى السبت، 08:00 إلى 22:00)، أو زرنا في: معرض رقم 052004009، الجرف الصناعية 2، عجمان، الإمارات.";
 
 export const legalPages = {
   en: {
@@ -51,7 +51,7 @@ export const legalPages = {
         "This page sets out how we work with clients and where specific commitments are recorded. Every project is individually measured, scoped and quoted, so scope, milestones, handover dates and payment terms are agreed in writing in your signed quotation or project agreement before work begins.",
       sections: [
         { title: "How a project runs", body: "Projects follow four stages: Discover (a site review and brief), Visualize (plans, materials and 3D renders), Approve (technical packages and coordination with the relevant authorities) and Make (joinery production in our Ajman factory, fit-out, installation and handover). Timelines for each stage depend on the size and scope of the project and are agreed with you in writing." },
-        { title: "Reaching us", body: "Our team is available Sunday to Thursday, 09:00 to 18:00, by phone and WhatsApp on +971 58 262 1717, and by email at info@baitalebdaa.com. Our Ask Ali assistant on the website can answer general questions about our services at any hour; it does not replace a written quotation." },
+        { title: "Reaching us", body: "Our team is available Monday to Saturday, 08:00 to 22:00, by phone and WhatsApp on +971 58 262 1717, and by email at info@baitalebdaa.com. Our Ask Ali assistant on the website can answer general questions about our services at any hour; it does not replace a written quotation." },
         { title: "Workmanship guarantee", body: "Joinery we manufacture and install carries a 5-year workmanship guarantee. Repairs that fall under the guarantee are covered. General wear-and-tear servicing outside the guarantee is quoted separately. See our Furniture Maintenance & Care page for details." },
         { title: "Approvals and coordination", body: "Where your project needs approvals from the relevant authorities, our team prepares the submissions and follows them up on your behalf, as set out in your project agreement." },
         { title: "Aftercare", body: "Because we manufacture joinery in-house, our aftercare team can repair and maintain pieces we made. Contact us with the project name and a description or photos of the issue." },
@@ -141,7 +141,7 @@ export const legalPages = {
         "توضّح هذه الصفحة كيف نعمل مع عملائنا وأين تُسجَّل الالتزامات المحددة. يُقاس كل مشروع ويُصمَّم ويُسعَّر على حدة، لذلك يُتفق كتابياً على النطاق والمراحل ومواعيد التسليم وشروط الدفع في عرض السعر الموقّع أو اتفاقية المشروع قبل بدء العمل.",
       sections: [
         { title: "كيف يسير المشروع", body: "تمر المشاريع بأربع مراحل: الاكتشاف (زيارة الموقع وتحديد المتطلبات)، والتصور (المخططات والخامات وتصاميم ثلاثية الأبعاد)، والاعتماد (الحزم الفنية والتنسيق مع الجهات المختصة)، والتنفيذ (إنتاج النجارة في مصنعنا بعجمان ثم التجهيز والتركيب والتسليم). تعتمد مدة كل مرحلة على حجم المشروع ونطاقه وتُتفق معك كتابياً." },
-        { title: "طرق التواصل", body: "فريقنا متاح من الأحد إلى الخميس، 09:00 إلى 18:00، عبر الهاتف وواتساب على +971 58 262 1717 وعبر البريد info@baitalebdaa.com. ويمكن لمساعدنا Ask Ali على الموقع الإجابة عن الأسئلة العامة حول خدماتنا في أي وقت، ولا يحل محل عرض السعر المكتوب." },
+        { title: "طرق التواصل", body: "فريقنا متاح من الاثنين إلى السبت، 08:00 إلى 22:00، عبر الهاتف وواتساب على +971 58 262 1717 وعبر البريد info@baitalebdaa.com. ويمكن لمساعدنا Ask Ali على الموقع الإجابة عن الأسئلة العامة حول خدماتنا في أي وقت، ولا يحل محل عرض السعر المكتوب." },
         { title: "ضمان جودة الصنعة", body: "تتمتع النجارة التي نصنّعها ونركّبها بضمان جودة الصنعة لمدة 5 سنوات. تُغطى الإصلاحات التي تقع ضمن الضمان، أما أعمال الصيانة العامة الناتجة عن الاستعمال والتآكل خارج الضمان فتُسعَّر بشكل منفصل. راجع صفحة صيانة الأثاث والعناية به للتفاصيل." },
         { title: "الموافقات والتنسيق", body: "عندما يحتاج مشروعك إلى موافقات من الجهات المختصة، يُعدّ فريقنا الطلبات ويتابعها نيابةً عنك، وفق ما تنص عليه اتفاقية مشروعك." },
         { title: "ما بعد التسليم", body: "لأننا نصنّع النجارة داخلياً، يستطيع فريق الصيانة لدينا إصلاح القطع التي صنعناها والعناية بها. تواصل معنا مع ذكر اسم المشروع ووصف المشكلة أو صورها." },

@@ -1,4 +1,12 @@
+import { clientIp, isAllowedCv, isHoneypotFilled, isSameOrigin, rateLimitedResponse, takeRateLimit, HONEYPOT_FIELD, RATE_LIMITS } from "../../../lib/request-guard";
+
+// Every error carries a stable `code`; the forms turn it into an English or Arabic message
+// (dict.apiErrors), so visitors never see a raw English server string on an Arabic page.
+const fail = (code, error, status) => Response.json({ success: false, code, error }, { status });
+
 const RESEND_API_URL = "https://api.resend.com/emails";
+const MAX_FIELDS = 30;
+const MAX_FIELD_LENGTH = 5_000;
 
 function escapeHtml(value) {
   return String(value ?? "")
@@ -27,35 +35,55 @@ function renderFieldsHtml(fields) {
 }
 
 export async function POST(request) {
+  if (!isSameOrigin(request)) {
+    return fail("forbidden", "Forbidden.", 403);
+  }
+
   const apiKey = process.env.RESEND_API_KEY;
   const toEmail = process.env.CONTACT_TO_EMAIL;
   const fromEmail = process.env.CONTACT_FROM_EMAIL;
 
   if (!apiKey || !toEmail || !fromEmail) {
-    return Response.json({ success: false, error: "Email sending is not configured." }, { status: 500 });
+    return fail("unavailable", "Email sending is not configured.", 500);
   }
 
   let body;
   try {
     body = await request.json();
   } catch {
-    return Response.json({ success: false, error: "Invalid request body." }, { status: 400 });
+    return fail("invalid", "Invalid request body.", 400);
   }
 
   const { formType, name, email, fields, attachments } = body || {};
 
-  if (!fields || typeof fields !== "object") {
-    return Response.json({ success: false, error: "Missing form fields." }, { status: 400 });
+  // Bots that fill the hidden honeypot get a normal-looking success and no email is sent.
+  if (isHoneypotFilled(body?.[HONEYPOT_FIELD])) {
+    return Response.json({ success: true });
+  }
+
+  // Newsletter and enquiry forms have separate buckets, so one never blocks the other.
+  const bucket = formType === "newsletter" ? "newsletter" : "contactForm";
+  const limitKey = `${bucket}:${clientIp(request)}`;
+  if (!takeRateLimit(limitKey, RATE_LIMITS[bucket])) {
+    return rateLimitedResponse(limitKey, RATE_LIMITS[bucket], { success: false });
+  }
+
+  if (!fields || typeof fields !== "object" || Array.isArray(fields)) {
+    return fail("invalid", "Missing form fields.", 400);
+  }
+  const fieldEntries = Object.entries(fields);
+  if (fieldEntries.length > MAX_FIELDS || fieldEntries.some(([key, value]) => key.length > 100 || String(value ?? "").length > MAX_FIELD_LENGTH)) {
+    return fail("too_long", "The form is too long.", 400);
   }
 
   // The newsletter signup only collects an email address, so it skips the name check
   // every other form goes through.
   if (formType === "newsletter") {
     if (!isValidEmail(email)) {
-      return Response.json({ success: false, error: "A valid email is required." }, { status: 400 });
+      return fail("invalid_email", "A valid email is required.", 400);
     }
   } else if (!name || typeof name !== "string" || !isValidEmail(email)) {
-    return Response.json({ success: false, error: "A valid name and email are required." }, { status: 400 });
+    return fail("invalid_email", "A valid name and email are required.", 400);
   }
 
   const subjectLabel =
@@ -67,8 +95,8 @@ export async function POST(request) {
       newsletter: "Newsletter Signup",
     }[formType] || "Website Enquiry";
 
-  // Only pass through well-formed, size-capped attachments (~7MB base64 ≈ 5MB file) —
-  // used for the Careers form's CV upload.
+  // Only pass through well-formed, size-capped attachments (~7MB base64 ≈ 5MB file) that
+  // really are PDF/DOC/DOCX files — used for the Careers form's CV upload.
   const MAX_ATTACHMENT_BASE64_CHARS = 7 * 1024 * 1024;
   const safeAttachments = Array.isArray(attachments)
     ? attachments
@@ -79,11 +107,15 @@ export async function POST(request) {
             a.filename.length < 200 &&
             typeof a.content === "string" &&
             a.content.length > 0 &&
-            a.content.length < MAX_ATTACHMENT_BASE64_CHARS
+            a.content.length < MAX_ATTACHMENT_BASE64_CHARS &&
+            isAllowedCv(a.filename, a.content)
         )
         .slice(0, 1)
-        .map((a) => ({ filename: a.filename, content: a.content }))
+        .map((a) => ({ filename: a.filename.replace(/[^\w.\- ]+/g, "_"), content: a.content }))
     : [];
+  if (Array.isArray(attachments) && attachments.length > 0 && safeAttachments.length === 0) {
+    return fail("invalid_cv", "Please upload your CV as a PDF, DOC or DOCX file.", 400);
+  }
 
   const html = `
     <div style="font-family:sans-serif;max-width:560px;">
@@ -113,12 +145,12 @@ export async function POST(request) {
     if (!resendResponse.ok) {
       const errorBody = await resendResponse.text();
       console.error("Resend API error:", resendResponse.status, errorBody);
-      return Response.json({ success: false, error: "Failed to send message." }, { status: 502 });
+      return fail("unavailable", "Failed to send message.", 502);
     }
 
     return Response.json({ success: true });
   } catch (err) {
     console.error("Contact form submission failed:", err);
-    return Response.json({ success: false, error: "Failed to send message." }, { status: 500 });
+    return fail("unavailable", "Failed to send message.", 500);
   }
 }

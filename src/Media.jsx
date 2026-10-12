@@ -27,9 +27,11 @@ export default function Media() {
       <main className="media-page">
         <PageHeader 
           kicker={t.newsAndInsights}
-          breadcrumbs={<>{dict.ourProjectsPage.home} &nbsp;&#9656;&nbsp; <strong>{dict.nav.media || "Media"}</strong></>}
-          title={t.latestNewsAndInsights}
-        />
+          breadcrumbs={<><a href={lang === "ar" ? "/ar" : "/"}>{dict.ourProjectsPage.home}</a> &nbsp;&#9656;&nbsp; <strong>{dict.nav.media || "Media"}</strong></>}
+          title={t.hubTitle}
+        >
+          <p className="media-hub-intro">{t.hubIntro}</p>
+        </PageHeader>
 
         {/* Bento Grid */}
         <section className="shell media-grid-section">
@@ -99,9 +101,7 @@ export default function Media() {
 
           </div>
           
-          <div className="view-more-container">
-             <a href="#" className="view-more-btn">{t.viewMore}</a>
-          </div>
+          {/* No "View more" button: every published article is already listed above. */}
         </section>
 
       </main>

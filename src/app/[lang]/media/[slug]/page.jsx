@@ -2,6 +2,8 @@ import { notFound } from "next/navigation";
 import { dictionaries } from "../../../../i18n/dictionaries";
 import { ARTICLE_DATES, ARTICLE_SEO_TITLES } from "../../../../data/article-catalog";
 import BlogDetailClient from "./BlogDetailClient";
+import { ORG_REF } from "../../../../lib/schema-ids";
+import { extractFaqsFromHtml, faqPageJsonLd } from "../../../../lib/faq-schema";
 
 const BASE = "https://www.baitalebdaa.com";
 
@@ -79,6 +81,8 @@ export default async function BlogDetail({ params }) {
 
   const selfUrl = `${BASE}/${lang}/media/${slug}`;
   const publishedTime = ARTICLE_DATES[slug] ? `${ARTICLE_DATES[slug]}T09:00:00+04:00` : undefined;
+  // The article's own visible FAQ section (<h2>FAQ</h2> + <h3> questions in its HTML body).
+  const faqSchema = faqPageJsonLd(extractFaqsFromHtml(article.content));
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [
@@ -92,13 +96,8 @@ export default async function BlogDetail({ params }) {
         dateModified: publishedTime,
         inLanguage: lang === "ar" ? "ar-AE" : "en-AE",
         mainEntityOfPage: { "@type": "WebPage", "@id": selfUrl },
-        author: { "@type": "Organization", name: article.author, url: BASE },
-        publisher: {
-          "@type": "Organization",
-          name: "Bait Al Ebdaa",
-          url: BASE,
-          logo: { "@type": "ImageObject", url: `${BASE}/assets/logo.png` },
-        },
+        author: ORG_REF,
+        publisher: ORG_REF,
       },
       {
         "@type": "BreadcrumbList",
@@ -108,6 +107,7 @@ export default async function BlogDetail({ params }) {
           { "@type": "ListItem", position: 3, name: article.title, item: selfUrl },
         ],
       },
+      ...(faqSchema ? [faqSchema] : []),
     ],
   };
 

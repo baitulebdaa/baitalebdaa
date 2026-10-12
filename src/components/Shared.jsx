@@ -2,12 +2,15 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { ArrowUp, ArrowUpRight, ChevronDown, Plus, Menu, X, Globe, Sparkles, Facebook, Instagram, Linkedin, Youtube, Whatsapp, WhatsappLogo, Home, Services, Projects, Phone } from "./icons";
+import { ArrowUp, ArrowUpRight, ChevronDown, Plus, Menu, X, Globe, Sparkles, Facebook, Instagram, Whatsapp, WhatsappLogo, Home, Services, Projects, Phone } from "./icons";
 import { useI18n } from "../i18n/I18nProvider";
 import { useRouter, usePathname } from "next/navigation";
 import { getServiceLabel } from "../data/service-catalog";
 import { isPublishedProject } from "../data/project-catalog";
 import { formatIndex } from "../lib/format";
+import { SOCIAL_PROFILES } from "../data/social-profiles";
+import { HONEYPOT_FIELD } from "../lib/request-guard";
+import { apiErrorMessage, readJson } from "../lib/api-errors";
 
 // Desktop "Services" dropdown groups (Header). Grouped rather than one long
 // column — 17 services in a single list would make the panel unreasonably
@@ -20,8 +23,31 @@ const SERVICE_MENU_GROUPS = [
   { headingKey: "renovationJoinery", slugs: ["villa-renovation", "apartment-renovation", "office-renovation", "joinery", "custom-wardrobes", "kitchen-design", "kitchen-renovation"] },
 ];
 
+const SOCIAL_ICONS = { Facebook, Instagram };
+
+// Spam trap: hidden from people and screen readers, but form-filling bots complete it.
+// /api/contact drops any submission where it is filled (src/lib/request-guard.js).
+export function Honeypot() {
+  return <input type="text" name={HONEYPOT_FIELD} tabIndex={-1} autoComplete="off" aria-hidden="true" className="hp-field" defaultValue="" />;
+}
+
+export function honeypotValue(form) {
+  return new FormData(form).get(HONEYPOT_FIELD) || "";
+}
+
+// Social icon row rendered from SOCIAL_PROFILES, the same list the Organization schema's
+// sameAs uses, so the footer and the structured data can never disagree.
+export function SocialLinks() {
+  return SOCIAL_PROFILES.map(({ network, url }) => {
+    const Icon = SOCIAL_ICONS[network];
+    return <a key={network} href={url} target="_blank" rel="noopener noreferrer" aria-label={network}>{Icon ? <Icon size={18} /> : network}</a>;
+  });
+}
+
 export function Brand({ light = false, priority = false, customSrc = null }) {
-  return <a className={`brand ${light ? "brand--light" : ""}`} href="/" aria-label="Bait Al Ebdaa home"><Image className="brand__logo" src={customSrc || "/assets/logo.png"} alt="Bait Al Ebdaa - Luxury Interior Design and Joinery Logo" width={2170} height={725} sizes="(max-width: 700px) 140px, 220px" priority={priority} /></a>;
+  // The logo returns to the homepage in the visitor's own language: / for English, /ar for Arabic.
+  const { lang } = useI18n();
+  return <a className={`brand ${light ? "brand--light" : ""}`} href={lang === "ar" ? "/ar" : "/"} aria-label={lang === "ar" ? "الصفحة الرئيسية لبيت الإبداع" : "Bait Al Ebdaa home"}><Image className="brand__logo" src={customSrc || "/assets/logo.png"} alt="Bait Al Ebdaa - Luxury Interior Design and Joinery Logo" width={2170} height={725} sizes="(max-width: 700px) 140px, 220px" priority={priority} /></a>;
 }
 
 export function Reveal({ as: Tag = "div", className = "", children, delay = 0, ...props }) {
@@ -217,17 +243,14 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
           <p className="menu-overlay__heading">{dict.nav.contactInfo}</p>
           <div className="menu-overlay__info-list">
             <span style={{whiteSpace: "pre-wrap"}}>{dict.nav.studioLocation}</span>
-            <a href="tel:+971582621717">{dict.nav.phoneLabel} | +971 58 262 1717</a>
+            <a href="tel:+971582621717">{dict.nav.phoneLabel} | <bdi dir="ltr">+971 58 262 1717</bdi></a>
             <a href="mailto:info@baitalebdaa.com">info@baitalebdaa.com</a>
           </div>
         </div>
         <div>
           <p className="menu-overlay__heading">{dict.nav.socialMedia}</p>
           <div className="menu-overlay__social">
-            <a href="https://www.facebook.com/baitalebdaa" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><Facebook size={18} /></a>
-            <a href="https://www.instagram.com/baitalebdaa" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><Instagram size={18} /></a>
-            <a href="https://www.linkedin.com/company/baitalebdaa" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><Linkedin size={18} /></a>
-            <a href="https://www.youtube.com/baitalebdaa" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><Youtube size={18} /></a>
+            <SocialLinks />
           </div>
         </div>
       </div>
@@ -256,6 +279,7 @@ export function Footer() {
   const f = dict.footer;
   const [email, setEmail] = useState("");
   const [newsletterStatus, setNewsletterStatus] = useState("idle"); // idle | sending | sent | error
+  const [newsletterError, setNewsletterError] = useState("");
 
   const subscribe = async (event) => {
     event.preventDefault();
@@ -265,14 +289,19 @@ export function Footer() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ formType: "newsletter", email, fields: { Email: email } }),
+        body: JSON.stringify({ formType: "newsletter", email, fields: { Email: email }, [HONEYPOT_FIELD]: honeypotValue(event.currentTarget) }),
       });
-      const result = await res.json();
-      if (!res.ok || !result.success) throw new Error(result.error || "Failed to subscribe");
+      const result = await readJson(res);
+      if (!res.ok || !result.success) {
+        setNewsletterError(apiErrorMessage(dict, result.code, f.subscribeError));
+        setNewsletterStatus("error");
+        return;
+      }
       setNewsletterStatus("sent");
       setEmail("");
       window.setTimeout(() => setNewsletterStatus("idle"), 6000);
     } catch {
+      setNewsletterError("");
       setNewsletterStatus("error");
     }
   };
@@ -292,6 +321,7 @@ export function Footer() {
         <p className="footer-label">{f.newsletter}</p>
         <h2 className="footer-headline" style={{whiteSpace: 'pre-wrap'}}>{f.headline}</h2>
         <form onSubmit={subscribe}>
+          <Honeypot />
           <label className="footer-email-label" htmlFor="footer-newsletter-email">{f.emailLabel}
             <div className="footer-email-row">
               <input
@@ -310,7 +340,7 @@ export function Footer() {
             </div>
           </label>
           {newsletterStatus === "sent" && <p className="footer-newsletter-status" role="status">{f.subscribed}</p>}
-          {newsletterStatus === "error" && <p className="footer-newsletter-status footer-newsletter-status--error" role="status">{f.subscribeError}</p>}
+          {newsletterStatus === "error" && <p className="footer-newsletter-status footer-newsletter-status--error" role="status">{newsletterError || f.subscribeError}</p>}
         </form>
       </div>
       <div className="footer-links-col">
@@ -326,7 +356,7 @@ export function Footer() {
         <span className="footer-loc">{f.loc}</span>
         <a href="mailto:info@baitalebdaa.com">info@baitalebdaa.com</a>
         <a href="mailto:sales@baitalebdaa.com">{f.salesLabel} sales@baitalebdaa.com</a>
-        <a href="tel:+971582621717">T: +971 58 262 1717</a>
+        <a href="tel:+971582621717">T: <bdi dir="ltr">+971 58 262 1717</bdi></a>
       </div>
     </div>
     <div className="shell footer-mid">
@@ -340,10 +370,7 @@ export function Footer() {
         <a href={`/${lang}/terms-and-conditions`}>{f.terms}</a>
       </div>
       <div className="footer-social">
-        <a href="https://www.facebook.com/baitalebdaa" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><Facebook size={18} /></a>
-        <a href="https://www.instagram.com/baitalebdaa" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><Instagram size={18} /></a>
-        <a href="https://www.linkedin.com/company/baitalebdaa" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><Linkedin size={18} /></a>
-        <a href="https://www.youtube.com/baitalebdaa" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><Youtube size={18} /></a>
+        <SocialLinks />
       </div>
       <span className="footer-copy">{f.copy}</span>
     </div>

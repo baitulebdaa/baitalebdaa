@@ -14,8 +14,10 @@ const LOCATION_MULTIPLIER = [1, 1.05]; // Dubai, Abu Dhabi
 // to the "Get Free Quote" modal instead of the CTA duplicating a second lead form —
 // ctaHref stays for the other instances (pricing page, service+location pages) that
 // link out to a real /contact page or WhatsApp instead.
-export function Estimator({ compact = false, defaultLocationIndex = 0, ctaHref = "#contact", onBookSurvey }) {
+export function Estimator({ compact = false, defaultLocationIndex = 0, ctaHref, onBookSurvey }) {
   const { lang, dict } = useI18n();
+  // No inline #contact form exists on any page, so the fallback is the contact page's form.
+  const surveyHref = ctaHref || `/${lang}/contact#contact-form`;
   const t = dict.estimatorSection;
   const unit = lang === "ar" ? "قدم²" : "sqft";
 
@@ -100,7 +102,7 @@ export function Estimator({ compact = false, defaultLocationIndex = 0, ctaHref =
                 {t.bookSurvey}
               </button>
             ) : (
-              <a href={ctaHref} className="estimator-submit-btn">
+              <a href={surveyHref} className="estimator-submit-btn">
                 {t.bookSurvey}
               </a>
             )}

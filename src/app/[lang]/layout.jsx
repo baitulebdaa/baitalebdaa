@@ -57,7 +57,6 @@ export const metadata = {
   },
   description:
     "Bait Al Ebdaa delivers villa and office interior design, turnkey fit-out and in-house joinery across Dubai and Abu Dhabi.",
-  keywords: ["Turnkey Interior Design", "Custom Architectural Joinery", "Luxury Fit-out Dubai", "Abu Dhabi Interiors", "Interior Design UAE", "Bait Al Ebdaa"],
   openGraph: {
     title: "Bait Al Ebdaa | Turnkey Interior Design Dubai",
     description: "Villa and office interior design, turnkey fit-out and in-house joinery across Dubai and Abu Dhabi.",
@@ -71,13 +70,9 @@ export const metadata = {
     title: "Bait Al Ebdaa | Turnkey Interior Design Dubai",
     description: "Villa and office interior design, turnkey fit-out and in-house joinery across Dubai and Abu Dhabi.",
   },
-  alternates: {
-    canonical: '/',
-    languages: {
-      'en': '/en',
-      'ar': '/ar',
-    },
-  },
+  // No site-wide canonical/hreflang default here on purpose: a layout-level canonical is
+  // inherited by any page that forgets its own, silently pointing it at the homepage. Every
+  // route sets its own via buildPageMetadata() or the [service]/[location] generateMetadata.
   ...(GOOGLE_SITE_VERIFICATION || BING_SITE_VERIFICATION
     ? {
         verification: {
@@ -100,7 +95,7 @@ export default async function RootLayout({ children, params }) {
   return (
     <html lang={lang} dir={isRtl ? "rtl" : "ltr"} className={`${dmSans.variable} ${manrope.variable} ${tajawal.variable} ${cormorant.variable}`}>
       <body>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd()) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd(lang)).replace(/</g, "\\u003c") }} />
         {GA_MEASUREMENT_ID && (
           <>
             <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} strategy="afterInteractive" />

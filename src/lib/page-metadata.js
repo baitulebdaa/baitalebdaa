@@ -1,4 +1,5 @@
-const BASE = "https://www.baitalebdaa.com";
+import { ORGANIZATION_ID, ORG_REF, SITE_URL as BASE, WEBSITE_ID } from "./schema-ids";
+import { SOCIAL_PROFILES } from "../data/social-profiles";
 
 // Builds a complete, self-referencing metadata object for a static page (one not
 // covered by the SEO map's generateMetadata in [service]/[location]/page.jsx).
@@ -56,30 +57,64 @@ export function websiteJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id": `${BASE}/#website`,
+    "@id": WEBSITE_ID,
     url: `${BASE}/`,
     name: "Bait Al Ebdaa",
-    alternateName: "Bait Al Ebdaa Interiors",
+    alternateName: ["Bait Al Ebdaa Interiors", "بيت الإبداع"],
     inLanguage: ["en-AE", "ar-AE"],
-    publisher: { "@id": `${BASE}/#organization` },
+    publisher: ORG_REF,
   };
 }
 
-export function organizationJsonLd() {
+// Services the business actually sells (src/data/seo-pages.json) plus the standalone
+// furniture-care service — the topics search and AI engines should associate with the entity.
+const KNOWS_ABOUT = [
+  "Interior design",
+  "Turnkey fit-out",
+  "Office fit-out",
+  "Restaurant fit-out",
+  "Retail fit-out",
+  "Villa renovation",
+  "Apartment renovation",
+  "Office renovation",
+  "Custom architectural joinery",
+  "Custom wardrobes",
+  "Kitchen design",
+  "Kitchen renovation",
+  "Furniture maintenance and care",
+];
+
+const ORG_DESCRIPTION = {
+  en: "Interior design, turnkey fit-out and renovation company delivering villa, apartment and office projects in Dubai and Abu Dhabi, with custom joinery manufactured in its own 15,000 sq ft factory in Jurf Industrial 2, Ajman.",
+  ar: "شركة تصميم داخلي وتجهيز متكامل وتجديد تنفّذ مشاريع الفلل والشقق والمكاتب في دبي وأبوظبي، مع نجارة مخصصة تُصنع في مصنعها الخاص بمساحة 15,000 قدم مربع في الجرف الصناعية 2 بعجمان.",
+};
+
+export function organizationJsonLd(lang = "en") {
   return {
     "@context": "https://schema.org",
     "@type": "HomeAndConstructionBusiness",
-    "@id": `${BASE}/#organization`,
+    "@id": ORGANIZATION_ID,
     name: "Bait Al Ebdaa",
+    alternateName: "بيت الإبداع",
+    description: ORG_DESCRIPTION[lang] || ORG_DESCRIPTION.en,
     url: BASE,
-    logo: `${BASE}/assets/logo.png`,
+    logo: { "@type": "ImageObject", url: `${BASE}/assets/logo.png`, width: 2170, height: 725 },
     image: `${BASE}/assets/bait-al-ebdaa-luxury-interior-design-dubai-og.jpg`,
     telephone: "+971582621717",
     email: "info@baitalebdaa.com",
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "customer service",
+      telephone: "+971582621717",
+      email: "info@baitalebdaa.com",
+      areaServed: "AE",
+      availableLanguage: ["English", "Arabic"],
+    },
     address: {
       "@type": "PostalAddress",
       streetAddress: "Showroom No. 052004009, Jurf Industrial 2",
       addressLocality: "Ajman",
+      addressRegion: "Ajman",
       addressCountry: "AE",
     },
     // District-level approximation for Jurf Industrial 2, Ajman — not the exact
@@ -91,20 +126,21 @@ export function organizationJsonLd() {
       longitude: 55.491127,
     },
     priceRange: "$$$",
+    // Confirmed by the business on 2026-10-12: Monday to Saturday, 8 AM to 10 PM. Keep this,
+    // the chat prompt (src/app/api/chat/route.js), llms.txt and the Google Business Profile in sync.
     openingHoursSpecification: {
       "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
-      opens: "09:00",
-      closes: "18:00",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      opens: "08:00",
+      closes: "22:00",
     },
     // Confirmed 2026-09-18: genuine delivery area is Dubai and Abu Dhabi. Narrowed from
     // all 7 emirates, which overstated coverage relative to the header nav's own claim.
-    areaServed: ["Dubai", "Abu Dhabi"],
-    sameAs: [
-      "https://www.facebook.com/baitalebdaa",
-      "https://www.instagram.com/baitalebdaa",
-      "https://www.linkedin.com/company/baitalebdaa",
-      "https://www.youtube.com/baitalebdaa",
+    areaServed: [
+      { "@type": "City", name: "Dubai" },
+      { "@type": "City", name: "Abu Dhabi" },
     ],
+    knowsAbout: KNOWS_ABOUT,
+    sameAs: SOCIAL_PROFILES.map((profile) => profile.url),
   };
 }
