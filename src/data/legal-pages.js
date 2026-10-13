@@ -25,7 +25,7 @@ export const legalPages = {
       "This page describes the business's actual current practice and has not been reviewed by a lawyer. Confirm it meets any UAE requirements that apply to your business before relying on it.",
     "cookie-policy": {
       navTitle: "Cookie Policy",
-      pageTitle: "Cookie Policy",
+      pageTitle: "Bait Al Ebdaa Cookie Policy",
       metaTitle: "Cookie Policy | Bait Al Ebdaa",
       metaDescription: "How www.baitalebdaa.com uses cookies and similar technologies. The site does not set tracking, analytics or advertising cookies.",
       lastUpdated: "Last updated: 11 October 2026",
@@ -43,7 +43,7 @@ export const legalPages = {
     },
     "service-level-agreement": {
       navTitle: "Service Level Agreement",
-      pageTitle: "Service Level Agreement",
+      pageTitle: "Bait Al Ebdaa Service Level Agreement",
       metaTitle: "Service Level Agreement | Bait Al Ebdaa",
       metaDescription: "How Bait Al Ebdaa works with clients: how to reach us, what our workmanship guarantee covers, and where project timelines and commitments are agreed.",
       lastUpdated: "Last updated: 11 October 2026",
@@ -61,7 +61,7 @@ export const legalPages = {
     },
     accessibility: {
       navTitle: "Accessibility",
-      pageTitle: "Accessibility Statement",
+      pageTitle: "Bait Al Ebdaa Accessibility Statement",
       metaTitle: "Accessibility Statement | Bait Al Ebdaa",
       metaDescription: "Our approach to making www.baitalebdaa.com usable for everyone, what we do today, known limitations and how to contact us.",
       lastUpdated: "Last updated: 11 October 2026",
@@ -77,9 +77,9 @@ export const legalPages = {
     },
     "refund-policy": {
       navTitle: "Refund Policy",
-      pageTitle: "Refund Policy",
+      pageTitle: "Bait Al Ebdaa Refund Policy",
       metaTitle: "Refund Policy | Bait Al Ebdaa",
-      metaDescription: "How deposits, cancellations and refunds work at Bait Al Ebdaa: no payments are taken on the website and terms are set in each signed quotation or agreement.",
+      metaDescription: "How deposits, cancellations and refunds work at Bait Al Ebdaa. No payments are taken online; terms are set in each signed quotation or agreement.",
       lastUpdated: "Last updated: 11 October 2026",
       intro:
         "Bait Al Ebdaa does not sell products or take payments through this website. All of our work is measured, designed and quoted for each client, so the terms for deposits, cancellation and refunds are set out in your signed quotation or project agreement.",
@@ -94,9 +94,9 @@ export const legalPages = {
     },
     sustainability: {
       navTitle: "Sustainability",
-      pageTitle: "Sustainability",
+      pageTitle: "Sustainability at Bait Al Ebdaa",
       metaTitle: "Sustainability | Bait Al Ebdaa",
-      metaDescription: "How Bait Al Ebdaa approaches responsible making: in-house production in Ajman, made-to-measure joinery, long-lasting pieces and repair rather than replacement.",
+      metaDescription: "How Bait Al Ebdaa approaches responsible making: in-house production in Ajman, made-to-measure joinery, durable pieces and repair over replacement.",
       lastUpdated: "Last updated: 11 October 2026",
       intro:
         "We describe here only the practices we can already point to. This page does not claim environmental certifications or measured figures.",
@@ -115,7 +115,7 @@ export const legalPages = {
       "تصف هذه الصفحة الممارسة الفعلية الحالية للشركة ولم تُراجَع من محامٍ. تأكد من أنها تلبي أي متطلبات سارية في دولة الإمارات على نشاطك قبل الاعتماد عليها.",
     "cookie-policy": {
       navTitle: "سياسة ملفات تعريف الارتباط",
-      pageTitle: "سياسة ملفات تعريف الارتباط",
+      pageTitle: "سياسة ملفات تعريف الارتباط في بيت الإبداع",
       metaTitle: "سياسة ملفات تعريف الارتباط | بيت الإبداع",
       metaDescription: "كيف يستخدم موقع www.baitalebdaa.com ملفات تعريف الارتباط والتقنيات المشابهة. الموقع لا يضع ملفات تتبع أو تحليلات أو إعلانات.",
       lastUpdated: "آخر تحديث: 11 أكتوبر 2026",
@@ -133,7 +133,7 @@ export const legalPages = {
     },
     "service-level-agreement": {
       navTitle: "اتفاقية مستوى الخدمة",
-      pageTitle: "اتفاقية مستوى الخدمة",
+      pageTitle: "اتفاقية مستوى الخدمة في بيت الإبداع",
       metaTitle: "اتفاقية مستوى الخدمة | بيت الإبداع",
       metaDescription: "كيف تعمل بيت الإبداع مع عملائها: طرق التواصل معنا، وما يغطيه ضمان جودة الصنعة، وأين تُتفق المواعيد والالتزامات الخاصة بكل مشروع.",
       lastUpdated: "آخر تحديث: 11 أكتوبر 2026",
@@ -151,7 +151,7 @@ export const legalPages = {
     },
     accessibility: {
       navTitle: "إمكانية الوصول",
-      pageTitle: "بيان إمكانية الوصول",
+      pageTitle: "إمكانية الوصول في موقع بيت الإبداع",
       metaTitle: "بيان إمكانية الوصول | بيت الإبداع",
       metaDescription: "نهجنا لجعل موقع www.baitalebdaa.com قابلاً للاستخدام للجميع، وما نفعله اليوم، والقيود المعروفة، وكيفية التواصل معنا.",
       lastUpdated: "آخر تحديث: 11 أكتوبر 2026",
@@ -167,7 +167,7 @@ export const legalPages = {
     },
     "refund-policy": {
       navTitle: "سياسة الاسترداد",
-      pageTitle: "سياسة الاسترداد",
+      pageTitle: "سياسة الاسترداد في بيت الإبداع",
       metaTitle: "سياسة الاسترداد | بيت الإبداع",
       metaDescription: "كيف تعمل الدفعات المقدمة والإلغاء والاسترداد لدى بيت الإبداع: لا تُؤخذ أي مدفوعات عبر الموقع، وتُحدَّد الشروط في كل عرض سعر أو اتفاقية موقّعة.",
       lastUpdated: "آخر تحديث: 11 أكتوبر 2026",
@@ -184,7 +184,7 @@ export const legalPages = {
     },
     sustainability: {
       navTitle: "الاستدامة",
-      pageTitle: "الاستدامة",
+      pageTitle: "الاستدامة في بيت الإبداع",
       metaTitle: "الاستدامة | بيت الإبداع",
       metaDescription: "كيف تتعامل بيت الإبداع مع الصناعة المسؤولة: إنتاج داخلي في عجمان، ونجارة حسب المقاس، وقطع تدوم طويلاً، وإصلاح بدلاً من الاستبدال.",
       lastUpdated: "آخر تحديث: 11 أكتوبر 2026",

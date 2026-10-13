@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { dictionaries } from "../../../../i18n/dictionaries";
-import { ARTICLE_DATES, ARTICLE_SEO_TITLES } from "../../../../data/article-catalog";
+import { ARTICLE_DATES, ARTICLE_META_DESCRIPTIONS, ARTICLE_SEO_TITLES, META_DESCRIPTION_MAX } from "../../../../data/article-catalog";
 import BlogDetailClient from "./BlogDetailClient";
 import { ORG_REF } from "../../../../lib/schema-ids";
 import { extractFaqsFromHtml, faqPageJsonLd } from "../../../../lib/faq-schema";
@@ -12,7 +12,13 @@ function getArticles(lang) {
   return [dict.mediaPage.featuredArticle, ...dict.mediaPage.articles];
 }
 
-function compactDescription(description, maxLength = 158) {
+// Hand-written search description when one exists, else the card text if it already fits;
+// cutting the card text is only a last resort for a future article added without one.
+function articleMetaDescription(lang, article) {
+  return ARTICLE_META_DESCRIPTIONS[lang]?.[article.slug] || compactDescription(article.description);
+}
+
+function compactDescription(description, maxLength = META_DESCRIPTION_MAX) {
   if (!description || description.length <= maxLength) return description;
   const shortened = description.slice(0, maxLength - 1);
   const wordBoundary = shortened.lastIndexOf(" ");
@@ -37,7 +43,7 @@ export async function generateMetadata({ params }) {
   const enUrl = `${BASE}/en/media/${slug}`;
   const arUrl = `${BASE}/ar/media/${slug}`;
   const selfUrl = lang === "ar" ? arUrl : enUrl;
-  const description = compactDescription(article.description);
+  const description = articleMetaDescription(lang, article);
   const publishedTime = ARTICLE_DATES[slug] ? `${ARTICLE_DATES[slug]}T09:00:00+04:00` : undefined;
   const seoTitle = ARTICLE_SEO_TITLES[lang]?.[slug] || `${article.title} | Bait Al Ebdaa`;
 
@@ -90,7 +96,7 @@ export default async function BlogDetail({ params }) {
         "@type": "BlogPosting",
         "@id": `${selfUrl}#article`,
         headline: article.title,
-        description: compactDescription(article.description),
+        description: articleMetaDescription(lang, article),
         image: [`${BASE}${article.image}`],
         datePublished: publishedTime,
         dateModified: publishedTime,

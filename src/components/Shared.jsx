@@ -319,7 +319,7 @@ export function Footer() {
     <div className="shell footer-top">
       <div className="footer-newsletter">
         <p className="footer-label">{f.newsletter}</p>
-        <h2 className="footer-headline" style={{whiteSpace: 'pre-wrap'}}>{f.headline}</h2>
+        <p className="footer-headline hx" style={{whiteSpace: 'pre-wrap'}}>{f.headline}</p>
         <form onSubmit={subscribe}>
           <Honeypot />
           <label className="footer-email-label" htmlFor="footer-newsletter-email">{f.emailLabel}
@@ -449,7 +449,7 @@ export function FaqSplit({ kicker, title, subtitle, items, idPrefix = "faq" }) {
               <p className="lede" style={{ margin: 0 }}>{subtitle}</p>
             </Reveal>
             <Reveal className="faq-split__ask-card" delay={100}>
-              <h3>{lang === "ar" ? "لديك سؤال آخر؟" : "Something else?"}</h3>
+              <p className="hx">{lang === "ar" ? "لديك سؤال آخر؟" : "Something else?"}</p>
               <p>{lang === "ar" ? "مساعدنا الذكي يجيب على أسئلتك حول خدماتنا في أي وقت." : "Our AI assistant answers questions about our services at any hour."}</p>
               <button type="button" onClick={() => window.dispatchEvent(new Event("askai:open"))} className="faq-split__ask-btn">
                 <Sparkles size={17} /> {dict.askAi.buttonLabel}

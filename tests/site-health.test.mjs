@@ -117,3 +117,19 @@ test("no dead href=\"#\" links in page components", () => {
     assert.doesNotMatch(readFileSync(file, "utf8"), /href="#"/, path.relative(root, file));
   }
 });
+
+test("every meta description on the site is 150 characters or fewer, in English and Arabic", async () => {
+  const { ARTICLE_META_DESCRIPTIONS, META_DESCRIPTION_MAX } = await import("../src/data/article-catalog.js");
+  const { SERVICE_META_EN } = await import("../src/data/service-meta.js");
+  const found = [];
+  for (const lang of ["en", "ar"]) {
+    for (const [key, value] of Object.entries(dictionaries[lang])) if (value?.metaDescription) found.push([`${lang} dict.${key}`, value.metaDescription]);
+    const media = dictionaries[lang].mediaPage;
+    for (const article of [media.featuredArticle, ...media.articles]) found.push([`${lang} article ${article.slug}`, ARTICLE_META_DESCRIPTIONS[lang]?.[article.slug] || article.description]);
+  }
+  for (const match of read("src/data/legal-pages.js").matchAll(/metaDescription: "([^"]*)"/g)) found.push(["legal page", match[1]]);
+  for (const match of read("src/app/[lang]/page.jsx").matchAll(/description:\s*"([^"]*)"/g)) found.push(["homepage", match[1]]);
+  for (const [slug, write] of Object.entries(SERVICE_META_EN)) for (const city of ["Dubai", "Abu Dhabi"]) found.push([`service ${slug}/${city}`, write(city)]);
+  const tooLong = found.filter(([, text]) => text.length > META_DESCRIPTION_MAX).map(([where, text]) => `${where}: ${text.length}`);
+  assert.deepEqual(tooLong, []);
+});

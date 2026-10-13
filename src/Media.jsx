@@ -72,6 +72,7 @@ export default function Media() {
                   </div>
                   <div className="media-card-content">
                     <h3>{article.title}</h3>
+                    <p className="media-card-desc">{article.description}</p>
                     <span className="read-more">{t.readMore}</span>
                   </div>
                 </a>
@@ -93,6 +94,7 @@ export default function Media() {
                   </div>
                   <div className="media-card-content">
                     <h3>{article.title}</h3>
+                    <p className="media-card-desc">{article.description}</p>
                     <span className="read-more">{t.readMore}</span>
                   </div>
                 </a>
@@ -102,6 +104,17 @@ export default function Media() {
           </div>
           
           {/* No "View more" button: every published article is already listed above. */}
+          <Reveal className="media-topics" delay={100}>
+            <h2 className="slp-h2">{t.topicsTitle}</h2>
+            <ul className="media-topics__list">
+              {t.topics.map((topic) => (
+                <li key={topic.href}>
+                  <a href={topic.href}>{topic.label}</a>
+                  <p>{topic.text}</p>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
         </section>
 
       </main>

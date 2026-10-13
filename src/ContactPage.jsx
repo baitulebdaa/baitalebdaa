@@ -4,7 +4,8 @@ import Image from "next/image";
 import { useState } from "react";
 import { ArrowUpRight, Check, Clock, Mail, MapPin, Phone } from "./components/icons";
 import { useI18n } from "./i18n/I18nProvider";
-import { Header, Footer, Reveal } from "./components/Shared";
+import { Header, Footer, Reveal } from "./components/Shared";
+import { PageFaq } from "./components/PageFaq";
 import { ContactForm } from "./components/ContactForm";
 
 const WHATSAPP_NUMBER = "971582621717";
@@ -96,6 +97,7 @@ export default function ContactPage() {
         <div id="contact-form" className="cp-form">
           <ContactForm />
         </div>
+        <PageFaq faqKey="contact" />
       </main>
       <Footer />
     </>

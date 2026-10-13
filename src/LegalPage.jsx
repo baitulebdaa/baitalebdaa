@@ -27,7 +27,7 @@ export default function LegalPage({ content, reviewNote }) {
             <p>{content.intro}</p>
             {content.sections.map((s, i) => (
               <div key={i} style={{ marginTop: "28px" }}>
-                <h3>{s.title}</h3>
+                <h2>{s.title}</h2>
                 <p>{s.body}</p>
               </div>
             ))}

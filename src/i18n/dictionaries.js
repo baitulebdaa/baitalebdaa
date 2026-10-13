@@ -193,7 +193,7 @@ export const dictionaries = {
       metaTitle: "Furniture Maintenance & Care Dubai | Bait Al Ebdaa",
       metaDescription: "Furniture and custom joinery repair, maintenance and aftercare from Bait Al Ebdaa's in-house Ajman workshop, with a 5-year workmanship guarantee.",
       navTitle: "Furniture Maintenance & Care",
-      pageTitle: "Furniture Maintenance & Care",
+      pageTitle: "Furniture Maintenance & Joinery Care",
       kicker: "Aftercare",
       intro: "Custom joinery and furniture need periodic care to keep hinges, finishes and mechanisms working the way they did on handover day. Because we manufacture everything in-house at our Ajman factory, our aftercare team knows the exact materials, hardware and finishes used in your project — and any joinery we originally built is covered by our 5-year workmanship guarantee.",
       whatWeOffer: "What's Included",
@@ -222,9 +222,9 @@ export const dictionaries = {
     },
     aboutPage: {
       navTitle: "About Us",
-      pageTitle: "About Bait Al Ebdaa",
+      pageTitle: "About Bait Al Ebdaa: Interior Design & Joinery",
       metaTitle: "About Us: Interior Design & Joinery Studio | Bait Al Ebdaa",
-      metaDescription: "Bait Al Ebdaa is a turnkey interior design, fit-out and architectural joinery company based in Ajman, serving Dubai and Abu Dhabi with in-house manufacturing.",
+      metaDescription: "Bait Al Ebdaa is a turnkey interior design, fit-out and joinery company in Ajman, serving Dubai and Abu Dhabi with its own in-house manufacturing.",
       intro: "Bait Al Ebdaa is a turnkey interior design, fit-out and architectural joinery company serving Dubai and Abu Dhabi. We deliver villa and office interiors from initial concept through to final handover, with design, approvals, joinery manufacturing and installation coordinated by one accountable team rather than a chain of separate subcontractors.",
       sections: {
         whatWeDo: { title: "What We Do", body: "Our work covers interior design, turnkey fit-out, office fit-out, villa and apartment renovation, and custom architectural joinery — including bespoke wardrobes and kitchens. Each project is scoped, designed and quoted individually; nothing is templated." },
@@ -247,7 +247,7 @@ export const dictionaries = {
     },
     privacyPolicyPage: {
       navTitle: "Privacy Policy",
-      pageTitle: "Privacy Policy",
+      pageTitle: "Bait Al Ebdaa Privacy Policy",
       metaTitle: "Privacy Policy | Bait Al Ebdaa",
       metaDescription: "How Bait Al Ebdaa collects, uses and protects the personal information submitted through our website forms and contact channels.",
       lastUpdated: "Last updated: 12 October 2026",
@@ -290,7 +290,7 @@ export const dictionaries = {
     },
     termsPage: {
       navTitle: "Terms & Conditions",
-      pageTitle: "Terms & Conditions",
+      pageTitle: "Bait Al Ebdaa Terms & Conditions",
       metaTitle: "Terms & Conditions | Bait Al Ebdaa",
       metaDescription: "The terms governing use of the Bait Al Ebdaa website, including how quotes, the cost estimator and enquiry forms work.",
       lastUpdated: "Last updated: 25 September 2026",
@@ -353,7 +353,7 @@ export const dictionaries = {
     },
     contactPage: {
       navTitle: "Contact Us",
-      pageTitle: "Let's Talk About Your Project",
+      pageTitle: "Contact Bait Al Ebdaa About Your Project",
       metaTitle: "Contact Bait Al Ebdaa | Free Site Survey, Dubai & Abu Dhabi",
       metaDescription: "Contact Bait Al Ebdaa for interior design, turnkey fit-out and joinery projects in Dubai and Abu Dhabi. Request a quote or discuss procurement."
     },
@@ -415,9 +415,9 @@ export const dictionaries = {
     },
     pricingPage: {
       navTitle: "Pricing",
-      pageTitle: "Clear Starting Prices. Bespoke Final Results.",
+      pageTitle: "Interior Design & Fit-Out Prices in Dubai",
       metaTitle: "Interior Design & Fit-Out Prices Dubai | Bait Al Ebdaa",
-      metaDescription: "Indicative fit-out, interior design, villa renovation and joinery cost in Dubai — plus starting prices for wardrobes, kitchen cabinets and Somfy curtains.",
+      metaDescription: "Indicative fit-out, interior design, villa renovation and joinery costs in Dubai, plus starting prices for wardrobes, kitchens and Somfy curtains.",
       heroBody: "See indicative fit-out cost, joinery cost and interior design cost guidance for villas, offices and custom furniture in Dubai and Abu Dhabi. Every project is individually measured, specified and quoted.",
       heroPrimaryCta: "Get My Project Estimate",
       heroSecondaryCta: "Discuss on WhatsApp",
@@ -679,6 +679,9 @@ export const dictionaries = {
       projects: {
         "government-authority": {
           title: "Confidential Government Authority Headquarters, Dubai Academic City",
+          // The project page targets the portfolio search ("office fit-out project"); the long
+          // case study article targets the government HQ story, so the two don't compete.
+          pageH1: "Office Fit-Out Project: 50,500 sq ft HQ in Dubai Academic City",
           description: "Interior fit-out and MEP works for a confidential government authority headquarters in Dubai Academic City — 50,500 sq ft across three floors.\n\nThe design takes a minimalist, home-like approach, using soft beige, brown and white tones and natural textures to put employee well-being first.\n\nDistinct department zones encourage interaction and knowledge sharing, while reinforcing each team's identity, values and objectives.\n\nErgonomic workstations, sit-stand desks, privacy-enhancing elements and noise-control solutions support both focus and flexibility.\n\nA variety of collaboration spaces suit different work styles, encouraging creativity, inclusivity and effective teamwork.",
           metadata: {
             location: "Academic City, Dubai, UAE",
@@ -850,9 +853,17 @@ export const dictionaries = {
     },
     mediaPage: {
       metaTitle: "Interior Design & Fit-Out Guides, UAE | Bait Al Ebdaa",
-      metaDescription: "Practical guides on luxury fit-out, custom joinery, motorized curtains and furniture care in Dubai and Abu Dhabi, from Bait Al Ebdaa's design and joinery teams.",
+      metaDescription: "Practical guides on luxury fit-out, custom joinery, motorized curtains and furniture care in Dubai and Abu Dhabi, from Bait Al Ebdaa's own teams.",
       hubTitle: "Interior Design & Fit-Out Guides",
       hubIntro: "Practical guides from our design, fit-out and joinery teams: what a luxury fit-out in Dubai involves and costs, how custom joinery is made in our Ajman factory, how motorized curtains work, and how to care for furniture in the UAE climate. Each guide ends with answers to the questions clients ask us most.",
+      topicsTitle: "Explore the services behind our guides",
+      topics: [
+        { label: "Turnkey fit-out in Dubai", href: "/en/fit-out/dubai", text: "One contract for civil works, MEP, finishes and in-house joinery, from design to handover." },
+        { label: "Office fit-out in Dubai", href: "/en/office-fit-out/dubai", text: "Workspace planning, acoustics and MEP, phased around your working team." },
+        { label: "Custom joinery in Dubai", href: "/en/joinery/dubai", text: "Kitchens, wardrobes and millwork made in our own 15,000 sq ft factory in Ajman." },
+        { label: "Curtain and joinery prices", href: "/en/pricing", text: "Published starting prices for manual and Somfy motorized curtains, wardrobes and kitchens." },
+        { label: "Furniture maintenance and aftercare", href: "/en/furniture-maintenance-care", text: "Servicing for hinges, runners, finishes and curtain tracks after handover." },
+      ],
       newsAndInsights: "News & Insights",
       latestNewsAndInsights: "Latest News & Insights",
       readMore: "Read More ↗",
@@ -872,7 +883,7 @@ export const dictionaries = {
 
 <h2>Turnkey vs. Traditional Multi-Contractor Fit-out</h2>
 <p>Most fit-out projects in the UAE still happen the traditional way: the client hires an interior designer, who hands drawings to a separate contractor, who then subcontracts joinery, MEP, flooring and curtains to different specialist vendors. Every handoff between those parties is a place where measurements drift, timelines slip, and — critically — nobody is fully accountable when something goes wrong.</p>
-<p>A <strong>turnkey fit-out contractor</strong> collapses that chain into one point of contact. At <a href="/en/our-services">Bait Al Ebdaa</a>, design, MEP engineering, authority approvals, joinery manufacturing and on-site installation sit under one roof, which means:</p>
+<p>A <strong>turnkey fit-out contractor</strong> collapses that chain into one point of contact. At Bait Al Ebdaa, <a href="/en/our-services">design, MEP engineering, authority approvals, joinery manufacturing and on-site installation</a> sit under one roof, which means:</p>
 <ul>
 <li style='margin-bottom: 10px;'><strong>One contract, one warranty.</strong> There is no finger-pointing between a designer and a contractor when a drawer doesn't close properly — one team is responsible for the entire outcome.</li>
 <li style='margin-bottom: 10px;'><strong>Faster decision cycles.</strong> A design change can be checked against manufacturing capacity and MEP routing in the same conversation, rather than a week of emails between three companies.</li>
@@ -970,7 +981,7 @@ export const dictionaries = {
 <p>Changes after construction begins are always possible but become progressively more expensive and time-consuming the later they're requested — a joinery configuration change is inexpensive before manufacturing starts and costly after panels are already cut, which is exactly why the 3D design and shop-drawing sign-off stages exist and deserve real time before construction begins.</p>
 
 <h3>Ready to start your project?</h3>
-<p>Contact <a href="/en/contact">Bait Al Ebdaa</a> today to discuss your vision for a luxury interior space, or use our <a href="/en/pricing">cost estimator</a> to get an indicative starting figure before your site survey.</p>`
+<p><a href="/en/contact">Contact Bait Al Ebdaa</a> today to discuss your vision for a luxury interior space, or use our <a href="/en/pricing">cost estimator</a> to get an indicative starting figure before your site survey.</p>`
       },
       articles: [
         {
@@ -1046,7 +1057,7 @@ export const dictionaries = {
 <p>Dust and sunlight are the main enemies of any curtain. Vacuum fabric gently, keep tracks free of obstruction, and avoid pulling curtains by hand when the motor is engaged. For care of other furniture and fittings in the UAE climate, read our guide to <a href="/en/furniture-maintenance-care">furniture maintenance and care</a>.</p>
 
 <h3>Ready to start your project?</h3>
-<p>Contact <a href="/en/contact">Bait Al Ebdaa</a> to book a free measurement visit, or use the price guide on our <a href="/">homepage</a> to see a rough starting budget for your windows.</p>`
+<p>Contact Bait Al Ebdaa to <a href="/en/contact">book a free measurement visit</a>, or use the price guide on our <a href="/">homepage</a> to see a rough starting budget for your windows.</p>`
         },
         {
           title: "The Impact of Bespoke Joinery on Modern UAE Homes",
@@ -1288,7 +1299,7 @@ export const dictionaries = {
           image: "/assets/tv-media-wall-floating-console-fireplace.jpeg",
           date: "July 15, 2026",
           author: "Bait Al Ebdaa Projects",
-          content: `<p>Executing a <strong>commercial fit-out in Dubai</strong> for a prominent government authority demands a higher level of security, precision and regulatory compliance than almost any other project type in the market. This case study walks through how Bait Al Ebdaa delivered a 50,500 sq ft turnkey interior fit-out across three floors of a confidential government authority headquarters in Dubai Academic City, under a strict, non-negotiable deadline — and what the project reveals about what actually matters in <strong>government and corporate office fit-out in the UAE</strong>. See the full project in our <a href="/en/our-projects/government-authority">portfolio</a>.</p>
+          content: `<p>Executing a <strong>commercial fit-out in Dubai</strong> for a prominent government authority demands a higher level of security, precision and regulatory compliance than almost any other project type in the market. This case study walks through how Bait Al Ebdaa delivered a 50,500 sq ft turnkey interior fit-out across three floors of a confidential government authority headquarters in Dubai Academic City, under a strict, non-negotiable deadline — and what the project reveals about what actually matters in <strong>government and corporate office fit-out in the UAE</strong>. See the <a href="/en/our-projects/government-authority">government authority headquarters project page</a> for photos and key facts.</p>
 
 <h2>Project Overview</h2>
 <p>This overview describes the scope, challenges and delivery approach at a level consistent with the confidentiality terms agreed with the client.</p>
@@ -1392,7 +1403,7 @@ export const dictionaries = {
       metaTitle: "Interior Design, Fit-Out & Joinery Services | Bait Al Ebdaa",
       metaDescription: "Explore Bait Al Ebdaa's interior design, turnkey fit-out and custom joinery services across Dubai and Abu Dhabi, from concept to handover.",
       navTitle: "Our Services",
-      pageTitle: "Our Services & Interior Solutions",
+      pageTitle: "Interior Design, Fit-Out & Joinery Services",
       whatWeOffer: "What Do We Offer",
       comprehensiveOfferings: "Comprehensive Service Offerings",
       offeringsSubtitle: "We provide customized interior solutions tailored every project need.",
@@ -1414,7 +1425,7 @@ export const dictionaries = {
       metaTitle: "Our Design & Fit-Out Process, Step by Step | Bait Al Ebdaa",
       metaDescription: "See how Bait Al Ebdaa delivers projects from 3D design and municipality approvals to in-house manufacturing and handover.",
       navTitle: "Our Process",
-      pageTitle: "How We Work",
+      pageTitle: "Our Interior Design & Fit-Out Process",
       whatWeDo: "Step-by-Step",
       processOverview: "Our Working Process",
       processSubtitle: "We follow a meticulous process to ensure every project is delivered on time, within budget, and beyond expectations.",
@@ -1644,7 +1655,7 @@ export const dictionaries = {
       metaTitle: "صيانة والعناية بالأثاث دبي | بيت الإبداع",
       metaDescription: "خدمات الصيانة والإصلاح والعناية بالنجارة والأثاث المخصص، مدعومة بمصنعنا الخاص في عجمان وضمان الجودة لمدة 5 سنوات على كل مشروع تجهيز ننفذه.",
       navTitle: "صيانة والعناية بالأثاث",
-      pageTitle: "صيانة والعناية بالأثاث",
+      pageTitle: "صيانة الأثاث والعناية بالنجارة",
       kicker: "خدمات ما بعد التسليم",
       intro: "تحتاج النجارة والأثاث المخصص إلى عناية دورية للحفاظ على المفصلات والتشطيبات والآليات تعمل كما كانت يوم التسليم. ولأننا نصنّع كل شيء داخلياً في مصنعنا بعجمان، يعرف فريق الصيانة لدينا بالضبط المواد والتجهيزات والتشطيبات المستخدمة في مشروعك — وأي نجارة قمنا بتصنيعها مشمولة بضمان جودة الصنعة لمدة 5 سنوات.",
       whatWeOffer: "ما تشمله الخدمة",
@@ -1673,7 +1684,7 @@ export const dictionaries = {
     },
     aboutPage: {
       navTitle: "من نحن",
-      pageTitle: "عن بيت الإبداع",
+      pageTitle: "عن بيت الإبداع: التصميم الداخلي والنجارة",
       metaTitle: "من نحن: استوديو تصميم داخلي ونجارة | بيت الإبداع",
       metaDescription: "بيت الإبداع شركة تصميم داخلي وتجهيز شامل ونجارة معمارية مقرها عجمان، تخدم دبي وأبوظبي بتصنيع داخلي خاص.",
       intro: "بيت الإبداع شركة تصميم داخلي وتجهيز شامل ونجارة معمارية تخدم دبي وأبوظبي. ننفّذ تصاميم الفلل والمكاتب من المفهوم الأولي وحتى التسليم النهائي، بإدارة فريق واحد مسؤول عن التصميم والموافقات والتصنيع والتركيب، دون سلسلة من مقاولين من الباطن منفصلين.",
@@ -1698,7 +1709,7 @@ export const dictionaries = {
     },
     privacyPolicyPage: {
       navTitle: "سياسة الخصوصية",
-      pageTitle: "سياسة الخصوصية",
+      pageTitle: "سياسة الخصوصية في بيت الإبداع",
       metaTitle: "سياسة الخصوصية | بيت الإبداع",
       metaDescription: "كيف تجمع بيت الإبداع وتستخدم وتحمي المعلومات الشخصية المُرسلة عبر نماذج الموقع وقنوات التواصل.",
       lastUpdated: "آخر تحديث: 12 أكتوبر 2026",
@@ -1741,7 +1752,7 @@ export const dictionaries = {
     },
     termsPage: {
       navTitle: "الشروط والأحكام",
-      pageTitle: "الشروط والأحكام",
+      pageTitle: "الشروط والأحكام في بيت الإبداع",
       metaTitle: "الشروط والأحكام | بيت الإبداع",
       metaDescription: "الشروط التي تحكم استخدام موقع بيت الإبداع الإلكتروني، بما في ذلك آلية عمل عروض الأسعار وحاسبة التكلفة ونماذج الاستفسار.",
       lastUpdated: "آخر تحديث: 25 سبتمبر 2026",
@@ -1804,7 +1815,7 @@ export const dictionaries = {
     },
     contactPage: {
       navTitle: "اتصل بنا",
-      pageTitle: "لنتحدث عن مشروعك",
+      pageTitle: "تواصل مع بيت الإبداع بخصوص مشروعك",
       metaTitle: "تواصل معنا: معاينة مجانية في دبي وأبوظبي | بيت الإبداع",
       metaDescription: "تواصل مع بيت الإبداع لخدمات التصميم الداخلي والتشطيبات الكاملة والنجارة في جميع أنحاء الإمارات — اطلب عرض سعر، أو ناقش التوريد، أو تقدم لوظيفة."
     },
@@ -1866,7 +1877,7 @@ export const dictionaries = {
     },
     pricingPage: {
       navTitle: "الأسعار",
-      pageTitle: "أسعار ابتدائية واضحة. نتائج نهائية مصممة خصيصًا لك.",
+      pageTitle: "أسعار التصميم الداخلي والتشطيب في دبي",
       metaTitle: "أسعار التصميم الداخلي والتشطيب في دبي | بيت الإبداع",
       metaDescription: "تكلفة تقديرية للتجهيز الشامل والتصميم الداخلي وتجديد الفلل والنجارة في دبي — إضافة إلى أسعار ابتدائية للخزائن وخزائن المطبخ وستائر سومفي.",
       heroBody: "اطّلع على تكلفة التجهيز الشامل وتكلفة النجارة وتكلفة التصميم الداخلي للفلل والمكاتب والأثاث المخصص في دبي وأبوظبي. كل مشروع يُقاس ويُحدد نطاقه ويُسعّر بشكل فردي.",
@@ -2124,6 +2135,7 @@ export const dictionaries = {
       projects: {
         "government-authority": {
           title: "المقر الرئيسي السري لهيئة حكومية، مدينة دبي الأكاديمية",
+          pageH1: "تجهيز مكاتب بمساحة 50,500 قدم مربع في مدينة دبي الأكاديمية",
           description: "تجهيزات داخلية وأعمال كهروميكانيكية لمقر رئيسي سري لهيئة حكومية في مدينة دبي الأكاديمية، بمساحة 50,500 قدم مربع موزعة على ثلاثة طوابق.\n\nيعتمد التصميم أسلوباً بسيطاً ومريحاً يشبه أجواء المنزل، بدرجات ناعمة من البيج والبني والأبيض وملمس طبيعي، مع إعطاء الأولوية لراحة الموظفين ورفاهيتهم.\n\nتشجع مناطق الأقسام المتميزة على التفاعل وتبادل المعرفة، وتعزز في الوقت نفسه هوية كل فريق وقيمه وأهدافه.\n\nتدعم محطات العمل المريحة ومكاتب الجلوس والوقوف وعناصر الخصوصية وحلول التحكم في الضوضاء التركيز والمرونة معاً.\n\nوتتنوع مساحات التعاون لتناسب أنماط العمل المختلفة، مما يشجع على الإبداع والشمولية والعمل الجماعي الفعّال.",
           metadata: {
             location: "مدينة دبي الأكاديمية، الإمارات",
@@ -2298,6 +2310,14 @@ export const dictionaries = {
       metaDescription: "أدلة عملية حول التجهيز الفاخر والنجارة المخصصة والستائر الآلية والعناية بالأثاث في دبي وأبوظبي، من فرق التصميم والنجارة في بيت الإبداع.",
       hubTitle: "أدلة التصميم الداخلي والتجهيز",
       hubIntro: "أدلة عملية من فرق التصميم والتجهيز والنجارة لدينا: ما يتضمنه التجهيز الفاخر في دبي وتكلفته، وكيف تُصنع النجارة المخصصة في مصنعنا بعجمان، وكيف تعمل الستائر الآلية، وكيف تعتني بالأثاث في مناخ الإمارات. ينتهي كل دليل بإجابات عن الأسئلة التي يطرحها علينا العملاء أكثر من غيرها.",
+      topicsTitle: "اكتشف الخدمات التي تستند إليها أدلتنا",
+      topics: [
+        { label: "التجهيز الشامل في دبي", href: "/ar/fit-out/dubai", text: "عقد واحد للأعمال المدنية والكهروميكانيكية والتشطيبات والنجارة الداخلية، من التصميم حتى التسليم." },
+        { label: "تجهيز المكاتب في دبي", href: "/ar/office-fit-out/dubai", text: "تخطيط مساحات العمل والعزل الصوتي والأعمال الكهروميكانيكية، على مراحل تناسب سير عمل فريقك." },
+        { label: "النجارة المخصصة في دبي", href: "/ar/joinery/dubai", text: "مطابخ وغرف ملابس وأعمال خشبية تُصنع في مصنعنا الخاص بمساحة 15,000 قدم مربع في عجمان." },
+        { label: "أسعار الستائر والنجارة", href: "/ar/pricing", text: "أسعار ابتدائية منشورة للستائر اليدوية وستائر سومفي الكهربائية وغرف الملابس والمطابخ." },
+        { label: "صيانة الأثاث وخدمة ما بعد البيع", href: "/ar/furniture-maintenance-care", text: "صيانة المفصلات ومجاري الأدراج والتشطيبات ومسارات الستائر بعد التسليم." },
+      ],
       newsAndInsights: "الأخبار والرؤى",
       latestNewsAndInsights: "أحدث الأخبار والرؤى",
       readMore: "اقرأ المزيد ↗",
@@ -2317,7 +2337,7 @@ export const dictionaries = {
 
 <h2>التجهيز المتكامل مقابل التعاقد التقليدي متعدد المقاولين</h2>
 <p>لا تزال معظم مشاريع التجهيز في الإمارات تتم بالطريقة التقليدية: يستعين العميل بمصمم داخلي، الذي يسلّم الرسومات إلى مقاول منفصل، الذي بدوره يوكل النجارة والأعمال الكهروميكانيكية والأرضيات والستائر إلى موردين متخصصين مختلفين. كل نقطة تسليم بين هذه الأطراف هي مكان محتمل لانحراف القياسات وتأخر الجداول الزمنية، والأهم من ذلك، غياب المسؤولية الكاملة عندما يحدث خطأ ما.</p>
-<p>يدمج <strong>مقاول التجهيز المتكامل</strong> هذه السلسلة في نقطة اتصال واحدة. في <a href="/ar/our-services">بيت الإبداع</a>، يعمل التصميم والهندسة الكهروميكانيكية وموافقات الجهات وتصنيع النجارة والتركيب الميداني تحت سقف واحد، مما يعني:</p>
+<p>يدمج <strong>مقاول التجهيز المتكامل</strong> هذه السلسلة في نقطة اتصال واحدة. في بيت الإبداع، يعمل <a href="/ar/our-services">التصميم والهندسة الكهروميكانيكية وموافقات الجهات وتصنيع النجارة والتركيب الميداني</a> تحت سقف واحد، مما يعني:</p>
 <ul>
 <li style='margin-bottom: 10px;'><strong>عقد واحد، ضمان واحد:</strong> لا يوجد تراشق بالمسؤولية بين المصمم والمقاول عندما لا يُغلق أحد الأدراج بشكل صحيح — فريق واحد مسؤول عن النتيجة بالكامل.</li>
 <li style='margin-bottom: 10px;'><strong>دورات قرار أسرع:</strong> يمكن مراجعة أي تعديل تصميمي مقابل القدرة التصنيعية ومسارات الأعمال الكهروميكانيكية في نفس الاجتماع، بدلاً من أسبوع من الرسائل بين ثلاث شركات.</li>
@@ -2424,7 +2444,7 @@ export const dictionaries = {
 <p>نعم — مراجعة معرض أعمال مقاول محتمل، وفي المثالي زيارة أو مشاهدة عبر الفيديو لمشروع مكتمل منذ عام أو أكثر تحت الاستخدام اليومي الفعلي، تمنحك صورة أكثر صدقاً عن جودة الحرفية طويلة المدى من صور يوم التسليم وحدها.</p>
 
 <h3>هل أنت مستعد لبدء مشروعك؟</h3>
-<p>تواصل مع <a href="/ar/contact">بيت الإبداع</a> اليوم لمناقشة رؤيتك لمساحة داخلية فاخرة، أو استخدم <a href="/ar/pricing">حاسبة التكلفة</a> للحصول على رقم أولي استرشادي قبل معاينة موقعك.</p>`
+<p><a href="/ar/contact">تواصل مع بيت الإبداع</a> اليوم لمناقشة رؤيتك لمساحة داخلية فاخرة، أو استخدم <a href="/ar/pricing">حاسبة التكلفة</a> للحصول على رقم أولي استرشادي قبل معاينة موقعك.</p>`
       },
       articles: [
         {
@@ -2500,7 +2520,7 @@ export const dictionaries = {
 <p>الغبار وأشعة الشمس هما العدوان الرئيسيان لأي ستارة. نظّف القماش بلطف بالمكنسة، وأبقِ المسارات خالية من العوائق، وتجنب سحب الستائر يدوياً أثناء تشغيل المحرك. وللعناية بباقي الأثاث والتجهيزات في مناخ الإمارات اطلع على دليلنا عن <a href="/ar/furniture-maintenance-care">صيانة الأثاث والعناية به</a>.</p>
 
 <h3>هل أنت مستعد لبدء مشروعك؟</h3>
-<p>تواصل مع <a href="/ar/contact">بيت الإبداع</a> لحجز زيارة قياس مجانية، أو استخدم دليل الأسعار في <a href="/ar">الصفحة الرئيسية</a> لمعرفة ميزانية ابتدائية تقريبية لنوافذك.</p>`
+<p>تواصل مع بيت الإبداع <a href="/ar/contact">لحجز زيارة قياس مجانية</a>، أو استخدم دليل الأسعار في <a href="/ar">الصفحة الرئيسية</a> لمعرفة ميزانية ابتدائية تقريبية لنوافذك.</p>`
         },
         { 
           title: "تأثير النجارة المعمارية المخصصة على المنازل الحديثة في الإمارات", 
@@ -2757,7 +2777,7 @@ export const dictionaries = {
           date: "١٥ يوليو ٢٠٢٦",
           author: "مشاريع بيت الإبداع",
           description: "دراسة حالة عن تنفيذ تجهيز مقر هيئة حكومية بمساحة 50,500 قدم مربع في دبي — الأمان، النجارة الصوتية، موافقات DDA/بلدية دبي وأتمتة Somfy ضمن موعد نهائي صارم.",
-          content: `<p>يتطلب تنفيذ <strong>تجهيز تجاري في دبي</strong> لهيئة حكومية بارزة مستوى من الأمان والدقة والامتثال التنظيمي أعلى بكثير من معظم أنواع المشاريع الأخرى في السوق. تستعرض دراسة الحالة هذه كيف قدمت بيت الإبداع تجهيزاً داخلياً متكاملاً بمساحة 50,500 قدم مربع عبر ثلاثة طوابق لمقر هيئة حكومية سرية في مدينة دبي الأكاديمية، ضمن موعد نهائي صارم وغير قابل للتفاوض — وما يكشفه المشروع عن الأهمية الفعلية في <strong>تجهيز المكاتب الحكومية والتجارية في الإمارات</strong>. شاهد المشروع الكامل في <a href="/ar/our-projects/government-authority">معرض أعمالنا</a>.</p>
+          content: `<p>يتطلب تنفيذ <strong>تجهيز تجاري في دبي</strong> لهيئة حكومية بارزة مستوى من الأمان والدقة والامتثال التنظيمي أعلى بكثير من معظم أنواع المشاريع الأخرى في السوق. تستعرض دراسة الحالة هذه كيف قدمت بيت الإبداع تجهيزاً داخلياً متكاملاً بمساحة 50,500 قدم مربع عبر ثلاثة طوابق لمقر هيئة حكومية سرية في مدينة دبي الأكاديمية، ضمن موعد نهائي صارم وغير قابل للتفاوض — وما يكشفه المشروع عن الأهمية الفعلية في <strong>تجهيز المكاتب الحكومية والتجارية في الإمارات</strong>. شاهد <a href="/ar/our-projects/government-authority">صفحة مشروع مقر الهيئة الحكومية</a> للاطلاع على الصور والحقائق الرئيسية.</p>
 
 <h2>لماذا تُعد مشاريع الهيئات الحكومية اختباراً مختلفاً تماماً</h2>
 <p>قبل الدخول في تفاصيل هذا المشروع تحديداً، يستحق الأمر توضيح لماذا يختلف تجهيز مقر حكومي جوهرياً عن أي تجهيز تجاري آخر، حتى الكبير منه. في المشروع التجاري الخاص، أسوأ نتيجة لتأخير الجدول الزمني هي عادة تكلفة إضافية وإحباط لدى العميل. في مشروع حكومي، يرتبط الموعد النهائي بجداول تشغيلية للجهة نفسها — انتقال موظفين، إنهاء عقود إيجار قائمة، استمرارية خدمات عامة — بحيث لا يُعامل أي تأخير كمصدر إزعاج فحسب، بل كخلل تشغيلي فعلي يتجاوز نطاق المقاول. هذا الواقع وحده يُبرر مستوى الصرامة الإضافي في كل قرار تخطيطي واصفه هذا المقال.</p>
@@ -2861,7 +2881,7 @@ export const dictionaries = {
       metaTitle: "خدمات التصميم الداخلي والتجهيز والنجارة | بيت الإبداع",
       metaDescription: "استكشف خدمات بيت الإبداع في التصميم الداخلي والتجهيز الشامل والنجارة المخصصة في دبي وأبوظبي، من المفهوم حتى التسليم.",
       navTitle: "خدماتنا",
-      pageTitle: "خدماتنا وحلول التصميم الداخلي",
+      pageTitle: "خدمات التصميم الداخلي والتجهيز والنجارة",
       whatWeOffer: "ماذا نقدم",
       comprehensiveOfferings: "عروض الخدمات الشاملة",
       offeringsSubtitle: "نحن نقدم حلولًا داخلية مخصصة ومصممة لتلبية احتياجات كل مشروع.",
@@ -2883,7 +2903,7 @@ export const dictionaries = {
       metaTitle: "مراحل التصميم والتجهيز خطوة بخطوة | بيت الإبداع",
       metaDescription: "تعرف على كيفية تنفيذ بيت الإبداع للمشاريع من التصميم ثلاثي الأبعاد وموافقات البلدية إلى التصنيع الداخلي والتسليم.",
       navTitle: "عمليتنا",
-      pageTitle: "كيف نعمل",
+      pageTitle: "مراحل التصميم الداخلي والتجهيز لدينا",
       whatWeDo: "خطوة بخطوة",
       processOverview: "عملية العمل لدينا",
       processSubtitle: "نحن نتبع عملية دقيقة لضمان تسليم كل مشروع في الوقت المحدد وفي حدود الميزانية وبما يتجاوز التوقعات.",
