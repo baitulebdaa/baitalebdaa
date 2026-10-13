@@ -1,4 +1,4 @@
-import { CURRENCY } from "../data/pricing";
+import { CURRENCY, pricingGroups } from "../data/pricing.js";
 
 // Matches the currency formatter already used by the homepage Estimator
 // (src/components/Estimator.jsx) — "en-AE" is used for both languages
@@ -33,25 +33,48 @@ export function formatPrice(item, lang = "en") {
   return `${FROM_LABEL[lang]} ${CURRENCY} ${numberFormatter.format(item.min)}${unit}${extra}`;
 }
 
-// Maps each service slug to the /pricing page category most relevant to it, so service
-// pages and tiles can show real indicative starting prices. Every service starts with a
-// design/consultation step, so "design" is the safe fallback.
-export const PRICING_GROUP_BY_SERVICE = {
-  "interior-design": "design",
-  "residential-interior-design": "design",
-  "office-interior-design": "office",
-  "restaurant-interior-design": "office",
-  "retail-interior-design": "office",
-  "commercial-interior-design": "office",
-  "fit-out": "villa",
-  "villa-renovation": "villa",
-  "apartment-renovation": "villa",
-  "office-fit-out": "office",
-  "office-renovation": "office",
-  "restaurant-fit-out": "office",
-  "retail-fit-out": "office",
-  joinery: "joineryWardrobes",
-  "custom-wardrobes": "joineryWardrobes",
-  "kitchen-design": "joineryKitchens",
-  "kitchen-renovation": "joineryKitchens",
+// Which published prices each service page may show (item ids from data/pricing.js).
+//   direct:  the items ARE this service's prices, so the card is headed "<service> starting
+//            prices" and the first priced item feeds the hero and the Service schema offer.
+//   related: real prices for work that is part of this service (e.g. kitchens and wardrobes in
+//            an apartment renovation); shown under a "related starting prices" heading, never as
+//            the price of the whole service and never in the schema offer.
+//   null:    no published price exists (restaurant and retail fit-out) — show no price at all
+//            rather than borrowing another service's figures.
+// Survey/consultation lines that say "within Dubai" are left out so Abu Dhabi pages stay accurate.
+export const SERVICE_PRICING = {
+  "interior-design": { direct: true, items: ["design-consultation", "design-single-room", "design-apartment", "design-villa"] },
+  "residential-interior-design": { direct: true, items: ["design-single-room", "design-apartment", "design-townhouse", "design-villa"] },
+  "office-interior-design": { direct: true, items: ["design-office", "design-drawings", "design-material-schedule", "design-consultation"] },
+  // Commercial covers offices, F&B and retail; the office design package is only part of that.
+  "commercial-interior-design": { direct: false, items: ["design-office", "design-drawings", "design-material-schedule", "design-consultation"] },
+  "restaurant-interior-design": { direct: false, items: ["design-drawings", "design-material-schedule", "design-consultation"] },
+  "retail-interior-design": { direct: false, items: ["design-drawings", "design-material-schedule", "design-consultation"] },
+  "fit-out": { direct: true, items: ["villa-standard", "villa-luxury", "office-essential", "office-premium"] },
+  "villa-renovation": { direct: true, items: ["villa-selective", "villa-standard", "villa-luxury", "villa-bespoke"] },
+  "apartment-renovation": { direct: false, items: ["kitchen-laminate", "wardrobe-laminate", "design-apartment"] },
+  "office-fit-out": { direct: true, items: ["office-essential", "office-premium", "office-luxury"] },
+  "office-renovation": { direct: false, items: ["office-essential", "office-premium", "office-luxury"] },
+  "restaurant-fit-out": null,
+  "retail-fit-out": null,
+  joinery: { direct: true, items: ["wardrobe-laminate", "kitchen-laminate", "media-basic", "bed-headboard"] },
+  "custom-wardrobes": { direct: true, items: ["wardrobe-laminate", "wardrobe-lacquer", "wardrobe-luxury"] },
+  "kitchen-design": { direct: true, items: ["kitchen-laminate", "kitchen-lacquer", "kitchen-premium"] },
+  "kitchen-renovation": { direct: false, items: ["kitchen-laminate", "kitchen-lacquer", "kitchen-premium"] },
 };
+
+const ALL_ITEMS = new Map(pricingGroups.flatMap((group) => group.items.map((item) => [item.id, item])));
+const isPriced = (item) => item.priceType === "from" || item.priceType === "range";
+
+// { direct, items: [pricing items] } for a service, or null when it has no published price.
+export function servicePricing(slug) {
+  const entry = SERVICE_PRICING[slug];
+  if (!entry) return null;
+  return { direct: entry.direct, items: entry.items.map((id) => ALL_ITEMS.get(id)).filter(Boolean) };
+}
+
+// The service's own starting price (first priced item), only when the prices are direct.
+export function serviceStartingItem(slug) {
+  const pricing = servicePricing(slug);
+  return pricing?.direct ? pricing.items.find(isPriced) || null : null;
+}

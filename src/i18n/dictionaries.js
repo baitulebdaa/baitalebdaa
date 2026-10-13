@@ -36,7 +36,7 @@ export const dictionaries = {
     menuItems: ["Home", "Services", "Projects", "Process", "Pricing", "Contact"],
     hero: {
       slides: [
-        { eyebrow: "Dubai · Abu Dhabi", title: "UAE Turnkey Fit-out & Custom Architectural Joinery", body: "Made to measure in our own workshop and installed across the UAE. Upholstery, wallpaper, gypsum ceilings and full fit-outs too." },
+        { eyebrow: "Dubai · Abu Dhabi", title: "UAE Turnkey Fit-out & Custom Architectural Joinery", body: "Made to measure in our own workshop and installed in Dubai and Abu Dhabi. Upholstery, wallpaper, gypsum ceilings and full fit-outs too." },
         { eyebrow: "Workplace", title: "Executive Workplaces Designed with Quiet Authority & Flow", body: "High-performing workplaces shaped around your people, brand and commercial priorities." },
         { eyebrow: "Private residences", title: "Luxury Private Villas Resolved to the Last Detail", body: "Architecture, bespoke joinery and intelligent furnishing brought together by one accountable team." }
       ],
@@ -50,7 +50,7 @@ export const dictionaries = {
       viewAllServices: "View all services",
       items: [
         { number: "01", title: "Design & 3D visualization", body: "Photorealistic CAD renders let you approve materials, lighting and spatial decisions before site work begins." },
-        { number: "02", title: "Fit-out & approvals", body: "Detailed coordination, authority submissions, Dubai Municipality approvals and NOCs managed end to end." },
+        { number: "02", title: "Fit-out & approvals", body: "Detailed coordination and authority submissions, with Dubai Municipality approvals and NOCs prepared and followed up in-house." },
         { number: "03", title: "Bespoke manufacturing", body: "Custom kitchens, wardrobes, wall systems and furniture produced in our own 15,000 sq ft facility." }
       ]
     },
@@ -141,12 +141,12 @@ export const dictionaries = {
       scope: "Scope Selection",
       scopeOptions: ["Full Turnkey", "Factory Joinery", "Somfy Curtains"],
       location: "Emirate Location",
-      locationOptions: ["Dubai (DM & DDA)", "Abu Dhabi (ADM & DCD)"],
+      locationOptions: ["Dubai (DM & DDA)", "Abu Dhabi"],
       estimatedInvestment: "ESTIMATED INVESTMENT",
       calculatedValue: "Calculated Contract Value",
       inclusions: [
         "3D Architectural CAD Package",
-        "100% Municipality NOC",
+        "Municipality NOC coordination",
         "15k sqft Ajman Joinery Production",
         "5-Year Workmanship Guarantee"
       ],
@@ -168,8 +168,8 @@ export const dictionaries = {
       subtitle: "Everything you need to know about planning and delivering your interior project with Bait Al Ebdaa.",
       items: [
         {
-          q: "Does Bait Al Ebdaa handle Dubai Municipality & Civil Defense approvals?",
-          a: "Yes, absolutely. We take full ownership of the entire approvals process on your behalf. Our dedicated in-house compliance team meticulously manages all end-to-end NOC permits, complex structural drawings, and final completion certificates directly with Dubai Municipality (DM), Dubai Development Authority (DDA), Trakhees, Abu Dhabi Municipality (ADM), and Civil Defense, ensuring complete regulatory peace of mind and strict adherence to timelines."
+          q: "Does Bait Al Ebdaa handle authority approvals and NOCs?",
+          a: "Yes. Our team coordinates applicable authority submissions and NOC requirements based on the project location and scope, preparing the drawings and paperwork each one needs and following them up. Each authority sets its own review times, so we build them into your programme and keep you updated."
         },
         {
           q: "What materials and wood types are used in your 15,000 sq ft Ajman factory?",
@@ -230,7 +230,7 @@ export const dictionaries = {
         whatWeDo: { title: "What We Do", body: "Our work covers interior design, turnkey fit-out, office fit-out, villa and apartment renovation, and custom architectural joinery — including bespoke wardrobes and kitchens. Each project is scoped, designed and quoted individually; nothing is templated." },
         manufacturing: { title: "In-House Manufacturing", body: "We operate a 15,000 sq ft joinery factory at Jurf Industrial 2, Ajman, equipped with CNC machinery and staffed by 50+ carpenters, using European timber and veneers. Producing joinery ourselves — rather than outsourcing it — is what lets us offer a 5-year workmanship guarantee on the pieces we manufacture and install." },
         serviceAreas: { title: "Service Areas", body: "We deliver projects across Dubai and Abu Dhabi. Our registered address and manufacturing facility are in Ajman." },
-        approvals: { title: "Authority Approvals", body: "Our in-house compliance team manages submissions and follow-up with Dubai Municipality (DM), the Dubai Development Authority (DDA), Trakhees, Abu Dhabi Municipality (DMT) and Civil Defense directly, so clients aren't required to navigate authority paperwork themselves." },
+        approvals: { title: "Authority Approvals", body: "Our team coordinates applicable authority submissions and NOC requirements based on the project location and scope, such as the Dubai Municipality and Dubai Development Authority (DDA) submissions on our published Dubai Academic City project, and the relevant Abu Dhabi authorities for Abu Dhabi projects, so clients don't have to navigate the paperwork themselves." },
         projects: { title: "Project Experience", body: "Recent work includes a confidential government authority headquarters in Dubai Academic City — a 50,500 sq ft interior fit-out and MEP project spanning three floors. See our projects page for details." },
       },
       companyDetailsTitle: "Company Details",
@@ -367,7 +367,7 @@ export const dictionaries = {
     },
     servicesPageLayout: {
       intro2: "From concept design to turnkey fit-out and custom joinery, every service is delivered by one accountable team, with approvals and in-house manufacturing included.",
-      intro3: "Our team covers interior design, commercial and residential fit-out, villa, apartment and office renovation, bespoke joinery, kitchens, wardrobes and motorized curtains across Dubai, Abu Dhabi and the wider UAE. Pick a service below to see its scope, typical timelines, published starting prices and answers to common questions, or message us on WhatsApp for a free site visit and quotation.",
+      intro3: "Our team covers interior design, commercial and residential fit-out, villa, apartment and office renovation, bespoke joinery, kitchens, wardrobes and motorized curtains in Dubai and Abu Dhabi. Pick a service below to see its scope, typical timelines, published starting prices and answers to common questions, or message us on WhatsApp for a free site visit and quotation.",
       browse: "Browse services",
       whatsappMessage: "Hello! I would like to know more about your services.",
       statsLabel: "Bait Al Ebdaa at a glance",
@@ -470,7 +470,7 @@ export const dictionaries = {
         "approval-noc": "Landlord / community NOC coordination",
         "approval-dm": "Dubai Municipality approval support",
         "approval-office-package": "Complete office fit-out approval package",
-        "approval-civil-defence": "Civil Defence / MEP / specialist authority coordination"
+        "approval-civil-defence": "Applicable authority / MEP / specialist coordination"
       },
       groups: {
         curtainsManual: {
@@ -528,7 +528,7 @@ export const dictionaries = {
         approvals: {
           kicker: "Approvals",
           title: "Approvals & NOC Coordination",
-          subtitle: "End-to-end coordination with landlords, communities and government authorities across the UAE.",
+          subtitle: "Coordination with landlords, communities and government authorities for projects in Dubai and Abu Dhabi.",
           note: "Authority, developer, consultant and statutory fees are charged separately at actual cost. Requirements and timelines remain subject to the relevant authority.",
           cta: "Discuss Approval Requirements"
         }
@@ -554,15 +554,7 @@ export const dictionaries = {
       serviceType: "Service Type",
       serviceOptions: ["Turnkey Fit-out (Civil+MEP)", "Custom Joinery Only", "Somfy Motorized Curtains", "All of the Above"],
       locationLabel: "Location Emirate",
-      locationOptions: [
-        "Dubai (DM, DDA, Trakhees permits)",
-        "Abu Dhabi (ADM & DCD permits)",
-        "Sharjah",
-        "Ajman",
-        "Ras Al Khaimah",
-        "Fujairah",
-        "Umm Al Quwain",
-      ],
+      locationOptions: ["Dubai", "Abu Dhabi", "Other emirate — availability to be confirmed"],
       descriptionLabel: "Project Description (Optional)",
       descriptionPlaceholder: "Tell us your vision...",
       submit: "Get My Quote",
@@ -631,7 +623,7 @@ export const dictionaries = {
     },
     ourProjectsPage: {
       metaTitle: "Interior & Fit-Out Projects in Dubai | Bait Al Ebdaa",
-      metaDescription: "Browse Bait Al Ebdaa's portfolio of villa, office and hospitality interior fit-out projects across the UAE, from concept to handover.",
+      metaDescription: "Browse Bait Al Ebdaa's interior design and fit-out projects in Dubai and Abu Dhabi, from first concept to final handover.",
       home: "Home",
       ourProjects: "Our Projects",
       explorePortfolio: "Explore Our Project Portfolio",
@@ -768,7 +760,7 @@ export const dictionaries = {
         },
         "downtown-dubai-tech-hq": {
           title: "Downtown Dubai Tech HQ Office",
-          description: "A Downtown Dubai office fit-out for a technology company, covering MEP coordination, Dubai Municipality approvals and full interior delivery.\n\nOpen-plan workstations, meeting rooms and a reception area were finished with custom joinery panelling, with cable management and acoustic treatment designed in from the start rather than added later.\n\nBait Al Ebdaa's in-house design and fit-out team delivered the project end to end, including all authority submissions.",
+          description: "A Downtown Dubai office fit-out for a technology company, covering MEP coordination, Dubai Municipality approvals and full interior delivery.\n\nOpen-plan workstations, meeting rooms and a reception area were finished with custom joinery panelling, with cable management and acoustic treatment designed in from the start rather than added later.\n\nBait Al Ebdaa's in-house design and fit-out team delivered the project end to end, including the DDA and Dubai Municipality submissions.",
           metadata: {
             location: "Downtown Dubai, Dubai, UAE",
             sector: "Commercial",
@@ -1175,7 +1167,7 @@ export const dictionaries = {
 <h3>How far in advance should joinery be ordered before a move-in date?</h3>
 <p>Allowing 6–8 weeks from design sign-off to installed joinery is a realistic planning window for most residential projects, though this can extend for larger commercial scopes or highly complex custom configurations — building this into a renovation or relocation timeline early avoids the common mistake of underestimating joinery lead time relative to the rest of a fit-out.</p>
 <h3>Can joinery be manufactured for a project outside Dubai and Abu Dhabi?</h3>
-<p>Manufacturing capacity and delivery logistics generally extend across the UAE from a central Ajman facility, though transit time and any location-based pricing adjustment should be confirmed for projects further afield during the initial consultation.</p>
+<p>Joinery is manufactured at our Ajman facility and delivered to projects in Dubai and Abu Dhabi. Transit time and any location-based pricing adjustment are confirmed for each project during the initial consultation.</p>
 <h3>What's the difference between architectural joinery and carpentry?</h3>
 <p>The terms overlap significantly, but "architectural joinery" typically implies a higher level of design integration with the building itself — items planned alongside the architectural and MEP drawings rather than added afterward — while "carpentry" is sometimes used more loosely to cover any timber-based construction or repair work, including tasks far smaller in scope than a fitted kitchen or wardrobe system.</p>
 <h3>Can joinery be phased across a renovation happening room by room?</h3>
@@ -1208,7 +1200,7 @@ export const dictionaries = {
 </ul>
 
 <h2>Hardware and Mechanism Upkeep</h2>
-<p>Soft-close hinges, drawer runners and sliding wardrobe mechanisms require periodic lubrication to prevent stiffening caused by ambient dust combined with humidity — a light silicone-based (not oil-based, which attracts more dust) lubricant applied roughly every 12 months to hinge pivots and runner tracks keeps mechanisms operating smoothly. A comprehensive workmanship warranty — Bait Al Ebdaa provides a 5-year warranty on completed projects — should include guidance on keeping built-in mechanisms functioning flawlessly over that period, and most reputable fit-out contractors will also handle adjustment call-outs under warranty.</p>
+<p>Soft-close hinges, drawer runners and sliding wardrobe mechanisms require periodic lubrication to prevent stiffening caused by ambient dust combined with humidity — a light silicone-based (not oil-based, which attracts more dust) lubricant applied roughly every 12 months to hinge pivots and runner tracks keeps mechanisms operating smoothly. A comprehensive workmanship warranty — Bait Al Ebdaa provides a 5-year workmanship guarantee on the joinery it manufactures and installs — should include guidance on keeping built-in mechanisms functioning flawlessly over that period, and most reputable fit-out contractors will also handle adjustment call-outs under warranty.</p>
 
 <h2>Room-by-Room Maintenance Guide</h2>
 <p>The general principles above apply everywhere, but each room in a typical UAE home carries its own specific risk profile worth understanding individually.</p>
@@ -1309,7 +1301,7 @@ export const dictionaries = {
 <p>The brief required a sophisticated executive workspace that integrated advanced acoustic privacy for confidential meetings, secure server room MEP configurations meeting government IT security standards, and an aesthetic that projected quiet institutional authority rather than corporate flash. Three constraints in particular shaped the project:</p>
 <ul>
 <li style='margin-bottom: 10px;'><strong>Confidentiality:</strong> Site access, documentation handling and even progress photography required clearance protocols well beyond a standard commercial project, meaning site teams and subcontractors needed vetting before mobilization.</li>
-<li style='margin-bottom: 10px;'><strong>Regulatory approvals:</strong> Navigating the stringent approval processes for a government entity meant our authority-liaison team had to flawlessly execute Dubai Development Authority (DDA) and Dubai Municipality (DM) submissions, with essentially no tolerance for the delays that a resubmission would typically cause on a private commercial project.</li>
+<li style='margin-bottom: 10px;'><strong>Regulatory approvals:</strong> Navigating the stringent approval processes for a government entity meant our authority-liaison team had to prepare complete, accurate Dubai Development Authority (DDA) and Dubai Municipality (DM) submissions, because the fixed deadline left essentially no room for the delays that a resubmission would typically cause on a private commercial project.</li>
 <li style='margin-bottom: 10px;'><strong>Fixed deadline:</strong> Unlike many private commercial fit-outs where a handover date has some flexibility, a government authority relocation is tied to lease and operational schedules that cannot simply slip — the deadline was fixed at contract signing and did not move.</li>
 </ul>
 
@@ -1366,7 +1358,7 @@ export const dictionaries = {
 <p>Material selection on an institutional project needs to balance durability under continuous daily use, an aesthetic of quiet authority rather than corporate ostentation, and — for acoustic and secure zones specifically — performance specifications that go beyond standard commercial-grade finishes. Executive offices and the boardroom used natural timber veneer panelling over acoustic substrate, chosen for warmth and durability rather than the high-gloss lacquer more common in private-sector executive suites. Open-plan workstation areas used durable, low-maintenance laminate joinery specified for high daily traffic rather than showcase aesthetics. Reception and public-facing areas balanced institutional durability with a more considered material palette — natural stone flooring, restrained metal detailing — appropriate for a space representing a government authority to visitors. And secure zones used joinery and finishes selected in part for their compatibility with the specific access-control and cabling infrastructure required, rather than aesthetics alone driving the specification.</p>
 
 <h2>How This Compares to International Government Fit-out Standards</h2>
-<p>Government and institutional fit-out projects internationally typically share a common set of priorities regardless of jurisdiction: security and access control integrated at the design stage rather than retrofitted, acoustic privacy for confidential proceedings treated as a hard requirement rather than a nice-to-have, and documentation and procurement standards exceeding typical private-sector expectations. This project was delivered to that same standard within a UAE regulatory context — DDA and DM approvals, UAE fire-and-life-safety compliance through Dubai Civil Defense — demonstrating that institutional-grade delivery doesn't require importing an international project management framework wholesale; it requires the same in-house, single-accountability delivery discipline applied to any large commercial project, executed with the additional rigor a government client's security and compliance requirements demand.</p>
+<p>Government and institutional fit-out projects internationally typically share a common set of priorities regardless of jurisdiction: security and access control integrated at the design stage rather than retrofitted, acoustic privacy for confidential proceedings treated as a hard requirement rather than a nice-to-have, and documentation and procurement standards exceeding typical private-sector expectations. This project was delivered to that same standard within a UAE regulatory context — DDA and DM approvals, and the applicable fire and life-safety compliance requirements — demonstrating that institutional-grade delivery doesn't require importing an international project management framework wholesale; it requires the same in-house, single-accountability delivery discipline applied to any large commercial project, executed with the additional rigor a government client's security and compliance requirements demand.</p>
 
 <h2>The Broader Case for a Single-Accountability Delivery Model</h2>
 <p>It's worth stepping back from this specific project to state the broader principle it demonstrates clearly. On a private commercial fit-out, a fragmented delivery model — separate designer, contractor and joinery subcontractor — creates friction and risk, but a determined client with flexibility on timeline can usually absorb that friction. On a fixed-deadline, security-sensitive institutional project, that same fragmentation isn't merely inconvenient — it's close to unmanageable, because every additional vendor relationship is another point where a security clearance delay, a miscommunicated specification, or a scheduling conflict can cascade into a missed deadline that, for a government relocation, has no acceptable fallback. This project succeeded specifically because design, MEP engineering, secure-room infrastructure, acoustic joinery manufacturing and installation all sat within one accountable team with one project lead — the same structural principle that underlies every project Bait Al Ebdaa delivers, scaled up to its most demanding test case to date.</p>
@@ -1409,7 +1401,7 @@ export const dictionaries = {
       offeringsSubtitle: "We provide customized interior solutions tailored every project need.",
       learnMore: "Learn More ↗",
       exploreByServiceKicker: "Browse by service",
-      exploreByServiceTitle: "Every Service, Across the UAE",
+      exploreByServiceTitle: "Every Service, in Dubai & Abu Dhabi",
       exploreByServiceSubtitle: "Jump straight to the service you need — each page covers scope, process, cost context and FAQs for your emirate.",
       services: [
         {
@@ -1434,7 +1426,7 @@ export const dictionaries = {
         {
           num: "01",
           title: "3D Spatial Design & DM Approval",
-          description: "Photorealistic 3D renders matched with 100% Dubai Municipality & Civil Defense compliance.",
+          description: "Photorealistic 3D renders, with the drawings prepared for the applicable authority submissions.",
           meta: "Timeline: 5–7 Days",
           image: "/assets/luxury-lounge-feature-wall-led-sconces.jpeg",
           link: "#"
@@ -1502,7 +1494,7 @@ export const dictionaries = {
     menuItems: ["الرئيسية", "الخدمات", "المشاريع", "العملية", "الأسعار", "اتصل بنا"],
     hero: {
       slides: [
-        { eyebrow: "دبي · أبوظبي", title: "تجهيز متكامل ونجارة معمارية مخصصة في الإمارات", body: "مصنوعة حسب الطلب في ورشتنا الخاصة ويتم تركيبها في جميع أنحاء الإمارات. بالإضافة إلى التنجيد، ورق الجدران، أسقف الجبس، والتجهيزات الكاملة." },
+        { eyebrow: "دبي · أبوظبي", title: "تجهيز متكامل ونجارة معمارية مخصصة في الإمارات", body: "مصنوعة حسب الطلب في ورشتنا الخاصة ويتم تركيبها في دبي وأبوظبي. بالإضافة إلى التنجيد، ورق الجدران، أسقف الجبس، والتجهيزات الكاملة." },
         { eyebrow: "مساحات العمل", title: "مساحات عمل تنفيذية مصممة بهيبة هادئة وتدفق سلس", body: "مساحات عمل عالية الأداء مصممة حول موظفيك وعلامتك التجارية وأولوياتك التجارية." },
         { eyebrow: "مساكن خاصة", title: "فلل خاصة فاخرة مصممة بأدق التفاصيل المعمارية المميزة", body: "هندسة معمارية ونجارة مخصصة وأثاث ذكي يجمعها فريق واحد مسؤول." }
       ],
@@ -1516,7 +1508,7 @@ export const dictionaries = {
       viewAllServices: "عرض جميع الخدمات",
       items: [
         { number: "01", title: "التصميم والتصور ثلاثي الأبعاد", body: "تتيح لك تصاميم CAD الواقعية الموافقة على المواد والإضاءة والقرارات المكانية قبل بدء العمل في الموقع." },
-        { number: "02", title: "التجهيز والموافقات", body: "تنسيق مفصل، وتقديمات للسلطات، وموافقات بلدية دبي وشهادات عدم الممانعة تدار بالكامل." },
+        { number: "02", title: "التجهيز والموافقات", body: "تنسيق مفصل وتقديمات للجهات المختصة، مع إعداد موافقات بلدية دبي وشهادات عدم الممانعة ومتابعتها داخلياً." },
         { number: "03", title: "التصنيع المخصص", body: "مطابخ مخصصة وخزائن وأنظمة جدران وأثاث يتم إنتاجه في منشأتنا الخاصة البالغة مساحتها 15,000 قدم مربع." }
       ]
     },
@@ -1613,12 +1605,12 @@ export const dictionaries = {
       scope: "تحديد النطاق",
       scopeOptions: ["تسليم مفتاح كامل", "نجارة المصنع", "ستائر سومفي"],
       location: "الإمارة",
-      locationOptions: ["دبي (بلدية دبي)", "أبوظبي (بلدية أبوظبي)"],
+      locationOptions: ["دبي (بلدية دبي)", "أبوظبي"],
       estimatedInvestment: "الاستثمار المقدر",
       calculatedValue: "قيمة العقد المحسوبة",
       inclusions: [
         "حزمة CAD معمارية ثلاثية الأبعاد",
-        "شهادة عدم ممانعة 100% من البلدية",
+        "تنسيق شهادة عدم الممانعة من البلدية",
         "15 ألف قدم مربع من إنتاج النجارة",
         "ضمان 5 سنوات على جودة العمل"
       ],
@@ -1630,8 +1622,8 @@ export const dictionaries = {
       subtitle: "كل ما تحتاج إلى معرفته حول تخطيط وتنفيذ مشروعك الداخلي مع بيت الإبداع.",
       items: [
         {
-          q: "هل تتعامل شركة بيت الإبداع مع موافقات بلدية دبي والدفاع المدني؟",
-          a: "نعم، بالتأكيد. نحن نتحمل المسؤولية الكاملة عن عملية الموافقات بأكملها نيابة عنك. يدير فريق الامتثال الداخلي المخصص لدينا بدقة جميع تصاريح عدم الممانعة الشاملة والرسومات الهيكلية المعقدة وشهادات الإنجاز النهائية مباشرة مع بلدية دبي وسلطة دبي للتطوير وتراخيص وبلدية أبوظبي والدفاع المدني، مما يضمن راحة البال التنظيمية التامة والالتزام الصارم بالجداول الزمنية."
+          q: "هل تتولى شركة بيت الإبداع موافقات الجهات وشهادات عدم الممانعة؟",
+          a: "نعم. ينسق فريقنا طلبات الجهات المختصة ومتطلبات شهادات عدم الممانعة حسب موقع المشروع ونطاقه، فيُعدّ الرسومات والمستندات التي تحتاجها كل جهة ويتابعها. ولكل جهة مدة مراجعة خاصة بها، لذلك نضمّنها في برنامج مشروعك ونطلعك على كل مستجد."
         },
         {
           q: "ما هي المواد وأنواع الأخشاب المستخدمة في مصنعكم بعجمان الذي تبلغ مساحته 15,000 قدم مربع؟",
@@ -1692,7 +1684,7 @@ export const dictionaries = {
         whatWeDo: { title: "ماذا نقدّم", body: "يشمل عملنا التصميم الداخلي، والتجهيز الشامل، وتجهيز المكاتب، وتجديد الفلل والشقق، والنجارة المعمارية المخصصة — بما في ذلك الخزائن والمطابخ المصممة حسب الطلب. يتم تحديد نطاق كل مشروع وتصميمه وتسعيره بشكل فردي، دون أي قوالب جاهزة." },
         manufacturing: { title: "تصنيع داخلي خاص", body: "نُدير مصنع نجارة بمساحة 15,000 قدم مربع في الجرف الصناعية 2، عجمان، مجهّزاً بآلات CNC وبأكثر من 50 نجاراً، باستخدام خشب وقشرة أوروبية. تصنيع النجارة داخلياً — بدلاً من تعهيدها لجهات خارجية — هو ما يتيح لنا تقديم ضمان جودة الصنعة لمدة 5 سنوات على القطع التي نصنّعها ونركّبها." },
         serviceAreas: { title: "مناطق الخدمة", body: "ننفّذ مشاريعنا في دبي وأبوظبي. عنواننا المسجّل ومنشأة التصنيع الخاصة بنا في عجمان." },
-        approvals: { title: "موافقات الجهات الحكومية", body: "يتولى فريق الامتثال الداخلي لدينا تقديم الطلبات والمتابعة مباشرة مع بلدية دبي وسلطة دبي للتطوير وتراخيص وبلدية أبوظبي (دائرة البلديات والنقل) والدفاع المدني، بحيث لا يحتاج العميل للتعامل مع إجراءات الجهات الحكومية بنفسه." },
+        approvals: { title: "موافقات الجهات الحكومية", body: "ينسق فريقنا طلبات الجهات المختصة ومتطلبات شهادات عدم الممانعة حسب موقع المشروع ونطاقه، مثل طلبات بلدية دبي وسلطة دبي للتطوير (DDA) في مشروعنا المنشور بمدينة دبي الأكاديمية، والجهات المختصة في أبوظبي لمشاريع أبوظبي، بحيث لا يحتاج العميل للتعامل مع هذه الإجراءات بنفسه." },
         projects: { title: "خبرة في المشاريع الفعلية", body: "من أعمالنا الأخيرة مقر لهيئة حكومية سرية في مدينة دبي الأكاديمية — مشروع تجهيز داخلي وأعمال كهروميكانيكية بمساحة 50,500 قدم مربع على ثلاثة طوابق. راجع صفحة مشاريعنا للتفاصيل." },
       },
       companyDetailsTitle: "بيانات الشركة",
@@ -1817,7 +1809,7 @@ export const dictionaries = {
       navTitle: "اتصل بنا",
       pageTitle: "تواصل مع بيت الإبداع بخصوص مشروعك",
       metaTitle: "تواصل معنا: معاينة مجانية في دبي وأبوظبي | بيت الإبداع",
-      metaDescription: "تواصل مع بيت الإبداع لخدمات التصميم الداخلي والتشطيبات الكاملة والنجارة في جميع أنحاء الإمارات — اطلب عرض سعر، أو ناقش التوريد، أو تقدم لوظيفة."
+      metaDescription: "تواصل مع بيت الإبداع لخدمات التصميم الداخلي والتشطيبات الكاملة والنجارة في دبي وأبوظبي — اطلب عرض سعر، أو ناقش التوريد، أو تقدم لوظيفة."
     },
     projectsPageLayout: {
       intro: "مختارات من التصاميم الداخلية السكنية والتجارية التي نفذها فريق واحد مسؤول، من التصميم ثلاثي الأبعاد والموافقات إلى النجارة الداخلية والتسليم.",
@@ -1829,7 +1821,7 @@ export const dictionaries = {
     },
     servicesPageLayout: {
       intro2: "من التصميم المبدئي إلى التجهيز الشامل والنجارة المخصصة، يقدم فريق واحد مسؤول كل خدمة، مع الموافقات والتصنيع الداخلي.",
-      intro3: "يغطي فريقنا التصميم الداخلي والتجهيز التجاري والسكني وتجديد الفلل والشقق والمكاتب والنجارة المخصصة والمطابخ وخزائن الملابس والستائر الكهربائية في دبي وأبوظبي وسائر أنحاء الإمارات. اختر خدمة من الأسفل لتطّلع على نطاق العمل والمدد الزمنية المعتادة وأسعار البدء المعلنة وإجابات الأسئلة الشائعة، أو راسلنا عبر واتساب لزيارة موقع وعرض سعر مجانيين.",
+      intro3: "يغطي فريقنا التصميم الداخلي والتجهيز التجاري والسكني وتجديد الفلل والشقق والمكاتب والنجارة المخصصة والمطابخ وخزائن الملابس والستائر الكهربائية في دبي وأبوظبي. اختر خدمة من الأسفل لتطّلع على نطاق العمل والمدد الزمنية المعتادة وأسعار البدء المعلنة وإجابات الأسئلة الشائعة، أو راسلنا عبر واتساب لزيارة موقع وعرض سعر مجانيين.",
       browse: "تصفح الخدمات",
       whatsappMessage: "مرحباً! أرغب بمعرفة المزيد عن خدماتكم.",
       statsLabel: "بيت الإبداع في لمحة",
@@ -1932,7 +1924,7 @@ export const dictionaries = {
         "approval-noc": "تنسيق عدم ممانعة المالك / المجتمع السكني",
         "approval-dm": "دعم الحصول على موافقة بلدية دبي",
         "approval-office-package": "باقة موافقة تشطيب مكتب كاملة",
-        "approval-civil-defence": "تنسيق موافقة الدفاع المدني / الأنظمة الكهروميكانيكية / جهات متخصصة"
+        "approval-civil-defence": "تنسيق الجهات المختصة / الأنظمة الكهروميكانيكية / الجهات المتخصصة"
       },
       groups: {
         curtainsManual: {
@@ -1990,7 +1982,7 @@ export const dictionaries = {
         approvals: {
           kicker: "الموافقات",
           title: "الموافقات وتنسيق عدم الممانعة",
-          subtitle: "تنسيق متكامل مع الملاك والمجتمعات السكنية والجهات الحكومية في جميع أنحاء الإمارات.",
+          subtitle: "تنسيق مع الملاك والمجتمعات السكنية والجهات الحكومية لمشاريعنا في دبي وأبوظبي.",
           note: "رسوم الجهات الحكومية والمطورين والاستشاريين والرسوم النظامية تُحتسب منفصلة وبسعرها الفعلي. تبقى المتطلبات والمدد الزمنية خاضعة للجهة المختصة.",
           cta: "ناقش متطلبات الموافقة"
         }
@@ -2016,15 +2008,7 @@ export const dictionaries = {
       serviceType: "نوع الخدمة",
       serviceOptions: ["تجهيز شامل (مدني + كهروميكانيك)", "نجارة مخصصة فقط", "ستائر سومفي الآلية", "جميع ما سبق"],
       locationLabel: "الإمارة",
-      locationOptions: [
-        "دبي (تصاريح بلدية دبي وسلطة التطوير وتراخيص)",
-        "أبوظبي (تصاريح بلدية أبوظبي والدفاع المدني)",
-        "الشارقة",
-        "عجمان",
-        "رأس الخيمة",
-        "الفجيرة",
-        "أم القيوين",
-      ],
+      locationOptions: ["دبي", "أبوظبي", "إمارة أخرى — نؤكد إمكانية التنفيذ بعد التواصل"],
       descriptionLabel: "وصف المشروع (اختياري)",
       descriptionPlaceholder: "أخبرنا عن رؤيتك...",
       submit: "احصل على عرض السعر",
@@ -2093,7 +2077,7 @@ export const dictionaries = {
     },
     ourProjectsPage: {
       metaTitle: "مشاريع التصميم الداخلي والتجهيز في دبي | بيت الإبداع",
-      metaDescription: "تصفح محفظة أعمال بيت الإبداع من مشاريع تجهيز الفلل والمكاتب والضيافة في الإمارات، من المفهوم حتى التسليم.",
+      metaDescription: "تصفح مشاريع بيت الإبداع في التصميم الداخلي والتجهيز في دبي وأبوظبي، من المفهوم الأول حتى التسليم النهائي.",
       home: "الرئيسية",
       ourProjects: "مشاريعنا",
       explorePortfolio: "استكشف محفظة مشاريعنا",
@@ -2222,7 +2206,7 @@ export const dictionaries = {
         },
         "downtown-dubai-tech-hq": {
           title: "مقر شركة تقنية في وسط مدينة دبي",
-          description: "تجهيز مكتب شركة تقنية في وسط مدينة دبي، شمل تنسيق الأعمال الكهروميكانيكية وموافقات بلدية دبي وتنفيذ التصميم الداخلي بالكامل.\n\nجرى تشطيب محطات العمل المفتوحة وغرف الاجتماعات ومنطقة الاستقبال بألواح نجارة مخصصة، مع تصميم إدارة الأسلاك والمعالجة الصوتية ضمن المخطط منذ البداية بدلاً من إضافتها لاحقاً.\n\nنفّذ فريق التصميم والتجهيز الداخلي في بيت الإبداع المشروع من البداية إلى النهاية، بما في ذلك جميع التقديمات للجهات المختصة.",
+          description: "تجهيز مكتب شركة تقنية في وسط مدينة دبي، شمل تنسيق الأعمال الكهروميكانيكية وموافقات بلدية دبي وتنفيذ التصميم الداخلي بالكامل.\n\nجرى تشطيب محطات العمل المفتوحة وغرف الاجتماعات ومنطقة الاستقبال بألواح نجارة مخصصة، مع تصميم إدارة الأسلاك والمعالجة الصوتية ضمن المخطط منذ البداية بدلاً من إضافتها لاحقاً.\n\nنفّذ فريق التصميم والتجهيز الداخلي في بيت الإبداع المشروع من البداية إلى النهاية، بما في ذلك تقديمات سلطة دبي للتطوير وبلدية دبي.",
           metadata: {
             location: "وسط مدينة دبي، دبي، الإمارات",
             sector: "تجاري",
@@ -2358,7 +2342,7 @@ export const dictionaries = {
 <p>تُركّب النجارة المُصنّعة، وتُشغّل أنظمة الستائر الآلية من Somfy، ويُستكمل الفحص النهائي للعيوب، وتُسلّم المساحة مع وثائق الضمان.</p>
 
 <h2>إدارة موافقات بلدية دبي والدفاع المدني</h2>
-<p>أحد أكبر العقبات في أي مشروع داخلي في الإمارات هو الحصول على شهادات عدم الممانعة (NOCs) اللازمة من الجهة المعنية — بلدية دبي، أو هيئة تنظيم المنطقة الحرة (DDA) للمناطق الحرة، أو تراخيص لبعض المجتمعات التي يديرها مطور رئيسي، أو الدفاع المدني لأنظمة السلامة والحريق. تخطي هذه الخطوة، أو التعاقد مع مقاول يفعل ذلك، ليس اختصاراً — إنه مسؤولية قد تؤدي إلى إزالة العمل المنجز قسراً، أو غرامات، أو عدم القدرة على بيع الوحدة أو تأجيرها لاحقاً بسبب تخطيط غير مرخص مسجل.</p>
+<p>أحد أكبر العقبات في أي مشروع داخلي في الإمارات هو الحصول على شهادات عدم الممانعة (NOCs) اللازمة من الجهة المعنية — بلدية دبي، أو سلطة دبي للتطوير (DDA) للمناطق الحرة، أو تراخيص لبعض المجتمعات التي يديرها مطور رئيسي، أو الدفاع المدني لأنظمة السلامة والحريق. تخطي هذه الخطوة، أو التعاقد مع مقاول يفعل ذلك، ليس اختصاراً — إنه مسؤولية قد تؤدي إلى إزالة العمل المنجز قسراً، أو غرامات، أو عدم القدرة على بيع الوحدة أو تأجيرها لاحقاً بسبب تخطيط غير مرخص مسجل.</p>
 <p>ما يجب تقديمه فعلياً يعتمد على النطاق: التجديد التجميلي (الدهان، الأرضيات، الأثاث المتحرك) عادة لا يحتاج تصريحاً، لكن أي عمل تقسيمي أو تعديل كهروميكانيكي أو تغيير إنشائي يتطلب رسومات مختومة ومقدمة عبر الجهة الصحيحة قبل بدء العمل. المقاول الذي يقول لك "سنرتب الأوراق بعد أن نبدأ" يخبرك أنه لا يملك وظيفة اتصال داخلية مع الجهات — وهو ما لا تملكه معظم شركات التجهيز فعلياً. فريق اتصال مخصص يعمل مباشرة مع بلدية دبي وDDA وتراخيص والدفاع المدني، بدلاً من إسناد الموافقات لاستشاري خارجي، هو أحد أوضح إشارات المقاول المُهيأ لإدارة المشاريع، وليس فقط تصميمها.</p>
 
 <h2>تجهيز الفيلا مقابل تجهيز المكتب: الفروقات الرئيسية</h2>
@@ -2649,7 +2633,7 @@ export const dictionaries = {
 <h3>كم يجب طلب النجارة مقدماً قبل تاريخ الانتقال؟</h3>
 <p>السماح بـ6-8 أسابيع من اعتماد التصميم إلى النجارة المُركّبة نافذة تخطيط واقعية لمعظم المشاريع السكنية، رغم أن هذا يمكن أن يمتد للنطاقات التجارية الأكبر أو التكوينات المخصصة المعقدة للغاية.</p>
 <h3>هل يمكن تصنيع النجارة لمشروع خارج دبي وأبوظبي؟</h3>
-<p>تمتد القدرة التصنيعية ولوجستيات التوصيل عموماً عبر الإمارات من منشأة مركزية في عجمان، رغم أن وقت النقل وأي تعديل سعري حسب الموقع يجب تأكيده للمشاريع الأبعد خلال الاستشارة الأولية.</p>
+<p>تُصنع النجارة في منشأتنا في عجمان وتُسلَّم للمشاريع في دبي وأبوظبي، ويُؤكَّد وقت النقل وأي تعديل سعري حسب الموقع لكل مشروع خلال الاستشارة الأولية.</p>
 <h3>ما الفرق بين النجارة المعمارية والنجارة العامة؟</h3>
 <p>يتداخل المصطلحان بشكل كبير، لكن "النجارة المعمارية" تعني عادة مستوى أعلى من التكامل التصميمي مع المبنى نفسه — عناصر مُخططة جنباً إلى جنب مع الرسومات المعمارية والكهروميكانيكية بدلاً من إضافتها لاحقاً — بينما تُستخدم "النجارة" أحياناً بشكل أعم لتغطي أي عمل خشبي إنشائي أو إصلاحي، بما يشمل مهام أصغر بكثير من نطاق مطبخ أو نظام غرفة ملابس مُثبّت.</p>
 <h3>هل يمكن تنفيذ النجارة على مراحل عبر تجديد يتم غرفة بغرفة؟</h3>
@@ -2685,7 +2669,7 @@ export const dictionaries = {
 </ul>
 
 <h2>صيانة الأجهزة والآليات</h2>
-<p>تتطلب المفصلات ذات الإغلاق الهادئ وأدراج وآليات انزلاق غرف الملابس تشحيماً دورياً لمنع التصلب الناتج عن الغبار المحيط مجتمعاً مع الرطوبة — مُزلّق سيليكوني خفيف (وليس قائماً على الزيت، الذي يجذب غباراً أكثر) يُطبّق تقريباً كل 12 شهراً على محاور المفصلات ومسارات الأدراج يُبقي الآليات تعمل بسلاسة. يجب أن يتضمن ضمان الصنعة الشامل — تُقدّم بيت الإبداع ضماناً لمدة 5 سنوات على المشاريع المُنجزة — إرشادات حول الحفاظ على الآليات المدمجة تعمل بلا عيوب خلال تلك الفترة، وستتعامل معظم شركات التجهيز المرموقة أيضاً مع زيارات التعديل ضمن الضمان.</p>
+<p>تتطلب المفصلات ذات الإغلاق الهادئ وأدراج وآليات انزلاق غرف الملابس تشحيماً دورياً لمنع التصلب الناتج عن الغبار المحيط مجتمعاً مع الرطوبة — مُزلّق سيليكوني خفيف (وليس قائماً على الزيت، الذي يجذب غباراً أكثر) يُطبّق تقريباً كل 12 شهراً على محاور المفصلات ومسارات الأدراج يُبقي الآليات تعمل بسلاسة. يجب أن يتضمن ضمان الصنعة الشامل — تُقدّم بيت الإبداع ضمان جودة الصنعة لمدة 5 سنوات على النجارة التي تصنّعها وتركّبها — إرشادات حول الحفاظ على الآليات المدمجة تعمل بلا عيوب خلال تلك الفترة، وستتعامل معظم شركات التجهيز المرموقة أيضاً مع زيارات التعديل ضمن الضمان.</p>
 
 <h2>دليل الصيانة غرفة بغرفة</h2>
 <p>تنطبق المبادئ العامة أعلاه في كل مكان، لكن كل غرفة في منزل إماراتي نموذجي تحمل ملف مخاطرها الخاص الذي يستحق الفهم فردياً.</p>
@@ -2789,7 +2773,7 @@ export const dictionaries = {
 <p>تطلب الموجز مساحة عمل تنفيذية متطورة تدمج خصوصية صوتية متقدمة للاجتماعات السرية، وتكوينات MEP آمنة لغرفة الخوادم تُلبي معايير أمن تكنولوجيا المعلومات الحكومية، وجمالية تعكس سلطة مؤسسية هادئة بدلاً من البريق التجاري. ثلاثة قيود بالتحديد شكّلت المشروع:</p>
 <ul>
 <li style='margin-bottom: 10px;'><strong>السرية:</strong> تطلب الوصول للموقع والتعامل مع الوثائق وحتى تصوير التقدم بروتوكولات تصريح تتجاوز بكثير المشروع التجاري القياسي، مما يعني أن فرق الموقع والمقاولين من الباطن احتاجوا فحصاً قبل التعبئة.</li>
-<li style='margin-bottom: 10px;'><strong>الموافقات التنظيمية:</strong> إن التنقل في عمليات الموافقة الصارمة لجهة حكومية يعني أن فريق الاتصال لدينا مع الجهات كان عليه تنفيذ تقديمات هيئة تنظيم المنطقة الحرة (DDA) وبلدية دبي بشكل لا تشوبه شائبة، مع عدم وجود تسامح تقريباً مع التأخيرات التي عادة ما يُسببها إعادة التقديم في مشروع تجاري خاص.</li>
+<li style='margin-bottom: 10px;'><strong>الموافقات التنظيمية:</strong> إن التنقل في عمليات الموافقة الصارمة لجهة حكومية يعني أن فريق الاتصال لدينا مع الجهات كان عليه إعداد تقديمات كاملة ودقيقة إلى سلطة دبي للتطوير (DDA) وبلدية دبي، لأن الموعد النهائي الثابت لم يترك مجالاً تقريباً للتأخيرات التي عادة ما يُسببها إعادة التقديم في مشروع تجاري خاص.</li>
 <li style='margin-bottom: 10px;'><strong>موعد نهائي ثابت:</strong> على عكس العديد من التجهيزات التجارية الخاصة حيث يكون لتاريخ التسليم بعض المرونة، ارتبط انتقال الهيئة الحكومية بجداول تشغيلية وإيجارية لا يمكن أن تتأخر ببساطة — تحدد الموعد النهائي عند توقيع العقد ولم يتحرك.</li>
 </ul>
 
@@ -2841,7 +2825,7 @@ export const dictionaries = {
 <p>يحتاج اختيار المواد في مشروع مؤسسي موازنة المتانة تحت الاستخدام اليومي المستمر، وجمالية السلطة الهادئة بدلاً من البذخ التجاري، ولمناطق الصوتيات والأمان تحديداً، مواصفات أداء تتجاوز التشطيبات التجارية القياسية. استخدمت المكاتب التنفيذية وقاعة مجلس الإدارة ألواح قشرة خشبية طبيعية فوق ركيزة صوتية، اختيرت للدفء والمتانة بدلاً من اللاكيه عالي اللمعان الأكثر شيوعاً في أجنحة القطاع الخاص التنفيذية. استخدمت مناطق محطات العمل المفتوحة نجارة صفائحية متينة ومنخفضة الصيانة مُحددة للحركة اليومية العالية بدلاً من الجمالية العرضية. وازنت مناطق الاستقبال والواجهة العامة بين المتانة المؤسسية ولوحة مواد أكثر دراسة — أرضيات حجر طبيعي، تفاصيل معدنية مُقيّدة — مناسبة لمساحة تُمثّل هيئة حكومية أمام الزوار. واستخدمت المناطق الآمنة نجارة وتشطيبات اختيرت جزئياً لتوافقها مع بنية التحكم بالوصول والكابلات المحددة المطلوبة.</p>
 
 <h2>كيف يقارن هذا بمعايير التجهيز الحكومي الدولية</h2>
-<p>تشترك مشاريع التجهيز الحكومي والمؤسسي دولياً عادة في مجموعة أولويات مشتركة بغض النظر عن الولاية القضائية: أمان وتحكم بالوصول مُدمجان منذ مرحلة التصميم بدلاً من إضافتهما لاحقاً، وخصوصية صوتية للإجراءات السرية تُعامل كمتطلب صارم وليس ميزة إضافية، ومعايير توثيق ومشتريات تتجاوز توقعات القطاع الخاص النموذجية. سُلّم هذا المشروع بنفس ذلك المعيار ضمن سياق تنظيمي إماراتي — موافقات DDA وبلدية دبي، وامتثال السلامة من الحريق الإماراتي عبر الدفاع المدني — مما يُظهر أن التسليم بمستوى مؤسسي لا يتطلب استيراد إطار إدارة مشاريع دولي بالكامل؛ إنه يتطلب نفس انضباط التسليم الداخلي ذي المسؤولية الواحدة المُطبق على أي مشروع تجاري كبير، مُنفّذاً بالصرامة الإضافية التي تتطلبها متطلبات الأمان والامتثال لعميل حكومي.</p>
+<p>تشترك مشاريع التجهيز الحكومي والمؤسسي دولياً عادة في مجموعة أولويات مشتركة بغض النظر عن الولاية القضائية: أمان وتحكم بالوصول مُدمجان منذ مرحلة التصميم بدلاً من إضافتهما لاحقاً، وخصوصية صوتية للإجراءات السرية تُعامل كمتطلب صارم وليس ميزة إضافية، ومعايير توثيق ومشتريات تتجاوز توقعات القطاع الخاص النموذجية. سُلّم هذا المشروع بنفس ذلك المعيار ضمن سياق تنظيمي إماراتي — موافقات DDA وبلدية دبي، ومتطلبات السلامة من الحريق والسلامة العامة المطبقة — مما يُظهر أن التسليم بمستوى مؤسسي لا يتطلب استيراد إطار إدارة مشاريع دولي بالكامل؛ إنه يتطلب نفس انضباط التسليم الداخلي ذي المسؤولية الواحدة المُطبق على أي مشروع تجاري كبير، مُنفّذاً بالصرامة الإضافية التي تتطلبها متطلبات الأمان والامتثال لعميل حكومي.</p>
 
 <h2>الأسئلة الشائعة</h2>
 <h3>هل تتعامل بيت الإبداع مع مشاريع تجارية مُصرّح أمنياً أو سرية؟</h3>
@@ -2887,7 +2871,7 @@ export const dictionaries = {
       offeringsSubtitle: "نحن نقدم حلولًا داخلية مخصصة ومصممة لتلبية احتياجات كل مشروع.",
       learnMore: "اعرف المزيد ↗",
       exploreByServiceKicker: "تصفح حسب الخدمة",
-      exploreByServiceTitle: "كل خدمة، في جميع أنحاء الإمارات",
+      exploreByServiceTitle: "كل خدمة، في دبي وأبوظبي",
       exploreByServiceSubtitle: "انتقل مباشرة إلى الخدمة التي تحتاجها — تغطي كل صفحة النطاق والعملية والتكلفة التقديرية والأسئلة الشائعة لإمارتك.",
       services: [
         {
@@ -2912,7 +2896,7 @@ export const dictionaries = {
         {
           num: "01",
           title: "تصميم مكاني ثلاثي الأبعاد وموافقة بلدية دبي",
-          description: "تصاميم ثلاثية الأبعاد واقعية مطابقة بنسبة 100% لمتطلبات بلدية دبي والدفاع المدني.",
+          description: "تصاميم ثلاثية الأبعاد واقعية، مع إعداد الرسومات اللازمة لطلبات الجهات المختصة.",
           meta: "المدة الزمنية: 5–7 أيام",
           image: "/assets/luxury-lounge-feature-wall-led-sconces.jpeg",
           link: "#"

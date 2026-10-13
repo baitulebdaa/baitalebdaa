@@ -7,8 +7,7 @@ import { useI18n } from "./i18n/I18nProvider";
 import { ArrowUpRight } from "./components/icons";
 import { Header, Footer, Reveal, FaqSplit } from "./components/Shared";
 import { serviceCatalog as seoServices } from "./data/service-catalog";
-import { pricingGroups } from "./data/pricing";
-import { formatPrice, PRICING_GROUP_BY_SERVICE } from "./lib/pricing";
+import { formatPrice, serviceStartingItem } from "./lib/pricing";
 
 const SERVICE_IMAGES = {
   "interior-design": "/assets/luxury-living-room-chandelier-wall-panelling.jpeg",
@@ -67,10 +66,10 @@ function swatchesFor(index) {
   return [0, 1, 2].map((n) => SWATCH_POOL[(index * 2 + n * 3) % SWATCH_POOL.length]);
 }
 
-// First numeric published price of the service's pricing group, as a "From AED …" line.
+// The service's own published starting price as a "From AED …" line; none when the service
+// has no published price of its own (see SERVICE_PRICING in lib/pricing.js).
 function startingPrice(slug, lang) {
-  const group = pricingGroups.find((g) => g.id === (PRICING_GROUP_BY_SERVICE[slug] || "design"));
-  const item = group?.items.find((i) => i.priceType === "from" || i.priceType === "range");
+  const item = serviceStartingItem(slug);
   return item ? formatPrice({ ...item, priceType: "from" }, lang) : null;
 }
 

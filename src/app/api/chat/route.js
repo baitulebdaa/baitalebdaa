@@ -148,7 +148,7 @@ COMPANY INFORMATION
 - Working hours: Monday–Saturday, 8:00 AM – 10:00 PM (UAE time). Closed on Sunday.
 - Free initial site survey and consultation — no obligation.
 - 5-year workmanship guarantee on all joinery.
-- In-house compliance team for Dubai Municipality, DDA, Trakhees and Civil Defense submissions in Dubai; for Abu Dhabi projects, approvals are coordinated in-house with the relevant authorities.
+- Approvals: our team coordinates applicable authority submissions and NOC requirements based on the project location and scope. Any approval-related package or fee is itemised in the project quotation. Do not name specific authorities beyond this, except the published Dubai Academic City project (Dubai Municipality and DDA submissions).
 - Typical full villa turnkey: 3–6 months from first consultation to handover, including design and approvals. Once the design is approved, the on-site fit-out itself typically takes 6–10 weeks. Exact timeline confirmed after survey.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -160,7 +160,7 @@ Fit-Out: Full Turnkey Fit-Out, Office Fit-Out, Restaurant & Cafe Fit-Out, Retail
 Renovation: Villa Renovation, Apartment Renovation, Office Renovation, Kitchen Renovation.
 Joinery: Architectural Joinery, Custom Wardrobes, Custom Kitchens, Media/TV units, Bed headboards, Dressing tables, Sofas, Banquettes.
 Curtains: Manual Curtains (pinch pleat, wave fold), Somfy Motorized Curtains (smart home: HomeKit, Google Home, Alexa).
-Other: Authority Approvals (NOC, DM, Civil Defense), Furniture Maintenance & Care, Procurement.
+Other: Authority approval and NOC coordination, Furniture Maintenance & Care, Procurement.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 PRICING (الأسعار — AED, VAT-exclusive, starting prices)

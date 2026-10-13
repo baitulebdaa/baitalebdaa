@@ -133,3 +133,78 @@ test("every meta description on the site is 150 characters or fewer, in English 
   const tooLong = found.filter(([, text]) => text.length > META_DESCRIPTION_MAX).map(([where, text]) => `${where}: ${text.length}`);
   assert.deepEqual(tooLong, []);
 });
+
+test("coverage claims say Dubai and Abu Dhabi, never the whole UAE", () => {
+  const copy = ["src/i18n/dictionaries.js", "src/data/service-content.js", "src/data/page-faqs.js", "src/app/api/chat/route.js"].map(read).join("\n");
+  const wide = copy.match(/(across the UAE(?!'s two)|wider UAE|throughout the UAE|all (seven|7) emirates|جميع أنحاء الإمارات|كافة أنحاء الإمارات|سائر أنحاء الإمارات)/g) || [];
+  assert.deepEqual(wide, []);
+});
+
+test("the site publishes exactly one phone number and stops address digits being auto-linked", () => {
+  const numbers = new Set();
+  for (const file of sourceFiles(path.join(root, "src"))) {
+    for (const match of readFileSync(file, "utf8").matchAll(/\+?971[\s-]?5\d[\s-]?\d{3}[\s-]?\d{4}|\b05\d[\s-]?\d{3}[\s-]?\d{4}\b/g)) numbers.add(match[0].replace(/\D/g, "").replace(/^0/, "971"));
+  }
+  assert.deepEqual([...numbers], ["971582621717"]);
+  assert.match(read("src/app/[lang]/layout.jsx"), /formatDetection: \{ telephone: false/);
+});
+
+test("service pages only show their own published prices", async () => {
+  const { SERVICE_PRICING, servicePricing, serviceStartingItem } = await import("../src/lib/pricing.js");
+  const { pricingGroups } = await import("../src/data/pricing.js");
+  const ids = new Set(pricingGroups.flatMap((group) => group.items.map((item) => item.id)));
+  for (const [slug, entry] of Object.entries(SERVICE_PRICING)) {
+    if (!entry) continue;
+    for (const id of entry.items) assert.ok(ids.has(id), `${slug}: unknown price item ${id}`);
+    assert.ok(!entry.items.includes("design-survey"), `${slug}: Dubai-only survey line would show on Abu Dhabi pages`);
+  }
+  for (const slug of ["restaurant-fit-out", "retail-fit-out"]) {
+    assert.equal(servicePricing(slug), null, `${slug} has no published price and must not borrow office prices`);
+    assert.equal(serviceStartingItem(slug), null);
+  }
+  assert.equal(serviceStartingItem("apartment-renovation"), null, "related prices never stand in for the whole service");
+  assert.ok(servicePricing("office-fit-out").items.every((item) => item.id.startsWith("office-")));
+});
+
+test("authority wording describes what the team does, not guaranteed outcomes", () => {
+  const copy = ["src/i18n/dictionaries.js", "src/data/service-content.js", "src/ServiceLocationPage.jsx"].map(read).join("\n");
+  assert.doesNotMatch(copy, /100% (Municipality|Dubai Municipality)|full ownership of the entire approvals|on your behalf in full|flawlessly execute|complete regulatory peace of mind|بنسبة 100%|شهادة عدم ممانعة 100%|نيابة عنك بالكامل|هيئة تنظيم المنطقة الحرة|through Dubai Civil Defense|Civil Defence \/ MEP|عبر الدفاع المدني|تنسيق موافقة الدفاع المدني/);
+});
+
+test("every Abu Dhabi substitution still matches the shared copy it rewrites", () => {
+  const source = ["src/i18n/dictionaries.js", "src/data/service-content.js"].map(read).join("\n");
+  const pairs = [...read("src/data/abu-dhabi-copy.js").matchAll(/\['([^']+)',/g)].map((m) => m[1]);
+  assert.ok(pairs.length >= 2);
+  for (const from of pairs) assert.ok(source.includes(from), `no longer found: ${from.slice(0, 60)}`);
+});
+
+test("quote form offers Dubai, Abu Dhabi and 'other emirate', never every emirate", () => {
+  for (const lang of ["en", "ar"]) {
+    const options = dictionaries[lang].quoteModal.locationOptions;
+    assert.equal(options.length, 3, lang);
+    assert.doesNotMatch(options.join(" "), /Sharjah|Fujairah|Ras Al Khaimah|Umm Al Quwain|الشارقة|الفجيرة|رأس الخيمة|أم القيوين|permits|تصاريح/);
+  }
+});
+
+test("generic sections make no unverified Trakhees / Civil Defense / Abu Dhabi authority claims", async () => {
+  const { whyChooseFacts, serviceContent } = await import("../src/data/service-content.js");
+  const generic = [
+    ...whyChooseFacts.en, ...whyChooseFacts.ar,
+    dictionaries.en.faqSection.items[0].a, dictionaries.ar.faqSection.items[0].a,
+    dictionaries.en.aboutPage.sections.approvals.body, dictionaries.ar.aboutPage.sections.approvals.body,
+    dictionaries.en.ourProcessPage.steps[0].description, dictionaries.ar.ourProcessPage.steps[0].description,
+    serviceContent["fit-out"].en.summary, serviceContent["fit-out"].ar.summary,
+    ...serviceContent["fit-out"].en.faqs.map((f) => f.a), ...serviceContent["fit-out"].ar.faqs.map((f) => f.a),
+    ...serviceContent["restaurant-fit-out"].en.faqs.map((f) => f.a), ...serviceContent["restaurant-fit-out"].ar.faqs.map((f) => f.a),
+  ].join(" ");
+  assert.doesNotMatch(generic, /Trakhees|Civil Defen[cs]e|Abu Dhabi Municipality|DMT|ADM|تراخيص|الدفاع المدني|بلدية أبوظبي|not as a separate paid extra|وليست خدمة إضافية منفصلة|record of the specific criteria/);
+  assert.match(serviceContent["fit-out"].en.faqs.map((f) => f.a).join(" "), /itemised in the project quotation/);
+});
+
+test("Service schema offers only carry the service's own price", async () => {
+  const { serviceStartingItem } = await import("../src/lib/pricing.js");
+  for (const slug of ["restaurant-fit-out", "retail-fit-out", "apartment-renovation", "office-renovation", "kitchen-renovation", "commercial-interior-design", "restaurant-interior-design", "retail-interior-design"]) {
+    assert.equal(serviceStartingItem(slug), null, slug);
+  }
+  assert.match(read("src/ServiceLocationPage.jsx"), /const startingItem = serviceStartingItem\(row\.serviceSlug\);/);
+});

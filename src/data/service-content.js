@@ -23,19 +23,19 @@ export const serviceContent = {
   },
   "fit-out": {
     en: {
-      summary: "Turnkey fit-out from civil works and MEP to finishes and furniture — a single contract, one accountable team, and full Dubai Municipality / Civil Defense approvals handled in-house.",
+      summary: "Turnkey fit-out from civil works and MEP to finishes and furniture — a single contract, one accountable team, with applicable authority approvals coordinated in-house.",
       included: ["Civil works & MEP", "Authority approvals & NOCs", "Finishes, joinery & installation", "Snagging & handover"],
       faqs: [
         { q: "Is fit-out priced as one contract or several trades?", a: "It is priced and delivered as one turnkey contract. We coordinate civil works, MEP, joinery, finishes and installation ourselves rather than acting as a broker for separate trade contractors, so you sign a single agreement, receive one programme, and have one point of accountability if anything needs adjusting, instead of chasing multiple vendors for progress updates or resolving disputes about who is responsible for a delay." },
-        { q: "Do you handle municipality approvals as part of fit-out?", a: "Yes, NOC permits, structural drawings, MEP submissions and completion certificates with Dubai Municipality, the Dubai Development Authority, Trakhees, Abu Dhabi Municipality and Civil Defense are managed end to end by our in-house compliance team as a standard part of every fit-out programme, not as a separate paid extra. That means you are not required to attend authority meetings yourself or track submission status across multiple portals." },
+        { q: "Do you handle municipality approvals as part of fit-out?", a: "Yes. Applicable approval requirements are coordinated by our team, and any approval-related package or fee is itemised in the project quotation. That covers the NOC applications, drawings, MEP submissions and completion paperwork your project needs based on its location and scope, with authority review times built into the schedule so you don't have to chase submissions yourself." },
       ],
     },
     ar: {
-      summary: "تجهيز شامل بتسليم مفتاح من الأعمال المدنية والكهروميكانيكية إلى التشطيبات والأثاث، بعقد واحد وفريق مسؤول واحد، مع إدارة كاملة لموافقات بلدية دبي والدفاع المدني داخلياً.",
+      summary: "تجهيز شامل بتسليم مفتاح من الأعمال المدنية والكهروميكانيكية إلى التشطيبات والأثاث، بعقد واحد وفريق مسؤول واحد، مع تنسيق موافقات الجهات المختصة داخلياً.",
       included: ["الأعمال المدنية والكهروميكانيكية", "موافقات الجهات وشهادات عدم الممانعة", "التشطيبات والنجارة والتركيب", "الفحص النهائي والتسليم"],
       faqs: [
         { q: "هل يتم تسعير التجهيز بعقد واحد أم عدة مقاولين؟", a: "يُسعَّر وينفَّذ بعقد تسليم مفتاح واحد. ننسق الأعمال المدنية والكهروميكانيكية والنجارة والتشطيبات والتركيب بأنفسنا بدلاً من العمل كوسيط بين مقاولين منفصلين، فتوقع اتفاقية واحدة وتحصل على برنامج زمني واحد وجهة مسؤولة واحدة إن احتجت أي تعديل، بدلاً من متابعة عدة موردين أو تحديد المسؤول عن أي تأخير." },
-        { q: "هل تديرون موافقات البلدية ضمن خدمة التجهيز؟", a: "نعم، تصاريح عدم الممانعة والرسومات الهيكلية وتقديمات الأعمال الكهروميكانيكية وشهادات الإنجاز مع بلدية دبي وسلطة دبي للتطوير وتراخيص وبلدية أبوظبي والدفاع المدني تدار بالكامل من قبل فريق الامتثال الداخلي لدينا كجزء أساسي من كل برنامج تجهيز، وليست خدمة إضافية منفصلة، فلست مضطراً لحضور اجتماعات الجهات أو متابعة حالة التقديمات بنفسك." },
+        { q: "هل تديرون موافقات البلدية ضمن خدمة التجهيز؟", a: "نعم. ينسق فريقنا متطلبات الموافقات المطلوبة لمشروعك، وتُفصَّل أي باقة أو رسوم متعلقة بالموافقات في عرض السعر. ويشمل ذلك طلبات شهادات عدم الممانعة والرسومات وتقديمات الأعمال الكهروميكانيكية ومستندات الإنجاز التي يحتاجها مشروعك حسب موقعه ونطاقه، مع تضمين مدد مراجعة الجهات في الجدول الزمني، فلا تحتاج لمتابعة الطلبات بنفسك." },
       ],
     },
   },
@@ -60,17 +60,17 @@ export const serviceContent = {
   "restaurant-fit-out": {
     en: {
       summary: "Restaurant and cafe fit-out engineered for kitchen compliance, front-of-house atmosphere and fast turnaround — because every day before opening costs revenue.",
-      included: ["Kitchen extraction & compliance", "Front-of-house design & joinery", "Food authority & civil defense NOCs", "Fast-track programme management"],
+      included: ["Kitchen extraction & compliance", "Front-of-house design & joinery", "Applicable authority & NOC coordination", "Fast-track programme management"],
       faqs: [
-        { q: "Do you handle food authority and kitchen compliance requirements?", a: "Yes, kitchen extraction, grease trap sizing and layout, and general kitchen compliance with local food authority and civil defense requirements are coordinated as a standard part of the fit-out programme, submitted and followed up by our own compliance team. We also flag any equipment or layout choice early that would otherwise cause a rejection at inspection stage, so it gets resolved on paper instead of on site after the kitchen is built." },
+        { q: "Do you handle kitchen compliance and authority requirements?", a: "Yes. Kitchen extraction, grease trap sizing and kitchen layout are planned into the fit-out, and our team coordinates applicable authority submissions and NOC requirements based on the project location and scope. We also flag any equipment or layout choice early that could cause a problem at inspection, so it gets resolved on paper instead of on site after the kitchen is built." },
         { q: "How fast can a restaurant fit-out be completed?", a: "Programme length depends on unit condition, scope and how much kitchen and MEP work is required, so we won't quote a generic number without seeing the space. What we can say is that we run fast-track schedules specifically for F&B clients, because every day a unit sits closed before opening is lost revenue — ask for a realistic programme during your free site survey and we'll commit to it in the contract." },
       ],
     },
     ar: {
       summary: "تجهيز مطاعم ومقاهي مصمم للامتثال لمتطلبات المطبخ وأجواء صالة الضيوف مع سرعة التنفيذ، لأن كل يوم قبل الافتتاح يعني خسارة في الإيرادات.",
-      included: ["أنظمة الشفط والامتثال في المطبخ", "تصميم ونجارة صالة الضيوف", "شهادات عدم ممانعة الغذاء والدفاع المدني", "إدارة برنامج تنفيذ سريع"],
+      included: ["أنظمة الشفط والامتثال في المطبخ", "تصميم ونجارة صالة الضيوف", "تنسيق موافقات الجهات المختصة وشهادات عدم الممانعة", "إدارة برنامج تنفيذ سريع"],
       faqs: [
-        { q: "هل تديرون متطلبات امتثال هيئة الغذاء والمطبخ؟", a: "نعم، يتم تنسيق أنظمة الشفط وحجم وتصميم مصائد الدهون وتوافق تخطيط المطبخ عموماً مع متطلبات هيئة الغذاء المحلية والدفاع المدني كجزء أساسي من برنامج التجهيز، وتقديمها ومتابعتها من قبل فريق الامتثال الخاص بنا. كما ننبه مبكراً لأي خيار معدات أو تخطيط قد يسبب رفضاً عند الفحص، ليُحل على الورق وليس في الموقع بعد بناء المطبخ." },
+        { q: "هل تديرون متطلبات امتثال المطبخ وموافقات الجهات المختصة؟", a: "نعم. نخطط أنظمة الشفط وحجم مصائد الدهون وتخطيط المطبخ ضمن أعمال التجهيز، وينسق فريقنا طلبات الجهات المختصة ومتطلبات شهادات عدم الممانعة حسب موقع المشروع ونطاقه. كما ننبه مبكراً لأي خيار معدات أو تخطيط قد يسبب مشكلة عند الفحص، ليُحل على الورق وليس في الموقع بعد بناء المطبخ." },
         { q: "ما مدى سرعة إنجاز تجهيز مطعم؟", a: "تعتمد مدة البرنامج على حالة الوحدة والنطاق وحجم أعمال المطبخ والكهروميكانيك المطلوبة، لذا لا نقدم رقماً عاماً دون معاينة المساحة. لكن ما يمكن قوله هو أننا ننفذ جداول سريعة تحديداً لعملاء المأكولات والمشروبات، لأن كل يوم إغلاق قبل الافتتاح يعني خسارة إيرادات — اطلب برنامجاً واقعياً أثناء المسح الأولي المجاني وسنلتزم به في العقد." },
       ],
     },
@@ -171,7 +171,7 @@ export const serviceContent = {
       included: ["Customer flow & layout design", "Merchandising & display concept", "Lighting for product presentation", "Buildable, fit-out-ready drawings"],
       faqs: [
         { q: "Do you design for a single store or a rollout brand standard?", a: "Both — single-store concepts and reproducible brand standards for multi-location rollouts are handled the same way from a process point of view, with drawings and specifications built to be reused rather than being a one-off concept sketch. If a rollout is likely later, tell us at the brief stage and we'll structure the documentation so scaling to further stores doesn't mean starting the design process over." },
-        { q: "Will the design account for landlord/mall design guidelines?", a: "Yes, mall and landlord design criteria — shopfront setbacks, signage rules, ceiling heights, permitted materials — are reviewed and incorporated during concept design rather than discovered at approval stage, when a rejected drawing would otherwise cost you weeks of resubmission time and push back your opening date unnecessarily. We keep a record of the specific criteria for major malls and landlords so repeat approvals move faster on future stores." },
+        { q: "Will the design account for landlord/mall design guidelines?", a: "Yes, mall and landlord design criteria — shopfront setbacks, signage rules, ceiling heights, permitted materials — are reviewed and incorporated during concept design rather than discovered at approval stage, when a rejected drawing would otherwise cost you weeks of resubmission time and push back your opening date unnecessarily." },
       ],
     },
     ar: {
@@ -179,7 +179,7 @@ export const serviceContent = {
       included: ["تصميم تدفق الزبائن والتوزيع", "مفهوم العرض والتنسيق", "إضاءة لعرض المنتجات", "رسومات جاهزة للتنفيذ"],
       faqs: [
         { q: "هل تصممون لمتجر واحد أم لمعيار علامة تجارية متعدد الفروع؟", a: "كلاهما — تُعالج مفاهيم المتجر الواحد ومعايير العلامة التجارية القابلة للتكرار لعدة مواقع بنفس المنهجية، برسومات ومواصفات مصممة لإعادة الاستخدام وليست مجرد رسم مفاهيمي لمرة واحدة. إن كان التوسع محتملاً لاحقاً، أخبرنا في مرحلة الموجز وسنبني التوثيق بحيث لا يعني التوسع لفروع إضافية إعادة عملية التصميم من الصفر. هذا يوفر عليك وقتاً وتكلفة كبيرين عند الانتقال من متجر واحد إلى عدة فروع." },
-        { q: "هل يراعي التصميم اشتراطات تصميم المالك أو المول؟", a: "نعم، تُراجع معايير تصميم المول والمالك — تراجعات الواجهة وأنظمة اللافتات وارتفاعات الأسقف والمواد المسموح بها — وتُدمج أثناء التصميم المفاهيمي بدلاً من اكتشافها في مرحلة الاعتماد، حين يكلفك رفض الرسومات أسابيع من إعادة التقديم ويؤخر موعد الافتتاح دون داعٍ. نحتفظ بسجل لمعايير أهم المولات والملاك بحيث تتسارع الموافقات في الفروع القادمة." },
+        { q: "هل يراعي التصميم اشتراطات تصميم المالك أو المول؟", a: "نعم، تُراجع معايير تصميم المول والمالك — تراجعات الواجهة وأنظمة اللافتات وارتفاعات الأسقف والمواد المسموح بها — وتُدمج أثناء التصميم المفاهيمي بدلاً من اكتشافها في مرحلة الاعتماد، حين يكلفك رفض الرسومات أسابيع من إعادة التقديم ويؤخر موعد الافتتاح دون داعٍ." },
       ],
     },
   },
@@ -347,14 +347,14 @@ export const whyChooseFacts = {
   en: [
     "In-house manufacturing — every joinery piece is produced in our own 15,000 sq ft Ajman factory, not outsourced.",
     "One accountable team — design, approvals, build and joinery run under a single contract, not multiple subcontractors.",
-    "Approvals handled in-house — our compliance team manages Dubai Municipality, DDA, Trakhees and Civil Defense submissions directly.",
+    "Approvals coordinated in-house — our team coordinates applicable authority submissions and NOC requirements based on the project location and scope.",
     "5-year workmanship guarantee on joinery we manufacture and install.",
     "Real project experience, including a 50,500 sq ft government authority headquarters delivered in Dubai Academic City.",
   ],
   ar: [
     "تصنيع داخلي — يتم إنتاج كل قطعة نجارة في مصنعنا الخاص بعجمان البالغة مساحته 15,000 قدم مربع، دون تعهيدها لجهات خارجية.",
     "فريق واحد مسؤول — التصميم والموافقات والتنفيذ والنجارة، كل ذلك ضمن عقد واحد، دون تعدد المقاولين من الباطن.",
-    "إدارة الموافقات داخلياً — يتولى فريق الامتثال لدينا التقديم المباشر لدى بلدية دبي وسلطة دبي للتطوير وتراخيص والدفاع المدني.",
+    "تنسيق الموافقات داخلياً — ينسق فريقنا طلبات الجهات المختصة ومتطلبات شهادات عدم الممانعة حسب موقع المشروع ونطاقه.",
     "ضمان جودة الصنعة لمدة 5 سنوات على النجارة التي نصنّعها ونركّبها.",
     "خبرة حقيقية في مشاريع فعلية، بما في ذلك مقر لهيئة حكومية بمساحة 50,500 قدم مربع تم تنفيذه في مدينة دبي الأكاديمية.",
   ],

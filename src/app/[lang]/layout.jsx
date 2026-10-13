@@ -51,6 +51,10 @@ export const dynamicParams = false;
 
 export const metadata = {
   metadataBase: new URL('https://www.baitalebdaa.com'),
+  // The site has ONE phone number, +971 58 262 1717, always linked explicitly with tel:/wa.me.
+  // Without this, browsers and crawlers auto-detect "Showroom No. 052004009" in the address as a
+  // second (landline-looking) phone number and turn it into a call link.
+  formatDetection: { telephone: false, address: false, email: false },
   title: {
     default: "Bait Al Ebdaa | Turnkey Interior Design Dubai",
     template: "%s | Bait Al Ebdaa",

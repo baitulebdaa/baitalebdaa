@@ -9,8 +9,7 @@ import { Estimator } from "./components/Estimator";
 import { serviceContent, priorityIntroExtra, whyChooseFacts } from "./data/service-content";
 import { locationContent } from "./data/location-content";
 import { abuDhabiCopy } from "./data/abu-dhabi-copy";
-import { pricingGroups } from "./data/pricing";
-import { formatPrice, PRICING_GROUP_BY_SERVICE } from "./lib/pricing";
+import { formatPrice, servicePricing, serviceStartingItem } from "./lib/pricing";
 import { CURRENCY, VAT_INCLUSIVE } from "./data/pricing";
 import { ORG_REF, SITE_URL } from "./lib/schema-ids";
 import { faqPageJsonLd } from "./lib/faq-schema";
@@ -171,9 +170,10 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
   const nearbyAreas = otherAreas.filter((entry) => entry.location.tier === "district" && entry.location.emirate === row.emirate);
   const blogPosts = [dict.mediaPage.featuredArticle, ...dict.mediaPage.articles];
 
-  const pricingGroupId = PRICING_GROUP_BY_SERVICE[row.serviceSlug] || "design";
-  const pricingGroup = pricingGroups.find((g) => g.id === pricingGroupId);
-  const pricingCopy = dict.pricingPage.groups[pricingGroupId];
+  // Only this service's own published prices (or clearly labelled related ones) — see lib/pricing.js.
+  const pricing = servicePricing(row.serviceSlug);
+  // Arabic sheet names such as "شركة فيت اوت" (fit-out company) read wrongly inside a price heading.
+  const pricingServiceName = lang === "ar" ? serviceName.replace(/^شركة\s+/, "") : serviceName;
 
   const home = dict.ourProjectsPage.home;
   // The sheet's short Arabic H1s ("تجديد فلل في دبي", 16 characters) read as fragments and are
@@ -186,7 +186,7 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
   const heroImage = heroPhoto?.src || HERO_IMAGE_BY_SERVICE[row.serviceSlug] || "/assets/luxury-living-room-chandelier-wall-panelling.jpeg";
   const heroAlt = heroPhoto?.alt || row.h1;
   const mosaicPhotos = gallery.filter((photo) => photo.src !== heroImage).slice(0, 2);
-  const startingItem = pricingGroup?.items?.[0];
+  const startingItem = serviceStartingItem(row.serviceSlug);
 
   const waMessage = encodeURIComponent(
     lang === "ar"
@@ -228,8 +228,8 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
             : `Who manages ${authority} approvals for my project?`,
       a:
         lang === "ar"
-          ? `فريق الامتثال الداخلي لدينا يتولى التقديم والمتابعة مع ${authority} نيابة عنك بالكامل، بدءاً من التصاريح الأولية والرسومات الفنية المطلوبة، مروراً بمتابعة حالة الطلب وأي ملاحظات من الجهة، وصولاً إلى شهادة الإنجاز النهائية. هذا يعني أنك لست مضطراً لحضور اجتماعات الجهات بنفسك أو فهم الإجراءات الإدارية المعقدة، فنحن نتحمل هذا الجزء بالكامل ضمن نطاق العقد.`
-          : `Our in-house compliance team handles submissions and follow-up with ${authority} on your behalf in full — from initial permits and the technical drawings they require, through tracking application status and responding to any queries the authority raises, to the final completion certificate. That means you're not required to attend authority meetings yourself or navigate the paperwork alone; it's covered within the project scope.`,
+          ? `يُعدّ فريق الامتثال الداخلي لدينا الطلبات المقدمة إلى ${authority} ويتابعها نيابة عنك، بدءاً من التصاريح الأولية والرسومات الفنية المطلوبة، مروراً بالرد على ملاحظات الجهة، وصولاً إلى شهادة الإنجاز. وتحدد كل جهة مدة المراجعة الخاصة بها، لذلك نضمّنها في جدولك الزمني ونطلعك على كل مستجد.`
+          : `Our in-house compliance team prepares the submissions to ${authority} and follows them up on your behalf, from the initial permits and the technical drawings they require, through any queries the authority raises, to the completion certificate. Review times are set by each authority, so we build them into your schedule and keep you updated.`,
     },
   ];
   const pageFaqs = isFullCoverage ? extraFaqs : unverifiedFaqs;
@@ -410,19 +410,23 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
         <Estimator compact defaultLocationIndex={row.emirate === "Abu Dhabi" ? 1 : 0} ctaHref={waHref} />
 
         {/* Indicative starting prices — real published figures from the pricing page */}
-        {pricingGroup && pricingCopy && (
+        {pricing && pricing.items.length > 0 && (
           <section className="shell slp-pricing-section">
             <Reveal className="slp-pricing-card">
               <div className="slp-pricing-header">
-                <p className="slp-pricing-kicker">{pricingCopy.kicker}</p>
-                <h3>{lang === "ar" ? `أسعار ${serviceName} الاسترشادية` : `${serviceName} starting prices`}</h3>
-                <p>{pricingCopy.subtitle}</p>
+                <p className="slp-pricing-kicker">{lang === "ar" ? "الأسعار الاسترشادية" : "Indicative pricing"}</p>
+                <h3>
+                  {pricing.direct
+                    ? (lang === "ar" ? `أسعار ${pricingServiceName} الاسترشادية` : `${serviceName} starting prices`)
+                    : (lang === "ar" ? `أسعار ابتدائية لأعمال مرتبطة بخدمة ${pricingServiceName}` : `Related starting prices for ${serviceName}`)}
+                </h3>
+                <p>{lang === "ar" ? "أسعار ابتدائية منشورة بالدرهم الإماراتي، غير شاملة ضريبة القيمة المضافة. يُعدّ عرض السعر الخاص بك بعد معاينة الموقع." : "Published starting prices in AED, excluding VAT. Your own quotation follows a site visit."}</p>
                 <a href={`/${lang}/pricing`} className="slp-btn slp-btn--light">
                   {lang === "ar" ? "عرض جميع الأسعار" : "See full pricing"} <ArrowUpRight size={15} />
                 </a>
               </div>
               <ul className="slp-pricing-list">
-                {pricingGroup.items.slice(0, 4).map((item) => (
+                {pricing.items.map((item) => (
                   <li key={item.id}>
                     <span>{dict.pricingPage.items[item.id]}</span>
                     <strong>{formatPrice(item, lang)}</strong>
