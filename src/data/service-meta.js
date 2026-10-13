@@ -1,4 +1,4 @@
-// English meta descriptions for the indexable service pages (Dubai and Abu Dhabi).
+// English meta descriptions for the service pages, written per service for any location.
 // Replaces the sheet-derived template "Bait Al Ebdaa delivers <h1 lowercased> with ...",
 // which produced ungrammatical snippets such as "delivers fit out company in dubai".
 //

@@ -10,7 +10,6 @@ import {
   getSiblingServices,
   isPageIndexable,
   getSafeMetaDescription,
-  getCoverageTier,
 } from "../../../../lib/seo-pages";
 import ServiceLocationPage from "../../../../ServiceLocationPage";
 
@@ -84,7 +83,6 @@ export default async function Page({ params }) {
     location: locationEntry,
     emirateName: getEmirateName(lang, row.emirate),
     authority: getEmirateAuthority(lang, row.emirate),
-    coverage: getCoverageTier(row),
     description: safeDescription,
     otherAreas: getSiblingLocations(lang, row.serviceSlug, row.locationSlug).filter((entry) => isPageIndexable(entry.page)),
     otherServices: getSiblingServices(lang, row.locationSlug, row.serviceSlug).filter((entry) => isPageIndexable(entry.page)),

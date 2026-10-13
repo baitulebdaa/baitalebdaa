@@ -8,7 +8,7 @@ export const dictionaries = {
       startProject: "WhatsApp Now",
       navigate: "Navigate",
       studio: "Studio",
-      studioLocation: "Ajman, United Arab Emirates\nServing Dubai & Abu Dhabi",
+      studioLocation: "Ajman, United Arab Emirates\nServing all seven emirates",
       newEnquiries: "New enquiries",
       menuNote: "Design · Approvals · Fit-out · Joinery",
       contactInfo: "Contact Info",
@@ -36,7 +36,7 @@ export const dictionaries = {
     menuItems: ["Home", "Services", "Projects", "Process", "Pricing", "Contact"],
     hero: {
       slides: [
-        { eyebrow: "Dubai · Abu Dhabi", title: "UAE Turnkey Fit-out & Custom Architectural Joinery", body: "Made to measure in our own workshop and installed in Dubai and Abu Dhabi. Upholstery, wallpaper, gypsum ceilings and full fit-outs too." },
+        { eyebrow: "All seven emirates", title: "UAE Turnkey Fit-out & Custom Architectural Joinery", body: "Made to measure in our own workshop and installed across the UAE. Upholstery, wallpaper, gypsum ceilings and full fit-outs too." },
         { eyebrow: "Workplace", title: "Executive Workplaces Designed with Quiet Authority & Flow", body: "High-performing workplaces shaped around your people, brand and commercial priorities." },
         { eyebrow: "Private residences", title: "Luxury Private Villas Resolved to the Last Detail", body: "Architecture, bespoke joinery and intelligent furnishing brought together by one accountable team." }
       ],
@@ -62,7 +62,7 @@ export const dictionaries = {
       facts: [
         { strong: "15,000", span: "sq ft manufacturing facility" },
         { strong: "1:1", span: "design-to-production control" },
-        { strong: "UAE", span: "Dubai & Abu Dhabi delivery" },
+        { strong: "UAE", span: "Delivery in all seven emirates" },
         { strong: "5-year", span: "workmanship guarantee on our joinery" }
       ]
     },
@@ -140,8 +140,6 @@ export const dictionaries = {
       propertySize: "Property Size (sq ft)",
       scope: "Scope Selection",
       scopeOptions: ["Full Turnkey", "Factory Joinery", "Somfy Curtains"],
-      location: "Emirate Location",
-      locationOptions: ["Dubai (DM & DDA)", "Abu Dhabi"],
       estimatedInvestment: "ESTIMATED INVESTMENT",
       calculatedValue: "Calculated Contract Value",
       inclusions: [
@@ -224,12 +222,12 @@ export const dictionaries = {
       navTitle: "About Us",
       pageTitle: "About Bait Al Ebdaa: Interior Design & Joinery",
       metaTitle: "About Us: Interior Design & Joinery Studio | Bait Al Ebdaa",
-      metaDescription: "Bait Al Ebdaa is a turnkey interior design, fit-out and joinery company in Ajman, serving Dubai and Abu Dhabi with its own in-house manufacturing.",
-      intro: "Bait Al Ebdaa is a turnkey interior design, fit-out and architectural joinery company serving Dubai and Abu Dhabi. We deliver villa and office interiors from initial concept through to final handover, with design, approvals, joinery manufacturing and installation coordinated by one accountable team rather than a chain of separate subcontractors.",
+      metaDescription: "Bait Al Ebdaa is a turnkey interior design, fit-out and joinery company in Ajman, serving all seven emirates with its own in-house manufacturing.",
+      intro: "Bait Al Ebdaa is a turnkey interior design, fit-out and architectural joinery company serving all seven emirates of the UAE. We deliver villa and office interiors from initial concept through to final handover, with design, approvals, joinery manufacturing and installation coordinated by one accountable team rather than a chain of separate subcontractors.",
       sections: {
         whatWeDo: { title: "What We Do", body: "Our work covers interior design, turnkey fit-out, office fit-out, villa and apartment renovation, and custom architectural joinery — including bespoke wardrobes and kitchens. Each project is scoped, designed and quoted individually; nothing is templated." },
         manufacturing: { title: "In-House Manufacturing", body: "We operate a 15,000 sq ft joinery factory at Jurf Industrial 2, Ajman, equipped with CNC machinery and staffed by 50+ carpenters, using European timber and veneers. Producing joinery ourselves — rather than outsourcing it — is what lets us offer a 5-year workmanship guarantee on the pieces we manufacture and install." },
-        serviceAreas: { title: "Service Areas", body: "We deliver projects across Dubai and Abu Dhabi. Our registered address and manufacturing facility are in Ajman." },
+        serviceAreas: { title: "Service Areas", body: "We deliver projects in all seven emirates: Dubai, Abu Dhabi, Sharjah, Ajman, Ras Al Khaimah, Fujairah and Umm Al Quwain. Our registered address and manufacturing facility are in Ajman." },
         approvals: { title: "Authority Approvals", body: "Our team coordinates applicable authority submissions and NOC requirements based on the project location and scope, such as the Dubai Municipality and Dubai Development Authority (DDA) submissions on our published Dubai Academic City project, and the relevant Abu Dhabi authorities for Abu Dhabi projects, so clients don't have to navigate the paperwork themselves." },
         projects: { title: "Project Experience", body: "Recent work includes a confidential government authority headquarters in Dubai Academic City — a 50,500 sq ft interior fit-out and MEP project spanning three floors. See our projects page for details." },
       },
@@ -354,8 +352,8 @@ export const dictionaries = {
     contactPage: {
       navTitle: "Contact Us",
       pageTitle: "Contact Bait Al Ebdaa About Your Project",
-      metaTitle: "Contact Bait Al Ebdaa | Free Site Survey, Dubai & Abu Dhabi",
-      metaDescription: "Contact Bait Al Ebdaa for interior design, turnkey fit-out and joinery projects in Dubai and Abu Dhabi. Request a quote or discuss procurement."
+      metaTitle: "Contact Bait Al Ebdaa | Free Site Survey Across the UAE",
+      metaDescription: "Contact Bait Al Ebdaa for interior design, turnkey fit-out and joinery projects across the UAE. Request a quote or discuss procurement."
     },
     projectsPageLayout: {
       intro: "A selection of residential and commercial interiors delivered by one accountable team, from 3D design and approvals to in-house joinery and handover.",
@@ -367,7 +365,7 @@ export const dictionaries = {
     },
     servicesPageLayout: {
       intro2: "From concept design to turnkey fit-out and custom joinery, every service is delivered by one accountable team, with approvals and in-house manufacturing included.",
-      intro3: "Our team covers interior design, commercial and residential fit-out, villa, apartment and office renovation, bespoke joinery, kitchens, wardrobes and motorized curtains in Dubai and Abu Dhabi. Pick a service below to see its scope, typical timelines, published starting prices and answers to common questions, or message us on WhatsApp for a free site visit and quotation.",
+      intro3: "Our team covers interior design, commercial and residential fit-out, villa, apartment and office renovation, bespoke joinery, kitchens, wardrobes and motorized curtains across all seven emirates. Pick a service below to see its scope, typical timelines, published starting prices and answers to common questions, or message us on WhatsApp for a free site visit and quotation.",
       browse: "Browse services",
       whatsappMessage: "Hello! I would like to know more about your services.",
       statsLabel: "Bait Al Ebdaa at a glance",
@@ -451,7 +449,7 @@ export const dictionaries = {
         "kitchen-lacquer": "Lacquer / veneer kitchen",
         "kitchen-premium": "Premium kitchen joinery",
         "design-consultation": "Initial consultation",
-        "design-survey": "Site survey (within Dubai, subject to project suitability)",
+        "design-survey": "Site survey (anywhere in the UAE, subject to project suitability)",
         "design-single-room": "Single-room concept + photorealistic 3D",
         "design-apartment": "Apartment design package",
         "design-townhouse": "Townhouse design package",
@@ -528,7 +526,7 @@ export const dictionaries = {
         approvals: {
           kicker: "Approvals",
           title: "Approvals & NOC Coordination",
-          subtitle: "Coordination with landlords, communities and government authorities for projects in Dubai and Abu Dhabi.",
+          subtitle: "Coordination with landlords, communities and government authorities for projects across the UAE.",
           note: "Authority, developer, consultant and statutory fees are charged separately at actual cost. Requirements and timelines remain subject to the relevant authority.",
           cta: "Discuss Approval Requirements"
         }
@@ -554,7 +552,7 @@ export const dictionaries = {
       serviceType: "Service Type",
       serviceOptions: ["Turnkey Fit-out (Civil+MEP)", "Custom Joinery Only", "Somfy Motorized Curtains", "All of the Above"],
       locationLabel: "Location Emirate",
-      locationOptions: ["Dubai", "Abu Dhabi", "Other emirate — availability to be confirmed"],
+      locationOptions: ["Dubai", "Abu Dhabi", "Sharjah", "Ajman", "Ras Al Khaimah", "Fujairah", "Umm Al Quwain"],
       descriptionLabel: "Project Description (Optional)",
       descriptionPlaceholder: "Tell us your vision...",
       submit: "Get My Quote",
@@ -591,7 +589,7 @@ export const dictionaries = {
         whatToCreate: "What would you like to create?"
       },
       countries: ["UAE", "KSA", "Other"],
-      locations: ["Dubai", "Abu Dhabi", "Other UAE"],
+      locations: ["Dubai", "Abu Dhabi", "Sharjah", "Ajman", "Ras Al Khaimah", "Fujairah", "Umm Al Quwain"],
       contactPerson: "Contact Person Details",
       companyDetails: "Company Details",
       uploadCV: "Upload CV",
@@ -1068,7 +1066,7 @@ export const dictionaries = {
 <p>Two features of the UAE's environment make joinery quality a much bigger differentiator here than in, say, temperate Europe. The first is climate: sustained high heat and fluctuating indoor/outdoor humidity put real stress on timber, veneers, adhesives and hardware, so joinery that isn't engineered for this climate visibly fails faster — doors warp, veneer lifts at the edges, and soft-close mechanisms stiffen. The second is market expectation: the UAE's luxury residential and hospitality market has trained buyers and tenants to expect European-standard finishes, so joinery that would pass unnoticed in a mid-market property elsewhere reads as a shortfall here. Together, these two facts mean the gap between good and mediocre joinery shows up faster and matters more in Dubai and Abu Dhabi than in most other markets.</p>
 
 <h2>Precision Manufacturing: Why In-House Production Changes the Outcome</h2>
-<p>At Bait Al Ebdaa, custom joinery for Dubai and Abu Dhabi projects is manufactured in-house at a dedicated 15,000 sq ft facility in Ajman, using German CNC machinery and sustainably sourced European timber. In-house production — as opposed to outsourcing to a third-party carpentry subcontractor, which is how many "design-only" interior firms actually deliver joinery — matters for three concrete reasons:</p>
+<p>At Bait Al Ebdaa, custom joinery for projects across the UAE is manufactured in-house at a dedicated 15,000 sq ft facility in Ajman, using German CNC machinery and sustainably sourced European timber. In-house production — as opposed to outsourcing to a third-party carpentry subcontractor, which is how many "design-only" interior firms actually deliver joinery — matters for three concrete reasons:</p>
 <ul>
 <li style='margin-bottom: 10px;'><strong>Perfect fit:</strong> Laser-measured templates taken directly from the finished site (not from the original architectural drawings, which rarely match as-built reality exactly) ensure millimeter-perfect installation, with consistent reveals and gaps across every door and drawer front.</li>
 <li style='margin-bottom: 10px;'><strong>Premium, consistent finishes:</strong> From high-gloss polyurethane lacquer to natural wood veneers and matte thermofoil, dedicated finishing booths with controlled spray environments deliver a flawless, uniform sheen across an entire run of cabinetry — something very difficult to achieve with finishing done on-site.</li>
@@ -1166,8 +1164,8 @@ export const dictionaries = {
 <p>Reputable joinery suppliers in Dubai and Abu Dhabi offer a written workmanship warranty — commonly around 5 years — covering hardware, structural integrity and finish defects; always confirm the specific terms and duration in writing before signing a contract rather than relying on a verbal assurance.</p>
 <h3>How far in advance should joinery be ordered before a move-in date?</h3>
 <p>Allowing 6–8 weeks from design sign-off to installed joinery is a realistic planning window for most residential projects, though this can extend for larger commercial scopes or highly complex custom configurations — building this into a renovation or relocation timeline early avoids the common mistake of underestimating joinery lead time relative to the rest of a fit-out.</p>
-<h3>Can joinery be manufactured for a project outside Dubai and Abu Dhabi?</h3>
-<p>Joinery is manufactured at our Ajman facility and delivered to projects in Dubai and Abu Dhabi. Transit time and any location-based pricing adjustment are confirmed for each project during the initial consultation.</p>
+<h3>Can joinery be delivered to a project anywhere in the UAE?</h3>
+<p>Yes. Joinery is manufactured at our Ajman facility and delivered to projects in all seven emirates at the same price. Transit time is confirmed for each project during the initial consultation.</p>
 <h3>What's the difference between architectural joinery and carpentry?</h3>
 <p>The terms overlap significantly, but "architectural joinery" typically implies a higher level of design integration with the building itself — items planned alongside the architectural and MEP drawings rather than added afterward — while "carpentry" is sometimes used more loosely to cover any timber-based construction or repair work, including tasks far smaller in scope than a fitted kitchen or wardrobe system.</p>
 <h3>Can joinery be phased across a renovation happening room by room?</h3>
@@ -1393,7 +1391,7 @@ export const dictionaries = {
     },
     ourServicesPage: {
       metaTitle: "Interior Design, Fit-Out & Joinery Services | Bait Al Ebdaa",
-      metaDescription: "Explore Bait Al Ebdaa's interior design, turnkey fit-out and custom joinery services across Dubai and Abu Dhabi, from concept to handover.",
+      metaDescription: "Explore Bait Al Ebdaa's interior design, turnkey fit-out and custom joinery services across the UAE, from concept to handover.",
       navTitle: "Our Services",
       pageTitle: "Interior Design, Fit-Out & Joinery Services",
       whatWeOffer: "What Do We Offer",
@@ -1401,7 +1399,7 @@ export const dictionaries = {
       offeringsSubtitle: "We provide customized interior solutions tailored every project need.",
       learnMore: "Learn More ↗",
       exploreByServiceKicker: "Browse by service",
-      exploreByServiceTitle: "Every Service, in Dubai & Abu Dhabi",
+      exploreByServiceTitle: "Every Service, Across the UAE",
       exploreByServiceSubtitle: "Jump straight to the service you need — each page covers scope, process, cost context and FAQs for your emirate.",
       services: [
         {
@@ -1467,7 +1465,7 @@ export const dictionaries = {
       startProject: "واتساب الآن",
       navigate: "تصفح",
       studio: "الاستوديو",
-      studioLocation: "عجمان، الإمارات العربية المتحدة\nنخدم دبي وأبوظبي",
+      studioLocation: "عجمان، الإمارات العربية المتحدة\nنخدم جميع الإمارات السبع",
       newEnquiries: "استفسارات جديدة",
       menuNote: "تصميم · موافقات · تجهيز · نجارة",
       contactInfo: "معلومات الاتصال",
@@ -1494,7 +1492,7 @@ export const dictionaries = {
     menuItems: ["الرئيسية", "الخدمات", "المشاريع", "العملية", "الأسعار", "اتصل بنا"],
     hero: {
       slides: [
-        { eyebrow: "دبي · أبوظبي", title: "تجهيز متكامل ونجارة معمارية مخصصة في الإمارات", body: "مصنوعة حسب الطلب في ورشتنا الخاصة ويتم تركيبها في دبي وأبوظبي. بالإضافة إلى التنجيد، ورق الجدران، أسقف الجبس، والتجهيزات الكاملة." },
+        { eyebrow: "جميع الإمارات السبع", title: "تجهيز متكامل ونجارة معمارية مخصصة في الإمارات", body: "مصنوعة حسب الطلب في ورشتنا الخاصة ويتم تركيبها في جميع أنحاء الإمارات. بالإضافة إلى التنجيد، ورق الجدران، أسقف الجبس، والتجهيزات الكاملة." },
         { eyebrow: "مساحات العمل", title: "مساحات عمل تنفيذية مصممة بهيبة هادئة وتدفق سلس", body: "مساحات عمل عالية الأداء مصممة حول موظفيك وعلامتك التجارية وأولوياتك التجارية." },
         { eyebrow: "مساكن خاصة", title: "فلل خاصة فاخرة مصممة بأدق التفاصيل المعمارية المميزة", body: "هندسة معمارية ونجارة مخصصة وأثاث ذكي يجمعها فريق واحد مسؤول." }
       ],
@@ -1520,7 +1518,7 @@ export const dictionaries = {
       facts: [
         { strong: "15,000", span: "قدم مربع مساحة منشأة التصنيع" },
         { strong: "1:1", span: "تحكم من التصميم إلى الإنتاج" },
-        { strong: "الإمارات", span: "تسليم في دبي وأبوظبي" },
+        { strong: "الإمارات", span: "تسليم في جميع الإمارات السبع" },
         { strong: "5 سنوات", span: "ضمان جودة الصنعة على نجارتنا" }
       ]
     },
@@ -1604,8 +1602,6 @@ export const dictionaries = {
       propertySize: "مساحة العقار (قدم مربع)",
       scope: "تحديد النطاق",
       scopeOptions: ["تسليم مفتاح كامل", "نجارة المصنع", "ستائر سومفي"],
-      location: "الإمارة",
-      locationOptions: ["دبي (بلدية دبي)", "أبوظبي"],
       estimatedInvestment: "الاستثمار المقدر",
       calculatedValue: "قيمة العقد المحسوبة",
       inclusions: [
@@ -1678,12 +1674,12 @@ export const dictionaries = {
       navTitle: "من نحن",
       pageTitle: "عن بيت الإبداع: التصميم الداخلي والنجارة",
       metaTitle: "من نحن: استوديو تصميم داخلي ونجارة | بيت الإبداع",
-      metaDescription: "بيت الإبداع شركة تصميم داخلي وتجهيز شامل ونجارة معمارية مقرها عجمان، تخدم دبي وأبوظبي بتصنيع داخلي خاص.",
-      intro: "بيت الإبداع شركة تصميم داخلي وتجهيز شامل ونجارة معمارية تخدم دبي وأبوظبي. ننفّذ تصاميم الفلل والمكاتب من المفهوم الأولي وحتى التسليم النهائي، بإدارة فريق واحد مسؤول عن التصميم والموافقات والتصنيع والتركيب، دون سلسلة من مقاولين من الباطن منفصلين.",
+      metaDescription: "بيت الإبداع شركة تصميم داخلي وتجهيز شامل ونجارة معمارية مقرها عجمان، تخدم جميع الإمارات السبع بتصنيع داخلي خاص.",
+      intro: "بيت الإبداع شركة تصميم داخلي وتجهيز شامل ونجارة معمارية تخدم جميع إمارات الدولة السبع. ننفّذ تصاميم الفلل والمكاتب من المفهوم الأولي وحتى التسليم النهائي، بإدارة فريق واحد مسؤول عن التصميم والموافقات والتصنيع والتركيب، دون سلسلة من مقاولين من الباطن منفصلين.",
       sections: {
         whatWeDo: { title: "ماذا نقدّم", body: "يشمل عملنا التصميم الداخلي، والتجهيز الشامل، وتجهيز المكاتب، وتجديد الفلل والشقق، والنجارة المعمارية المخصصة — بما في ذلك الخزائن والمطابخ المصممة حسب الطلب. يتم تحديد نطاق كل مشروع وتصميمه وتسعيره بشكل فردي، دون أي قوالب جاهزة." },
         manufacturing: { title: "تصنيع داخلي خاص", body: "نُدير مصنع نجارة بمساحة 15,000 قدم مربع في الجرف الصناعية 2، عجمان، مجهّزاً بآلات CNC وبأكثر من 50 نجاراً، باستخدام خشب وقشرة أوروبية. تصنيع النجارة داخلياً — بدلاً من تعهيدها لجهات خارجية — هو ما يتيح لنا تقديم ضمان جودة الصنعة لمدة 5 سنوات على القطع التي نصنّعها ونركّبها." },
-        serviceAreas: { title: "مناطق الخدمة", body: "ننفّذ مشاريعنا في دبي وأبوظبي. عنواننا المسجّل ومنشأة التصنيع الخاصة بنا في عجمان." },
+        serviceAreas: { title: "مناطق الخدمة", body: "ننفّذ مشاريعنا في الإمارات السبع: دبي وأبوظبي والشارقة وعجمان ورأس الخيمة والفجيرة وأم القيوين. عنواننا المسجّل ومنشأة التصنيع الخاصة بنا في عجمان." },
         approvals: { title: "موافقات الجهات الحكومية", body: "ينسق فريقنا طلبات الجهات المختصة ومتطلبات شهادات عدم الممانعة حسب موقع المشروع ونطاقه، مثل طلبات بلدية دبي وسلطة دبي للتطوير (DDA) في مشروعنا المنشور بمدينة دبي الأكاديمية، والجهات المختصة في أبوظبي لمشاريع أبوظبي، بحيث لا يحتاج العميل للتعامل مع هذه الإجراءات بنفسه." },
         projects: { title: "خبرة في المشاريع الفعلية", body: "من أعمالنا الأخيرة مقر لهيئة حكومية سرية في مدينة دبي الأكاديمية — مشروع تجهيز داخلي وأعمال كهروميكانيكية بمساحة 50,500 قدم مربع على ثلاثة طوابق. راجع صفحة مشاريعنا للتفاصيل." },
       },
@@ -1808,8 +1804,8 @@ export const dictionaries = {
     contactPage: {
       navTitle: "اتصل بنا",
       pageTitle: "تواصل مع بيت الإبداع بخصوص مشروعك",
-      metaTitle: "تواصل معنا: معاينة مجانية في دبي وأبوظبي | بيت الإبداع",
-      metaDescription: "تواصل مع بيت الإبداع لخدمات التصميم الداخلي والتشطيبات الكاملة والنجارة في دبي وأبوظبي — اطلب عرض سعر، أو ناقش التوريد، أو تقدم لوظيفة."
+      metaTitle: "تواصل معنا: معاينة مجانية في جميع أنحاء الإمارات | بيت الإبداع",
+      metaDescription: "تواصل مع بيت الإبداع لخدمات التصميم الداخلي والتشطيبات الكاملة والنجارة في جميع أنحاء الإمارات — اطلب عرض سعر، أو ناقش التوريد، أو تقدم لوظيفة."
     },
     projectsPageLayout: {
       intro: "مختارات من التصاميم الداخلية السكنية والتجارية التي نفذها فريق واحد مسؤول، من التصميم ثلاثي الأبعاد والموافقات إلى النجارة الداخلية والتسليم.",
@@ -1821,7 +1817,7 @@ export const dictionaries = {
     },
     servicesPageLayout: {
       intro2: "من التصميم المبدئي إلى التجهيز الشامل والنجارة المخصصة، يقدم فريق واحد مسؤول كل خدمة، مع الموافقات والتصنيع الداخلي.",
-      intro3: "يغطي فريقنا التصميم الداخلي والتجهيز التجاري والسكني وتجديد الفلل والشقق والمكاتب والنجارة المخصصة والمطابخ وخزائن الملابس والستائر الكهربائية في دبي وأبوظبي. اختر خدمة من الأسفل لتطّلع على نطاق العمل والمدد الزمنية المعتادة وأسعار البدء المعلنة وإجابات الأسئلة الشائعة، أو راسلنا عبر واتساب لزيارة موقع وعرض سعر مجانيين.",
+      intro3: "يغطي فريقنا التصميم الداخلي والتجهيز التجاري والسكني وتجديد الفلل والشقق والمكاتب والنجارة المخصصة والمطابخ وخزائن الملابس والستائر الكهربائية في جميع الإمارات السبع. اختر خدمة من الأسفل لتطّلع على نطاق العمل والمدد الزمنية المعتادة وأسعار البدء المعلنة وإجابات الأسئلة الشائعة، أو راسلنا عبر واتساب لزيارة موقع وعرض سعر مجانيين.",
       browse: "تصفح الخدمات",
       whatsappMessage: "مرحباً! أرغب بمعرفة المزيد عن خدماتكم.",
       statsLabel: "بيت الإبداع في لمحة",
@@ -1905,7 +1901,7 @@ export const dictionaries = {
         "kitchen-lacquer": "مطبخ لاكيه / فينير",
         "kitchen-premium": "مطبخ فاخر",
         "design-consultation": "استشارة أولية",
-        "design-survey": "مسح الموقع (داخل دبي، حسب ملاءمة المشروع)",
+        "design-survey": "مسح الموقع (في جميع أنحاء الإمارات، حسب ملاءمة المشروع)",
         "design-single-room": "تصور غرفة واحدة + رندر ثلاثي الأبعاد واقعي",
         "design-apartment": "باقة تصميم شقة",
         "design-townhouse": "باقة تصميم تاون هاوس",
@@ -1982,7 +1978,7 @@ export const dictionaries = {
         approvals: {
           kicker: "الموافقات",
           title: "الموافقات وتنسيق عدم الممانعة",
-          subtitle: "تنسيق مع الملاك والمجتمعات السكنية والجهات الحكومية لمشاريعنا في دبي وأبوظبي.",
+          subtitle: "تنسيق مع الملاك والمجتمعات السكنية والجهات الحكومية لمشاريعنا في جميع أنحاء الإمارات.",
           note: "رسوم الجهات الحكومية والمطورين والاستشاريين والرسوم النظامية تُحتسب منفصلة وبسعرها الفعلي. تبقى المتطلبات والمدد الزمنية خاضعة للجهة المختصة.",
           cta: "ناقش متطلبات الموافقة"
         }
@@ -2008,7 +2004,7 @@ export const dictionaries = {
       serviceType: "نوع الخدمة",
       serviceOptions: ["تجهيز شامل (مدني + كهروميكانيك)", "نجارة مخصصة فقط", "ستائر سومفي الآلية", "جميع ما سبق"],
       locationLabel: "الإمارة",
-      locationOptions: ["دبي", "أبوظبي", "إمارة أخرى — نؤكد إمكانية التنفيذ بعد التواصل"],
+      locationOptions: ["دبي", "أبوظبي", "الشارقة", "عجمان", "رأس الخيمة", "الفجيرة", "أم القيوين"],
       descriptionLabel: "وصف المشروع (اختياري)",
       descriptionPlaceholder: "أخبرنا عن رؤيتك...",
       submit: "احصل على عرض السعر",
@@ -2045,7 +2041,7 @@ export const dictionaries = {
         whatToCreate: "ماذا تود أن تنشئ؟"
       },
       countries: ["الإمارات", "السعودية", "أخرى"],
-      locations: ["دبي", "أبوظبي", "الإمارات الأخرى"],
+      locations: ["دبي", "أبوظبي", "الشارقة", "عجمان", "رأس الخيمة", "الفجيرة", "أم القيوين"],
       contactPerson: "تفاصيل جهة الاتصال",
       companyDetails: "تفاصيل الشركة",
       uploadCV: "رفع السيرة الذاتية",
@@ -2526,7 +2522,7 @@ export const dictionaries = {
 <p>ميزتان في بيئة الإمارات تجعلان جودة النجارة عاملاً فارقاً أكبر بكثير مما هو عليه في مناخ معتدل مثل أوروبا. الأولى هي المناخ: الحرارة المستمرة الشديدة والرطوبة الداخلية والخارجية المتقلبة تضع ضغطاً حقيقياً على الخشب والقشرة واللواصق والأجهزة، لذا فإن النجارة غير المُصممة لهذا المناخ تفشل بشكل مرئي أسرع — تلتوي الأبواب، وترتفع القشرة عند الحواف، وتتصلب آليات الإغلاق الهادئ. الثانية هي توقعات السوق: دَرّب سوق الإمارات السكني والضيافي الفاخر المشترين والمستأجرين على توقع تشطيبات بمعايير أوروبية، لذا فإن نجارة قد تمر دون ملاحظة في سوق متوسط في مكان آخر تُقرأ هنا كنقص واضح. معاً، هاتان الحقيقتان تعنيان أن الفجوة بين النجارة الجيدة والمتوسطة تظهر أسرع وتهم أكثر في دبي وأبوظبي مقارنة بمعظم الأسواق الأخرى.</p>
 
 <h2>التصنيع الدقيق: لماذا يُغيّر الإنتاج الداخلي النتيجة</h2>
-<p>في بيت الإبداع، تُصنّع النجارة المخصصة لمشاريع دبي وأبوظبي داخلياً في منشأة مخصصة بمساحة 15,000 قدم مربع في عجمان، باستخدام آلات CNC ألمانية وأخشاب أوروبية مستدامة المصدر. الإنتاج الداخلي — على عكس الإسناد لمقاول نجارة خارجي من الباطن، وهو كيف تُسلّم فعلياً العديد من شركات "التصميم فقط" النجارة — يهم لثلاثة أسباب ملموسة:</p>
+<p>في بيت الإبداع، تُصنّع النجارة المخصصة لمشاريعنا في جميع أنحاء الإمارات داخلياً في منشأة مخصصة بمساحة 15,000 قدم مربع في عجمان، باستخدام آلات CNC ألمانية وأخشاب أوروبية مستدامة المصدر. الإنتاج الداخلي — على عكس الإسناد لمقاول نجارة خارجي من الباطن، وهو كيف تُسلّم فعلياً العديد من شركات "التصميم فقط" النجارة — يهم لثلاثة أسباب ملموسة:</p>
 <ul>
 <li style='margin-bottom: 10px;'><strong>ملاءمة مثالية:</strong> تضمن القوالب المقاسة بالليزر والمأخوذة مباشرة من الموقع المُنجز (وليس من الرسومات المعمارية الأصلية، التي نادراً ما تطابق الواقع المُنفّذ بدقة) تركيباً دقيقاً بالمليمتر، مع فراغات وفجوات متسقة عبر كل باب ودرج.</li>
 <li style='margin-bottom: 10px;'><strong>تشطيبات فاخرة ومتسقة:</strong> من البولي يوريثين عالي اللمعان إلى القشور الخشبية الطبيعية والثيرموفويل غير اللامع، تقدم كبائن التشطيب المخصصة ببيئات رش مُتحكم بها لمعاناً موحداً لا تشوبه شائبة عبر سلسلة كاملة من الخزائن — وهو أمر يصعب تحقيقه للغاية بالتشطيب المُنجز في الموقع.</li>
@@ -2632,8 +2628,8 @@ export const dictionaries = {
 <p>موردو النجارة المرموقون في دبي وأبوظبي يقدمون ضمان صنعة مكتوباً — عادة حوالي 5 سنوات — يغطي الأجهزة والسلامة الإنشائية وعيوب التشطيب؛ تأكد دائماً من الشروط والمدة المحددة كتابياً قبل توقيع العقد.</p>
 <h3>كم يجب طلب النجارة مقدماً قبل تاريخ الانتقال؟</h3>
 <p>السماح بـ6-8 أسابيع من اعتماد التصميم إلى النجارة المُركّبة نافذة تخطيط واقعية لمعظم المشاريع السكنية، رغم أن هذا يمكن أن يمتد للنطاقات التجارية الأكبر أو التكوينات المخصصة المعقدة للغاية.</p>
-<h3>هل يمكن تصنيع النجارة لمشروع خارج دبي وأبوظبي؟</h3>
-<p>تُصنع النجارة في منشأتنا في عجمان وتُسلَّم للمشاريع في دبي وأبوظبي، ويُؤكَّد وقت النقل وأي تعديل سعري حسب الموقع لكل مشروع خلال الاستشارة الأولية.</p>
+<h3>هل يمكن توريد النجارة لمشروع في أي مكان في الإمارات؟</h3>
+<p>نعم. تُصنع النجارة في منشأتنا في عجمان وتُسلَّم للمشاريع في جميع الإمارات السبع بالسعر نفسه، ويُؤكَّد وقت النقل لكل مشروع خلال الاستشارة الأولية.</p>
 <h3>ما الفرق بين النجارة المعمارية والنجارة العامة؟</h3>
 <p>يتداخل المصطلحان بشكل كبير، لكن "النجارة المعمارية" تعني عادة مستوى أعلى من التكامل التصميمي مع المبنى نفسه — عناصر مُخططة جنباً إلى جنب مع الرسومات المعمارية والكهروميكانيكية بدلاً من إضافتها لاحقاً — بينما تُستخدم "النجارة" أحياناً بشكل أعم لتغطي أي عمل خشبي إنشائي أو إصلاحي، بما يشمل مهام أصغر بكثير من نطاق مطبخ أو نظام غرفة ملابس مُثبّت.</p>
 <h3>هل يمكن تنفيذ النجارة على مراحل عبر تجديد يتم غرفة بغرفة؟</h3>
@@ -2863,7 +2859,7 @@ export const dictionaries = {
     },
     ourServicesPage: {
       metaTitle: "خدمات التصميم الداخلي والتجهيز والنجارة | بيت الإبداع",
-      metaDescription: "استكشف خدمات بيت الإبداع في التصميم الداخلي والتجهيز الشامل والنجارة المخصصة في دبي وأبوظبي، من المفهوم حتى التسليم.",
+      metaDescription: "استكشف خدمات بيت الإبداع في التصميم الداخلي والتجهيز الشامل والنجارة المخصصة في جميع أنحاء الإمارات، من المفهوم حتى التسليم.",
       navTitle: "خدماتنا",
       pageTitle: "خدمات التصميم الداخلي والتجهيز والنجارة",
       whatWeOffer: "ماذا نقدم",
@@ -2871,7 +2867,7 @@ export const dictionaries = {
       offeringsSubtitle: "نحن نقدم حلولًا داخلية مخصصة ومصممة لتلبية احتياجات كل مشروع.",
       learnMore: "اعرف المزيد ↗",
       exploreByServiceKicker: "تصفح حسب الخدمة",
-      exploreByServiceTitle: "كل خدمة، في دبي وأبوظبي",
+      exploreByServiceTitle: "كل خدمة، في جميع أنحاء الإمارات",
       exploreByServiceSubtitle: "انتقل مباشرة إلى الخدمة التي تحتاجها — تغطي كل صفحة النطاق والعملية والتكلفة التقديرية والأسئلة الشائعة لإمارتك.",
       services: [
         {

@@ -129,15 +129,34 @@ test("every meta description on the site is 150 characters or fewer, in English 
   }
   for (const match of read("src/data/legal-pages.js").matchAll(/metaDescription: "([^"]*)"/g)) found.push(["legal page", match[1]]);
   for (const match of read("src/app/[lang]/page.jsx").matchAll(/description:\s*"([^"]*)"/g)) found.push(["homepage", match[1]]);
-  for (const [slug, write] of Object.entries(SERVICE_META_EN)) for (const city of ["Dubai", "Abu Dhabi"]) found.push([`service ${slug}/${city}`, write(city)]);
+  // Indexed emirates must get the hand-written description; longer place names fall back to a
+  // short sentence in getSafeMetaDescription (checked in the rendered-page crawl).
+  for (const [slug, write] of Object.entries(SERVICE_META_EN)) for (const city of ["Dubai", "Abu Dhabi", "Sharjah", "Ajman"]) found.push([`service ${slug}/${city}`, write(city)]);
   const tooLong = found.filter(([, text]) => text.length > META_DESCRIPTION_MAX).map(([where, text]) => `${where}: ${text.length}`);
   assert.deepEqual(tooLong, []);
 });
 
-test("coverage claims say Dubai and Abu Dhabi, never the whole UAE", () => {
-  const copy = ["src/i18n/dictionaries.js", "src/data/service-content.js", "src/data/page-faqs.js", "src/app/api/chat/route.js"].map(read).join("\n");
-  const wide = copy.match(/(across the UAE(?!'s two)|wider UAE|throughout the UAE|all (seven|7) emirates|جميع أنحاء الإمارات|كافة أنحاء الإمارات|سائر أنحاء الإمارات)/g) || [];
-  assert.deepEqual(wide, []);
+const EMIRATES = {
+  en: ["Dubai", "Abu Dhabi", "Sharjah", "Ajman", "Ras Al Khaimah", "Fujairah", "Umm Al Quwain"],
+  ar: ["دبي", "أبوظبي", "الشارقة", "عجمان", "رأس الخيمة", "الفجيرة", "أم القيوين"],
+};
+
+test("coverage copy says all seven emirates, not only Dubai and Abu Dhabi", async () => {
+  const { PAGE_FAQS } = await import("../src/data/page-faqs.js");
+  for (const lang of ["en", "ar"]) {
+    const d = dictionaries[lang];
+    const coverage = [
+      d.nav.studioLocation, d.aboutPage.metaDescription, d.aboutPage.intro, d.contactPage.metaTitle, d.contactPage.metaDescription,
+      d.ourServicesPage.metaDescription, d.ourServicesPage.exploreByServiceTitle, ...d.studioSection.facts.map((fact) => fact.span),
+      ...PAGE_FAQS[lang].contact.items.map((faq) => faq.a), ...PAGE_FAQS[lang].about.items.map((faq) => faq.a),
+    ].join(" ");
+    // "دبي وأبوظبي والشارقة…" is the full seven-emirate list, not a two-city claim.
+    assert.doesNotMatch(coverage, /Dubai (and|&) Abu Dhabi|دبي وأبوظبي(?! والشارقة)/, lang);
+    for (const emirate of EMIRATES[lang]) assert.ok(d.aboutPage.sections.serviceAreas.body.includes(emirate), `${lang} service areas: ${emirate}`);
+  }
+  // page-metadata.js uses extensionless imports Node can't load directly, so check its source.
+  assert.ok(read("src/lib/page-metadata.js").includes(`areaServed: ${JSON.stringify(EMIRATES.en).replace(/,/g, ", ")}.map(`));
+  for (const file of ["src/app/llms.txt/route.js", "src/app/api/chat/route.js"]) assert.match(read(file), /all seven emirates/, file);
 });
 
 test("the site publishes exactly one phone number and stops address digits being auto-linked", () => {
@@ -156,7 +175,7 @@ test("service pages only show their own published prices", async () => {
   for (const [slug, entry] of Object.entries(SERVICE_PRICING)) {
     if (!entry) continue;
     for (const id of entry.items) assert.ok(ids.has(id), `${slug}: unknown price item ${id}`);
-    assert.ok(!entry.items.includes("design-survey"), `${slug}: Dubai-only survey line would show on Abu Dhabi pages`);
+    assert.ok(!entry.items.includes("design-survey"), `${slug}: the free survey is not a service starting price`);
   }
   for (const slug of ["restaurant-fit-out", "retail-fit-out"]) {
     assert.equal(servicePricing(slug), null, `${slug} has no published price and must not borrow office prices`);
@@ -178,11 +197,21 @@ test("every Abu Dhabi substitution still matches the shared copy it rewrites", (
   for (const from of pairs) assert.ok(source.includes(from), `no longer found: ${from.slice(0, 60)}`);
 });
 
-test("quote form offers Dubai, Abu Dhabi and 'other emirate', never every emirate", () => {
+test("quote and contact forms offer all seven emirates; estimator and survey are priced the same everywhere", () => {
+  assert.doesNotMatch(read("src/components/Estimator.jsx"), /LOCATION_MULTIPLIER|locationOptions/);
+  assert.doesNotMatch(dictionaries.en.pricingPage.items["design-survey"] + dictionaries.ar.pricingPage.items["design-survey"], /within Dubai|داخل دبي/);
   for (const lang of ["en", "ar"]) {
-    const options = dictionaries[lang].quoteModal.locationOptions;
-    assert.equal(options.length, 3, lang);
-    assert.doesNotMatch(options.join(" "), /Sharjah|Fujairah|Ras Al Khaimah|Umm Al Quwain|الشارقة|الفجيرة|رأس الخيمة|أم القيوين|permits|تصاريح/);
+    assert.deepEqual(dictionaries[lang].quoteModal.locationOptions, EMIRATES[lang], lang);
+    assert.deepEqual(dictionaries[lang].contactSection.locations, EMIRATES[lang], `${lang} contact form`);
+  }
+});
+
+test("phase 1 indexes every service in Dubai, Abu Dhabi, Sharjah and Ajman, and nothing else", () => {
+  const { pages } = JSON.parse(read("src/data/seo-pages.json"));
+  for (const lang of ["en", "ar"]) {
+    const indexed = Object.values(pages[lang]).filter((page) => page.approved);
+    assert.equal(indexed.length, 68, lang);
+    assert.deepEqual([...new Set(indexed.map((page) => page.location))].sort(), ["Abu Dhabi", "Ajman", "Dubai", "Sharjah"]);
   }
 });
 

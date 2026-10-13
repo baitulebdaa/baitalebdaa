@@ -32,12 +32,13 @@ const CORE_LOCATIONS = new Set([
   "Umm Al Quwain",
 ]);
 
-// Indexing follows VERIFIED delivery coverage only (site copy + Organization schema state
-// Dubai and Abu Dhabi; the joinery factory is in Ajman). Everything else is generated but
-// stays noindex,follow until real coverage and local proof are confirmed — including the
-// UAE-wide pages, which can return once rewritten as truthful national hubs.
-const isIndexablePage = (location, serviceSlug) =>
-  location === "Dubai" || location === "Abu Dhabi" || (location === "Ajman" && serviceSlug === "joinery");
+// The business delivers in all seven emirates (owner, 13 Oct 2026), but emirate pages are
+// opened to indexing in phases so Search Console can show whether each batch of templated
+// pages is accepted before the next goes live. Phase 1 (13 Oct 2026): Dubai, Abu Dhabi,
+// Sharjah and Ajman, every service. Ras Al Khaimah, Fujairah, Umm Al Quwain, the UAE-wide
+// pages and all district pages stay noindex,follow (and out of the sitemap) for now.
+const INDEXED_EMIRATES = new Set(["Dubai", "Abu Dhabi", "Sharjah", "Ajman"]);
+const isIndexablePage = (location) => INDEXED_EMIRATES.has(location);
 
 // The sheet's own URL / Canonical / Hreflang Pair columns are written against
 // baitalebdaa.ae, but the real production hostname is www.baitalebdaa.com (canonical

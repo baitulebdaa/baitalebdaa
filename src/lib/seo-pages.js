@@ -1,5 +1,6 @@
 import seoData from "../data/seo-pages.json";
 import { SERVICE_META_EN } from "../data/service-meta";
+import { META_DESCRIPTION_MAX } from "../data/article-catalog";
 
 export const services = seoData.services;
 export const locations = seoData.locations;
@@ -8,45 +9,31 @@ export function getPage(lang, serviceSlug, locationSlug) {
   return seoData.pages[lang]?.[`${serviceSlug}/${locationSlug}`] || null;
 }
 
-// `approved` is decided once, in scripts/generate-seo-data.mjs (verified coverage only):
-// Dubai and Abu Dhabi for every service, plus Ajman joinery (the factory is there).
-// The robots meta, the sitemap and the sibling-link lists all read it through here.
+// `approved` is decided once, in scripts/generate-seo-data.mjs: the emirates opened to
+// indexing so far (phase 1: Dubai, Abu Dhabi, Sharjah, Ajman). The robots meta, the
+// sitemap and the sibling-link lists all read it through here.
 export function isPageIndexable(page) {
   return Boolean(page?.approved);
 }
 
-// How much the site can truthfully say about delivering in a page's location.
-//  "full"       Dubai / Abu Dhabi: verified delivery area
-//  "factory"    Ajman joinery: the 15,000 sq ft factory is there; delivery elsewhere is not claimed
-//  "unverified" everything else: no coverage or authority-experience claims
-export function getCoverageTier(page) {
-  if (!page) return "unverified";
-  if (page.locationSlug === "dubai" || page.locationSlug === "abu-dhabi") return "full";
-  if (page.locationSlug === "ajman" && page.serviceSlug === "joinery") return "factory";
-  return "unverified";
-}
+// Every location page describes full delivery: the business serves all seven emirates
+// (owner, 13 Oct 2026). Indexing is the separate, phased decision above.
 
-// Verified coverage (Dubai / Abu Dhabi) gets a hand-written English description per service
-// (src/data/service-meta.js); the sheet's English template lowercased the H1 into
-// "delivers fit out company in dubai". Arabic keeps the sheet's own descriptions.
-// Unverified locations get a neutral, accurate sentence instead of a delivery claim.
+// "in the UAE" reads correctly; "in UAE" does not.
+const placeName = (location) => (location.en === "UAE" ? "the UAE" : location.en);
+
+// English: a hand-written description per service (src/data/service-meta.js) — the sheet's
+// template lowercased the H1 into "delivers fit out company in dubai". Arabic keeps the
+// sheet's own descriptions. Long district names push some written descriptions past the
+// limit; those get a short sentence that still names the service, area and emirate.
 export function getSafeMetaDescription(page, lang) {
-  const tier = getCoverageTier(page);
-  if (tier === "full") {
-    const write = lang === "en" ? SERVICE_META_EN[page.serviceSlug] : null;
-    return write ? write(getLocation(page.locationSlug)?.en || page.location) : page.metaDescription;
-  }
-  if (tier === "factory") {
-    return lang === "ar"
-      ? "نجارة معمارية مخصصة تُصنع في مصنع بيت الإبداع بمساحة 15,000 قدم مربع في الجرف الصناعية 2 بعجمان. تواصل مع فريقنا لتأكيد توفر المشروع."
-      : "Custom architectural joinery made in Bait Al Ebdaa's own 15,000 sq ft factory in Jurf Industrial 2, Ajman. Contact us to confirm project availability.";
-  }
-  const service = getService(page.serviceSlug);
   const location = getLocation(page.locationSlug);
-  if (!service || !location) return page.metaDescription;
-  return lang === "ar"
-    ? `بيت الإبداع مقرها عجمان وتنفّذ مشاريعها في دبي وأبوظبي. تواصل مع فريقنا لتأكيد توفر ${service.ar} في ${location.ar}.`
-    : `Bait Al Ebdaa is based in Ajman and delivers projects in Dubai and Abu Dhabi. Contact our team to confirm ${service.en} availability in ${location.en}.`;
+  if (lang !== "en" || !location) return page.metaDescription;
+  const written = SERVICE_META_EN[page.serviceSlug]?.(placeName(location));
+  if (written && written.length <= META_DESCRIPTION_MAX) return written;
+  const service = getService(page.serviceSlug)?.en || page.category;
+  const area = location.tier === "core" ? placeName(location) : `${location.en}, ${location.emirate}`;
+  return `${service} in ${area} by Bait Al Ebdaa: design, fit-out and in-house joinery. Request a free site survey.`;
 }
 
 // For generateStaticParams: all {service, location} pairs that exist for a given lang.
@@ -73,20 +60,19 @@ export function getEmirateName(lang, enEmirateName) {
   return match ? match.ar : enEmirateName;
 }
 
-// Real, per-emirate regulatory authority — used to make page copy genuinely differ by
-// location (not just swap the city name) without fabricating anything: every district
-// location inherits its parent emirate's authority.
+// Authorities named in location copy. Only Dubai names specific bodies (Dubai Municipality
+// and DDA submissions are evidenced by the published Dubai Academic City project). Every other
+// emirate uses neutral wording until the business confirms which bodies it has worked with;
+// districts inherit their parent emirate's entry.
 const EMIRATE_AUTHORITY = {
-  UAE: { en: "Dubai Municipality, Abu Dhabi Municipality and other local authorities", ar: "بلدية دبي وبلدية أبوظبي والجهات المحلية الأخرى" },
+  UAE: { en: "the relevant local authorities", ar: "الجهات المحلية المختصة" },
   Dubai: { en: "Dubai Municipality and the Dubai Development Authority (DDA)", ar: "بلدية دبي وسلطة دبي للتطوير" },
-  // Neutral on purpose: the business has not confirmed which Abu Dhabi authority submissions
-  // it handles, so no names until it does (same rule as src/data/abu-dhabi-copy.js).
   "Abu Dhabi": { en: "the relevant Abu Dhabi authorities", ar: "الجهات المختصة في أبوظبي" },
-  Sharjah: { en: "Sharjah Municipality", ar: "بلدية الشارقة" },
-  Ajman: { en: "Ajman Municipality", ar: "بلدية عجمان" },
-  "Ras Al Khaimah": { en: "Ras Al Khaimah Municipality", ar: "بلدية رأس الخيمة" },
-  Fujairah: { en: "Fujairah Municipality", ar: "بلدية الفجيرة" },
-  "Umm Al Quwain": { en: "Umm Al Quwain Municipality", ar: "بلدية أم القيوين" },
+  Sharjah: { en: "the relevant Sharjah authorities", ar: "الجهات المختصة في الشارقة" },
+  Ajman: { en: "the relevant Ajman authorities", ar: "الجهات المختصة في عجمان" },
+  "Ras Al Khaimah": { en: "the relevant Ras Al Khaimah authorities", ar: "الجهات المختصة في رأس الخيمة" },
+  Fujairah: { en: "the relevant Fujairah authorities", ar: "الجهات المختصة في الفجيرة" },
+  "Umm Al Quwain": { en: "the relevant Umm Al Quwain authorities", ar: "الجهات المختصة في أم القيوين" },
 };
 
 export function getEmirateAuthority(lang, enEmirateName) {

@@ -6,7 +6,7 @@
 
 export const metadata = {
   title: "Page not found | Bait Al Ebdaa",
-  description: "The page you are looking for does not exist. Explore Bait Al Ebdaa's interior design, fit-out and joinery services in Dubai and Abu Dhabi.",
+  description: "The page you are looking for does not exist. Explore Bait Al Ebdaa's interior design, fit-out and joinery services across the UAE.",
   // No robots entry: Next already emits <meta name="robots" content="noindex"> on 404s.
 };
 

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-07T11:03:58.469Z",
+  "generatedAt": "2026-10-13T16:34:04.673Z",
   "services": [
     {
       "slug": "interior-design",
@@ -415,7 +415,7 @@
         "canonical": "https://www.baitalebdaa.com/en/interior-design/sharjah",
         "hreflang": "https://www.baitalebdaa.com/ar/interior-design/sharjah",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "interior-design/ajman": {
         "id": 5,
@@ -444,7 +444,7 @@
         "canonical": "https://www.baitalebdaa.com/en/interior-design/ajman",
         "hreflang": "https://www.baitalebdaa.com/ar/interior-design/ajman",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "interior-design/ras-al-khaimah": {
         "id": 6,
@@ -1285,7 +1285,7 @@
         "canonical": "https://www.baitalebdaa.com/en/fit-out/sharjah",
         "hreflang": "https://www.baitalebdaa.com/ar/fit-out/sharjah",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "fit-out/ajman": {
         "id": 35,
@@ -1314,7 +1314,7 @@
         "canonical": "https://www.baitalebdaa.com/en/fit-out/ajman",
         "hreflang": "https://www.baitalebdaa.com/ar/fit-out/ajman",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "fit-out/ras-al-khaimah": {
         "id": 36,
@@ -2155,7 +2155,7 @@
         "canonical": "https://www.baitalebdaa.com/en/office-fit-out/sharjah",
         "hreflang": "https://www.baitalebdaa.com/ar/office-fit-out/sharjah",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "office-fit-out/ajman": {
         "id": 65,
@@ -2184,7 +2184,7 @@
         "canonical": "https://www.baitalebdaa.com/en/office-fit-out/ajman",
         "hreflang": "https://www.baitalebdaa.com/ar/office-fit-out/ajman",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "office-fit-out/ras-al-khaimah": {
         "id": 66,
@@ -3025,7 +3025,7 @@
         "canonical": "https://www.baitalebdaa.com/en/restaurant-fit-out/sharjah",
         "hreflang": "https://www.baitalebdaa.com/ar/restaurant-fit-out/sharjah",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "restaurant-fit-out/ajman": {
         "id": 95,
@@ -3054,7 +3054,7 @@
         "canonical": "https://www.baitalebdaa.com/en/restaurant-fit-out/ajman",
         "hreflang": "https://www.baitalebdaa.com/ar/restaurant-fit-out/ajman",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "restaurant-fit-out/ras-al-khaimah": {
         "id": 96,
@@ -3895,7 +3895,7 @@
         "canonical": "https://www.baitalebdaa.com/en/retail-fit-out/sharjah",
         "hreflang": "https://www.baitalebdaa.com/ar/retail-fit-out/sharjah",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "retail-fit-out/ajman": {
         "id": 125,
@@ -3924,7 +3924,7 @@
         "canonical": "https://www.baitalebdaa.com/en/retail-fit-out/ajman",
         "hreflang": "https://www.baitalebdaa.com/ar/retail-fit-out/ajman",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "retail-fit-out/ras-al-khaimah": {
         "id": 126,
@@ -4765,7 +4765,7 @@
         "canonical": "https://www.baitalebdaa.com/en/commercial-interior-design/sharjah",
         "hreflang": "https://www.baitalebdaa.com/ar/commercial-interior-design/sharjah",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "commercial-interior-design/ajman": {
         "id": 155,
@@ -4794,7 +4794,7 @@
         "canonical": "https://www.baitalebdaa.com/en/commercial-interior-design/ajman",
         "hreflang": "https://www.baitalebdaa.com/ar/commercial-interior-design/ajman",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "commercial-interior-design/ras-al-khaimah": {
         "id": 156,
@@ -5635,7 +5635,7 @@
         "canonical": "https://www.baitalebdaa.com/en/residential-interior-design/sharjah",
         "hreflang": "https://www.baitalebdaa.com/ar/residential-interior-design/sharjah",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "residential-interior-design/ajman": {
         "id": 185,
@@ -5664,7 +5664,7 @@
         "canonical": "https://www.baitalebdaa.com/en/residential-interior-design/ajman",
         "hreflang": "https://www.baitalebdaa.com/ar/residential-interior-design/ajman",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "residential-interior-design/ras-al-khaimah": {
         "id": 186,
@@ -6505,7 +6505,7 @@
         "canonical": "https://www.baitalebdaa.com/en/office-interior-design/sharjah",
         "hreflang": "https://www.baitalebdaa.com/ar/office-interior-design/sharjah",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "office-interior-design/ajman": {
         "id": 215,
@@ -6534,7 +6534,7 @@
         "canonical": "https://www.baitalebdaa.com/en/office-interior-design/ajman",
         "hreflang": "https://www.baitalebdaa.com/ar/office-interior-design/ajman",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "office-interior-design/ras-al-khaimah": {
         "id": 216,
@@ -7375,7 +7375,7 @@
         "canonical": "https://www.baitalebdaa.com/en/restaurant-interior-design/sharjah",
         "hreflang": "https://www.baitalebdaa.com/ar/restaurant-interior-design/sharjah",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "restaurant-interior-design/ajman": {
         "id": 245,
@@ -7404,7 +7404,7 @@
         "canonical": "https://www.baitalebdaa.com/en/restaurant-interior-design/ajman",
         "hreflang": "https://www.baitalebdaa.com/ar/restaurant-interior-design/ajman",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "restaurant-interior-design/ras-al-khaimah": {
         "id": 246,
@@ -8245,7 +8245,7 @@
         "canonical": "https://www.baitalebdaa.com/en/retail-interior-design/sharjah",
         "hreflang": "https://www.baitalebdaa.com/ar/retail-interior-design/sharjah",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "retail-interior-design/ajman": {
         "id": 275,
@@ -8274,7 +8274,7 @@
         "canonical": "https://www.baitalebdaa.com/en/retail-interior-design/ajman",
         "hreflang": "https://www.baitalebdaa.com/ar/retail-interior-design/ajman",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "retail-interior-design/ras-al-khaimah": {
         "id": 276,
@@ -9115,7 +9115,7 @@
         "canonical": "https://www.baitalebdaa.com/en/villa-renovation/sharjah",
         "hreflang": "https://www.baitalebdaa.com/ar/villa-renovation/sharjah",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "villa-renovation/ajman": {
         "id": 305,
@@ -9144,7 +9144,7 @@
         "canonical": "https://www.baitalebdaa.com/en/villa-renovation/ajman",
         "hreflang": "https://www.baitalebdaa.com/ar/villa-renovation/ajman",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "villa-renovation/ras-al-khaimah": {
         "id": 306,
@@ -9985,7 +9985,7 @@
         "canonical": "https://www.baitalebdaa.com/en/apartment-renovation/sharjah",
         "hreflang": "https://www.baitalebdaa.com/ar/apartment-renovation/sharjah",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "apartment-renovation/ajman": {
         "id": 335,
@@ -10014,7 +10014,7 @@
         "canonical": "https://www.baitalebdaa.com/en/apartment-renovation/ajman",
         "hreflang": "https://www.baitalebdaa.com/ar/apartment-renovation/ajman",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "apartment-renovation/ras-al-khaimah": {
         "id": 336,
@@ -10855,7 +10855,7 @@
         "canonical": "https://www.baitalebdaa.com/en/office-renovation/sharjah",
         "hreflang": "https://www.baitalebdaa.com/ar/office-renovation/sharjah",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "office-renovation/ajman": {
         "id": 365,
@@ -10884,7 +10884,7 @@
         "canonical": "https://www.baitalebdaa.com/en/office-renovation/ajman",
         "hreflang": "https://www.baitalebdaa.com/ar/office-renovation/ajman",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "office-renovation/ras-al-khaimah": {
         "id": 366,
@@ -11725,7 +11725,7 @@
         "canonical": "https://www.baitalebdaa.com/en/joinery/sharjah",
         "hreflang": "https://www.baitalebdaa.com/ar/joinery/sharjah",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "joinery/ajman": {
         "id": 395,
@@ -12595,7 +12595,7 @@
         "canonical": "https://www.baitalebdaa.com/en/custom-wardrobes/sharjah",
         "hreflang": "https://www.baitalebdaa.com/ar/custom-wardrobes/sharjah",
         "intent": "Transactional",
-        "approved": false
+        "approved": true
       },
       "custom-wardrobes/ajman": {
         "id": 425,
@@ -12624,7 +12624,7 @@
         "canonical": "https://www.baitalebdaa.com/en/custom-wardrobes/ajman",
         "hreflang": "https://www.baitalebdaa.com/ar/custom-wardrobes/ajman",
         "intent": "Transactional",
-        "approved": false
+        "approved": true
       },
       "custom-wardrobes/ras-al-khaimah": {
         "id": 426,
@@ -13465,7 +13465,7 @@
         "canonical": "https://www.baitalebdaa.com/en/kitchen-design/sharjah",
         "hreflang": "https://www.baitalebdaa.com/ar/kitchen-design/sharjah",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "kitchen-design/ajman": {
         "id": 455,
@@ -13494,7 +13494,7 @@
         "canonical": "https://www.baitalebdaa.com/en/kitchen-design/ajman",
         "hreflang": "https://www.baitalebdaa.com/ar/kitchen-design/ajman",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "kitchen-design/ras-al-khaimah": {
         "id": 456,
@@ -14335,7 +14335,7 @@
         "canonical": "https://www.baitalebdaa.com/en/kitchen-renovation/sharjah",
         "hreflang": "https://www.baitalebdaa.com/ar/kitchen-renovation/sharjah",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "kitchen-renovation/ajman": {
         "id": 485,
@@ -14364,7 +14364,7 @@
         "canonical": "https://www.baitalebdaa.com/en/kitchen-renovation/ajman",
         "hreflang": "https://www.baitalebdaa.com/ar/kitchen-renovation/ajman",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "kitchen-renovation/ras-al-khaimah": {
         "id": 486,
@@ -15207,7 +15207,7 @@
         "canonical": "https://www.baitalebdaa.com/ar/interior-design/sharjah",
         "hreflang": "https://www.baitalebdaa.com/en/interior-design/sharjah",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "interior-design/ajman": {
         "id": 515,
@@ -15236,7 +15236,7 @@
         "canonical": "https://www.baitalebdaa.com/ar/interior-design/ajman",
         "hreflang": "https://www.baitalebdaa.com/en/interior-design/ajman",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "interior-design/ras-al-khaimah": {
         "id": 516,
@@ -16077,7 +16077,7 @@
         "canonical": "https://www.baitalebdaa.com/ar/fit-out/sharjah",
         "hreflang": "https://www.baitalebdaa.com/en/fit-out/sharjah",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "fit-out/ajman": {
         "id": 545,
@@ -16106,7 +16106,7 @@
         "canonical": "https://www.baitalebdaa.com/ar/fit-out/ajman",
         "hreflang": "https://www.baitalebdaa.com/en/fit-out/ajman",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "fit-out/ras-al-khaimah": {
         "id": 546,
@@ -16947,7 +16947,7 @@
         "canonical": "https://www.baitalebdaa.com/ar/office-fit-out/sharjah",
         "hreflang": "https://www.baitalebdaa.com/en/office-fit-out/sharjah",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "office-fit-out/ajman": {
         "id": 575,
@@ -16976,7 +16976,7 @@
         "canonical": "https://www.baitalebdaa.com/ar/office-fit-out/ajman",
         "hreflang": "https://www.baitalebdaa.com/en/office-fit-out/ajman",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "office-fit-out/ras-al-khaimah": {
         "id": 576,
@@ -17817,7 +17817,7 @@
         "canonical": "https://www.baitalebdaa.com/ar/restaurant-fit-out/sharjah",
         "hreflang": "https://www.baitalebdaa.com/en/restaurant-fit-out/sharjah",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "restaurant-fit-out/ajman": {
         "id": 605,
@@ -17846,7 +17846,7 @@
         "canonical": "https://www.baitalebdaa.com/ar/restaurant-fit-out/ajman",
         "hreflang": "https://www.baitalebdaa.com/en/restaurant-fit-out/ajman",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "restaurant-fit-out/ras-al-khaimah": {
         "id": 606,
@@ -18687,7 +18687,7 @@
         "canonical": "https://www.baitalebdaa.com/ar/retail-fit-out/sharjah",
         "hreflang": "https://www.baitalebdaa.com/en/retail-fit-out/sharjah",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "retail-fit-out/ajman": {
         "id": 635,
@@ -18716,7 +18716,7 @@
         "canonical": "https://www.baitalebdaa.com/ar/retail-fit-out/ajman",
         "hreflang": "https://www.baitalebdaa.com/en/retail-fit-out/ajman",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "retail-fit-out/ras-al-khaimah": {
         "id": 636,
@@ -19557,7 +19557,7 @@
         "canonical": "https://www.baitalebdaa.com/ar/commercial-interior-design/sharjah",
         "hreflang": "https://www.baitalebdaa.com/en/commercial-interior-design/sharjah",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "commercial-interior-design/ajman": {
         "id": 665,
@@ -19586,7 +19586,7 @@
         "canonical": "https://www.baitalebdaa.com/ar/commercial-interior-design/ajman",
         "hreflang": "https://www.baitalebdaa.com/en/commercial-interior-design/ajman",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "commercial-interior-design/ras-al-khaimah": {
         "id": 666,
@@ -20427,7 +20427,7 @@
         "canonical": "https://www.baitalebdaa.com/ar/residential-interior-design/sharjah",
         "hreflang": "https://www.baitalebdaa.com/en/residential-interior-design/sharjah",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "residential-interior-design/ajman": {
         "id": 695,
@@ -20456,7 +20456,7 @@
         "canonical": "https://www.baitalebdaa.com/ar/residential-interior-design/ajman",
         "hreflang": "https://www.baitalebdaa.com/en/residential-interior-design/ajman",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "residential-interior-design/ras-al-khaimah": {
         "id": 696,
@@ -21297,7 +21297,7 @@
         "canonical": "https://www.baitalebdaa.com/ar/office-interior-design/sharjah",
         "hreflang": "https://www.baitalebdaa.com/en/office-interior-design/sharjah",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "office-interior-design/ajman": {
         "id": 725,
@@ -21326,7 +21326,7 @@
         "canonical": "https://www.baitalebdaa.com/ar/office-interior-design/ajman",
         "hreflang": "https://www.baitalebdaa.com/en/office-interior-design/ajman",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "office-interior-design/ras-al-khaimah": {
         "id": 726,
@@ -22167,7 +22167,7 @@
         "canonical": "https://www.baitalebdaa.com/ar/restaurant-interior-design/sharjah",
         "hreflang": "https://www.baitalebdaa.com/en/restaurant-interior-design/sharjah",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "restaurant-interior-design/ajman": {
         "id": 755,
@@ -22196,7 +22196,7 @@
         "canonical": "https://www.baitalebdaa.com/ar/restaurant-interior-design/ajman",
         "hreflang": "https://www.baitalebdaa.com/en/restaurant-interior-design/ajman",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "restaurant-interior-design/ras-al-khaimah": {
         "id": 756,
@@ -23037,7 +23037,7 @@
         "canonical": "https://www.baitalebdaa.com/ar/retail-interior-design/sharjah",
         "hreflang": "https://www.baitalebdaa.com/en/retail-interior-design/sharjah",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "retail-interior-design/ajman": {
         "id": 785,
@@ -23066,7 +23066,7 @@
         "canonical": "https://www.baitalebdaa.com/ar/retail-interior-design/ajman",
         "hreflang": "https://www.baitalebdaa.com/en/retail-interior-design/ajman",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "retail-interior-design/ras-al-khaimah": {
         "id": 786,
@@ -23907,7 +23907,7 @@
         "canonical": "https://www.baitalebdaa.com/ar/villa-renovation/sharjah",
         "hreflang": "https://www.baitalebdaa.com/en/villa-renovation/sharjah",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "villa-renovation/ajman": {
         "id": 815,
@@ -23936,7 +23936,7 @@
         "canonical": "https://www.baitalebdaa.com/ar/villa-renovation/ajman",
         "hreflang": "https://www.baitalebdaa.com/en/villa-renovation/ajman",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "villa-renovation/ras-al-khaimah": {
         "id": 816,
@@ -24777,7 +24777,7 @@
         "canonical": "https://www.baitalebdaa.com/ar/apartment-renovation/sharjah",
         "hreflang": "https://www.baitalebdaa.com/en/apartment-renovation/sharjah",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "apartment-renovation/ajman": {
         "id": 845,
@@ -24806,7 +24806,7 @@
         "canonical": "https://www.baitalebdaa.com/ar/apartment-renovation/ajman",
         "hreflang": "https://www.baitalebdaa.com/en/apartment-renovation/ajman",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "apartment-renovation/ras-al-khaimah": {
         "id": 846,
@@ -25647,7 +25647,7 @@
         "canonical": "https://www.baitalebdaa.com/ar/office-renovation/sharjah",
         "hreflang": "https://www.baitalebdaa.com/en/office-renovation/sharjah",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "office-renovation/ajman": {
         "id": 875,
@@ -25676,7 +25676,7 @@
         "canonical": "https://www.baitalebdaa.com/ar/office-renovation/ajman",
         "hreflang": "https://www.baitalebdaa.com/en/office-renovation/ajman",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "office-renovation/ras-al-khaimah": {
         "id": 876,
@@ -26517,7 +26517,7 @@
         "canonical": "https://www.baitalebdaa.com/ar/joinery/sharjah",
         "hreflang": "https://www.baitalebdaa.com/en/joinery/sharjah",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "joinery/ajman": {
         "id": 905,
@@ -27387,7 +27387,7 @@
         "canonical": "https://www.baitalebdaa.com/ar/custom-wardrobes/sharjah",
         "hreflang": "https://www.baitalebdaa.com/en/custom-wardrobes/sharjah",
         "intent": "Transactional",
-        "approved": false
+        "approved": true
       },
       "custom-wardrobes/ajman": {
         "id": 935,
@@ -27416,7 +27416,7 @@
         "canonical": "https://www.baitalebdaa.com/ar/custom-wardrobes/ajman",
         "hreflang": "https://www.baitalebdaa.com/en/custom-wardrobes/ajman",
         "intent": "Transactional",
-        "approved": false
+        "approved": true
       },
       "custom-wardrobes/ras-al-khaimah": {
         "id": 936,
@@ -28257,7 +28257,7 @@
         "canonical": "https://www.baitalebdaa.com/ar/kitchen-design/sharjah",
         "hreflang": "https://www.baitalebdaa.com/en/kitchen-design/sharjah",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "kitchen-design/ajman": {
         "id": 965,
@@ -28286,7 +28286,7 @@
         "canonical": "https://www.baitalebdaa.com/ar/kitchen-design/ajman",
         "hreflang": "https://www.baitalebdaa.com/en/kitchen-design/ajman",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "kitchen-design/ras-al-khaimah": {
         "id": 966,
@@ -29127,7 +29127,7 @@
         "canonical": "https://www.baitalebdaa.com/ar/kitchen-renovation/sharjah",
         "hreflang": "https://www.baitalebdaa.com/en/kitchen-renovation/sharjah",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "kitchen-renovation/ajman": {
         "id": 995,
@@ -29156,7 +29156,7 @@
         "canonical": "https://www.baitalebdaa.com/ar/kitchen-renovation/ajman",
         "hreflang": "https://www.baitalebdaa.com/en/kitchen-renovation/ajman",
         "intent": "Commercial",
-        "approved": false
+        "approved": true
       },
       "kitchen-renovation/ras-al-khaimah": {
         "id": 996,

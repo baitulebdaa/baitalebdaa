@@ -20,10 +20,10 @@ function buildLlmsTxt() {
   return [
     "# Bait Al Ebdaa",
     "",
-    "> Interior design, turnkey fit-out and renovation company delivering villa, apartment and office projects in Dubai and Abu Dhabi, UAE. Custom joinery is manufactured in its own 15,000 sq ft factory in Jurf Industrial 2, Ajman, with a 5-year workmanship guarantee on the joinery it makes and installs.",
+    "> Interior design, turnkey fit-out and renovation company delivering villa, apartment and office projects in all seven emirates of the UAE. Custom joinery is manufactured in its own 15,000 sq ft factory in Jurf Industrial 2, Ajman, with a 5-year workmanship guarantee on the joinery it makes and installs.",
     "",
     "Key facts:",
-    "- Delivery area: Dubai and Abu Dhabi.",
+    "- Delivery area: all seven emirates (Dubai, Abu Dhabi, Sharjah, Ajman, Ras Al Khaimah, Fujairah, Umm Al Quwain).",
     "- Registered address and factory: Showroom No. 052004009, Jurf Industrial 2, Ajman, UAE.",
     "- Contact: +971 58 262 1717 (phone and WhatsApp), info@baitalebdaa.com.",
     "- Opening hours: Monday to Saturday, 8:00 AM to 10:00 PM (UAE time).",

@@ -41,7 +41,7 @@ export function formatPrice(item, lang = "en") {
 //            the price of the whole service and never in the schema offer.
 //   null:    no published price exists (restaurant and retail fit-out) — show no price at all
 //            rather than borrowing another service's figures.
-// Survey/consultation lines that say "within Dubai" are left out so Abu Dhabi pages stay accurate.
+// The free site survey is not a starting price, so it stays off the service price lists.
 export const SERVICE_PRICING = {
   "interior-design": { direct: true, items: ["design-consultation", "design-single-room", "design-apartment", "design-villa"] },
   "residential-interior-design": { direct: true, items: ["design-single-room", "design-apartment", "design-townhouse", "design-villa"] },

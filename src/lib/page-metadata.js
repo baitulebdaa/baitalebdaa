@@ -85,8 +85,8 @@ const KNOWS_ABOUT = [
 ];
 
 const ORG_DESCRIPTION = {
-  en: "Interior design, turnkey fit-out and renovation company delivering villa, apartment and office projects in Dubai and Abu Dhabi, with custom joinery manufactured in its own 15,000 sq ft factory in Jurf Industrial 2, Ajman.",
-  ar: "شركة تصميم داخلي وتجهيز متكامل وتجديد تنفّذ مشاريع الفلل والشقق والمكاتب في دبي وأبوظبي، مع نجارة مخصصة تُصنع في مصنعها الخاص بمساحة 15,000 قدم مربع في الجرف الصناعية 2 بعجمان.",
+  en: "Interior design, turnkey fit-out and renovation company delivering villa, apartment and office projects in all seven emirates of the UAE, with custom joinery manufactured in its own 15,000 sq ft factory in Jurf Industrial 2, Ajman.",
+  ar: "شركة تصميم داخلي وتجهيز متكامل وتجديد تنفّذ مشاريع الفلل والشقق والمكاتب في جميع الإمارات السبع، مع نجارة مخصصة تُصنع في مصنعها الخاص بمساحة 15,000 قدم مربع في الجرف الصناعية 2 بعجمان.",
 };
 
 export function organizationJsonLd(lang = "en") {
@@ -134,12 +134,11 @@ export function organizationJsonLd(lang = "en") {
       opens: "08:00",
       closes: "22:00",
     },
-    // Confirmed 2026-09-18: genuine delivery area is Dubai and Abu Dhabi. Narrowed from
-    // all 7 emirates, which overstated coverage relative to the header nav's own claim.
-    areaServed: [
-      { "@type": "City", name: "Dubai" },
-      { "@type": "City", name: "Abu Dhabi" },
-    ],
+    // Owner confirmed 13 Oct 2026: the business delivers in all seven emirates.
+    areaServed: ["Dubai", "Abu Dhabi", "Sharjah", "Ajman", "Ras Al Khaimah", "Fujairah", "Umm Al Quwain"].map((name) => ({
+      "@type": "AdministrativeArea",
+      name,
+    })),
     knowsAbout: KNOWS_ABOUT,
     sameAs: SOCIAL_PROFILES.map((profile) => profile.url),
   };

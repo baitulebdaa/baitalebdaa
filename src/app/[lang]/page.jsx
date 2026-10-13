@@ -7,12 +7,12 @@ const COPY = {
   en: {
     title: "Bait Al Ebdaa | Turnkey Interior Design Dubai",
     description:
-      "Bait Al Ebdaa delivers villa and office interior design, turnkey fit-out and in-house joinery across Dubai and Abu Dhabi.",
+      "Bait Al Ebdaa delivers villa and office interior design, turnkey fit-out and in-house joinery across the UAE.",
   },
   ar: {
     title: "بيت الإبداع | تجهيزات ونجارة معمارية فاخرة في دبي",
     description:
-      "بيت الإبداع يصمم فلل ومكاتب فاخرة في دبي وأبوظبي، بنجارة داخلية خاصة وتصور ثلاثي الأبعاد واقعي وموافقات وتجهيز فاخر.",
+      "بيت الإبداع يصمم فلل ومكاتب فاخرة في جميع أنحاء الإمارات، بنجارة داخلية خاصة وتصور ثلاثي الأبعاد واقعي وموافقات وتجهيز فاخر.",
   },
 };
 

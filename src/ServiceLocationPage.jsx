@@ -87,6 +87,21 @@ const WORK_GALLERY_BY_SERVICE = {
   ],
 };
 
+// Services without their own photo set (commercial fit-out, offices, retail, restaurants)
+// draw "examples of our work" from the whole set, still labelled as not location-specific.
+const ALL_WORK_PHOTOS = [...new Map(Object.values(WORK_GALLERY_BY_SERVICE).flat().map((photo) => [photo.src, photo])).values()];
+
+// Three photos for the "examples of our work" strip, varied per location and never repeating
+// the hero mosaic. Rotates through the pool from a location-derived offset.
+function pickWorkExamples(pool, locationSlug, exclude, count = 3) {
+  const available = pool.filter((photo) => !exclude.has(photo.src));
+  if (available.length <= count) return available;
+  const seed = [...locationSlug].reduce((sum, ch) => sum + ch.charCodeAt(0), 0);
+  return Array.from({ length: count }, (_, i) => available[(seed + i * 2) % available.length]).filter(
+    (photo, i, list) => list.findIndex((p) => p.src === photo.src) === i
+  );
+}
+
 // The 5 pages the SEO strategy concentrates authority on — see the money-page plan.
 // They get the extra intro paragraph (priorityIntroExtra).
 const PRIORITY_MONEY_PAGES = new Set([
@@ -109,15 +124,16 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
   const { dict } = useI18n();
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const { service, location, emirateName, authority, otherAreas, otherServices, coverage, description } = seoContext;
+  const { service, location, emirateName, authority, otherAreas, otherServices, description } = seoContext;
   const serviceName = lang === "ar" ? service.ar : service.en;
   const locationName = lang === "ar" ? location.ar : location.en;
-  // Abu Dhabi pages: swap Dubai-authority wording for neutral wording (see data/abu-dhabi-copy.js).
-  const isAbuDhabi = row.locationSlug === "abu-dhabi";
-  const localize = (text) => (isAbuDhabi ? abuDhabiCopy(text, lang) : text);
+  // Pages outside Dubai (other emirates, their districts and the UAE-wide pages): swap the
+  // Dubai-authority wording in shared copy for neutral wording (see data/abu-dhabi-copy.js).
+  const isOutsideDubai = row.emirate !== "Dubai";
+  const localize = (text) => (isOutsideDubai ? abuDhabiCopy(text, lang) : text);
   const rawContent = serviceContent[row.serviceSlug]?.[lang];
   const content =
-    isAbuDhabi && rawContent
+    isOutsideDubai && rawContent
       ? { ...rawContent, summary: localize(rawContent.summary), faqs: rawContent.faqs.map((faq) => ({ ...faq, a: localize(faq.a) })) }
       : rawContent;
   const isEmirateItself = location.tier === "core";
@@ -132,7 +148,7 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
   const fullLocationClause = isEmirateItself
     ? lang === "ar"
       ? `نغطي ${locationName} بالكامل، وننسق أي موافقات مطلوبة مباشرة مع ${authority}.`
-      : `We cover all of ${locationName}, coordinating any required approvals directly with ${authority}.`
+      : `We cover all of ${row.emirate === "UAE" ? "the UAE" : locationName}, coordinating any required approvals directly with ${authority}.`
     : areaProfile
       ? lang === "ar"
         ? `${locationName}، ${areaProfile}، تقع ضمن إمارة ${emirateName}، حيث ننسق أي موافقات مطلوبة مباشرة مع ${authority}.`
@@ -141,31 +157,15 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
         ? `في ${locationName} ضمن إمارة ${emirateName}، ننسق أي موافقات مطلوبة مباشرة مع ${authority}.`
         : `In ${locationName}, part of ${emirateName}, we coordinate any required approvals directly with ${authority}.`;
 
-  // Only Dubai and Abu Dhabi (coverage "full") have verified delivery; the Ajman joinery page is
-  // backed by the factory ("factory"). Everywhere else the page must not claim coverage or
-  // authority experience — it says what is true and invites the visitor to confirm availability.
-  const isFullCoverage = coverage === "full";
-  const unverifiedClause =
-    coverage === "factory"
+  // Ajman pages also state the one fact that is genuinely local to Ajman: the factory.
+  const factoryNote =
+    row.locationSlug === "ajman"
       ? lang === "ar"
-        ? "مصنعنا للنجارة بمساحة 15,000 قدم مربع يقع في الجرف الصناعية 2 بعجمان، حيث تُصنع كل قطعة قبل التسليم والتركيب. تواصل مع فريقنا لتأكيد توفر المشروع في موقعك."
-        : "Our 15,000 sq ft joinery factory is in Jurf Industrial 2, Ajman, where every piece is manufactured before delivery and installation. Contact our team to confirm project availability for your location."
-      : lang === "ar"
-        ? `بيت الإبداع مقرها عجمان وتنفّذ مشاريعها في دبي وأبوظبي. تواصل مع فريقنا لتأكيد توفر المشاريع في ${locationName}.`
-        : `Bait Al Ebdaa is based in Ajman and delivers projects in Dubai and Abu Dhabi. Contact our team to confirm project availability in ${locationName}.`;
-  const unverifiedFaqs = [
-    {
-      q: lang === "ar" ? `هل تقدمون خدمة ${serviceName} في ${locationName}؟` : `Do you offer ${serviceName} in ${locationName}?`,
-      a:
-        coverage === "factory"
-          ? lang === "ar"
-            ? "مصنعنا للنجارة في عجمان، حيث تُصنع كل قطعة. تواصل مع فريقنا لتأكيد توفر المشروع وترتيبات التسليم لموقعك."
-            : "Our joinery factory is in Ajman, where every piece is manufactured. Contact our team to confirm project availability and delivery arrangements for your location."
-          : lang === "ar"
-            ? `بيت الإبداع مقرها عجمان وتنفّذ مشاريعها في دبي وأبوظبي. تواصل مع فريقنا لتأكيد إمكانية تنفيذ أعمال ${serviceName} في ${locationName}.`
-            : `Bait Al Ebdaa is based in Ajman and delivers projects in Dubai and Abu Dhabi. Contact our team to confirm whether we can take on ${serviceName} work in ${locationName}.`,
-    },
-  ];
+        ? " ويقع مصنع النجارة الخاص بنا بمساحة 15,000 قدم مربع هنا في الجرف الصناعية 2."
+        : " Our own 15,000 sq ft joinery factory is here, in Jurf Industrial 2."
+      : "";
+  const locationClause = fullLocationClause + factoryNote;
+
   const coreAreas = otherAreas.filter((entry) => entry.location.tier === "core");
   const nearbyAreas = otherAreas.filter((entry) => entry.location.tier === "district" && entry.location.emirate === row.emirate);
   const blogPosts = [dict.mediaPage.featuredArticle, ...dict.mediaPage.articles];
@@ -187,6 +187,11 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
   const heroAlt = heroPhoto?.alt || row.h1;
   const mosaicPhotos = gallery.filter((photo) => photo.src !== heroImage).slice(0, 2);
   const startingItem = serviceStartingItem(row.serviceSlug);
+  const workExamples = pickWorkExamples(
+    gallery.length >= 4 ? gallery : ALL_WORK_PHOTOS,
+    row.locationSlug,
+    new Set([heroImage, ...mosaicPhotos.map((photo) => photo.src)])
+  );
 
   const waMessage = encodeURIComponent(
     lang === "ar"
@@ -198,7 +203,6 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
   const project = dict.projectDetailPage.projects["government-authority"];
   // Supporting-evidence link for the office fit-out money page only: the proof card
   // already features this project, so give it a descriptive contextual link to its page.
-  const locationClause = isFullCoverage ? fullLocationClause : unverifiedClause;
   const caseStudyLinkLabel =
     row.serviceSlug === "office-fit-out" && row.locationSlug === "dubai"
       ? lang === "ar"
@@ -223,16 +227,18 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
       q:
         lang === "ar"
           ? `من يدير موافقات ${authority} لمشروعي؟`
-          : row.emirate === "Abu Dhabi"
-            ? "Who manages the authority approvals for my Abu Dhabi project?"
-            : `Who manages ${authority} approvals for my project?`,
+          : row.emirate === "Dubai"
+            ? `Who manages ${authority} approvals for my project?`
+            : row.emirate === "UAE"
+              ? "Who manages the authority approvals for my project?"
+              : `Who manages the authority approvals for my ${emirateName} project?`,
       a:
         lang === "ar"
           ? `يُعدّ فريق الامتثال الداخلي لدينا الطلبات المقدمة إلى ${authority} ويتابعها نيابة عنك، بدءاً من التصاريح الأولية والرسومات الفنية المطلوبة، مروراً بالرد على ملاحظات الجهة، وصولاً إلى شهادة الإنجاز. وتحدد كل جهة مدة المراجعة الخاصة بها، لذلك نضمّنها في جدولك الزمني ونطلعك على كل مستجد.`
           : `Our in-house compliance team prepares the submissions to ${authority} and follows them up on your behalf, from the initial permits and the technical drawings they require, through any queries the authority raises, to the completion certificate. Review times are set by each authority, so we build them into your schedule and keep you updated.`,
     },
   ];
-  const pageFaqs = isFullCoverage ? extraFaqs : unverifiedFaqs;
+  const pageFaqs = extraFaqs;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -241,7 +247,7 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
         "@type": "Service",
         name: row.h1,
         serviceType: serviceName,
-        ...(isFullCoverage || coverage === "factory" ? { areaServed: locationName } : {}),
+        areaServed: locationName,
         provider: ORG_REF,
         url: row.canonical,
         description,
@@ -387,7 +393,7 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
               <h3 className="slp-scope__label">{row.h2Themes[1]}</h3>
             </Reveal>
             <ol>
-              {(isFullCoverage ? [...content.included, lang === "ar" ? `التغطية في ${locationName} وما حولها` : `Coverage across ${locationName} and nearby areas`] : content.included).map((item, i) => (
+              {[...content.included, lang === "ar" ? `التغطية في ${locationName} وما حولها` : `Coverage across ${locationName} and nearby areas`].map((item, i) => (
                 <Reveal as="li" className="slp-scope__row" key={i} delay={60 + i * 50}>
                   <span className="slp-scope__num">{String(i + 1).padStart(2, "0")}</span>
                   <span className="slp-scope__item">{item}</span>
@@ -398,6 +404,27 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
           </div>
         </section>
 
+        {/* Examples of our work — real photos and design visuals, labelled as not specific to this location */}
+        {workExamples.length > 0 && (
+          <section className="shell slp-gallery-section">
+            <Reveal>
+              <p className="micro">{lang === "ar" ? "نماذج من أعمالنا" : "Examples of our work"}</p>
+              <p className="slp-gallery-note">
+                {lang === "ar"
+                  ? `أعمال منجزة وتصاميم من فريقنا، معروضة لإبراز الأسلوب وجودة التشطيب، وليست جميعها في ${locationName}. اطلب منا أمثلة لمشاريع قريبة منك.`
+                  : `Completed work and design visuals by our team, shown for style and finish. Not all of them are in ${locationName}; ask us for examples near you.`}
+              </p>
+            </Reveal>
+            <div className="slp-gallery-grid">
+              {workExamples.map((photo, i) => (
+                <Reveal className="slp-gallery-item" key={photo.src} delay={60 + i * 60}>
+                  <Image src={photo.src} alt={photo.alt} fill sizes="(max-width: 700px) 100vw, 33vw" style={{ objectFit: "cover" }} />
+                </Reveal>
+              ))}
+            </div>
+          </section>
+        )}
+
         {/* Process (compact) */}
         <section className="shell section slp-process-section">
           <ProcessTimeline kicker={dict.processSection.micro} title={row.h2Themes[2]} items={dict.processSection.items.map(([title, body, meta]) => [title, localize(body), meta])} />
@@ -407,7 +434,7 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
         <Reveal as="div" delay={100}>
           <h2 className="slp-section-label shell">{row.h2Themes[3]}</h2>
         </Reveal>
-        <Estimator compact defaultLocationIndex={row.emirate === "Abu Dhabi" ? 1 : 0} ctaHref={waHref} />
+        <Estimator compact ctaHref={waHref} />
 
         {/* Indicative starting prices — real published figures from the pricing page */}
         {pricing && pricing.items.length > 0 && (

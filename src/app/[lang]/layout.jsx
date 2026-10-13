@@ -60,10 +60,10 @@ export const metadata = {
     template: "%s | Bait Al Ebdaa",
   },
   description:
-    "Bait Al Ebdaa delivers villa and office interior design, turnkey fit-out and in-house joinery across Dubai and Abu Dhabi.",
+    "Bait Al Ebdaa delivers villa and office interior design, turnkey fit-out and in-house joinery across the UAE.",
   openGraph: {
     title: "Bait Al Ebdaa | Turnkey Interior Design Dubai",
-    description: "Villa and office interior design, turnkey fit-out and in-house joinery across Dubai and Abu Dhabi.",
+    description: "Villa and office interior design, turnkey fit-out and in-house joinery across the UAE.",
     url: 'https://www.baitalebdaa.com',
     siteName: 'Bait Al Ebdaa',
     locale: 'en_AE',
@@ -72,7 +72,7 @@ export const metadata = {
   twitter: {
     card: 'summary_large_image',
     title: "Bait Al Ebdaa | Turnkey Interior Design Dubai",
-    description: "Villa and office interior design, turnkey fit-out and in-house joinery across Dubai and Abu Dhabi.",
+    description: "Villa and office interior design, turnkey fit-out and in-house joinery across the UAE.",
   },
   // No site-wide canonical/hreflang default here on purpose: a layout-level canonical is
   // inherited by any page that forgets its own, silently pointing it at the homepage. Every

@@ -6,15 +6,14 @@ import { useI18n } from "../i18n/I18nProvider";
 import { Reveal } from "./Shared";
 import { sliderFillPosition } from "../lib/slider";
 
-// Base cost per sqft varies by scope; location multiplier accounts for emirate-level fee differences.
+// Base cost per sqft varies by scope only: prices are the same in every emirate.
 const BASE_RATE_BY_SCOPE = [220, 150, 80]; // Full Turnkey, Factory Joinery, Somfy Curtains
-const LOCATION_MULTIPLIER = [1, 1.05]; // Dubai, Abu Dhabi
 
 // onBookSurvey, when passed (the homepage instance), hands the selected size straight
 // to the "Get Free Quote" modal instead of the CTA duplicating a second lead form —
 // ctaHref stays for the other instances (pricing page, service+location pages) that
 // link out to a real /contact page or WhatsApp instead.
-export function Estimator({ compact = false, defaultLocationIndex = 0, ctaHref, onBookSurvey }) {
+export function Estimator({ compact = false, ctaHref, onBookSurvey }) {
   const { lang, dict } = useI18n();
   // No inline #contact form exists on any page, so the fallback is the contact page's form.
   const surveyHref = ctaHref || `/${lang}/contact#contact-form`;
@@ -23,9 +22,8 @@ export function Estimator({ compact = false, defaultLocationIndex = 0, ctaHref, 
 
   const [size, setSize] = useState(3500);
   const [scope, setScope] = useState(0);
-  const [location, setLocation] = useState(defaultLocationIndex);
 
-  const totalCost = size * BASE_RATE_BY_SCOPE[scope] * LOCATION_MULTIPLIER[location];
+  const totalCost = size * BASE_RATE_BY_SCOPE[scope];
   const formattedCost = new Intl.NumberFormat('en-AE', { style: 'currency', currency: 'AED', maximumFractionDigits: 0 }).format(totalCost);
   const sizeFillPos = sliderFillPosition(size, 500, 15000, 28);
 
@@ -73,14 +71,6 @@ export function Estimator({ compact = false, defaultLocationIndex = 0, ctaHref, 
               </div>
             </div>
 
-            <div className="estimator-control-group">
-              <label>{t.location}</label>
-              <div className="project-types" dir="ltr" style={{ width: '100%', margin: '0', justifyContent: 'flex-start' }}>
-                {t.locationOptions.map((opt, i) => (
-                  <button type="button" key={i} className={location === i ? "is-active" : ""} onClick={() => setLocation(i)}>{opt}</button>
-                ))}
-              </div>
-            </div>
           </Reveal>
 
           <Reveal className="estimator-result" delay={200}>

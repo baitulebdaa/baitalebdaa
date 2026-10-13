@@ -2118,6 +2118,14 @@ button.estimator-submit-btn {
   gap: 14px;
 }
 
+.slp-gallery-note {
+  max-width: 640px;
+  margin: 10px 0 22px;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
 .slp-gallery-item {
   position: relative;
   aspect-ratio: 4 / 3;
