@@ -5,7 +5,8 @@ import { imageAlt } from "./data/image-alts";
 import { useState } from "react";
 import { ArrowUpRight } from "./components/icons";
 import { useI18n } from "./i18n/I18nProvider";
-import { Header, Footer, Reveal } from "./components/Shared";
+import { Header, Footer, Reveal } from "./components/Shared";
+import { PageFaq } from "./components/PageFaq";
 import { isPublishedProject } from "./data/project-catalog";
 
 export default function OurProjects() {
@@ -156,6 +157,7 @@ export default function OurProjects() {
           </div>
         </section>
 
+        <PageFaq faqKey="projects" />
       </main>
       <Footer />
     </>

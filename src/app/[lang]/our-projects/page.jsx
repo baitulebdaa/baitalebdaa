@@ -1,6 +1,7 @@
 import OurProjects from "../../../OurProjects";
 import { dictionaries } from "../../../i18n/dictionaries";
 import { buildPageMetadata } from "../../../lib/page-metadata";
+import { PageFaqSchema } from "../../../components/PageFaqSchema";
 
 export async function generateMetadata({ params }) {
   const { lang } = await params;
@@ -8,6 +9,12 @@ export async function generateMetadata({ params }) {
   return buildPageMetadata({ lang, path: "our-projects", title: t.metaTitle, description: t.metaDescription });
 }
 
-export default function OurProjectsPage() {
-  return <OurProjects />;
+export default async function OurProjectsPage({ params }) {
+  const { lang } = await params;
+  return (
+    <>
+      <PageFaqSchema lang={lang} faqKey="projects" />
+      <OurProjects />
+    </>
+  );
 }

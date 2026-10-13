@@ -5,7 +5,8 @@
 // Every claim is taken from copy the site already publishes for that service
 // (src/data/service-content.js, whyChooseFacts, the studio facts) — nothing new is asserted.
 // Abu Dhabi wording names no authorities, matching src/data/abu-dhabi-copy.js.
-// Keep each one between 120 and 160 characters (checked by tests/seo.test.mjs).
+// Keep each one between 120 and 150 characters (checked by tests/seo.test.mjs): longer ones
+// get flagged "too long" by SEO tools and cut off in search results.
 const approvals = (city) =>
   city === "Dubai" ? "with Dubai Municipality and DDA approvals handled for you" : "with approvals coordinated in-house";
 
@@ -39,7 +40,7 @@ export const SERVICE_META_EN = {
   joinery: (city) =>
     `Custom architectural joinery for ${city} projects, made in our own 15,000 sq ft Ajman factory: panelling, millwork and fitted furniture, installed.`,
   "custom-wardrobes": (city) =>
-    `Custom wardrobes in ${city}, designed to the millimetre and made in our Ajman factory: walk-in, sliding or hinged, with a 5-year workmanship guarantee.`,
+    `Custom wardrobes in ${city}, made to the millimetre in our Ajman factory: walk-in, sliding or hinged, with a 5-year workmanship guarantee.`,
   "kitchen-design": (city) =>
     `Kitchen design in ${city} balancing workflow, storage and finish, with cabinetry made in-house so what you approve on screen is what gets installed.`,
   "kitchen-renovation": (city) =>

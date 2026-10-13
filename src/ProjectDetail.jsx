@@ -6,6 +6,7 @@ import { ArrowLeft, ArrowRight, ArrowUpRight, Check } from "./components/icons";
 import { useI18n } from "./i18n/I18nProvider";
 import { Header, Footer, Reveal, PageHeader, ProcessTimeline, SocialLinks } from "./components/Shared";
 import { QuoteModal } from "./components/QuoteModal";
+import { PageFaq } from "./components/PageFaq";
 
 const SITE_URL = "https://www.baitalebdaa.com";
 
@@ -67,7 +68,7 @@ export default function ProjectDetail({ slug }) {
         <PageHeader
           kicker={t.projectOverview}
           breadcrumbs={<>{dict.ourProjectsPage.home} &nbsp;&#9656;&nbsp; <a href={`/${lang}/our-projects`}>{t.projectOverview}</a> &nbsp;&#9656;&nbsp; <strong>{projectData.title.length > 30 ? projectData.title.substring(0, 30) + "..." : projectData.title}</strong></>}
-          title={projectData.title}
+          title={projectData.pageH1 || projectData.title}
         >
           <div className="project-social">
             <span className="stay-connected">{t.stayConnected}</span>
@@ -243,6 +244,16 @@ export default function ProjectDetail({ slug }) {
             </div>
           </section>
         )}
+        {resolvedSlug === "government-authority" && (
+          <section className="shell slp-links-section">
+            <Reveal className="slp-links-block">
+              <a href={`/${lang}/media/government-authority-hq-case-study`} className="service-learn-more">
+                {lang === "ar" ? "اقرأ دراسة الحالة الكاملة لتجهيز مقر الهيئة الحكومية" : "Read the full government HQ fit-out case study"}
+              </a>
+            </Reveal>
+          </section>
+        )}
+        <PageFaq faqKey={resolvedSlug} />
       </main>
       <Footer />
       <QuoteModal open={quoteOpen} onClose={() => setQuoteOpen(false)} />

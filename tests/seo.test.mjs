@@ -18,11 +18,11 @@ function sourceFiles(dir) {
   });
 }
 
-test("service meta descriptions are 120-160 characters with the city capitalised", () => {
+test("service meta descriptions are 120-150 characters with the city capitalised", () => {
   for (const [slug, write] of Object.entries(SERVICE_META_EN)) {
     for (const city of ["Dubai", "Abu Dhabi"]) {
       const text = write(city);
-      assert.ok(text.length >= 120 && text.length <= 160, `${slug}/${city} is ${text.length} chars`);
+      assert.ok(text.length >= 120 && text.length <= 150, `${slug}/${city} is ${text.length} chars`);
       assert.ok(text.includes(city), `${slug}/${city} must name the city`);
       assert.doesNotMatch(text, /\b(dubai|abu dhabi)\b/, `${slug}/${city} has a lowercase city`);
     }

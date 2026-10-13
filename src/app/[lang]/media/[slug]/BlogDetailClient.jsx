@@ -65,7 +65,7 @@ export default function BlogDetailClient({ article, breadcrumbs, newsAndInsights
             <Reveal delay={200}>
               {/* Recent Articles Widget */}
               <div className="sidebar-widget" style={{ padding: '30px', backgroundColor: 'var(--paper)', borderRadius: '12px', marginBottom: '40px' }}>
-                <h3 style={{ marginBottom: '25px', fontSize: '1.2rem', color: 'var(--ink)' }}>{newsAndInsights}</h3>
+                <p className="hx" style={{ marginBottom: '25px', fontSize: '1.2rem', color: 'var(--ink)' }}>{newsAndInsights}</p>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                   {recentArticles.map((ra, idx) => (
                     <a key={idx} href={`/${lang}/media/${ra.slug}`} style={{ display: 'flex', gap: '15px', alignItems: 'center', textDecoration: 'none' }}>
@@ -73,7 +73,7 @@ export default function BlogDetailClient({ article, breadcrumbs, newsAndInsights
                         <Image src={ra.image} alt={ra.title} fill sizes="80px" style={{ objectFit: 'cover' }} />
                       </div>
                       <div>
-                        <h4 style={{ fontSize: '0.95rem', margin: '0 0 5px 0', lineHeight: '1.4', color: 'var(--ink)' }}>{ra.title}</h4>
+                        <p className="hx" style={{ fontSize: '0.95rem', margin: '0 0 5px 0', lineHeight: '1.4', color: 'var(--ink)' }}>{ra.title}</p>
                         <span style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>{ra.date}</span>
                       </div>
                     </a>
@@ -83,7 +83,7 @@ export default function BlogDetailClient({ article, breadcrumbs, newsAndInsights
 
               {/* CTA Widget */}
               <div className="sidebar-cta" style={{ padding: '30px', backgroundColor: 'var(--ink)', color: '#fff', borderRadius: '12px', textAlign: 'center' }}>
-                <h3 style={{ marginBottom: '15px', color: '#fff' }}>{discuss}</h3>
+                <p className="hx" style={{ marginBottom: '15px', color: '#fff' }}>{discuss}</p>
                 <p style={{ fontSize: '0.9rem', marginBottom: '25px', opacity: 0.8 }}>
                   {lang === 'ar' ? 'هل لديك مشروع في الاعتبار؟ تواصل مع خبرائنا اليوم.' : 'Have a project in mind? Speak to our experts today.'}
                 </p>

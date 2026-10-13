@@ -86,7 +86,7 @@ export function Estimator({ compact = false, defaultLocationIndex = 0, ctaHref, 
           <Reveal className="estimator-result" delay={200}>
             <div className="estimator-result-badge">{t.estimatedInvestment}</div>
             <p className="estimator-result-label">{t.calculatedValue}</p>
-            <h3 className="estimator-result-price">{formattedCost}</h3>
+            <p className="estimator-result-price hx">{formattedCost}</p>
 
             <ul className="estimator-inclusions">
               {t.inclusions.map((inc, i) => (

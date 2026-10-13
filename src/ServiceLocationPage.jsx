@@ -176,6 +176,10 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
   const pricingCopy = dict.pricingPage.groups[pricingGroupId];
 
   const home = dict.ourProjectsPage.home;
+  // The sheet's short Arabic H1s ("تجديد فلل في دبي", 16 characters) read as fragments and are
+  // flagged as too short; append the brand so every H1 is a full phrase of 20+ characters.
+  // The keyword stays first and unchanged.
+  const pageH1 = lang === "ar" && row.h1.length < 20 ? `${row.h1} من بيت الإبداع` : row.h1;
   const servicesLabel = dict.nav.services;
   const gallery = WORK_GALLERY_BY_SERVICE[row.serviceSlug] || [];
   const heroPhoto = pickByLocation(gallery, row.locationSlug);
@@ -312,7 +316,7 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
                 <i aria-hidden="true" />
                 {locationName === emirateName ? locationName : `${locationName} · ${emirateName}`}
               </span>
-              <h1 className="slp-hero__title">{row.h1}</h1>
+              <h1 className="slp-hero__title">{pageH1}</h1>
               <p className="slp-hero__lead">{content.summary}</p>
               <p className="slp-hero__lead slp-hero__lead--sub">{locationClause}</p>
               <ul className="slp-hero__points">
@@ -455,7 +459,7 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
             </div>
             <div className="slp-proof-copy">
               <p className="micro">{dict.ourProjectsPage.ourProjects}</p>
-              <h3>{project.title}</h3>
+              <p className="hx">{project.title}</p>
               {caseStudyLinkLabel && (
                 <a href={`/${lang}/our-projects/government-authority`} className="service-learn-more">
                   {caseStudyLinkLabel}
@@ -491,11 +495,13 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
         <section className="shell slp-links-section">
           {(coreAreas.length > 0 || nearbyAreas.length > 0) && (
             <Reveal className="slp-links-block">
-              <h3>{lang === "ar" ? `${serviceName} في مناطق أخرى` : `${serviceName} in other areas`}</h3>
+              <p className="hx">{lang === "ar" ? `${serviceName} في مناطق أخرى` : `${serviceName} in other areas`}</p>
               <div className="slp-links-pills">
                 {[...coreAreas, ...nearbyAreas].map((entry) => (
+                  // Anchor names the full target ("Joinery in Abu Dhabi"), never just the city: a bare
+                  // "Dubai" pointed at a different page from every service page.
                   <a key={entry.location.slug} href={`/${lang}/${row.serviceSlug}/${entry.location.slug}`}>
-                    {lang === "ar" ? entry.location.ar : entry.location.en}
+                    {lang === "ar" ? `${serviceName} في ${entry.location.ar}` : `${serviceName} in ${entry.location.en}`}
                   </a>
                 ))}
               </div>
@@ -503,11 +509,11 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
           )}
           {otherServices.length > 0 && (
             <Reveal className="slp-links-block" delay={100}>
-              <h3>{lang === "ar" ? `خدمات أخرى في ${locationName}` : `Other services in ${locationName}`}</h3>
+              <p className="hx">{lang === "ar" ? `خدمات أخرى في ${locationName}` : `Other services in ${locationName}`}</p>
               <div className="slp-links-pills">
                 {otherServices.map((entry) => (
                   <a key={entry.service.slug} href={`/${lang}/${entry.service.slug}/${row.locationSlug}`}>
-                    {lang === "ar" ? entry.service.ar : entry.service.en}
+                    {lang === "ar" ? `${entry.service.ar} في ${locationName}` : `${entry.service.en} in ${locationName}`}
                   </a>
                 ))}
               </div>
@@ -515,7 +521,7 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
           )}
           {(row.serviceSlug === "joinery" || row.serviceSlug === "custom-wardrobes") && (
             <Reveal className="slp-links-block" delay={150}>
-              <h3>{lang === "ar" ? "خدمات ذات صلة" : "Related services"}</h3>
+              <p className="hx">{lang === "ar" ? "خدمات ذات صلة" : "Related services"}</p>
               <div className="slp-links-pills">
                 <a href={`/${lang}/furniture-maintenance-care`}>
                   {lang === "ar" ? "صيانة والعناية بالأثاث" : "Furniture Maintenance & Care"}
@@ -542,7 +548,7 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
                       <Image src={post.image} alt={post.title} fill sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 25vw" style={{ objectFit: "cover" }} />
                     </div>
                     <div className="slp-blog-card__content">
-                      <h3>{post.title}</h3>
+                      <p className="hx">{post.title}</p>
                       <span className="read-more">{dict.mediaPage.readMore}</span>
                     </div>
                   </a>
