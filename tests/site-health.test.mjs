@@ -287,7 +287,7 @@ test("the browser dictionary has no article bodies; article pages get theirs as 
 });
 
 test("above-the-fold hero content is visible without JavaScript (eager Reveal)", () => {
-  for (const file of ["src/ServiceLocationPage.jsx", "src/OurServices.jsx", "src/OurProjects.jsx", "src/PricingPage.jsx", "src/Process.jsx", "src/ContactPage.jsx", "src/FurnitureMaintenanceCare.jsx"]) {
+  for (const file of ["src/ServiceLocationPage.jsx", "src/OurServices.jsx", "src/OurProjects.jsx", "src/PricingPage.jsx", "src/Process.jsx", "src/ContactPage.jsx", "src/FurnitureMaintenanceCare.jsx", "src/ProjectDetail.jsx"]) {
     const source = read(file);
     const h1 = source.indexOf("<h1");
     const hero = source.slice(source.lastIndexOf("<section", h1), source.indexOf("</section>", h1));
@@ -343,4 +343,24 @@ test("furniture maintenance page carries the care guide in both languages and se
   const page = read("src/FurnitureMaintenanceCare.jsx");
   assert.ok(page.includes('areaServed: ["Dubai", "Abu Dhabi", "Sharjah", "Ajman", "Ras Al Khaimah", "Fujairah", "Umm Al Quwain"]'));
   assert.ok(page.includes("/media/furniture-maintenance-care-humid-climate"));
+});
+
+test("project pages carry the similar-project panel and a fact-built FAQ in both languages", async () => {
+  const { projectSimilar, projectFaq } = await import("../src/data/project-content.js");
+  const { getPageFaqs } = await import("../src/data/page-faqs.js");
+  for (const lang of ["en", "ar"]) {
+    for (const [slug, project] of Object.entries(dictionaries[lang].projectDetailPage.projects)) {
+      const similar = projectSimilar(project, lang, dictionaries[lang].pricingPage.items);
+      assert.equal(similar.cards.length, 3, `${lang} ${slug}`);
+      assert.ok(similar.cards.every((card) => card.body), `${lang} ${slug}: card text`);
+      if (getPageFaqs(lang, slug)) continue;
+      const faq = projectFaq(project, lang);
+      assert.ok(faq.items.length >= 3, `${lang} ${slug}: faq`);
+      // The first answer restates only the confirmed facts.
+      for (const value of [project.metadata.size, project.metadata.year]) assert.ok(faq.items[0].a.includes(value), `${lang} ${slug}: ${value}`);
+    }
+  }
+  const page = read("src/ProjectDetail.jsx");
+  assert.ok(page.includes("faqPageJsonLd(faq.items, { withContext: true })"));
+  assert.ok(page.includes('className="shell pd-similar"'));
 });

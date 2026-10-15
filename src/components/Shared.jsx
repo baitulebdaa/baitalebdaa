@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { ArrowUp, ArrowUpRight, ChevronDown, Plus, Menu, X, Globe, Sparkles, Facebook, Instagram, Whatsapp, WhatsappLogo, Home, Services, Projects, Phone } from "./icons";
+import { ArrowUpRight, ChevronDown, Plus, Menu, X, Globe, Sparkles, Facebook, Instagram, Whatsapp, WhatsappLogo, Home, Services, Projects, Phone, Mail, MapPin, Clock } from "./icons";
 import { useI18n } from "../i18n/I18nProvider";
 import { useRouter, usePathname } from "next/navigation";
 import { getServiceLabel } from "../data/service-catalog";
@@ -22,6 +22,9 @@ const SERVICE_MENU_GROUPS = [
   { headingKey: "fitOut", slugs: ["fit-out", "office-fit-out", "restaurant-fit-out", "retail-fit-out"] },
   { headingKey: "renovationJoinery", slugs: ["villa-renovation", "apartment-renovation", "office-renovation", "joinery", "custom-wardrobes", "kitchen-design", "kitchen-renovation"] },
 ];
+
+// Footer "Services" column: the core services, linked exactly as in the header menu above.
+const FOOTER_SERVICES = ["interior-design", "fit-out", "office-fit-out", "villa-renovation", "joinery", "custom-wardrobes"];
 
 const SOCIAL_ICONS = { Facebook, Instagram };
 
@@ -324,12 +327,56 @@ export function Footer() {
     if (item === "Reviews" || item === "آراء العملاء") return `/${lang}/reviews`;
     return "#top";
   };
-  return <footer>
+  const homeHref = lang === "en" ? "/" : `/${lang}`;
+  const waHref = `https://wa.me/971582621717?text=${encodeURIComponent(lang === "ar" ? "مرحباً! أرغب بمناقشة مشروعي معكم." : "Hello! I'd like to discuss my project with you.")}`;
+  const about = dict.aboutPage;
+  return <footer className="site-footer">
     <div className="shell footer-top">
-      <div className="footer-newsletter">
+      <div className="footer-brand">
+        <a href={homeHref} className="footer-brand__logo" aria-label={lang === "ar" ? "الصفحة الرئيسية لبيت الإبداع" : "Bait Al Ebdaa home"}>
+          <Image src="/assets/logo.png" alt="Bait Al Ebdaa" width={2170} height={725} sizes="200px" />
+        </a>
+        <p className="footer-brand__about">{f.about}</p>
+        <a className="footer-cta" href={waHref} target="_blank" rel="noopener noreferrer">
+          <WhatsappLogo size={18} /> {dict.nav.startProject} <ArrowUpRight size={15} />
+        </a>
+        <div className="footer-social">
+          <SocialLinks />
+        </div>
+      </div>
+
+      <nav className="footer-links-col" aria-label={f.explore}>
+        <p className="footer-col-title">{f.explore}</p>
+        {f.exploreLinks.map((link, i) => <a key={i} href={exploreHref(link)}>{link}</a>)}
+      </nav>
+
+      {/* Same targets and labels as the header Services menu, so one anchor text always means one URL. */}
+      <nav className="footer-links-col" aria-label={f.services}>
+        <p className="footer-col-title">{f.services}</p>
+        {FOOTER_SERVICES.map((slug) => {
+          const service = getServiceLabel(slug);
+          return service ? <a key={slug} href={`/${lang}/${slug}/dubai`}>{lang === "ar" ? service.ar : service.en}</a> : null;
+        })}
+        <a href={`/${lang}/furniture-maintenance-care`}>{dict.furnitureMaintenancePage.navTitle}</a>
+        <a href={`/${lang}/our-services`} className="footer-links-col__all">{dict.servicesSection.viewAllServices} <ArrowUpRight size={13} /></a>
+      </nav>
+
+      <div className="footer-links-col footer-contact">
+        <p className="footer-col-title">{f.contactInfo}</p>
+        <a href="tel:+971582621717"><Phone size={16} /> <bdi dir="ltr">+971 58 262 1717</bdi></a>
+        <a href="mailto:info@baitalebdaa.com"><Mail size={16} /> info@baitalebdaa.com</a>
+        <a href="mailto:sales@baitalebdaa.com"><Mail size={16} /> <span>{f.salesLabel} sales@baitalebdaa.com</span></a>
+        <span><MapPin size={16} /> {about.companyDetails.addressValue}</span>
+        <span><Clock size={16} /> {about.hoursValue}</span>
+      </div>
+    </div>
+
+    <div className="shell footer-newsletter">
+      <div className="footer-newsletter__copy">
         <p className="footer-label">{f.newsletter}</p>
-        <p className="footer-headline hx" style={{whiteSpace: 'pre-wrap'}}>{f.headline}</p>
-        <form onSubmit={subscribe}>
+        <p className="footer-headline hx">{f.headline.replace("\n", " ")}</p>
+      </div>
+      <form onSubmit={subscribe}>
           <Honeypot />
           <label className="footer-email-label" htmlFor="footer-newsletter-email">{f.emailLabel}
             <div className="footer-email-row">
@@ -350,37 +397,13 @@ export function Footer() {
           </label>
           {newsletterStatus === "sent" && <p className="footer-newsletter-status" role="status">{f.subscribed}</p>}
           {newsletterStatus === "error" && <p className="footer-newsletter-status footer-newsletter-status--error" role="status">{newsletterError || f.subscribeError}</p>}
-        </form>
-      </div>
-      <div className="footer-links-col">
-        <p className="footer-col-title">{f.explore}</p>
-        {f.exploreLinks.map((link, i) => <a key={i} href={exploreHref(link)}>{link}</a>)}
-      </div>
-      <div className="footer-links-col">
-        <p className="footer-col-title">{f.importantLinks}</p>
-        {f.importantLinksItems.map((link, i) => <a key={i} href={`/${lang}/${LEGAL_LINK_SLUGS[i]}`}>{link}</a>)}
-      </div>
-      <div className="footer-links-col">
-        <p className="footer-col-title">{f.contactInfo}</p>
-        <span className="footer-loc">{f.loc}</span>
-        <a href="mailto:info@baitalebdaa.com">info@baitalebdaa.com</a>
-        <a href="mailto:sales@baitalebdaa.com">{f.salesLabel} sales@baitalebdaa.com</a>
-        <a href="tel:+971582621717">T: <bdi dir="ltr">+971 58 262 1717</bdi></a>
-      </div>
+      </form>
     </div>
-    <div className="shell footer-mid">
-      <Image className="footer-logo" src="/assets/footer logo.png" alt="Bait Al Ebdaa" width={1540} height={400} />
-      <a href="#top" className="footer-back-top" aria-label="Back to top"><ArrowUp size={20} /><span>{f.backToTop}</span></a>
-    </div>
+
     <div className="shell footer-bottom">
-      <div className="footer-bottom-left">
-        <a href={`/${lang}/privacy-policy`}>{f.privacy}</a>
-        <span className="footer-divider">|</span>
-        <a href={`/${lang}/terms-and-conditions`}>{f.terms}</a>
-      </div>
-      <div className="footer-social">
-        <SocialLinks />
-      </div>
+      <nav className="footer-legal" aria-label={f.importantLinks}>
+        {f.importantLinksItems.map((link, i) => <a key={i} href={`/${lang}/${LEGAL_LINK_SLUGS[i]}`}>{link}</a>)}
+      </nav>
       <span className="footer-copy">{f.copy}</span>
     </div>
   </footer>;

@@ -671,6 +671,8 @@ export const dictionaries = {
       error: "Something went wrong. Please try again or WhatsApp us."
     },
     footer: {
+      about: "Bait Al Ebdaa is a UAE interior design and turnkey fit-out company for villas, apartments and offices. One team handles design, approvals, fit-out and custom joinery — made in our own 15,000 sq ft factory in Ajman with a 5‑year workmanship guarantee — across all seven emirates, from Dubai to Abu Dhabi.",
+      services: "Services",
       newsletter: "Newsletter",
       headline: "Sign up to receive\nlatest news & updates!",
       emailLabel: "Email",
@@ -2195,6 +2197,8 @@ export const dictionaries = {
       error: "حدث خطأ ما. يرجى المحاولة مرة أخرى أو التواصل عبر واتساب."
     },
     footer: {
+      about: "بيت الإبداع شركة تصميم داخلي وتجهيز متكامل في الإمارات للفلل والشقق والمكاتب. يتولى فريق واحد التصميم والموافقات والتجهيز والنجارة المخصصة — المصنوعة في مصنعنا الخاص بمساحة 15,000 قدم مربع في عجمان مع ضمان جودة الصنعة لمدة 5 سنوات — في جميع الإمارات السبع، من دبي إلى أبوظبي.",
+      services: "الخدمات",
       newsletter: "النشرة الإخبارية",
       headline: "سجل لتلقي\nآخر الأخبار والتحديثات!",
       emailLabel: "البريد الإلكتروني",
