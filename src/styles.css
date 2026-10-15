@@ -6684,3 +6684,24 @@ button.estimator-submit-btn {
   }
 
 }
+
+/* Homepage: featured service tiles (App.jsx ServicesDirectory, components/ServiceTiles.jsx). */
+.services-directory {
+  padding-top: 0;
+}
+
+/* The capability cards above share this background: keep one normal gap, not two paddings. */
+#services {
+  padding-bottom: clamp(40px, 4vw, 64px);
+}
+
+.services-directory .section-heading--center {
+  margin-bottom: clamp(32px, 3vw, 48px);
+}
+
+.sd-all {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
