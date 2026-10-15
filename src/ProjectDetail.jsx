@@ -4,9 +4,12 @@ import Image from "next/image";
 import { useState } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Check } from "./components/icons";
 import { useI18n } from "./i18n/I18nProvider";
-import { Header, Footer, Reveal, PageHeader, ProcessTimeline, SocialLinks } from "./components/Shared";
+import { Header, Footer, Reveal, ProcessTimeline, FaqSplit } from "./components/Shared";
 import { QuoteModal } from "./components/QuoteModal";
 import { PageFaq } from "./components/PageFaq";
+import { getPageFaqs } from "./data/page-faqs";
+import { projectFaq, projectSimilar } from "./data/project-content";
+import { faqPageJsonLd } from "./lib/faq-schema";
 
 const SITE_URL = "https://www.baitalebdaa.com";
 
@@ -37,17 +40,23 @@ export default function ProjectDetail({ slug }) {
     .slice(0, 3)
     .map((item) => ({ ...item, image: t.projects[item.slug].images[0] }));
 
-  const facts = [
-    { label: t.labels.location, value: projectData.metadata.location },
+  // Location sits in the hero chip; the other four facts form the hero fact grid.
+  const heroFacts = [
     { label: t.labels.sector, value: projectData.metadata.sector },
     { label: t.labels.size, value: projectData.metadata.size },
     { label: t.labels.year, value: projectData.metadata.year },
     { label: t.labels.service, value: projectData.metadata.service },
   ];
 
+  const similar = projectSimilar(projectData, lang, dict.pricingPage.items);
+  // Projects with a hand-written FAQ (data/page-faqs.js, schema from the route) keep it; the
+  // rest get the FAQ built from their confirmed facts, with its FAQPage schema rendered here.
+  const hasPageFaq = Boolean(getPageFaqs(lang, resolvedSlug));
+  const faq = hasPageFaq ? null : projectFaq(projectData, lang);
+  const faqSchema = faq ? faqPageJsonLd(faq.items, { withContext: true }) : null;
+
   const nextImage = () => setCurrentImageIndex((prev) => (prev + 1) % images.length);
   const prevImage = () => setCurrentImageIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
-  const progressPercentage = ((currentImageIndex + 1) / images.length) * 100;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -62,80 +71,91 @@ export default function ProjectDetail({ slug }) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema).replace(/</g, "\\u003c") }} />}
       <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} useFooterLogo={true} lightTheme={true} />
 
       <main className="project-detail-page">
-        <PageHeader
-          kicker={t.projectOverview}
-          breadcrumbs={<>{dict.ourProjectsPage.home} &nbsp;&#9656;&nbsp; <a href={`/${lang}/our-projects`}>{t.projectOverview}</a> &nbsp;&#9656;&nbsp; <strong>{projectData.title.length > 30 ? projectData.title.substring(0, 30) + "..." : projectData.title}</strong></>}
-          title={projectData.pageH1 || projectData.title}
-        >
-          <div className="project-social">
-            <span className="stay-connected">{t.stayConnected}</span>
-            <div className="social-icons">
-              <SocialLinks />
-            </div>
+        {/* Hero — project summary and key facts beside the photo carousel */}
+        <section className="shell pd-hero">
+          <div className="pd-hero__copy">
+            <Reveal eager>
+              <nav className="slp-crumbs" aria-label={lang === "ar" ? "مسار التنقل" : "Breadcrumb"}>
+                <a href={lang === "en" ? "/" : "/ar"}>{dict.ourProjectsPage.home}</a> &nbsp;&#9656;&nbsp;
+                <a href={`/${lang}/our-projects`}>{dict.ourProjectsPage.ourProjects}</a> &nbsp;&#9656;&nbsp;
+                <strong aria-current="page">{projectData.title}</strong>
+              </nav>
+              <span className="slp-chip">
+                <i aria-hidden="true" />
+                {projectData.metadata.location}
+              </span>
+              <h1 className="slp-hero__title pd-hero__title">{projectData.pageH1 || projectData.title}</h1>
+              <p className="slp-hero__lead">{paragraphs[0]}</p>
+              {/* Highlights: the first four items of the confirmed scope of work */}
+              {projectData.scope?.length > 0 && (
+                <ul className="slp-hero__points">
+                  {projectData.scope.slice(0, 4).map((item) => (
+                    <li key={item}>
+                      <Check size={16} />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              <dl className="pd-hero__facts" aria-label={ui.keyFacts}>
+                {heroFacts.map((f) => (
+                  <div key={f.label}>
+                    <dt>{f.label}</dt>
+                    <dd>{f.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </Reveal>
+            <Reveal eager delay={120} className="slp-hero__actions">
+              <a className="slp-btn slp-btn--solid" href={waHref} target="_blank" rel="noopener noreferrer">
+                {dict.nav.startProject} <ArrowUpRight size={15} />
+              </a>
+              <button type="button" className="slp-btn" onClick={() => setQuoteOpen(true)}>
+                {dict.nav.getFreeQuote} <ArrowUpRight size={15} />
+              </button>
+            </Reveal>
           </div>
-        </PageHeader>
 
-        {/* Hero Carousel */}
-        <section className="project-hero-carousel" aria-roledescription="carousel" aria-label={projectData.title}>
-          {images.length > 0 && (
-            <>
-              <div className="carousel-image-container">
-                <Image
-                  src={images[currentImageIndex]}
-                  alt={`${projectData.title} — ${ui.photo} ${currentImageIndex + 1}`}
-                  fill
-                  sizes="(max-width: 980px) 100vw, 1600px"
-                  priority
-                  style={{ objectFit: "cover" }}
-                />
-              </div>
-
-              <div className="carousel-controls shell">
-                <div className="carousel-progress">
-                  <span className="carousel-counter">{currentImageIndex + 1}/{images.length}</span>
-                  <div className="progress-bar-bg">
-                    <div className="progress-bar-fill" style={{ width: `${progressPercentage}%` }}></div>
+          <Reveal eager className="pd-hero__media" delay={100}>
+            <div className="pd-hero__frame" aria-roledescription="carousel" aria-label={projectData.title}>
+              <Image
+                src={images[currentImageIndex]}
+                alt={`${projectData.title} — ${ui.photo} ${currentImageIndex + 1}`}
+                fill
+                sizes="(max-width: 980px) 100vw, 55vw"
+                priority
+                style={{ objectFit: "cover" }}
+              />
+              {images.length > 1 && (
+                <div className="pd-hero__controls">
+                  <span className="pd-hero__counter" dir="ltr">{currentImageIndex + 1} / {images.length}</span>
+                  <div className="pd-hero__arrows">
+                    <button type="button" onClick={prevImage} aria-label={ui.previous}><ArrowLeft size={18} /></button>
+                    <button type="button" onClick={nextImage} aria-label={ui.next}><ArrowRight size={18} /></button>
                   </div>
                 </div>
-                <div className="carousel-arrows">
-                  <button type="button" onClick={prevImage} aria-label={ui.previous} className="arrow-btn"><ArrowLeft size={24} /></button>
-                  <button type="button" onClick={nextImage} aria-label={ui.next} className="arrow-btn"><ArrowRight size={24} /></button>
-                </div>
+              )}
+            </div>
+            {images.length > 1 && (
+              <div className="pd-thumbs" role="group" aria-label={ui.gallery}>
+                {images.map((src, i) => (
+                  <button
+                    key={src}
+                    type="button"
+                    className={i === currentImageIndex ? "is-active" : ""}
+                    onClick={() => setCurrentImageIndex(i)}
+                    aria-label={`${ui.photo} ${i + 1}`}
+                    aria-current={i === currentImageIndex ? "true" : undefined}
+                  >
+                    <Image src={src} alt="" fill sizes="120px" style={{ objectFit: "cover" }} />
+                  </button>
+                ))}
               </div>
-            </>
-          )}
-        </section>
-
-        {/* Thumbnails */}
-        {images.length > 1 && (
-          <div className="shell pd-thumbs" role="group" aria-label={ui.gallery}>
-            {images.map((src, i) => (
-              <button
-                key={src}
-                type="button"
-                className={i === currentImageIndex ? "is-active" : ""}
-                onClick={() => setCurrentImageIndex(i)}
-                aria-label={`${ui.photo} ${i + 1}`}
-                aria-current={i === currentImageIndex ? "true" : undefined}
-              >
-                <Image src={src} alt="" fill sizes="120px" style={{ objectFit: "cover" }} />
-              </button>
-            ))}
-          </div>
-        )}
-
-        {/* Key facts */}
-        <section className="pd-facts" aria-label={ui.keyFacts}>
-          <Reveal className="shell pd-facts__grid">
-            {facts.map((f) => (
-              <div className="pd-facts__item" key={f.label}>
-                <span>{f.label}</span>
-                <strong>{f.value}</strong>
-              </div>
-            ))}
+            )}
           </Reveal>
         </section>
 
@@ -145,7 +165,8 @@ export default function ProjectDetail({ slug }) {
             <Reveal>
               <p className="micro">{t.projectOverview}</p>
               <h2 className="slp-h2">{ui.overview}</h2>
-              {paragraphs.map((paragraph, index) => (
+              {/* The first paragraph is the hero lead; the overview continues from the second. */}
+              {paragraphs.slice(1).map((paragraph, index) => (
                 <p className="slp-scope__text pd-overview__para" key={index}>{paragraph}</p>
               ))}
             </Reveal>
@@ -189,6 +210,28 @@ export default function ProjectDetail({ slug }) {
             </div>
           </section>
         )}
+
+        {/* Planning a similar project — timeline, published starting price, coverage */}
+        <section className="shell pd-similar">
+          <Reveal>
+            <p className="micro">{similar.kicker}</p>
+            <h2 className="slp-h2">{similar.title}</h2>
+          </Reveal>
+          <div className="pd-similar__grid">
+            {similar.cards.map((card, i) => (
+              <Reveal className="pd-similar__card" key={card.label} delay={80 + i * 60}>
+                <span className="pd-similar__label">{card.label}</span>
+                {card.value && <strong className="pd-similar__value">{card.value}</strong>}
+                <p>{card.body}</p>
+                {card.pricing && (
+                  <a href={`/${lang}/pricing`} className="service-learn-more">
+                    {similar.seePricing} <ArrowUpRight size={14} />
+                  </a>
+                )}
+              </Reveal>
+            ))}
+          </div>
+        </section>
 
         {/* How we deliver (the studio's standard four-stage process) */}
         <section className="section process-timeline-section pd-process">
@@ -253,7 +296,11 @@ export default function ProjectDetail({ slug }) {
             </Reveal>
           </section>
         )}
-        <PageFaq faqKey={resolvedSlug} />
+        {hasPageFaq ? (
+          <PageFaq faqKey={resolvedSlug} />
+        ) : (
+          <FaqSplit kicker={dict.faqSection.kicker} title={faq.title} subtitle={faq.subtitle} items={faq.items} idPrefix={`project-${resolvedSlug}`} />
+        )}
       </main>
       <Footer />
       <QuoteModal open={quoteOpen} onClose={() => setQuoteOpen(false)} />
