@@ -312,7 +312,7 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
         {/* Hero — split: copy, starting price and actions beside a photo mosaic */}
         <section className="shell slp-hero">
           <div className="slp-hero__copy">
-            <Reveal>
+            <Reveal eager>
               <nav className="slp-crumbs" aria-label={lang === "ar" ? "مسار التنقل" : "Breadcrumb"}>
                 <a href={lang === "en" ? "/" : "/ar"}>{home}</a> &nbsp;&#9656;&nbsp;
                 <a href={`/${lang}/our-services`}>{servicesLabel}</a>
@@ -334,7 +334,7 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
                 ))}
               </ul>
             </Reveal>
-            <Reveal delay={120} className="slp-hero__foot">
+            <Reveal eager delay={120} className="slp-hero__foot">
               {startingItem && (
                 <div className="slp-hero__price">
                   <span>{lang === "ar" ? "الأسعار الاسترشادية" : "Indicative pricing"}</span>
@@ -353,7 +353,7 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
             </Reveal>
           </div>
 
-          <Reveal className={`slp-mosaic${mosaicPhotos.length ? "" : " slp-mosaic--single"}`} delay={100}>
+          <Reveal eager className={`slp-mosaic${mosaicPhotos.length ? "" : " slp-mosaic--single"}`} delay={100}>
             <div className="slp-mosaic__main">
               <Image src={heroImage} alt={heroAlt} fill sizes="(max-width: 980px) 100vw, 55vw" style={{ objectFit: "cover" }} priority />
             </div>

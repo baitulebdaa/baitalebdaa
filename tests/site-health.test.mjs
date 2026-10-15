@@ -136,6 +136,36 @@ test("every meta description on the site is 150 characters or fewer, in English 
   assert.deepEqual(tooLong, []);
 });
 
+
+test("reviews are real, in the client's words, never given an invented rating, and indexed", async () => {
+  const { REVIEWS, hasRealReviews, reviewSummary } = await import("../src/data/reviews.js");
+  assert.ok(hasRealReviews());
+  for (const review of REVIEWS) {
+    assert.ok(review.id && !("sample" in review), `${review.id}: id, no sample flag`);
+    assert.ok(typeof review.name === "string" && review.name.trim(), `${review.id}: name`);
+    assert.ok(review.text?.[review.originalLang], `${review.id}: original text`);
+    for (const lang of ["en", "ar"]) assert.ok(review.text[lang], `${review.id}: ${lang} text`);
+    if ("rating" in review) assert.ok(Number.isInteger(review.rating) && review.rating >= 1 && review.rating <= 5, `${review.id}: rating 1-5`);
+    if ("date" in review) assert.match(review.date, /^\d{4}-\d{2}-\d{2}$/, `${review.id}: date`);
+  }
+  // No client gave a star rating, so no average may be shown.
+  if (!REVIEWS.every((review) => Number.isInteger(review.rating))) assert.equal(reviewSummary(), null);
+  assert.ok(read("src/app/[lang]/reviews/page.jsx").includes("hasRealReviews() ? { index: true, follow: true } : { index: false, follow: true }"));
+  assert.ok(read("src/app/sitemap.js").includes('if (hasRealReviews()) entries.push(...localizedEntry("reviews"'));
+  assert.doesNotMatch(read("src/app/[lang]/reviews/page.jsx") + read("src/Reviews.jsx"), /"@type": "(AggregateRating|Review)"/);
+  assert.ok(read("src/App.jsx").includes("<Projects /><Testimonials />"));
+});
+
+test("About and Reviews are linked from the menu popup and footer, not the header nav", () => {
+  const shared = read("src/components/Shared.jsx");
+  const headerNav = shared.slice(shared.indexOf('className="header-links"'), shared.indexOf("</nav>", shared.indexOf('className="header-links"')));
+  assert.ok(headerNav.length > 0, "header nav found");
+  assert.doesNotMatch(headerNav, /\/about|\/reviews/);
+  assert.match(shared, /key: "about", label: dict\.aboutPage\.navTitle, href: `\/\$\{lang\}\/about`/);
+  assert.match(shared, /key: "reviews", label: dict\.reviewsPage\.navTitle, href: `\/\$\{lang\}\/reviews`/);
+  for (const lang of ["en", "ar"]) assert.ok(dictionaries[lang].footer.exploreLinks.includes(dictionaries[lang].reviewsPage.navTitle), `${lang} footer links to reviews`);
+});
+
 const EMIRATES = {
   en: ["Dubai", "Abu Dhabi", "Sharjah", "Ajman", "Ras Al Khaimah", "Fujairah", "Umm Al Quwain"],
   ar: ["دبي", "أبوظبي", "الشارقة", "عجمان", "رأس الخيمة", "الفجيرة", "أم القيوين"],
@@ -236,4 +266,81 @@ test("Service schema offers only carry the service's own price", async () => {
     assert.equal(serviceStartingItem(slug), null, slug);
   }
   assert.match(read("src/ServiceLocationPage.jsx"), /const startingItem = serviceStartingItem\(row\.serviceSlug\);/);
+});
+
+test("client code never imports the full two-language dictionary module", () => {
+  const offenders = sourceFiles(path.join(root, "src"))
+    .filter((file) => /^["']use client["']/.test(readFileSync(file, "utf8").trimStart()))
+    .filter((file) => /from ["'][^"']*i18n\/dictionaries["']|from ["']\.\/dictionaries["']/.test(readFileSync(file, "utf8")))
+    .map((file) => path.relative(root, file));
+  assert.deepEqual(offenders, []);
+  assert.match(read("src/app/[lang]/layout.jsx"), /dict=\{getClientDictionary\(lang\)\}/);
+});
+
+test("the browser dictionary has no article bodies; article pages get theirs as a prop", async () => {
+  const { getClientDictionary } = await import("../src/i18n/client-dictionary.js");
+  for (const lang of ["en", "ar"]) {
+    const media = getClientDictionary(lang).mediaPage;
+    for (const article of [media.featuredArticle, ...media.articles]) assert.equal(article.content, undefined, `${lang} ${article.slug}`);
+  }
+  assert.match(read("src/app/[lang]/media/[slug]/BlogDetailClient.jsx"), /__html: article\.content/);
+});
+
+test("above-the-fold hero content is visible without JavaScript (eager Reveal)", () => {
+  for (const file of ["src/ServiceLocationPage.jsx", "src/OurServices.jsx", "src/OurProjects.jsx", "src/PricingPage.jsx", "src/Process.jsx", "src/ContactPage.jsx", "src/FurnitureMaintenanceCare.jsx"]) {
+    const source = read(file);
+    const h1 = source.indexOf("<h1");
+    const hero = source.slice(source.lastIndexOf("<section", h1), source.indexOf("</section>", h1));
+    assert.doesNotMatch(hero, /<Reveal(?! eager)\b/, file);
+  }
+  assert.match(read("src/components/Shared.jsx"), /<Reveal eager>\s*<h1 className="project-detail-title">/);
+  assert.match(read("src/styles.css"), /\.reveal-in\{animation:reveal-in[^}]*\}@keyframes reveal-in\{from\{transform:translateY\(18px\)\}to\{transform:none\}\}/);
+});
+
+
+test("menu and footer link to the media hub, and the bottom bar still labels Contact", () => {
+  for (const lang of ["en", "ar"]) {
+    const d = dictionaries[lang];
+    assert.equal(d.menuItems.length, 7, lang);
+    assert.equal(d.menuItems[5], d.nav.media, lang);
+    assert.ok(d.footer.exploreLinks.includes(d.nav.media), lang);
+  }
+  assert.match(read("src/components/Shared.jsx"), /key: "contact", Icon: Phone, label: dict\.menuItems\[6\]/);
+});
+
+test("all six owner-confirmed projects are published: indexable, in the sitemap and in llms.txt", async () => {
+  const { REAL_PROJECT_SLUGS } = await import("../src/data/project-catalog.js");
+  const projects = Object.keys(dictionaries.en.projectDetailPage.projects);
+  assert.deepEqual([...REAL_PROJECT_SLUGS].sort(), [...projects].sort());
+  assert.deepEqual(Object.keys(dictionaries.ar.projectDetailPage.projects).sort(), [...projects].sort());
+  assert.match(read("src/app/sitemap.js"), /for \(const slug of REAL_PROJECT_SLUGS\)/);
+  assert.match(read("src/app/llms.txt/route.js"), /\[\.\.\.REAL_PROJECT_SLUGS\]\.map/);
+  for (const lang of ["en", "ar"]) for (const [slug, project] of Object.entries(dictionaries[lang].projectDetailPage.projects)) {
+    const description = project.metaDescription || project.description.split("\n\n")[0];
+    assert.ok(description.length <= 150, `${lang} ${slug}: ${description.length}`);
+  }
+});
+
+test("articles name Awais ul Haq (CEO) as author, as a Person in the schema", () => {
+  for (const lang of ["en", "ar"]) {
+    const media = dictionaries[lang].mediaPage;
+    for (const article of [media.featuredArticle, ...media.articles]) assert.match(article.author, /^Awais ul Haq/, `${lang} ${article.slug}`);
+  }
+  const page = read("src/app/[lang]/media/[slug]/page.jsx");
+  assert.match(page, /author: \{ "@id": ARTICLE_AUTHOR_ID \}/);
+  assert.match(page, /articleAuthorJsonLd\(\),/);
+  assert.match(read("src/data/authors.js"), /"@type": "Person"[\s\S]*name: ARTICLE_AUTHOR\.name[\s\S]*worksFor: ORG_REF/);
+});
+
+test("furniture maintenance page carries the care guide in both languages and serves all seven emirates", () => {
+  for (const lang of ["en", "ar"]) {
+    const p = dictionaries[lang].furnitureMaintenancePage;
+    assert.equal(p.signs.length, 6, lang);
+    assert.equal(p.seasons.length, 4, lang);
+    assert.equal(p.tips.length, 6, lang);
+    assert.ok(p.diyTitle && p.diyBody && p.guideLink, lang);
+  }
+  const page = read("src/FurnitureMaintenanceCare.jsx");
+  assert.ok(page.includes('areaServed: ["Dubai", "Abu Dhabi", "Sharjah", "Ajman", "Ras Al Khaimah", "Fujairah", "Umm Al Quwain"]'));
+  assert.ok(page.includes("/media/furniture-maintenance-care-humid-climate"));
 });

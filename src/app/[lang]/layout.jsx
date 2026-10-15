@@ -2,6 +2,7 @@ import Script from "next/script";
 import { DM_Sans, Manrope, Tajawal, Cormorant_Garamond } from "next/font/google";
 import "../../styles.css";
 import { I18nProvider } from "../../i18n/I18nProvider";
+import { getClientDictionary } from "../../i18n/client-dictionary";
 import { organizationJsonLd } from "../../lib/page-metadata";
 import { AskAIWidget } from "../../components/AskAIWidget";
 
@@ -113,7 +114,7 @@ export default async function RootLayout({ children, params }) {
             </Script>
           </>
         )}
-        <I18nProvider lang={lang}>
+        <I18nProvider lang={lang} dict={getClientDictionary(lang)}>
           {children}
           <AskAIWidget />
         </I18nProvider>

@@ -26,7 +26,7 @@ export default function BlogDetailClient({ article, breadcrumbs, newsAndInsights
           title={article.title}
         />
         
-        <section className="shell article-layout" style={{ display: 'flex', flexWrap: 'wrap', gap: '60px', padding: '60px 0' }}>
+        <section className="shell article-layout" style={{ display: 'flex', flexWrap: 'wrap', gap: '60px', padding: '20px 0 60px' }}>
           
           {/* Main Content — not wrapped in <Reveal>: that component only shows its
               content once an IntersectionObserver sees 14% of its (very tall, for a
@@ -34,7 +34,7 @@ export default function BlogDetailClient({ article, breadcrumbs, newsAndInsights
               article can never satisfy in a normal viewport, leaving it permanently
               opacity:0. Fade in just the compact meta/image row instead. */}
           <div className="article-main" style={{ flex: '1 1 600px', minWidth: 0 }}>
-            <Reveal>
+            <Reveal eager>
               <div className="article-meta" style={{ display: 'flex', gap: '20px', color: 'var(--muted)', marginBottom: '30px', fontSize: '0.9rem' }}>
                 <span>{article.date}</span>
                 <span>•</span>

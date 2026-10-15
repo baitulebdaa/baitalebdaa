@@ -50,18 +50,22 @@ export function Brand({ light = false, priority = false, customSrc = null }) {
   return <a className={`brand ${light ? "brand--light" : ""}`} href={lang === "ar" ? "/ar" : "/"} aria-label={lang === "ar" ? "الصفحة الرئيسية لبيت الإبداع" : "Bait Al Ebdaa home"}><Image className="brand__logo" src={customSrc || "/assets/logo.png"} alt="Bait Al Ebdaa - Luxury Interior Design and Joinery Logo" width={2170} height={725} sizes="(max-width: 700px) 140px, 220px" priority={priority} /></a>;
 }
 
-export function Reveal({ as: Tag = "div", className = "", children, delay = 0, ...props }) {
+// `eager` is for above-the-fold content (hero copy, H1, hero image): it is visible in the
+// server HTML and only slides in with a CSS animation, instead of staying at opacity 0 until
+// JavaScript hydrates — which held back Largest Contentful Paint on every page.
+export function Reveal({ as: Tag = "div", className = "", children, delay = 0, eager = false, ...props }) {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef(null);
   useEffect(() => {
     const element = ref.current;
-    if (!element) return;
+    if (eager || !element) return;
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) { setIsVisible(true); observer.unobserve(element); }
     }, { threshold: 0.14 });
     observer.observe(element);
     return () => observer.disconnect();
   }, []);
+  if (eager) return <Tag ref={ref} className={`reveal-in ${className}`} style={{ "--delay": `${delay}ms` }} {...props}>{children}</Tag>;
   return <Tag ref={ref} className={`reveal ${className} ${isVisible ? 'is-visible' : ''}`} style={{ "--delay": `${delay}ms` }} {...props}>{children}</Tag>;
 }
 
@@ -227,16 +231,19 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
     </header>
     <div id="site-menu" className={`menu-overlay ${menuOpen ? "is-open" : ""}`} aria-hidden={!menuOpen}>
       <div className="menu-overlay__main">
-        {["Home", "Services", "Projects", "Process", "Pricing", "Contact"].map((item, i) => {
+        {/* About Us and Reviews appear here and in the footer only — deliberately not in the header nav. */}
+        {[
           // English home is the bare root (canonical); /en is only an internal rewrite target.
-          let href = lang === "en" ? "/" : `/${lang}`;
-          if (item === "Projects") href = `/${lang}/our-projects`;
-          else if (item === "Services") href = `/${lang}/our-services`;
-          else if (item === "Process") href = `/${lang}/process`;
-          else if (item === "Pricing") href = `/${lang}/pricing`;
-          else if (item === "Contact") href = `/${lang}/contact`;
-          return <a key={item} href={href} onClick={() => setMenuOpen(false)}>{dict.menuItems[i]}</a>
-        })}
+          { key: "home", label: dict.menuItems[0], href: lang === "en" ? "/" : `/${lang}` },
+          { key: "services", label: dict.menuItems[1], href: `/${lang}/our-services` },
+          { key: "projects", label: dict.menuItems[2], href: `/${lang}/our-projects` },
+          { key: "process", label: dict.menuItems[3], href: `/${lang}/process` },
+          { key: "pricing", label: dict.menuItems[4], href: `/${lang}/pricing` },
+          { key: "media", label: dict.menuItems[5], href: `/${lang}/media` },
+          { key: "about", label: dict.aboutPage.navTitle, href: `/${lang}/about` },
+          { key: "reviews", label: dict.reviewsPage.navTitle, href: `/${lang}/reviews` },
+          { key: "contact", label: dict.menuItems[6], href: `/${lang}/contact` },
+        ].map((item) => <a key={item.key} href={item.href} onClick={() => setMenuOpen(false)}>{item.label}</a>)}
       </div>
       <div className="menu-overlay__aside">
         <div>
@@ -260,7 +267,7 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
         { key: "home", Icon: Home, label: dict.menuItems[0], href: lang === "en" ? "/" : `/${lang}`, active: pathname === "/" || pathname === `/${lang}` },
         { key: "services", Icon: Services, label: dict.menuItems[1], href: `/${lang}/our-services`, active: pathname.includes("/our-services") },
         { key: "projects", Icon: Projects, label: dict.menuItems[2], href: `/${lang}/our-projects`, active: pathname.includes("/our-projects") },
-        { key: "contact", Icon: Phone, label: dict.menuItems[5], href: `/${lang}/contact`, active: pathname.includes("/contact") },
+        { key: "contact", Icon: Phone, label: dict.menuItems[6], href: `/${lang}/contact`, active: pathname.includes("/contact") },
       ].map(({ key, Icon, label, href, active }) => (
         <a key={key} href={href} className={active ? "is-active" : ""} aria-current={active ? "page" : undefined}>
           <Icon size={22} variant={active ? "Bold" : "Linear"} aria-hidden="true" />
@@ -313,6 +320,8 @@ export function Footer() {
     if (item === "Contact" || item === "اتصل بنا") return `/${lang}/contact`;
     if (item === "Home" || item === "الرئيسية") return lang === "en" ? "/" : `/${lang}`;
     if (item === "About Us" || item === "من نحن") return `/${lang}/about`;
+    if (item === "Media" || item === "الإعلام") return `/${lang}/media`;
+    if (item === "Reviews" || item === "آراء العملاء") return `/${lang}/reviews`;
     return "#top";
   };
   return <footer>
@@ -393,7 +402,7 @@ export function PageHeader({ kicker, breadcrumbs, title, children }) {
 
       {/* Title */}
       <section className="shell page-title-section project-detail-title-section">
-        <Reveal>
+        <Reveal eager>
           <h1 className="project-detail-title">{title}</h1>
         </Reveal>
         {children}

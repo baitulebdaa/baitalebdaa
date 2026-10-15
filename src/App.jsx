@@ -10,6 +10,8 @@ import { PriceExplorer } from "./components/PriceExplorer";
 import { QuoteModal } from "./components/QuoteModal";
 import { formatIndex } from "./lib/format";
 import { isPublishedProject } from "./data/project-catalog";
+import { REVIEWS } from "./data/reviews";
+import { ReviewCard } from "./components/ReviewCard";
 
 function Hero({ onGetQuote }) {
   const { lang, dict } = useI18n();
@@ -94,12 +96,23 @@ function Projects() {
   const projects = [...withDetail.filter((p) => isPublishedProject(p.slug)), ...withDetail.filter((p) => !isPublishedProject(p.slug))].slice(0, 3);
   const imageBySlug = Object.fromEntries(projects.map((p) => [p.slug, dict.projectDetailPage.projects[p.slug].images[0]]));
   imageBySlug["government-authority"] = "/assets/tv-wall-unit-led-display-shelves.jpeg";
-  return <section className="section projects" id="projects"><div className="shell projects__heading"><Reveal><p className="micro">{dict.projectsSection.micro}</p><h2 className="section-title" style={{whiteSpace: 'pre-wrap'}}>{dict.projectsSection.title}</h2></Reveal><Reveal className="projects__tools" delay={100} style={{display: 'flex', alignItems: 'flex-end'}}><a href={`/${lang}/our-projects`} className="outline-button outline-button--dark">{dict.projectsSection.viewAll} <ArrowUpRight size={16} /></a></Reveal></div><div className="shell project-grid-home">{projects.map((p) => <article className="project-card-home" key={p.slug}><a href={`/${lang}/our-projects/${p.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}><div className="project-card-home__image"><Image src={imageBySlug[p.slug]} alt={`${p.title}, ${p.place}`} fill sizes="(max-width: 700px) 100vw, 33vw" /></div><div className="project-card-home__meta"><h3>{p.title}{p.place ? `, ${p.place}` : ''} <ArrowUpRight size={16} style={{display: 'inline-block', verticalAlign: 'middle', marginLeft: '5px'}} /></h3></div></a></article>)}</div></section>;
+  return <section className="section projects" id="projects"><div className="shell projects__heading"><Reveal><p className="micro">{dict.projectsSection.micro}</p><h2 className="section-title" style={{whiteSpace: 'pre-wrap'}}>{dict.projectsSection.title}</h2></Reveal><Reveal className="projects__tools" delay={100} style={{display: 'flex', alignItems: 'flex-end'}}><a href={`/${lang}/our-projects`} className="outline-button outline-button--dark">{dict.projectsSection.viewAll} <ArrowUpRight size={16} /></a></Reveal></div><div className="shell project-grid-home">{projects.map((p) => <article className="project-card-home" key={p.slug}><a href={`/${lang}/our-projects/${p.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}><div className="project-card-home__image"><Image src={imageBySlug[p.slug]} alt="" fill sizes="(max-width: 700px) 100vw, 33vw" /></div><div className="project-card-home__meta"><h3>{p.title}{p.place ? `, ${p.place}` : ''} <ArrowUpRight size={16} style={{display: 'inline-block', verticalAlign: 'middle', marginLeft: '5px'}} /></h3></div></a></article>)}</div></section>;
 }
 
 function Capabilities() {
   const { lang, dict } = useI18n();
   return <section className="capabilities"><div className="shell capabilities__top"><Reveal><p className="micro micro--light">{dict.capabilitiesSection.micro}</p><h2 className="section-title" style={{whiteSpace: 'pre-wrap'}}>{dict.capabilitiesSection.title}</h2></Reveal><Reveal className="capabilities__image" delay={100}><Image src="/assets/corner-coffee-bar-black-fluted-cabinet-led-lighting.jpeg" alt="Interior concept transitioning from CAD to photorealistic render" fill sizes="(max-width: 700px) 100vw, 58vw" /></Reveal></div><div className="shell capability-list">{dict.capabilitiesSection.items.map(([title, body], i) => <Reveal className="capability-row" key={i} delay={i * 80}><span>{formatIndex(i + 1, lang)}</span><h3>{title}</h3><p>{body}</p><Check size={20} /></Reveal>)}</div></section>;
+}
+
+// Real client reviews (src/data/reviews.js), shown in the client's words; the full list is on /reviews.
+function Testimonials() {
+  const { lang, dict } = useI18n();
+  const t = dict.testimonialsSection;
+  if (REVIEWS.length === 0) return null;
+  return <section className="section testimonials" id="reviews">
+    <div className="shell projects__heading"><Reveal><p className="micro">{t.micro}</p><h2 className="section-title">{t.title}</h2></Reveal><Reveal className="projects__tools" delay={100} style={{display: 'flex', alignItems: 'flex-end'}}><a href={`/${lang}/reviews`} className="outline-button outline-button--dark">{t.readAll} <ArrowUpRight size={16} /></a></Reveal></div>
+    <div className="shell rv-grid">{REVIEWS.slice(0, 3).map((review, i) => <ReviewCard key={review.id} review={review} lang={lang} t={dict.reviewsPage} delay={60 + i * 60} />)}</div>
+  </section>;
 }
 
 function Process() {
@@ -128,7 +141,7 @@ export default function App() {
   const [quotePrefillSize, setQuotePrefillSize] = useState(undefined);
   return <>
     <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-    <main><Hero onGetQuote={() => setQuoteOpen(true)} /><Services /><Studio /><Factory /><Sectors /><Projects /><Process /><PriceExplorer /><Estimator onBookSurvey={(size) => { setQuotePrefillSize(size); setQuoteOpen(true); }} /><Faq /><LatestNews /></main>
+    <main><Hero onGetQuote={() => setQuoteOpen(true)} /><Services /><Studio /><Factory /><Sectors /><Projects /><Testimonials /><Process /><PriceExplorer /><Estimator onBookSurvey={(size) => { setQuotePrefillSize(size); setQuoteOpen(true); }} /><Faq /><LatestNews /></main>
     <Footer />
     <QuoteModal open={quoteOpen} onClose={() => setQuoteOpen(false)} initialSize={quotePrefillSize} />
   </>;

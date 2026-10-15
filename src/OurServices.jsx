@@ -112,7 +112,7 @@ export default function OurServices() {
         {/* Hero */}
         <section className="shell slp-hero">
           <div className="slp-hero__copy">
-            <Reveal>
+            <Reveal eager>
               <p className="slp-crumbs">
                 {dict.ourProjectsPage.home} &nbsp;&#9656;&nbsp; <strong>{t.navTitle}</strong>
               </p>
@@ -125,7 +125,7 @@ export default function OurServices() {
               <p className="slp-hero__lead slp-hero__lead--sub">{ui.intro2}</p>
               <p className="slp-hero__lead slp-hero__lead--sub">{ui.intro3}</p>
             </Reveal>
-            <Reveal delay={120} className="cp-hero__actions">
+            <Reveal eager delay={120} className="cp-hero__actions">
               <a className="slp-btn slp-btn--solid" href={`https://wa.me/971582621717?text=${encodeURIComponent(ui.whatsappMessage)}`} target="_blank" rel="noopener noreferrer">
                 {dict.nav.startProject} <ArrowUpRight size={15} />
               </a>
@@ -134,7 +134,7 @@ export default function OurServices() {
               </a>
             </Reveal>
           </div>
-          <Reveal className="slp-mosaic" delay={100}>
+          <Reveal eager className="slp-mosaic" delay={100}>
             <div className="slp-mosaic__main">
               <Image src="/assets/villa-majlis-living-room-wood-wall-cove-ceiling.jpeg" alt={t.pageTitle} fill sizes="(max-width: 980px) 100vw, 55vw" style={{ objectFit: "cover" }} priority />
             </div>

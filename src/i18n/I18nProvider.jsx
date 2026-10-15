@@ -1,13 +1,12 @@
 "use client";
 
 import { createContext, useContext } from 'react';
-import { dictionaries } from './dictionaries';
 
 const I18nContext = createContext(null);
 
-export function I18nProvider({ lang, children }) {
-  const dict = dictionaries[lang] || dictionaries.en;
-  
+// `dict` comes from the server layout (see client-dictionary.js) so the full two-language
+// dictionary module is never bundled into client JavaScript.
+export function I18nProvider({ lang, dict, children }) {
   return (
     <I18nContext.Provider value={{ lang, dict }}>
       {children}

@@ -30,7 +30,7 @@ export default function ContactPage() {
       <main className="services-page cp-page">
         <section className="shell slp-hero cp-hero">
           <div className="slp-hero__copy">
-            <Reveal>
+            <Reveal eager>
               <p className="slp-crumbs">
                 {dict.ourProjectsPage.home} &nbsp;&#9656;&nbsp; <strong>{t.navTitle}</strong>
               </p>
@@ -51,7 +51,7 @@ export default function ContactPage() {
                 ))}
               </ul>
             </Reveal>
-            <Reveal delay={120} className="cp-hero__actions">
+            <Reveal eager delay={120} className="cp-hero__actions">
               <a className="slp-btn slp-btn--solid" href={waHref} target="_blank" rel="noopener noreferrer">
                 {dict.nav.startProject} <ArrowUpRight size={15} />
               </a>
@@ -60,7 +60,7 @@ export default function ContactPage() {
               </a>
             </Reveal>
           </div>
-          <Reveal className="cp-hero__image" delay={100}>
+          <Reveal eager className="cp-hero__image" delay={100}>
             <Image src="/assets/luxury-living-room-chandelier-wall-panelling.jpeg" alt={t.pageTitle} fill sizes="(max-width: 980px) 100vw, 50vw" style={{ objectFit: "cover" }} priority />
           </Reveal>
         </section>

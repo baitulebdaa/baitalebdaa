@@ -4,9 +4,8 @@ import { buildPageMetadata } from "../../../../lib/page-metadata";
 import { REAL_PROJECT_SLUGS } from "../../../../data/project-catalog";
 import { PageFaqSchema } from "../../../../components/PageFaqSchema";
 
-// "government-authority" is the one real published project. The rest are dummy
-// placeholder case studies (added at the owner's request, pending real project data)
-// — see projectDetailPage.projects in dictionaries.js for the noindex rationale.
+// Every project here is a real completed project (owner-confirmed, 15 Oct 2026); indexing
+// still goes through REAL_PROJECT_SLUGS so a future unverified entry can't slip in.
 export function generateStaticParams() {
   return [
     { slug: "government-authority" },
@@ -25,7 +24,7 @@ export async function generateMetadata({ params }) {
   const title = slug === "government-authority"
     ? (lang === "ar" ? "مشروع تجهيز مكاتب في مدينة دبي الأكاديمية | بيت الإبداع" : "Office Fit-Out Project, Dubai Academic City | Bait Al Ebdaa")
     : `${project.title} | Bait Al Ebdaa`;
-  const description = project.description.split("\n\n")[0];
+  const description = project.metaDescription || project.description.split("\n\n")[0];
   return {
     ...buildPageMetadata({ lang, path: `our-projects/${slug}`, title, description }),
     robots: REAL_PROJECT_SLUGS.has(slug) ? { index: true, follow: true } : { index: false, follow: true },

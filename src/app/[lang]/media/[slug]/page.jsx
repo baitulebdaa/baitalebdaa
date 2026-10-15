@@ -4,6 +4,7 @@ import { ARTICLE_DATES, ARTICLE_META_DESCRIPTIONS, ARTICLE_SEO_TITLES, META_DESC
 import BlogDetailClient from "./BlogDetailClient";
 import { ORG_REF } from "../../../../lib/schema-ids";
 import { extractFaqsFromHtml, faqPageJsonLd } from "../../../../lib/faq-schema";
+import { ARTICLE_AUTHOR, ARTICLE_AUTHOR_ID, articleAuthorJsonLd } from "../../../../data/authors";
 
 const BASE = "https://www.baitalebdaa.com";
 
@@ -65,7 +66,7 @@ export async function generateMetadata({ params }) {
       type: "article",
       publishedTime,
       modifiedTime: publishedTime,
-      authors: [article.author],
+      authors: [ARTICLE_AUTHOR.name],
     },
     twitter: {
       card: "summary_large_image",
@@ -102,7 +103,7 @@ export default async function BlogDetail({ params }) {
         dateModified: publishedTime,
         inLanguage: lang === "ar" ? "ar-AE" : "en-AE",
         mainEntityOfPage: { "@type": "WebPage", "@id": selfUrl },
-        author: ORG_REF,
+        author: { "@id": ARTICLE_AUTHOR_ID },
         publisher: ORG_REF,
       },
       {
@@ -113,6 +114,7 @@ export default async function BlogDetail({ params }) {
           { "@type": "ListItem", position: 3, name: article.title, item: selfUrl },
         ],
       },
+      articleAuthorJsonLd(),
       ...(faqSchema ? [faqSchema] : []),
     ],
   };

@@ -160,7 +160,7 @@ export default function PricingPage() {
         {/* Hero */}
         <section className="shell slp-hero pp-hero">
           <div className="slp-hero__copy">
-            <Reveal>
+            <Reveal eager>
               <p className="slp-crumbs">
                 {dict.ourProjectsPage.home} &nbsp;&#9656;&nbsp; <strong>{t.navTitle}</strong>
               </p>
@@ -181,7 +181,7 @@ export default function PricingPage() {
                 ))}
               </ul>
             </Reveal>
-            <Reveal delay={120} className="slp-hero__foot pp-hero__foot">
+            <Reveal eager delay={120} className="slp-hero__foot pp-hero__foot">
               <div className="slp-hero__actions">
                 <a href="#estimate" className="slp-btn slp-btn--solid">
                   {t.heroPrimaryCta} <ArrowUpRight size={15} />
@@ -194,7 +194,7 @@ export default function PricingPage() {
             </Reveal>
           </div>
 
-          <Reveal className="slp-mosaic" delay={100}>
+          <Reveal eager className="slp-mosaic" delay={100}>
             <div className="slp-mosaic__main">
               <Image src={HERO_IMAGES[0]} alt={t.pageTitle} fill sizes="(max-width: 980px) 100vw, 55vw" style={{ objectFit: "cover" }} priority />
             </div>

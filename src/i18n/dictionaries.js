@@ -33,7 +33,31 @@ export const dictionaries = {
       too_long: "Your message is too long. Please shorten it and try again.",
       invalid_email: "Please check your name and email address and try again.",
     },
-    menuItems: ["Home", "Services", "Projects", "Process", "Pricing", "Contact"],
+    reviewsPage: {
+      "navTitle": "Reviews",
+      "pageTitle": "Client Reviews of Bait Al Ebdaa",
+      "metaTitle": "Client Reviews: Interior Design & Fit-Out | Bait Al Ebdaa",
+      "metaDescription": "What clients say about Bait Al Ebdaa's interior design, fit-out and joinery work across the UAE, and how to share your own review.",
+      "intro": "What clients say about working with Bait Al Ebdaa across the UAE. Reviews are published in the client's own words with their permission, and a translation into English or Arabic is labelled as one.",
+      "translatedLabel": "Translated",
+      "ratingLabel": "Rated {n} out of 5",
+      "summaryLabel": "Average rating from {count} client reviews",
+      "sourceLabel": "Source",
+      "leaveTitle": "Worked with us? Share your experience",
+      "leaveBody": "Your review helps other homeowners and businesses choose with confidence. Send it on WhatsApp or by email, and tell us how you would like your name to appear.",
+      "whatsappCta": "Send a review on WhatsApp",
+      "whatsappMessage": "Hello! I'd like to share a review of my project with Bait Al Ebdaa.",
+      "emailCta": "Email your review",
+      "emailSubject": "My review of Bait Al Ebdaa",
+      "policyTitle": "How we publish reviews",
+      "policyItems": [
+        "We publish reviews from clients we have worked with, in their own words.",
+        "Your name is shown the way you choose, for example your first name and initial.",
+        "A review translated into English or Arabic is clearly labelled as a translation."
+      ],
+      "projectsCta": "Explore our completed projects"
+    },
+    menuItems: ["Home", "Services", "Projects", "Process", "Pricing", "Media", "Contact"],
     hero: {
       slides: [
         { eyebrow: "All seven emirates", title: "UAE Turnkey Fit-out & Custom Architectural Joinery", body: "Made to measure in our own workshop and installed across the UAE. Upholstery, wallpaper, gypsum ceilings and full fit-outs too." },
@@ -89,15 +113,17 @@ export const dictionaries = {
         { label: "Smart living", body: "Discreet Somfy motorized curtains and integrated controls designed into the architecture from day one." }
       ]
     },
+    testimonialsSection: {
+      micro: "Client Reviews",
+      title: "What Our Clients Say",
+      readAll: "Read all reviews"
+    },
     projectsSection: {
       micro: "Our Projects",
       title: "Transforming Spaces",
       viewAll: "View All Projects",
-      // Placeholder/dummy entries below (added at owner's request, pending real project
-      // details) carry a `slug` so their cards link to a real detail page instead of
-      // looping back to this listing — see projectDetailPage.projects for the dummy
-      // content, and [lang]/our-projects/[slug]/page.jsx, which noindexes them until
-      // real data replaces the dummy content.
+      // Every entry is a real completed project with its own detail page (owner-confirmed,
+      // 15 Oct 2026) — see data/project-catalog.js.
       items: [
         { title: "Dubai Hills Estate Luxury Villa", place: "Dubai Hills Estate, Dubai", subtitle: "Turnkey Fit-out & European Joinery", slug: "dubai-hills-estate-villa" },
         { title: "Palm Jumeirah Beachfront Penthouse", place: "Palm Jumeirah, Dubai", subtitle: "Somfy Motorized Drapes & Italian Panelling", slug: "palm-jumeirah-penthouse" },
@@ -216,6 +242,42 @@ export const dictionaries = {
       ctaTitle: "Book a Furniture Maintenance Assessment",
       relatedServices: "Related services",
       relatedJoinery: "Architectural joinery",
+      heroPoints: [
+        "5-year workmanship guarantee on joinery we built",
+        "On-site assessment and written condition report",
+        "Hinges, soft-close runners and sliders serviced",
+        "Finish touch-ups matched to the original",
+      ],
+      signsTitle: "Signs Your Joinery Needs Attention",
+      signsSubtitle: "Acting on early signs is consistently cheaper than waiting until a problem is impossible to ignore.",
+      signs: [
+        "A door that no longer closes flush, or has dropped out of alignment",
+        "A visible gap opening at a joint or seam",
+        "Veneer lifting at an edge — often re-bondable before it spreads",
+        "Soft-close hinges, drawer runners or wardrobe sliders that feel stiff or noisy",
+        "Faded veneer, timber or upholstery near windows and balcony doors",
+        "Water rings, heat marks, or swelling in and around under-sink cabinets",
+      ],
+      seasonsTitle: "A Seasonal Care Calendar for UAE Homes",
+      seasonsSubtitle: "Spreading upkeep across the year, in step with the UAE's seasons, catches small issues before they compound.",
+      seasons: [
+        { when: "June – September", title: "Peak summer", body: "Use shading consistently during peak daylight hours, and watch for new gaps at joinery seams as constant cooling dries materials out." },
+        { when: "Oct – Nov, Apr – May", title: "Transitional months", body: "The best window for the yearly hinge and runner lubrication, while mechanisms are neither swollen by humidity nor dried out." },
+        { when: "December – March", title: "Winter", body: "A good time to deep-clean upholstery and soft furnishings, and to check mechanisms near often-opened windows and doors for dust." },
+        { when: "Year-round", title: "Every day", body: "Daily dusting, prompt attention to spills and managed direct sunlight protect every finish, whatever the season." },
+      ],
+      tipsTitle: "Care Tips Between Visits",
+      tips: [
+        "Keep the indoor temperature steady. Big swings, such as switching the AC off in an empty property, damage timber faster than stable conditions.",
+        "Dust with a slightly damp, lint-free microfiber cloth, then dry the surface. Avoid ammonia-based and harsh chemical cleaners on wood finishes.",
+        "Manage direct sunlight. UV can visibly fade veneer, timber and fabric within a single UAE summer; motorized curtains automate the shading.",
+        "Use coasters and mats. Water rings and heat marks are avoidable damage, even on sealed, high-quality finishes.",
+        "Lubricate hinge pivots and runner tracks about once a year with a light silicone-based product — not oil, which attracts dust.",
+        "Keep enclosed wardrobes dry with silica gel packs or a small dehumidifier to reduce the mildew risk to timber and stored clothing.",
+      ],
+      diyTitle: "DIY Care or a Professional Visit?",
+      diyBody: "Dusting, gentle cleaning, coasters, shading and the yearly lubrication are all fine to handle yourself. Book an assessment when you see structural movement: a door that no longer closes flush, a gap opening at a joint, or veneer lifting across a panel. Checking first keeps a repairable issue from becoming a replacement.",
+      guideLink: "Read the full guide to caring for joinery in a humid climate",
       relatedWardrobes: "Custom wardrobes"
     },
     aboutPage: {
@@ -228,9 +290,19 @@ export const dictionaries = {
         whatWeDo: { title: "What We Do", body: "Our work covers interior design, turnkey fit-out, office fit-out, villa and apartment renovation, and custom architectural joinery — including bespoke wardrobes and kitchens. Each project is scoped, designed and quoted individually; nothing is templated." },
         manufacturing: { title: "In-House Manufacturing", body: "We operate a 15,000 sq ft joinery factory at Jurf Industrial 2, Ajman, equipped with CNC machinery and staffed by 50+ carpenters, using European timber and veneers. Producing joinery ourselves — rather than outsourcing it — is what lets us offer a 5-year workmanship guarantee on the pieces we manufacture and install." },
         serviceAreas: { title: "Service Areas", body: "We deliver projects in all seven emirates: Dubai, Abu Dhabi, Sharjah, Ajman, Ras Al Khaimah, Fujairah and Umm Al Quwain. Our registered address and manufacturing facility are in Ajman." },
-        approvals: { title: "Authority Approvals", body: "Our team coordinates applicable authority submissions and NOC requirements based on the project location and scope, such as the Dubai Municipality and Dubai Development Authority (DDA) submissions on our published Dubai Academic City project, and the relevant Abu Dhabi authorities for Abu Dhabi projects, so clients don't have to navigate the paperwork themselves." },
+        approvals: { title: "Authority Approvals", body: "Our team coordinates applicable authority submissions and NOC requirements based on the project location and scope, such as the Dubai Municipality and Dubai Development Authority (DDA) submissions on our published Dubai Academic City project, and the relevant local authorities for projects in the other emirates, so clients don't have to navigate the paperwork themselves." },
         projects: { title: "Project Experience", body: "Recent work includes a confidential government authority headquarters in Dubai Academic City — a 50,500 sq ft interior fit-out and MEP project spanning three floors. See our projects page for details." },
       },
+      glanceTitle: "Bait Al Ebdaa at a glance",
+      servicesTitle: "What we can do for you",
+      servicesSubtitle: "Each service has its own page with scope, starting prices and answers to common questions.",
+      processTitle: "How a project runs",
+      processLink: "See the full process, stage by stage",
+      projectKicker: "Published project",
+      projectLink: "View the 50,500 sq ft office fit-out project",
+      hoursLabel: "Opening hours",
+      hoursValue: "Monday to Saturday, 8:00 AM to 10:00 PM",
+      reviewsCta: "Read client reviews",
       companyDetailsTitle: "Company Details",
       companyDetails: {
         name: "Legal name",
@@ -608,7 +680,7 @@ export const dictionaries = {
       subscribed: "Thanks — you're subscribed.",
       subscribeError: "Something went wrong. Please try again.",
       explore: "Explore",
-      exploreLinks: ["Home", "About Us", "Projects", "Services", "Pricing", "Contact"],
+      exploreLinks: ["Home", "About Us", "Projects", "Services", "Pricing", "Media", "Reviews", "Contact"],
       importantLinks: "Important Links",
       importantLinksItems: ["Privacy Policy", "Terms & Conditions", "Cookie Policy", "Service Level Agreement", "Accessibility", "Refund Policy", "Sustainability"],
       contactInfo: "Contact Info",
@@ -660,12 +732,8 @@ export const dictionaries = {
         scope: "Scope of Work",
         relatedServices: "Related services"
       },
-      // DUMMY/PLACEHOLDER project content below (all entries except "government-authority",
-      // the one real published project) — added at the owner's explicit request as
-      // placeholder case studies pending real project data. These are noindexed (see
-      // [lang]/our-projects/[slug]/page.jsx) so they aren't presented to Google as real
-      // evidence. Replace with real location/size/year/scope/description/photos and
-      // remove the noindex override once real project data is available.
+      // Real completed projects; the owner confirmed location, size, year and scope on
+      // 15 Oct 2026. `metaDescription` overrides the first paragraph when that runs past 150.
       projects: {
         "government-authority": {
           title: "Confidential Government Authority Headquarters, Dubai Academic City",
@@ -786,6 +854,7 @@ export const dictionaries = {
         },
         "al-barari-eco-villa": {
           title: "Al Barari Eco-Villa Suite",
+          metaDescription: "Villa suite renovation in Al Barari with bespoke walnut wardrobes and soft furnishings, in a natural palette suited to its green setting.",
           description: "A villa suite renovation in Al Barari with bespoke walnut wardrobes and soft furnishings, in a natural palette that suits the community's green setting.\n\nExisting joinery was replaced with custom-manufactured wardrobes and dressing units matched to the villa's natural materials.\n\nNew curtain tracks and layered window treatments complete the suite, adding softness and light control.",
           metadata: {
             location: "Al Barari, Dubai, UAE",
@@ -865,7 +934,7 @@ export const dictionaries = {
         link: "/en/media/luxury-interior-fit-out-guide-dubai",
         image: "/assets/villa-majlis-living-room-wood-wall-cove-ceiling.jpeg",
         date: "September 25, 2026",
-        author: "Bait Al Ebdaa Design Team",
+        author: "Awais ul Haq, CEO of Bait Al Ebdaa",
         content: `<p>Embarking on a <strong>luxury interior fit-out in Dubai</strong> requires more than just a vision; it demands precision, local regulatory expertise, and a flawless execution strategy. Whether you are transforming a high-end villa in Dubai Hills, Emirates Hills or Palm Jumeirah, or building out a corporate headquarters in Downtown Dubai or DIFC, understanding how the fit-out process actually works — not just what it costs — is what separates a smooth six-to-ten-week project from a stressful, budget-blown ordeal that drags on for months. This guide walks through everything a homeowner, facilities manager or business owner needs to know before signing a contract with a <strong>turnkey fit-out contractor in Dubai</strong>.</p>
 
 <h2>What "Luxury Fit-out" Actually Means</h2>
@@ -981,7 +1050,7 @@ export const dictionaries = {
           description: "How motorized curtains work, what a Somfy package typically includes, how fabric choice affects price, and what to check before ordering for your Dubai villa or apartment.",
           image: "/assets/double-height-tv-wall-fireplace-curtains.jpeg",
           date: "October 1, 2026",
-          author: "Bait Al Ebdaa Design Team",
+          author: "Awais ul Haq, CEO of Bait Al Ebdaa",
           content: `<p><strong>Motorized curtains</strong> have moved from a luxury extra to a standard request in Dubai villas and apartments. Floor-to-ceiling glazing, strong afternoon sun and heavy air-conditioning use all make window treatments that open and close at the touch of a button genuinely useful, not just impressive. This guide explains how automation works, what you are paying for, and what to settle before you order.</p>
 
 <h2>Why Motorized Curtains Make Sense in the UAE</h2>
@@ -1056,7 +1125,7 @@ export const dictionaries = {
           description: "Why bespoke architectural joinery — custom kitchens, wardrobes and millwork built in Dubai and Abu Dhabi — defines luxury in modern UAE homes, and how in-house manufacturing changes the outcome.",
           image: "/assets/corner-wardrobe-glass-doors-black-handles.jpeg",
           date: "September 10, 2026",
-          author: "Bait Al Ebdaa Manufacturing Team",
+          author: "Awais ul Haq, CEO of Bait Al Ebdaa",
           content: `<p><strong>Bespoke architectural joinery</strong> is the defining element of true luxury in modern UAE homes. From custom-built walk-in wardrobes to acoustic wood panelling, expertly crafted millwork transforms a standard property into a distinctive, high-value space in a way that loose, imported furniture simply cannot replicate. This guide explains what architectural joinery actually is, why it matters so much in the UAE market specifically, and what separates joinery that lasts fifteen years from joinery that starts failing within two.</p>
 
 <h2>What Is Architectural Joinery?</h2>
@@ -1182,7 +1251,7 @@ export const dictionaries = {
           description: "A practical, room-by-room guide to furniture maintenance in the UAE — protecting custom joinery, wood finishes and soft furnishings from heat, humidity and UV exposure.",
           image: "/assets/home-bar-cabinet-wine-fridge-led-shelves.jpeg",
           date: "August 28, 2026",
-          author: "Bait Al Ebdaa Aftercare Team",
+          author: "Awais ul Haq, CEO of Bait Al Ebdaa",
           content: `<p>The UAE's demanding climate — characterized by intense heat, high UV exposure and fluctuating indoor humidity as air-conditioning cycles on and off — poses a unique challenge for luxury interiors that simply doesn't exist in temperate markets. Proper <strong>furniture maintenance in the UAE</strong> is essential to preserve the integrity and beauty of custom woodwork and soft furnishings, and the good news is that most of what protects a significant joinery investment is inexpensive, routine care rather than costly intervention. This guide covers what actually matters, room by room.</p>
 
 <h2>Why the UAE Climate Is Uniquely Hard on Furniture</h2>
@@ -1288,7 +1357,7 @@ export const dictionaries = {
           description: "A case study on delivering a 50,500 sq ft government authority headquarters fit-out in Dubai — security, acoustic joinery, DDA/DM approvals and Somfy automation under a strict deadline.",
           image: "/assets/tv-media-wall-floating-console-fireplace.jpeg",
           date: "July 15, 2026",
-          author: "Bait Al Ebdaa Projects",
+          author: "Awais ul Haq, CEO of Bait Al Ebdaa",
           content: `<p>Executing a <strong>commercial fit-out in Dubai</strong> for a prominent government authority demands a higher level of security, precision and regulatory compliance than almost any other project type in the market. This case study walks through how Bait Al Ebdaa delivered a 50,500 sq ft turnkey interior fit-out across three floors of a confidential government authority headquarters in Dubai Academic City, under a strict, non-negotiable deadline — and what the project reveals about what actually matters in <strong>government and corporate office fit-out in the UAE</strong>. See the <a href="/en/our-projects/government-authority">government authority headquarters project page</a> for photos and key facts.</p>
 
 <h2>Project Overview</h2>
@@ -1489,7 +1558,31 @@ export const dictionaries = {
       too_long: "رسالتك طويلة جداً. يرجى اختصارها والمحاولة مرة أخرى.",
       invalid_email: "يرجى التحقق من الاسم والبريد الإلكتروني والمحاولة مرة أخرى.",
     },
-    menuItems: ["الرئيسية", "الخدمات", "المشاريع", "العملية", "الأسعار", "اتصل بنا"],
+    reviewsPage: {
+      "navTitle": "آراء العملاء",
+      "pageTitle": "آراء عملاء بيت الإبداع",
+      "metaTitle": "آراء العملاء في التصميم الداخلي والتجهيز | بيت الإبداع",
+      "metaDescription": "ما يقوله العملاء عن أعمال بيت الإبداع في التصميم الداخلي والتجهيز والنجارة في جميع أنحاء الإمارات، وكيف تشارك رأيك.",
+      "intro": "ما يقوله عملاؤنا عن العمل مع بيت الإبداع في جميع أنحاء الإمارات. ننشر المراجعات بكلمات العميل وبموافقته، وأي ترجمة إلى العربية أو الإنجليزية تحمل علامة واضحة.",
+      "translatedLabel": "مترجمة",
+      "ratingLabel": "التقييم {n} من 5",
+      "summaryLabel": "متوسط التقييم من {count} مراجعة",
+      "sourceLabel": "المصدر",
+      "leaveTitle": "عملت معنا؟ شاركنا تجربتك",
+      "leaveBody": "يساعد رأيك أصحاب المنازل والشركات الآخرين على الاختيار بثقة. أرسله عبر واتساب أو البريد الإلكتروني، وأخبرنا كيف تحب أن يظهر اسمك.",
+      "whatsappCta": "أرسل مراجعتك عبر واتساب",
+      "whatsappMessage": "مرحباً! أرغب بمشاركة مراجعتي عن مشروعي مع بيت الإبداع.",
+      "emailCta": "أرسل مراجعتك بالبريد",
+      "emailSubject": "مراجعتي عن بيت الإبداع",
+      "policyTitle": "كيف ننشر المراجعات",
+      "policyItems": [
+        "ننشر مراجعات العملاء الذين عملنا معهم بكلماتهم.",
+        "يظهر اسمك بالطريقة التي تختارها، مثل الاسم الأول والحرف الأول من اسم العائلة.",
+        "أي مراجعة مترجمة إلى العربية أو الإنجليزية تحمل علامة واضحة بأنها مترجمة."
+      ],
+      "projectsCta": "استكشف مشاريعنا المنجزة"
+    },
+    menuItems: ["الرئيسية", "الخدمات", "المشاريع", "العملية", "الأسعار", "الإعلام", "اتصل بنا"],
     hero: {
       slides: [
         { eyebrow: "جميع الإمارات السبع", title: "تجهيز متكامل ونجارة معمارية مخصصة في الإمارات", body: "مصنوعة حسب الطلب في ورشتنا الخاصة ويتم تركيبها في جميع أنحاء الإمارات. بالإضافة إلى التنجيد، ورق الجدران، أسقف الجبس، والتجهيزات الكاملة." },
@@ -1544,6 +1637,11 @@ export const dictionaries = {
         { label: "مكاتب تنفيذية", body: "مساحات عمل مضمونة حيث يعمل الراحة الصوتية، ووجود العلامة التجارية وتدفق العمل كواحد." },
         { label: "العيش الذكي", body: "ستائر Somfy الآلية المخفية وضوابط مدمجة مصممة في الهندسة المعمارية من اليوم الأول." }
       ]
+    },
+    testimonialsSection: {
+      micro: "آراء العملاء",
+      title: "ماذا يقول عملاؤنا",
+      readAll: "اقرأ جميع الآراء"
     },
     projectsSection: {
       micro: "مشاريعنا",
@@ -1668,6 +1766,42 @@ export const dictionaries = {
       ctaTitle: "احجز تقييم صيانة للأثاث",
       relatedServices: "خدمات ذات صلة",
       relatedJoinery: "النجارة المعمارية",
+      heroPoints: [
+        "ضمان جودة الصنعة 5 سنوات على النجارة التي صنعناها",
+        "معاينة في الموقع وتقرير مكتوب عن الحالة",
+        "صيانة المفصلات ومجاري الإغلاق الهادئ والأبواب المنزلقة",
+        "لمسات تشطيب مطابقة للتشطيب الأصلي",
+      ],
+      signsTitle: "علامات تدل على أن النجارة تحتاج إلى عناية",
+      signsSubtitle: "التعامل مع العلامات المبكرة أقل تكلفة دائماً من الانتظار حتى تصبح المشكلة واضحة لا يمكن تجاهلها.",
+      signs: [
+        "باب لم يعد يُغلق بشكل مستوٍ أو خرج عن محاذاته",
+        "فجوة ظاهرة تنفتح عند وصلة أو حافة",
+        "قشرة خشبية ترتفع عند الحافة، ويمكن غالباً إعادة لصقها قبل أن تمتد",
+        "مفصلات أو مجاري أدراج أو أبواب خزائن منزلقة أصبحت قاسية أو مزعجة الصوت",
+        "بهتان القشرة الخشبية أو الخشب أو التنجيد بالقرب من النوافذ وأبواب الشرفات",
+        "حلقات ماء أو آثار حرارة أو انتفاخ في خزائن ما تحت المغسلة وحولها",
+      ],
+      seasonsTitle: "تقويم موسمي للعناية بالمنازل في الإمارات",
+      seasonsSubtitle: "توزيع أعمال العناية على مدار العام وفق مواسم الإمارات يكشف المشكلات الصغيرة قبل أن تتفاقم.",
+      seasons: [
+        { when: "يونيو – سبتمبر", title: "ذروة الصيف", body: "استخدم التظليل باستمرار في ساعات الذروة، وراقب ظهور فجوات جديدة عند وصلات النجارة مع جفاف المواد بفعل التبريد المستمر." },
+        { when: "أكتوبر – نوفمبر، أبريل – مايو", title: "الأشهر الانتقالية", body: "أفضل وقت للتشحيم السنوي للمفصلات والمجاري، حين لا تكون الآليات منتفخة بالرطوبة ولا جافة." },
+        { when: "ديسمبر – مارس", title: "الشتاء", body: "وقت مناسب للتنظيف العميق للتنجيد والمفروشات، ولفحص الآليات القريبة من النوافذ والأبواب كثيرة الاستخدام بحثاً عن الغبار." },
+        { when: "طوال العام", title: "يومياً", body: "إزالة الغبار يومياً والتعامل الفوري مع السوائل المنسكبة والتحكم في أشعة الشمس المباشرة تحمي كل التشطيبات في كل المواسم." },
+      ],
+      tipsTitle: "نصائح للعناية بين الزيارات",
+      tips: [
+        "حافظ على ثبات درجة الحرارة الداخلية. التقلبات الكبيرة، مثل إطفاء التكييف في عقار خالٍ، تضر الخشب أسرع من الظروف المستقرة.",
+        "أزل الغبار بقطعة مايكروفايبر مبللة قليلاً وخالية من الوبر ثم جفف السطح. تجنب المنظفات المحتوية على الأمونيا والمواد الكيميائية القاسية على التشطيبات الخشبية.",
+        "تحكم في أشعة الشمس المباشرة. قد تُبهت الأشعة فوق البنفسجية القشرة الخشبية والخشب والأقمشة خلال صيف إماراتي واحد، والستائر الكهربائية تجعل التظليل تلقائياً.",
+        "استخدم القواعد والمفارش. حلقات الماء وآثار الحرارة ضرر يمكن تجنبه حتى على التشطيبات المحكمة عالية الجودة.",
+        "شحّم محاور المفصلات ومسارات المجاري مرة في السنة تقريباً بمنتج خفيف أساسه السيليكون، لا الزيت الذي يجذب الغبار.",
+        "حافظ على جفاف الخزائن المغلقة باستخدام أكياس السيليكا جل أو مزيل رطوبة صغير لتقليل خطر العفن على الخشب والملابس.",
+      ],
+      diyTitle: "عناية ذاتية أم زيارة متخصصة؟",
+      diyBody: "إزالة الغبار والتنظيف اللطيف واستخدام القواعد والتظليل والتشحيم السنوي كلها مهام يمكنك القيام بها بنفسك. احجز تقييماً عندما تلاحظ حركة إنشائية: باب لم يعد يُغلق بشكل مستوٍ، أو فجوة تنفتح عند وصلة، أو قشرة ترتفع على امتداد لوح. الفحص أولاً يمنع تحوّل مشكلة قابلة للإصلاح إلى استبدال.",
+      guideLink: "اقرأ الدليل الكامل للعناية بالنجارة في المناخ الرطب",
       relatedWardrobes: "خزائن مخصصة"
     },
     aboutPage: {
@@ -1680,9 +1814,19 @@ export const dictionaries = {
         whatWeDo: { title: "ماذا نقدّم", body: "يشمل عملنا التصميم الداخلي، والتجهيز الشامل، وتجهيز المكاتب، وتجديد الفلل والشقق، والنجارة المعمارية المخصصة — بما في ذلك الخزائن والمطابخ المصممة حسب الطلب. يتم تحديد نطاق كل مشروع وتصميمه وتسعيره بشكل فردي، دون أي قوالب جاهزة." },
         manufacturing: { title: "تصنيع داخلي خاص", body: "نُدير مصنع نجارة بمساحة 15,000 قدم مربع في الجرف الصناعية 2، عجمان، مجهّزاً بآلات CNC وبأكثر من 50 نجاراً، باستخدام خشب وقشرة أوروبية. تصنيع النجارة داخلياً — بدلاً من تعهيدها لجهات خارجية — هو ما يتيح لنا تقديم ضمان جودة الصنعة لمدة 5 سنوات على القطع التي نصنّعها ونركّبها." },
         serviceAreas: { title: "مناطق الخدمة", body: "ننفّذ مشاريعنا في الإمارات السبع: دبي وأبوظبي والشارقة وعجمان ورأس الخيمة والفجيرة وأم القيوين. عنواننا المسجّل ومنشأة التصنيع الخاصة بنا في عجمان." },
-        approvals: { title: "موافقات الجهات الحكومية", body: "ينسق فريقنا طلبات الجهات المختصة ومتطلبات شهادات عدم الممانعة حسب موقع المشروع ونطاقه، مثل طلبات بلدية دبي وسلطة دبي للتطوير (DDA) في مشروعنا المنشور بمدينة دبي الأكاديمية، والجهات المختصة في أبوظبي لمشاريع أبوظبي، بحيث لا يحتاج العميل للتعامل مع هذه الإجراءات بنفسه." },
+        approvals: { title: "موافقات الجهات الحكومية", body: "ينسق فريقنا طلبات الجهات المختصة ومتطلبات شهادات عدم الممانعة حسب موقع المشروع ونطاقه، مثل طلبات بلدية دبي وسلطة دبي للتطوير (DDA) في مشروعنا المنشور بمدينة دبي الأكاديمية، والجهات المحلية المختصة لمشاريع الإمارات الأخرى، بحيث لا يحتاج العميل للتعامل مع هذه الإجراءات بنفسه." },
         projects: { title: "خبرة في المشاريع الفعلية", body: "من أعمالنا الأخيرة مقر لهيئة حكومية سرية في مدينة دبي الأكاديمية — مشروع تجهيز داخلي وأعمال كهروميكانيكية بمساحة 50,500 قدم مربع على ثلاثة طوابق. راجع صفحة مشاريعنا للتفاصيل." },
       },
+      glanceTitle: "بيت الإبداع في لمحة",
+      servicesTitle: "ما يمكننا تقديمه لك",
+      servicesSubtitle: "لكل خدمة صفحتها الخاصة بنطاق العمل والأسعار الابتدائية وإجابات الأسئلة الشائعة.",
+      processTitle: "كيف يسير المشروع",
+      processLink: "اطلع على مراحل العمل كاملة خطوة بخطوة",
+      projectKicker: "مشروع منشور",
+      projectLink: "شاهد مشروع تجهيز المكاتب بمساحة 50,500 قدم مربع",
+      hoursLabel: "ساعات العمل",
+      hoursValue: "من الاثنين إلى السبت، 8:00 صباحاً إلى 10:00 مساءً",
+      reviewsCta: "اقرأ آراء العملاء",
       companyDetailsTitle: "بيانات الشركة",
       companyDetails: {
         name: "الاسم القانوني",
@@ -2060,7 +2204,7 @@ export const dictionaries = {
       subscribed: "شكراً — تم اشتراكك بنجاح.",
       subscribeError: "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
       explore: "استكشف",
-      exploreLinks: ["الرئيسية", "من نحن", "المشاريع", "الخدمات", "الأسعار", "اتصل بنا"],
+      exploreLinks: ["الرئيسية", "من نحن", "المشاريع", "الخدمات", "الأسعار", "الإعلام", "آراء العملاء", "اتصل بنا"],
       importantLinks: "روابط مهمة",
       importantLinksItems: ["سياسة الخصوصية", "الشروط والأحكام", "سياسة ملفات تعريف الارتباط", "اتفاقية مستوى الخدمة", "إمكانية الوصول", "سياسة الاسترداد", "الاستدامة"],
       contactInfo: "معلومات الاتصال",
@@ -2230,7 +2374,8 @@ export const dictionaries = {
         },
         "al-barari-eco-villa": {
           title: "جناح فيلا صديقة للبيئة في البراري",
-          description: "تجديد جناح فيلا في البراري بخزائن جوز مخصصة ومفروشات ناعمة، بلوحة ألوان طبيعية تناسب الطابع الأخضر للمجتمع.\n\nاستُبدلت النجارة القديمة بخزائن ووحدات تسريح مصنّعة خصيصاً تناسب المواد الطبيعية في الفيلا.\n\nوتكتمل الغرفة بسكك ستائر جديدة ومعالجات نوافذ متعددة الطبقات تضفي نعومة وتتحكم بالإضاءة.",
+          metaDescription: "تجديد جناح فيلا في البراري بخزائن جوز مخصصة ومفروشات ناعمة، بلوحة ألوان طبيعية تناسب الطابع الأخضر للمجتمع.",
+          description:"تجديد جناح فيلا في البراري بخزائن جوز مخصصة ومفروشات ناعمة، بلوحة ألوان طبيعية تناسب الطابع الأخضر للمجتمع.\n\nاستُبدلت النجارة القديمة بخزائن ووحدات تسريح مصنّعة خصيصاً تناسب المواد الطبيعية في الفيلا.\n\nوتكتمل الغرفة بسكك ستائر جديدة ومعالجات نوافذ متعددة الطبقات تضفي نعومة وتتحكم بالإضاءة.",
           metadata: {
             location: "البراري، دبي، الإمارات",
             sector: "سكني",
@@ -2309,7 +2454,7 @@ export const dictionaries = {
         link: "/ar/media/luxury-interior-fit-out-guide-dubai",
         image: "/assets/villa-majlis-living-room-wood-wall-cove-ceiling.jpeg",
         date: "٢٥ سبتمبر ٢٠٢٦",
-        author: "فريق تصميم بيت الإبداع",
+        author: "Awais ul Haq، الرئيس التنفيذي لبيت الإبداع",
         content: `<p>يتطلب البدء في مشروع <strong>التجهيز الداخلي الفاخر في دبي</strong> أكثر من مجرد رؤية؛ إنه يتطلب دقة، وخبرة محلية بالأنظمة، واستراتيجية تنفيذ خالية من العيوب. سواء كنت تقوم بتجديد فيلا راقية في دبي هيلز أو الإمارات هيلز أو نخلة جميرا، أو تجهيز مقر شركة في وسط مدينة دبي أو مركز دبي المالي العالمي، فإن فهم آلية عمل عملية التجهيز الداخلي — وليس فقط تكلفتها — هو ما يفرق بين مشروع سلس يستغرق ستة إلى عشرة أسابيع، وتجربة مرهقة تتجاوز ميزانيتها وتمتد لأشهر. يستعرض هذا الدليل كل ما يحتاج مالك المنزل أو مدير المرافق أو صاحب العمل معرفته قبل التوقيع مع <strong>مقاول تجهيز داخلي متكامل في دبي</strong>.</p>
 
 <h2>ماذا يعني "التجهيز الفاخر" فعلياً؟</h2>
@@ -2433,7 +2578,7 @@ export const dictionaries = {
           link: "/ar/media/motorized-curtains-somfy-dubai-guide",
           image: "/assets/double-height-tv-wall-fireplace-curtains.jpeg",
           date: "١ أكتوبر ٢٠٢٦",
-          author: "فريق التصميم في بيت الإبداع",
+          author: "Awais ul Haq، الرئيس التنفيذي لبيت الإبداع",
           description: "كيف تعمل الستائر الكهربائية، وماذا تشمل باقة سومفي عادةً، وكيف يؤثر اختيار القماش في السعر، وما يجب التأكد منه قبل الطلب لفيلتك أو شقتك في دبي.",
           content: `<p>انتقلت <strong>الستائر الكهربائية</strong> من كونها إضافة فاخرة إلى طلب شائع في الفلل والشقق في دبي. فالنوافذ الزجاجية الكبيرة وأشعة الشمس القوية بعد الظهر والاستخدام المكثف للتكييف تجعل الستائر التي تُفتح وتُغلق بضغطة زر مفيدة فعلاً وليست مجرد لمسة مبهرة. يشرح هذا الدليل كيف تعمل الأتمتة، وما الذي تدفع مقابله، وما يجب حسمه قبل الطلب.</p>
 
@@ -2508,7 +2653,7 @@ export const dictionaries = {
           link: "/ar/media/bespoke-architectural-joinery-uae",
           image: "/assets/corner-wardrobe-glass-doors-black-handles.jpeg",
           date: "١٠ سبتمبر ٢٠٢٦",
-          author: "فريق تصنيع بيت الإبداع",
+          author: "Awais ul Haq، الرئيس التنفيذي لبيت الإبداع",
           description: "لماذا تُعرّف النجارة المعمارية المخصصة — المطابخ وغرف الملابس والأعمال الخشبية المُصنّعة في دبي وأبوظبي — الفخامة في المنازل الحديثة بالإمارات، وكيف يغيّر التصنيع الداخلي النتيجة.",
           content: `<p>تعتبر <strong>النجارة المعمارية المخصصة</strong> العنصر الحاسم للفخامة الحقيقية في المنازل الحديثة في الإمارات. من غرف الملابس المصممة خصيصاً إلى الألواح الخشبية الصوتية، تحول الأعمال الخشبية المصنوعة ببراعة العقار القياسي إلى مساحة مميزة عالية القيمة بطريقة لا يستطيع الأثاث المستورد الجاهز مضاهاتها. يشرح هذا الدليل ما هي النجارة المعمارية فعلياً، ولماذا تهم كثيراً في السوق الإماراتي تحديداً، وما الذي يفرّق بين نجارة تدوم خمس عشرة سنة ونجارة تبدأ بالتعطل خلال عامين فقط.</p>
 
@@ -2645,7 +2790,7 @@ export const dictionaries = {
           link: "/ar/media/furniture-maintenance-care-humid-climate",
           image: "/assets/home-bar-cabinet-wine-fridge-led-shelves.jpeg",
           date: "٢٨ أغسطس ٢٠٢٦",
-          author: "فريق العناية اللاحقة ببيت الإبداع",
+          author: "Awais ul Haq، الرئيس التنفيذي لبيت الإبداع",
           description: "دليل عملي، غرفة بغرفة، لصيانة الأثاث في الإمارات — حماية النجارة المخصصة والتشطيبات الخشبية والمفروشات من الحرارة والرطوبة والتعرض للأشعة فوق البنفسجية.",
           content: `<p>يشكل مناخ الإمارات القاسي — المتميز بالحرارة الشديدة والتعرض العالي للأشعة فوق البنفسجية والرطوبة الداخلية المتقلبة مع دورات تشغيل التكييف — تحدياً فريداً للتصميمات الداخلية الفاخرة لا يوجد ببساطة في الأسواق المعتدلة. تعد <strong>صيانة الأثاث السليمة في الإمارات</strong> أمراً ضرورياً للحفاظ على سلامة وجمال الأعمال الخشبية المخصصة والمفروشات، والخبر الجيد هو أن معظم ما يحمي استثمار نجارة كبيراً هو عناية روتينية غير مكلفة بدلاً من تدخل باهظ التكلفة. يغطي هذا الدليل ما يهم فعلياً، غرفة بغرفة.</p>
 
@@ -2755,7 +2900,7 @@ export const dictionaries = {
           link: "/ar/media/government-authority-hq-case-study",
           image: "/assets/tv-media-wall-floating-console-fireplace.jpeg",
           date: "١٥ يوليو ٢٠٢٦",
-          author: "مشاريع بيت الإبداع",
+          author: "Awais ul Haq، الرئيس التنفيذي لبيت الإبداع",
           description: "دراسة حالة عن تنفيذ تجهيز مقر هيئة حكومية بمساحة 50,500 قدم مربع في دبي — الأمان، النجارة الصوتية، موافقات DDA/بلدية دبي وأتمتة Somfy ضمن موعد نهائي صارم.",
           content: `<p>يتطلب تنفيذ <strong>تجهيز تجاري في دبي</strong> لهيئة حكومية بارزة مستوى من الأمان والدقة والامتثال التنظيمي أعلى بكثير من معظم أنواع المشاريع الأخرى في السوق. تستعرض دراسة الحالة هذه كيف قدمت بيت الإبداع تجهيزاً داخلياً متكاملاً بمساحة 50,500 قدم مربع عبر ثلاثة طوابق لمقر هيئة حكومية سرية في مدينة دبي الأكاديمية، ضمن موعد نهائي صارم وغير قابل للتفاوض — وما يكشفه المشروع عن الأهمية الفعلية في <strong>تجهيز المكاتب الحكومية والتجارية في الإمارات</strong>. شاهد <a href="/ar/our-projects/government-authority">صفحة مشروع مقر الهيئة الحكومية</a> للاطلاع على الصور والحقائق الرئيسية.</p>
 

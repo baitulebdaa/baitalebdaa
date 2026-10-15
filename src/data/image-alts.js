@@ -2,6 +2,10 @@
 // site languages. Describes what is visible (not keywords). Decorative uses of the same
 // photos (e.g. small thumbnails inside link tiles) should keep alt="" instead.
 export const imageAlts = {
+  "l-shaped-walk-in-closet-led-drawers.jpeg": {
+    en: "L-shaped walk-in closet with wood panelling, open shelving, brass-handled drawers and LED strip lighting",
+    ar: "غرفة ملابس على شكل حرف L بتغطية خشبية ورفوف مفتوحة وأدراج بمقابض نحاسية وإضاءة LED شريطية",
+  },
   "walk-in-closet-island-led-ceiling.jpeg": {
     en: "Walk-in closet with a central island, glass-fronted wardrobes and LED ceiling lighting",
     ar: "غرفة ملابس واسعة بجزيرة مركزية وخزائن بواجهات زجاجية وإضاءة LED في السقف",

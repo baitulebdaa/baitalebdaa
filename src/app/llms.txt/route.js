@@ -7,6 +7,7 @@ import { isPageIndexable } from "../../lib/seo-pages";
 import { dictionaries } from "../../i18n/dictionaries";
 import { SOCIAL_PROFILES } from "../../data/social-profiles";
 import { SITE_URL } from "../../lib/schema-ids";
+import { REAL_PROJECT_SLUGS } from "../../data/project-catalog";
 
 export const dynamic = "force-static";
 
@@ -16,6 +17,11 @@ function buildLlmsTxt() {
   const servicePages = Object.values(seoData.pages.en)
     .filter(isPageIndexable)
     .map((page) => `- [${page.h1}](${page.canonical})`);
+  const projects = [...REAL_PROJECT_SLUGS].map((slug) => {
+    const project = en.projectDetailPage.projects[slug];
+    const { size, year, service } = project.metadata;
+    return `- [${project.title}](${SITE_URL}/en/our-projects/${slug}): ${service}, ${size}, ${year}`;
+  });
 
   return [
     "# Bait Al Ebdaa",
@@ -37,14 +43,18 @@ function buildLlmsTxt() {
     `- [Design and delivery process](${SITE_URL}/en/process)`,
     `- [Pricing guide (AED starting prices)](${SITE_URL}/en/pricing)`,
     `- [Projects](${SITE_URL}/en/our-projects)`,
-    `- [Case study: 50,500 sq ft government authority headquarters, Dubai Academic City](${SITE_URL}/en/our-projects/government-authority)`,
     `- [Contact and free site survey](${SITE_URL}/en/contact)`,
+    "",
+    "## Completed projects",
+    ...projects,
     "",
     "## Services by city",
     ...servicePages,
     `- [Furniture maintenance and care](${SITE_URL}/en/furniture-maintenance-care)`,
     "",
     "## Guides",
+    "Written by Awais ul Haq, CEO of Bait Al Ebdaa.",
+    "",
     ...articles.map((article) => `- [${article.title}](${SITE_URL}/en/media/${article.slug})`),
     "",
     "## Optional",
