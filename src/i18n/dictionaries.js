@@ -113,6 +113,11 @@ export const dictionaries = {
         { label: "Smart living", body: "Discreet Somfy motorized curtains and integrated controls designed into the architecture from day one." }
       ]
     },
+    servicesDirectory: {
+      micro: "Our Services",
+      title: "Every service, under one roof",
+      lede: "Interior design, fit-out, renovation and custom joinery for villas, apartments, offices, restaurants and retail — delivered across all seven emirates."
+    },
     testimonialsSection: {
       micro: "Client Reviews",
       title: "What Our Clients Say",
@@ -1639,6 +1644,11 @@ export const dictionaries = {
         { label: "مكاتب تنفيذية", body: "مساحات عمل مضمونة حيث يعمل الراحة الصوتية، ووجود العلامة التجارية وتدفق العمل كواحد." },
         { label: "العيش الذكي", body: "ستائر Somfy الآلية المخفية وضوابط مدمجة مصممة في الهندسة المعمارية من اليوم الأول." }
       ]
+    },
+    servicesDirectory: {
+      micro: "خدماتنا",
+      title: "كل الخدمات تحت سقف واحد",
+      lede: "تصميم داخلي وتجهيز شامل وتجديد ونجارة مخصصة للفلل والشقق والمكاتب والمطاعم والمحلات — في جميع الإمارات السبع."
     },
     testimonialsSection: {
       micro: "آراء العملاء",

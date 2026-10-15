@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Calendar, Check, Wrench } from "./components/icons";
 import { useI18n } from "./i18n/I18nProvider";
 import { Header, Footer, Reveal, FaqSplit, ProcessTimeline } from "./components/Shared";
+import { ServiceTileGrid } from "./components/ServiceTiles";
 import { Estimator } from "./components/Estimator";
 import { PriceExplorer } from "./components/PriceExplorer";
 import { QuoteModal } from "./components/QuoteModal";
@@ -45,6 +46,21 @@ function Services() {
   const waHref = `https://wa.me/971582621717?text=${waMessage}`;
   const images = ["/assets/minimalist-living-room-fluted-wall-panel-cove-lighting.jpeg", "/assets/tv-wall-unit-led-display-shelves.jpeg", "/assets/glass-door-wardrobe-matte-handles.jpeg"];
   return <section className="section section--light" id="services"><div className="shell"><Reveal className="section-heading section-heading--center"><p className="micro">{dict.servicesSection.micro}</p><h2 className="section-title" style={{whiteSpace: 'pre-wrap'}}>{dict.servicesSection.title}</h2><p className="lede">{dict.servicesSection.lede}</p></Reveal><div className="service-grid">{dict.servicesSection.items.map((s, i) => <Reveal className={`service-card service-card--${i + 1}`} delay={i * 110} key={i}><div className="service-card__image"><Image src={images[i]} alt={s.title} fill sizes="(max-width: 700px) 100vw, (max-width: 980px) 50vw, 33vw" /></div><div className="service-card__copy"><span>{s.number}</span><h3>{s.title}</h3><p>{s.body}</p><a href={waHref} target="_blank" rel="noopener noreferrer">{dict.servicesSection.discuss} <ArrowUpRight size={16} /></a></div></Reveal>)}</div></div></section>;
+}
+
+// Featured services as the same tiles the services page uses; the full list is one click away.
+const FEATURED_SERVICES = ["interior-design", "residential-interior-design", "fit-out", "office-fit-out", "villa-renovation", "joinery", "custom-wardrobes", "kitchen-design"];
+
+function ServicesDirectory() {
+  const { lang, dict } = useI18n();
+  const t = dict.servicesDirectory;
+  return <section className="section section--light services-directory" id="all-services">
+    <div className="shell">
+      <Reveal className="section-heading section-heading--center"><p className="micro">{t.micro}</p><h2 className="section-title">{t.title}</h2><p className="lede">{t.lede}</p></Reveal>
+      <ServiceTileGrid slugs={FEATURED_SERVICES} aftercare={false} titleTag="p" />
+      <Reveal className="sd-all" delay={120}><a href={`/${lang}/our-services`} className="outline-button outline-button--dark">{dict.servicesSection.viewAllServices} <ArrowUpRight size={16} /></a></Reveal>
+    </div>
+  </section>;
 }
 
 function Studio() {
@@ -141,7 +157,7 @@ export default function App() {
   const [quotePrefillSize, setQuotePrefillSize] = useState(undefined);
   return <>
     <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-    <main><Hero onGetQuote={() => setQuoteOpen(true)} /><Services /><Studio /><Factory /><Sectors /><Projects /><Testimonials /><Process /><PriceExplorer /><Estimator onBookSurvey={(size) => { setQuotePrefillSize(size); setQuoteOpen(true); }} /><Faq /><LatestNews /></main>
+    <main><Hero onGetQuote={() => setQuoteOpen(true)} /><Services /><ServicesDirectory /><Studio /><Factory /><Sectors /><Projects /><Testimonials /><Process /><PriceExplorer /><Estimator onBookSurvey={(size) => { setQuotePrefillSize(size); setQuoteOpen(true); }} /><Faq /><LatestNews /></main>
     <Footer />
     <QuoteModal open={quoteOpen} onClose={() => setQuoteOpen(false)} initialSize={quotePrefillSize} />
   </>;
