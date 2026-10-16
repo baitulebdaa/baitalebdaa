@@ -1,3 +1,5 @@
+import { costGuideArticles } from "../data/cost-guides.js";
+
 export const dictionaries = {
   en: {
     nav: {
@@ -921,7 +923,7 @@ export const dictionaries = {
       metaTitle: "Interior Design & Fit-Out Guides, UAE | Bait Al Ebdaa",
       metaDescription: "Practical guides on luxury fit-out, custom joinery, motorized curtains and furniture care in Dubai and Abu Dhabi, from Bait Al Ebdaa's own teams.",
       hubTitle: "Interior Design & Fit-Out Guides",
-      hubIntro: "Practical guides from our design, fit-out and joinery teams: what a luxury fit-out in Dubai involves and costs, how custom joinery is made in our Ajman factory, how motorized curtains work, and how to care for furniture in the UAE climate. Each guide ends with answers to the questions clients ask us most.",
+      hubIntro: "Practical guides from our design, fit-out and joinery teams: what a luxury fit-out in Dubai involves and costs, how custom joinery is made in our Ajman factory, how motorized curtains work, and how to care for furniture in the UAE climate. Our cost guides explain, from our published prices, what interior design fees, villa renovations, kitchen cabinets and fitted wardrobes cost in Dubai.",
       topicsTitle: "Explore the services behind our guides",
       topics: [
         { label: "Turnkey fit-out in Dubai", href: "/en/fit-out/dubai", text: "One contract for civil works, MEP, finishes and in-house joinery, from design to handover." },
@@ -2448,7 +2450,7 @@ export const dictionaries = {
       metaTitle: "أدلة التصميم الداخلي والتجهيز في الإمارات | بيت الإبداع",
       metaDescription: "أدلة عملية حول التجهيز الفاخر والنجارة المخصصة والستائر الآلية والعناية بالأثاث في دبي وأبوظبي، من فرق التصميم والنجارة في بيت الإبداع.",
       hubTitle: "أدلة التصميم الداخلي والتجهيز",
-      hubIntro: "أدلة عملية من فرق التصميم والتجهيز والنجارة لدينا: ما يتضمنه التجهيز الفاخر في دبي وتكلفته، وكيف تُصنع النجارة المخصصة في مصنعنا بعجمان، وكيف تعمل الستائر الآلية، وكيف تعتني بالأثاث في مناخ الإمارات. ينتهي كل دليل بإجابات عن الأسئلة التي يطرحها علينا العملاء أكثر من غيرها.",
+      hubIntro: "أدلة عملية من فرق التصميم والتجهيز والنجارة لدينا: ما يتضمنه التجهيز الفاخر في دبي وتكلفته، وكيف تُصنع النجارة المخصصة في مصنعنا بعجمان، وكيف تعمل الستائر الآلية، وكيف تعتني بالأثاث في مناخ الإمارات. وتشرح أدلة الأسعار، انطلاقاً من أسعارنا المنشورة، تكلفة التصميم الداخلي وتجديد الفلل وخزائن المطبخ وخزائن الملابس في دبي.",
       topicsTitle: "اكتشف الخدمات التي تستند إليها أدلتنا",
       topics: [
         { label: "التجهيز الشامل في دبي", href: "/ar/fit-out/dubai", text: "عقد واحد للأعمال المدنية والكهروميكانيكية والتشطيبات والنجارة الداخلية، من التصميم حتى التسليم." },
@@ -3084,3 +3086,6 @@ export const dictionaries = {
     }
   }
 };
+
+// Cost guides (src/data/cost-guides.js) join each language's article list, after the existing posts.
+for (const lang of ["en", "ar"]) dictionaries[lang].mediaPage.articles.push(...costGuideArticles(lang));

@@ -364,3 +364,89 @@ test("project pages carry the similar-project panel and a fact-built FAQ in both
   assert.ok(page.includes("faqPageJsonLd(faq.items, { withContext: true })"));
   assert.ok(page.includes('className="shell pd-similar"'));
 });
+
+test("scaling pilot: only the six approved pages get their own content, in both languages, from verified sources", async () => {
+  const { PILOT_PAGES } = await import("../src/data/pilot-pages.js");
+  const { OFFICIAL_SOURCES } = await import("../src/data/official-sources.js");
+  assert.deepEqual(Object.keys(PILOT_PAGES).sort(), [
+    "fit-out/abu-dhabi", "fit-out/ajman", "fit-out/dubai", "fit-out/sharjah", "interior-design/abu-dhabi", "interior-design/dubai",
+  ]);
+  for (const [key, page] of Object.entries(PILOT_PAGES)) {
+    for (const id of page.sources) {
+      const source = OFFICIAL_SOURCES[id];
+      assert.ok(source, `${key}: unknown source ${id}`);
+      assert.match(source.url, /^https:\/\/(www\.)?(dm\.gov\.ae|dda\.gov\.ae|tamm\.abudhabi|shjmun\.gov\.ae|portal\.shjmun\.gov\.ae|ajman\.ae)\//, `${key}: ${id} is not an official domain`);
+      assert.match(source.reviewed, /^\d{4}-\d{2}-\d{2}$/);
+    }
+    for (const lang of ["en", "ar"]) {
+      const copy = page[lang];
+      assert.ok(copy.lead && copy.points.length === 4 && copy.sections.length >= 4, `${key} ${lang}`);
+      assert.ok(copy.faqs.length >= 4, `${key} ${lang} FAQs`);
+    }
+    assert.equal(page.en.faqs.length, page.ar.faqs.length, `${key}: EN/AR FAQ count`);
+    assert.equal(page.en.sections.length, page.ar.sections.length, `${key}: EN/AR section count`);
+  }
+  // Softened meta descriptions: only the three non-Dubai fit-out pilots, 120-150 characters, no approvals claim.
+  const { PILOT_META_DESCRIPTIONS } = await import("../src/data/pilot-pages.js");
+  assert.deepEqual(Object.keys(PILOT_META_DESCRIPTIONS.en).sort(), ["fit-out/abu-dhabi", "fit-out/ajman", "fit-out/sharjah"]);
+  for (const text of Object.values(PILOT_META_DESCRIPTIONS.en)) {
+    assert.ok(text.length >= 120 && text.length <= 150, text);
+    assert.doesNotMatch(text, /approvals coordinated in-house/);
+  }
+  assert.match(read("src/app/sitemap.js"), /const PILOT_UPDATED = new Date\("2026-10-16"\)/);
+  // Held pages and the protected office page keep the template.
+  for (const held of ["interior-design/sharjah", "interior-design/ajman", "office-fit-out/dubai"]) assert.equal(PILOT_PAGES[held], undefined, held);
+  // No unverified Abu Dhabi claims: no Estidama statement, no blanket approvals claim.
+  const ad = JSON.stringify([PILOT_PAGES["fit-out/abu-dhabi"], PILOT_PAGES["interior-design/abu-dhabi"]]);
+  assert.doesNotMatch(ad, /Estidama|استدامة|all Abu Dhabi approvals|جميع موافقات أبوظبي/);
+  // Sharjah: no local project, office or submission-experience claims.
+  assert.doesNotMatch(JSON.stringify(PILOT_PAGES["fit-out/sharjah"]), /our Sharjah (office|team|projects? (we|in))|we (have )?(submitted|handled) .{0,40}Sharjah/i);
+  // Ajman: no factory-tour, sample or faster-lead-time claims.
+  assert.doesNotMatch(JSON.stringify(PILOT_PAGES["fit-out/ajman"]), /tour|samples?|faster|lead time|جولة|عينات|أسرع/i);
+});
+
+test("company prices in pilot pages and cost guides are read from the price list, never typed in", () => {
+  // Cost guides: no amount at all in the source. Pilot pages: only the authority fees quoted from official pages.
+  assert.doesNotMatch(read("src/data/cost-guides.js"), /AED\s?\d|\d[\d,.]*\s?درهم/);
+  const typed = [...read("src/data/pilot-pages.js").matchAll(/AED\s?[\d,.]+|[\d,.]+\s?درهم/g)].map((m) => m[0].replace(/AED\s?|\s?درهم/g, "").replace(/[,.]$/, ""));
+  const authorityFees = new Set(["0.90", "200", "10,000", "10", "100", "1,000"]);
+  for (const amount of typed) assert.ok(authorityFees.has(amount), `typed amount ${amount} is not a quoted authority fee`);
+});
+
+test("cost guides: four guides in both languages, reviewed date visible, no FAQPage, linked to their money pages", async () => {
+  const { costGuideArticles } = await import("../src/data/cost-guides.js");
+  const { extractFaqsFromHtml } = await import("../src/lib/faq-schema.js");
+  const required = {
+    "interior-design-fees-dubai": ["interior-design/dubai", "pricing", "our-projects/palm-jumeirah-penthouse"],
+    "villa-renovation-cost-dubai": ["villa-renovation/dubai", "pricing", "our-projects/al-barari-eco-villa", "our-projects/dubai-hills-estate-villa"],
+    "kitchen-cabinet-cost-dubai": ["kitchen-design/dubai", "kitchen-renovation/dubai", "pricing", "media/furniture-maintenance-care-humid-climate"],
+    "custom-wardrobe-cost-dubai": ["custom-wardrobes/dubai", "pricing", "our-projects/al-barari-eco-villa", "furniture-maintenance-care"],
+  };
+  for (const lang of ["en", "ar"]) {
+    const guides = costGuideArticles(lang);
+    assert.deepEqual(guides.map((g) => g.slug), Object.keys(required));
+    for (const guide of guides) {
+      assert.match(guide.content, /class="guide-reviewed"><strong>(Reviewed October 2026|تمت المراجعة في أكتوبر 2026)/, guide.slug);
+      assert.deepEqual(extractFaqsFromHtml(guide.content), [], `${guide.slug} must not emit FAQPage`);
+      for (const target of required[guide.slug]) assert.ok(guide.content.includes(`href="/${lang}/${target}"`), `${lang} ${guide.slug} -> ${target}`);
+      assert.ok(guide.metaDescription.length <= 150 && guide.seoTitle.length <= 62, `${lang} ${guide.slug} snippet length`);
+    }
+    // Guides are listed on the media hub and in the sitemap source, but not in every service page's blog grid.
+    assert.equal(dictionaries[lang].mediaPage.articles.filter((a) => a.guide).length, 4);
+  }
+  assert.match(read("src/ServiceLocationPage.jsx"), /\.filter\(\(post\) => !post\.guide\)/);
+});
+
+test("FAQPage schema on service pages is built from the same items the visible FAQ renders", () => {
+  const page = read("src/ServiceLocationPage.jsx");
+  // One list feeds both the rendered FAQ section and the FAQPage markup.
+  assert.match(page, /const faqItems = pilot \? pilot\.faqs : \[\.\.\.content\.faqs, \.\.\.pageFaqs\];/);
+  assert.match(page, /faqPageJsonLd\(faqItems\)/);
+  assert.match(page, /items=\{faqItems\}/);
+  // Every question and answer is server-rendered in the accordion (answers collapse visually but
+  // are never conditionally omitted from the page).
+  const faqItem = read("src/components/Shared.jsx").match(/export function FaqItem[\s\S]*?\r?\n}\r?\n/)[0];
+  assert.match(faqItem, /<h3>\{faq\.q\}<\/h3>/);
+  assert.match(faqItem, /<p>\{faq\.a\}<\/p>/);
+  assert.doesNotMatch(faqItem, /isOpen\s*&&/);
+});

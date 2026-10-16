@@ -12,6 +12,20 @@ import {
   getSafeMetaDescription,
 } from "../../../../lib/seo-pages";
 import ServiceLocationPage from "../../../../ServiceLocationPage";
+import { getPilotContent, pilotMetaDescription } from "../../../../data/pilot-pages";
+import { OFFICIAL_SOURCES, SOURCES_REVIEWED_LABEL } from "../../../../data/official-sources";
+
+// Pilot pages get their own main content (src/data/pilot-pages.js), resolved here on the
+// server so the browser only receives this one page's copy and source list.
+function pilotFor(lang, service, location) {
+  const pilot = getPilotContent(lang, service, location);
+  if (!pilot) return null;
+  return {
+    ...pilot,
+    sources: pilot.sources.map((id) => ({ id, name: OFFICIAL_SOURCES[id].name[lang], url: OFFICIAL_SOURCES[id].url })),
+    sourcesReviewed: SOURCES_REVIEWED_LABEL[lang],
+  };
+}
 
 // generateStaticParams for a nested dynamic segment receives the already-resolved
 // parent params (lang) synchronously — unlike page/generateMetadata params, which are
@@ -30,7 +44,7 @@ export async function generateMetadata({ params }) {
   const selfUrl = row.canonical;
   const otherUrl = row.hreflang;
   const shouldIndex = isPageIndexable(row);
-  const safeDescription = getSafeMetaDescription(row, lang);
+  const safeDescription = pilotMetaDescription(lang, service, location) || getSafeMetaDescription(row, lang);
   const socialImage = "/assets/bait-al-ebdaa-luxury-interior-design-dubai-og.jpg";
 
   return {
@@ -72,7 +86,7 @@ export default async function Page({ params }) {
   const { lang, service, location } = await params;
   const row = getPage(lang, service, location);
   if (!row) notFound();
-  const safeDescription = getSafeMetaDescription(row, lang);
+  const safeDescription = pilotMetaDescription(lang, service, location) || getSafeMetaDescription(row, lang);
 
   const serviceEntry = getService(row.serviceSlug);
   const locationEntry = getLocation(row.locationSlug);
@@ -88,5 +102,5 @@ export default async function Page({ params }) {
     otherServices: getSiblingServices(lang, row.locationSlug, row.serviceSlug).filter((entry) => isPageIndexable(entry.page)),
   };
 
-  return <ServiceLocationPage lang={lang} row={row} seoContext={seoContext} />;
+  return <ServiceLocationPage lang={lang} row={row} seoContext={seoContext} pilot={pilotFor(lang, row.serviceSlug, row.locationSlug)} />;
 }

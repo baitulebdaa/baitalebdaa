@@ -1,3 +1,5 @@
+import { COST_GUIDE_DATE, COST_GUIDE_SLUGS, costGuideArticles } from "./cost-guides.js";
+
 export const ARTICLE_DATES = {
   "luxury-interior-fit-out-guide-dubai": "2026-09-25",
   "motorized-curtains-somfy-dubai-guide": "2026-10-01",
@@ -43,3 +45,12 @@ export const ARTICLE_META_DESCRIPTIONS = {
 };
 
 export const META_DESCRIPTION_MAX = 150;
+
+// The cost guides carry their own date, SEO title and description (src/data/cost-guides.js).
+for (const slug of COST_GUIDE_SLUGS) ARTICLE_DATES[slug] = COST_GUIDE_DATE;
+for (const lang of ["en", "ar"]) {
+  for (const guide of costGuideArticles(lang)) {
+    ARTICLE_SEO_TITLES[lang][guide.slug] = guide.seoTitle;
+    ARTICLE_META_DESCRIPTIONS[lang][guide.slug] = guide.metaDescription;
+  }
+}

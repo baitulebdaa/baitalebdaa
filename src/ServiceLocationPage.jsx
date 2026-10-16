@@ -112,6 +112,28 @@ const PRIORITY_MONEY_PAGES = new Set([
   "interior-design/dubai",
 ]);
 
+// Money pages whose published prices have a cost guide explaining them (src/data/cost-guides.js).
+// The guide is linked once, from the price card, rather than from every service page's blog grid.
+const COST_GUIDE_BY_PAGE = {
+  "interior-design/dubai": { slug: "interior-design-fees-dubai", en: "What moves a design fee: our Dubai fees guide", ar: "ما الذي يحدد رسوم التصميم؟ اقرأ دليل الأسعار" },
+  "villa-renovation/dubai": { slug: "villa-renovation-cost-dubai", en: "How a villa renovation budget is built", ar: "كيف تُبنى ميزانية تجديد الفيلا؟" },
+  "kitchen-design/dubai": { slug: "kitchen-cabinet-cost-dubai", en: "Reading a kitchen cabinet quote", ar: "كيف تقرأ عرض سعر خزائن المطبخ؟" },
+  "custom-wardrobes/dubai": { slug: "custom-wardrobe-cost-dubai", en: "What changes the price of a fitted wardrobe", ar: "ما الذي يغيّر سعر خزانة الملابس؟" },
+};
+
+// Pilot page body blocks (see src/data/pilot-pages.js): ["p", html] | ["h3", text] | ["ul", [html]] | ["ol", [html]].
+function PilotBlock({ block }) {
+  const [type, value] = block;
+  if (type === "h3") return <h3 className="slp-pilot__h3">{value}</h3>;
+  if (type === "p") return <p dangerouslySetInnerHTML={{ __html: value }} />;
+  const List = type === "ol" ? "ol" : "ul";
+  return (
+    <List className={`slp-pilot__list slp-pilot__list--${type}`}>
+      {value.map((item, i) => <li key={i} dangerouslySetInnerHTML={{ __html: item }} />)}
+    </List>
+  );
+}
+
 // Deterministic pick so the same location always shows the same photo (stable across
 // rebuilds/CDN caching) while different locations in the same service show different genuine photos.
 function pickByLocation(list, locationSlug) {
@@ -120,7 +142,7 @@ function pickByLocation(list, locationSlug) {
   return list[seed % list.length];
 }
 
-export default function ServiceLocationPage({ lang, row, seoContext }) {
+export default function ServiceLocationPage({ lang, row, seoContext, pilot = null }) {
   const { dict } = useI18n();
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -168,7 +190,9 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
 
   const coreAreas = otherAreas.filter((entry) => entry.location.tier === "core");
   const nearbyAreas = otherAreas.filter((entry) => entry.location.tier === "district" && entry.location.emirate === row.emirate);
-  const blogPosts = [dict.mediaPage.featuredArticle, ...dict.mediaPage.articles];
+  // Cost guides are linked contextually (COST_GUIDE_BY_PAGE, pilot copy), not from every page's grid.
+  const blogPosts = [dict.mediaPage.featuredArticle, ...dict.mediaPage.articles].filter((post) => !post.guide);
+  const costGuide = COST_GUIDE_BY_PAGE[`${row.serviceSlug}/${row.locationSlug}`];
 
   // Only this service's own published prices (or clearly labelled related ones) — see lib/pricing.js.
   const pricing = servicePricing(row.serviceSlug);
@@ -239,6 +263,8 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
     },
   ];
   const pageFaqs = extraFaqs;
+  // Pilot pages answer their own questions only; the template's category FAQs stay on the rest.
+  const faqItems = pilot ? pilot.faqs : [...content.faqs, ...pageFaqs];
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -282,7 +308,7 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
       // FAQPage mirrors the FAQ section that is visibly rendered below, on indexable pages
       // only (Dubai, Abu Dhabi, Ajman joinery). Noindex district/UAE pages carry none, so
       // the ~950 templated pages that are not in the index never repeat this markup.
-      ...(row.approved ? [faqPageJsonLd([...content.faqs, ...pageFaqs])] : []),
+      ...(row.approved ? [faqPageJsonLd(faqItems)] : []),
     ],
   };
 
@@ -323,10 +349,16 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
                 {locationName === emirateName ? locationName : `${locationName} · ${emirateName}`}
               </span>
               <h1 className="slp-hero__title">{pageH1}</h1>
-              <p className="slp-hero__lead">{content.summary}</p>
-              <p className="slp-hero__lead slp-hero__lead--sub">{locationClause}</p>
-              <ul className="slp-hero__points">
-                {content.included.slice(0, 4).map((item, i) => (
+              {pilot ? (
+                <p className="slp-hero__lead" data-main="pilot">{pilot.lead}</p>
+              ) : (
+                <>
+                  <p className="slp-hero__lead">{content.summary}</p>
+                  <p className="slp-hero__lead slp-hero__lead--sub">{locationClause}</p>
+                </>
+              )}
+              <ul className="slp-hero__points" {...(pilot ? { "data-main": "pilot" } : {})}>
+                {(pilot ? pilot.points : content.included.slice(0, 4)).map((item, i) => (
                   <li key={i}>
                     <Check size={16} />
                     <span>{item}</span>
@@ -377,7 +409,27 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
           </Reveal>
         </section>
 
-        {/* Scope — sticky intro beside the numbered list of what's included */}
+        {/* Pilot pages: their own sections (with a contents list) in place of the template scope */}
+        {pilot ? (
+          <section className="shell slp-pilot" data-main="pilot">
+            <nav className="slp-pilot__toc" aria-label={lang === "ar" ? "محتويات الصفحة" : "On this page"}>
+              <p className="micro">{lang === "ar" ? "في هذه الصفحة" : "On this page"}</p>
+              <ol>
+                {pilot.sections.map((section, i) => (
+                  <li key={i}><a href={`#pilot-${i + 1}`}>{section.h2}</a></li>
+                ))}
+              </ol>
+            </nav>
+            <div className="slp-pilot__body">
+              {pilot.sections.map((section, i) => (
+                <section className="slp-pilot__section" id={`pilot-${i + 1}`} key={i}>
+                  <h2 className="slp-pilot__h2">{section.h2}</h2>
+                  {section.body.map((block, j) => <PilotBlock block={block} key={j} />)}
+                </section>
+              ))}
+            </div>
+          </section>
+        ) : (
         <section className="shell slp-scope">
           <div className="slp-scope__aside">
             <Reveal>
@@ -403,6 +455,7 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
             </ol>
           </div>
         </section>
+        )}
 
         {/* Examples of our work — real photos and design visuals, labelled as not specific to this location */}
         {workExamples.length > 0 && (
@@ -432,7 +485,7 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
 
         {/* Cost context */}
         <Reveal as="div" delay={100}>
-          <h2 className="slp-section-label shell">{row.h2Themes[3]}</h2>
+          <h2 className="slp-section-label shell">{pilot ? (lang === "ar" ? "قدّر ميزانية مشروعك" : "Estimate your budget") : row.h2Themes[3]}</h2>
         </Reveal>
         <Estimator compact ctaHref={waHref} />
 
@@ -451,6 +504,11 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
                 <a href={`/${lang}/pricing`} className="slp-btn slp-btn--light">
                   {lang === "ar" ? "عرض جميع الأسعار" : "See full pricing"} <ArrowUpRight size={15} />
                 </a>
+                {costGuide && (
+                  <a href={`/${lang}/media/${costGuide.slug}`} className="slp-pricing-guide">
+                    {costGuide[lang]}
+                  </a>
+                )}
               </div>
               <ul className="slp-pricing-list">
                 {pricing.items.map((item) => (
@@ -482,7 +540,27 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
           </div>
         </section>
 
-        {/* Project proof */}
+        {/* Project proof: pilot pages show only their own verified projects */}
+        {pilot && pilot.projects.length > 0 ? (
+          <section className="shell slp-pilot-projects" data-main="pilot">
+            <h2 className="slp-pilot__h2">{pilot.projectsTitle}</h2>
+            <div className="slp-pilot-projects__grid">
+              {pilot.projects.map(({ slug, text }) => {
+                const item = dict.projectDetailPage.projects[slug];
+                return (
+                  <a className="slp-pilot-project" href={`/${lang}/our-projects/${slug}`} key={slug}>
+                    <span className="slp-pilot-project__image">
+                      <Image src={item.images[0]} alt={item.title} fill sizes="(max-width: 700px) 100vw, 33vw" style={{ objectFit: "cover" }} />
+                    </span>
+                    <span className="slp-pilot-project__meta">{item.metadata.location} · {item.metadata.size}</span>
+                    <strong>{item.title}</strong>
+                    <span className="slp-pilot-project__text">{text}</span>
+                  </a>
+                );
+              })}
+            </div>
+          </section>
+        ) : (
         <section className="shell slp-proof-section">
           <Reveal className="slp-proof-card">
             <div className="slp-proof-image">
@@ -502,15 +580,37 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
             </div>
           </Reveal>
         </section>
+        )}
 
         {/* FAQ */}
-        <FaqSplit
-          kicker={dict.faqSection.kicker}
-          title={lang === "ar" ? `الأسئلة الشائعة حول ${serviceName} في ${locationName}` : `${serviceName} in ${locationName}: FAQs`}
-          subtitle={dict.faqSection.subtitle}
-          items={[...content.faqs, ...pageFaqs]}
-          idPrefix={`slp-${row.serviceSlug}-${row.locationSlug}`}
-        />
+        <div {...(pilot ? { "data-main": "pilot" } : {})}>
+          <FaqSplit
+            kicker={dict.faqSection.kicker}
+            title={lang === "ar" ? `الأسئلة الشائعة حول ${serviceName} في ${locationName}` : `${serviceName} in ${locationName}: FAQs`}
+            subtitle={dict.faqSection.subtitle}
+            items={faqItems}
+            idPrefix={`slp-${row.serviceSlug}-${row.locationSlug}`}
+          />
+        </div>
+
+        {/* Official sources behind the pilot page's public facts, with the date they were checked */}
+        {pilot && pilot.sources.length > 0 && (
+          <section className="shell slp-sources" data-main="pilot">
+            <p className="micro">{lang === "ar" ? `المصادر الرسمية، تمت مراجعتها في ${pilot.sourcesReviewed}` : `Official sources, checked ${pilot.sourcesReviewed}`}</p>
+            <ul>
+              {pilot.sources.map((source) => (
+                <li key={source.id}>
+                  <a href={source.url} target="_blank" rel="noopener noreferrer">{source.name}</a>
+                </li>
+              ))}
+            </ul>
+            <p className="slp-sources__note">
+              {lang === "ar"
+                ? "تلخّص هذه الصفحة المعلومات المنشورة على المواقع الرسمية للجهات بتاريخ المراجعة، وقد تتغير الاشتراطات والرسوم، والمرجع دائماً هو الجهة المختصة."
+                : "This page summarises what each authority publishes on its own website as of the date above. Requirements and fees can change; the authority's current rules always apply."}
+            </p>
+          </section>
+        )}
 
         {/* CTA */}
         <section className="shell slp-cta-section">
@@ -547,6 +647,14 @@ export default function ServiceLocationPage({ lang, row, seoContext }) {
                     {lang === "ar" ? `${entry.service.ar} في ${locationName}` : `${entry.service.en} in ${locationName}`}
                   </a>
                 ))}
+              </div>
+            </Reveal>
+          )}
+          {pilot?.links?.length > 0 && (
+            <Reveal className="slp-links-block" delay={150}>
+              <p className="hx">{lang === "ar" ? "صفحات ذات صلة" : "Related pages"}</p>
+              <div className="slp-links-pills">
+                {pilot.links.map((link) => <a key={link.href} href={link.href}>{link.label}</a>)}
               </div>
             </Reveal>
           )}

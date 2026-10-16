@@ -4,6 +4,7 @@ import { ARTICLE_DATES } from "../data/article-catalog";
 import { REAL_PROJECT_SLUGS } from "../data/project-catalog";
 import { dictionaries } from "../i18n/dictionaries";
 import { hasRealReviews } from "../data/reviews";
+import { PILOT_PAGES } from "../data/pilot-pages";
 
 export const dynamic = "force-static";
 
@@ -17,6 +18,9 @@ const COVERAGE_PATHS = new Set(["our-services", "contact", "pricing"]);
 // the first real client reviews.
 const OCT_15_UPDATE = new Date("2026-10-15");
 const OCT_15_PATHS = new Set(["about", "our-projects", "reviews"]);
+// 16 Oct 2026: the six pilot service pages (EN + AR) were rewritten with page-specific content.
+const PILOT_UPDATED = new Date("2026-10-16");
+const serviceLastModified = (key) => (PILOT_PAGES[key] ? PILOT_UPDATED : COVERAGE_UPDATED);
 const lastModifiedFor = (path) => (OCT_15_PATHS.has(path) ? OCT_15_UPDATE : COVERAGE_PATHS.has(path) ? COVERAGE_UPDATED : CONTENT_UPDATED);
 
 const STATIC_PATHS = [
@@ -101,14 +105,14 @@ export default function sitemap() {
     if (!isPageIndexable(enPage) || !isPageIndexable(arPage)) continue;
     entries.push({
       url: enPage.canonical,
-      lastModified: COVERAGE_UPDATED,
+      lastModified: serviceLastModified(key),
       changeFrequency: "monthly",
       priority: 0.6,
       alternates: { languages: { en: enPage.canonical, ar: arPage.canonical } },
     });
     entries.push({
       url: arPage.canonical,
-      lastModified: COVERAGE_UPDATED,
+      lastModified: serviceLastModified(key),
       changeFrequency: "monthly",
       priority: 0.6,
       alternates: { languages: { en: enPage.canonical, ar: arPage.canonical } },

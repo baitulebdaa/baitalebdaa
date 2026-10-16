@@ -73,6 +73,37 @@ export function servicePricing(slug) {
   return { direct: entry.direct, items: entry.items.map((id) => ALL_ITEMS.get(id)).filter(Boolean) };
 }
 
+export function priceItem(id) {
+  const item = ALL_ITEMS.get(id);
+  if (!item) throw new Error(`Unknown price item: ${id}`);
+  return item;
+}
+
+// A published price as it reads inside a sentence ("AED 300–450 per sq ft",
+// "2,500 درهم"), without the "From" label; the prose supplies "from" / "يبدأ من".
+// Used by the pilot service pages and cost guides so their copy can never drift from
+// data/pricing.js.
+const PROSE_UNIT = {
+  en: { linearMetre: " per linear metre", sqft: " per sq ft" },
+  ar: { linearMetre: " للمتر الطولي", sqft: " للقدم المربع" },
+};
+export function priceText(id, lang = "en") {
+  const item = priceItem(id);
+  if (!isPriced(item)) throw new Error(`${id} has no published amount`);
+  const unit = item.unit ? PROSE_UNIT[lang][item.unit] : "";
+  const plus = item.plus ? "+" : "";
+  const amount = item.priceType === "range"
+    ? `${numberFormatter.format(item.min)}–${numberFormatter.format(item.max)}${plus}`
+    : numberFormatter.format(item.min);
+  return lang === "ar" ? `${amount} درهم${unit}` : `${CURRENCY} ${amount}${unit}`;
+}
+
+// An amount computed from published prices (worked examples in the cost guides).
+export function amountText(value, lang = "en") {
+  const amount = numberFormatter.format(Math.round(value));
+  return lang === "ar" ? `${amount} درهم` : `${CURRENCY} ${amount}`;
+}
+
 // The service's own starting price (first priced item), only when the prices are direct.
 export function serviceStartingItem(slug) {
   const pricing = servicePricing(slug);
