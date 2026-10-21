@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "373533677142",
+    "project_id": "baitalebdaa-76046",
+    "storage_bucket": "baitalebdaa-76046.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:373533677142:android:119d118450c75093da4df7",
+        "android_client_info": {
+          "package_name": "com.baitalebdaa.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "373533677142-p99djanjenp0c8fl56shcvud9ca8f7nl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmHcLlFYPV7_dHIRul9-QSc6TF8W2D-uU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "373533677142-p99djanjenp0c8fl56shcvud9ca8f7nl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

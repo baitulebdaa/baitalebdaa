@@ -1,0 +1,4 @@
+{
+  "APP_ENV": "stg",
+  "USE_FAKE_BACKEND": "false"
+}

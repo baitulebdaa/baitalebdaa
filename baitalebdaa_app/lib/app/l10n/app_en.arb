@@ -1,0 +1,1263 @@
+{
+  "@@locale": "en",
+  "appTitle": "Bait Al Ebdaa",
+  "@appTitle": {
+    "description": "App name in the task switcher and window title."
+  },
+  "tabHome": "Home",
+  "@tabHome": {
+    "description": "Bottom tab label for the Home screen."
+  },
+  "tabServices": "Services",
+  "@tabServices": {
+    "description": "Bottom tab label for the services catalogue."
+  },
+  "homeProjectsEyebrow": "Selected projects",
+  "@homeProjectsEyebrow": {
+    "description": "Section label above the project list on Home."
+  },
+  "homeSeeAllProjects": "See all projects",
+  "@homeSeeAllProjects": {
+    "description": "Link from Home to the full project portfolio."
+  },
+  "servicesTitle": "Services",
+  "@servicesTitle": {
+    "description": "Title of the services catalogue screen."
+  },
+  "servicesQuotedAfterSurvey": "Quoted after a free site survey",
+  "@servicesQuotedAfterSurvey": {
+    "description": "Shown instead of a price for services with no published starting price."
+  },
+  "servicesVatNote": "Prices exclude {rate} VAT.",
+  "@servicesVatNote": {
+    "description": "Note under published prices. rate is the formatted VAT rate, e.g. 5%.",
+    "placeholders": {
+      "rate": {
+        "type": "String",
+        "example": "5%"
+      }
+    }
+  },
+  "projectsTitle": "Projects",
+  "@projectsTitle": {
+    "description": "Title of the project portfolio screen."
+  },
+  "projectMeta": "{sector} · {year}",
+  "@projectMeta": {
+    "description": "Small label above a project name: its sector and completion year.",
+    "placeholders": {
+      "sector": {
+        "type": "String",
+        "example": "Residential"
+      },
+      "year": {
+        "type": "String",
+        "example": "2026"
+      }
+    }
+  },
+  "assistantYou": "You",
+  "@assistantYou": {
+    "description": "Screen-reader label for the user's own messages in the assistant chat."
+  },
+  "contactWhatsAppFailed": "Couldn't open WhatsApp. You can call us on {phone}.",
+  "@contactWhatsAppFailed": {
+    "description": "Shown when no app can open the WhatsApp link.",
+    "placeholders": {
+      "phone": {
+        "type": "String",
+        "example": "+971 58 262 1717"
+      }
+    }
+  },
+  "accountEmptyTitle": "No requests yet",
+  "@accountEmptyTitle": {
+    "description": "Profile tab when the customer has never sent a consultation request."
+  },
+  "accountEmptyBody": "When you request a consultation, you can follow it here.",
+  "@accountEmptyBody": {
+    "description": "Explains what will appear in the Profile tab."
+  },
+  "settingsTitle": "Settings",
+  "@settingsTitle": {
+    "description": "Title of the Settings screen."
+  },
+  "settingsLanguage": "Language",
+  "@settingsLanguage": {
+    "description": "Settings section for the app language."
+  },
+  "settingsLanguageSystem": "Device language",
+  "@settingsLanguageSystem": {
+    "description": "Language option that follows the phone's language."
+  },
+  "languageEnglish": "English",
+  "@languageEnglish": {
+    "description": "Name of the English language, always written in English."
+  },
+  "languageArabic": "العربية",
+  "@languageArabic": {
+    "description": "Name of the Arabic language, always written in Arabic."
+  },
+  "settingsAppearance": "Appearance",
+  "@settingsAppearance": {
+    "description": "Settings section for light or dark mode."
+  },
+  "appearanceSystem": "Match device",
+  "@appearanceSystem": {
+    "description": "Appearance option that follows the phone's light or dark setting."
+  },
+  "appearanceLight": "Light",
+  "@appearanceLight": {
+    "description": "Light appearance option."
+  },
+  "appearanceDark": "Dark",
+  "@appearanceDark": {
+    "description": "Dark appearance option."
+  },
+  "errorTitle": "Something went wrong",
+  "@errorTitle": {
+    "description": "Heading of a full-screen error."
+  },
+  "actionRetry": "Try again",
+  "@actionRetry": {
+    "description": "Button that retries a failed action."
+  },
+  "actionGoHome": "Go to Home",
+  "@actionGoHome": {
+    "description": "Button that returns to the Home tab."
+  },
+  "notFoundTitle": "This page isn't available",
+  "@notFoundTitle": {
+    "description": "Heading when a link points to a screen that does not exist."
+  },
+  "notFoundBody": "The link may be out of date.",
+  "@notFoundBody": {
+    "description": "Explanation under notFoundTitle."
+  },
+  "failureOffline": "You're offline. Check your connection and try again.",
+  "@failureOffline": {
+    "description": "Error when there is no internet connection."
+  },
+  "failureTimeout": "This is taking longer than usual. Please try again.",
+  "@failureTimeout": {
+    "description": "Error when a request times out."
+  },
+  "failureUnauthorised": "Please sign in again.",
+  "@failureUnauthorised": {
+    "description": "Error when the session has expired."
+  },
+  "failureNotFound": "We couldn't find that.",
+  "@failureNotFound": {
+    "description": "Error when requested content does not exist."
+  },
+  "failureRateLimited": "Too many attempts. Please wait a moment and try again.",
+  "@failureRateLimited": {
+    "description": "Error when the server limits repeated requests."
+  },
+  "failureValidation": "Some details need checking.",
+  "@failureValidation": {
+    "description": "Error when the server rejects form input."
+  },
+  "failureServer": "Something went wrong on our side. Please try again shortly.",
+  "@failureServer": {
+    "description": "Error for server faults."
+  },
+  "failureUnavailable": "This isn't available right now. You can reach us on WhatsApp or by phone.",
+  "@failureUnavailable": {
+    "description": "Error when the backend is not configured or switched off."
+  },
+  "failureDataFormat": "The app needs an update to show this.",
+  "@failureDataFormat": {
+    "description": "Error when bundled or downloaded content cannot be read."
+  },
+  "failureUnknown": "Something went wrong. Please try again.",
+  "@failureUnknown": {
+    "description": "Fallback error message."
+  },
+  "signInTitle": "Sign in",
+  "@signInTitle": {
+    "description": "Heading of the sign-in screen."
+  },
+  "signInIntro": "Sign in to request consultations and follow them in one place.",
+  "@signInIntro": {
+    "description": "Line under the sign-in heading."
+  },
+  "registerTitle": "Create your account",
+  "@registerTitle": {
+    "description": "Heading when creating an account."
+  },
+  "registerIntro": "Create an account to request consultations and follow their progress.",
+  "@registerIntro": {
+    "description": "Line under the create-account heading."
+  },
+  "resetTitle": "Reset your password",
+  "@resetTitle": {
+    "description": "Heading when resetting a password."
+  },
+  "resetIntro": "Enter your email and we'll send you a link to set a new password.",
+  "@resetIntro": {
+    "description": "Line under the reset-password heading."
+  },
+  "fieldName": "Full name",
+  "@fieldName": {
+    "description": "Name field label."
+  },
+  "fieldEmail": "Email",
+  "@fieldEmail": {
+    "description": "Email field label."
+  },
+  "fieldPassword": "Password",
+  "@fieldPassword": {
+    "description": "Password field label."
+  },
+  "passwordHint": "At least {min} characters",
+  "@passwordHint": {
+    "description": "Helper under the new-password field.",
+    "placeholders": {
+      "min": {
+        "type": "int",
+        "example": "8"
+      }
+    }
+  },
+  "passwordShow": "Show password",
+  "@passwordShow": {
+    "description": "Tooltip of the button that reveals the password."
+  },
+  "passwordHide": "Hide password",
+  "@passwordHide": {
+    "description": "Tooltip of the button that hides the password."
+  },
+  "actionSignIn": "Sign in",
+  "@actionSignIn": {
+    "description": "Primary button on the sign-in form."
+  },
+  "actionCreateAccount": "Create account",
+  "@actionCreateAccount": {
+    "description": "Primary button on the create-account form."
+  },
+  "actionSendResetLink": "Send reset link",
+  "@actionSendResetLink": {
+    "description": "Primary button on the reset-password form."
+  },
+  "linkForgotPassword": "Forgot password?",
+  "@linkForgotPassword": {
+    "description": "Link to the reset-password form."
+  },
+  "linkToRegister": "New here? Create an account",
+  "@linkToRegister": {
+    "description": "Link from sign-in to create an account."
+  },
+  "linkToSignIn": "Already have an account? Sign in",
+  "@linkToSignIn": {
+    "description": "Link from create-account to sign-in."
+  },
+  "linkBackToSignIn": "Back to sign in",
+  "@linkBackToSignIn": {
+    "description": "Link from reset-password back to sign-in."
+  },
+  "resetSent": "If an account exists for {email}, we've sent a link to reset the password.",
+  "@resetSent": {
+    "description": "Confirmation after requesting a reset link. Worded so it never reveals whether the email has an account.",
+    "placeholders": {
+      "email": {
+        "type": "String",
+        "example": "name@example.com"
+      }
+    }
+  },
+  "validationRequired": "Required",
+  "@validationRequired": {
+    "description": "Error under an empty required field."
+  },
+  "validationEmail": "Enter a valid email address",
+  "@validationEmail": {
+    "description": "Error under a malformed email."
+  },
+  "validationPasswordShort": "Use at least {min} characters",
+  "@validationPasswordShort": {
+    "description": "Error under a too-short new password.",
+    "placeholders": {
+      "min": {
+        "type": "int",
+        "example": "8"
+      }
+    }
+  },
+  "validationNameLong": "Use {max} characters or fewer",
+  "@validationNameLong": {
+    "description": "Error under a too-long name.",
+    "placeholders": {
+      "max": {
+        "type": "int",
+        "example": "80"
+      }
+    }
+  },
+  "authErrorInvalidCredentials": "The email or password isn't right.",
+  "@authErrorInvalidCredentials": {
+    "description": "Sign-in refused. Never says which of the two is wrong."
+  },
+  "authErrorEmailInUse": "An account with this email already exists. Sign in instead.",
+  "@authErrorEmailInUse": {
+    "description": "Create-account refused because the email is taken."
+  },
+  "authErrorWeakPassword": "Choose a stronger password.",
+  "@authErrorWeakPassword": {
+    "description": "Create-account refused: password too weak."
+  },
+  "authErrorInvalidEmail": "Enter a valid email address.",
+  "@authErrorInvalidEmail": {
+    "description": "Server rejected the email format."
+  },
+  "authErrorTooManyAttempts": "Too many attempts. Please wait a few minutes and try again.",
+  "@authErrorTooManyAttempts": {
+    "description": "Sign-in temporarily blocked."
+  },
+  "authErrorUserDisabled": "This account has been disabled. Please contact us.",
+  "@authErrorUserDisabled": {
+    "description": "Account disabled by the business."
+  },
+  "authErrorMethodDisabled": "Email sign-in isn't available right now.",
+  "@authErrorMethodDisabled": {
+    "description": "Email sign-in is switched off in Firebase."
+  },
+  "accountSignInCta": "Sign in or create an account",
+  "@accountSignInCta": {
+    "description": "Profile tab button for guests."
+  },
+  "accountSignOut": "Sign out",
+  "@accountSignOut": {
+    "description": "Profile tab button for signed-in users."
+  },
+  "accountVerifyEmail": "Check your inbox to verify your email address.",
+  "@accountVerifyEmail": {
+    "description": "Shown until the user's email is verified."
+  },
+  "requestPlanCta": "Plan your project",
+  "@requestPlanCta": {
+    "description": "Main call to action that starts a consultation request."
+  },
+  "requestContinueDraft": "Continue your request · step {step} of {total}",
+  "@requestContinueDraft": {
+    "description": "Home card shown while an unfinished request exists.",
+    "placeholders": {
+      "step": {
+        "type": "int",
+        "example": "3"
+      },
+      "total": {
+        "type": "int",
+        "example": "9"
+      }
+    }
+  },
+  "requestStepCount": "Step {step} of {total}",
+  "@requestStepCount": {
+    "description": "Step counter at the top of the request flow.",
+    "placeholders": {
+      "step": {
+        "type": "int",
+        "example": "3"
+      },
+      "total": {
+        "type": "int",
+        "example": "9"
+      }
+    }
+  },
+  "requestContinue": "Continue",
+  "@requestContinue": {
+    "description": "Button that moves to the next step."
+  },
+  "requestBack": "Back",
+  "@requestBack": {
+    "description": "Button that moves to the previous step."
+  },
+  "requestSkip": "Skip",
+  "@requestSkip": {
+    "description": "Button that skips an optional step."
+  },
+  "requestOptional": "Optional",
+  "@requestOptional": {
+    "description": "Marks an optional step or field."
+  },
+  "requestLeaveTitle": "Leave your request?",
+  "@requestLeaveTitle": {
+    "description": "Dialog title when closing the request flow."
+  },
+  "requestLeaveBody": "Your answers are saved on this phone. You can continue later.",
+  "@requestLeaveBody": {
+    "description": "Dialog body when closing the request flow."
+  },
+  "requestKeepEditing": "Keep editing",
+  "@requestKeepEditing": {
+    "description": "Dialog action that stays in the flow."
+  },
+  "requestSaveAndExit": "Save and exit",
+  "@requestSaveAndExit": {
+    "description": "Dialog action that leaves and keeps the draft."
+  },
+  "requestDiscard": "Discard request",
+  "@requestDiscard": {
+    "description": "Dialog action that deletes the draft."
+  },
+  "requestReplaceTitle": "Start a new request?",
+  "@requestReplaceTitle": {
+    "description": "Dialog title when an unfinished request exists."
+  },
+  "requestReplaceBody": "You have an unfinished request. Starting a new one will replace it.",
+  "@requestReplaceBody": {
+    "description": "Dialog body when an unfinished request exists."
+  },
+  "requestResume": "Continue it",
+  "@requestResume": {
+    "description": "Dialog action that resumes the unfinished request."
+  },
+  "requestStartNew": "Start new",
+  "@requestStartNew": {
+    "description": "Dialog action that replaces the unfinished request."
+  },
+  "stepServicesTitle": "What can we help with?",
+  "@stepServicesTitle": {
+    "description": "Question on the services step."
+  },
+  "stepServicesHelp": "Choose up to {max}.",
+  "@stepServicesHelp": {
+    "description": "Help line on the services step.",
+    "placeholders": {
+      "max": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "stepServicesNotSure": "Not sure yet",
+  "@stepServicesNotSure": {
+    "description": "Services option for undecided customers."
+  },
+  "stepPropertyTitle": "What kind of space is it?",
+  "@stepPropertyTitle": {
+    "description": "Question on the property step."
+  },
+  "stepLocationTitle": "Where is the project?",
+  "@stepLocationTitle": {
+    "description": "Question on the location step."
+  },
+  "stepLocationHelp": "We work in all seven emirates, at the same price.",
+  "@stepLocationHelp": {
+    "description": "Help line on the location step; owner-confirmed coverage."
+  },
+  "stepLocationArea": "Area or community",
+  "@stepLocationArea": {
+    "description": "Area field label."
+  },
+  "stepLocationAreaHint": "e.g. Dubai Hills Estate",
+  "@stepLocationAreaHint": {
+    "description": "Area field hint."
+  },
+  "stepSizeTitle": "Roughly how big is the space?",
+  "@stepSizeTitle": {
+    "description": "Question on the size step."
+  },
+  "stepSizeHelp": "An estimate is fine.",
+  "@stepSizeHelp": {
+    "description": "Help line on the size step."
+  },
+  "stepSizeLabel": "Size",
+  "@stepSizeLabel": {
+    "description": "Size field label."
+  },
+  "stepSizeNotSure": "Not sure",
+  "@stepSizeNotSure": {
+    "description": "Size option when the size is unknown."
+  },
+  "unitSqft": "sq ft",
+  "@unitSqft": {
+    "description": "Square feet unit."
+  },
+  "unitSqm": "sq m",
+  "@unitSqm": {
+    "description": "Square metres unit."
+  },
+  "stepBudgetTitle": "Do you have a budget in mind?",
+  "@stepBudgetTitle": {
+    "description": "Question on the budget step."
+  },
+  "stepBudgetHelp": "It helps us suggest the right finishes.",
+  "@stepBudgetHelp": {
+    "description": "Help line on the budget step."
+  },
+  "stepBudgetLabel": "Budget (AED)",
+  "@stepBudgetLabel": {
+    "description": "Budget field label."
+  },
+  "stepBudgetDiscuss": "I'd rather discuss it",
+  "@stepBudgetDiscuss": {
+    "description": "Budget option to skip giving an amount."
+  },
+  "stepBudgetPublished": "Published starting price",
+  "@stepBudgetPublished": {
+    "description": "Label above the website's starting price on the budget step."
+  },
+  "stepStageTitle": "Where are you in the project?",
+  "@stepStageTitle": {
+    "description": "Question on the stage step."
+  },
+  "stepConsultationTitle": "How would you like to talk?",
+  "@stepConsultationTitle": {
+    "description": "Question on the consultation step."
+  },
+  "stepTimeTitle": "When suits you?",
+  "@stepTimeTitle": {
+    "description": "Question on the time step."
+  },
+  "stepTimeNotice": "This is a preference. Our team will confirm a time with you.",
+  "@stepTimeNotice": {
+    "description": "Always-visible note: a preferred time is not a booking."
+  },
+  "stepTimeDay": "Day",
+  "@stepTimeDay": {
+    "description": "Label above the day choices."
+  },
+  "stepTimeOfDay": "Time of day",
+  "@stepTimeOfDay": {
+    "description": "Label above the time-of-day choices."
+  },
+  "stepTimeFlexible": "I'm flexible",
+  "@stepTimeFlexible": {
+    "description": "Option for no time preference."
+  },
+  "stepContactTitle": "How can we reach you?",
+  "@stepContactTitle": {
+    "description": "Question on the contact step."
+  },
+  "stepContactPhone": "Mobile number",
+  "@stepContactPhone": {
+    "description": "Phone field label."
+  },
+  "stepContactPhoneHelp": "UAE numbers can start with 05",
+  "@stepContactPhoneHelp": {
+    "description": "Helper under the phone field."
+  },
+  "stepContactEmail": "Email (optional)",
+  "@stepContactEmail": {
+    "description": "Email field label on the contact step."
+  },
+  "stepContactNote": "Anything else we should know? (optional)",
+  "@stepContactNote": {
+    "description": "Note field label."
+  },
+  "propertyVilla": "Villa",
+  "@propertyVilla": {
+    "description": "Property type."
+  },
+  "propertyTownhouse": "Townhouse",
+  "@propertyTownhouse": {
+    "description": "Property type."
+  },
+  "propertyApartment": "Apartment",
+  "@propertyApartment": {
+    "description": "Property type."
+  },
+  "propertyPenthouse": "Penthouse",
+  "@propertyPenthouse": {
+    "description": "Property type."
+  },
+  "propertyOffice": "Office",
+  "@propertyOffice": {
+    "description": "Property type."
+  },
+  "propertyRestaurant": "Restaurant or café",
+  "@propertyRestaurant": {
+    "description": "Property type."
+  },
+  "propertyRetail": "Shop",
+  "@propertyRetail": {
+    "description": "Property type."
+  },
+  "propertyOther": "Other",
+  "@propertyOther": {
+    "description": "Property type."
+  },
+  "stageExploring": "Exploring ideas",
+  "@stageExploring": {
+    "description": "Project stage."
+  },
+  "stageNeedDesign": "I need a design",
+  "@stageNeedDesign": {
+    "description": "Project stage."
+  },
+  "stageHaveDrawings": "I already have drawings",
+  "@stageHaveDrawings": {
+    "description": "Project stage."
+  },
+  "stageReadyForFitOut": "Ready for fit-out",
+  "@stageReadyForFitOut": {
+    "description": "Project stage."
+  },
+  "stageRenovating": "Renovating an existing space",
+  "@stageRenovating": {
+    "description": "Project stage."
+  },
+  "stageJoineryOnly": "Joinery only",
+  "@stageJoineryOnly": {
+    "description": "Project stage."
+  },
+  "consultPhone": "Phone call",
+  "@consultPhone": {
+    "description": "Consultation type."
+  },
+  "consultPhoneHelp": "We call you to talk it through",
+  "@consultPhoneHelp": {
+    "description": "Consultation type description."
+  },
+  "consultWhatsapp": "WhatsApp",
+  "@consultWhatsapp": {
+    "description": "Consultation type."
+  },
+  "consultWhatsappHelp": "Chat with our team on WhatsApp",
+  "@consultWhatsappHelp": {
+    "description": "Consultation type description."
+  },
+  "consultSiteSurvey": "Free site survey",
+  "@consultSiteSurvey": {
+    "description": "Consultation type."
+  },
+  "consultSiteSurveyHelp": "We visit, measure and advise",
+  "@consultSiteSurveyHelp": {
+    "description": "Consultation type description."
+  },
+  "consultFactoryVisit": "Factory visit",
+  "@consultFactoryVisit": {
+    "description": "Consultation type."
+  },
+  "consultFactoryVisitHelp": "See our joinery factory in Ajman",
+  "@consultFactoryVisitHelp": {
+    "description": "Consultation type description."
+  },
+  "windowMorning": "Morning",
+  "@windowMorning": {
+    "description": "Time of day."
+  },
+  "windowAfternoon": "Afternoon",
+  "@windowAfternoon": {
+    "description": "Time of day."
+  },
+  "windowEvening": "Evening",
+  "@windowEvening": {
+    "description": "Time of day."
+  },
+  "issueChooseService": "Choose at least one service.",
+  "@issueChooseService": {
+    "description": "Validation on the services step."
+  },
+  "issueChooseEmirate": "Choose the emirate.",
+  "@issueChooseEmirate": {
+    "description": "Validation on the location step."
+  },
+  "issueTooLong": "Use {max} characters or fewer.",
+  "@issueTooLong": {
+    "description": "Validation for long text.",
+    "placeholders": {
+      "max": {
+        "type": "int",
+        "example": "80"
+      }
+    }
+  },
+  "issueSizeInvalid": "Enter a size greater than zero.",
+  "@issueSizeInvalid": {
+    "description": "Validation on the size step."
+  },
+  "issueBudgetInvalid": "Enter an amount greater than zero.",
+  "@issueBudgetInvalid": {
+    "description": "Validation on the budget step."
+  },
+  "issueChooseConsultation": "Choose how you'd like to talk.",
+  "@issueChooseConsultation": {
+    "description": "Validation on the consultation step."
+  },
+  "issuePhoneInvalid": "Enter a mobile number, e.g. 050 123 4567 or +44 7700 900123.",
+  "@issuePhoneInvalid": {
+    "description": "Validation for the phone field."
+  },
+  "reviewTitle": "Review your request",
+  "@reviewTitle": {
+    "description": "Heading of the review screen."
+  },
+  "reviewEdit": "Edit",
+  "@reviewEdit": {
+    "description": "Button that edits one section of the request."
+  },
+  "reviewSend": "Send request",
+  "@reviewSend": {
+    "description": "Button that sends the request."
+  },
+  "reviewServices": "Services",
+  "@reviewServices": {
+    "description": "Review section."
+  },
+  "reviewProperty": "Space",
+  "@reviewProperty": {
+    "description": "Review section."
+  },
+  "reviewLocation": "Location",
+  "@reviewLocation": {
+    "description": "Review section."
+  },
+  "reviewSize": "Size",
+  "@reviewSize": {
+    "description": "Review section."
+  },
+  "reviewBudget": "Budget",
+  "@reviewBudget": {
+    "description": "Review section."
+  },
+  "reviewStage": "Stage",
+  "@reviewStage": {
+    "description": "Review section."
+  },
+  "reviewConsultation": "Consultation",
+  "@reviewConsultation": {
+    "description": "Review section."
+  },
+  "reviewTime": "Preferred time",
+  "@reviewTime": {
+    "description": "Review section."
+  },
+  "reviewContact": "Contact",
+  "@reviewContact": {
+    "description": "Review section."
+  },
+  "reviewNotGiven": "Not given",
+  "@reviewNotGiven": {
+    "description": "Shown for skipped answers."
+  },
+  "reviewPreferenceNote": "A preference, not yet confirmed",
+  "@reviewPreferenceNote": {
+    "description": "Under the preferred time on review."
+  },
+  "reviewPrivacy": "By sending, you agree to our privacy policy.",
+  "@reviewPrivacy": {
+    "description": "Consent line above the send button."
+  },
+  "reviewPrivacyLink": "Read the privacy policy",
+  "@reviewPrivacyLink": {
+    "description": "Link to the website privacy policy."
+  },
+  "requestNeedsAccount": "Please sign in or create an account to send your request.",
+  "@requestNeedsAccount": {
+    "description": "Shown when guest sending is not available."
+  },
+  "requestSendFailed": "Your request is saved on this phone. Please try again, or contact us on WhatsApp.",
+  "@requestSendFailed": {
+    "description": "Shown under the error when sending fails."
+  },
+  "receivedTitle": "Project request received",
+  "@receivedTitle": {
+    "description": "Heading after sending. Never 'booking confirmed'."
+  },
+  "receivedReference": "Reference {reference}",
+  "@receivedReference": {
+    "description": "Reference code line.",
+    "placeholders": {
+      "reference": {
+        "type": "String",
+        "example": "BAE-7K3Q9"
+      }
+    }
+  },
+  "receivedNextTitle": "What happens next",
+  "@receivedNextTitle": {
+    "description": "Heading of the next-steps list."
+  },
+  "receivedNext1": "Our team reviews your request.",
+  "@receivedNext1": {
+    "description": "Next step 1."
+  },
+  "receivedNext2": "We contact you to agree a time.",
+  "@receivedNext2": {
+    "description": "Next step 2."
+  },
+  "receivedNext3": "We talk by phone, on WhatsApp or at your site, as agreed.",
+  "@receivedNext3": {
+    "description": "Next step 3."
+  },
+  "receivedPhotos": "Share photos or plans on WhatsApp",
+  "@receivedPhotos": {
+    "description": "Button to share photos after sending."
+  },
+  "receivedPhotosMessage": "Hello! I sent request {reference} in the Bait Al Ebdaa app. Here are photos of my space.",
+  "@receivedPhotosMessage": {
+    "description": "WhatsApp text the customer can edit before sending; contains only the reference.",
+    "placeholders": {
+      "reference": {
+        "type": "String",
+        "example": "BAE-7K3Q9"
+      }
+    }
+  },
+  "receivedDone": "Done",
+  "@receivedDone": {
+    "description": "Button that closes the confirmation."
+  },
+  "myRequestsTitle": "My requests",
+  "@myRequestsTitle": {
+    "description": "Account section with the customer's requests."
+  },
+  "myRequestsNew": "New request",
+  "@myRequestsNew": {
+    "description": "Button to start another request."
+  },
+  "requestDetailTitle": "Request {reference}",
+  "@requestDetailTitle": {
+    "description": "Request detail screen title.",
+    "placeholders": {
+      "reference": {
+        "type": "String",
+        "example": "BAE-7K3Q9"
+      }
+    }
+  },
+  "requestSentOn": "Sent {date}",
+  "@requestSentOn": {
+    "description": "Date a request was sent.",
+    "placeholders": {
+      "date": {
+        "type": "String",
+        "example": "18 Oct 2026"
+      }
+    }
+  },
+  "statusSubmitted": "Request received",
+  "@statusSubmitted": {
+    "description": "Request status."
+  },
+  "statusInReview": "Being reviewed",
+  "@statusInReview": {
+    "description": "Request status."
+  },
+  "statusActionRequired": "We need a detail from you",
+  "@statusActionRequired": {
+    "description": "Request status."
+  },
+  "statusContacted": "We've been in touch",
+  "@statusContacted": {
+    "description": "Request status."
+  },
+  "statusScheduled": "Appointment confirmed",
+  "@statusScheduled": {
+    "description": "Request status. The only confirmed state."
+  },
+  "statusRescheduleRequested": "Waiting for a new time",
+  "@statusRescheduleRequested": {
+    "description": "Request status."
+  },
+  "statusCompleted": "Consultation completed",
+  "@statusCompleted": {
+    "description": "Request status."
+  },
+  "statusCancelled": "Cancelled",
+  "@statusCancelled": {
+    "description": "Request status."
+  },
+  "servicesRequestCta": "Request a free site survey",
+  "@servicesRequestCta": {
+    "description": "Button on a service that starts a request for it."
+  },
+  "tabProjects": "Projects",
+  "@tabProjects": {
+    "description": "Bottom tab label for the project portfolio."
+  },
+  "tabBook": "Book",
+  "@tabBook": {
+    "description": "Bottom tab label for planning and booking a consultation; the strongest action."
+  },
+  "tabProfile": "Profile",
+  "@tabProfile": {
+    "description": "Bottom tab label for the customer's profile and requests."
+  },
+  "homeGreetingMorning": "Good morning",
+  "@homeGreetingMorning": {
+    "description": "Greeting before noon."
+  },
+  "homeGreetingAfternoon": "Good afternoon",
+  "@homeGreetingAfternoon": {
+    "description": "Greeting from noon to 5 PM."
+  },
+  "homeGreetingEvening": "Good evening",
+  "@homeGreetingEvening": {
+    "description": "Greeting after 5 PM."
+  },
+  "homeGreetingName": "{greeting}, {name}",
+  "@homeGreetingName": {
+    "description": "Greeting with the customer's first name.",
+    "placeholders": {
+      "greeting": {
+        "type": "String",
+        "example": "Good evening"
+      },
+      "name": {
+        "type": "String",
+        "example": "Sara"
+      }
+    }
+  },
+  "homeWelcome": "Welcome",
+  "@homeWelcome": {
+    "description": "Greeting for guests."
+  },
+  "homeProfileTooltip": "Profile",
+  "@homeProfileTooltip": {
+    "description": "Tooltip of the profile button on Home."
+  },
+  "homeServicesEyebrow": "Our services",
+  "@homeServicesEyebrow": {
+    "description": "Section label for services on Home."
+  },
+  "homeSeeAllServices": "See all services",
+  "@homeSeeAllServices": {
+    "description": "Link from Home to the services tab."
+  },
+  "homePlanningTitle": "What are you planning?",
+  "@homePlanningTitle": {
+    "description": "Heading of the quick-start choices on Home."
+  },
+  "planningVilla": "Villa",
+  "@planningVilla": {
+    "description": "Quick-start choice."
+  },
+  "planningApartment": "Apartment",
+  "@planningApartment": {
+    "description": "Quick-start choice."
+  },
+  "planningOffice": "Office",
+  "@planningOffice": {
+    "description": "Quick-start choice."
+  },
+  "planningRestaurant": "Restaurant",
+  "@planningRestaurant": {
+    "description": "Quick-start choice."
+  },
+  "planningRetail": "Retail",
+  "@planningRetail": {
+    "description": "Quick-start choice."
+  },
+  "planningJoinery": "Joinery & wardrobes",
+  "@planningJoinery": {
+    "description": "Quick-start choice."
+  },
+  "homePricingTitle": "Prices, published",
+  "@homePricingTitle": {
+    "description": "Heading of the pricing entry on Home."
+  },
+  "homePricingBody": "Starting prices for our services, before VAT. Your quotation follows a free site survey.",
+  "@homePricingBody": {
+    "description": "Body of the pricing entry on Home."
+  },
+  "homePricingCta": "See the price guide",
+  "@homePricingCta": {
+    "description": "Button to the price guide."
+  },
+  "homeWhyEyebrow": "Why Bait Al Ebdaa",
+  "@homeWhyEyebrow": {
+    "description": "Section label above the studio facts."
+  },
+  "homeProcessEyebrow": "How it works",
+  "@homeProcessEyebrow": {
+    "description": "Section label above the process steps."
+  },
+  "homeReviewEyebrow": "What clients say",
+  "@homeReviewEyebrow": {
+    "description": "Section label above a client review."
+  },
+  "reviewTranslated": "Translated",
+  "@reviewTranslated": {
+    "description": "Marks a review shown in translation."
+  },
+  "homeAskAliCta": "Ask a question",
+  "@homeAskAliCta": {
+    "description": "Button that opens the AI assistant from Home."
+  },
+  "homeCtaTitle": "Start with a free site survey",
+  "@homeCtaTitle": {
+    "description": "Heading of the closing booking banner."
+  },
+  "homeCtaBody": "We visit, measure and advise. Your quotation follows the survey.",
+  "@homeCtaBody": {
+    "description": "Body of the closing booking banner."
+  },
+  "homeCtaButton": "Book a free site survey",
+  "@homeCtaButton": {
+    "description": "Button in the closing booking banner."
+  },
+  "homeLatestRequest": "Your latest request",
+  "@homeLatestRequest": {
+    "description": "Label above the latest request card."
+  },
+  "contactCall": "Call",
+  "@contactCall": {
+    "description": "Quick contact: phone."
+  },
+  "contactWhatsApp": "WhatsApp",
+  "@contactWhatsApp": {
+    "description": "Quick contact: WhatsApp."
+  },
+  "contactEmail": "Email",
+  "@contactEmail": {
+    "description": "Quick contact: email."
+  },
+  "serviceIncluded": "What's included",
+  "@serviceIncluded": {
+    "description": "Heading of the service inclusions."
+  },
+  "serviceFaqs": "Questions",
+  "@serviceFaqs": {
+    "description": "Heading of the service FAQs."
+  },
+  "serviceProjects": "Related projects",
+  "@serviceProjects": {
+    "description": "Heading of real projects that used the service."
+  },
+  "servicePrices": "Published prices",
+  "@servicePrices": {
+    "description": "Heading of the service's own published prices."
+  },
+  "serviceRelatedPrices": "Related starting prices",
+  "@serviceRelatedPrices": {
+    "description": "Heading of prices for parts of the service, never the price of the whole service."
+  },
+  "priceGuideTitle": "Price guide",
+  "@priceGuideTitle": {
+    "description": "Title of the price guide screen."
+  },
+  "projectLocation": "Location",
+  "@projectLocation": {
+    "description": "Project fact label."
+  },
+  "projectSize": "Size",
+  "@projectSize": {
+    "description": "Project fact label."
+  },
+  "projectYear": "Year",
+  "@projectYear": {
+    "description": "Project fact label."
+  },
+  "projectService": "Service",
+  "@projectService": {
+    "description": "Project fact label."
+  },
+  "projectScope": "Scope of work",
+  "@projectScope": {
+    "description": "Heading of the project scope list."
+  },
+  "projectStory": "About the project",
+  "@projectStory": {
+    "description": "Heading of the project description."
+  },
+  "projectPlanSimilar": "Plan a similar project",
+  "@projectPlanSimilar": {
+    "description": "Button that starts a request based on a project."
+  },
+  "projectPhotoLabel": "{title}, photo {index} of {total}",
+  "@projectPhotoLabel": {
+    "description": "Screen-reader label for project photos without their own alt text.",
+    "placeholders": {
+      "title": {
+        "type": "String",
+        "example": "Dubai Hills Estate Luxury Villa"
+      },
+      "index": {
+        "type": "int",
+        "example": "1"
+      },
+      "total": {
+        "type": "int",
+        "example": "4"
+      }
+    }
+  },
+  "bookTitle": "Plan your project",
+  "@bookTitle": {
+    "description": "Title of the Book tab."
+  },
+  "bookIntro": "Tell us about your space in a few short steps. It's free, with no obligation.",
+  "@bookIntro": {
+    "description": "Intro of the Book tab."
+  },
+  "bookStepsTitle": "How it works",
+  "@bookStepsTitle": {
+    "description": "Heading of the request steps on the Book tab."
+  },
+  "bookStep1": "Answer a few short questions about your space.",
+  "@bookStep1": {
+    "description": "Book tab step 1."
+  },
+  "bookStep2": "Our team reviews your request and contacts you.",
+  "@bookStep2": {
+    "description": "Book tab step 2."
+  },
+  "bookStep3": "We meet by phone, on WhatsApp or at your site for a free survey.",
+  "@bookStep3": {
+    "description": "Book tab step 3."
+  },
+  "bookStart": "Start a request",
+  "@bookStart": {
+    "description": "Primary button on the Book tab."
+  },
+  "profileSupport": "Support",
+  "@profileSupport": {
+    "description": "Profile section with contact options."
+  },
+  "profileLegal": "Legal",
+  "@profileLegal": {
+    "description": "Profile section with policies."
+  },
+  "profilePrivacy": "Privacy policy",
+  "@profilePrivacy": {
+    "description": "Link to the website privacy policy."
+  },
+  "profileTerms": "Terms and conditions",
+  "@profileTerms": {
+    "description": "Link to the website terms."
+  },
+  "profileDelete": "Delete account",
+  "@profileDelete": {
+    "description": "Profile action that deletes the account."
+  },
+  "deleteTitle": "Delete your account?",
+  "@deleteTitle": {
+    "description": "Delete-account dialog title."
+  },
+  "deleteBody": "This deletes your sign-in. Requests you already sent stay with our team so we can follow up; contact us if you want them removed.",
+  "@deleteBody": {
+    "description": "Delete-account dialog body; states plainly what is and is not deleted."
+  },
+  "deleteConfirm": "Delete account",
+  "@deleteConfirm": {
+    "description": "Delete-account confirm button."
+  },
+  "authErrorRecentLogin": "For your security, sign in again, then delete your account.",
+  "@authErrorRecentLogin": {
+    "description": "Shown when Firebase needs a fresh sign-in to delete the account."
+  },
+  "reviewSignInToSend": "Sign in to send",
+  "@reviewSignInToSend": {
+    "description": "Review button for guests; sending needs an account."
+  },
+  "reviewSignInNote": "Sign in or create an account to send your request and follow it from any phone. Your answers are kept.",
+  "@reviewSignInNote": {
+    "description": "Explains why sign-in is needed at review."
+  },
+  "receivedViewRequest": "View request",
+  "@receivedViewRequest": {
+    "description": "Button on the confirmation screen."
+  },
+  "receivedStatus": "Status: {status}",
+  "@receivedStatus": {
+    "description": "Current status line on the confirmation screen.",
+    "placeholders": {
+      "status": {
+        "type": "String",
+        "example": "Request received"
+      }
+    }
+  },
+  "timelineTitle": "Progress",
+  "@timelineTitle": {
+    "description": "Heading of the request progress timeline."
+  },
+  "detailNeedHelp": "Need help with this request?",
+  "@detailNeedHelp": {
+    "description": "Support heading on request detail."
+  },
+  "myRequestsActive": "Active",
+  "@myRequestsActive": {
+    "description": "Group of open requests."
+  },
+  "myRequestsPast": "Past",
+  "@myRequestsPast": {
+    "description": "Group of completed or cancelled requests."
+  },
+  "stepDetailsTitle": "Tell us about your project",
+  "@stepDetailsTitle": {
+    "description": "Question on the project-details step."
+  },
+  "stepDetailsHelp": "Anything that helps us prepare: rooms, style, timing.",
+  "@stepDetailsHelp": {
+    "description": "Help line on the project-details step."
+  },
+  "stepDetailsLabel": "Project details",
+  "@stepDetailsLabel": {
+    "description": "Label of the project-details field."
+  },
+  "reviewDetails": "Project details",
+  "@reviewDetails": {
+    "description": "Review section for the project notes."
+  },
+  "stageOther": "Other",
+  "@stageOther": {
+    "description": "Project stage."
+  },
+  "propertyCommercial": "Commercial space",
+  "@propertyCommercial": {
+    "description": "Property type."
+  },
+  "heroSlideLabel": "Slide {index} of {total}",
+  "@heroSlideLabel": {
+    "description": "Screen-reader label for the Home banner position.",
+    "placeholders": {
+      "index": {
+        "type": "int",
+        "example": "1"
+      },
+      "total": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "reviewQuoted": "“{text}”",
+  "@reviewQuoted": {
+    "description": "A client's review in quotation marks suited to the language.",
+    "placeholders": {
+      "text": {
+        "type": "String",
+        "example": "Great work"
+      }
+    }
+  },
+  "reviewEditSection": "Edit {section}",
+  "@reviewEditSection": {
+    "description": "Screen-reader label of a review section's Edit button.",
+    "placeholders": {
+      "section": {
+        "type": "String",
+        "example": "Location"
+      }
+    }
+  },
+  "fieldOptional": "{label} (optional)",
+  "@fieldOptional": {
+    "description": "A form label marked optional.",
+    "placeholders": {
+      "label": {
+        "type": "String",
+        "example": "Area or community"
+      }
+    }
+  },
+  "servicesHeaderSubtitle": "Design, fit-out and joinery, each starting with a free site survey.",
+  "@servicesHeaderSubtitle": {
+    "description": "Line under the Services page title."
+  },
+  "projectsHeaderSubtitle": "Homes and workplaces we've designed and fitted out, with photos and the full scope of work.",
+  "@projectsHeaderSubtitle": {
+    "description": "Line under the Projects page title."
+  },
+  "bookEyebrow": "Free consultation",
+  "@bookEyebrow": {
+    "description": "Small label above the Book page title."
+  }
+}
