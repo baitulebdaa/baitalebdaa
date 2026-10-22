@@ -159,13 +159,10 @@ class _SignInPrompt extends StatelessWidget {
   const _SignInPrompt();
 
   @override
-  Widget build(BuildContext context) => Align(
-    alignment: AlignmentDirectional.centerStart,
-    child: PrimaryButton(
-      label: context.l10n.accountSignInCta,
-      onPressed: () =>
-          context.push(Uri(path: AppRoutes.signIn, queryParameters: {'from': AppRoutes.profile}).toString()),
-    ),
+  // Full width, like the app's other main actions.
+  Widget build(BuildContext context) => PrimaryButton(
+    label: context.l10n.accountSignInCta,
+    onPressed: () => context.push(Uri(path: AppRoutes.signIn, queryParameters: {'from': AppRoutes.profile}).toString()),
   );
 }
 

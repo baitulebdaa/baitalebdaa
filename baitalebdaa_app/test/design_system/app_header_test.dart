@@ -70,6 +70,23 @@ void main() {
     expect(find.byType(AppPhotoSliverHeader), findsOneWidget);
   });
 
+  testWidgets('a photo header collapses into a plain bar with the title', (tester) async {
+    await pumpApp(tester);
+    final service = content.services.first;
+    await _go(tester, '/services/${service.slug}');
+    final bar = find.descendant(of: find.byType(SliverAppBar), matching: find.text(service.name.en));
+    expect(bar, findsNothing, reason: 'the photo is open, the page shows its own title');
+
+    final page = find.descendant(of: find.byType(CustomScrollView), matching: find.byType(Scrollable)).first;
+    await tester.drag(page, const Offset(0, -700));
+    await tester.pumpAndSettle();
+    expect(bar, findsOneWidget);
+
+    await tester.drag(page, const Offset(0, 700));
+    await tester.pumpAndSettle();
+    expect(bar, findsNothing);
+  });
+
   for (final language in AppLanguage.values.where((l) => l != AppLanguage.system)) {
     for (final route in ['/services', '/projects', '/book', '/profile', '/services/pricing', '/profile/settings']) {
       testWidgets('$route lays out at 200% text in ${language.name}', (tester) async {

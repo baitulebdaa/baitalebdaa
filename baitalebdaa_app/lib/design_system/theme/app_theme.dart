@@ -71,7 +71,7 @@ abstract final class AppTheme {
         backgroundColor: colors.surfacePrimary,
         surfaceTintColor: Colors.transparent,
         elevation: 0,
-        height: 64,
+        height: 72,
         indicatorColor: Colors.transparent,
         labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
         iconTheme: WidgetStateProperty.resolveWith(

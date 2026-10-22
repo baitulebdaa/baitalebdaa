@@ -24,14 +24,19 @@ class NetworkPhoto extends StatelessWidget {
         builder: (context, constraints) {
           final pixels = MediaQuery.devicePixelRatioOf(context);
           final width = constraints.maxWidth.isFinite ? (constraints.maxWidth * pixels).round() : null;
+          // Fills its frame while loading and once loaded, like BundledPhoto.
           return CachedNetworkImage(
             imageUrl: url,
             fit: fit,
+            width: double.infinity,
+            height: double.infinity,
             memCacheWidth: width,
-            placeholder: (context, url) => ColoredBox(color: warm),
-            errorWidget: (context, url, error) => ColoredBox(
-              color: warm,
-              child: Center(child: Icon(AppIcons.offline, color: context.colors.textTertiary)),
+            placeholder: (context, url) => SizedBox.expand(child: ColoredBox(color: warm)),
+            errorWidget: (context, url, error) => SizedBox.expand(
+              child: ColoredBox(
+                color: warm,
+                child: Center(child: Icon(AppIcons.offline, color: context.colors.textTertiary)),
+              ),
             ),
           );
         },

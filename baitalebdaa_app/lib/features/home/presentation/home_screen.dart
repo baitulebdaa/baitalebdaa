@@ -175,17 +175,23 @@ class _SectionTitle extends StatelessWidget {
   final VoidCallback onLink;
 
   @override
-  Widget build(BuildContext context) => Row(
-    crossAxisAlignment: CrossAxisAlignment.end,
-    children: [
-      Expanded(child: SectionHeader(eyebrow: eyebrow)),
-      Flexible(
-        child: TextButton(
-          onPressed: onLink,
-          child: Text(linkLabel, textAlign: TextAlign.end),
+  Widget build(BuildContext context) => LayoutBuilder(
+    // The link keeps to the end at its own width; at large text sizes it takes at most half
+    // the row and wraps, instead of pushing the row off screen.
+    builder: (context, constraints) => Row(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        Expanded(child: SectionHeader(eyebrow: eyebrow)),
+        const SizedBox(width: AppSpacing.sm),
+        ConstrainedBox(
+          constraints: BoxConstraints(maxWidth: constraints.maxWidth / 2),
+          child: TextButton(
+            onPressed: onLink,
+            child: Text(linkLabel, textAlign: TextAlign.end),
+          ),
         ),
-      ),
-    ],
+      ],
+    ),
   );
 }
 

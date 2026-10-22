@@ -86,9 +86,9 @@ class _ServiceBody extends StatelessWidget {
     return CustomScrollView(
       slivers: [
         AppPhotoSliverHeader(
-          aspectRatio: 5 / 4,
+          aspectRatio: 1,
           title: context.localized(service.name),
-          photo: BundledPhoto(image: service.image, aspectRatio: 5 / 4, semanticLabel: ''),
+          photo: BundledPhoto(image: service.image, aspectRatio: 1, semanticLabel: ''),
         ),
         SliverPadding(
           padding: EdgeInsetsDirectional.fromSTEB(gutter, AppSpacing.xl, gutter, AppSpacing.section),

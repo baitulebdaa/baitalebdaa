@@ -21,13 +21,16 @@ class AppShell extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final tabs = [
-      (icon: AppIcons.home, label: l10n.tabHome),
-      (icon: AppIcons.services, label: l10n.tabServices),
-      (icon: AppIcons.projects, label: l10n.tabProjects),
-      (icon: AppIcons.book, label: l10n.tabBook),
-      (icon: AppIcons.account, label: l10n.tabProfile),
+      (icon: AppIcons.home, selected: AppIcons.homeSelected, label: l10n.tabHome),
+      (icon: AppIcons.services, selected: AppIcons.servicesSelected, label: l10n.tabServices),
+      (icon: AppIcons.projects, selected: AppIcons.projectsSelected, label: l10n.tabProjects),
+      (icon: AppIcons.book, selected: AppIcons.book, label: l10n.tabBook),
+      (icon: AppIcons.account, selected: AppIcons.accountSelected, label: l10n.tabProfile),
     ];
-    Widget iconFor(int index) => index == _bookIndex ? const _BookIcon() : Icon(tabs[index].icon);
+    // Every icon sits in the same square slot as Book's circle, so all five labels line up.
+    Widget iconFor(int index, {bool selected = false}) => _IconSlot(
+      child: index == _bookIndex ? const _BookIcon() : Icon(selected ? tabs[index].selected : tabs[index].icon),
+    );
 
     if (AppWindowSize.of(context) == AppWindowSize.expanded) {
       return Scaffold(
@@ -39,7 +42,11 @@ class AppShell extends StatelessWidget {
                 onDestinationSelected: _select,
                 destinations: [
                   for (final (index, tab) in tabs.indexed)
-                    NavigationRailDestination(icon: iconFor(index), label: Text(tab.label)),
+                    NavigationRailDestination(
+                      icon: iconFor(index),
+                      selectedIcon: iconFor(index, selected: true),
+                      label: Text(tab.label),
+                    ),
                 ],
               ),
             ),
@@ -60,7 +67,12 @@ class AppShell extends StatelessWidget {
           selectedIndex: shell.currentIndex,
           onDestinationSelected: _select,
           destinations: [
-            for (final (index, tab) in tabs.indexed) NavigationDestination(icon: iconFor(index), label: tab.label),
+            for (final (index, tab) in tabs.indexed)
+              NavigationDestination(
+                icon: iconFor(index),
+                selectedIcon: iconFor(index, selected: true),
+                label: tab.label,
+              ),
           ],
         ),
       ),
@@ -68,10 +80,25 @@ class AppShell extends StatelessWidget {
   }
 }
 
+/// The square every tab icon is centred in: Book's circle, and the same box for the others.
+const double _slot = 36;
+
+class _IconSlot extends StatelessWidget {
+  const _IconSlot({required this.child});
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) => SizedBox.square(
+    dimension: _slot,
+    child: Center(child: child),
+  );
+}
+
 class _BookIcon extends StatelessWidget {
   const _BookIcon();
 
-  static const double _diameter = 40;
+  static const double _diameter = _slot;
 
   @override
   Widget build(BuildContext context) => DecoratedBox(

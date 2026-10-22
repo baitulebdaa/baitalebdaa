@@ -101,11 +101,11 @@ class _ProjectBody extends StatelessWidget {
     return CustomScrollView(
       slivers: [
         AppPhotoSliverHeader(
-          aspectRatio: 10 / 9,
+          aspectRatio: 1,
           title: title,
           photo: Hero(
             tag: 'project-cover-${project.slug}',
-            child: BundledPhoto(image: project.cover, aspectRatio: 10 / 9, semanticLabel: ''),
+            child: BundledPhoto(image: project.cover, aspectRatio: 1, semanticLabel: ''),
           ),
         ),
         SliverPadding(

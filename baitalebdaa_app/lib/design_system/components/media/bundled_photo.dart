@@ -24,11 +24,15 @@ class BundledPhoto extends StatelessWidget {
   /// a purely decorative photo whose meaning is already in nearby text.
   final String? semanticLabel;
 
+  /// Lays the old and new frame over each other at the full size of the photo.
+  static Widget _fill(Widget? current, List<Widget> previous) =>
+      Stack(fit: StackFit.expand, children: [...previous, ?current]);
+
   @override
   Widget build(BuildContext context) {
     final alt = image.alt;
     final label = semanticLabel ?? (alt == null ? null : context.localized(alt));
-    final placeholder = ColoredBox(color: context.colors.surfaceWarm);
+    final placeholder = SizedBox.expand(child: ColoredBox(color: context.colors.surfaceWarm));
     return AspectRatio(
       aspectRatio: aspectRatio,
       child: ClipRRect(
@@ -37,8 +41,13 @@ class BundledPhoto extends StatelessWidget {
           builder: (context, constraints) {
             final pixels = MediaQuery.devicePixelRatioOf(context);
             final width = constraints.maxWidth.isFinite ? (constraints.maxWidth * pixels).round() : null;
+            // Explicit infinite size: the photo always fills its frame. Without it, while
+            // fading in (inside the switcher's loose Stack) it shrank to its own aspect
+            // ratio and showed as a narrow strip.
             return Image.asset(
               image.asset,
+              width: double.infinity,
+              height: double.infinity,
               fit: BoxFit.cover,
               cacheWidth: width,
               semanticLabel: label,
@@ -47,6 +56,7 @@ class BundledPhoto extends StatelessWidget {
                 if (wasSynchronouslyLoaded) return child;
                 return AnimatedSwitcher(
                   duration: AppMotion.of(context).standard,
+                  layoutBuilder: _fill,
                   child: frame == null ? placeholder : child,
                 );
               },

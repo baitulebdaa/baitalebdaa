@@ -31,7 +31,7 @@ class ProjectsScreen extends StatelessWidget {
                   final project = content.projects[index];
                   return ProjectCard(
                     project: project,
-                    aspectRatio: 4 / 3,
+                    aspectRatio: 1,
                     onTap: () => context.go(AppRoutes.project(project.slug)),
                   );
                 },

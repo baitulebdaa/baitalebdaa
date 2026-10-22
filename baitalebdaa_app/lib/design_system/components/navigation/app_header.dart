@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -44,8 +46,10 @@ class AppBarButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
+    final glyph = Icon(icon, size: AppIcons.sizeSmall);
     return IconButton(
-      icon: Icon(icon, size: AppIcons.sizeSmall),
+      // Iconsax has no plain ×, so close is its plus turned 45°.
+      icon: icon == AppIcons.close ? Transform.rotate(angle: pi / 4, child: glyph) : glyph,
       tooltip: tooltip,
       onPressed: onPressed,
       style: IconButton.styleFrom(
@@ -150,39 +154,6 @@ class _Hairline extends StatelessWidget implements PreferredSizeWidget {
       child: ColoredBox(color: context.colors.borderSubtle),
     ),
   );
-}
-
-/// Tracks whether the page has scrolled past [threshold] pixels.
-mixin _CollapseTracker<T extends StatefulWidget> on State<T> {
-  final collapsed = ValueNotifier(false);
-  ScrollPosition? _position;
-
-  /// Scroll offset at which the header counts as collapsed, or null until laid out.
-  double? get threshold;
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    final position = Scrollable.maybeOf(context)?.position;
-    if (position == _position) return;
-    _position?.removeListener(updateCollapsed);
-    _position = position?..addListener(updateCollapsed);
-    WidgetsBinding.instance.addPostFrameCallback((_) => updateCollapsed());
-  }
-
-  void updateCollapsed() {
-    final position = _position;
-    final threshold = this.threshold;
-    if (!mounted || position == null || threshold == null || !position.hasPixels) return;
-    collapsed.value = position.pixels >= threshold;
-  }
-
-  @override
-  void dispose() {
-    _position?.removeListener(updateCollapsed);
-    collapsed.dispose();
-    super.dispose();
-  }
 }
 
 /// A scrolling page with the large editorial header: eyebrow, title and one line under it,
@@ -302,7 +273,7 @@ class _AppScrollViewState extends State<AppScrollView> {
 
 /// A full-width photo that collapses into the slim bar, which then shows [title]. Put it
 /// first in a [CustomScrollView]; the page shows its own large title below the photo.
-class AppPhotoSliverHeader extends StatefulWidget {
+class AppPhotoSliverHeader extends StatelessWidget {
   const AppPhotoSliverHeader({
     required this.photo,
     required this.title,
@@ -322,68 +293,109 @@ class AppPhotoSliverHeader extends StatefulWidget {
   final List<Widget> actions;
 
   @override
-  State<AppPhotoSliverHeader> createState() => _AppPhotoSliverHeaderState();
+  Widget build(BuildContext context) {
+    final media = MediaQuery.of(context);
+    final expanded = media.size.width / aspectRatio;
+    return SliverAppBar(
+      pinned: true,
+      automaticallyImplyLeading: false,
+      expandedHeight: expanded,
+      // The bar, buttons and title are drawn by the flexible space below, which knows how
+      // far the header has collapsed from its own height.
+      flexibleSpace: LayoutBuilder(
+        builder: (context, constraints) => _PhotoHeaderSpace(
+          photo: photo,
+          title: title,
+          actions: actions,
+          height: constraints.maxHeight,
+          expandedHeight: expanded + media.padding.top,
+          collapsedHeight: _barHeight + media.padding.top,
+        ),
+      ),
+    );
+  }
 }
 
-class _AppPhotoSliverHeaderState extends State<AppPhotoSliverHeader> with _CollapseTracker {
-  double? _expandedHeight;
-  double? _collapsedHeight;
+class _PhotoHeaderSpace extends StatelessWidget {
+  const _PhotoHeaderSpace({
+    required this.photo,
+    required this.title,
+    required this.actions,
+    required this.height,
+    required this.expandedHeight,
+    required this.collapsedHeight,
+  });
 
-  @override
-  double? get threshold {
-    final expanded = _expandedHeight;
-    final collapsedHeight = _collapsedHeight;
-    if (expanded == null || collapsedHeight == null) return null;
-    return expanded - collapsedHeight - AppSpacing.xs;
-  }
+  final Widget photo;
+  final String title;
+  final List<Widget> actions;
+  final double height;
+  final double expandedHeight;
+  final double collapsedHeight;
 
   @override
   Widget build(BuildContext context) {
-    final media = MediaQuery.of(context);
-    final expanded = media.size.width / widget.aspectRatio;
-    _expandedHeight = expanded;
-    _collapsedHeight = _barHeight + media.padding.top;
-    const ink = AppColors.splashBackground;
+    // 1 when fully open, 0 when only the bar is left.
+    final open = ((height - collapsedHeight) / (expandedHeight - collapsedHeight)).clamp(0.0, 1.0);
+    // The bar turns solid a little before the photo is gone, so the title never sits on a
+    // sliver of photo.
+    final collapsed = open < 0.12;
+    final top = MediaQuery.paddingOf(context).top;
     final quick = AppMotion.of(context).quick;
-    return ValueListenableBuilder(
-      valueListenable: collapsed,
-      builder: (context, isCollapsed, _) => SliverAppBar(
-        pinned: true,
-        automaticallyImplyLeading: false,
-        expandedHeight: expanded,
-        titleSpacing: 0,
-        // Light status bar icons over the photo; the theme's own once the bar is plain.
-        systemOverlayStyle: isCollapsed ? null : SystemUiOverlayStyle.light,
-        title: _BarRow(
-          leading: AppBackButton.shownIn(context) ? AppBackButton(onPhoto: !isCollapsed) : null,
-          title: ExcludeSemantics(
-            child: AnimatedSwitcher(
-              duration: quick,
-              child: isCollapsed ? _BarTitle(widget.title) : const SizedBox.shrink(),
-            ),
-          ),
-          actions: widget.actions,
-        ),
-        bottom: _Hairline(visible: isCollapsed),
-        flexibleSpace: FlexibleSpaceBar(
-          background: Stack(
-            fit: StackFit.expand,
-            children: [
-              widget.photo,
-              // A soft shade at the top keeps the status bar and buttons legible on bright photos.
-              DecoratedBox(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    stops: const [0, 0.35],
-                    colors: [ink.withValues(alpha: 0.45), ink.withValues(alpha: 0)],
+    const ink = AppColors.splashBackground;
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      // Light status bar icons over the photo; the theme's own once the bar is plain.
+      value: collapsed
+          ? (Theme.of(context).brightness == Brightness.dark ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark)
+          : SystemUiOverlayStyle.light,
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          // The photo keeps its full size and slides up at half speed as the header closes.
+          PositionedDirectional(
+            top: -(expandedHeight - height) / 2,
+            start: 0,
+            end: 0,
+            height: expandedHeight,
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                photo,
+                // A soft shade at the top keeps the status bar and buttons legible on bright photos.
+                DecoratedBox(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      stops: const [0, 0.35],
+                      colors: [ink.withValues(alpha: 0.45), ink.withValues(alpha: 0)],
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
+          AnimatedOpacity(
+            opacity: collapsed ? 1 : 0,
+            duration: quick,
+            child: ColoredBox(color: context.colors.surfacePrimary),
+          ),
+          PositionedDirectional(
+            top: top,
+            start: 0,
+            end: 0,
+            height: _barHeight,
+            child: _BarRow(
+              leading: AppBackButton.shownIn(context) ? AppBackButton(onPhoto: !collapsed) : null,
+              // The page's large title below the photo is its heading; this copy is visual only.
+              title: ExcludeSemantics(
+                child: AnimatedSwitcher(duration: quick, child: collapsed ? _BarTitle(title) : const SizedBox.shrink()),
+              ),
+              actions: actions,
+            ),
+          ),
+          PositionedDirectional(bottom: 0, start: 0, end: 0, child: _Hairline(visible: collapsed)),
+        ],
       ),
     );
   }
