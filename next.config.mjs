@@ -9,6 +9,10 @@ const nextConfig = {
   // — slash or no slash — resolves in exactly one hop. Verified against a live local
   // server (see redirect verification pass) after adding this.
   skipTrailingSlashRedirect: true,
+  // AVIF first (typically 20-30% smaller than WebP), WebP for browsers without AVIF.
+  images: {
+    formats: ["image/avif", "image/webp"],
+  },
   // The root layout sits under the [lang] segment, so unmatched URLs can only get a branded
   // 404 through src/app/global-not-found.jsx, which needs this flag (Next 16 docs).
   experimental: {

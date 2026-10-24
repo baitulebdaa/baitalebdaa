@@ -56,18 +56,34 @@ export function Brand({ light = false, priority = false, customSrc = null }) {
 // `eager` is for above-the-fold content (hero copy, H1, hero image): it is visible in the
 // server HTML and only slides in with a CSS animation, instead of staying at opacity 0 until
 // JavaScript hydrates — which held back Largest Contentful Paint on every page.
+// One IntersectionObserver serves every Reveal on the page (the home page has ~55), instead
+// of one each. Each element's callback runs once, when it first comes into view.
+const revealCallbacks = new WeakMap();
+let revealObserver = null;
+function observeReveal(element, onVisible) {
+  if (!revealObserver) {
+    revealObserver = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        revealObserver.unobserve(entry.target);
+        revealCallbacks.get(entry.target)?.();
+        revealCallbacks.delete(entry.target);
+      }
+    }, { threshold: 0.14 });
+  }
+  revealCallbacks.set(element, onVisible);
+  revealObserver.observe(element);
+  return () => { revealObserver.unobserve(element); revealCallbacks.delete(element); };
+}
+
 export function Reveal({ as: Tag = "div", className = "", children, delay = 0, eager = false, ...props }) {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef(null);
   useEffect(() => {
     const element = ref.current;
-    if (eager || !element) return;
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) { setIsVisible(true); observer.unobserve(element); }
-    }, { threshold: 0.14 });
-    observer.observe(element);
-    return () => observer.disconnect();
-  }, []);
+    if (eager || !element) return undefined;
+    return observeReveal(element, () => setIsVisible(true));
+  }, [eager]);
   if (eager) return <Tag ref={ref} className={`reveal-in ${className}`} style={{ "--delay": `${delay}ms` }} {...props}>{children}</Tag>;
   return <Tag ref={ref} className={`reveal ${className} ${isVisible ? 'is-visible' : ''}`} style={{ "--delay": `${delay}ms` }} {...props}>{children}</Tag>;
 }
@@ -100,15 +116,13 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
 
   // Swaps only the /en//ar segment so switching language keeps you on the equivalent
   // page (e.g. /en/interior-design/dubai-marina -> /ar/interior-design/dubai-marina)
-  // instead of always bouncing to the homepage — this is what makes the per-page
-  // hreflang tags actually reachable from the UI.
-  const toggleLanguage = () => {
-    const newLang = lang === "en" ? "ar" : "en";
-    const segments = pathname.split("/").filter(Boolean);
-    const rest = segments[0] === "en" || segments[0] === "ar" ? segments.slice(1) : segments;
-    const target = rest.length === 0 && newLang === "en" ? "/" : `/${[newLang, ...rest].join("/")}`;
-    window.location.href = target;
-  };
+  // instead of always bouncing to the homepage. It is a real link, rendered on the
+  // server, so search engines can follow it: as a JavaScript-only button it left the
+  // Arabic pages with no crawlable internal links from the English site (and back).
+  const otherLang = lang === "en" ? "ar" : "en";
+  const pathSegments = (pathname || "/").split("/").filter(Boolean);
+  const restOfPath = pathSegments[0] === "en" || pathSegments[0] === "ar" ? pathSegments.slice(1) : pathSegments;
+  const otherLangHref = restOfPath.length === 0 && otherLang === "en" ? "/" : `/${[otherLang, ...restOfPath].join("/")}`;
 
   const headerWaMessage = encodeURIComponent(
     lang === "ar"
@@ -220,9 +234,9 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
         </div>
         <a href={`/${lang}/process`}>{dict.menuItems[3]} <ArrowUpRight size={14} /></a>
         <a href={`/${lang}/pricing`}>{dict.menuItems[4]} <ArrowUpRight size={14} /></a>
-        <button type="button" onClick={toggleLanguage} className="lang-switcher" style={{display: 'flex', alignItems: 'center', gap: '6px', background: 'transparent', border: 'none', color: 'inherit', cursor: 'pointer', fontFamily: 'inherit', fontSize: 'inherit'}}>
+        <a href={otherLangHref} hrefLang={otherLang} lang={otherLang} className="lang-switcher" style={{display: 'flex', alignItems: 'center', gap: '6px'}}>
           <Globe size={14} /> {lang === "en" ? "العربية" : "English"}
-        </button>
+        </a>
       </nav>
       <button className="menu-button" type="button" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-controls="site-menu" aria-label={menuOpen ? dict.nav.close : dict.nav.menu}><span>{menuOpen ? dict.nav.close : dict.nav.menu}</span>{menuOpen ? <X size={24} /> : <Menu size={25} />}</button>
       <div className="header-actions">

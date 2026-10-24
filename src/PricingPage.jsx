@@ -9,7 +9,9 @@ import { Header, Footer, Reveal } from "./components/Shared";
 import { Estimator } from "./components/Estimator";
 import { pricingGroups, CURRENCY, VAT_INCLUSIVE } from "./data/pricing";
 import { formatPrice } from "./lib/pricing";
+import { COST_GUIDE_LINKS } from "./data/cost-guide-links";
 import { ORG_REF } from "./lib/schema-ids";
+import { MOSAIC_MAIN_SIZES, MOSAIC_SMALL_SIZES } from "./lib/image-sizes";
 
 // Matches the WhatsApp number already used site-wide (Hero, Header, QuoteModal).
 const WHATSAPP_NUMBER = "971582621717";
@@ -20,11 +22,11 @@ const SITE_URL = "https://www.baitalebdaa.com";
 const CATEGORIES = [
   { id: "curtainsManual", image: "/assets/living-room-tv-unit-floating-shelves-curtains.jpeg", headline: "curtain-pinch-sheer" },
   { id: "curtainsSomfy", image: "/assets/double-height-tv-wall-fireplace-curtains.jpeg", headline: "somfy-sheer" },
-  { id: "joineryWardrobes", image: "/assets/walk-in-closet-island-led-ceiling.jpeg", headline: "wardrobe-laminate" },
+  { id: "joineryWardrobes", image: "/assets/walk-in-closet-island-led-ceiling.jpeg", headline: "wardrobe-laminate", guideFor: "custom-wardrobes" },
   { id: "joineryMedia", image: "/assets/tv-feature-wall-travertine-bio-fireplace.jpeg", headline: "media-basic" },
-  { id: "joineryKitchens", image: "/assets/walnut-coffee-bar-cabinet-led-shelving.jpeg", headline: "kitchen-laminate" },
-  { id: "design", image: "/assets/minimalist-living-room-fluted-wall-panel-cove-lighting.jpeg", headline: "design-single-room" },
-  { id: "villa", image: "/assets/living-room-curved-sofa-wood-slat-wall.jpeg", headline: "villa-standard" },
+  { id: "joineryKitchens", image: "/assets/walnut-coffee-bar-cabinet-led-shelving.jpeg", headline: "kitchen-laminate", guideFor: "kitchen-design" },
+  { id: "design", image: "/assets/minimalist-living-room-fluted-wall-panel-cove-lighting.jpeg", headline: "design-single-room", guideFor: "interior-design" },
+  { id: "villa", image: "/assets/living-room-curved-sofa-wood-slat-wall.jpeg", headline: "villa-standard", guideFor: "villa-renovation" },
   { id: "office", image: "/assets/built-in-wardrobe-study-desk-wood-shelves.jpeg", headline: "office-essential" },
   { id: "approvals", image: "/assets/luxury-living-room-chandelier-wall-panelling.jpeg", headline: "approval-noc" },
 ];
@@ -94,6 +96,8 @@ function Category({ cfg, index, lang, t, extra }) {
   const g = t.groups[cfg.id];
   const headline = findGroup(cfg.id).items.find((i) => i.id === cfg.headline);
   const headingId = `pp-${cfg.id}-title`;
+  // The cost guide that explains this category's prices (src/data/cost-guide-links.js).
+  const guide = cfg.guideFor && COST_GUIDE_LINKS[cfg.guideFor];
   return (
     <section id={cfg.id} className={`pp-category${index % 2 ? " pp-category--flip" : ""}`} aria-labelledby={headingId}>
       <div className="shell pp-category__grid">
@@ -117,6 +121,11 @@ function Category({ cfg, index, lang, t, extra }) {
           <p className="pp-category__subtitle">{g.subtitle}</p>
           <PriceTable headers={t.tableHeaders} groupId={cfg.id} itemLabels={t.items} caption={g.title} lang={lang} />
           {g.note && <p className="pp-category__note">{g.note}</p>}
+          {guide && (
+            <a href={`/${lang}/media/${guide.slug}`} className="pp-category__guide">
+              {guide[lang]}
+            </a>
+          )}
           <a href={`/${lang}/contact?service=${encodeURIComponent(g.title)}`} className="slp-btn slp-btn--solid">
             {g.cta} <ArrowUpRight size={15} />
           </a>
@@ -196,11 +205,11 @@ export default function PricingPage() {
 
           <Reveal eager className="slp-mosaic" delay={100}>
             <div className="slp-mosaic__main">
-              <Image src={HERO_IMAGES[0]} alt={t.pageTitle} fill sizes="(max-width: 980px) 100vw, 55vw" style={{ objectFit: "cover" }} priority />
+              <Image src={HERO_IMAGES[0]} alt={t.pageTitle} fill sizes={MOSAIC_MAIN_SIZES} style={{ objectFit: "cover" }} priority />
             </div>
             {HERO_IMAGES.slice(1).map((src) => (
               <div className="slp-mosaic__small" key={src}>
-                <Image src={src} alt={imageAlt(src, lang)} fill sizes="(max-width: 980px) 50vw, 22vw" style={{ objectFit: "cover" }} />
+                <Image src={src} alt={imageAlt(src, lang)} fill sizes={MOSAIC_SMALL_SIZES} style={{ objectFit: "cover" }} />
               </div>
             ))}
           </Reveal>

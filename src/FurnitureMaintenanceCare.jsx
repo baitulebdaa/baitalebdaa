@@ -7,6 +7,7 @@ import { useI18n } from "./i18n/I18nProvider";
 import { Header, Footer, Reveal, FaqSplit, ProcessTimeline } from "./components/Shared";
 import { ORG_REF } from "./lib/schema-ids";
 import { imageAlt } from "./data/image-alts";
+import { MOSAIC_MAIN_SIZES, MOSAIC_SMALL_SIZES } from "./lib/image-sizes";
 
 // Joinery the aftercare team services: wardrobe doors and hardware, a fitted cabinet, a walk-in closet.
 // (Full-resolution photos only — the 588px glass-door shot looked soft at hero size.)
@@ -100,11 +101,11 @@ export default function FurnitureMaintenanceCare() {
 
           <Reveal eager className="slp-mosaic" delay={100}>
             <div className="slp-mosaic__main">
-              <Image src={HERO_IMAGES[0]} alt={imageAlt(HERO_IMAGES[0], lang) || t.navTitle} fill sizes="(max-width: 980px) 100vw, 55vw" style={{ objectFit: "cover" }} priority />
+              <Image src={HERO_IMAGES[0]} alt={imageAlt(HERO_IMAGES[0], lang) || t.navTitle} fill sizes={MOSAIC_MAIN_SIZES} style={{ objectFit: "cover" }} priority />
             </div>
             {HERO_IMAGES.slice(1).map((src) => (
               <div className="slp-mosaic__small" key={src}>
-                <Image src={src} alt={imageAlt(src, lang)} fill sizes="(max-width: 980px) 50vw, 22vw" style={{ objectFit: "cover" }} />
+                <Image src={src} alt={imageAlt(src, lang)} fill sizes={MOSAIC_SMALL_SIZES} style={{ objectFit: "cover" }} />
               </div>
             ))}
           </Reveal>

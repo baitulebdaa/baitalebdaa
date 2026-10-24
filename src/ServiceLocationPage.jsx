@@ -6,6 +6,7 @@ import { ArrowUpRight, Check, Phone, Whatsapp } from "./components/icons";
 import { useI18n } from "./i18n/I18nProvider";
 import { Header, Footer, Reveal, FaqSplit, ProcessTimeline } from "./components/Shared";
 import { Estimator } from "./components/Estimator";
+import { COST_GUIDE_LINKS } from "./data/cost-guide-links";
 import { serviceContent, priorityIntroExtra, whyChooseFacts } from "./data/service-content";
 import { locationContent } from "./data/location-content";
 import { abuDhabiCopy } from "./data/abu-dhabi-copy";
@@ -13,6 +14,7 @@ import { formatPrice, servicePricing, serviceStartingItem } from "./lib/pricing"
 import { CURRENCY, VAT_INCLUSIVE } from "./data/pricing";
 import { ORG_REF, SITE_URL } from "./lib/schema-ids";
 import { faqPageJsonLd } from "./lib/faq-schema";
+import { MOSAIC_MAIN_SIZES, MOSAIC_SMALL_SIZES, MOSAIC_SINGLE_SIZES } from "./lib/image-sizes";
 
 const HERO_IMAGE_BY_SERVICE = {
   "interior-design": "/assets/luxury-living-room-chandelier-wall-panelling.jpeg",
@@ -112,14 +114,6 @@ const PRIORITY_MONEY_PAGES = new Set([
   "interior-design/dubai",
 ]);
 
-// Money pages whose published prices have a cost guide explaining them (src/data/cost-guides.js).
-// The guide is linked once, from the price card, rather than from every service page's blog grid.
-const COST_GUIDE_BY_PAGE = {
-  "interior-design/dubai": { slug: "interior-design-fees-dubai", en: "What moves a design fee: our Dubai fees guide", ar: "ما الذي يحدد رسوم التصميم؟ اقرأ دليل الأسعار" },
-  "villa-renovation/dubai": { slug: "villa-renovation-cost-dubai", en: "How a villa renovation budget is built", ar: "كيف تُبنى ميزانية تجديد الفيلا؟" },
-  "kitchen-design/dubai": { slug: "kitchen-cabinet-cost-dubai", en: "Reading a kitchen cabinet quote", ar: "كيف تقرأ عرض سعر خزائن المطبخ؟" },
-  "custom-wardrobes/dubai": { slug: "custom-wardrobe-cost-dubai", en: "What changes the price of a fitted wardrobe", ar: "ما الذي يغيّر سعر خزانة الملابس؟" },
-};
 
 // Pilot page body blocks (see src/data/pilot-pages.js): ["p", html] | ["h3", text] | ["ul", [html]] | ["ol", [html]].
 function PilotBlock({ block }) {
@@ -190,9 +184,10 @@ export default function ServiceLocationPage({ lang, row, seoContext, pilot = nul
 
   const coreAreas = otherAreas.filter((entry) => entry.location.tier === "core");
   const nearbyAreas = otherAreas.filter((entry) => entry.location.tier === "district" && entry.location.emirate === row.emirate);
-  // Cost guides are linked contextually (COST_GUIDE_BY_PAGE, pilot copy), not from every page's grid.
+  // Cost guides are linked contextually (from the price card and pilot copy), not from every page's grid.
+  // The price card links the guide on every emirate's page of that service (COST_GUIDE_LINKS).
   const blogPosts = [dict.mediaPage.featuredArticle, ...dict.mediaPage.articles].filter((post) => !post.guide);
-  const costGuide = COST_GUIDE_BY_PAGE[`${row.serviceSlug}/${row.locationSlug}`];
+  const costGuide = COST_GUIDE_LINKS[row.serviceSlug];
 
   // Only this service's own published prices (or clearly labelled related ones) — see lib/pricing.js.
   const pricing = servicePricing(row.serviceSlug);
@@ -387,11 +382,11 @@ export default function ServiceLocationPage({ lang, row, seoContext, pilot = nul
 
           <Reveal eager className={`slp-mosaic${mosaicPhotos.length ? "" : " slp-mosaic--single"}`} delay={100}>
             <div className="slp-mosaic__main">
-              <Image src={heroImage} alt={heroAlt} fill sizes="(max-width: 980px) 100vw, 55vw" style={{ objectFit: "cover" }} priority />
+              <Image src={heroImage} alt={heroAlt} fill sizes={mosaicPhotos.length ? MOSAIC_MAIN_SIZES : MOSAIC_SINGLE_SIZES} style={{ objectFit: "cover" }} priority />
             </div>
             {mosaicPhotos.map((photo) => (
               <div className="slp-mosaic__small" key={photo.src}>
-                <Image src={photo.src} alt={photo.alt} fill sizes="(max-width: 980px) 50vw, 22vw" style={{ objectFit: "cover" }} />
+                <Image src={photo.src} alt={photo.alt} fill sizes={MOSAIC_SMALL_SIZES} style={{ objectFit: "cover" }} />
               </div>
             ))}
           </Reveal>

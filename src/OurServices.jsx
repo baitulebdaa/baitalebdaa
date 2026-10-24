@@ -7,6 +7,7 @@ import { useI18n } from "./i18n/I18nProvider";
 import { ArrowUpRight } from "./components/icons";
 import { Header, Footer, Reveal, FaqSplit } from "./components/Shared";
 import { ServiceTileGrid } from "./components/ServiceTiles";
+import { MOSAIC_MAIN_SIZES, MOSAIC_SMALL_SIZES } from "./lib/image-sizes";
 
 export default function OurServices() {
   const { lang, dict } = useI18n();
@@ -48,13 +49,13 @@ export default function OurServices() {
           </div>
           <Reveal eager className="slp-mosaic" delay={100}>
             <div className="slp-mosaic__main">
-              <Image src="/assets/villa-majlis-living-room-wood-wall-cove-ceiling.jpeg" alt={t.pageTitle} fill sizes="(max-width: 980px) 100vw, 55vw" style={{ objectFit: "cover" }} priority />
+              <Image src="/assets/villa-majlis-living-room-wood-wall-cove-ceiling.jpeg" alt={t.pageTitle} fill sizes={MOSAIC_MAIN_SIZES} style={{ objectFit: "cover" }} priority />
             </div>
             <div className="slp-mosaic__small">
-              <Image src="/assets/walk-in-closet-island-led-ceiling.jpeg" alt={imageAlt("/assets/walk-in-closet-island-led-ceiling.jpeg", lang)} fill sizes="(max-width: 980px) 50vw, 22vw" style={{ objectFit: "cover" }} />
+              <Image src="/assets/walk-in-closet-island-led-ceiling.jpeg" alt={imageAlt("/assets/walk-in-closet-island-led-ceiling.jpeg", lang)} fill sizes={MOSAIC_SMALL_SIZES} style={{ objectFit: "cover" }} />
             </div>
             <div className="slp-mosaic__small">
-              <Image src="/assets/study-nook-wardrobe-led-shelving-wood-slats.jpeg" alt={imageAlt("/assets/study-nook-wardrobe-led-shelving-wood-slats.jpeg", lang)} fill sizes="(max-width: 980px) 50vw, 22vw" style={{ objectFit: "cover" }} />
+              <Image src="/assets/study-nook-wardrobe-led-shelving-wood-slats.jpeg" alt={imageAlt("/assets/study-nook-wardrobe-led-shelving-wood-slats.jpeg", lang)} fill sizes={MOSAIC_SMALL_SIZES} style={{ objectFit: "cover" }} />
             </div>
           </Reveal>
         </section>

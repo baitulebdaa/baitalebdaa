@@ -8,6 +8,7 @@ import { useI18n } from "./i18n/I18nProvider";
 import { Header, Footer, Reveal } from "./components/Shared";
 import { PageFaq } from "./components/PageFaq";
 import { whyChooseFacts } from "./data/service-content";
+import { MOSAIC_MAIN_SIZES, MOSAIC_SMALL_SIZES } from "./lib/image-sizes";
 
 const WHATSAPP_NUMBER = "971582621717";
 
@@ -53,11 +54,11 @@ export default function Process() {
 
           <Reveal eager className="slp-mosaic" delay={100}>
             <div className="slp-mosaic__main">
-              <Image src={heroImages[0]} alt={t.pageTitle} fill sizes="(max-width: 980px) 100vw, 55vw" style={{ objectFit: "cover" }} priority />
+              <Image src={heroImages[0]} alt={t.pageTitle} fill sizes={MOSAIC_MAIN_SIZES} style={{ objectFit: "cover" }} priority />
             </div>
             {heroImages.slice(1).map((src) => (
               <div className="slp-mosaic__small" key={src}>
-                <Image src={src} alt={imageAlt(src, lang)} fill sizes="(max-width: 980px) 50vw, 22vw" style={{ objectFit: "cover" }} />
+                <Image src={src} alt={imageAlt(src, lang)} fill sizes={MOSAIC_SMALL_SIZES} style={{ objectFit: "cover" }} />
               </div>
             ))}
           </Reveal>

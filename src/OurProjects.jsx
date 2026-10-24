@@ -8,6 +8,7 @@ import { useI18n } from "./i18n/I18nProvider";
 import { Header, Footer, Reveal } from "./components/Shared";
 import { PageFaq } from "./components/PageFaq";
 import { isPublishedProject } from "./data/project-catalog";
+import { MOSAIC_MAIN_SIZES, MOSAIC_SMALL_SIZES } from "./lib/image-sizes";
 
 export default function OurProjects() {
   const { lang, dict } = useI18n();
@@ -80,13 +81,13 @@ export default function OurProjects() {
           </div>
           <Reveal eager className="slp-mosaic" delay={100}>
             <div className="slp-mosaic__main">
-              <Image src="/assets/study-nook-wardrobe-led-shelving-wood-slats.jpeg" alt={t.explorePortfolio} fill sizes="(max-width: 980px) 100vw, 55vw" style={{ objectFit: "cover" }} priority />
+              <Image src="/assets/study-nook-wardrobe-led-shelving-wood-slats.jpeg" alt={t.explorePortfolio} fill sizes={MOSAIC_MAIN_SIZES} style={{ objectFit: "cover" }} priority />
             </div>
             <div className="slp-mosaic__small">
-              <Image src="/assets/living-room-curved-sofa-wood-slat-wall.jpeg" alt={imageAlt("/assets/living-room-curved-sofa-wood-slat-wall.jpeg", lang)} fill sizes="(max-width: 980px) 50vw, 22vw" style={{ objectFit: "cover" }} />
+              <Image src="/assets/living-room-curved-sofa-wood-slat-wall.jpeg" alt={imageAlt("/assets/living-room-curved-sofa-wood-slat-wall.jpeg", lang)} fill sizes={MOSAIC_SMALL_SIZES} style={{ objectFit: "cover" }} />
             </div>
             <div className="slp-mosaic__small">
-              <Image src="/assets/villa-majlis-living-room-wood-wall-cove-ceiling.jpeg" alt={imageAlt("/assets/villa-majlis-living-room-wood-wall-cove-ceiling.jpeg", lang)} fill sizes="(max-width: 980px) 50vw, 22vw" style={{ objectFit: "cover" }} />
+              <Image src="/assets/villa-majlis-living-room-wood-wall-cove-ceiling.jpeg" alt={imageAlt("/assets/villa-majlis-living-room-wood-wall-cove-ceiling.jpeg", lang)} fill sizes={MOSAIC_SMALL_SIZES} style={{ objectFit: "cover" }} />
             </div>
           </Reveal>
         </section>
