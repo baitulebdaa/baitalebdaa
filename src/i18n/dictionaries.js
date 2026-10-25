@@ -327,7 +327,7 @@ export const dictionaries = {
       pageTitle: "Bait Al Ebdaa Privacy Policy",
       metaTitle: "Privacy Policy | Bait Al Ebdaa",
       metaDescription: "How Bait Al Ebdaa collects, uses and protects the personal information submitted through our website forms and contact channels.",
-      lastUpdated: "Last updated: 12 October 2026",
+      lastUpdated: "Last updated: 25 October 2026",
       intro: "This page explains what information Bait Al Ebdaa ('we', 'us') collects when you use www.baitalebdaa.com, and how we use it. We collect only what's needed to respond to your enquiry.",
       sections: [
         {
@@ -348,7 +348,7 @@ export const dictionaries = {
         },
         {
           title: "Cookies and Analytics",
-          body: "This site does not currently set tracking or advertising cookies, and does not use browser local storage. If we enable Google Analytics in the future, this policy will be updated to describe the cookies it sets and how to opt out.",
+          body: "We use Google Analytics 4 to understand how visitors use the site: pages viewed, how they arrived, device type and approximate location. Its cookies are set only if you accept them in the cookie banner; until then it receives only cookieless signals with no identifier. We do not use advertising cookies or browser local storage. You can change your choice at any time with \"Cookie settings\" at the bottom of any page; our Cookie Policy has the details.",
         },
         {
           title: "Data Retention",
@@ -1858,7 +1858,7 @@ export const dictionaries = {
       pageTitle: "سياسة الخصوصية في بيت الإبداع",
       metaTitle: "سياسة الخصوصية | بيت الإبداع",
       metaDescription: "كيف تجمع بيت الإبداع وتستخدم وتحمي المعلومات الشخصية المُرسلة عبر نماذج الموقع وقنوات التواصل.",
-      lastUpdated: "آخر تحديث: 12 أكتوبر 2026",
+      lastUpdated: "آخر تحديث: 25 أكتوبر 2026",
       intro: "توضّح هذه الصفحة المعلومات التي تجمعها بيت الإبداع ('نحن') عند استخدامك لموقع www.baitalebdaa.com، وكيفية استخدامها. نجمع فقط ما هو ضروري للرد على استفسارك.",
       sections: [
         {
@@ -1879,7 +1879,7 @@ export const dictionaries = {
         },
         {
           title: "ملفات تعريف الارتباط والتحليلات",
-          body: "لا يستخدم هذا الموقع حالياً ملفات تعريف ارتباط للتتبع أو الإعلانات، ولا يستخدم التخزين المحلي في المتصفح. إذا فعّلنا Google Analytics في المستقبل، سنحدّث هذه السياسة لوصف ملفات تعريف الارتباط التي يستخدمها وكيفية إلغاء الاشتراك.",
+          body: "نستخدم Google Analytics 4 لفهم كيفية استخدام الزوار للموقع: الصفحات التي يشاهدونها، وكيف وصلوا إليه، ونوع الجهاز، والموقع التقريبي. ولا تُوضع ملفات تعريف الارتباط الخاصة به إلا إذا وافقت عليها في شريط ملفات تعريف الارتباط؛ وحتى ذلك الحين لا يتلقى إلا إشارات بلا ملفات تعريف ارتباط ولا معرّف. لا نستخدم ملفات تعريف ارتباط إعلانية ولا التخزين المحلي في المتصفح. ويمكنك تغيير اختيارك في أي وقت عبر \"إعدادات ملفات تعريف الارتباط\" أسفل أي صفحة، وتجد التفاصيل في سياسة ملفات تعريف الارتباط.",
         },
         {
           title: "الاحتفاظ بالبيانات",

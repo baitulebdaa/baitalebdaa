@@ -11,6 +11,7 @@ import { formatIndex } from "../lib/format";
 import { SOCIAL_PROFILES } from "../data/social-profiles";
 import { HONEYPOT_FIELD } from "../lib/request-guard";
 import { apiErrorMessage, readJson } from "../lib/api-errors";
+import { OPEN_COOKIE_SETTINGS_EVENT } from "../lib/consent";
 
 // Desktop "Services" dropdown groups (Header). Grouped rather than one long
 // column — 17 services in a single list would make the panel unreasonably
@@ -417,6 +418,10 @@ export function Footer() {
     <div className="shell footer-bottom">
       <nav className="footer-legal" aria-label={f.importantLinks}>
         {f.importantLinksItems.map((link, i) => <a key={i} href={`/${lang}/${LEGAL_LINK_SLUGS[i]}`}>{link}</a>)}
+        {/* Reopens the analytics consent banner; shown only where analytics runs (body[data-analytics]). */}
+        <button type="button" className="footer-cookie-settings" onClick={() => window.dispatchEvent(new Event(OPEN_COOKIE_SETTINGS_EVENT))}>
+          {lang === "ar" ? "إعدادات ملفات تعريف الارتباط" : "Cookie settings"}
+        </button>
       </nav>
       <span className="footer-copy">{f.copy}</span>
     </div>

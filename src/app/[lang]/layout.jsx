@@ -5,10 +5,13 @@ import { I18nProvider } from "../../i18n/I18nProvider";
 import { getClientDictionary } from "../../i18n/client-dictionary";
 import { organizationJsonLd } from "../../lib/page-metadata";
 import { AskAIWidget } from "../../components/AskAIWidget";
+import { CookieConsent } from "../../components/CookieConsent";
+import { CONSENT_COOKIE } from "../../lib/consent";
 
-// Set in .env.local / hosting env vars once you have real IDs — see .env.example.
-// Left unset by default so nothing fake ships to production.
-const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+// The site's GA4 web stream (owner, 25 Oct 2026). Only production deployments send data
+// (Vercel sets VERCEL_ENV); preview and local builds stay silent unless the env var is set.
+const GA_MEASUREMENT_ID =
+  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || (process.env.VERCEL_ENV === "production" ? "G-3XNVMKSM87" : undefined);
 const GOOGLE_SITE_VERIFICATION = process.env.GOOGLE_SITE_VERIFICATION;
 const BING_SITE_VERIFICATION = process.env.BING_SITE_VERIFICATION;
 
@@ -99,24 +102,30 @@ export default async function RootLayout({ children, params }) {
   
   return (
     <html lang={lang} dir={isRtl ? "rtl" : "ltr"} className={`${dmSans.variable} ${manrope.variable} ${tajawal.variable} ${cormorant.variable}`}>
-      <body>
+      <body data-analytics={GA_MEASUREMENT_ID ? "on" : undefined}>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd(lang)).replace(/</g, "\\u003c") }} />
         {GA_MEASUREMENT_ID && (
           <>
-            <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} strategy="afterInteractive" />
+            {/* Consent Mode v2: analytics cookies only after the visitor accepts (components/CookieConsent.jsx).
+                The library loads after the page, so it never competes with what the visitor sees first. */}
             <Script id="ga4-init" strategy="afterInteractive">
               {`
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
+                window.gtag = gtag;
+                var granted = /(?:^|; )${CONSENT_COOKIE}=granted/.test(document.cookie);
+                gtag('consent', 'default', { analytics_storage: granted ? 'granted' : 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
                 gtag('js', new Date());
                 gtag('config', '${GA_MEASUREMENT_ID}');
               `}
             </Script>
+            <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} strategy="lazyOnload" />
           </>
         )}
         <I18nProvider lang={lang} dict={getClientDictionary(lang)}>
           {children}
           <AskAIWidget />
+          {GA_MEASUREMENT_ID && <CookieConsent />}
         </I18nProvider>
       </body>
     </html>
