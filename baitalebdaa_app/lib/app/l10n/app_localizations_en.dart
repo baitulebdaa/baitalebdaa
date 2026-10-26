@@ -227,7 +227,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authErrorUserDisabled => 'This account has been disabled. Please contact us.';
 
   @override
-  String get authErrorMethodDisabled => 'Email sign-in isn\'t available right now.';
+  String get authErrorMethodDisabled => 'This sign-in option isn\'t available right now.';
 
   @override
   String get accountSignInCta => 'Sign in or create an account';
@@ -880,4 +880,377 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get bookEyebrow => 'Free consultation';
+
+  @override
+  String get projectsFilterAll => 'All';
+
+  @override
+  String get projectsFilterVillas => 'Villas';
+
+  @override
+  String get projectsFilterApartments => 'Apartments';
+
+  @override
+  String get projectsFilterOffices => 'Offices';
+
+  @override
+  String get projectsFilterJoinery => 'Joinery';
+
+  @override
+  String get projectsFilterSaved => 'Saved';
+
+  @override
+  String get projectKindVilla => 'Villa';
+
+  @override
+  String get projectKindApartment => 'Apartment';
+
+  @override
+  String get projectKindCommercial => 'Commercial';
+
+  @override
+  String get projectKindResidential => 'Residential';
+
+  @override
+  String get projectsSortRecent => 'Most Recent';
+
+  @override
+  String get projectsSortAlphabetical => 'A–Z';
+
+  @override
+  String get projectsSortTooltip => 'Sort projects';
+
+  @override
+  String get projectsFilterTooltip => 'Filter projects';
+
+  @override
+  String get projectsSearchTooltip => 'Search projects';
+
+  @override
+  String get projectsSearchHint => 'Search by name or area';
+
+  @override
+  String get projectsCloseSearch => 'Close search';
+
+  @override
+  String get projectsSave => 'Save project';
+
+  @override
+  String get projectsUnsave => 'Remove from saved';
+
+  @override
+  String get projectsFeatured => 'Featured project';
+
+  @override
+  String get projectsViewProject => 'View Project';
+
+  @override
+  String get projectsEmptyTitle => 'No projects match';
+
+  @override
+  String get projectsEmptySaved => 'Tap the heart on a project to keep it here.';
+
+  @override
+  String get projectsShowAll => 'Show all projects';
+
+  @override
+  String projectsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: '$count projects', one: '1 project');
+    return '$_temp0';
+  }
+
+  @override
+  String get homeServicesHeading => 'Our Services';
+
+  @override
+  String get homeFeaturedProjects => 'Featured Projects';
+
+  @override
+  String get homeViewAll => 'View All';
+
+  @override
+  String get homeHeroCta => 'Get Started';
+
+  @override
+  String get homeEstimateTitle => 'Get an Estimated Price for Your Project';
+
+  @override
+  String get homeEstimateBody => 'Published starting prices, before VAT. Your quotation follows a free site survey.';
+
+  @override
+  String get homeEstimateCta => 'See Starting Prices';
+
+  @override
+  String get homeWhyTitle => 'Why Bait Al Ebdaa';
+
+  @override
+  String get homeWhyTagline => 'More Than Spaces, Lasting Value';
+
+  @override
+  String get homeSearchTooltip => 'Search services and projects';
+
+  @override
+  String get homeRequestsTooltip => 'My requests';
+
+  @override
+  String get homeRequestsActiveTooltip => 'My requests, one in progress';
+
+  @override
+  String get homeEmirateTooltip => 'Choose your emirate';
+
+  @override
+  String get homeEmirateAll => 'UAE';
+
+  @override
+  String get homeEmirateAllOption => 'All of the UAE';
+
+  @override
+  String get homeEmirateSheetBody =>
+      'We work in all seven emirates at the same prices. Your choice is filled in when you start a request.';
+
+  @override
+  String get searchHint => 'Search services and projects';
+
+  @override
+  String get searchServices => 'Services';
+
+  @override
+  String get searchProjects => 'Projects';
+
+  @override
+  String get searchEmpty => 'Nothing matches your search';
+
+  @override
+  String get serviceDetailsTitle => 'Service Details';
+
+  @override
+  String get serviceSave => 'Save service';
+
+  @override
+  String get serviceUnsave => 'Remove from saved';
+
+  @override
+  String get serviceShare => 'Share';
+
+  @override
+  String serviceShareText(String service, String url) {
+    return '$service by Bait Al Ebdaa: $url';
+  }
+
+  @override
+  String get serviceFactSurvey => 'Free site survey';
+
+  @override
+  String get serviceFactEmirates => 'All seven emirates';
+
+  @override
+  String get serviceFactFactory => 'Own joinery factory';
+
+  @override
+  String get serviceStartingFrom => 'Starting price';
+
+  @override
+  String get serviceShowLess => 'Show Less';
+
+  @override
+  String get serviceHowItWorks => 'How It Works';
+
+  @override
+  String get serviceRequestConsultation => 'Request Consultation';
+
+  @override
+  String get profileSavedTitle => 'Saved';
+
+  @override
+  String get requestFlowTitle => 'Plan Your Project';
+
+  @override
+  String get requestPageRequirements => 'Your Requirements';
+
+  @override
+  String get requestPageDetails => 'Details';
+
+  @override
+  String get requestPageConsultation => 'Consultation';
+
+  @override
+  String get requestPageContact => 'Contact';
+
+  @override
+  String get requestPageReview => 'Review';
+
+  @override
+  String get requestPageComplete => 'Complete';
+
+  @override
+  String requestProgress(int current, int total, String name) {
+    return 'Step $current of $total: $name';
+  }
+
+  @override
+  String get requestSectionService => 'Service';
+
+  @override
+  String get requestSectionProperty => 'Property Type';
+
+  @override
+  String get requestSectionEmirate => 'Emirate';
+
+  @override
+  String get requestSectionSize => 'Approximate Size';
+
+  @override
+  String get requestSectionBudget => 'Budget';
+
+  @override
+  String get requestSectionStage => 'Project Stage';
+
+  @override
+  String get requestSectionDetails => 'Project Details';
+
+  @override
+  String get requestSectionConsultation => 'Consultation';
+
+  @override
+  String get requestSectionTime => 'Preferred Time';
+
+  @override
+  String get requestSectionContact => 'Your Details';
+
+  @override
+  String get requestSectionPhotos => 'Photos / Floor Plans';
+
+  @override
+  String get requestPhotosBody =>
+      'After you send your request, share photos, floor plans or inspiration images on WhatsApp. Your request number is added for you.';
+
+  @override
+  String get requestTimeInfoTitle => 'Preferred time and date will be confirmed later';
+
+  @override
+  String get requestTimeInfoBody => 'Our team will get in touch to schedule a consultation at your convenience.';
+
+  @override
+  String get requestSaveDraft => 'Save Draft';
+
+  @override
+  String get requestDraftSaved => 'Draft saved. Continue any time from Home or Book.';
+
+  @override
+  String get myRequestTitle => 'My Request';
+
+  @override
+  String get myRequestSubtitle => 'Track the progress of your project consultation request.';
+
+  @override
+  String get myRequestId => 'Request ID';
+
+  @override
+  String get myRequestCopy => 'Copy request ID';
+
+  @override
+  String get myRequestCopied => 'Request ID copied';
+
+  @override
+  String get myRequestConsultation => 'Preferred Consultation';
+
+  @override
+  String get myRequestPreferredDate => 'Preferred Date';
+
+  @override
+  String get myRequestPreferredTime => 'Preferred Time';
+
+  @override
+  String get myRequestPhotos => 'Photos & Plans';
+
+  @override
+  String get myRequestPhotosBody => 'Send photos or floor plans on WhatsApp; your request number is added for you.';
+
+  @override
+  String get myRequestHelpBody => 'Our team is here to support you with any questions about your request.';
+
+  @override
+  String get authLoginTitle => 'Welcome Back';
+
+  @override
+  String get authLoginIntro => 'Log in to continue planning and building exceptional spaces across the UAE.';
+
+  @override
+  String get authRegisterTitle => 'Create Your Account';
+
+  @override
+  String get authRegisterIntro => 'Join Bait Al Ebdaa and start planning your dream space with our expert team.';
+
+  @override
+  String get authLogIn => 'Log In';
+
+  @override
+  String get authCreateAccount => 'Create Account';
+
+  @override
+  String get authFullName => 'Full Name';
+
+  @override
+  String get authFullNameHelp => 'Enter your full name';
+
+  @override
+  String get authEmail => 'Email Address';
+
+  @override
+  String get authEmailHelp => 'Enter your email address';
+
+  @override
+  String get authPhone => 'Phone Number';
+
+  @override
+  String get authPhoneExample => '+971 50 123 4567';
+
+  @override
+  String get authPhoneHelp => 'Enter your phone number';
+
+  @override
+  String authPasswordHelp(int min) {
+    return 'Create a strong password (min. $min characters)';
+  }
+
+  @override
+  String authAgree(String terms, String privacy) {
+    return 'I agree to the $terms and $privacy';
+  }
+
+  @override
+  String get authTerms => 'Terms of Service';
+
+  @override
+  String get authPrivacy => 'Privacy Policy';
+
+  @override
+  String get authAgreeRequired => 'Please agree to the Terms of Service and Privacy Policy.';
+
+  @override
+  String get authOr => 'Or continue with';
+
+  @override
+  String get authGoogle => 'Continue with Google';
+
+  @override
+  String get authApple => 'Continue with Apple';
+
+  @override
+  String get authNoAccount => 'Don\'t have an account?';
+
+  @override
+  String get authSignUp => 'Sign Up';
+
+  @override
+  String get authHaveAccount => 'Already have an account?';
+
+  @override
+  String get authForgot => 'Forgot Password?';
+
+  @override
+  String get splashTagline => 'Designing exceptional spaces across the UAE.';
+
+  @override
+  String get brandServicesLine => 'INTERIORS | FIT-OUT | JOINERY';
 }

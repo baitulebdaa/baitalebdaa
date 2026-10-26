@@ -290,7 +290,7 @@ class _DayChip extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppRadius.md),
           side: BorderSide(
-            color: selected ? colors.brandAccentStrong : (enabled ? colors.borderControl : colors.borderSubtle),
+            color: selected ? colors.brandPrimary : (enabled ? colors.borderControl : colors.borderSubtle),
             width: selected ? 2 : 1,
           ),
         ),

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:baitalebdaa_app/app/router/app_shell.dart';
 import 'package:baitalebdaa_app/core/failure/failure.dart';
 import 'package:baitalebdaa_app/core/fakes/debug_analytics_sink.dart';
 import 'package:baitalebdaa_app/features/assistant/data/assistant_gateway.dart';
@@ -112,7 +113,7 @@ void main() {
     testWidgets('opens from the Home card, above the tabs', (tester) async {
       await openAssistant(tester);
 
-      expect(find.byType(NavigationBar), findsNothing);
+      expect(find.byType(AppTabBar), findsNothing);
       expect(find.byType(TextField), findsOneWidget);
     });
 

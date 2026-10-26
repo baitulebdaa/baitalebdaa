@@ -34,6 +34,18 @@ class FakeAuthGateway implements AuthGateway {
     return account.user;
   }
 
+  /// Signs in a sample account for the provider, the same one every time.
+  @override
+  Future<AppUser?> signInWithProvider(SocialProvider provider) async {
+    final email = '${provider.name}.customer@example.ae';
+    final account = _accounts[email] ??= (
+      password: '',
+      user: AppUser(uid: _newUid(), isAnonymous: false, email: email, displayName: 'Sara Ahmed'),
+    );
+    _set(account.user);
+    return account.user;
+  }
+
   @override
   Future<AppUser> createAccount({required String name, required String email, required String password}) async {
     final key = email.trim().toLowerCase();

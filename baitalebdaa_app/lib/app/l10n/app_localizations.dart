@@ -503,7 +503,7 @@ abstract class AppLocalizations {
   /// Email sign-in is switched off in Firebase.
   ///
   /// In en, this message translates to:
-  /// **'Email sign-in isn\'t available right now.'**
+  /// **'This sign-in option isn\'t available right now.'**
   String get authErrorMethodDisabled;
 
   /// Profile tab button for guests.
@@ -1741,6 +1741,726 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Free consultation'**
   String get bookEyebrow;
+
+  /// Projects filter chip: every project.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get projectsFilterAll;
+
+  /// Projects filter chip.
+  ///
+  /// In en, this message translates to:
+  /// **'Villas'**
+  String get projectsFilterVillas;
+
+  /// Projects filter chip.
+  ///
+  /// In en, this message translates to:
+  /// **'Apartments'**
+  String get projectsFilterApartments;
+
+  /// Projects filter chip.
+  ///
+  /// In en, this message translates to:
+  /// **'Offices'**
+  String get projectsFilterOffices;
+
+  /// Projects filter chip: projects with made-to-measure joinery.
+  ///
+  /// In en, this message translates to:
+  /// **'Joinery'**
+  String get projectsFilterJoinery;
+
+  /// Projects filter chip: projects the visitor saved with the heart.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved'**
+  String get projectsFilterSaved;
+
+  /// Label on a project photo.
+  ///
+  /// In en, this message translates to:
+  /// **'Villa'**
+  String get projectKindVilla;
+
+  /// Label on a project photo.
+  ///
+  /// In en, this message translates to:
+  /// **'Apartment'**
+  String get projectKindApartment;
+
+  /// Label on a project photo (offices).
+  ///
+  /// In en, this message translates to:
+  /// **'Commercial'**
+  String get projectKindCommercial;
+
+  /// Label on a project photo.
+  ///
+  /// In en, this message translates to:
+  /// **'Residential'**
+  String get projectKindResidential;
+
+  /// Sort order: newest projects first.
+  ///
+  /// In en, this message translates to:
+  /// **'Most Recent'**
+  String get projectsSortRecent;
+
+  /// Sort order: by project name.
+  ///
+  /// In en, this message translates to:
+  /// **'A–Z'**
+  String get projectsSortAlphabetical;
+
+  /// Tooltip of the sort menu.
+  ///
+  /// In en, this message translates to:
+  /// **'Sort projects'**
+  String get projectsSortTooltip;
+
+  /// Tooltip of the filter button and title of its sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Filter projects'**
+  String get projectsFilterTooltip;
+
+  /// Tooltip of the search button.
+  ///
+  /// In en, this message translates to:
+  /// **'Search projects'**
+  String get projectsSearchTooltip;
+
+  /// Hint in the projects search field.
+  ///
+  /// In en, this message translates to:
+  /// **'Search by name or area'**
+  String get projectsSearchHint;
+
+  /// Tooltip that closes the search field.
+  ///
+  /// In en, this message translates to:
+  /// **'Close search'**
+  String get projectsCloseSearch;
+
+  /// Heart button, not yet saved.
+  ///
+  /// In en, this message translates to:
+  /// **'Save project'**
+  String get projectsSave;
+
+  /// Heart button, already saved.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove from saved'**
+  String get projectsUnsave;
+
+  /// Label on the large featured project banner.
+  ///
+  /// In en, this message translates to:
+  /// **'Featured project'**
+  String get projectsFeatured;
+
+  /// Button on the featured project banner.
+  ///
+  /// In en, this message translates to:
+  /// **'View Project'**
+  String get projectsViewProject;
+
+  /// Empty state when filters or search find nothing.
+  ///
+  /// In en, this message translates to:
+  /// **'No projects match'**
+  String get projectsEmptyTitle;
+
+  /// Empty state of the Saved filter.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap the heart on a project to keep it here.'**
+  String get projectsEmptySaved;
+
+  /// Button that clears filters and search.
+  ///
+  /// In en, this message translates to:
+  /// **'Show all projects'**
+  String get projectsShowAll;
+
+  /// Number of projects next to a filter in the filter sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 project} other{{count} projects}}'**
+  String projectsCount(int count);
+
+  /// Home section title.
+  ///
+  /// In en, this message translates to:
+  /// **'Our Services'**
+  String get homeServicesHeading;
+
+  /// Home section title.
+  ///
+  /// In en, this message translates to:
+  /// **'Featured Projects'**
+  String get homeFeaturedProjects;
+
+  /// Link at the end of a Home section title.
+  ///
+  /// In en, this message translates to:
+  /// **'View All'**
+  String get homeViewAll;
+
+  /// Button on the Home banner; starts a consultation request.
+  ///
+  /// In en, this message translates to:
+  /// **'Get Started'**
+  String get homeHeroCta;
+
+  /// Home price banner title.
+  ///
+  /// In en, this message translates to:
+  /// **'Get an Estimated Price for Your Project'**
+  String get homeEstimateTitle;
+
+  /// Home price banner text.
+  ///
+  /// In en, this message translates to:
+  /// **'Published starting prices, before VAT. Your quotation follows a free site survey.'**
+  String get homeEstimateBody;
+
+  /// Home price banner button; opens the price guide.
+  ///
+  /// In en, this message translates to:
+  /// **'See Starting Prices'**
+  String get homeEstimateCta;
+
+  /// Home section title.
+  ///
+  /// In en, this message translates to:
+  /// **'Why Bait Al Ebdaa'**
+  String get homeWhyTitle;
+
+  /// Short line next to the Why title.
+  ///
+  /// In en, this message translates to:
+  /// **'More Than Spaces, Lasting Value'**
+  String get homeWhyTagline;
+
+  /// Home header search button.
+  ///
+  /// In en, this message translates to:
+  /// **'Search services and projects'**
+  String get homeSearchTooltip;
+
+  /// Home header bell; opens the request list on Profile.
+  ///
+  /// In en, this message translates to:
+  /// **'My requests'**
+  String get homeRequestsTooltip;
+
+  /// Home header bell when a request is still open.
+  ///
+  /// In en, this message translates to:
+  /// **'My requests, one in progress'**
+  String get homeRequestsActiveTooltip;
+
+  /// Home header emirate picker.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your emirate'**
+  String get homeEmirateTooltip;
+
+  /// Emirate picker value when no emirate is chosen.
+  ///
+  /// In en, this message translates to:
+  /// **'UAE'**
+  String get homeEmirateAll;
+
+  /// Emirate picker option for no particular emirate.
+  ///
+  /// In en, this message translates to:
+  /// **'All of the UAE'**
+  String get homeEmirateAllOption;
+
+  /// Emirate picker explanation.
+  ///
+  /// In en, this message translates to:
+  /// **'We work in all seven emirates at the same prices. Your choice is filled in when you start a request.'**
+  String get homeEmirateSheetBody;
+
+  /// Search field hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search services and projects'**
+  String get searchHint;
+
+  /// Search results group.
+  ///
+  /// In en, this message translates to:
+  /// **'Services'**
+  String get searchServices;
+
+  /// Search results group.
+  ///
+  /// In en, this message translates to:
+  /// **'Projects'**
+  String get searchProjects;
+
+  /// Search with no results.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing matches your search'**
+  String get searchEmpty;
+
+  /// Title of the service page bar.
+  ///
+  /// In en, this message translates to:
+  /// **'Service Details'**
+  String get serviceDetailsTitle;
+
+  /// Bookmark button, not yet saved.
+  ///
+  /// In en, this message translates to:
+  /// **'Save service'**
+  String get serviceSave;
+
+  /// Bookmark button, already saved.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove from saved'**
+  String get serviceUnsave;
+
+  /// Share button on the service page.
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
+  String get serviceShare;
+
+  /// Text shared from a service page.
+  ///
+  /// In en, this message translates to:
+  /// **'{service} by Bait Al Ebdaa: {url}'**
+  String serviceShareText(String service, String url);
+
+  /// Service fact chip.
+  ///
+  /// In en, this message translates to:
+  /// **'Free site survey'**
+  String get serviceFactSurvey;
+
+  /// Service fact chip.
+  ///
+  /// In en, this message translates to:
+  /// **'All seven emirates'**
+  String get serviceFactEmirates;
+
+  /// Service fact chip: the in-house factory in Ajman.
+  ///
+  /// In en, this message translates to:
+  /// **'Own joinery factory'**
+  String get serviceFactFactory;
+
+  /// Label above a service starting price.
+  ///
+  /// In en, this message translates to:
+  /// **'Starting price'**
+  String get serviceStartingFrom;
+
+  /// Collapses the full list of inclusions.
+  ///
+  /// In en, this message translates to:
+  /// **'Show Less'**
+  String get serviceShowLess;
+
+  /// Service page section title: the four stages.
+  ///
+  /// In en, this message translates to:
+  /// **'How It Works'**
+  String get serviceHowItWorks;
+
+  /// Sticky button on the service page; starts a free site survey request.
+  ///
+  /// In en, this message translates to:
+  /// **'Request Consultation'**
+  String get serviceRequestConsultation;
+
+  /// Profile section listing saved services and projects.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved'**
+  String get profileSavedTitle;
+
+  /// Title of the request screens.
+  ///
+  /// In en, this message translates to:
+  /// **'Plan Your Project'**
+  String get requestFlowTitle;
+
+  /// Request progress step label.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Requirements'**
+  String get requestPageRequirements;
+
+  /// Request progress step label.
+  ///
+  /// In en, this message translates to:
+  /// **'Details'**
+  String get requestPageDetails;
+
+  /// Request progress step label.
+  ///
+  /// In en, this message translates to:
+  /// **'Consultation'**
+  String get requestPageConsultation;
+
+  /// Request progress step label.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact'**
+  String get requestPageContact;
+
+  /// Request progress step label.
+  ///
+  /// In en, this message translates to:
+  /// **'Review'**
+  String get requestPageReview;
+
+  /// Request progress step label.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete'**
+  String get requestPageComplete;
+
+  /// Screen reader text for the request progress.
+  ///
+  /// In en, this message translates to:
+  /// **'Step {current} of {total}: {name}'**
+  String requestProgress(int current, int total, String name);
+
+  /// Numbered section on the request screen.
+  ///
+  /// In en, this message translates to:
+  /// **'Service'**
+  String get requestSectionService;
+
+  /// Numbered section on the request screen.
+  ///
+  /// In en, this message translates to:
+  /// **'Property Type'**
+  String get requestSectionProperty;
+
+  /// Numbered section on the request screen.
+  ///
+  /// In en, this message translates to:
+  /// **'Emirate'**
+  String get requestSectionEmirate;
+
+  /// Numbered section on the request screen.
+  ///
+  /// In en, this message translates to:
+  /// **'Approximate Size'**
+  String get requestSectionSize;
+
+  /// Numbered section on the request screen.
+  ///
+  /// In en, this message translates to:
+  /// **'Budget'**
+  String get requestSectionBudget;
+
+  /// Numbered section on the request screen.
+  ///
+  /// In en, this message translates to:
+  /// **'Project Stage'**
+  String get requestSectionStage;
+
+  /// Numbered section on the request screen.
+  ///
+  /// In en, this message translates to:
+  /// **'Project Details'**
+  String get requestSectionDetails;
+
+  /// Numbered section on the request screen.
+  ///
+  /// In en, this message translates to:
+  /// **'Consultation'**
+  String get requestSectionConsultation;
+
+  /// Numbered section on the request screen.
+  ///
+  /// In en, this message translates to:
+  /// **'Preferred Time'**
+  String get requestSectionTime;
+
+  /// Numbered section on the request screen.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Details'**
+  String get requestSectionContact;
+
+  /// Numbered section on the request screen.
+  ///
+  /// In en, this message translates to:
+  /// **'Photos / Floor Plans'**
+  String get requestSectionPhotos;
+
+  /// Photos section: they are shared on WhatsApp after sending.
+  ///
+  /// In en, this message translates to:
+  /// **'After you send your request, share photos, floor plans or inspiration images on WhatsApp. Your request number is added for you.'**
+  String get requestPhotosBody;
+
+  /// Info card on the request screen.
+  ///
+  /// In en, this message translates to:
+  /// **'Preferred time and date will be confirmed later'**
+  String get requestTimeInfoTitle;
+
+  /// Info card on the request screen.
+  ///
+  /// In en, this message translates to:
+  /// **'Our team will get in touch to schedule a consultation at your convenience.'**
+  String get requestTimeInfoBody;
+
+  /// Leaves the request; the answers stay on the device.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Draft'**
+  String get requestSaveDraft;
+
+  /// Shown after Save Draft.
+  ///
+  /// In en, this message translates to:
+  /// **'Draft saved. Continue any time from Home or Book.'**
+  String get requestDraftSaved;
+
+  /// Title of a sent request.
+  ///
+  /// In en, this message translates to:
+  /// **'My Request'**
+  String get myRequestTitle;
+
+  /// Line under the request title.
+  ///
+  /// In en, this message translates to:
+  /// **'Track the progress of your project consultation request.'**
+  String get myRequestSubtitle;
+
+  /// Label above the request reference.
+  ///
+  /// In en, this message translates to:
+  /// **'Request ID'**
+  String get myRequestId;
+
+  /// Copy button tooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy request ID'**
+  String get myRequestCopy;
+
+  /// Shown after copying the reference.
+  ///
+  /// In en, this message translates to:
+  /// **'Request ID copied'**
+  String get myRequestCopied;
+
+  /// Card title: the time and way the customer asked for.
+  ///
+  /// In en, this message translates to:
+  /// **'Preferred Consultation'**
+  String get myRequestConsultation;
+
+  /// Label in the consultation card.
+  ///
+  /// In en, this message translates to:
+  /// **'Preferred Date'**
+  String get myRequestPreferredDate;
+
+  /// Label in the consultation card.
+  ///
+  /// In en, this message translates to:
+  /// **'Preferred Time'**
+  String get myRequestPreferredTime;
+
+  /// Card title: how to send photos and plans.
+  ///
+  /// In en, this message translates to:
+  /// **'Photos & Plans'**
+  String get myRequestPhotos;
+
+  /// Photos card text.
+  ///
+  /// In en, this message translates to:
+  /// **'Send photos or floor plans on WhatsApp; your request number is added for you.'**
+  String get myRequestPhotosBody;
+
+  /// Need help card text.
+  ///
+  /// In en, this message translates to:
+  /// **'Our team is here to support you with any questions about your request.'**
+  String get myRequestHelpBody;
+
+  /// Log-in screen title.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome Back'**
+  String get authLoginTitle;
+
+  /// Line under the log-in title.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in to continue planning and building exceptional spaces across the UAE.'**
+  String get authLoginIntro;
+
+  /// Sign-up screen title.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Your Account'**
+  String get authRegisterTitle;
+
+  /// Line under the sign-up title.
+  ///
+  /// In en, this message translates to:
+  /// **'Join Bait Al Ebdaa and start planning your dream space with our expert team.'**
+  String get authRegisterIntro;
+
+  /// Log-in button and link.
+  ///
+  /// In en, this message translates to:
+  /// **'Log In'**
+  String get authLogIn;
+
+  /// Sign-up button.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Account'**
+  String get authCreateAccount;
+
+  /// Name field.
+  ///
+  /// In en, this message translates to:
+  /// **'Full Name'**
+  String get authFullName;
+
+  /// Under the name field.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your full name'**
+  String get authFullNameHelp;
+
+  /// Email field.
+  ///
+  /// In en, this message translates to:
+  /// **'Email Address'**
+  String get authEmail;
+
+  /// Under the email field on sign-up.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email address'**
+  String get authEmailHelp;
+
+  /// Phone field on sign-up.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone Number'**
+  String get authPhone;
+
+  /// Example number shown in the empty phone field.
+  ///
+  /// In en, this message translates to:
+  /// **'+971 50 123 4567'**
+  String get authPhoneExample;
+
+  /// Under the phone field.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your phone number'**
+  String get authPhoneHelp;
+
+  /// Under the password field on sign-up.
+  ///
+  /// In en, this message translates to:
+  /// **'Create a strong password (min. {min} characters)'**
+  String authPasswordHelp(int min);
+
+  /// Terms checkbox; the placeholders become links.
+  ///
+  /// In en, this message translates to:
+  /// **'I agree to the {terms} and {privacy}'**
+  String authAgree(String terms, String privacy);
+
+  /// Link to the website's terms.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms of Service'**
+  String get authTerms;
+
+  /// Link to the website's privacy policy.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy Policy'**
+  String get authPrivacy;
+
+  /// Shown when creating an account without ticking the box.
+  ///
+  /// In en, this message translates to:
+  /// **'Please agree to the Terms of Service and Privacy Policy.'**
+  String get authAgreeRequired;
+
+  /// Divider above Google and Apple.
+  ///
+  /// In en, this message translates to:
+  /// **'Or continue with'**
+  String get authOr;
+
+  /// Google sign-in button.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with Google'**
+  String get authGoogle;
+
+  /// Apple sign-in button.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with Apple'**
+  String get authApple;
+
+  /// Before the Sign Up link.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t have an account?'**
+  String get authNoAccount;
+
+  /// Link to the sign-up screen.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign Up'**
+  String get authSignUp;
+
+  /// Before the Log In link.
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account?'**
+  String get authHaveAccount;
+
+  /// Link to reset the password.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot Password?'**
+  String get authForgot;
+
+  /// Line on the launch screen.
+  ///
+  /// In en, this message translates to:
+  /// **'Designing exceptional spaces across the UAE.'**
+  String get splashTagline;
+
+  /// Small line under the wordmark.
+  ///
+  /// In en, this message translates to:
+  /// **'INTERIORS | FIT-OUT | JOINERY'**
+  String get brandServicesLine;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

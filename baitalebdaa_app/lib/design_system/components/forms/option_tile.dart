@@ -27,7 +27,7 @@ class OptionTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.colors;
     final description = this.description;
-    final borderColor = selected ? colors.brandAccentStrong : colors.borderControl;
+    final borderColor = selected ? colors.brandPrimary : colors.borderControl;
     return Semantics(
       button: true,
       selected: selected,
@@ -65,7 +65,7 @@ class OptionTile extends StatelessWidget {
                   ),
                   if (selected) ...[
                     const SizedBox(width: AppSpacing.xs),
-                    Icon(AppIcons.selected, size: AppIcons.sizeSmall, color: colors.brandAccentStrong),
+                    Icon(AppIcons.selected, size: AppIcons.sizeSmall, color: colors.brandPrimary),
                   ],
                 ],
               ),

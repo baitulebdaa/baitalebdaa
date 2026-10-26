@@ -21,6 +21,31 @@ enum RequestStep {
   };
 }
 
+/// The request's screens (owner's design, 26 Oct 2026): several questions on each, in
+/// [RequestStep] order. Review and "received" follow the last one.
+enum RequestPage {
+  requirements([
+    RequestStep.services,
+    RequestStep.property,
+    RequestStep.location,
+    RequestStep.size,
+    RequestStep.stage,
+    RequestStep.budget,
+  ]),
+  details([RequestStep.details]),
+  consultation([RequestStep.consultation, RequestStep.time]),
+  contact([RequestStep.contact]);
+
+  const RequestPage(this.steps);
+
+  final List<RequestStep> steps;
+
+  static RequestPage of(RequestStep step) => values.firstWhere((page) => page.steps.contains(step));
+
+  /// Issues that stop the customer leaving this screen.
+  Set<RequestIssue> issues(RequestDraft draft) => {for (final step in steps) ...validateStep(step, draft)};
+}
+
 enum RequestIssue {
   chooseService,
   chooseEmirate,

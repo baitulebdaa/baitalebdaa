@@ -1,11 +1,14 @@
 import 'dart:async';
 
+import 'package:baitalebdaa_app/app/router/app_shell.dart';
 import 'package:baitalebdaa_app/app/router/routes.dart';
 import 'package:baitalebdaa_app/core/fakes/fake_auth_gateway.dart';
+import 'package:baitalebdaa_app/features/auth/data/account_phone.dart';
 import 'package:baitalebdaa_app/features/settings/domain/app_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../helpers/test_app.dart';
 
@@ -14,11 +17,19 @@ Future<void> _fillAndSubmit(WidgetTester tester, Map<String, String> fields, Str
     await tester.enterText(find.widgetWithText(TextFormField, label), text);
   }
   await tester.ensureVisible(find.widgetWithText(FilledButton, button));
+  await tester.pumpAndSettle();
   await tester.tap(find.widgetWithText(FilledButton, button));
   await tester.pumpAndSettle();
 }
 
 Future<void> _tapText(WidgetTester tester, String text) => scrollAndTap(tester, find.text(text));
+
+final _phoneField = find.byWidgetPredicate(
+  (widget) => widget is TextField && widget.keyboardType == TextInputType.phone,
+);
+
+/// Ticks "I agree to the Terms of Service and Privacy Policy" on sign-up.
+Future<void> _agree(WidgetTester tester) => scrollAndTap(tester, find.byType(Checkbox));
 
 final _page = find.byWidgetPredicate((widget) => widget is Scrollable && widget.axisDirection == AxisDirection.down);
 
@@ -42,22 +53,15 @@ void main() {
     await pumpApp(tester);
 
     expect(find.text(realSnapshot.hero.title.en), findsOneWidget);
-    expect(find.widgetWithText(FilledButton, 'Sign in'), findsNothing);
-    expect(find.text('Welcome'), findsOneWidget);
-  });
-
-  testWidgets('an account holder is greeted by first name on Home', (tester) async {
-    await pumpApp(tester, auth: signedInAuth());
-
-    expect(find.textContaining(', Sara'), findsOneWidget);
+    expect(find.widgetWithText(FilledButton, 'Log In'), findsNothing);
   });
 
   testWidgets('sign-in opens from Profile above the tabs and can be closed', (tester) async {
     await pumpApp(tester);
     await _openFromProfile(tester);
 
-    expect(find.widgetWithText(FilledButton, 'Sign in'), findsOneWidget);
-    expect(find.byType(NavigationBar), findsNothing, reason: 'sign-in covers the tabs');
+    expect(find.widgetWithText(FilledButton, 'Log In'), findsOneWidget);
+    expect(find.byType(AppTabBar), findsNothing, reason: 'sign-in covers the tabs');
     await tester.tap(find.byTooltip('Close'));
     await tester.pumpAndSettle();
     expect(find.text('Sign in or create an account'), findsOneWidget, reason: 'back on Profile');
@@ -66,35 +70,36 @@ void main() {
   testWidgets('empty or malformed fields are flagged before anything is sent', (tester) async {
     await pumpApp(tester);
     await _openFromProfile(tester);
-    await _fillAndSubmit(tester, {}, 'Sign in');
+    await _fillAndSubmit(tester, {}, 'Log In');
     expect(find.text('Required'), findsNWidgets(2));
 
-    await _fillAndSubmit(tester, {'Email': 'sara@', 'Password': 'x'}, 'Sign in');
+    await _fillAndSubmit(tester, {'Email Address': 'sara@', 'Password': 'x'}, 'Log In');
     expect(find.text('Enter a valid email address'), findsOneWidget);
   });
 
   testWidgets('a wrong password keeps the user on sign-in with a clear message', (tester) async {
     await pumpApp(tester);
     await _openFromProfile(tester);
-    await _fillAndSubmit(tester, {'Email': 'nobody@example.ae', 'Password': 'wrong-pass'}, 'Sign in');
+    await _fillAndSubmit(tester, {'Email Address': 'nobody@example.ae', 'Password': 'wrong-pass'}, 'Log In');
 
     expect(find.text("The email or password isn't right."), findsOneWidget);
-    expect(find.widgetWithText(FilledButton, 'Sign in'), findsOneWidget);
+    expect(find.widgetWithText(FilledButton, 'Log In'), findsOneWidget);
   });
 
   testWidgets('creating an account returns to Profile signed in, until sign-out', (tester) async {
     await pumpApp(tester);
     await _openFromProfile(tester);
-    await _tapText(tester, 'New here? Create an account');
-    expect(find.text('Create your account'), findsOneWidget);
+    await _tapText(tester, 'Sign Up');
+    expect(find.text('Create Your Account'), findsOneWidget);
 
+    await _agree(tester);
     await _fillAndSubmit(tester, {
-      'Full name': 'Sara Ahmed',
-      'Email': 'sara@example.ae',
+      'Full Name': 'Sara Ahmed',
+      'Email Address': 'sara@example.ae',
       'Password': 'longenough',
-    }, 'Create account');
+    }, 'Create Account');
 
-    expect(find.byType(NavigationBar), findsOneWidget, reason: 'sign-in closed itself once signed in');
+    expect(find.byType(AppTabBar), findsOneWidget, reason: 'sign-in closed itself once signed in');
     expect(find.text('Sara Ahmed'), findsOneWidget);
     expect(find.text('sara@example.ae'), findsOneWidget);
     expect(find.text('Check your inbox to verify your email address.'), findsOneWidget);
@@ -108,12 +113,13 @@ void main() {
   testWidgets('a short new password is refused with the rule', (tester) async {
     await pumpApp(tester);
     await _openFromProfile(tester);
-    await _tapText(tester, 'New here? Create an account');
+    await _tapText(tester, 'Sign Up');
+    await _agree(tester);
     await _fillAndSubmit(tester, {
-      'Full name': 'Sara',
-      'Email': 'sara@example.ae',
+      'Full Name': 'Sara',
+      'Email Address': 'sara@example.ae',
       'Password': 'short',
-    }, 'Create account');
+    }, 'Create Account');
 
     expect(find.text('Use at least 8 characters'), findsOneWidget);
   });
@@ -121,8 +127,8 @@ void main() {
   testWidgets('a reset link is confirmed without revealing whether the account exists', (tester) async {
     await pumpApp(tester);
     await _openFromProfile(tester);
-    await _tapText(tester, 'Forgot password?');
-    await _fillAndSubmit(tester, {'Email': 'sara@example.ae'}, 'Send reset link');
+    await _tapText(tester, 'Forgot Password?');
+    await _fillAndSubmit(tester, {'Email Address': 'sara@example.ae'}, 'Send reset link');
 
     expect(find.textContaining('If an account exists for sara@example.ae'), findsOneWidget);
   });
@@ -134,8 +140,8 @@ void main() {
     await pumpApp(tester, auth: auth);
     await _openFromProfile(tester);
 
-    await _fillAndSubmit(tester, {'Email': 'sara@example.ae', 'Password': 'longenough'}, 'Sign in');
-    expect(find.byType(NavigationBar), findsOneWidget, reason: 'sign-in closed itself');
+    await _fillAndSubmit(tester, {'Email Address': 'sara@example.ae', 'Password': 'longenough'}, 'Log In');
+    expect(find.byType(AppTabBar), findsOneWidget, reason: 'sign-in closed itself');
     await _scrollTo(tester, 'Sign out');
     expect(find.text('Sign out'), findsOneWidget, reason: 'back on Profile, signed in');
   });
@@ -158,17 +164,46 @@ void main() {
     expect(find.text('Sign in or create an account'), findsOneWidget);
   });
 
-  testWidgets('sign-in works in Arabic, right to left, and can switch language', (tester) async {
+  testWidgets('sign-in works in Arabic, right to left', (tester) async {
     await pumpApp(tester, settings: const AppSettings(language: AppLanguage.ar));
     unawaited(GoRouter.of(tester.element(find.byType(Scaffold).first)).push(AppRoutes.signIn));
     await tester.pumpAndSettle();
 
     expect(Directionality.of(tester.element(find.byType(Form))), TextDirection.rtl);
     expect(find.widgetWithText(FilledButton, 'تسجيل الدخول'), findsOneWidget);
+    expect(find.text('مرحبًا بعودتك'), findsOneWidget);
+  });
 
-    await tester.tap(find.text('English'));
+  testWidgets('an account needs the terms agreed, and keeps the phone number for requests', (tester) async {
+    await pumpApp(tester);
+    await _openFromProfile(tester);
+    await _tapText(tester, 'Sign Up');
+    await tester.enterText(_phoneField, '12');
+    await _fillAndSubmit(tester, {
+      'Full Name': 'Sara Ahmed',
+      'Email Address': 'sara@example.ae',
+      'Password': 'longenough',
+    }, 'Create Account');
+    expect(find.text('Please agree to the Terms of Service and Privacy Policy.'), findsOneWidget);
+    expect(find.textContaining('Enter a mobile number'), findsOneWidget);
+
+    await tester.enterText(_phoneField, '050 123 4567');
+    await _agree(tester);
+    await tester.ensureVisible(find.widgetWithText(FilledButton, 'Create Account'));
     await tester.pumpAndSettle();
-    expect(find.widgetWithText(FilledButton, 'Sign in'), findsOneWidget);
-    expect(Directionality.of(tester.element(find.byType(Form))), TextDirection.ltr);
+    await tester.tap(find.widgetWithText(FilledButton, 'Create Account'));
+    await tester.pumpAndSettle();
+    expect(find.byType(AppTabBar), findsOneWidget, reason: 'created and closed');
+    expect(await AccountPhoneStore(SharedPreferencesAsync()).load(), '+971501234567');
+  });
+
+  testWidgets('Continue with Google signs in and returns to Profile', (tester) async {
+    await pumpApp(tester);
+    await _openFromProfile(tester);
+    await _tapText(tester, 'Continue with Google');
+
+    expect(find.byType(AppTabBar), findsOneWidget, reason: 'sign-in closed itself');
+    await _scrollTo(tester, 'Sign out');
+    expect(find.text('Sign out'), findsOneWidget);
   });
 }

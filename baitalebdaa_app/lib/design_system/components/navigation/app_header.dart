@@ -7,6 +7,7 @@ import '../../theme/context_extensions.dart';
 import '../../tokens/app_colors.dart';
 import '../../tokens/app_icons.dart';
 import '../../tokens/app_layout_tokens.dart';
+import '../../tokens/app_typography.dart';
 import '../typography/eyebrow.dart';
 
 /// The app's one header, in three forms that share the same bar, buttons and type:
@@ -46,7 +47,8 @@ class AppBarButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    final glyph = Icon(icon, size: AppIcons.sizeSmall);
+    // Plain icons on the page (owner's design, 26 Oct 2026); dark glass circles on photos.
+    final glyph = Icon(icon, size: onPhoto ? AppIcons.sizeSmall : AppIcons.size);
     return IconButton(
       // Iconsax has no plain ×, so close is its plus turned 45°.
       icon: icon == AppIcons.close ? Transform.rotate(angle: pi / 4, child: glyph) : glyph,
@@ -56,9 +58,8 @@ class AppBarButton extends StatelessWidget {
         fixedSize: const Size.square(_buttonSize),
         minimumSize: const Size.square(_buttonSize),
         tapTargetSize: MaterialTapTargetSize.padded,
-        backgroundColor: onPhoto ? AppColors.splashBackground.withValues(alpha: 0.45) : colors.surfacePrimary,
+        backgroundColor: onPhoto ? AppColors.splashBackground.withValues(alpha: 0.45) : Colors.transparent,
         foregroundColor: onPhoto ? AppColors.dark.textPrimary : colors.textPrimary,
-        side: onPhoto ? BorderSide.none : BorderSide(color: colors.borderSubtle),
       ),
     );
   }
@@ -130,9 +131,15 @@ class _BarTitle extends StatelessWidget {
 
   final String text;
 
+  // Latin titles in the serif (owner's design, 26 Oct 2026); Arabic keeps Tajawal.
   @override
-  Widget build(BuildContext context) =>
-      Text(text, style: context.textStyles.subtitle, maxLines: 1, overflow: TextOverflow.ellipsis);
+  Widget build(BuildContext context) {
+    final styles = context.textStyles;
+    final style = styles.script == AppScript.latin
+        ? styles.headline.copyWith(fontSize: 26, height: 1.15)
+        : styles.subtitle;
+    return Text(text, style: style, maxLines: 1, overflow: TextOverflow.ellipsis);
+  }
 }
 
 /// The hairline under the bar, shown once content scrolls beneath it.

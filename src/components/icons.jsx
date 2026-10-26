@@ -40,6 +40,10 @@ import {
   Home2,
   Category,
   Building3,
+  ShoppingCart as IsxShoppingCart,
+  Box as IsxBox,
+  Lamp as IsxLamp,
+  Profile2User,
 } from "iconsax-reactjs";
 import { useI18n } from "../i18n/I18nProvider";
 
@@ -90,6 +94,10 @@ export const Paperclip = wrap(Paperclip2);
 export const Home = wrap(Home2);
 export const Services = wrap(Category);
 export const Projects = wrap(Building3);
+export const ShoppingCart = wrap(IsxShoppingCart);
+export const Box = wrap(IsxBox);
+export const Lamp = wrap(IsxLamp);
+export const Users = wrap(Profile2User);
 
 export function ArrowUpRight({ size = 24, style, ...props }) {
   let rtl = false;

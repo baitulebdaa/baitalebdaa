@@ -6966,3 +6966,186 @@ button.estimator-submit-btn {
   font-size: 0.92rem;
   line-height: 1.6;
 }
+
+/* ==========================================================================
+   Home: Product Collection (owner's design, 26 Oct 2026). Six photo cards, three
+   across, the range named over a dark fade at the foot of each photo.
+   ========================================================================== */
+.product-collection {
+  background: var(--paper);
+}
+
+.product-collection .section-heading--center {
+  margin-bottom: clamp(32px, 3.5vw, 48px);
+}
+
+.product-collection .section-heading--center h2 {
+  margin-bottom: 0;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.product-card a {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 6px;
+  background: #ddd7cc;
+  color: #fff;
+}
+
+.product-card img {
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.product-card a:hover img,
+.product-card a:focus-visible img {
+  transform: scale(1.035);
+}
+
+.product-card a:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+/* Darkens the lower half so the white copy stays readable on light photos. */
+.product-card a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.28) 38%, transparent 62%);
+  pointer-events: none;
+}
+
+.product-card__copy {
+  position: absolute;
+  z-index: 1;
+  inset: auto 0 0;
+  padding: 0 18px 18px;
+}
+
+.product-card__copy h3 {
+  margin: 0 0 6px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.05rem, 1.25vw, 1.25rem);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+
+.product-card__copy p {
+  margin: 0;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+[dir="rtl"] .product-card__copy h3 {
+  font-family: var(--font-tajawal), sans-serif;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+@media (max-width: 980px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
+
+/* ==========================================================================
+   Home: Challenges (owner's design, 26 Oct 2026). Photo on one side; on the
+   other, four problems, each with a brass icon tile.
+   ========================================================================== */
+.challenges {
+  background: #fbfaf7;
+}
+
+.challenges__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 4vw, 64px);
+  align-items: center;
+}
+
+.challenges__image {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 6px;
+  background: #ddd7cc;
+  box-shadow: 0 10px 30px rgba(17, 17, 15, 0.1);
+}
+
+.challenges__image img {
+  object-fit: cover;
+}
+
+.challenges__copy h2 {
+  margin-bottom: 28px;
+}
+
+.challenges__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 22px;
+}
+
+.challenges__list li {
+  display: grid;
+  grid-template-columns: 38px 1fr;
+  gap: 14px;
+  align-items: start;
+}
+
+.challenges__icon {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 6px;
+  background: #c9a05a;
+  color: #fff;
+}
+
+.challenges__list h3 {
+  margin: 0 0 4px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.challenges__list p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+
+[dir="rtl"] .challenges__list h3 {
+  font-family: var(--font-tajawal), sans-serif;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+@media (max-width: 900px) {
+  .challenges__inner {
+    grid-template-columns: 1fr;
+  }
+}

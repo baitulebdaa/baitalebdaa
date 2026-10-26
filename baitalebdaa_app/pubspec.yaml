@@ -29,6 +29,7 @@ dependencies:
   cloud_firestore: ^7.0.0
   cached_network_image: ^4.0.3
   iconsax_flutter: ^1.0.1
+  share_plus: ^13.3.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -59,8 +60,15 @@ flutter:
     - assets/images/
 
   # Bundled rather than fetched at runtime: works offline, no third-party request at
-  # startup, and first paint never swaps fonts. All three families are SIL OFL 1.1.
+  # startup, and first paint never swaps fonts. All four families are SIL OFL 1.1.
   fonts:
+    # Serif for large Latin titles (owner's design, 26 Oct 2026); the website uses it too.
+    - family: CormorantGaramond
+      fonts:
+        - asset: assets/fonts/CormorantGaramond-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/CormorantGaramond-Bold.ttf
+          weight: 700
     - family: Manrope
       fonts:
         - asset: assets/fonts/Manrope-Medium.ttf

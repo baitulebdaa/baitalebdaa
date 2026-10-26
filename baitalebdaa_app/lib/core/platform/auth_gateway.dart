@@ -40,6 +40,9 @@ class AppUser {
   int get hashCode => Object.hash(uid, isAnonymous, email, displayName, emailVerified);
 }
 
+/// Accounts people can sign in with besides email (owner's design, 26 Oct 2026).
+enum SocialProvider { google, apple }
+
 /// Authentication boundary: Firebase Authentication in configured builds,
 /// [FakeAuthGateway] in dev without Firebase, [UnconfiguredAuthGateway] otherwise.
 /// Every method errors with a [Failure] ([AuthFailure] for refused credentials).
@@ -50,6 +53,10 @@ abstract interface class AuthGateway {
   AppUser? get currentUser;
 
   Future<AppUser> signInWithEmail({required String email, required String password});
+
+  /// Signs in with Google or Apple in the provider's own sign-in window, creating the
+  /// account the first time. Completes with null when the person closes that window.
+  Future<AppUser?> signInWithProvider(SocialProvider provider);
 
   /// Creates the account, sets its display name and sends a verification email.
   Future<AppUser> createAccount({required String name, required String email, required String password});
@@ -82,6 +89,9 @@ class UnconfiguredAuthGateway implements AuthGateway {
   @override
   Future<AppUser> signInWithEmail({required String email, required String password}) =>
       Future<AppUser>.error(const UnavailableFailure());
+
+  @override
+  Future<AppUser?> signInWithProvider(SocialProvider provider) => Future<AppUser?>.error(const UnavailableFailure());
 
   @override
   Future<AppUser> createAccount({required String name, required String email, required String password}) =>

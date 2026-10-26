@@ -56,12 +56,13 @@ void main() {
     expect(find.text('OUR SERVICES'), findsOneWidget);
   });
 
-  testWidgets('service and project pages open under a photo header', (tester) async {
+  testWidgets('a service page has a plain bar; a project page opens under a photo header', (tester) async {
     await pumpApp(tester);
     final service = content.services.first;
     await _go(tester, '/services/${service.slug}');
     expect(tester.takeException(), isNull);
-    expect(find.byType(AppPhotoSliverHeader), findsOneWidget);
+    expect(find.byType(AppTopBar), findsOneWidget, reason: "owner's design, 26 Oct 2026");
+    expect(find.text('Service Details'), findsOneWidget);
     expect(find.byTooltip('Back'), findsOneWidget);
 
     final project = content.projects.first;
@@ -72,9 +73,9 @@ void main() {
 
   testWidgets('a photo header collapses into a plain bar with the title', (tester) async {
     await pumpApp(tester);
-    final service = content.services.first;
-    await _go(tester, '/services/${service.slug}');
-    final bar = find.descendant(of: find.byType(SliverAppBar), matching: find.text(service.name.en));
+    final project = content.projects.first;
+    await _go(tester, '/projects/${project.slug}');
+    final bar = find.descendant(of: find.byType(SliverAppBar), matching: find.text(project.title.en));
     expect(bar, findsNothing, reason: 'the photo is open, the page shows its own title');
 
     final page = find.descendant(of: find.byType(CustomScrollView), matching: find.byType(Scrollable)).first;

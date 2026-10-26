@@ -6,6 +6,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/failure/failure.dart';
 import '../../../core/platform/analytics.dart';
 import '../../../core/platform/auth_gateway.dart';
+import '../../auth/data/account_phone.dart';
+import '../../home/data/preferred_emirate.dart';
 import '../data/draft_store.dart';
 import '../data/request_repository.dart';
 import '../domain/consultation_request.dart';
@@ -34,7 +36,7 @@ class DraftController extends Notifier<RequestDraft?> {
   }
 
   /// Starts a new draft, replacing any unfinished one. Contact details are prefilled from
-  /// the signed-in account; the customer can still change them.
+  /// the signed-in account and the emirate from Home; the customer can still change them.
   Future<void> start({
     List<String> serviceIds = const [],
     PropertyType? propertyType,
@@ -48,10 +50,17 @@ class DraftController extends Notifier<RequestDraft?> {
       serviceIds: serviceIds,
       propertyType: propertyType,
       consultationType: consultationType,
+      // The emirate picked on Home, if any; the customer can still change it.
+      emirateId: ref.read(preferredEmirateProvider),
       name: account?.displayName ?? '',
       email: account?.email ?? '',
     );
     await _save();
+    // The number given when creating the account, kept on this device.
+    if (account != null) {
+      final phone = await ref.read(accountPhoneStoreProvider).load().catchError((Object _) => null);
+      if (phone != null) await update((d) => d.phone.trim().isEmpty ? d.copyWith(phone: phone) : d);
+    }
     await ref.read(analyticsSinkProvider).log(RequestStarted(entry: entry, prefilled: serviceIds.isNotEmpty));
   }
 
@@ -125,40 +134,26 @@ class RequestFlowController extends Notifier<RequestFlowState> {
 
   RequestDraft? get _draft => ref.read(draftProvider);
   RequestStep get step => RequestStep.values[(_draft?.stepIndex ?? 0).clamp(0, RequestStep.values.length - 1)];
+  RequestPage get page => RequestPage.of(step);
 
-  Future<void> next({bool skipped = false}) async {
+  /// Leaves the current screen once every question on it is answered well (optional
+  /// questions may stay empty), for the next screen or review.
+  Future<void> next() async {
     final draft = _draft;
     if (draft == null) return;
-    if (!skipped && validateStep(step, draft).isNotEmpty) {
+    if (page.issues(draft).isNotEmpty) {
       state = state.copyWith(showIssues: true);
       return;
     }
-    unawaited(ref.read(analyticsSinkProvider).log(RequestStepCompleted(step: step, skipped: skipped)));
-    final isLast = draft.stepIndex >= RequestStep.values.length - 1;
+    for (final done in page.steps) {
+      unawaited(ref.read(analyticsSinkProvider).log(RequestStepCompleted(step: done, skipped: false)));
+    }
+    final isLast = page == RequestPage.values.last;
     if (state.returnToReview || isLast) {
       state = const RequestFlowState(stage: FlowStage.review);
       return;
     }
-    await _goTo(draft.stepIndex + 1);
-  }
-
-  /// Skips an optional step, clearing anything half-entered on it.
-  Future<void> skip() async {
-    if (!step.isOptional) return;
-    await ref
-        .read(draftProvider.notifier)
-        .update(
-          (d) => switch (step) {
-            RequestStep.property => d.copyWith(propertyType: null),
-            RequestStep.size => d.copyWith(sizeValue: null, sizeUnknown: true),
-            RequestStep.budget => d.copyWith(budgetAed: null, budgetToDiscuss: true),
-            RequestStep.stage => d.copyWith(stage: null),
-            RequestStep.details => d.copyWith(note: ''),
-            RequestStep.time => d.copyWith(preferredDate: null, preferredWindow: null, timeFlexible: true),
-            _ => d,
-          },
-        );
-    await next(skipped: true);
+    await _goTo(RequestPage.values[page.index + 1].steps.first.index);
   }
 
   /// Returns false when there is nowhere further back (the caller then offers to leave).
@@ -168,8 +163,8 @@ class RequestFlowController extends Notifier<RequestFlowState> {
       return true;
     }
     final draft = _draft;
-    if (draft == null || draft.stepIndex == 0) return false;
-    await _goTo(draft.stepIndex - 1);
+    if (draft == null || page.index == 0) return false;
+    await _goTo(RequestPage.values[page.index - 1].steps.first.index);
     return true;
   }
 

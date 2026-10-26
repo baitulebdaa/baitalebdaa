@@ -67,32 +67,12 @@ abstract final class AppTheme {
         centerTitle: false,
         titleTextStyle: text.title,
       ),
-      navigationBarTheme: NavigationBarThemeData(
-        backgroundColor: colors.surfacePrimary,
-        surfaceTintColor: Colors.transparent,
-        elevation: 0,
-        height: 72,
-        indicatorColor: Colors.transparent,
-        labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
-        iconTheme: WidgetStateProperty.resolveWith(
-          (states) => IconThemeData(
-            size: 22,
-            color: states.contains(WidgetState.selected) ? colors.textPrimary : colors.textSecondary,
-          ),
-        ),
-        labelTextStyle: WidgetStateProperty.resolveWith(
-          (states) => text.caption.copyWith(
-            color: states.contains(WidgetState.selected) ? colors.textPrimary : colors.textSecondary,
-            fontWeight: states.contains(WidgetState.selected) ? FontWeight.w600 : FontWeight.w400,
-          ),
-        ),
-      ),
       navigationRailTheme: NavigationRailThemeData(
         backgroundColor: colors.surfacePrimary,
         indicatorColor: Colors.transparent,
-        selectedIconTheme: IconThemeData(color: colors.textPrimary),
+        selectedIconTheme: IconThemeData(color: colors.brandPrimary),
         unselectedIconTheme: IconThemeData(color: colors.textSecondary),
-        selectedLabelTextStyle: text.caption.copyWith(fontWeight: FontWeight.w600),
+        selectedLabelTextStyle: text.caption.copyWith(color: colors.brandPrimary, fontWeight: FontWeight.w600),
         unselectedLabelTextStyle: text.caption.copyWith(color: colors.textSecondary),
         labelType: NavigationRailLabelType.all,
       ),
@@ -137,7 +117,7 @@ abstract final class AppTheme {
       ),
       radioTheme: RadioThemeData(
         fillColor: WidgetStateProperty.resolveWith(
-          (states) => states.contains(WidgetState.selected) ? colors.brandAccentStrong : colors.borderControl,
+          (states) => states.contains(WidgetState.selected) ? colors.brandPrimary : colors.borderControl,
         ),
       ),
       inputDecorationTheme: InputDecorationTheme(
@@ -151,7 +131,7 @@ abstract final class AppTheme {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppRadius.md),
-          borderSide: BorderSide(color: colors.brandAccentStrong, width: 2),
+          borderSide: BorderSide(color: colors.brandPrimary, width: 2),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppRadius.md),
@@ -161,9 +141,9 @@ abstract final class AppTheme {
         hintStyle: text.body.copyWith(color: colors.textTertiary),
         errorStyle: text.caption.copyWith(color: colors.error),
       ),
-      focusColor: colors.brandAccentStrong.withValues(alpha: 0.16),
+      focusColor: colors.brandPrimary.withValues(alpha: 0.16),
       progressIndicatorTheme: ProgressIndicatorThemeData(
-        color: colors.brandAccentStrong,
+        color: colors.brandPrimary,
         linearTrackColor: colors.surfaceWarm,
       ),
       snackBarTheme: SnackBarThemeData(

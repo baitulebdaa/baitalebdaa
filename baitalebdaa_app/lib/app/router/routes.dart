@@ -9,6 +9,7 @@ abstract final class AppRoutes {
   /// Full-screen flows above the tabs.
   static const request = '/request';
   static const assistant = '/assistant';
+  static const search = '/search';
 
   // Tab roots.
   static const home = '/home';

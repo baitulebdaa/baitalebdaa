@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/platform/remote_settings.dart';
 import '../../../../design_system/components/forms/option_tile.dart';
 import '../../../../design_system/theme/context_extensions.dart';
+import '../../../../design_system/tokens/app_icons.dart';
 import '../../../../design_system/tokens/app_layout_tokens.dart';
 import '../../../content/domain/content_models.dart';
 import '../../domain/request_draft.dart';
@@ -31,16 +32,23 @@ class ServicesStep extends ConsumerWidget {
       help: context.l10n.stepServicesHelp(kMaxServices),
       children: [
         if (showIssues) StepIssues(issues: issues),
-        for (final service in content.services)
-          OptionTile(
-            label: context.localized(service.name),
-            selected: draft.serviceIds.contains(service.slug),
-            onTap: () => toggle(service.slug),
-          ),
-        OptionTile(
-          label: context.l10n.stepServicesNotSure,
-          selected: draft.serviceIds.contains(kServiceNotSure),
-          onTap: () => toggle(kServiceNotSure),
+        ChoiceRow(
+          tileWidth: 128,
+          children: [
+            for (final service in content.services)
+              ChoiceTile(
+                image: service.image,
+                label: context.localized(service.name),
+                selected: draft.serviceIds.contains(service.slug),
+                onTap: () => toggle(service.slug),
+              ),
+            ChoiceTile(
+              icon: AppIcons.other,
+              label: context.l10n.stepServicesNotSure,
+              selected: draft.serviceIds.contains(kServiceNotSure),
+              onTap: () => toggle(kServiceNotSure),
+            ),
+          ],
         ),
       ],
     );
@@ -57,12 +65,21 @@ class PropertyStep extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) => StepBody(
     title: context.l10n.stepPropertyTitle,
     children: [
-      for (final type in PropertyType.values)
-        OptionTile(
-          label: context.propertyLabel(type),
-          selected: draft.propertyType == type,
-          onTap: () => ref.read(draftProvider.notifier).update((d) => d.copyWith(propertyType: type)),
-        ),
+      ChoiceRow(
+        tileWidth: 104,
+        children: [
+          for (final type in PropertyType.values)
+            ChoiceTile(
+              icon: propertyIcon(type),
+              label: context.propertyLabel(type),
+              selected: draft.propertyType == type,
+              // Tapping the chosen type again clears it: the question is optional.
+              onTap: () => ref
+                  .read(draftProvider.notifier)
+                  .update((d) => d.copyWith(propertyType: d.propertyType == type ? null : type)),
+            ),
+        ],
+      ),
     ],
   );
 }
@@ -77,12 +94,19 @@ class StageStep extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) => StepBody(
     title: context.l10n.stepStageTitle,
     children: [
-      for (final stage in ProjectStage.values)
-        OptionTile(
-          label: context.stageLabel(stage),
-          selected: draft.stage == stage,
-          onTap: () => ref.read(draftProvider.notifier).update((d) => d.copyWith(stage: stage)),
-        ),
+      ChoiceRow(
+        tileWidth: 112,
+        children: [
+          for (final stage in ProjectStage.values)
+            ChoiceTile(
+              icon: stageIcon(stage),
+              label: context.stageLabel(stage),
+              selected: draft.stage == stage,
+              onTap: () =>
+                  ref.read(draftProvider.notifier).update((d) => d.copyWith(stage: d.stage == stage ? null : stage)),
+            ),
+        ],
+      ),
     ],
   );
 }
@@ -117,6 +141,28 @@ class ConsultationStep extends ConsumerWidget {
     );
   }
 }
+
+IconData propertyIcon(PropertyType type) => switch (type) {
+  PropertyType.villa => AppIcons.villa,
+  PropertyType.townhouse => AppIcons.townhouse,
+  PropertyType.apartment => AppIcons.apartment,
+  PropertyType.penthouse => AppIcons.penthouse,
+  PropertyType.office => AppIcons.office,
+  PropertyType.restaurant => AppIcons.restaurant,
+  PropertyType.retail => AppIcons.retail,
+  PropertyType.commercial => AppIcons.commercial,
+  PropertyType.other => AppIcons.other,
+};
+
+IconData stageIcon(ProjectStage stage) => switch (stage) {
+  ProjectStage.exploring => AppIcons.exploring,
+  ProjectStage.needDesign => AppIcons.designing,
+  ProjectStage.haveDrawings => AppIcons.legal,
+  ProjectStage.readyForFitOut => AppIcons.settings,
+  ProjectStage.renovating => AppIcons.renovating,
+  ProjectStage.joineryOnly => AppIcons.joinery,
+  ProjectStage.other => AppIcons.other,
+};
 
 /// Spacing between option tiles, shared by every choice step.
 const double kOptionGap = AppSpacing.sm;

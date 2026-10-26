@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-/// Latin text uses Manrope (headings) and DM Sans (everything else); Arabic uses Tajawal
+/// Latin page titles and featured headlines use Cormorant Garamond (owner's design, 26 Oct
+/// 2026), smaller headings Manrope and everything else DM Sans; Arabic uses Tajawal
 /// throughout, as on the website. Arabic gets larger sizes, looser line heights and no
 /// letter-spacing: the tight Latin tracking would break Arabic joining.
 enum AppScript {
@@ -11,6 +12,7 @@ enum AppScript {
 }
 
 abstract final class AppFonts {
+  static const cormorant = 'CormorantGaramond';
   static const manrope = 'Manrope';
   static const dmSans = 'DMSans';
   static const tajawal = 'Tajawal';
@@ -37,8 +39,9 @@ class AppTextStyles extends ThemeExtension<AppTextStyles> {
   factory AppTextStyles.forScript(AppScript script, Color color) => switch (script) {
     AppScript.latin => AppTextStyles(
       script: script,
-      display: _latin(AppFonts.manrope, 500, 40, 44, -0.04, color),
-      headline: _latin(AppFonts.manrope, 500, 28, 32, -0.03, color),
+      // Cormorant has a small x-height, so it runs larger than the sans sizes it replaced.
+      display: _latin(AppFonts.cormorant, 600, 46, 48, -0.01, color),
+      headline: _latin(AppFonts.cormorant, 600, 32, 36, 0, color),
       title: _latin(AppFonts.manrope, 500, 22, 28, -0.02, color),
       subtitle: _latin(AppFonts.dmSans, 600, 17, 24, 0, color),
       body: _latin(AppFonts.dmSans, 400, 17, 26, 0, color),

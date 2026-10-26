@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 
 import '../failure/failure.dart';
 import '../platform/auth_gateway.dart';
@@ -20,6 +21,36 @@ class FirebaseAuthGateway implements AuthGateway {
     final result = await _auth.signInWithEmailAndPassword(email: email.trim(), password: password);
     return _toAppUser(result.user)!;
   });
+
+  /// Uses Firebase's own browser sign-in (a popup on the web), so no extra SDK is needed.
+  /// Each provider must be turned on in the Firebase console first; until then this fails
+  /// with [AuthError.methodDisabled].
+  @override
+  Future<AppUser?> signInWithProvider(SocialProvider provider) async {
+    final AuthProvider authProvider = switch (provider) {
+      SocialProvider.google => GoogleAuthProvider(),
+      SocialProvider.apple =>
+        AppleAuthProvider()
+          ..addScope('email')
+          ..addScope('name'),
+    };
+    try {
+      final result = kIsWeb ? await _auth.signInWithPopup(authProvider) : await _auth.signInWithProvider(authProvider);
+      return _toAppUser(result.user);
+    } on FirebaseAuthException catch (error) {
+      if (_cancelled.contains(error.code)) return null;
+      throw failureFromAuthCode(error.code);
+    }
+  }
+
+  /// Codes for a sign-in window the person closed themselves: not an error.
+  static const _cancelled = {
+    'web-context-canceled',
+    'web-context-cancelled',
+    'popup-closed-by-user',
+    'cancelled-popup-request',
+    'canceled',
+  };
 
   @override
   Future<AppUser> createAccount({required String name, required String email, required String password}) =>

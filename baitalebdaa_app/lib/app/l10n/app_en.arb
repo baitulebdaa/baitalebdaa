@@ -318,7 +318,7 @@
   "@authErrorUserDisabled": {
     "description": "Account disabled by the business."
   },
-  "authErrorMethodDisabled": "Email sign-in isn't available right now.",
+  "authErrorMethodDisabled": "This sign-in option isn't available right now.",
   "@authErrorMethodDisabled": {
     "description": "Email sign-in is switched off in Firebase."
   },
@@ -1259,5 +1259,522 @@
   "bookEyebrow": "Free consultation",
   "@bookEyebrow": {
     "description": "Small label above the Book page title."
+  },
+  "projectsFilterAll": "All",
+  "@projectsFilterAll": {
+    "description": "Projects filter chip: every project."
+  },
+  "projectsFilterVillas": "Villas",
+  "@projectsFilterVillas": {
+    "description": "Projects filter chip."
+  },
+  "projectsFilterApartments": "Apartments",
+  "@projectsFilterApartments": {
+    "description": "Projects filter chip."
+  },
+  "projectsFilterOffices": "Offices",
+  "@projectsFilterOffices": {
+    "description": "Projects filter chip."
+  },
+  "projectsFilterJoinery": "Joinery",
+  "@projectsFilterJoinery": {
+    "description": "Projects filter chip: projects with made-to-measure joinery."
+  },
+  "projectsFilterSaved": "Saved",
+  "@projectsFilterSaved": {
+    "description": "Projects filter chip: projects the visitor saved with the heart."
+  },
+  "projectKindVilla": "Villa",
+  "@projectKindVilla": {
+    "description": "Label on a project photo."
+  },
+  "projectKindApartment": "Apartment",
+  "@projectKindApartment": {
+    "description": "Label on a project photo."
+  },
+  "projectKindCommercial": "Commercial",
+  "@projectKindCommercial": {
+    "description": "Label on a project photo (offices)."
+  },
+  "projectKindResidential": "Residential",
+  "@projectKindResidential": {
+    "description": "Label on a project photo."
+  },
+  "projectsSortRecent": "Most Recent",
+  "@projectsSortRecent": {
+    "description": "Sort order: newest projects first."
+  },
+  "projectsSortAlphabetical": "A–Z",
+  "@projectsSortAlphabetical": {
+    "description": "Sort order: by project name."
+  },
+  "projectsSortTooltip": "Sort projects",
+  "@projectsSortTooltip": {
+    "description": "Tooltip of the sort menu."
+  },
+  "projectsFilterTooltip": "Filter projects",
+  "@projectsFilterTooltip": {
+    "description": "Tooltip of the filter button and title of its sheet."
+  },
+  "projectsSearchTooltip": "Search projects",
+  "@projectsSearchTooltip": {
+    "description": "Tooltip of the search button."
+  },
+  "projectsSearchHint": "Search by name or area",
+  "@projectsSearchHint": {
+    "description": "Hint in the projects search field."
+  },
+  "projectsCloseSearch": "Close search",
+  "@projectsCloseSearch": {
+    "description": "Tooltip that closes the search field."
+  },
+  "projectsSave": "Save project",
+  "@projectsSave": {
+    "description": "Heart button, not yet saved."
+  },
+  "projectsUnsave": "Remove from saved",
+  "@projectsUnsave": {
+    "description": "Heart button, already saved."
+  },
+  "projectsFeatured": "Featured project",
+  "@projectsFeatured": {
+    "description": "Label on the large featured project banner."
+  },
+  "projectsViewProject": "View Project",
+  "@projectsViewProject": {
+    "description": "Button on the featured project banner."
+  },
+  "projectsEmptyTitle": "No projects match",
+  "@projectsEmptyTitle": {
+    "description": "Empty state when filters or search find nothing."
+  },
+  "projectsEmptySaved": "Tap the heart on a project to keep it here.",
+  "@projectsEmptySaved": {
+    "description": "Empty state of the Saved filter."
+  },
+  "projectsShowAll": "Show all projects",
+  "@projectsShowAll": {
+    "description": "Button that clears filters and search."
+  },
+  "projectsCount": "{count, plural, =1{1 project} other{{count} projects}}",
+  "@projectsCount": {
+    "description": "Number of projects next to a filter in the filter sheet.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeServicesHeading": "Our Services",
+  "@homeServicesHeading": {
+    "description": "Home section title."
+  },
+  "homeFeaturedProjects": "Featured Projects",
+  "@homeFeaturedProjects": {
+    "description": "Home section title."
+  },
+  "homeViewAll": "View All",
+  "@homeViewAll": {
+    "description": "Link at the end of a Home section title."
+  },
+  "homeHeroCta": "Get Started",
+  "@homeHeroCta": {
+    "description": "Button on the Home banner; starts a consultation request."
+  },
+  "homeEstimateTitle": "Get an Estimated Price for Your Project",
+  "@homeEstimateTitle": {
+    "description": "Home price banner title."
+  },
+  "homeEstimateBody": "Published starting prices, before VAT. Your quotation follows a free site survey.",
+  "@homeEstimateBody": {
+    "description": "Home price banner text."
+  },
+  "homeEstimateCta": "See Starting Prices",
+  "@homeEstimateCta": {
+    "description": "Home price banner button; opens the price guide."
+  },
+  "homeWhyTitle": "Why Bait Al Ebdaa",
+  "@homeWhyTitle": {
+    "description": "Home section title."
+  },
+  "homeWhyTagline": "More Than Spaces, Lasting Value",
+  "@homeWhyTagline": {
+    "description": "Short line next to the Why title."
+  },
+  "homeSearchTooltip": "Search services and projects",
+  "@homeSearchTooltip": {
+    "description": "Home header search button."
+  },
+  "homeRequestsTooltip": "My requests",
+  "@homeRequestsTooltip": {
+    "description": "Home header bell; opens the request list on Profile."
+  },
+  "homeRequestsActiveTooltip": "My requests, one in progress",
+  "@homeRequestsActiveTooltip": {
+    "description": "Home header bell when a request is still open."
+  },
+  "homeEmirateTooltip": "Choose your emirate",
+  "@homeEmirateTooltip": {
+    "description": "Home header emirate picker."
+  },
+  "homeEmirateAll": "UAE",
+  "@homeEmirateAll": {
+    "description": "Emirate picker value when no emirate is chosen."
+  },
+  "homeEmirateAllOption": "All of the UAE",
+  "@homeEmirateAllOption": {
+    "description": "Emirate picker option for no particular emirate."
+  },
+  "homeEmirateSheetBody": "We work in all seven emirates at the same prices. Your choice is filled in when you start a request.",
+  "@homeEmirateSheetBody": {
+    "description": "Emirate picker explanation."
+  },
+  "searchHint": "Search services and projects",
+  "@searchHint": {
+    "description": "Search field hint."
+  },
+  "searchServices": "Services",
+  "@searchServices": {
+    "description": "Search results group."
+  },
+  "searchProjects": "Projects",
+  "@searchProjects": {
+    "description": "Search results group."
+  },
+  "searchEmpty": "Nothing matches your search",
+  "@searchEmpty": {
+    "description": "Search with no results."
+  },
+  "serviceDetailsTitle": "Service Details",
+  "@serviceDetailsTitle": {
+    "description": "Title of the service page bar."
+  },
+  "serviceSave": "Save service",
+  "@serviceSave": {
+    "description": "Bookmark button, not yet saved."
+  },
+  "serviceUnsave": "Remove from saved",
+  "@serviceUnsave": {
+    "description": "Bookmark button, already saved."
+  },
+  "serviceShare": "Share",
+  "@serviceShare": {
+    "description": "Share button on the service page."
+  },
+  "serviceShareText": "{service} by Bait Al Ebdaa: {url}",
+  "@serviceShareText": {
+    "description": "Text shared from a service page.",
+    "placeholders": {
+      "service": {
+        "type": "String"
+      },
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "serviceFactSurvey": "Free site survey",
+  "@serviceFactSurvey": {
+    "description": "Service fact chip."
+  },
+  "serviceFactEmirates": "All seven emirates",
+  "@serviceFactEmirates": {
+    "description": "Service fact chip."
+  },
+  "serviceFactFactory": "Own joinery factory",
+  "@serviceFactFactory": {
+    "description": "Service fact chip: the in-house factory in Ajman."
+  },
+  "serviceStartingFrom": "Starting price",
+  "@serviceStartingFrom": {
+    "description": "Label above a service starting price."
+  },
+  "serviceShowLess": "Show Less",
+  "@serviceShowLess": {
+    "description": "Collapses the full list of inclusions."
+  },
+  "serviceHowItWorks": "How It Works",
+  "@serviceHowItWorks": {
+    "description": "Service page section title: the four stages."
+  },
+  "serviceRequestConsultation": "Request Consultation",
+  "@serviceRequestConsultation": {
+    "description": "Sticky button on the service page; starts a free site survey request."
+  },
+  "profileSavedTitle": "Saved",
+  "@profileSavedTitle": {
+    "description": "Profile section listing saved services and projects."
+  },
+  "requestFlowTitle": "Plan Your Project",
+  "@requestFlowTitle": {
+    "description": "Title of the request screens."
+  },
+  "requestPageRequirements": "Your Requirements",
+  "@requestPageRequirements": {
+    "description": "Request progress step label."
+  },
+  "requestPageDetails": "Details",
+  "@requestPageDetails": {
+    "description": "Request progress step label."
+  },
+  "requestPageConsultation": "Consultation",
+  "@requestPageConsultation": {
+    "description": "Request progress step label."
+  },
+  "requestPageContact": "Contact",
+  "@requestPageContact": {
+    "description": "Request progress step label."
+  },
+  "requestPageReview": "Review",
+  "@requestPageReview": {
+    "description": "Request progress step label."
+  },
+  "requestPageComplete": "Complete",
+  "@requestPageComplete": {
+    "description": "Request progress step label."
+  },
+  "requestProgress": "Step {current} of {total}: {name}",
+  "@requestProgress": {
+    "description": "Screen reader text for the request progress.",
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "requestSectionService": "Service",
+  "@requestSectionService": {
+    "description": "Numbered section on the request screen."
+  },
+  "requestSectionProperty": "Property Type",
+  "@requestSectionProperty": {
+    "description": "Numbered section on the request screen."
+  },
+  "requestSectionEmirate": "Emirate",
+  "@requestSectionEmirate": {
+    "description": "Numbered section on the request screen."
+  },
+  "requestSectionSize": "Approximate Size",
+  "@requestSectionSize": {
+    "description": "Numbered section on the request screen."
+  },
+  "requestSectionBudget": "Budget",
+  "@requestSectionBudget": {
+    "description": "Numbered section on the request screen."
+  },
+  "requestSectionStage": "Project Stage",
+  "@requestSectionStage": {
+    "description": "Numbered section on the request screen."
+  },
+  "requestSectionDetails": "Project Details",
+  "@requestSectionDetails": {
+    "description": "Numbered section on the request screen."
+  },
+  "requestSectionConsultation": "Consultation",
+  "@requestSectionConsultation": {
+    "description": "Numbered section on the request screen."
+  },
+  "requestSectionTime": "Preferred Time",
+  "@requestSectionTime": {
+    "description": "Numbered section on the request screen."
+  },
+  "requestSectionContact": "Your Details",
+  "@requestSectionContact": {
+    "description": "Numbered section on the request screen."
+  },
+  "requestSectionPhotos": "Photos / Floor Plans",
+  "@requestSectionPhotos": {
+    "description": "Numbered section on the request screen."
+  },
+  "requestPhotosBody": "After you send your request, share photos, floor plans or inspiration images on WhatsApp. Your request number is added for you.",
+  "@requestPhotosBody": {
+    "description": "Photos section: they are shared on WhatsApp after sending."
+  },
+  "requestTimeInfoTitle": "Preferred time and date will be confirmed later",
+  "@requestTimeInfoTitle": {
+    "description": "Info card on the request screen."
+  },
+  "requestTimeInfoBody": "Our team will get in touch to schedule a consultation at your convenience.",
+  "@requestTimeInfoBody": {
+    "description": "Info card on the request screen."
+  },
+  "requestSaveDraft": "Save Draft",
+  "@requestSaveDraft": {
+    "description": "Leaves the request; the answers stay on the device."
+  },
+  "requestDraftSaved": "Draft saved. Continue any time from Home or Book.",
+  "@requestDraftSaved": {
+    "description": "Shown after Save Draft."
+  },
+  "myRequestTitle": "My Request",
+  "@myRequestTitle": {
+    "description": "Title of a sent request."
+  },
+  "myRequestSubtitle": "Track the progress of your project consultation request.",
+  "@myRequestSubtitle": {
+    "description": "Line under the request title."
+  },
+  "myRequestId": "Request ID",
+  "@myRequestId": {
+    "description": "Label above the request reference."
+  },
+  "myRequestCopy": "Copy request ID",
+  "@myRequestCopy": {
+    "description": "Copy button tooltip."
+  },
+  "myRequestCopied": "Request ID copied",
+  "@myRequestCopied": {
+    "description": "Shown after copying the reference."
+  },
+  "myRequestConsultation": "Preferred Consultation",
+  "@myRequestConsultation": {
+    "description": "Card title: the time and way the customer asked for."
+  },
+  "myRequestPreferredDate": "Preferred Date",
+  "@myRequestPreferredDate": {
+    "description": "Label in the consultation card."
+  },
+  "myRequestPreferredTime": "Preferred Time",
+  "@myRequestPreferredTime": {
+    "description": "Label in the consultation card."
+  },
+  "myRequestPhotos": "Photos & Plans",
+  "@myRequestPhotos": {
+    "description": "Card title: how to send photos and plans."
+  },
+  "myRequestPhotosBody": "Send photos or floor plans on WhatsApp; your request number is added for you.",
+  "@myRequestPhotosBody": {
+    "description": "Photos card text."
+  },
+  "myRequestHelpBody": "Our team is here to support you with any questions about your request.",
+  "@myRequestHelpBody": {
+    "description": "Need help card text."
+  },
+  "authLoginTitle": "Welcome Back",
+  "@authLoginTitle": {
+    "description": "Log-in screen title."
+  },
+  "authLoginIntro": "Log in to continue planning and building exceptional spaces across the UAE.",
+  "@authLoginIntro": {
+    "description": "Line under the log-in title."
+  },
+  "authRegisterTitle": "Create Your Account",
+  "@authRegisterTitle": {
+    "description": "Sign-up screen title."
+  },
+  "authRegisterIntro": "Join Bait Al Ebdaa and start planning your dream space with our expert team.",
+  "@authRegisterIntro": {
+    "description": "Line under the sign-up title."
+  },
+  "authLogIn": "Log In",
+  "@authLogIn": {
+    "description": "Log-in button and link."
+  },
+  "authCreateAccount": "Create Account",
+  "@authCreateAccount": {
+    "description": "Sign-up button."
+  },
+  "authFullName": "Full Name",
+  "@authFullName": {
+    "description": "Name field."
+  },
+  "authFullNameHelp": "Enter your full name",
+  "@authFullNameHelp": {
+    "description": "Under the name field."
+  },
+  "authEmail": "Email Address",
+  "@authEmail": {
+    "description": "Email field."
+  },
+  "authEmailHelp": "Enter your email address",
+  "@authEmailHelp": {
+    "description": "Under the email field on sign-up."
+  },
+  "authPhone": "Phone Number",
+  "@authPhone": {
+    "description": "Phone field on sign-up."
+  },
+  "authPhoneExample": "+971 50 123 4567",
+  "@authPhoneExample": {
+    "description": "Example number shown in the empty phone field."
+  },
+  "authPhoneHelp": "Enter your phone number",
+  "@authPhoneHelp": {
+    "description": "Under the phone field."
+  },
+  "authPasswordHelp": "Create a strong password (min. {min} characters)",
+  "@authPasswordHelp": {
+    "description": "Under the password field on sign-up.",
+    "placeholders": {
+      "min": {
+        "type": "int"
+      }
+    }
+  },
+  "authAgree": "I agree to the {terms} and {privacy}",
+  "@authAgree": {
+    "description": "Terms checkbox; the placeholders become links.",
+    "placeholders": {
+      "terms": {
+        "type": "String"
+      },
+      "privacy": {
+        "type": "String"
+      }
+    }
+  },
+  "authTerms": "Terms of Service",
+  "@authTerms": {
+    "description": "Link to the website's terms."
+  },
+  "authPrivacy": "Privacy Policy",
+  "@authPrivacy": {
+    "description": "Link to the website's privacy policy."
+  },
+  "authAgreeRequired": "Please agree to the Terms of Service and Privacy Policy.",
+  "@authAgreeRequired": {
+    "description": "Shown when creating an account without ticking the box."
+  },
+  "authOr": "Or continue with",
+  "@authOr": {
+    "description": "Divider above Google and Apple."
+  },
+  "authGoogle": "Continue with Google",
+  "@authGoogle": {
+    "description": "Google sign-in button."
+  },
+  "authApple": "Continue with Apple",
+  "@authApple": {
+    "description": "Apple sign-in button."
+  },
+  "authNoAccount": "Don't have an account?",
+  "@authNoAccount": {
+    "description": "Before the Sign Up link."
+  },
+  "authSignUp": "Sign Up",
+  "@authSignUp": {
+    "description": "Link to the sign-up screen."
+  },
+  "authHaveAccount": "Already have an account?",
+  "@authHaveAccount": {
+    "description": "Before the Log In link."
+  },
+  "authForgot": "Forgot Password?",
+  "@authForgot": {
+    "description": "Link to reset the password."
+  },
+  "splashTagline": "Designing exceptional spaces across the UAE.",
+  "@splashTagline": {
+    "description": "Line on the launch screen."
+  },
+  "brandServicesLine": "INTERIORS | FIT-OUT | JOINERY",
+  "@brandServicesLine": {
+    "description": "Small line under the wordmark."
   }
 }

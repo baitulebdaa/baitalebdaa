@@ -1,3 +1,4 @@
+import 'package:baitalebdaa_app/app/router/app_shell.dart';
 import 'package:baitalebdaa_app/features/settings/domain/app_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -19,7 +20,7 @@ void main() {
     expect(_direction(tester), TextDirection.ltr);
     expect(find.text(content.hero.title.en), findsOneWidget);
     for (final label in _tabs) {
-      expect(find.descendant(of: find.byType(NavigationBar), matching: find.text(label)), findsOneWidget);
+      expect(find.descendant(of: find.byType(AppTabBar), matching: find.text(label)), findsOneWidget);
     }
     expect(find.text('Ask Ali'), findsNothing, reason: 'the assistant is a Home card, not a tab');
   });
@@ -42,7 +43,7 @@ void main() {
     expect(find.text(content.startingPrice(first)!.display.en), findsWidgets);
   });
 
-  testWidgets('a service opens its detail page with a free site survey request', (tester) async {
+  testWidgets('a service opens its detail page with a consultation request', (tester) async {
     await pumpApp(tester);
     await tapTab(tester, 'Services');
     final first = content.services.first;
@@ -50,7 +51,7 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text(first.detail.summary.en), findsOneWidget);
-    expect(find.widgetWithText(FilledButton, 'Request a free site survey'), findsOneWidget);
+    expect(find.widgetWithText(FilledButton, 'Request Consultation'), findsOneWidget);
   });
 
   testWidgets('Projects lists the real projects and opens one', (tester) async {
@@ -62,7 +63,7 @@ void main() {
     await tester.tap(find.text(project.title.en));
     await tester.pumpAndSettle();
     expect(find.text('Plan a similar project'), findsOneWidget);
-    expect(find.byType(NavigationBar), findsOneWidget, reason: 'the tab bar stays visible');
+    expect(find.byType(AppTabBar), findsOneWidget, reason: 'the tab bar stays visible');
 
     // Re-selecting the tab returns to the list.
     await tapTab(tester, 'Projects');
@@ -101,7 +102,7 @@ void main() {
     await pumpApp(tester, size: const Size(1024, 768));
 
     expect(find.byType(NavigationRail), findsOneWidget);
-    expect(find.byType(NavigationBar), findsNothing);
+    expect(find.byType(AppTabBar), findsNothing);
   });
 
   for (final language in [AppLanguage.en, AppLanguage.ar]) {
@@ -111,7 +112,7 @@ void main() {
       await pumpApp(tester, settings: AppSettings(language: language));
 
       for (final index in [1, 2, 3, 4, 0]) {
-        await tester.tap(find.byType(NavigationDestination).at(index));
+        await tester.tap(find.descendant(of: find.byType(AppTabBar), matching: find.byType(InkWell)).at(index));
         await tester.pumpAndSettle();
         expect(tester.takeException(), isNull);
       }

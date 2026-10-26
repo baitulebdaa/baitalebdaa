@@ -227,7 +227,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get authErrorUserDisabled => 'تم تعطيل هذا الحساب. يُرجى التواصل معنا.';
 
   @override
-  String get authErrorMethodDisabled => 'تسجيل الدخول بالبريد الإلكتروني غير متاح حالياً.';
+  String get authErrorMethodDisabled => 'طريقة تسجيل الدخول هذه غير متاحة حالياً.';
 
   @override
   String get accountSignInCta => 'سجّل الدخول أو أنشئ حساباً';
@@ -878,4 +878,387 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get bookEyebrow => 'استشارة مجانية';
+
+  @override
+  String get projectsFilterAll => 'الكل';
+
+  @override
+  String get projectsFilterVillas => 'فلل';
+
+  @override
+  String get projectsFilterApartments => 'شقق';
+
+  @override
+  String get projectsFilterOffices => 'مكاتب';
+
+  @override
+  String get projectsFilterJoinery => 'نجارة';
+
+  @override
+  String get projectsFilterSaved => 'المحفوظة';
+
+  @override
+  String get projectKindVilla => 'فيلا';
+
+  @override
+  String get projectKindApartment => 'شقة';
+
+  @override
+  String get projectKindCommercial => 'تجاري';
+
+  @override
+  String get projectKindResidential => 'سكني';
+
+  @override
+  String get projectsSortRecent => 'الأحدث';
+
+  @override
+  String get projectsSortAlphabetical => 'أبجدياً';
+
+  @override
+  String get projectsSortTooltip => 'ترتيب المشاريع';
+
+  @override
+  String get projectsFilterTooltip => 'تصفية المشاريع';
+
+  @override
+  String get projectsSearchTooltip => 'البحث في المشاريع';
+
+  @override
+  String get projectsSearchHint => 'ابحث بالاسم أو المنطقة';
+
+  @override
+  String get projectsCloseSearch => 'إغلاق البحث';
+
+  @override
+  String get projectsSave => 'حفظ المشروع';
+
+  @override
+  String get projectsUnsave => 'إزالة من المحفوظة';
+
+  @override
+  String get projectsFeatured => 'مشروع مميز';
+
+  @override
+  String get projectsViewProject => 'عرض المشروع';
+
+  @override
+  String get projectsEmptyTitle => 'لا توجد مشاريع مطابقة';
+
+  @override
+  String get projectsEmptySaved => 'اضغط على القلب في أي مشروع للاحتفاظ به هنا.';
+
+  @override
+  String get projectsShowAll => 'عرض كل المشاريع';
+
+  @override
+  String projectsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count مشروع',
+      many: '$count مشروعاً',
+      few: '$count مشاريع',
+      two: 'مشروعان',
+      one: 'مشروع واحد',
+      zero: 'لا مشاريع',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get homeServicesHeading => 'خدماتنا';
+
+  @override
+  String get homeFeaturedProjects => 'مشاريع مختارة';
+
+  @override
+  String get homeViewAll => 'عرض الكل';
+
+  @override
+  String get homeHeroCta => 'ابدأ الآن';
+
+  @override
+  String get homeEstimateTitle => 'تعرّف على السعر التقديري لمشروعك';
+
+  @override
+  String get homeEstimateBody =>
+      'أسعار ابتدائية منشورة، قبل ضريبة القيمة المضافة. يأتي عرض السعر بعد معاينة مجانية للموقع.';
+
+  @override
+  String get homeEstimateCta => 'عرض الأسعار الابتدائية';
+
+  @override
+  String get homeWhyTitle => 'لماذا بيت الإبداع';
+
+  @override
+  String get homeWhyTagline => 'أكثر من مساحات، قيمة تدوم';
+
+  @override
+  String get homeSearchTooltip => 'البحث في الخدمات والمشاريع';
+
+  @override
+  String get homeRequestsTooltip => 'طلباتي';
+
+  @override
+  String get homeRequestsActiveTooltip => 'طلباتي، طلب قيد المتابعة';
+
+  @override
+  String get homeEmirateTooltip => 'اختر إمارتك';
+
+  @override
+  String get homeEmirateAll => 'الإمارات';
+
+  @override
+  String get homeEmirateAllOption => 'كل الإمارات';
+
+  @override
+  String get homeEmirateSheetBody =>
+      'نعمل في جميع الإمارات السبع بالأسعار نفسها. تُضاف إمارتك تلقائياً عند بدء طلب جديد.';
+
+  @override
+  String get searchHint => 'ابحث في الخدمات والمشاريع';
+
+  @override
+  String get searchServices => 'الخدمات';
+
+  @override
+  String get searchProjects => 'المشاريع';
+
+  @override
+  String get searchEmpty => 'لا توجد نتائج مطابقة';
+
+  @override
+  String get serviceDetailsTitle => 'تفاصيل الخدمة';
+
+  @override
+  String get serviceSave => 'حفظ الخدمة';
+
+  @override
+  String get serviceUnsave => 'إزالة من المحفوظة';
+
+  @override
+  String get serviceShare => 'مشاركة';
+
+  @override
+  String serviceShareText(String service, String url) {
+    return '$service من بيت الإبداع: $url';
+  }
+
+  @override
+  String get serviceFactSurvey => 'معاينة مجانية للموقع';
+
+  @override
+  String get serviceFactEmirates => 'جميع الإمارات السبع';
+
+  @override
+  String get serviceFactFactory => 'مصنع نجارة خاص';
+
+  @override
+  String get serviceStartingFrom => 'السعر الابتدائي';
+
+  @override
+  String get serviceShowLess => 'عرض أقل';
+
+  @override
+  String get serviceHowItWorks => 'كيف نعمل';
+
+  @override
+  String get serviceRequestConsultation => 'اطلب استشارة';
+
+  @override
+  String get profileSavedTitle => 'المحفوظة';
+
+  @override
+  String get requestFlowTitle => 'خطّط لمشروعك';
+
+  @override
+  String get requestPageRequirements => 'متطلباتك';
+
+  @override
+  String get requestPageDetails => 'التفاصيل';
+
+  @override
+  String get requestPageConsultation => 'الاستشارة';
+
+  @override
+  String get requestPageContact => 'التواصل';
+
+  @override
+  String get requestPageReview => 'المراجعة';
+
+  @override
+  String get requestPageComplete => 'الإرسال';
+
+  @override
+  String requestProgress(int current, int total, String name) {
+    return 'الخطوة $current من $total: $name';
+  }
+
+  @override
+  String get requestSectionService => 'الخدمة';
+
+  @override
+  String get requestSectionProperty => 'نوع العقار';
+
+  @override
+  String get requestSectionEmirate => 'الإمارة';
+
+  @override
+  String get requestSectionSize => 'المساحة التقريبية';
+
+  @override
+  String get requestSectionBudget => 'الميزانية';
+
+  @override
+  String get requestSectionStage => 'مرحلة المشروع';
+
+  @override
+  String get requestSectionDetails => 'تفاصيل المشروع';
+
+  @override
+  String get requestSectionConsultation => 'الاستشارة';
+
+  @override
+  String get requestSectionTime => 'الوقت المفضل';
+
+  @override
+  String get requestSectionContact => 'بياناتك';
+
+  @override
+  String get requestSectionPhotos => 'الصور / المخططات';
+
+  @override
+  String get requestPhotosBody =>
+      'بعد إرسال طلبك، شارك الصور أو المخططات أو صور الإلهام عبر واتساب، وسيُضاف رقم طلبك تلقائياً.';
+
+  @override
+  String get requestTimeInfoTitle => 'سيتم تأكيد الوقت والتاريخ المفضلين لاحقاً';
+
+  @override
+  String get requestTimeInfoBody => 'سيتواصل فريقنا معك لتحديد موعد الاستشارة في الوقت الذي يناسبك.';
+
+  @override
+  String get requestSaveDraft => 'حفظ المسودة';
+
+  @override
+  String get requestDraftSaved => 'تم حفظ المسودة. يمكنك المتابعة في أي وقت من الرئيسية أو احجز.';
+
+  @override
+  String get myRequestTitle => 'طلبي';
+
+  @override
+  String get myRequestSubtitle => 'تابع تقدّم طلب استشارة مشروعك.';
+
+  @override
+  String get myRequestId => 'رقم الطلب';
+
+  @override
+  String get myRequestCopy => 'نسخ رقم الطلب';
+
+  @override
+  String get myRequestCopied => 'تم نسخ رقم الطلب';
+
+  @override
+  String get myRequestConsultation => 'الاستشارة المفضلة';
+
+  @override
+  String get myRequestPreferredDate => 'التاريخ المفضل';
+
+  @override
+  String get myRequestPreferredTime => 'الوقت المفضل';
+
+  @override
+  String get myRequestPhotos => 'الصور والمخططات';
+
+  @override
+  String get myRequestPhotosBody => 'أرسل الصور أو المخططات عبر واتساب، وسيُضاف رقم طلبك تلقائياً.';
+
+  @override
+  String get myRequestHelpBody => 'فريقنا هنا لمساعدتك في أي سؤال عن طلبك.';
+
+  @override
+  String get authLoginTitle => 'مرحبًا بعودتك';
+
+  @override
+  String get authLoginIntro => 'سجّل الدخول لمتابعة تخطيط مساحاتك وتنفيذها في أنحاء الإمارات.';
+
+  @override
+  String get authRegisterTitle => 'أنشئ حسابك';
+
+  @override
+  String get authRegisterIntro => 'انضم إلى بيت الإبداع وابدأ التخطيط لمساحة أحلامك مع فريق خبرائنا.';
+
+  @override
+  String get authLogIn => 'تسجيل الدخول';
+
+  @override
+  String get authCreateAccount => 'إنشاء حساب';
+
+  @override
+  String get authFullName => 'الاسم الكامل';
+
+  @override
+  String get authFullNameHelp => 'اكتب اسمك الكامل';
+
+  @override
+  String get authEmail => 'البريد الإلكتروني';
+
+  @override
+  String get authEmailHelp => 'اكتب بريدك الإلكتروني';
+
+  @override
+  String get authPhone => 'رقم الهاتف';
+
+  @override
+  String get authPhoneExample => '+971 50 123 4567';
+
+  @override
+  String get authPhoneHelp => 'اكتب رقم هاتفك';
+
+  @override
+  String authPasswordHelp(int min) {
+    return 'أنشئ كلمة مرور قوية ($min أحرف على الأقل)';
+  }
+
+  @override
+  String authAgree(String terms, String privacy) {
+    return 'أوافق على $terms و$privacy';
+  }
+
+  @override
+  String get authTerms => 'شروط الخدمة';
+
+  @override
+  String get authPrivacy => 'سياسة الخصوصية';
+
+  @override
+  String get authAgreeRequired => 'يرجى الموافقة على شروط الخدمة وسياسة الخصوصية.';
+
+  @override
+  String get authOr => 'أو تابع باستخدام';
+
+  @override
+  String get authGoogle => 'المتابعة باستخدام Google';
+
+  @override
+  String get authApple => 'المتابعة باستخدام Apple';
+
+  @override
+  String get authNoAccount => 'ليس لديك حساب؟';
+
+  @override
+  String get authSignUp => 'إنشاء حساب';
+
+  @override
+  String get authHaveAccount => 'لديك حساب بالفعل؟';
+
+  @override
+  String get authForgot => 'نسيت كلمة المرور؟';
+
+  @override
+  String get splashTagline => 'نصمّم مساحات استثنائية في أنحاء الإمارات.';
+
+  @override
+  String get brandServicesLine => 'تصميم داخلي | تشطيب | نجارة';
 }

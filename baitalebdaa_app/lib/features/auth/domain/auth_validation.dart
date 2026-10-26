@@ -1,5 +1,7 @@
+import '../../request/domain/request_validation.dart';
+
 /// What is wrong with a form field. Screens turn these into localised messages.
-enum FieldIssue { required, invalidEmail, passwordTooShort, nameTooLong }
+enum FieldIssue { required, invalidEmail, passwordTooShort, nameTooLong, invalidPhone }
 
 /// Client-side checks for the sign-in forms. Firebase re-checks everything server-side;
 /// these exist so mistakes are caught before a network round trip.
@@ -24,6 +26,11 @@ abstract final class AuthValidation {
     if (value.isEmpty) return FieldIssue.required;
     return value.length < minPasswordLength ? FieldIssue.passwordTooShort : null;
   }
+
+  /// Optional when creating an account; if given, it must be a number the team can call,
+  /// by the same rule as a request's contact number.
+  static FieldIssue? phone(String value) =>
+      value.trim().isEmpty || normalizePhone(value) != null ? null : FieldIssue.invalidPhone;
 
   static FieldIssue? name(String value) {
     final name = value.trim();

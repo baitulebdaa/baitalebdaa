@@ -66,7 +66,12 @@ Future<void> bootstrap() async {
 
 void _registerFontLicenses() {
   LicenseRegistry.addLicense(() async* {
-    const fonts = [('Manrope', 'manrope'), ('DM Sans', 'dmsans'), ('Tajawal', 'tajawal')];
+    const fonts = [
+      ('Cormorant Garamond', 'cormorant-garamond'),
+      ('Manrope', 'manrope'),
+      ('DM Sans', 'dmsans'),
+      ('Tajawal', 'tajawal'),
+    ];
     for (final (family, file) in fonts) {
       yield LicenseEntryWithLineBreaks([family], await rootBundle.loadString('assets/licenses/OFL-$file.txt'));
     }

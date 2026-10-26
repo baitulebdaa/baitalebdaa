@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { ArrowLeft, ArrowRight, ArrowUpRight, Calendar, Check, Wrench } from "./components/icons";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Box, Calendar, Check, Lamp, ShoppingCart, Users, Wrench } from "./components/icons";
 import { useI18n } from "./i18n/I18nProvider";
 import { Header, Footer, Reveal, FaqSplit, ProcessTimeline } from "./components/Shared";
 import { ServiceTileGrid } from "./components/ServiceTiles";
@@ -63,9 +63,38 @@ function ServicesDirectory() {
   </section>;
 }
 
-function Studio() {
-  const { lang, dict } = useI18n();
-  return <section className="studio" id="studio"><div className="shell studio__heading"><Reveal><p className="micro micro--light">{dict.studioSection.micro}</p><h2 className="section-title" style={{whiteSpace: 'pre-wrap'}}>{dict.studioSection.title}</h2></Reveal><Reveal className="studio__intro" delay={120}><p>{dict.studioSection.intro}</p><a href={`/${lang}/process`}>{dict.studioSection.seeHow} <ArrowUpRight size={16} /></a></Reveal></div><div className="shell studio__showcase"><Reveal className="studio__image"><Image src="/assets/l-shaped-walk-in-closet-led-drawers.jpeg" alt="Custom joinery manufacturing facility" fill sizes="(max-width: 980px) 100vw, 640px" /></Reveal><div className="studio__facts">{dict.studioSection.facts.map((f, i) => <Reveal key={i} delay={i * 100}><strong>{f.strong}</strong><span>{f.span}</span></Reveal>)}</div></div></section>;
+// The problems the studio solves (owner's design, 26 Oct 2026), set before the product
+// ranges that answer them. The photo is the site's own sketch-to-render image.
+const CHALLENGE_ICONS = [ShoppingCart, Box, Lamp, Users];
+
+function Challenges() {
+  const { dict } = useI18n();
+  const t = dict.challengesSection;
+  return <section className="section challenges" id="challenges">
+    <div className="shell challenges__inner">
+      <Reveal className="challenges__image"><Image src="/assets/cad-render.jpg" alt={t.imageAlt} fill sizes="(max-width: 900px) 100vw, 50vw" /></Reveal>
+      <Reveal className="challenges__copy" delay={100}>
+        <p className="micro">{t.micro}</p>
+        <h2 className="section-title">{t.title}</h2>
+        <ul className="challenges__list">{t.items.map((item, i) => { const Icon = CHALLENGE_ICONS[i]; return <li key={item.title}><span className="challenges__icon" aria-hidden="true"><Icon size={20} /></span><div><h3>{item.title}</h3><p>{item.body}</p></div></li>; })}</ul>
+      </Reveal>
+    </div>
+  </section>;
+}
+
+// One card per product range (owner's design and confirmation, 26 Oct 2026); each opens
+// WhatsApp with the range named, like the service cards above. Photos are the site's own.
+const PRODUCT_IMAGES = ["/assets/hero-penthouse.jpg", "/assets/luxury-living-room-stone-tv-wall-fireplace.jpeg", "/assets/modern-dining-room-pendant-lights-oak-table.jpeg", "/assets/walk-in-closet-island-led-ceiling.jpeg", "/assets/dining-table.jpeg", "/assets/curtains-6.jpeg"];
+
+function ProductCollection() {
+  const { dict } = useI18n();
+  const t = dict.productCollection;
+  return <section className="section product-collection" id="products">
+    <div className="shell">
+      <Reveal className="section-heading section-heading--center"><p className="micro">{t.micro}</p><h2 className="section-title">{t.title}</h2></Reveal>
+      <div className="product-grid">{t.items.map((item, i) => <Reveal className="product-card" delay={(i % 3) * 90} key={item.title}><a href={`https://wa.me/971582621717?text=${encodeURIComponent(t.ask.replace("{item}", item.title))}`} target="_blank" rel="noopener noreferrer"><Image src={PRODUCT_IMAGES[i]} alt="" fill sizes="(max-width: 600px) 100vw, (max-width: 980px) 50vw, 33vw" /><div className="product-card__copy"><h3>{item.title}</h3><p>{item.body}</p></div></a></Reveal>)}</div>
+    </div>
+  </section>;
 }
 
 function Factory() {
@@ -157,7 +186,7 @@ export default function App() {
   const [quotePrefillSize, setQuotePrefillSize] = useState(undefined);
   return <>
     <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-    <main><Hero onGetQuote={() => setQuoteOpen(true)} /><Services /><ServicesDirectory /><Studio /><Factory /><Sectors /><Projects /><Testimonials /><Process /><PriceExplorer /><Estimator onBookSurvey={(size) => { setQuotePrefillSize(size); setQuoteOpen(true); }} /><Faq /><LatestNews /></main>
+    <main><Hero onGetQuote={() => setQuoteOpen(true)} /><Services /><ServicesDirectory /><Challenges /><ProductCollection /><Factory /><Sectors /><Projects /><Testimonials /><Process /><PriceExplorer /><Estimator onBookSurvey={(size) => { setQuotePrefillSize(size); setQuoteOpen(true); }} /><Faq /><LatestNews /></main>
     <Footer />
     <QuoteModal open={quoteOpen} onClose={() => setQuoteOpen(false)} initialSize={quotePrefillSize} />
   </>;

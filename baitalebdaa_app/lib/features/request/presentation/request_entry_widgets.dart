@@ -24,13 +24,14 @@ class ResumeDraftCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final draft = ref.watch(draftProvider);
     if (draft == null) return const SizedBox.shrink();
-    final total = RequestStep.values.length;
-    final step = (draft.stepIndex + 1).clamp(1, total);
+    // Counted in screens, as the request's step tracker shows them.
+    final total = RequestPage.values.length;
+    final step = RequestPage.of(RequestStep.values[draft.stepIndex.clamp(0, RequestStep.values.length - 1)]).index + 1;
     return _OutlinedCard(
       onTap: () => openRequestFlow(context, ref, entry: RequestEntry.resume),
       child: Row(
         children: [
-          Icon(AppIcons.book, color: context.colors.brandAccentStrong),
+          Icon(AppIcons.book, color: context.colors.brandPrimary),
           const SizedBox(width: AppSpacing.sm),
           Expanded(child: Text(context.l10n.requestContinueDraft(step, total), style: context.textStyles.subtitle)),
           const Icon(AppIcons.forward),

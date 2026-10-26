@@ -16,6 +16,7 @@ import '../../auth/presentation/sign_in_controller.dart';
 import '../../content/domain/content_models.dart';
 import '../../content/presentation/content_builder.dart';
 import '../../request/presentation/my_requests.dart';
+import '../../saved/presentation/saved_section.dart';
 import '../../support/presentation/contact_actions.dart';
 
 /// Kept minimal: who you are (or the way to sign in), your requests, support, settings,
@@ -44,6 +45,7 @@ class ProfileScreen extends ConsumerWidget {
                     const SizedBox(height: AppSpacing.xxl),
                     const MyRequestsSection(),
                     const SizedBox(height: AppSpacing.xxl),
+                    SavedSection(content: content),
                     SectionHeader(eyebrow: l10n.profileSupport),
                     const SizedBox(height: AppSpacing.md),
                     ContactRow(business: content.business, screen: AppRoutes.profile),

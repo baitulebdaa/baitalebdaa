@@ -11,6 +11,7 @@ import '../../features/auth/presentation/sign_in_screen.dart';
 import '../../features/auth/presentation/splash_screen.dart';
 import '../../features/book/presentation/book_screen.dart';
 import '../../features/home/presentation/home_screen.dart';
+import '../../features/home/presentation/search_screen.dart';
 import '../../features/profile/presentation/profile_screen.dart';
 import '../../features/projects/presentation/gallery_screen.dart';
 import '../../features/projects/presentation/project_detail_screen.dart';
@@ -36,19 +37,26 @@ final routerProvider = Provider<GoRouter>((ref) {
   // The router is built once; auth changes re-run its redirect instead of rebuilding it,
   // which would throw away the user's place in every tab.
   final refresh = ValueNotifier<int>(0);
-  ref.listen(authStateProvider, (_, _) => refresh.value++);
+  ref
+    ..listen(authStateProvider, (_, _) => refresh.value++)
+    ..listen(splashHoldProvider, (_, _) => refresh.value++);
 
   final router = GoRouter(
     navigatorKey: rootKey,
     initialLocation: AppRoutes.splash,
     restorationScopeId: 'router',
     refreshListenable: refresh,
-    redirect: (context, state) => launchRedirect(uri: state.uri, auth: ref.read(authStateProvider)),
+    redirect: (context, state) => launchRedirect(
+      uri: state.uri,
+      auth: ref.read(authStateProvider),
+      holding: ref.read(splashHoldProvider).isLoading,
+    ),
     errorBuilder: (context, state) => const NotFoundScreen(),
     routes: [
       GoRoute(path: AppRoutes.splash, builder: (context, state) => const SplashScreen()),
       GoRoute(path: AppRoutes.request, builder: (context, state) => const RequestFlowScreen()),
       GoRoute(path: AppRoutes.assistant, builder: (context, state) => const AssistantScreen()),
+      GoRoute(path: AppRoutes.search, builder: (context, state) => const SearchScreen()),
       GoRoute(
         path: AppRoutes.signIn,
         builder: (context, state) => SignInScreen(returnTo: safeReturnPath(state.uri.queryParameters['from'])),

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:baitalebdaa_app/app/router/app_shell.dart';
 import 'package:baitalebdaa_app/app/app.dart';
 import 'package:baitalebdaa_app/app/environment.dart';
 import 'package:baitalebdaa_app/core/fakes/debug_analytics_sink.dart';
@@ -96,7 +97,7 @@ Future<void> pumpApp(
 
 /// Taps the bottom-tab destination with [label].
 Future<void> tapTab(WidgetTester tester, String label) async {
-  await tester.tap(find.descendant(of: find.byType(NavigationDestination), matching: find.text(label)));
+  await tester.tap(find.descendant(of: find.byType(AppTabBar), matching: find.text(label)));
   await tester.pumpAndSettle();
 }
 

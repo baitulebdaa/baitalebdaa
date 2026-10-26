@@ -10,33 +10,27 @@ final _page = find.byWidgetPredicate((widget) => widget is Scrollable && widget.
 Future<void> _tap(WidgetTester tester, Finder finder) async {
   if (finder.evaluate().isEmpty) await tester.scrollUntilVisible(finder, 300, scrollable: _page.first);
   await tester.ensureVisible(finder);
+  await tester.pumpAndSettle();
   await tester.tap(finder);
   await tester.pumpAndSettle();
 }
 
 Future<void> _continue(WidgetTester tester) => _tap(tester, find.widgetWithText(FilledButton, 'Continue'));
 
-Future<void> _skip(WidgetTester tester) => _tap(tester, find.widgetWithText(TextButton, 'Skip'));
-
-/// Book → Start a request → the required answers, skipping every optional step → Review.
+/// Book → Start a request → the required answers on each screen → Review.
 Future<void> _fillRequest(WidgetTester tester) async {
   final content = realSnapshot;
   await tapTab(tester, 'Book');
   await _tap(tester, find.widgetWithText(FilledButton, 'Start a request'));
 
+  // Requirements: a service and the emirate; the rest is optional.
   expect(find.text('What can we help with?'), findsOneWidget);
   await _tap(tester, find.text(content.services.first.name.en));
-  await _continue(tester);
-  await _skip(tester); // space
   await _tap(tester, find.text(content.business.emirates.first.name.en));
   await _continue(tester);
-  await _skip(tester); // size
-  await _skip(tester); // stage
-  await _skip(tester); // budget
-  await _skip(tester); // details
+  await _continue(tester); // details
   await _tap(tester, find.text('Phone call'));
-  await _continue(tester);
-  await _skip(tester); // time
+  await _continue(tester); // consultation and time
   await tester.enterText(find.widgetWithText(TextFormField, 'Full name'), 'Sara Ahmed');
   await tester.enterText(find.widgetWithText(TextFormField, 'Mobile number'), '050 123 4567');
   await _tap(tester, find.widgetWithText(FilledButton, 'Review your request'));
@@ -59,11 +53,12 @@ void main() {
     expect(find.widgetWithText(FilledButton, 'Send request'), findsNothing, reason: 'guests cannot send');
 
     await _tap(tester, find.widgetWithText(FilledButton, 'Sign in to send'));
-    await _tap(tester, find.text('New here? Create an account'));
-    await tester.enterText(find.widgetWithText(TextFormField, 'Full name'), 'Sara Ahmed');
-    await tester.enterText(find.widgetWithText(TextFormField, 'Email'), 'sara@example.ae');
+    await _tap(tester, find.text('Sign Up'));
+    await tester.enterText(find.widgetWithText(TextFormField, 'Full Name'), 'Sara Ahmed');
+    await tester.enterText(find.widgetWithText(TextFormField, 'Email Address'), 'sara@example.ae');
     await tester.enterText(find.widgetWithText(TextFormField, 'Password'), 'longenough');
-    await _tap(tester, find.widgetWithText(FilledButton, 'Create account'));
+    await _tap(tester, find.byType(Checkbox));
+    await _tap(tester, find.widgetWithText(FilledButton, 'Create Account'));
 
     expect(find.widgetWithText(FilledButton, 'Send request'), findsOneWidget, reason: 'back on Review');
     await _expectContactOnReview(tester, reason: 'the answers survived signing in');
@@ -86,20 +81,32 @@ void main() {
     expect(find.text('Request received'), findsOneWidget, reason: 'the live status');
   });
 
-  testWidgets('leaving part-way saves the request so it can be continued', (tester) async {
+  testWidgets('Save Draft keeps the request so it can be continued', (tester) async {
+    final content = realSnapshot;
+    await pumpApp(tester);
+    await tapTab(tester, 'Book');
+    await _tap(tester, find.widgetWithText(FilledButton, 'Start a request'));
+    await _tap(tester, find.text(content.services.first.name.en));
+    await _tap(tester, find.text(content.business.emirates.first.name.en));
+    await _continue(tester);
+    expect(find.text('Tell us about your project'), findsOneWidget);
+
+    await _tap(tester, find.widgetWithText(TextButton, 'Save Draft'));
+    expect(find.text('Continue your request · step 2 of 4'), findsOneWidget);
+    await _tap(tester, find.text('Continue your request · step 2 of 4'));
+    expect(find.text('Tell us about your project'), findsOneWidget, reason: 'resumes on the screen it was left');
+  });
+
+  testWidgets('back on the first screen offers to save and exit', (tester) async {
     await pumpApp(tester);
     await tapTab(tester, 'Book');
     await _tap(tester, find.widgetWithText(FilledButton, 'Start a request'));
     await _tap(tester, find.text(realSnapshot.services.first.name.en));
-    await _continue(tester);
 
-    await tester.tap(find.byTooltip('Close'));
+    await tester.tap(find.byTooltip('Back'));
     await tester.pumpAndSettle();
     await _tap(tester, find.text('Save and exit'));
-
-    expect(find.text('Continue your request · step 2 of 10'), findsOneWidget);
-    await _tap(tester, find.text('Continue your request · step 2 of 10'));
-    expect(find.text('What kind of space is it?'), findsOneWidget, reason: 'resumes where it was left');
+    expect(find.text('Continue your request · step 1 of 4'), findsOneWidget);
   });
 
   testWidgets('a required step explains what is missing instead of moving on', (tester) async {

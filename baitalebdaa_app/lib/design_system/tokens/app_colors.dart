@@ -36,6 +36,9 @@ class AppColors extends ThemeExtension<AppColors> {
   /// pubspec.yaml.
   static const Color splashBackground = Color(0xFF11110F);
 
+  /// The warm brass of the launch screen's rule and spinner, over its photo.
+  static const Color splashAccent = Color(0xFFC9A877);
+
   static const light = AppColors(
     surfacePrimary: Color(0xFFF3F1EC),
     surfaceSecondary: Color(0xFFFBFAF7),
@@ -45,8 +48,9 @@ class AppColors extends ThemeExtension<AppColors> {
     textSecondary: Color(0xFF5F5D58),
     textTertiary: Color(0xFF6B6963),
     textOnInverse: Color(0xFFF3F1EC),
-    brandPrimary: Color(0xFF11110F),
-    onBrandPrimary: Color(0xFFF3F1EC),
+    // Deep green (owner's design, 26 Oct 2026): main actions, the selected tab, chips.
+    brandPrimary: Color(0xFF1F4A3D),
+    onBrandPrimary: Color(0xFFFFFFFF),
     brandAccent: Color(0xFFD6C8B6),
     brandAccentStrong: Color(0xFF7A6347),
     borderSubtle: Color(0x1F11110F),
@@ -68,8 +72,9 @@ class AppColors extends ThemeExtension<AppColors> {
     textSecondary: Color(0xFFA6A39B),
     textTertiary: Color(0xFF8F8C84),
     textOnInverse: Color(0xFF11110F),
-    brandPrimary: Color(0xFFF3F1EC),
-    onBrandPrimary: Color(0xFF11110F),
+    // The same green, lightened to stand out on the dark surfaces, with dark text on it.
+    brandPrimary: Color(0xFF8FC4AA),
+    onBrandPrimary: Color(0xFF0F2A21),
     brandAccent: Color(0xFFD6C8B6),
     brandAccentStrong: Color(0xFFD6C8B6),
     borderSubtle: Color(0x24F3F1EC),

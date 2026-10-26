@@ -20,6 +20,7 @@ abstract final class AppIcons {
   static const IconData projects = Iconsax.gallery_copy;
   static const IconData projectsSelected = Iconsax.gallery;
   static const IconData book = Iconsax.calendar_add_copy;
+  static const IconData bookSelected = Iconsax.calendar_add;
   static const IconData account = Iconsax.user_copy;
   static const IconData accountSelected = Iconsax.user;
 
@@ -45,6 +46,43 @@ abstract final class AppIcons {
   static const IconData time = Iconsax.clock_copy;
   static const IconData guarantee = Iconsax.shield_tick_copy;
 
+  // Projects: save, search, filter and sort.
+  static const IconData save = Iconsax.heart_copy;
+  static const IconData saved = Iconsax.heart;
+  static const IconData search = Iconsax.search_normal_1_copy;
+  static const IconData filter = Iconsax.setting_4_copy;
+  static const IconData expand = Iconsax.arrow_down_1_copy;
+
+  // Home header and the "Why Bait Al Ebdaa" facts.
+  static const IconData notifications = Iconsax.notification_copy;
+  static const IconData factory = Iconsax.buildings_copy;
+  static const IconData quality = Iconsax.diamonds_copy;
+
+  // Service page: bookmark, share, and the website's four process stages.
+  static const IconData bookmark = Iconsax.archive_add_copy;
+  static const IconData bookmarked = Iconsax.archive_tick;
+  static const IconData share = Iconsax.export_1_copy;
+  static const IconData stageDiscover = Iconsax.messages_2_copy;
+  static const IconData stageVisualize = Iconsax.magicpen_copy;
+  static const IconData stageApprove = Iconsax.tick_square_copy;
+  static const IconData stageMake = Iconsax.setting_2_copy;
+
+  // Request: the remaining property types, project stages and info cards.
+  static const IconData townhouse = Iconsax.building_3_copy;
+  static const IconData penthouse = Iconsax.building_copy;
+  static const IconData commercial = Iconsax.buildings_2_copy;
+  static const IconData other = Iconsax.more_copy;
+  static const IconData exploring = Iconsax.lamp_on_copy;
+  static const IconData designing = Iconsax.edit_2_copy;
+  static const IconData renovating = Iconsax.brush_copy;
+  static const IconData photos = Iconsax.gallery_add_copy;
+  static const IconData calendar = Iconsax.calendar_copy;
+
+  /// Bold tick in a circle, drawn on white: the badge on a chosen tile.
+  static const IconData checkBadge = Iconsax.tick_circle;
+  static const IconData copy = Iconsax.copy_copy;
+  static const IconData support = Iconsax.headphone_copy;
+
   // "What are you planning?" choices.
   static const IconData villa = Iconsax.house_copy;
   static const IconData apartment = Iconsax.building_4_copy;
@@ -64,11 +102,11 @@ abstract final class AppIcons {
     matchTextDirection: true,
   ); // Iconsax.arrow_right_3_copy
   static const IconData back = IconData(
-    0xe968,
+    0xe96b,
     fontFamily: _font,
     fontPackage: _package,
     matchTextDirection: true,
-  ); // Iconsax.arrow_left_2_copy
+  ); // Iconsax.arrow_left_copy
   static const IconData proceed = IconData(
     0xe96e,
     fontFamily: _font,
@@ -85,6 +123,10 @@ abstract final class AppIcons {
   /// A plus; [AppBarButton] turns it 45° into ×, which Iconsax lacks.
   static const IconData close = Iconsax.add_copy;
   static const IconData show = Iconsax.eye_copy;
+  static const IconData password = Iconsax.lock_copy;
+
+  /// Apple's own mark, filled, for "Continue with Apple".
+  static const IconData apple = Iconsax.apple;
   static const IconData hide = Iconsax.eye_slash_copy;
   static const IconData signOut = IconData(
     0xed3e,
