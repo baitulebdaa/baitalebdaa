@@ -1352,4 +1352,16 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get notificationsUnavailable =>
       'الإشعارات غير متاحة على هذا الجهاز بعد. سنبقيك على اطلاع عبر واتساب أو الهاتف أو البريد الإلكتروني.';
+
+  @override
+  String get profilePhotoChange => 'تغيير صورة الملف الشخصي';
+
+  @override
+  String get profilePhotoChoose => 'اختيار صورة';
+
+  @override
+  String get profilePhotoRemove => 'إزالة الصورة';
+
+  @override
+  String get profilePhotoNote => 'تبقى صورتك على هذا الهاتف فقط.';
 }

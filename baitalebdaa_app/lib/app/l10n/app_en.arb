@@ -1896,5 +1896,21 @@
   "notificationsUnavailable": "Notifications aren't available on this device yet. We'll keep you updated on WhatsApp, by phone or by email.",
   "@notificationsUnavailable": {
     "description": "Settings, push unsupported."
+  },
+  "profilePhotoChange": "Change profile photo",
+  "@profilePhotoChange": {
+    "description": "Camera button on the profile photo."
+  },
+  "profilePhotoChoose": "Choose a photo",
+  "@profilePhotoChoose": {
+    "description": "Profile photo option."
+  },
+  "profilePhotoRemove": "Remove photo",
+  "@profilePhotoRemove": {
+    "description": "Profile photo option."
+  },
+  "profilePhotoNote": "Your photo stays on this phone.",
+  "@profilePhotoNote": {
+    "description": "Under the profile photo options."
   }
 }

@@ -12,6 +12,7 @@ import '../../../design_system/tokens/app_icons.dart';
 import '../../../design_system/tokens/app_layout_tokens.dart';
 import '../../../design_system/tokens/app_typography.dart';
 import '../../auth/data/account_phone.dart';
+import '../../auth/data/profile_photo.dart';
 import '../../auth/domain/auth_validation.dart';
 import '../../auth/presentation/sign_in_controller.dart';
 import '../../content/domain/content_models.dart';
@@ -313,7 +314,7 @@ class _ProfileHeader extends ConsumerWidget {
             ),
             child: Row(
               children: [
-                _Initials(name: name ?? email ?? ''),
+                _Avatar(name: name ?? email ?? '', account: account),
                 const SizedBox(width: AppSpacing.lg),
                 Expanded(
                   child: Column(
@@ -390,30 +391,113 @@ class _ProfileHeader extends ConsumerWidget {
   }
 }
 
-class _Initials extends StatelessWidget {
-  const _Initials({required this.name});
+/// The round photo: the customer's own picture (kept on this phone) or their initials,
+/// with a camera button to change it once signed in.
+class _Avatar extends ConsumerWidget {
+  const _Avatar({required this.name, required this.account});
 
   final String name;
+  final AppUser? account;
+
+  static const double _size = 104;
+  static const Color _white = Color(0xFFFFFFFF);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final account = this.account;
+    final photo = account == null ? null : ref.watch(profilePhotoProvider).value;
     final words = name.split(RegExp(r'[\s@.]+')).where((w) => w.isNotEmpty).toList();
     final initials = words.take(2).map((w) => w.characters.first.toUpperCase()).join();
-    return ExcludeSemantics(
-      child: Container(
-        width: 96,
-        height: 96,
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: context.colors.brandPrimary,
-          border: Border.all(color: const Color(0xFFFFFFFF), width: 3),
-        ),
-        child: initials.isEmpty
-            ? const Icon(AppIcons.account, size: 40, color: Color(0xFFFFFFFF))
-            : Text(initials, style: context.textStyles.headline.copyWith(color: const Color(0xFFFFFFFF), fontSize: 36)),
+    final pixels = (_size * MediaQuery.devicePixelRatioOf(context)).round();
+    return SizedBox.square(
+      dimension: _size,
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          ExcludeSemantics(
+            child: Container(
+              width: _size,
+              height: _size,
+              alignment: Alignment.center,
+              clipBehavior: Clip.antiAlias,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: context.colors.brandPrimary,
+                border: Border.all(color: _white, width: 3),
+              ),
+              child: photo != null
+                  ? Image.file(photo, width: _size, height: _size, fit: BoxFit.cover, cacheWidth: pixels)
+                  : initials.isEmpty
+                  ? const Icon(AppIcons.account, size: 40, color: _white)
+                  : Text(initials, style: context.textStyles.headline.copyWith(color: _white, fontSize: 38)),
+            ),
+          ),
+          if (account != null && ProfilePhotoStore.supported)
+            PositionedDirectional(
+              end: -2,
+              bottom: 2,
+              child: Material(
+                color: _white,
+                shape: const CircleBorder(),
+                elevation: 2,
+                child: IconButton(
+                  tooltip: context.l10n.profilePhotoChange,
+                  iconSize: 20,
+                  constraints: const BoxConstraints.tightFor(width: 40, height: 40),
+                  padding: EdgeInsets.zero,
+                  color: AppColors.splashBackground,
+                  icon: const Icon(AppIcons.camera),
+                  onPressed: () => _changePhoto(context, ref, account, hasPhoto: photo != null),
+                ),
+              ),
+            ),
+        ],
       ),
     );
+  }
+
+  Future<void> _changePhoto(BuildContext context, WidgetRef ref, AppUser account, {required bool hasPhoto}) async {
+    final store = ref.read(profilePhotoStoreProvider);
+    var remove = false;
+    if (hasPhoto) {
+      final l10n = context.l10n;
+      final choice = await showModalBottomSheet<bool>(
+        context: context,
+        showDragHandle: true,
+        builder: (context) => SafeArea(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                leading: const Icon(AppIcons.camera),
+                title: Text(l10n.profilePhotoChoose),
+                onTap: () => Navigator.pop(context, false),
+              ),
+              ListTile(
+                leading: Icon(AppIcons.delete, color: context.colors.error),
+                title: Text(l10n.profilePhotoRemove, style: TextStyle(color: context.colors.error)),
+                onTap: () => Navigator.pop(context, true),
+              ),
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(AppSpacing.lg, 0, AppSpacing.lg, AppSpacing.md),
+                child: Text(
+                  l10n.profilePhotoNote,
+                  style: context.textStyles.caption.copyWith(color: context.colors.textSecondary),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+      if (choice == null) return;
+      remove = choice;
+    }
+    if (remove) {
+      await store.clear(account.uid);
+    } else if (!await store.pick(account.uid)) {
+      return;
+    }
+    ref.invalidate(profilePhotoProvider);
   }
 }
 
@@ -617,7 +701,17 @@ class _StatCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                Icon(AppIcons.forward, size: 16, color: colors.textSecondary),
+                // The chevron in a small outlined circle, as in the design.
+                DecoratedBox(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(color: colors.borderControl),
+                  ),
+                  child: SizedBox.square(
+                    dimension: 28,
+                    child: Icon(AppIcons.forward, size: 14, color: colors.textPrimary),
+                  ),
+                ),
               ],
             ),
           ),

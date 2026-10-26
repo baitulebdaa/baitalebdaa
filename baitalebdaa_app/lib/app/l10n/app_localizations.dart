@@ -2641,6 +2641,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Notifications aren\'t available on this device yet. We\'ll keep you updated on WhatsApp, by phone or by email.'**
   String get notificationsUnavailable;
+
+  /// Camera button on the profile photo.
+  ///
+  /// In en, this message translates to:
+  /// **'Change profile photo'**
+  String get profilePhotoChange;
+
+  /// Profile photo option.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a photo'**
+  String get profilePhotoChoose;
+
+  /// Profile photo option.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove photo'**
+  String get profilePhotoRemove;
+
+  /// Under the profile photo options.
+  ///
+  /// In en, this message translates to:
+  /// **'Your photo stays on this phone.'**
+  String get profilePhotoNote;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

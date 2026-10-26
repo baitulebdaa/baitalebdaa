@@ -100,6 +100,7 @@ abstract final class AppIcons {
   static const IconData globe = Iconsax.global_copy;
   static const IconData privacy = Iconsax.shield_tick_copy;
   static const IconData edit = Iconsax.edit_2_copy;
+  static const IconData camera = Iconsax.camera_copy;
   static const IconData appearance = Iconsax.sun_1_copy;
 
   static const IconData forward = IconData(
