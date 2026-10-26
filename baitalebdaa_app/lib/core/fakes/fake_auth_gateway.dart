@@ -58,6 +58,23 @@ class FakeAuthGateway implements AuthGateway {
   }
 
   @override
+  Future<void> updateDisplayName(String name) async {
+    final user = _user;
+    if (user == null) return;
+    final renamed = AppUser(
+      uid: user.uid,
+      isAnonymous: user.isAnonymous,
+      email: user.email,
+      displayName: name.trim(),
+      emailVerified: user.emailVerified,
+    );
+    final key = user.email;
+    final account = key == null ? null : _accounts[key];
+    if (key != null && account != null) _accounts[key] = (password: account.password, user: renamed);
+    _set(renamed);
+  }
+
+  @override
   Future<void> sendPasswordReset(String email) async {}
 
   @override

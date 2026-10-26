@@ -22,7 +22,28 @@ import '../domain/request_draft.dart';
 import 'request_flow_screen.dart';
 import 'request_labels.dart';
 
-/// The Profile tab's list of sent requests, with their live status.
+/// My Requests, opened from Profile: every sent request with its live status.
+class MyRequestsScreen extends StatelessWidget {
+  const MyRequestsScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final gutter = AppSpacing.gutter(AppWindowSize.of(context));
+    return Scaffold(
+      body: AppScrollView(
+        title: context.l10n.profileMyRequests,
+        slivers: [
+          SliverPadding(
+            padding: EdgeInsetsDirectional.fromSTEB(gutter, 0, gutter, AppSpacing.section),
+            sliver: const SliverToBoxAdapter(child: MyRequestsSection()),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// The list of sent requests, with their live status.
 class MyRequestsSection extends ConsumerWidget {
   const MyRequestsSection({super.key});
 

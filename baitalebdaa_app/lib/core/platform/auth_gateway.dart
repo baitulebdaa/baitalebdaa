@@ -61,6 +61,9 @@ abstract interface class AuthGateway {
   /// Creates the account, sets its display name and sends a verification email.
   Future<AppUser> createAccount({required String name, required String email, required String password});
 
+  /// Changes the signed-in account's display name.
+  Future<void> updateDisplayName(String name);
+
   /// Sends a reset link. Completes normally whether or not the email has an account, so
   /// the app never reveals which emails are registered.
   Future<void> sendPasswordReset(String email);
@@ -96,6 +99,9 @@ class UnconfiguredAuthGateway implements AuthGateway {
   @override
   Future<AppUser> createAccount({required String name, required String email, required String password}) =>
       Future<AppUser>.error(const UnavailableFailure());
+
+  @override
+  Future<void> updateDisplayName(String name) => Future<void>.error(const UnavailableFailure());
 
   @override
   Future<void> sendPasswordReset(String email) => Future<void>.error(const UnavailableFailure());

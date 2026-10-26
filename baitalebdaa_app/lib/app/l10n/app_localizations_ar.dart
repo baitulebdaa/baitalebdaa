@@ -1261,4 +1261,95 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get brandServicesLine => 'تصميم داخلي | تشطيب | نجارة';
+
+  @override
+  String get profileEditProfile => 'تعديل الملف الشخصي';
+
+  @override
+  String get profileSave => 'حفظ';
+
+  @override
+  String get profileSaved => 'تم تحديث الملف الشخصي.';
+
+  @override
+  String get profileGuestTitle => 'مرحباً';
+
+  @override
+  String get profileGuestBody => 'سجّل الدخول لمتابعة طلباتك وحفظ بياناتك.';
+
+  @override
+  String get profileActiveRequests => 'طلبات نشطة';
+
+  @override
+  String get profileInProgress => 'قيد التنفيذ';
+
+  @override
+  String get profileScheduled => 'استشارة مجدولة';
+
+  @override
+  String get profileUpcoming => 'قادمة';
+
+  @override
+  String get profileMyRequests => 'طلباتي';
+
+  @override
+  String get profileMyRequestsBody => 'تابع استفسارات مشروعك وطلباتك';
+
+  @override
+  String get profileSavedProjects => 'المشاريع المحفوظة';
+
+  @override
+  String get profileSavedBody => 'مشاريعك المفضلة ومصادر إلهامك';
+
+  @override
+  String get profilePhotos => 'الصور والمخططات';
+
+  @override
+  String get profilePhotosBody => 'شارك المخططات والمراجع والمستندات عبر واتساب';
+
+  @override
+  String get profilePhotosMessage => 'مرحباً! أرغب بمشاركة صور ومخططات مشروعي.';
+
+  @override
+  String get profileLanguage => 'اللغة المفضلة';
+
+  @override
+  String get profileLanguageBody => 'English / العربية';
+
+  @override
+  String get profileNotifications => 'الإشعارات';
+
+  @override
+  String get profileNotificationsBody => 'إدارة الإشعارات والتفضيلات';
+
+  @override
+  String get profileWhatsapp => 'الدعم عبر واتساب';
+
+  @override
+  String get profileWhatsappBody => 'احصل على مساعدة فورية من فريقنا';
+
+  @override
+  String get profilePrivacyBody => 'كيف نحمي معلوماتك';
+
+  @override
+  String get profileTermsBody => 'شروط الخدمة لدينا';
+
+  @override
+  String get profileSignOutBody => 'تسجيل الخروج من حسابك';
+
+  @override
+  String get savedEmpty => 'لا يوجد شيء محفوظ بعد. اضغط على القلب في مشروع أو على الإشارة المرجعية في خدمة.';
+
+  @override
+  String get notificationsOn => 'الإشعارات مفعّلة. سنخبرك عند تغيّر حالة طلبك.';
+
+  @override
+  String get notificationsOff => 'فعّل الإشعارات لتعرف عند تغيّر حالة طلبك.';
+
+  @override
+  String get notificationsAllow => 'السماح بالإشعارات';
+
+  @override
+  String get notificationsUnavailable =>
+      'الإشعارات غير متاحة على هذا الجهاز بعد. سنبقيك على اطلاع عبر واتساب أو الهاتف أو البريد الإلكتروني.';
 }

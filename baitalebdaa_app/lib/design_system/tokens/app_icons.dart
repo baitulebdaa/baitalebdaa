@@ -93,6 +93,13 @@ abstract final class AppIcons {
 
   static const IconData settings = Iconsax.setting_2_copy;
   static const IconData language = Iconsax.language_square_copy;
+
+  // Profile rows (owner's design, 26 Oct 2026).
+  static const IconData requests = Iconsax.document_text_1_copy;
+  static const IconData attachment = Iconsax.paperclip_2_copy;
+  static const IconData globe = Iconsax.global_copy;
+  static const IconData privacy = Iconsax.shield_tick_copy;
+  static const IconData edit = Iconsax.edit_2_copy;
   static const IconData appearance = Iconsax.sun_1_copy;
 
   static const IconData forward = IconData(

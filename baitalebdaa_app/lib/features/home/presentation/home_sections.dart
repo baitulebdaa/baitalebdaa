@@ -66,8 +66,11 @@ class _HeroCarouselState extends ConsumerState<HeroCarousel> {
   final _pages = PageController();
   int _index = 0;
 
-  static const double _minHeight = 420;
-  static const double _maxHeight = 560;
+  // A short banner (owner, 26 Oct 2026: "decrease the height"); it grows only with the
+  // user's text size, so the copy and button always fit.
+  static const double _minHeight = 290;
+  static const double _maxHeight = 370;
+  static const double _tallest = 560;
 
   @override
   void dispose() {
@@ -80,8 +83,9 @@ class _HeroCarouselState extends ConsumerState<HeroCarousel> {
     final slides = widget.slides;
     return LayoutBuilder(
       builder: (context, constraints) {
-        // Tall enough for the eyebrow, title, text and button at the user's text size.
-        final height = (constraints.maxWidth * 1.15).clamp(_minHeight, _maxHeight).toDouble();
+        final textScale = MediaQuery.textScalerOf(context).scale(16) / 16;
+        final base = (constraints.maxWidth * 0.88).clamp(_minHeight, _maxHeight).toDouble();
+        final height = (base + (textScale - 1) * 200).clamp(base, _tallest).toDouble();
         return ClipRRect(
           borderRadius: BorderRadius.circular(_panelRadius),
           child: SizedBox(
@@ -156,7 +160,7 @@ class _HeroSlideView extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(AppSpacing.xl, AppSpacing.xxl, AppSpacing.xl, AppSpacing.xxxl),
+          padding: const EdgeInsetsDirectional.fromSTEB(AppSpacing.lg, AppSpacing.lg, AppSpacing.lg, AppSpacing.lg),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -166,30 +170,45 @@ class _HeroSlideView extends StatelessWidget {
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
-              const SizedBox(height: AppSpacing.md),
+              const SizedBox(height: AppSpacing.xs),
               // Flexible: at large text sizes the title gives up lines before the button
               // is pushed off the photo.
               Flexible(
                 child: Semantics(
                   header: true,
-                  child: Text(
-                    context.localized(slide.title),
-                    style: styles.display.copyWith(color: _onDark),
-                    maxLines: 4,
-                    overflow: TextOverflow.ellipsis,
+                  // Scales down when the banner is short, so a line is never cut in half.
+                  child: LayoutBuilder(
+                    builder: (context, box) => FittedBox(
+                      fit: BoxFit.scaleDown,
+                      alignment: AlignmentDirectional.topStart,
+                      child: SizedBox(
+                        width: box.maxWidth,
+                        child: Text(
+                          context.localized(slide.title),
+                          style: styles.display.copyWith(
+                            color: _onDark,
+                            fontSize: styles.script == AppScript.latin ? 32 : 28,
+                            height: 1.05,
+                          ),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ),
-              const SizedBox(height: AppSpacing.md),
+              const SizedBox(height: AppSpacing.xs),
               Flexible(
                 child: Text(
                   context.localized(slide.body),
-                  style: styles.bodySmall.copyWith(color: _onDark.withValues(alpha: 0.9)),
-                  maxLines: 3,
+                  style: styles.bodySmall.copyWith(color: _onDark.withValues(alpha: 0.9), fontSize: 14, height: 1.4),
+                  maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
               const Spacer(),
+              const SizedBox(height: AppSpacing.sm),
               _PillButton(
                 label: context.l10n.homeHeroCta,
                 onPressed: onStart,

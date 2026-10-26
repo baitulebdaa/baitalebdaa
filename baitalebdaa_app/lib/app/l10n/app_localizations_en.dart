@@ -233,7 +233,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get accountSignInCta => 'Sign in or create an account';
 
   @override
-  String get accountSignOut => 'Sign out';
+  String get accountSignOut => 'Sign Out';
 
   @override
   String get accountVerifyEmail => 'Check your inbox to verify your email address.';
@@ -785,13 +785,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profileLegal => 'Legal';
 
   @override
-  String get profilePrivacy => 'Privacy policy';
+  String get profilePrivacy => 'Privacy Policy';
 
   @override
-  String get profileTerms => 'Terms and conditions';
+  String get profileTerms => 'Terms & Conditions';
 
   @override
-  String get profileDelete => 'Delete account';
+  String get profileDelete => 'Delete Account';
 
   @override
   String get deleteTitle => 'Delete your account?';
@@ -1253,4 +1253,95 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get brandServicesLine => 'INTERIORS | FIT-OUT | JOINERY';
+
+  @override
+  String get profileEditProfile => 'Edit Profile';
+
+  @override
+  String get profileSave => 'Save';
+
+  @override
+  String get profileSaved => 'Profile updated.';
+
+  @override
+  String get profileGuestTitle => 'Welcome';
+
+  @override
+  String get profileGuestBody => 'Sign in to follow your requests and keep your details.';
+
+  @override
+  String get profileActiveRequests => 'Active Requests';
+
+  @override
+  String get profileInProgress => 'In progress';
+
+  @override
+  String get profileScheduled => 'Scheduled Consultation';
+
+  @override
+  String get profileUpcoming => 'Upcoming';
+
+  @override
+  String get profileMyRequests => 'My Requests';
+
+  @override
+  String get profileMyRequestsBody => 'Track your project inquiries and requests';
+
+  @override
+  String get profileSavedProjects => 'Saved Projects';
+
+  @override
+  String get profileSavedBody => 'Your favorite projects and inspirations';
+
+  @override
+  String get profilePhotos => 'Photos & Plans';
+
+  @override
+  String get profilePhotosBody => 'Share drawings, references and documents on WhatsApp';
+
+  @override
+  String get profilePhotosMessage => 'Hello! I\'d like to share photos and plans for my project.';
+
+  @override
+  String get profileLanguage => 'Preferred Language';
+
+  @override
+  String get profileLanguageBody => 'English / العربية';
+
+  @override
+  String get profileNotifications => 'Notifications';
+
+  @override
+  String get profileNotificationsBody => 'Manage your notifications and preferences';
+
+  @override
+  String get profileWhatsapp => 'WhatsApp Support';
+
+  @override
+  String get profileWhatsappBody => 'Get instant assistance from our team';
+
+  @override
+  String get profilePrivacyBody => 'How we protect your information';
+
+  @override
+  String get profileTermsBody => 'Our terms of service';
+
+  @override
+  String get profileSignOutBody => 'Log out from your account';
+
+  @override
+  String get savedEmpty => 'Nothing saved yet. Tap the heart on a project or the bookmark on a service.';
+
+  @override
+  String get notificationsOn => 'Notifications are on. We\'ll tell you when your request status changes.';
+
+  @override
+  String get notificationsOff => 'Turn on notifications to hear when your request status changes.';
+
+  @override
+  String get notificationsAllow => 'Allow notifications';
+
+  @override
+  String get notificationsUnavailable =>
+      'Notifications aren\'t available on this device yet. We\'ll keep you updated on WhatsApp, by phone or by email.';
 }

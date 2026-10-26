@@ -18,6 +18,7 @@ import '../../features/projects/presentation/project_detail_screen.dart';
 import '../../features/projects/presentation/projects_screen.dart';
 import '../../features/request/presentation/my_requests.dart';
 import '../../features/request/presentation/request_flow_screen.dart';
+import '../../features/saved/presentation/saved_section.dart';
 import '../../features/services/presentation/price_guide_screen.dart';
 import '../../features/services/presentation/service_detail_screen.dart';
 import '../../features/services/presentation/services_screen.dart';
@@ -119,9 +120,16 @@ final routerProvider = Provider<GoRouter>((ref) {
                 routes: [
                   GoRoute(path: AppRoutes.settingsSegment, builder: (context, state) => const SettingsScreen()),
                   GoRoute(
-                    path: AppRoutes.requestDetailSegment,
-                    builder: (context, state) => RequestDetailScreen(requestId: state.pathParameters['id']!),
+                    path: AppRoutes.requestsSegment,
+                    builder: (context, state) => const MyRequestsScreen(),
+                    routes: [
+                      GoRoute(
+                        path: AppRoutes.requestDetailSegment,
+                        builder: (context, state) => RequestDetailScreen(requestId: state.pathParameters['id']!),
+                      ),
+                    ],
                   ),
+                  GoRoute(path: AppRoutes.savedSegment, builder: (context, state) => const SavedScreen()),
                 ],
               ),
             ],

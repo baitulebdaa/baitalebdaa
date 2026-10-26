@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/platform/push_gateway.dart';
 import '../../../design_system/components/navigation/app_header.dart';
 import '../../../design_system/components/typography/section_header.dart';
 import '../../../design_system/theme/context_extensions.dart';
@@ -44,6 +45,9 @@ class SettingsScreen extends ConsumerWidget {
                   ),
                 ),
                 const SizedBox(height: AppSpacing.xxl),
+                SectionHeader(eyebrow: l10n.profileNotifications),
+                const _Notifications(),
+                const SizedBox(height: AppSpacing.xxl),
                 SectionHeader(eyebrow: l10n.settingsAppearance),
                 RadioGroup<ThemeMode>(
                   groupValue: settings.themeMode,
@@ -63,6 +67,47 @@ class SettingsScreen extends ConsumerWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+/// Whether request updates can arrive as notifications, and the way to allow them. Until
+/// push is set up, it says how updates arrive instead.
+class _Notifications extends ConsumerStatefulWidget {
+  const _Notifications();
+
+  @override
+  ConsumerState<_Notifications> createState() => _NotificationsState();
+}
+
+class _NotificationsState extends ConsumerState<_Notifications> {
+  late Future<PushPermission> _permission = ref.read(pushGatewayProvider).permission();
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    return FutureBuilder<PushPermission>(
+      future: _permission,
+      builder: (context, snapshot) {
+        final permission = snapshot.data;
+        if (permission == null) return const SizedBox(height: kMinInteractiveDimension);
+        final text = switch (permission) {
+          PushPermission.granted => l10n.notificationsOn,
+          PushPermission.unsupported => l10n.notificationsUnavailable,
+          PushPermission.notDetermined || PushPermission.denied => l10n.notificationsOff,
+        };
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(text, style: context.textStyles.bodySmall.copyWith(color: context.colors.textSecondary)),
+            if (permission == PushPermission.notDetermined || permission == PushPermission.denied)
+              TextButton(
+                onPressed: () => setState(() => _permission = ref.read(pushGatewayProvider).requestPermission()),
+                child: Text(l10n.notificationsAllow),
+              ),
+          ],
+        );
+      },
     );
   }
 }

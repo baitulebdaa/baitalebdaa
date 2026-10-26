@@ -4,14 +4,47 @@ import 'package:go_router/go_router.dart';
 
 import '../../../app/router/routes.dart';
 import '../../../design_system/components/media/bundled_photo.dart';
+import '../../../design_system/components/navigation/app_header.dart';
 import '../../../design_system/components/typography/section_header.dart';
 import '../../../design_system/theme/context_extensions.dart';
 import '../../../design_system/tokens/app_icons.dart';
 import '../../../design_system/tokens/app_layout_tokens.dart';
 import '../../content/domain/content_models.dart';
+import '../../content/presentation/content_builder.dart';
 import '../data/saved_items.dart';
 
-/// The services bookmarked and projects hearted on this device, on Profile. Hidden until
+/// Saved, opened from Profile: what was saved on this device, or how to save something.
+class SavedScreen extends ConsumerWidget {
+  const SavedScreen({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final gutter = AppSpacing.gutter(AppWindowSize.of(context));
+    final empty = ref.watch(savedServicesProvider).isEmpty && ref.watch(savedProjectsProvider).isEmpty;
+    return Scaffold(
+      body: ContentBuilder(
+        builder: (context, content) => AppScrollView(
+          title: context.l10n.profileSavedProjects,
+          slivers: [
+            SliverPadding(
+              padding: EdgeInsetsDirectional.fromSTEB(gutter, 0, gutter, AppSpacing.section),
+              sliver: SliverToBoxAdapter(
+                child: empty
+                    ? Text(
+                        context.l10n.savedEmpty,
+                        style: context.textStyles.bodySmall.copyWith(color: context.colors.textSecondary),
+                      )
+                    : SavedSection(content: content),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// The services bookmarked and projects hearted on this device. Hidden until
 /// something is saved; items no longer on the website are skipped.
 class SavedSection extends ConsumerWidget {
   const SavedSection({required this.content, super.key});

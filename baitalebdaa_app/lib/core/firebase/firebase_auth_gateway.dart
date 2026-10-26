@@ -70,6 +70,15 @@ class FirebaseAuthGateway implements AuthGateway {
       });
 
   @override
+  Future<void> updateDisplayName(String name) => _guard(() async {
+    final user = _auth.currentUser;
+    if (user == null) return;
+    await user.updateDisplayName(name.trim());
+    // userChanges() emits after the reload, so every screen shows the new name.
+    await user.reload();
+  });
+
+  @override
   Future<void> sendPasswordReset(String email) => _guard(() => _auth.sendPasswordResetEmail(email: email.trim()));
 
   @override

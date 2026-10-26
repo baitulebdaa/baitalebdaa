@@ -326,7 +326,7 @@
   "@accountSignInCta": {
     "description": "Profile tab button for guests."
   },
-  "accountSignOut": "Sign out",
+  "accountSignOut": "Sign Out",
   "@accountSignOut": {
     "description": "Profile tab button for signed-in users."
   },
@@ -1114,15 +1114,15 @@
   "@profileLegal": {
     "description": "Profile section with policies."
   },
-  "profilePrivacy": "Privacy policy",
+  "profilePrivacy": "Privacy Policy",
   "@profilePrivacy": {
     "description": "Link to the website privacy policy."
   },
-  "profileTerms": "Terms and conditions",
+  "profileTerms": "Terms & Conditions",
   "@profileTerms": {
     "description": "Link to the website terms."
   },
-  "profileDelete": "Delete account",
+  "profileDelete": "Delete Account",
   "@profileDelete": {
     "description": "Profile action that deletes the account."
   },
@@ -1776,5 +1776,125 @@
   "brandServicesLine": "INTERIORS | FIT-OUT | JOINERY",
   "@brandServicesLine": {
     "description": "Small line under the wordmark."
+  },
+  "profileEditProfile": "Edit Profile",
+  "@profileEditProfile": {
+    "description": "Button on the profile header."
+  },
+  "profileSave": "Save",
+  "@profileSave": {
+    "description": "Saves the edited profile."
+  },
+  "profileSaved": "Profile updated.",
+  "@profileSaved": {
+    "description": "Snackbar after saving the profile."
+  },
+  "profileGuestTitle": "Welcome",
+  "@profileGuestTitle": {
+    "description": "Profile header title for guests."
+  },
+  "profileGuestBody": "Sign in to follow your requests and keep your details.",
+  "@profileGuestBody": {
+    "description": "Profile header line for guests."
+  },
+  "profileActiveRequests": "Active Requests",
+  "@profileActiveRequests": {
+    "description": "Profile stat card."
+  },
+  "profileInProgress": "In progress",
+  "@profileInProgress": {
+    "description": "Under the active requests count."
+  },
+  "profileScheduled": "Scheduled Consultation",
+  "@profileScheduled": {
+    "description": "Profile stat card."
+  },
+  "profileUpcoming": "Upcoming",
+  "@profileUpcoming": {
+    "description": "Under the scheduled consultations count."
+  },
+  "profileMyRequests": "My Requests",
+  "@profileMyRequests": {
+    "description": "Profile row."
+  },
+  "profileMyRequestsBody": "Track your project inquiries and requests",
+  "@profileMyRequestsBody": {
+    "description": "Profile row line."
+  },
+  "profileSavedProjects": "Saved Projects",
+  "@profileSavedProjects": {
+    "description": "Profile row."
+  },
+  "profileSavedBody": "Your favorite projects and inspirations",
+  "@profileSavedBody": {
+    "description": "Profile row line."
+  },
+  "profilePhotos": "Photos & Plans",
+  "@profilePhotos": {
+    "description": "Profile row; opens WhatsApp."
+  },
+  "profilePhotosBody": "Share drawings, references and documents on WhatsApp",
+  "@profilePhotosBody": {
+    "description": "Profile row line."
+  },
+  "profilePhotosMessage": "Hello! I'd like to share photos and plans for my project.",
+  "@profilePhotosMessage": {
+    "description": "Prefilled WhatsApp message from Profile."
+  },
+  "profileLanguage": "Preferred Language",
+  "@profileLanguage": {
+    "description": "Profile row."
+  },
+  "profileLanguageBody": "English / العربية",
+  "@profileLanguageBody": {
+    "description": "Profile row line, each language in itself."
+  },
+  "profileNotifications": "Notifications",
+  "@profileNotifications": {
+    "description": "Profile row."
+  },
+  "profileNotificationsBody": "Manage your notifications and preferences",
+  "@profileNotificationsBody": {
+    "description": "Profile row line."
+  },
+  "profileWhatsapp": "WhatsApp Support",
+  "@profileWhatsapp": {
+    "description": "Profile row."
+  },
+  "profileWhatsappBody": "Get instant assistance from our team",
+  "@profileWhatsappBody": {
+    "description": "Profile row line."
+  },
+  "profilePrivacyBody": "How we protect your information",
+  "@profilePrivacyBody": {
+    "description": "Profile row line."
+  },
+  "profileTermsBody": "Our terms of service",
+  "@profileTermsBody": {
+    "description": "Profile row line."
+  },
+  "profileSignOutBody": "Log out from your account",
+  "@profileSignOutBody": {
+    "description": "Profile row line."
+  },
+  "savedEmpty": "Nothing saved yet. Tap the heart on a project or the bookmark on a service.",
+  "@savedEmpty": {
+    "description": "Saved screen when empty."
+  },
+  "notificationsOn": "Notifications are on. We'll tell you when your request status changes.",
+  "@notificationsOn": {
+    "description": "Settings, push allowed."
+  },
+  "notificationsOff": "Turn on notifications to hear when your request status changes.",
+  "@notificationsOff": {
+    "description": "Settings, push not allowed yet."
+  },
+  "notificationsAllow": "Allow notifications",
+  "@notificationsAllow": {
+    "description": "Settings button."
+  },
+  "notificationsUnavailable": "Notifications aren't available on this device yet. We'll keep you updated on WhatsApp, by phone or by email.",
+  "@notificationsUnavailable": {
+    "description": "Settings, push unsupported."
   }
 }

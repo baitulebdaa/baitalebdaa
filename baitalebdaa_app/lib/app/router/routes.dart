@@ -20,6 +20,8 @@ abstract final class AppRoutes {
 
   static const priceGuide = '/services/pricing';
   static const settings = '/profile/settings';
+  static const myRequests = '/profile/requests';
+  static const saved = '/profile/saved';
 
   static String service(String slug) => '$services/${Uri.encodeComponent(slug)}';
   static String project(String slug) => '$projects/${Uri.encodeComponent(slug)}';
@@ -32,5 +34,7 @@ abstract final class AppRoutes {
   static const projectSegment = ':slug';
   static const gallerySegment = 'gallery/:index';
   static const settingsSegment = 'settings';
-  static const requestDetailSegment = 'requests/:id';
+  static const requestsSegment = 'requests';
+  static const requestDetailSegment = ':id';
+  static const savedSegment = 'saved';
 }

@@ -43,8 +43,8 @@ class HomeScreen extends ConsumerWidget {
             padding: const EdgeInsetsDirectional.only(bottom: AppSpacing.section),
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(gutter, AppSpacing.xs, AppSpacing.xs, 0),
-                child: _Header(emirates: content.business.emirates),
+                padding: EdgeInsetsDirectional.fromSTEB(gutter, AppSpacing.xs, gutter - AppSpacing.xs, 0),
+                child: HomeTopBar(emirates: content.business.emirates),
               ),
               Padding(
                 padding: padded(AppSpacing.sm),
@@ -54,8 +54,8 @@ class HomeScreen extends ConsumerWidget {
                 padding: padded(AppSpacing.md),
                 child: Column(
                   children: [
-                    const ResumeDraftCard(),
-                    const SizedBox(height: AppSpacing.sm),
+                    // No "Continue your request" card here (owner, 26 Oct 2026); Book
+                    // still offers it.
                     LatestRequestCard(content: content),
                   ],
                 ),
@@ -113,13 +113,14 @@ class HomeScreen extends ConsumerWidget {
   );
 }
 
-/// Logo at the start; search, requests and the visitor's emirate at the end.
-class _Header extends ConsumerWidget {
-  const _Header({required this.emirates});
+/// Logo at the start; search, requests and the visitor's emirate at the end. Home and
+/// Profile share it (owner's designs, 26 Oct 2026).
+class HomeTopBar extends ConsumerWidget {
+  const HomeTopBar({required this.emirates, super.key});
 
   final List<Emirate> emirates;
 
-  static const double _logoWidth = 150;
+  static const double _logoWidth = 160;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -130,22 +131,25 @@ class _Header extends ConsumerWidget {
     final emirate = emirates.where((e) => e.id == emirateId).firstOrNull;
     return Row(
       children: [
-        // The logo shrinks before anything overflows at large text sizes.
+        // The wordmark over the three trades (owner's design); it shrinks before anything
+        // overflows at large text sizes.
         const Expanded(
           child: Align(
             alignment: AlignmentDirectional.centerStart,
             child: FittedBox(
               fit: BoxFit.scaleDown,
-              child: BrandLogo(width: _logoWidth),
+              child: BrandLockup(width: _logoWidth),
             ),
           ),
         ),
         IconButton(
+          visualDensity: VisualDensity.compact,
           icon: const Icon(AppIcons.search),
           tooltip: l10n.homeSearchTooltip,
           onPressed: () => context.push(AppRoutes.search),
         ),
         IconButton(
+          visualDensity: VisualDensity.compact,
           // The dot means a request is still open; the bell opens the list on Profile.
           icon: Badge(
             isLabelVisible: active,
@@ -156,7 +160,10 @@ class _Header extends ConsumerWidget {
           tooltip: active ? l10n.homeRequestsActiveTooltip : l10n.homeRequestsTooltip,
           onPressed: () => context.go(AppRoutes.profile),
         ),
-        Flexible(
+        // Capped, not Flexible: a Flexible here shares the spare width with the logo and
+        // leaves a gap at the end of the bar.
+        ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 120),
           child: Tooltip(
             message: l10n.homeEmirateTooltip,
             child: InkWell(

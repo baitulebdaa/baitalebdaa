@@ -515,7 +515,7 @@ abstract class AppLocalizations {
   /// Profile tab button for signed-in users.
   ///
   /// In en, this message translates to:
-  /// **'Sign out'**
+  /// **'Sign Out'**
   String get accountSignOut;
 
   /// Shown until the user's email is verified.
@@ -1577,19 +1577,19 @@ abstract class AppLocalizations {
   /// Link to the website privacy policy.
   ///
   /// In en, this message translates to:
-  /// **'Privacy policy'**
+  /// **'Privacy Policy'**
   String get profilePrivacy;
 
   /// Link to the website terms.
   ///
   /// In en, this message translates to:
-  /// **'Terms and conditions'**
+  /// **'Terms & Conditions'**
   String get profileTerms;
 
   /// Profile action that deletes the account.
   ///
   /// In en, this message translates to:
-  /// **'Delete account'**
+  /// **'Delete Account'**
   String get profileDelete;
 
   /// Delete-account dialog title.
@@ -2461,6 +2461,186 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'INTERIORS | FIT-OUT | JOINERY'**
   String get brandServicesLine;
+
+  /// Button on the profile header.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Profile'**
+  String get profileEditProfile;
+
+  /// Saves the edited profile.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get profileSave;
+
+  /// Snackbar after saving the profile.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile updated.'**
+  String get profileSaved;
+
+  /// Profile header title for guests.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome'**
+  String get profileGuestTitle;
+
+  /// Profile header line for guests.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to follow your requests and keep your details.'**
+  String get profileGuestBody;
+
+  /// Profile stat card.
+  ///
+  /// In en, this message translates to:
+  /// **'Active Requests'**
+  String get profileActiveRequests;
+
+  /// Under the active requests count.
+  ///
+  /// In en, this message translates to:
+  /// **'In progress'**
+  String get profileInProgress;
+
+  /// Profile stat card.
+  ///
+  /// In en, this message translates to:
+  /// **'Scheduled Consultation'**
+  String get profileScheduled;
+
+  /// Under the scheduled consultations count.
+  ///
+  /// In en, this message translates to:
+  /// **'Upcoming'**
+  String get profileUpcoming;
+
+  /// Profile row.
+  ///
+  /// In en, this message translates to:
+  /// **'My Requests'**
+  String get profileMyRequests;
+
+  /// Profile row line.
+  ///
+  /// In en, this message translates to:
+  /// **'Track your project inquiries and requests'**
+  String get profileMyRequestsBody;
+
+  /// Profile row.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved Projects'**
+  String get profileSavedProjects;
+
+  /// Profile row line.
+  ///
+  /// In en, this message translates to:
+  /// **'Your favorite projects and inspirations'**
+  String get profileSavedBody;
+
+  /// Profile row; opens WhatsApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Photos & Plans'**
+  String get profilePhotos;
+
+  /// Profile row line.
+  ///
+  /// In en, this message translates to:
+  /// **'Share drawings, references and documents on WhatsApp'**
+  String get profilePhotosBody;
+
+  /// Prefilled WhatsApp message from Profile.
+  ///
+  /// In en, this message translates to:
+  /// **'Hello! I\'d like to share photos and plans for my project.'**
+  String get profilePhotosMessage;
+
+  /// Profile row.
+  ///
+  /// In en, this message translates to:
+  /// **'Preferred Language'**
+  String get profileLanguage;
+
+  /// Profile row line, each language in itself.
+  ///
+  /// In en, this message translates to:
+  /// **'English / العربية'**
+  String get profileLanguageBody;
+
+  /// Profile row.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get profileNotifications;
+
+  /// Profile row line.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage your notifications and preferences'**
+  String get profileNotificationsBody;
+
+  /// Profile row.
+  ///
+  /// In en, this message translates to:
+  /// **'WhatsApp Support'**
+  String get profileWhatsapp;
+
+  /// Profile row line.
+  ///
+  /// In en, this message translates to:
+  /// **'Get instant assistance from our team'**
+  String get profileWhatsappBody;
+
+  /// Profile row line.
+  ///
+  /// In en, this message translates to:
+  /// **'How we protect your information'**
+  String get profilePrivacyBody;
+
+  /// Profile row line.
+  ///
+  /// In en, this message translates to:
+  /// **'Our terms of service'**
+  String get profileTermsBody;
+
+  /// Profile row line.
+  ///
+  /// In en, this message translates to:
+  /// **'Log out from your account'**
+  String get profileSignOutBody;
+
+  /// Saved screen when empty.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing saved yet. Tap the heart on a project or the bookmark on a service.'**
+  String get savedEmpty;
+
+  /// Settings, push allowed.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications are on. We\'ll tell you when your request status changes.'**
+  String get notificationsOn;
+
+  /// Settings, push not allowed yet.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn on notifications to hear when your request status changes.'**
+  String get notificationsOff;
+
+  /// Settings button.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow notifications'**
+  String get notificationsAllow;
+
+  /// Settings, push unsupported.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications aren\'t available on this device yet. We\'ll keep you updated on WhatsApp, by phone or by email.'**
+  String get notificationsUnavailable;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
