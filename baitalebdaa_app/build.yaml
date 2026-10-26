@@ -1,0 +1,8 @@
+targets:
+  $default:
+    builders:
+      json_serializable:
+        options:
+          # Fail with the offending key's path instead of a bare cast error.
+          checked: true
+          explicit_to_json: true

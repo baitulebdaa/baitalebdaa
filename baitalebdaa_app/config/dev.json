@@ -1,0 +1,4 @@
+{
+  "APP_ENV": "dev",
+  "USE_FAKE_BACKEND": "true"
+}

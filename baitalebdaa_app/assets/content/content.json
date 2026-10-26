@@ -1,0 +1,2930 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "websiteCommit": "09e5e2f7ddfd4952bcecbf6fe73acdd097019113"
+  },
+  "heroSlides": [
+    {
+      "eyebrow": {
+        "en": "All seven emirates",
+        "ar": "جميع الإمارات السبع"
+      },
+      "title": {
+        "en": "UAE Turnkey Fit-out & Custom Architectural Joinery",
+        "ar": "تجهيز متكامل ونجارة معمارية مخصصة في الإمارات"
+      },
+      "body": {
+        "en": "Made to measure in our own workshop and installed across the UAE. Upholstery, wallpaper, gypsum ceilings and full fit-outs too.",
+        "ar": "مصنوعة حسب الطلب في ورشتنا الخاصة ويتم تركيبها في جميع أنحاء الإمارات. بالإضافة إلى التنجيد، ورق الجدران، أسقف الجبس، والتجهيزات الكاملة."
+      },
+      "image": {
+        "asset": "assets/images/luxury-living-room-chandelier-wall-panelling.webp",
+        "url": "https://www.baitalebdaa.com/assets/luxury-living-room-chandelier-wall-panelling.jpeg",
+        "alt": null
+      }
+    },
+    {
+      "eyebrow": {
+        "en": "Workplace",
+        "ar": "مساحات العمل"
+      },
+      "title": {
+        "en": "Executive Workplaces Designed with Quiet Authority & Flow",
+        "ar": "مساحات عمل تنفيذية مصممة بهيبة هادئة وتدفق سلس"
+      },
+      "body": {
+        "en": "High-performing workplaces shaped around your people, brand and commercial priorities.",
+        "ar": "مساحات عمل عالية الأداء مصممة حول موظفيك وعلامتك التجارية وأولوياتك التجارية."
+      },
+      "image": {
+        "asset": "assets/images/built-in-wardrobe-study-desk-wood-shelves.webp",
+        "url": "https://www.baitalebdaa.com/assets/built-in-wardrobe-study-desk-wood-shelves.jpeg",
+        "alt": null
+      }
+    },
+    {
+      "eyebrow": {
+        "en": "Private residences",
+        "ar": "مساكن خاصة"
+      },
+      "title": {
+        "en": "Luxury Private Villas Resolved to the Last Detail",
+        "ar": "فلل خاصة فاخرة مصممة بأدق التفاصيل المعمارية المميزة"
+      },
+      "body": {
+        "en": "Architecture, bespoke joinery and intelligent furnishing brought together by one accountable team.",
+        "ar": "هندسة معمارية ونجارة مخصصة وأثاث ذكي يجمعها فريق واحد مسؤول."
+      },
+      "image": {
+        "asset": "assets/images/living-room-curved-sofa-wood-slat-wall.webp",
+        "url": "https://www.baitalebdaa.com/assets/living-room-curved-sofa-wood-slat-wall.jpeg",
+        "alt": {
+          "en": "Living room with a curved sofa in front of a wood-slat feature wall",
+          "ar": "غرفة معيشة بأريكة منحنية أمام جدار مميز بشرائح خشبية"
+        }
+      }
+    }
+  ],
+  "assistant": {
+    "name": {
+      "en": "Ask Ali",
+      "ar": "اسأل علي"
+    },
+    "subtitle": {
+      "en": "Bait Al Ebdaa assistant",
+      "ar": "مساعد بيت الإبداع"
+    },
+    "intro": {
+      "en": "Hi! I'm Ali, Bait Al Ebdaa's AI assistant. Ask me about services, pricing or timelines — and I can also book a free site survey or send a quote request for you, right here in this chat!",
+      "ar": "مرحباً! أنا علي، المساعد الذكي (بالذكاء الاصطناعي) لبيت الإبداع. اسألني عن خدماتنا أو الأسعار أو المواعيد — ويمكنني أيضاً حجز معاينة مجانية أو إرسال طلب عرض سعر لك مباشرة من هنا!"
+    },
+    "starters": {
+      "en": [
+        "I want a free quote for my villa",
+        "What are your starting prices?",
+        "Book a free site survey",
+        "How does the process work?"
+      ],
+      "ar": [
+        "أريد عرض سعر مجاني لفيلتي",
+        "ما هي أسعاركم الابتدائية؟",
+        "احجز معاينة مجانية",
+        "كيف تتم العملية؟"
+      ]
+    },
+    "placeholder": {
+      "en": "Ask about a service or pricing…",
+      "ar": "اسأل عن خدمة أو سعر…"
+    },
+    "inputLabel": {
+      "en": "Message",
+      "ar": "الرسالة"
+    },
+    "send": {
+      "en": "Send message",
+      "ar": "إرسال الرسالة"
+    },
+    "startOver": {
+      "en": "Start again",
+      "ar": "البدء من جديد"
+    },
+    "typing": {
+      "en": "Assistant is typing…",
+      "ar": "المساعد يكتب…"
+    },
+    "unavailable": {
+      "en": "I'm unavailable right now. Please try again or contact us on WhatsApp.",
+      "ar": "غير متاح حالياً. يرجى المحاولة مرة أخرى أو التواصل معنا عبر واتساب."
+    },
+    "disclaimer": {
+      "en": "AI can make mistakes. For a confirmed quote,",
+      "ar": "قد يخطئ الذكاء الاصطناعي أحياناً. للحصول على عرض سعر مؤكد،"
+    },
+    "disclaimerLink": {
+      "en": "WhatsApp our team",
+      "ar": "تواصل معنا عبر واتساب"
+    }
+  },
+  "business": {
+    "name": {
+      "en": "Bait Al Ebdaa",
+      "ar": "بيت الإبداع"
+    },
+    "phone": "+971582621717",
+    "whatsapp": "971582621717",
+    "email": "info@baitalebdaa.com",
+    "address": {
+      "en": "Showroom No. 052004009, Jurf Industrial 2, Ajman, UAE",
+      "ar": "معرض رقم 052004009، الجرف الصناعية 2، عجمان، الإمارات"
+    },
+    "hours": {
+      "days": [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday"
+      ],
+      "opens": "08:00",
+      "closes": "22:00",
+      "label": {
+        "en": "Monday to Saturday, 8:00 AM to 10:00 PM",
+        "ar": "من الاثنين إلى السبت، 8:00 صباحاً إلى 10:00 مساءً"
+      }
+    },
+    "emirates": [
+      {
+        "id": "dubai",
+        "name": {
+          "en": "Dubai",
+          "ar": "دبي"
+        }
+      },
+      {
+        "id": "abu-dhabi",
+        "name": {
+          "en": "Abu Dhabi",
+          "ar": "أبوظبي"
+        }
+      },
+      {
+        "id": "sharjah",
+        "name": {
+          "en": "Sharjah",
+          "ar": "الشارقة"
+        }
+      },
+      {
+        "id": "ajman",
+        "name": {
+          "en": "Ajman",
+          "ar": "عجمان"
+        }
+      },
+      {
+        "id": "ras-al-khaimah",
+        "name": {
+          "en": "Ras Al Khaimah",
+          "ar": "رأس الخيمة"
+        }
+      },
+      {
+        "id": "fujairah",
+        "name": {
+          "en": "Fujairah",
+          "ar": "الفجيرة"
+        }
+      },
+      {
+        "id": "umm-al-quwain",
+        "name": {
+          "en": "Umm Al Quwain",
+          "ar": "أم القيوين"
+        }
+      }
+    ],
+    "whatsappMessage": {
+      "en": "Hello! I would like to discuss a project with Bait Al Ebdaa.",
+      "ar": "مرحباً! أرغب بمناقشة مشروع مع بيت الإبداع."
+    },
+    "studioFacts": [
+      {
+        "value": {
+          "en": "15,000",
+          "ar": "15,000"
+        },
+        "label": {
+          "en": "sq ft manufacturing facility",
+          "ar": "قدم مربع مساحة منشأة التصنيع"
+        }
+      },
+      {
+        "value": {
+          "en": "1:1",
+          "ar": "1:1"
+        },
+        "label": {
+          "en": "design-to-production control",
+          "ar": "تحكم من التصميم إلى الإنتاج"
+        }
+      },
+      {
+        "value": {
+          "en": "UAE",
+          "ar": "الإمارات"
+        },
+        "label": {
+          "en": "Delivery in all seven emirates",
+          "ar": "تسليم في جميع الإمارات السبع"
+        }
+      },
+      {
+        "value": {
+          "en": "5-year",
+          "ar": "5 سنوات"
+        },
+        "label": {
+          "en": "workmanship guarantee on our joinery",
+          "ar": "ضمان جودة الصنعة على نجارتنا"
+        }
+      }
+    ],
+    "socialProfiles": [
+      {
+        "network": "Facebook",
+        "url": "https://www.facebook.com/baitalebdaa"
+      },
+      {
+        "network": "Instagram",
+        "url": "https://www.instagram.com/baitalebdaa"
+      }
+    ],
+    "siteUrl": "https://www.baitalebdaa.com"
+  },
+  "services": [
+    {
+      "slug": "interior-design",
+      "name": {
+        "en": "Interior Design",
+        "ar": "تصميم داخلي"
+      },
+      "summary": {
+        "en": "Concept-to-handover luxury interiors",
+        "ar": "تصميم داخلي فاخر من المفهوم حتى التسليم"
+      },
+      "image": {
+        "asset": "assets/images/luxury-living-room-chandelier-wall-panelling.webp",
+        "url": "https://www.baitalebdaa.com/assets/luxury-living-room-chandelier-wall-panelling.jpeg",
+        "alt": null
+      },
+      "detail": {
+        "summary": {
+          "en": "End-to-end interior design covering concept, space planning and material selection for villas, apartments and offices — one studio accountable from first sketch to handover.",
+          "ar": "خدمة تصميم داخلي متكاملة تشمل المفهوم وتخطيط المساحات واختيار المواد للفلل والشقق والمكاتب، بإشراف استوديو واحد مسؤول من أول رسم حتى التسليم."
+        },
+        "included": {
+          "en": [
+            "Concept & mood boards",
+            "Space planning & layouts",
+            "Material & finishes selection",
+            "Photorealistic 3D visualization"
+          ],
+          "ar": [
+            "مفهوم التصميم ولوحات الإلهام",
+            "تخطيط المساحات والتوزيع",
+            "اختيار المواد والتشطيبات",
+            "تصور ثلاثي الأبعاد واقعي"
+          ]
+        },
+        "faqs": [
+          {
+            "question": {
+              "en": "What does your interior design service actually include?",
+              "ar": "ماذا تتضمن خدمة التصميم الداخلي بالتحديد؟"
+            },
+            "answer": {
+              "en": "Our interior design service covers concept development, space planning, material and finishes selection, and lighting design, all resolved into photorealistic 3D CAD renders that you review and approve before any site work begins. Once the concept is signed off, we can move straight into fit-out coordination with the same team, so nothing gets lost in translation between the drawing and the finished room, and every material decision you approved on screen is exactly what gets installed.",
+              "ar": "تشمل خدمتنا تطوير المفهوم، وتخطيط المساحة، واختيار المواد والتشطيبات، وتصميم الإضاءة، وكل ذلك يُترجم إلى تصاميم CAD ثلاثية الأبعاد واقعية تراجعها وتعتمدها قبل بدء أي عمل في الموقع. وبمجرد اعتماد المفهوم، يمكننا الانتقال مباشرة إلى تنسيق التجهيز بنفس الفريق، بحيث لا يضيع شيء بين الرسم والغرفة المنجزة، وتحصل بالضبط على المواد التي وافقت عليها على الشاشة."
+            }
+          },
+          {
+            "question": {
+              "en": "Can you design without also doing the fit-out?",
+              "ar": "هل يمكنكم التصميم دون تنفيذ التجهيز؟"
+            },
+            "answer": {
+              "en": "Yes, design-only engagements are available if you already have a contractor or simply want a concept package to shop around. That said, most clients choose to continue into fit-out with us, because keeping design and execution under one accountable team removes the handoff friction that usually happens between a separate designer and contractor, and it means the person who specified a material is also the person responsible for installing it correctly.",
+              "ar": "نعم، تتوفر خدمات التصميم فقط إذا كان لديك مقاول بالفعل أو أردت فقط حزمة مفهوم لمقارنتها. ومع ذلك، يختار معظم العملاء الاستمرار معنا في مرحلة التجهيز، لأن إبقاء التصميم والتنفيذ تحت فريق واحد مسؤول يزيل الاحتكاك المعتاد بين مصمم ومقاول منفصلين، ويعني أن من حدد المادة هو نفسه المسؤول عن تركيبها بشكل صحيح."
+            }
+          }
+        ]
+      },
+      "pricing": {
+        "direct": true,
+        "itemIds": [
+          "design-consultation",
+          "design-single-room",
+          "design-apartment",
+          "design-villa"
+        ]
+      },
+      "startingItemId": "design-single-room"
+    },
+    {
+      "slug": "fit-out",
+      "name": {
+        "en": "Fit-Out",
+        "ar": "شركة فيت اوت"
+      },
+      "summary": {
+        "en": "Full MEP, finishes & furniture fit-out",
+        "ar": "تجهيزات كاملة تشمل الميكانيكا والتشطيبات"
+      },
+      "image": {
+        "asset": "assets/images/luxury-living-room-stone-tv-wall-fireplace.webp",
+        "url": "https://www.baitalebdaa.com/assets/luxury-living-room-stone-tv-wall-fireplace.jpeg",
+        "alt": null
+      },
+      "detail": {
+        "summary": {
+          "en": "Turnkey fit-out from civil works and MEP to finishes and furniture — a single contract, one accountable team, with applicable authority approvals coordinated in-house.",
+          "ar": "تجهيز شامل بتسليم مفتاح من الأعمال المدنية والكهروميكانيكية إلى التشطيبات والأثاث، بعقد واحد وفريق مسؤول واحد، مع تنسيق موافقات الجهات المختصة داخلياً."
+        },
+        "included": {
+          "en": [
+            "Civil works & MEP",
+            "Authority approvals & NOCs",
+            "Finishes, joinery & installation",
+            "Snagging & handover"
+          ],
+          "ar": [
+            "الأعمال المدنية والكهروميكانيكية",
+            "موافقات الجهات وشهادات عدم الممانعة",
+            "التشطيبات والنجارة والتركيب",
+            "الفحص النهائي والتسليم"
+          ]
+        },
+        "faqs": [
+          {
+            "question": {
+              "en": "Is fit-out priced as one contract or several trades?",
+              "ar": "هل يتم تسعير التجهيز بعقد واحد أم عدة مقاولين؟"
+            },
+            "answer": {
+              "en": "It is priced and delivered as one turnkey contract. We coordinate civil works, MEP, joinery, finishes and installation ourselves rather than acting as a broker for separate trade contractors, so you sign a single agreement, receive one programme, and have one point of accountability if anything needs adjusting, instead of chasing multiple vendors for progress updates or resolving disputes about who is responsible for a delay.",
+              "ar": "يُسعَّر وينفَّذ بعقد تسليم مفتاح واحد. ننسق الأعمال المدنية والكهروميكانيكية والنجارة والتشطيبات والتركيب بأنفسنا بدلاً من العمل كوسيط بين مقاولين منفصلين، فتوقع اتفاقية واحدة وتحصل على برنامج زمني واحد وجهة مسؤولة واحدة إن احتجت أي تعديل، بدلاً من متابعة عدة موردين أو تحديد المسؤول عن أي تأخير."
+            }
+          },
+          {
+            "question": {
+              "en": "Do you handle municipality approvals as part of fit-out?",
+              "ar": "هل تديرون موافقات البلدية ضمن خدمة التجهيز؟"
+            },
+            "answer": {
+              "en": "Yes. Applicable approval requirements are coordinated by our team, and any approval-related package or fee is itemised in the project quotation. That covers the NOC applications, drawings, MEP submissions and completion paperwork your project needs based on its location and scope, with authority review times built into the schedule so you don't have to chase submissions yourself.",
+              "ar": "نعم. ينسق فريقنا متطلبات الموافقات المطلوبة لمشروعك، وتُفصَّل أي باقة أو رسوم متعلقة بالموافقات في عرض السعر. ويشمل ذلك طلبات شهادات عدم الممانعة والرسومات وتقديمات الأعمال الكهروميكانيكية ومستندات الإنجاز التي يحتاجها مشروعك حسب موقعه ونطاقه، مع تضمين مدد مراجعة الجهات في الجدول الزمني، فلا تحتاج لمتابعة الطلبات بنفسك."
+            }
+          }
+        ]
+      },
+      "pricing": {
+        "direct": true,
+        "itemIds": [
+          "villa-standard",
+          "villa-luxury",
+          "office-essential",
+          "office-premium"
+        ]
+      },
+      "startingItemId": "villa-standard"
+    },
+    {
+      "slug": "office-fit-out",
+      "name": {
+        "en": "Office Fit-Out",
+        "ar": "تجهيز مكاتب"
+      },
+      "summary": {
+        "en": "Productive workspaces, turnkey delivery",
+        "ar": "مساحات عمل جاهزة بتسليم شامل"
+      },
+      "image": {
+        "asset": "assets/images/built-in-wardrobe-study-desk-wood-shelves.webp",
+        "url": "https://www.baitalebdaa.com/assets/built-in-wardrobe-study-desk-wood-shelves.jpeg",
+        "alt": null
+      },
+      "detail": {
+        "summary": {
+          "en": "Workplace fit-out that balances brand presence, acoustic comfort and operational flow — from open-plan floors to executive suites, delivered with minimal disruption to your business.",
+          "ar": "تجهيز مساحات عمل يوازن بين حضور العلامة التجارية والراحة الصوتية وتدفق العمل، من الطوابق المفتوحة إلى الأجنحة التنفيذية، مع أقل تعطيل ممكن لعملك."
+        },
+        "included": {
+          "en": [
+            "Workspace planning & zoning",
+            "Acoustic & MEP coordination",
+            "Furniture & joinery production",
+            "Phased handover for live offices"
+          ],
+          "ar": [
+            "تخطيط وتقسيم مساحات العمل",
+            "تنسيق الأعمال الصوتية والكهروميكانيكية",
+            "إنتاج الأثاث والنجارة",
+            "تسليم على مراحل للمكاتب العاملة"
+          ]
+        },
+        "faqs": [
+          {
+            "question": {
+              "en": "Can office fit-out be phased around a working team?",
+              "ar": "هل يمكن تنفيذ تجهيز المكاتب على مراحل مع بقاء الفريق يعمل؟"
+            },
+            "answer": {
+              "en": "Yes, we routinely sequence works floor-by-floor or zone-by-zone so teams can keep operating in one area while another is under construction, and we schedule the noisiest or most disruptive activities — demolition, core drilling, ceiling works — outside your business hours wherever the building rules allow it. The programme is agreed with you upfront so there are no surprise closures once work is underway.",
+              "ar": "نعم، ننفذ الأعمال عادة طابقاً بطابق أو منطقة بمنطقة بحيث تستمر فرقك في العمل في منطقة بينما تكون منطقة أخرى قيد التنفيذ، ونجدول الأعمال الأكثر إزعاجاً كالهدم والحفر والأسقف خارج ساعات عملك متى سمحت أنظمة المبنى بذلك. يُتفق على البرنامج الزمني معك مسبقاً بحيث لا توجد إغلاقات مفاجئة بعد بدء العمل."
+            }
+          },
+          {
+            "question": {
+              "en": "Do you supply furniture or only the built environment?",
+              "ar": "هل توفرون الأثاث أم التجهيزات الإنشائية فقط؟"
+            },
+            "answer": {
+              "en": "Both. We produce custom joinery, reception desks and workstations in-house at our own facility, and we can also source and install loose furniture, seating and FF&E through our procurement network, so the finished office arrives fully furnished rather than as an empty shell you then need to fit out separately with a different supplier and a second delivery schedule. Tell us your headcount and desking ratio early and we'll size the furniture package alongside the layout.",
+              "ar": "كلاهما. ننتج النجارة المخصصة ومكاتب الاستقبال ومحطات العمل داخلياً في منشأتنا الخاصة، ويمكننا أيضاً توريد وتركيب الأثاث المنفصل والمقاعد والتجهيزات عبر شبكة التوريد لدينا، بحيث يُسلّم المكتب جاهزاً بالكامل بدلاً من أن يكون هيكلاً فارغاً تحتاج لتجهيزه لاحقاً مع مورد مختلف وجدول تسليم منفصل. أخبرنا بعدد الموظفين ونسبة المكاتب مبكراً لنحدد حجم حزمة الأثاث مع التخطيط معاً."
+            }
+          }
+        ]
+      },
+      "pricing": {
+        "direct": true,
+        "itemIds": [
+          "office-essential",
+          "office-premium",
+          "office-luxury"
+        ]
+      },
+      "startingItemId": "office-essential"
+    },
+    {
+      "slug": "restaurant-fit-out",
+      "name": {
+        "en": "Restaurant Fit-Out",
+        "ar": "تجهيز مطاعم"
+      },
+      "summary": {
+        "en": "Kitchen, dining & brand-led F&B spaces",
+        "ar": "تجهيز مطاعم ومطابخ بهوية مميزة"
+      },
+      "image": {
+        "asset": "assets/images/luxury-lounge-feature-wall-led-sconces.webp",
+        "url": "https://www.baitalebdaa.com/assets/luxury-lounge-feature-wall-led-sconces.jpeg",
+        "alt": null
+      },
+      "detail": {
+        "summary": {
+          "en": "Restaurant and cafe fit-out engineered for kitchen compliance, front-of-house atmosphere and fast turnaround — because every day before opening costs revenue.",
+          "ar": "تجهيز مطاعم ومقاهي مصمم للامتثال لمتطلبات المطبخ وأجواء صالة الضيوف مع سرعة التنفيذ، لأن كل يوم قبل الافتتاح يعني خسارة في الإيرادات."
+        },
+        "included": {
+          "en": [
+            "Kitchen extraction & compliance",
+            "Front-of-house design & joinery",
+            "Applicable authority & NOC coordination",
+            "Fast-track programme management"
+          ],
+          "ar": [
+            "أنظمة الشفط والامتثال في المطبخ",
+            "تصميم ونجارة صالة الضيوف",
+            "تنسيق موافقات الجهات المختصة وشهادات عدم الممانعة",
+            "إدارة برنامج تنفيذ سريع"
+          ]
+        },
+        "faqs": [
+          {
+            "question": {
+              "en": "Do you handle kitchen compliance and authority requirements?",
+              "ar": "هل تديرون متطلبات امتثال المطبخ وموافقات الجهات المختصة؟"
+            },
+            "answer": {
+              "en": "Yes. Kitchen extraction, grease trap sizing and kitchen layout are planned into the fit-out, and our team coordinates applicable authority submissions and NOC requirements based on the project location and scope. We also flag any equipment or layout choice early that could cause a problem at inspection, so it gets resolved on paper instead of on site after the kitchen is built.",
+              "ar": "نعم. نخطط أنظمة الشفط وحجم مصائد الدهون وتخطيط المطبخ ضمن أعمال التجهيز، وينسق فريقنا طلبات الجهات المختصة ومتطلبات شهادات عدم الممانعة حسب موقع المشروع ونطاقه. كما ننبه مبكراً لأي خيار معدات أو تخطيط قد يسبب مشكلة عند الفحص، ليُحل على الورق وليس في الموقع بعد بناء المطبخ."
+            }
+          },
+          {
+            "question": {
+              "en": "How fast can a restaurant fit-out be completed?",
+              "ar": "ما مدى سرعة إنجاز تجهيز مطعم؟"
+            },
+            "answer": {
+              "en": "Programme length depends on unit condition, scope and how much kitchen and MEP work is required, so we won't quote a generic number without seeing the space. What we can say is that we run fast-track schedules specifically for F&B clients, because every day a unit sits closed before opening is lost revenue — ask for a realistic programme during your free site survey and we'll commit to it in the contract.",
+              "ar": "تعتمد مدة البرنامج على حالة الوحدة والنطاق وحجم أعمال المطبخ والكهروميكانيك المطلوبة، لذا لا نقدم رقماً عاماً دون معاينة المساحة. لكن ما يمكن قوله هو أننا ننفذ جداول سريعة تحديداً لعملاء المأكولات والمشروبات، لأن كل يوم إغلاق قبل الافتتاح يعني خسارة إيرادات — اطلب برنامجاً واقعياً أثناء المسح الأولي المجاني وسنلتزم به في العقد."
+            }
+          }
+        ]
+      },
+      "pricing": null,
+      "startingItemId": null
+    },
+    {
+      "slug": "retail-fit-out",
+      "name": {
+        "en": "Retail Fit-Out",
+        "ar": "تجهيز محلات"
+      },
+      "summary": {
+        "en": "High-impact shopfronts & showrooms",
+        "ar": "واجهات محلات ومعارض بتأثير عالي"
+      },
+      "image": {
+        "asset": "assets/images/walk-in-closet-island-led-ceiling.webp",
+        "url": "https://www.baitalebdaa.com/assets/walk-in-closet-island-led-ceiling.jpeg",
+        "alt": {
+          "en": "Walk-in closet with a central island, glass-fronted wardrobes and LED ceiling lighting",
+          "ar": "غرفة ملابس واسعة بجزيرة مركزية وخزائن بواجهات زجاجية وإضاءة LED في السقف"
+        }
+      },
+      "detail": {
+        "summary": {
+          "en": "Retail fit-out that gets units trading on schedule — shopfront, joinery and lighting sequenced to mall or landlord handover windows without compromising brand standards.",
+          "ar": "تجهيز محلات تجارية يضمن بدء التشغيل في الموعد المحدد، بتنسيق واجهة المحل والنجارة والإضاءة وفق مواعيد تسليم المول أو المالك دون المساس بمعايير العلامة التجارية."
+        },
+        "included": {
+          "en": [
+            "Shopfront & signage coordination",
+            "Retail joinery & display fixtures",
+            "Landlord/mall handover compliance",
+            "Lighting & visual merchandising fit"
+          ],
+          "ar": [
+            "تنسيق واجهة المحل واللافتات",
+            "نجارة تجارية ووحدات عرض",
+            "الامتثال لمتطلبات تسليم المالك/المول",
+            "تجهيز الإضاءة والعرض المرئي"
+          ]
+        },
+        "faqs": [
+          {
+            "question": {
+              "en": "Can you work within mall handover deadlines?",
+              "ar": "هل يمكنكم الالتزام بمواعيد تسليم المولات؟"
+            },
+            "answer": {
+              "en": "Yes, we plan the entire programme backwards from the landlord's or mall operator's handover window rather than forwards from a start date, and we manage the required design approvals, NOCs and pre-opening inspections against that fixed deadline. Where a mall imposes specific working hours, delivery routes or hoarding requirements, those constraints are built into the schedule from day one instead of being discovered mid-fit-out.",
+              "ar": "نعم، نخطط البرنامج الزمني بالكامل بالعكس بدءاً من موعد تسليم المالك أو مشغل المول وليس تصاعدياً من تاريخ البدء، وندير الموافقات التصميمية وشهادات عدم الممانعة والفحوصات المطلوبة قبل الافتتاح وفق هذا الموعد الثابت. وحيثما يفرض المول ساعات عمل أو مسارات توصيل أو اشتراطات حواجز معينة، تُدرج هذه القيود في الجدول منذ اليوم الأول."
+            }
+          },
+          {
+            "question": {
+              "en": "Do you replicate brand fit-out standards across multiple stores?",
+              "ar": "هل تكررون معايير تجهيز العلامة التجارية عبر عدة فروع؟"
+            },
+            "answer": {
+              "en": "Yes, once a prototype store or a documented brand standard is agreed with you, our joinery facility keeps the specification, materials and fixture drawings on file so the same finishes and fit can be reproduced consistently across further locations, whether that is three stores in one year or a slower rollout over several. This keeps every store on-brand without re-briefing a new contractor each time.",
+              "ar": "نعم، بمجرد الاتفاق معك على متجر نموذجي أو معيار موثق للعلامة التجارية، تحتفظ منشأة النجارة لدينا بالمواصفات والمواد ورسومات التجهيزات، بحيث يمكن إعادة إنتاج نفس التشطيبات والتجهيز بثبات عبر مواقع إضافية، سواء كانت ثلاثة فروع في عام واحد أو توسعاً أبطأ على عدة سنوات، دون الحاجة لإطلاع مقاول جديد على المعايير في كل مرة."
+            }
+          }
+        ]
+      },
+      "pricing": null,
+      "startingItemId": null
+    },
+    {
+      "slug": "commercial-interior-design",
+      "name": {
+        "en": "Commercial Interior Design",
+        "ar": "تصميم داخلي تجاري"
+      },
+      "summary": {
+        "en": "Offices, clinics & commercial spaces",
+        "ar": "تصميم مكاتب وعيادات ومساحات تجارية"
+      },
+      "image": {
+        "asset": "assets/images/tv-wall-unit-led-display-shelves.webp",
+        "url": "https://www.baitalebdaa.com/assets/tv-wall-unit-led-display-shelves.jpeg",
+        "alt": null
+      },
+      "detail": {
+        "summary": {
+          "en": "Commercial interior design for offices, F&B and retail that has to perform on brand, budget and building compliance at once — not just look good in a render.",
+          "ar": "تصميم داخلي تجاري للمكاتب والمطاعم والمحلات يجب أن يحقق التوازن بين العلامة التجارية والميزانية والامتثال الإنشائي في آن واحد، وليس فقط أن يبدو جميلاً في العرض التصويري."
+        },
+        "included": {
+          "en": [
+            "Brand-led concept design",
+            "Compliant space planning",
+            "Materials specified for commercial wear",
+            "Coordination with fit-out contractor"
+          ],
+          "ar": [
+            "تصميم مفاهيمي يقوده الهوية التجارية",
+            "تخطيط مساحات متوافق مع الاشتراطات",
+            "مواد مختارة لتحمل الاستخدام التجاري",
+            "التنسيق مع مقاول التجهيز"
+          ]
+        },
+        "faqs": [
+          {
+            "question": {
+              "en": "How is commercial design different from residential design?",
+              "ar": "ما الفرق بين التصميم التجاري والسكني؟"
+            },
+            "answer": {
+              "en": "Commercial spaces have to satisfy footfall, durability, fire and life-safety, and authority-compliance requirements alongside pure aesthetics, so material specification and space planning are led by those constraints from the concept stage rather than adjusted afterwards. A finish that looks perfect in a home rarely survives commercial-grade foot traffic, so we specify accordingly and explain the trade-offs to you at the design stage, not after installation.",
+              "ar": "تحتاج المساحات التجارية لتلبية متطلبات الحركة والمتانة والسلامة من الحرائق والامتثال للجهات إلى جانب الجمالية البحتة، لذا يتم اختيار المواد وتخطيط المساحة وفق هذه المحددات منذ مرحلة المفهوم وليس تعديلها لاحقاً. التشطيب الذي يبدو مثالياً في منزل نادراً ما يصمد أمام الحركة التجارية المكثفة، فنحدد المواد وفقاً لذلك ونشرح لك المفاضلات في مرحلة التصميم لا بعد التركيب."
+            }
+          },
+          {
+            "question": {
+              "en": "Can you design and then hand the drawings to our own contractor?",
+              "ar": "هل يمكنكم التصميم ثم تسليم الرسومات لمقاولنا الخاص؟"
+            },
+            "answer": {
+              "en": "Yes, we can deliver a complete design and drawing package for your own contractor to price and build. That said, most commercial clients choose to continue with our fit-out team, because design intent — exact material batches, joint details, lighting calibration — typically survives execution more faithfully when the designer and the builder are the same accountable studio rather than two separate parties.",
+              "ar": "نعم، يمكننا تسليم حزمة تصميم ورسومات كاملة ليسعّرها وينفذها مقاولك الخاص. ومع ذلك، يختار معظم العملاء التجاريين الاستمرار مع فريق التجهيز لدينا، لأن نية التصميم — دفعات المواد الدقيقة وتفاصيل الوصلات ومعايرة الإضاءة — غالباً ما تُنفذ بأمانة أكبر عندما يكون المصمم والمنفذ استوديو واحد مسؤول بدلاً من طرفين منفصلين."
+            }
+          }
+        ]
+      },
+      "pricing": {
+        "direct": false,
+        "itemIds": [
+          "design-office",
+          "design-drawings",
+          "design-material-schedule",
+          "design-consultation"
+        ]
+      },
+      "startingItemId": null
+    },
+    {
+      "slug": "residential-interior-design",
+      "name": {
+        "en": "Residential Interior Design",
+        "ar": "تصميم داخلي سكني"
+      },
+      "summary": {
+        "en": "Villas, apartments & luxury homes",
+        "ar": "تصميم فلل وشقق ومنازل فاخرة"
+      },
+      "image": {
+        "asset": "assets/images/living-room-curved-sofa-wood-slat-wall.webp",
+        "url": "https://www.baitalebdaa.com/assets/living-room-curved-sofa-wood-slat-wall.jpeg",
+        "alt": {
+          "en": "Living room with a curved sofa in front of a wood-slat feature wall",
+          "ar": "غرفة معيشة بأريكة منحنية أمام جدار مميز بشرائح خشبية"
+        }
+      },
+      "detail": {
+        "summary": {
+          "en": "Residential interior design shaped around how your household actually lives — from villa master suites to apartment layouts — resolved down to the last drawer alignment.",
+          "ar": "تصميم داخلي سكني مصمم وفق أسلوب حياة أسرتك الفعلي، من الأجنحة الرئيسية في الفلل إلى توزيع الشقق، ويُحل حتى أدق تفاصيل محاذاة الأدراج."
+        },
+        "included": {
+          "en": [
+            "Lifestyle-led space planning",
+            "Custom joinery & wardrobes",
+            "Material & lighting palette",
+            "Furniture & FF&E coordination"
+          ],
+          "ar": [
+            "تخطيط مساحات يراعي أسلوب الحياة",
+            "نجارة وخزائن مخصصة",
+            "لوحة مواد وإضاءة",
+            "تنسيق الأثاث والتجهيزات"
+          ]
+        },
+        "faqs": [
+          {
+            "question": {
+              "en": "Do you design furniture or only select it?",
+              "ar": "هل تصممون الأثاث أم تختارونه فقط؟"
+            },
+            "answer": {
+              "en": "Both. Custom pieces such as wardrobes, kitchens and wall units are designed and produced in our own joinery facility to fit your exact space, while loose furniture, sofas and decorative FF&E can be sourced and coordinated for you through our procurement network. That means the built-in and free-standing pieces are specified together as one scheme rather than assembled from unrelated suppliers after the fact.",
+              "ar": "كلاهما. تُصمم وتُصنع القطع المخصصة كالخزائن والمطابخ ووحدات الجدران في منشأة النجارة الخاصة بنا لتناسب مساحتك بدقة، بينما يمكن توريد وتنسيق الأثاث المنفصل والأرائك والتجهيزات الديكورية لك عبر شبكة التوريد لدينا. هذا يعني أن القطع الثابتة والمنفصلة تُحدد معاً كمخطط واحد بدلاً من تجميعها من موردين غير مرتبطين لاحقاً."
+            }
+          },
+          {
+            "question": {
+              "en": "Can you work with an existing villa or apartment layout?",
+              "ar": "هل يمكنكم العمل على تخطيط فيلا أو شقة قائمة؟"
+            },
+            "answer": {
+              "en": "Yes, renovation and re-layout projects are a large part of what we do; not every project starts from a bare shell. We survey the existing space, structure and services before proposing whether to keep the current layout with cosmetic upgrades, adjust specific rooms, or fully reconfigure the plan, and we're upfront about which option actually fits your budget and timeline.",
+              "ar": "نعم، مشاريع التجديد وإعادة التوزيع تشكل جزءاً كبيراً من عملنا؛ فليس كل مشروع يبدأ من هيكل فارغ. نقوم بمسح المساحة والإنشاءات والخدمات القائمة قبل اقتراح الإبقاء على التخطيط الحالي مع تحسينات تجميلية، أو تعديل غرف محددة، أو إعادة تشكيل المخطط بالكامل، ونكون صريحين حول أي خيار يناسب فعلياً ميزانيتك وجدولك الزمني."
+            }
+          }
+        ]
+      },
+      "pricing": {
+        "direct": true,
+        "itemIds": [
+          "design-single-room",
+          "design-apartment",
+          "design-townhouse",
+          "design-villa"
+        ]
+      },
+      "startingItemId": "design-single-room"
+    },
+    {
+      "slug": "office-interior-design",
+      "name": {
+        "en": "Office Interior Design",
+        "ar": "تصميم داخلي للمكاتب"
+      },
+      "summary": {
+        "en": "3D layouts & ergonomic planning",
+        "ar": "تخطيط ثلاثي الأبعاد ومريح للمكاتب"
+      },
+      "image": {
+        "asset": "assets/images/minimalist-living-room-fluted-wall-panel-cove-lighting.webp",
+        "url": "https://www.baitalebdaa.com/assets/minimalist-living-room-fluted-wall-panel-cove-lighting.jpeg",
+        "alt": null
+      },
+      "detail": {
+        "summary": {
+          "en": "Office interior design built around acoustic comfort, brand presence and how your teams actually collaborate — resolved in 3D before a single wall is touched.",
+          "ar": "تصميم داخلي للمكاتب مبني على الراحة الصوتية وحضور العلامة التجارية وطريقة تعاون فرقك فعلياً، ويُحل بالكامل بتصور ثلاثي الأبعاد قبل لمس أي جدار."
+        },
+        "included": {
+          "en": [
+            "Workplace strategy & zoning",
+            "Acoustic & lighting design",
+            "Brand-integrated joinery",
+            "3D visualization for stakeholder sign-off"
+          ],
+          "ar": [
+            "استراتيجية مساحة العمل والتقسيم",
+            "تصميم الصوتيات والإضاءة",
+            "نجارة متكاملة مع الهوية التجارية",
+            "تصور ثلاثي الأبعاد لاعتماد أصحاب المصلحة"
+          ]
+        },
+        "faqs": [
+          {
+            "question": {
+              "en": "Can the design reflect our brand guidelines?",
+              "ar": "هل يمكن أن يعكس التصميم دليل هويتنا التجارية؟"
+            },
+            "answer": {
+              "en": "Yes, brand colours, materials, signage and even furniture tone are integrated into the concept from the very first mood board, not applied as a finishing touch, and we review them with your marketing or brand team where a formal guideline document exists. The goal is a workplace that visitors and staff immediately recognize as yours, not a generic office with your logo added to the reception wall.",
+              "ar": "نعم، تُدمج ألوان العلامة التجارية والمواد واللافتات وحتى طابع الأثاث في المفهوم منذ أول لوحة إلهام، وليست لمسة أخيرة تُضاف لاحقاً، ونراجعها مع فريق التسويق أو الهوية لديكم متى وُجد دليل رسمي. الهدف هو مكان عمل يتعرف عليه الزوار والموظفون فوراً كعلامتكم، لا مكتب عام أُضيف إليه الشعار على جدار الاستقبال."
+            }
+          },
+          {
+            "question": {
+              "en": "How do you handle sign-off across multiple stakeholders?",
+              "ar": "كيف تديرون الاعتماد مع عدة أصحاب مصلحة؟"
+            },
+            "answer": {
+              "en": "Photorealistic 3D renders let every stakeholder — facilities, HR, leadership, brand — review the exact same materials, layout and lighting decisions on screen before construction starts, which surfaces disagreements early instead of after joinery has been ordered. We consolidate feedback into one round of revisions per stage rather than taking parallel, conflicting instructions from different people during the build, which keeps the programme moving and avoids costly rework once joinery and finishes are already on order.",
+              "ar": "تتيح التصاميم ثلاثية الأبعاد الواقعية لكل صاحب مصلحة — المرافق والموارد البشرية والإدارة والهوية التجارية — مراجعة نفس المواد والتخطيط وقرارات الإضاءة على الشاشة قبل بدء البناء، مما يظهر الخلافات مبكراً بدلاً من بعد طلب النجارة. نجمع الملاحظات في جولة مراجعة واحدة لكل مرحلة بدلاً من تلقي تعليمات متوازية ومتضاربة من أشخاص مختلفين أثناء التنفيذ."
+            }
+          }
+        ]
+      },
+      "pricing": {
+        "direct": true,
+        "itemIds": [
+          "design-office",
+          "design-drawings",
+          "design-material-schedule",
+          "design-consultation"
+        ]
+      },
+      "startingItemId": "design-office"
+    },
+    {
+      "slug": "restaurant-interior-design",
+      "name": {
+        "en": "Restaurant Interior Design",
+        "ar": "تصميم داخلي للمطاعم"
+      },
+      "summary": {
+        "en": "Ambience-driven F&B concepts",
+        "ar": "مفاهيم مطاعم تركز على الأجواء"
+      },
+      "image": {
+        "asset": "assets/images/contemporary-living-room-wall-panelling-track-lighting.webp",
+        "url": "https://www.baitalebdaa.com/assets/contemporary-living-room-wall-panelling-track-lighting.jpeg",
+        "alt": null
+      },
+      "detail": {
+        "summary": {
+          "en": "Restaurant interior design that shapes atmosphere, seating flow and kitchen adjacency together, so the concept survives contact with a working service line.",
+          "ar": "تصميم داخلي للمطاعم يشكّل الأجواء وتدفق الجلوس وقرب المطبخ معاً، بحيث يصمد المفهوم أمام واقع خط الخدمة الفعلي."
+        },
+        "included": {
+          "en": [
+            "Concept & atmosphere design",
+            "Seating & covers optimization",
+            "Kitchen adjacency planning",
+            "Material specification for F&B durability"
+          ],
+          "ar": [
+            "تصميم المفهوم والأجواء",
+            "تحسين الجلوس وعدد المقاعد",
+            "تخطيط قرب المطبخ",
+            "اختيار مواد تتحمل تشغيل المطاعم"
+          ]
+        },
+        "faqs": [
+          {
+            "question": {
+              "en": "Do you design around our target covers count?",
+              "ar": "هل تصممون وفق عدد المقاعد المستهدف لدينا؟"
+            },
+            "answer": {
+              "en": "Yes, seating layout is optimized against your target covers, table mix and service style — a la carte, casual, banquette-heavy — from the concept stage rather than fitted in after the atmosphere design is finalized. Getting covers right early avoids the common problem of a beautiful concept that quietly underperforms commercially because it seats fewer guests per service than the business actually needs.",
+              "ar": "نعم، يُحسَّن تخطيط الجلوس وفق عدد المقاعد المستهدف ومزيج الطاولات وأسلوب الخدمة — قائمة كاملة أو أجواء غير رسمية أو مقاعد جلوس ثابتة — منذ مرحلة المفهوم وليس كإضافة بعد اعتماد تصميم الأجواء. ضبط عدد المقاعد مبكراً يتجنب مشكلة شائعة وهي مفهوم جميل لكنه يقصّر تجارياً لأنه يستوعب ضيوفاً أقل من حاجة العمل الفعلية."
+            }
+          },
+          {
+            "question": {
+              "en": "Can the design work with our existing kitchen equipment?",
+              "ar": "هل يمكن أن يتناسب التصميم مع معدات مطبخنا الحالية؟"
+            },
+            "answer": {
+              "en": "Yes, we survey existing kitchen equipment, extraction routes and adjacencies before proposing a front-of-house concept, and we design around equipment worth retaining wherever that makes commercial sense rather than defaulting to a full kitchen strip-out. Where equipment does need replacing for compliance or workflow reasons, we flag that clearly during the survey so it's budgeted for from the start rather than becoming a mid-project change order that delays your opening date.",
+              "ar": "نعم، نقوم بمسح معدات المطبخ القائمة ومسارات الشفط والمواقع قبل اقتراح مفهوم صالة الضيوف، ونصمم حول المعدات التي يستحق الاحتفاظ بها متى كان ذلك مجدياً تجارياً بدلاً من افتراض إزالة المطبخ بالكامل. وحيثما تتطلب المعدات استبدالاً لأسباب امتثال أو تشغيل، ننبه لذلك بوضوح أثناء المسح ليُدرج في الميزانية منذ البداية."
+            }
+          }
+        ]
+      },
+      "pricing": {
+        "direct": false,
+        "itemIds": [
+          "design-drawings",
+          "design-material-schedule",
+          "design-consultation"
+        ]
+      },
+      "startingItemId": null
+    },
+    {
+      "slug": "retail-interior-design",
+      "name": {
+        "en": "Retail Interior Design",
+        "ar": "تصميم داخلي للمحلات"
+      },
+      "summary": {
+        "en": "Customer-journey focused retail design",
+        "ar": "تصميم محلات يركز على تجربة العميل"
+      },
+      "image": {
+        "asset": "assets/images/living-room-tv-unit-floating-shelves-curtains.webp",
+        "url": "https://www.baitalebdaa.com/assets/living-room-tv-unit-floating-shelves-curtains.jpeg",
+        "alt": null
+      },
+      "detail": {
+        "summary": {
+          "en": "Retail interior design focused on customer flow, merchandising and brand storytelling — the concept your shopfitting team can actually build on schedule.",
+          "ar": "تصميم داخلي للمحلات التجارية يركز على تدفق الزبائن والعرض وسرد قصة العلامة التجارية، بمفهوم قابل للتنفيذ فعلياً وفق الجدول الزمني."
+        },
+        "included": {
+          "en": [
+            "Customer flow & layout design",
+            "Merchandising & display concept",
+            "Lighting for product presentation",
+            "Buildable, fit-out-ready drawings"
+          ],
+          "ar": [
+            "تصميم تدفق الزبائن والتوزيع",
+            "مفهوم العرض والتنسيق",
+            "إضاءة لعرض المنتجات",
+            "رسومات جاهزة للتنفيذ"
+          ]
+        },
+        "faqs": [
+          {
+            "question": {
+              "en": "Do you design for a single store or a rollout brand standard?",
+              "ar": "هل تصممون لمتجر واحد أم لمعيار علامة تجارية متعدد الفروع؟"
+            },
+            "answer": {
+              "en": "Both — single-store concepts and reproducible brand standards for multi-location rollouts are handled the same way from a process point of view, with drawings and specifications built to be reused rather than being a one-off concept sketch. If a rollout is likely later, tell us at the brief stage and we'll structure the documentation so scaling to further stores doesn't mean starting the design process over.",
+              "ar": "كلاهما — تُعالج مفاهيم المتجر الواحد ومعايير العلامة التجارية القابلة للتكرار لعدة مواقع بنفس المنهجية، برسومات ومواصفات مصممة لإعادة الاستخدام وليست مجرد رسم مفاهيمي لمرة واحدة. إن كان التوسع محتملاً لاحقاً، أخبرنا في مرحلة الموجز وسنبني التوثيق بحيث لا يعني التوسع لفروع إضافية إعادة عملية التصميم من الصفر. هذا يوفر عليك وقتاً وتكلفة كبيرين عند الانتقال من متجر واحد إلى عدة فروع."
+            }
+          },
+          {
+            "question": {
+              "en": "Will the design account for landlord/mall design guidelines?",
+              "ar": "هل يراعي التصميم اشتراطات تصميم المالك أو المول؟"
+            },
+            "answer": {
+              "en": "Yes, mall and landlord design criteria — shopfront setbacks, signage rules, ceiling heights, permitted materials — are reviewed and incorporated during concept design rather than discovered at approval stage, when a rejected drawing would otherwise cost you weeks of resubmission time and push back your opening date unnecessarily.",
+              "ar": "نعم، تُراجع معايير تصميم المول والمالك — تراجعات الواجهة وأنظمة اللافتات وارتفاعات الأسقف والمواد المسموح بها — وتُدمج أثناء التصميم المفاهيمي بدلاً من اكتشافها في مرحلة الاعتماد، حين يكلفك رفض الرسومات أسابيع من إعادة التقديم ويؤخر موعد الافتتاح دون داعٍ."
+            }
+          }
+        ]
+      },
+      "pricing": {
+        "direct": false,
+        "itemIds": [
+          "design-drawings",
+          "design-material-schedule",
+          "design-consultation"
+        ]
+      },
+      "startingItemId": null
+    },
+    {
+      "slug": "villa-renovation",
+      "name": {
+        "en": "Villa Renovation",
+        "ar": "تجديد فلل"
+      },
+      "summary": {
+        "en": "Structural upgrades & modern redesigns",
+        "ar": "ترقيات هيكلية وإعادة تصميم عصرية"
+      },
+      "image": {
+        "asset": "assets/images/living-room-wood-slat-wall-lounge-seating.webp",
+        "url": "https://www.baitalebdaa.com/assets/living-room-wood-slat-wall-lounge-seating.jpeg",
+        "alt": null
+      },
+      "detail": {
+        "summary": {
+          "en": "Villa renovation that upgrades layout, materials and services without losing the parts of the home that already work — survey-led, not demolition-first.",
+          "ar": "تجديد فلل يرفع مستوى التخطيط والمواد والأنظمة دون خسارة الأجزاء التي تعمل جيداً بالفعل في المنزل، بمنهج يبدأ بالمسح لا بالهدم."
+        },
+        "included": {
+          "en": [
+            "Condition survey & scope definition",
+            "Structural, MEP & finishes upgrade",
+            "Custom joinery replacement",
+            "Phased works for occupied villas"
+          ],
+          "ar": [
+            "مسح الحالة وتحديد النطاق",
+            "تحديث الإنشاءات والكهروميكانيك والتشطيبات",
+            "استبدال النجارة المخصصة",
+            "تنفيذ على مراحل للفلل المأهولة"
+          ]
+        },
+        "faqs": [
+          {
+            "question": {
+              "en": "Can we stay in the villa during renovation?",
+              "ar": "هل يمكننا البقاء في الفيلا أثناء التجديد؟"
+            },
+            "answer": {
+              "en": "It depends on scope. Phased, room-by-room works can often allow partial occupancy, especially for cosmetic and joinery-led renovations, but full renovations touching structure, plumbing risers or the electrical distribution board typically require vacating for safety and practicality. We'll give you an honest assessment during the free site survey rather than promising you can stay just to win the job, including how many weeks of disruption to expect and whether temporary alternative accommodation is worth planning for.",
+              "ar": "يعتمد ذلك على النطاق. التنفيذ على مراحل غرفة بغرفة قد يسمح غالباً بإشغال جزئي، خاصة في التجديدات التجميلية أو التي تعتمد على النجارة، لكن التجديد الكامل الذي يمس الإنشاءات أو أعمدة السباكة أو لوحة التوزيع الكهربائية يتطلب عادة إخلاء المكان لأسباب السلامة والعملية. سنقدم تقييماً صريحاً أثناء المسح الأولي المجاني بدلاً من وعدك بالبقاء فقط لكسب المشروع."
+            }
+          },
+          {
+            "question": {
+              "en": "Do you handle municipality approvals for renovation work?",
+              "ar": "هل تديرون موافقات البلدية لأعمال التجديد؟"
+            },
+            "answer": {
+              "en": "Yes, any structural, MEP or facade changes that require a municipality NOC are managed by our in-house compliance team as part of the renovation programme, including the submission drawings and follow-up until the certificate is issued. Purely cosmetic renovations that don't touch structure or core services usually don't require separate authority approval, and we'll confirm which category your project falls into during the survey.",
+              "ar": "نعم، أي تغييرات إنشائية أو كهروميكانيكية أو في الواجهة تتطلب شهادة عدم ممانعة من البلدية يديرها فريق الامتثال الداخلي لدينا ضمن برنامج التجديد، بما في ذلك رسومات التقديم والمتابعة حتى صدور الشهادة. أما التجديدات التجميلية البحتة التي لا تمس الإنشاءات أو الخدمات الأساسية فعادة لا تتطلب موافقة منفصلة من الجهات، وسنؤكد أي فئة ينتمي إليها مشروعك أثناء المسح."
+            }
+          }
+        ]
+      },
+      "pricing": {
+        "direct": true,
+        "itemIds": [
+          "villa-selective",
+          "villa-standard",
+          "villa-luxury",
+          "villa-bespoke"
+        ]
+      },
+      "startingItemId": "villa-selective"
+    },
+    {
+      "slug": "apartment-renovation",
+      "name": {
+        "en": "Apartment Renovation",
+        "ar": "تجديد شقق"
+      },
+      "summary": {
+        "en": "Smart space makeovers & upgrades",
+        "ar": "تجديد الشقق بحلول ذكية"
+      },
+      "image": {
+        "asset": "assets/images/modern-living-room-beige-sofa-curtain-wall-panels.webp",
+        "url": "https://www.baitalebdaa.com/assets/modern-living-room-beige-sofa-curtain-wall-panels.jpeg",
+        "alt": null
+      },
+      "detail": {
+        "summary": {
+          "en": "Apartment renovation resolved around building rules, shared services and tight timelines — layout, joinery and finishes upgraded with minimal disruption to neighbours.",
+          "ar": "تجديد شقق يُحل وفق أنظمة المبنى والخدمات المشتركة والجداول الزمنية الضيقة، برفع مستوى التخطيط والنجارة والتشطيبات مع أقل إزعاج للجيران."
+        },
+        "included": {
+          "en": [
+            "Building/OA compliance check",
+            "Layout & services upgrade",
+            "Custom kitchens & wardrobes",
+            "Coordinated works within building hours"
+          ],
+          "ar": [
+            "فحص الامتثال لأنظمة المبنى/الاتحاد",
+            "تحديث التخطيط والخدمات",
+            "مطابخ وخزائن مخصصة",
+            "تنفيذ منسق ضمن ساعات عمل المبنى"
+          ]
+        },
+        "faqs": [
+          {
+            "question": {
+              "en": "Do you handle building management/OA approval for renovation works?",
+              "ar": "هل تديرون موافقة إدارة المبنى/الاتحاد لأعمال التجديد؟"
+            },
+            "answer": {
+              "en": "Yes, we submit the required renovation permits to the building management or owners' association on your behalf and follow the building's working-hour, noise and material-transport rules before works start, so you're not stuck negotiating access windows or explaining site rules to your neighbours yourself. Any refundable deposit the building requires is also handled as part of that process, and we keep copies of every approval on file in case the building management asks for proof mid-project.",
+              "ar": "نعم، نقدم تصاريح التجديد المطلوبة إلى إدارة المبنى أو اتحاد الملاك نيابة عنك ونلتزم بساعات العمل وأنظمة الضوضاء ونقل المواد الخاصة بالمبنى قبل بدء الأعمال، بحيث لا تضطر للتفاوض بنفسك على أوقات الدخول أو شرح قواعد الموقع لجيرانك. أي تأمين قابل للاسترداد يطلبه المبنى يُدار أيضاً كجزء من هذه العملية."
+            }
+          },
+          {
+            "question": {
+              "en": "Can plumbing and electrical layouts be changed in an apartment?",
+              "ar": "هل يمكن تغيير مسارات السباكة والكهرباء في الشقة؟"
+            },
+            "answer": {
+              "en": "Often yes, within what the building's core infrastructure, risers and distribution boards actually allow — apartments have more shared-system constraints than villas, so this genuinely varies by building and even by floor. We confirm exact feasibility during the survey, including any impact on neighbouring units, before finalizing the design, rather than promising a layout change and discovering a constraint mid-renovation.",
+              "ar": "غالباً نعم، ضمن ما تسمح به البنية التحتية الأساسية للمبنى وأعمدة الخدمات ولوحات التوزيع — فالشقق لديها قيود أنظمة مشتركة أكثر من الفلل، لذا يختلف هذا فعلياً حسب المبنى وحتى الطابق. نؤكد الجدوى الدقيقة أثناء المسح، بما في ذلك أي أثر على الوحدات المجاورة، قبل وضع التصميم النهائي، بدلاً من الوعد بتغيير التخطيط ثم اكتشاف قيد أثناء التنفيذ."
+            }
+          }
+        ]
+      },
+      "pricing": {
+        "direct": false,
+        "itemIds": [
+          "kitchen-laminate",
+          "wardrobe-laminate",
+          "design-apartment"
+        ]
+      },
+      "startingItemId": null
+    },
+    {
+      "slug": "office-renovation",
+      "name": {
+        "en": "Office Renovation",
+        "ar": "تجديد مكاتب"
+      },
+      "summary": {
+        "en": "Refresh your workspace, zero downtime",
+        "ar": "تجديد مكتبك بدون توقف عن العمل"
+      },
+      "image": {
+        "asset": "assets/images/tv-media-wall-floating-console-fireplace.webp",
+        "url": "https://www.baitalebdaa.com/assets/tv-media-wall-floating-console-fireplace.jpeg",
+        "alt": null
+      },
+      "detail": {
+        "summary": {
+          "en": "Office renovation that modernizes layout, MEP and finishes for a growing team — sequenced so the business keeps trading through the works.",
+          "ar": "تجديد مكاتب يحدّث التخطيط والكهروميكانيك والتشطيبات لفريق متنامٍ، منفذ على مراحل بحيث يستمر العمل خلال التنفيذ."
+        },
+        "included": {
+          "en": [
+            "Space & headcount re-planning",
+            "MEP & acoustic upgrade",
+            "Furniture & joinery replacement",
+            "Out-of-hours & weekend phasing"
+          ],
+          "ar": [
+            "إعادة تخطيط المساحة وعدد الموظفين",
+            "تحديث الكهروميكانيك والصوتيات",
+            "استبدال الأثاث والنجارة",
+            "تنفيذ خارج ساعات الدوام وعطلة نهاية الأسبوع"
+          ]
+        },
+        "faqs": [
+          {
+            "question": {
+              "en": "Can renovation happen without closing the office?",
+              "ar": "هل يمكن تنفيذ التجديد دون إغلاق المكتب؟"
+            },
+            "answer": {
+              "en": "Yes, we routinely phase works by zone so one area is renovated while the rest of the team keeps working, and we schedule disruptive or noisy tasks — demolition, ceiling and MEP works — out-of-hours or over weekends where the building allows it, so the business keeps operating through most of the programme rather than losing productive days to a full closure.",
+              "ar": "نعم، ننفذ الأعمال عادة على مراحل حسب المنطقة بحيث تُجدد منطقة بينما يستمر باقي الفريق بالعمل، ونجدول المهام المزعجة أو الصاخبة كالهدم والأسقف والكهروميكانيك خارج ساعات الدوام أو في عطلة نهاية الأسبوع متى سمح المبنى بذلك، بحيث يستمر العمل خلال معظم البرنامج بدلاً من خسارة أيام إنتاجية بسبب إغلاق كامل."
+            }
+          },
+          {
+            "question": {
+              "en": "Is our existing furniture reused or fully replaced?",
+              "ar": "هل يُعاد استخدام أثاثنا الحالي أم يُستبدل بالكامل؟"
+            },
+            "answer": {
+              "en": "Either, depending on condition and layout — we assess what's genuinely worth retaining during the survey rather than assuming everything needs replacing, and we specify new furniture or joinery only where the existing pieces don't fit the new layout, are worn beyond a reasonable refresh, or don't meet current ergonomic and acoustic standards, so your budget goes toward what actually needs changing.",
+              "ar": "كلاهما ممكن حسب الحالة والتخطيط — نقيّم ما يستحق الاحتفاظ به فعلياً أثناء المسح بدلاً من افتراض ضرورة استبدال كل شيء، ونحدد أثاثاً أو نجارة جديدة فقط حيث لا تناسب القطع الحالية التخطيط الجديد أو تكون متآكلة أو لا تلبي معايير الراحة والصوتيات الحالية، بحيث تُوجَّه ميزانيتك لما يحتاج التغيير فعلاً."
+            }
+          }
+        ]
+      },
+      "pricing": {
+        "direct": false,
+        "itemIds": [
+          "office-essential",
+          "office-premium",
+          "office-luxury"
+        ]
+      },
+      "startingItemId": null
+    },
+    {
+      "slug": "joinery",
+      "name": {
+        "en": "Joinery",
+        "ar": "شركة نجارة"
+      },
+      "summary": {
+        "en": "CNC-precision custom woodwork",
+        "ar": "أعمال نجارة مخصصة بدقة CNC"
+      },
+      "image": {
+        "asset": "assets/images/l-shaped-walk-in-closet-led-drawers.webp",
+        "url": "https://www.baitalebdaa.com/assets/l-shaped-walk-in-closet-led-drawers.jpeg",
+        "alt": {
+          "en": "L-shaped walk-in closet with wood panelling, open shelving, brass-handled drawers and LED strip lighting",
+          "ar": "غرفة ملابس على شكل حرف L بتغطية خشبية ورفوف مفتوحة وأدراج بمقابض نحاسية وإضاءة LED شريطية"
+        }
+      },
+      "detail": {
+        "summary": {
+          "en": "Custom architectural joinery — from acoustic panelling to hospitality millwork — produced in our own 15,000 sq ft facility for precision that site-built carpentry can't match.",
+          "ar": "نجارة معمارية مخصصة، من الألواح الصوتية إلى أعمال الضيافة الخشبية، تُصنع في منشأتنا الخاصة البالغة 15,000 قدم مربع بدقة لا تضاهيها النجارة المنفذة في الموقع."
+        },
+        "included": {
+          "en": [
+            "Shop drawings & material specification",
+            "In-house manufacturing & finishing",
+            "Delivery & site installation",
+            "Acoustic & hospitality millwork"
+          ],
+          "ar": [
+            "رسومات التصنيع وتحديد المواد",
+            "التصنيع والتشطيب الداخلي",
+            "التوصيل والتركيب في الموقع",
+            "أعمال الضيافة الخشبية والصوتية"
+          ]
+        },
+        "faqs": [
+          {
+            "question": {
+              "en": "Is joinery manufactured off-site or built on-site?",
+              "ar": "هل تُصنَّع النجارة خارج الموقع أم في الموقع؟"
+            },
+            "answer": {
+              "en": "It's manufactured in our own 15,000 sq ft Ajman facility using CNC-cut components and factory-controlled finishing, then delivered and installed on site by our own installation team. This gives tighter tolerances, straighter edges and a more consistent finish than joinery built in-situ, where dust, humidity and limited workspace make that level of precision much harder to achieve. Factory production also means less noise and mess on your site during installation, since the cutting and sanding stages are already done.",
+              "ar": "تُصنَّع في منشأتنا الخاصة البالغة 15,000 قدم مربع في عجمان باستخدام مكونات مقطوعة بالحاسوب وتشطيب مضبوط في المصنع، ثم تُوصَّل وتُركَّب في الموقع بواسطة فريق التركيب الخاص بنا. هذا يمنح دقة أعلى وحواف أكثر استقامة وتشطيباً أكثر ثباتاً من النجارة المنفذة في الموقع، حيث يجعل الغبار والرطوبة ومساحة العمل المحدودة تحقيق هذا المستوى من الدقة أصعب بكثير."
+            }
+          },
+          {
+            "question": {
+              "en": "Can you produce joinery to match an architect's own drawings?",
+              "ar": "هل يمكنكم تصنيع النجارة وفق رسومات مهندس معماري آخر؟"
+            },
+            "answer": {
+              "en": "Yes, we regularly manufacture from third-party architectural and interior design drawings and specifications, not only from our own design work, and we produce our own shop drawings from those documents for the architect's review before cutting any material. This is common on projects where we're brought in purely for manufacturing and installation rather than the original design, and we'll flag any detail that isn't buildable as drawn before it reaches the factory floor.",
+              "ar": "نعم، ننفذ بانتظام وفق رسومات ومواصفات معمارية وتصميم داخلي من جهات خارجية، وليس فقط أعمال تصميمنا الخاصة، ونُعد رسومات التصنيع الخاصة بنا من تلك المستندات لمراجعة المهندس المعماري قبل قطع أي مادة. هذا شائع في المشاريع التي يُستعان بنا فيها للتصنيع والتركيب فقط وليس للتصميم الأصلي، وننبه لأي تفصيل غير قابل للتنفيذ كما هو مرسوم قبل وصوله لأرضية المصنع."
+            }
+          }
+        ]
+      },
+      "pricing": {
+        "direct": true,
+        "itemIds": [
+          "wardrobe-laminate",
+          "kitchen-laminate",
+          "media-basic",
+          "bed-headboard"
+        ]
+      },
+      "startingItemId": "wardrobe-laminate"
+    },
+    {
+      "slug": "custom-wardrobes",
+      "name": {
+        "en": "Custom Wardrobes",
+        "ar": "خزائن حسب الطلب"
+      },
+      "summary": {
+        "en": "Bespoke storage & walk-in closets",
+        "ar": "خزائن ملابس وغرف تبديل حسب الطلب"
+      },
+      "image": {
+        "asset": "assets/images/corner-wardrobe-glass-doors-black-handles.webp",
+        "url": "https://www.baitalebdaa.com/assets/corner-wardrobe-glass-doors-black-handles.jpeg",
+        "alt": {
+          "en": "Corner wardrobe with smoked glass doors and long black handles",
+          "ar": "خزانة زاوية بأبواب زجاج مدخّن ومقابض سوداء طويلة"
+        }
+      },
+      "detail": {
+        "summary": {
+          "en": "Custom wardrobes designed to the millimetre for your actual wardrobe space — walk-in, sliding or hinged — manufactured in-house with a wide choice of finishes.",
+          "ar": "خزائن مخصصة تُصمم بدقة الميليمتر لمساحتك الفعلية، سواء كانت غرفة ملابس مفتوحة أو أبواب منزلقة أو مفصلية، وتُصنع داخلياً بخيارات واسعة من التشطيبات."
+        },
+        "included": {
+          "en": [
+            "Measured survey & 3D design",
+            "Internal layout planning",
+            "In-house manufacturing",
+            "Delivery & installation"
+          ],
+          "ar": [
+            "مسح دقيق وتصميم ثلاثي الأبعاد",
+            "تخطيط التوزيع الداخلي",
+            "تصنيع داخلي",
+            "التوصيل والتركيب"
+          ]
+        },
+        "faqs": [
+          {
+            "question": {
+              "en": "How is a custom wardrobe priced?",
+              "ar": "كيف يتم تسعير الخزانة المخصصة؟"
+            },
+            "answer": {
+              "en": "Price depends on overall size, the internal fittings you choose — hanging rails, drawer banks, shoe racks, lighting — and the door and carcass finish. Use the cost estimator on this page for an indicative figure based on your rough size and scope, and we'll confirm an exact, itemized quote after a free measured survey of the actual space, so there are no surprises once manufacturing starts.",
+              "ar": "يعتمد السعر على الحجم الإجمالي والتجهيزات الداخلية التي تختارها — قضبان التعليق وبنوك الأدراج وأرفف الأحذية والإضاءة — وتشطيب الأبواب والهيكل. استخدم حاسبة التكلفة في هذه الصفحة للحصول على رقم تقديري بناءً على حجمك ونطاقك التقريبي، وسنؤكد عرض سعر دقيقاً ومفصلاً بعد مسح دقيق مجاني للمساحة الفعلية، بحيث لا توجد مفاجآت بعد بدء التصنيع."
+            }
+          },
+          {
+            "question": {
+              "en": "How long does a custom wardrobe take from order to installation?",
+              "ar": "كم يستغرق تصنيع الخزانة المخصصة من الطلب حتى التركيب؟"
+            },
+            "answer": {
+              "en": "Typically a few weeks from confirmed design and material selection to installation, depending on the finish you choose, the complexity of the internal layout, and our current production schedule at the factory. We confirm a firm installation date at order stage rather than a vague range, and we'll flag immediately if a specific finish has a longer lead time so it doesn't catch you off guard.",
+              "ar": "عادة بضعة أسابيع من اعتماد التصميم واختيار المواد حتى التركيب، حسب التشطيب الذي تختاره وتعقيد التوزيع الداخلي وجدول الإنتاج الحالي في المصنع. نؤكد موعد تركيب ثابتاً عند تأكيد الطلب بدلاً من نطاق زمني غامض، وننبه فوراً إن كان لتشطيب معين مدة توريد أطول حتى لا يفاجئك ذلك."
+            }
+          }
+        ]
+      },
+      "pricing": {
+        "direct": true,
+        "itemIds": [
+          "wardrobe-laminate",
+          "wardrobe-lacquer",
+          "wardrobe-luxury"
+        ]
+      },
+      "startingItemId": "wardrobe-laminate"
+    },
+    {
+      "slug": "kitchen-design",
+      "name": {
+        "en": "Kitchen Design",
+        "ar": "تصميم مطابخ"
+      },
+      "summary": {
+        "en": "Functional & stunning kitchen layouts",
+        "ar": "تصميم مطابخ عملية ومذهلة"
+      },
+      "image": {
+        "asset": "assets/images/corner-coffee-bar-black-fluted-cabinet-led-lighting.webp",
+        "url": "https://www.baitalebdaa.com/assets/corner-coffee-bar-black-fluted-cabinet-led-lighting.jpeg",
+        "alt": null
+      },
+      "detail": {
+        "summary": {
+          "en": "Kitchen design balancing workflow, storage and finish — cabinetry drawn and manufactured in-house so the design on screen matches what's installed.",
+          "ar": "تصميم مطابخ يوازن بين سير العمل والتخزين والتشطيب، بخزائن تُرسم وتُصنَّع داخلياً بحيث يطابق التصميم على الشاشة ما يُركَّب فعلياً."
+        },
+        "included": {
+          "en": [
+            "Layout & workflow planning",
+            "Cabinetry & worktop specification",
+            "Appliance integration",
+            "In-house manufacturing & install"
+          ],
+          "ar": [
+            "تخطيط التوزيع وسير العمل",
+            "تحديد الخزائن وأسطح العمل",
+            "دمج الأجهزة",
+            "تصنيع وتركيب داخلي"
+          ]
+        },
+        "faqs": [
+          {
+            "question": {
+              "en": "Can you work with a specific appliance brand we've already chosen?",
+              "ar": "هل يمكنكم العمل مع علامة أجهزة معينة اخترناها مسبقاً؟"
+            },
+            "answer": {
+              "en": "Yes, cabinetry is designed around your chosen appliances' exact dimensions, ventilation and clearance requirements rather than generic industry assumptions, so ovens, hobs and integrated fridges sit flush and function correctly once installed. If you haven't chosen appliances yet, we can also recommend options that suit the layout and your budget before finalizing the cabinetry design, so you're not locked into a spec that only works with one specific model.",
+              "ar": "نعم، تُصمم الخزائن وفق الأبعاد الدقيقة للأجهزة التي اخترتها ومتطلبات التهوية والمسافات اللازمة بدلاً من افتراضات عامة، بحيث تتناسب الأفران والمواقد والثلاجات المدمجة بشكل متساوٍ وتعمل بشكل صحيح بعد التركيب. وإن لم تختر الأجهزة بعد، يمكننا أيضاً اقتراح خيارات تناسب التخطيط وميزانيتك قبل وضع التصميم النهائي للخزائن، حتى لا تُلزَم بمواصفة تعمل مع طراز واحد فقط."
+            }
+          },
+          {
+            "question": {
+              "en": "Do you design open-plan kitchens connected to living areas?",
+              "ar": "هل تصممون مطابخ مفتوحة متصلة بمناطق المعيشة؟"
+            },
+            "answer": {
+              "en": "Yes, open-plan and kitchen-island layouts are a regular part of our villa and apartment work, and we design the kitchen together with the adjoining living or dining space rather than in isolation, so materials, sightlines and lighting feel like one continuous scheme rather than two separately designed rooms that happen to share a wall that's been removed. We also plan sound and cooking-odour control into the layout early, not as an afterthought.",
+              "ar": "نعم، تصاميم المطابخ المفتوحة والجزيرة جزء معتاد من أعمالنا في الفلل والشقق، ونصمم المطبخ مع مساحة المعيشة أو الطعام المجاورة معاً وليس بمعزل عنها، بحيث تبدو المواد وخطوط الرؤية والإضاءة كمخطط واحد متصل بدلاً من غرفتين صُممتا بشكل منفصل وتشتركان بالصدفة في جدار أُزيل. كما نخطط للتحكم بالصوت وروائح الطهي ضمن التوزيع منذ البداية، لا كفكرة لاحقة."
+            }
+          }
+        ]
+      },
+      "pricing": {
+        "direct": true,
+        "itemIds": [
+          "kitchen-laminate",
+          "kitchen-lacquer",
+          "kitchen-premium"
+        ]
+      },
+      "startingItemId": "kitchen-laminate"
+    },
+    {
+      "slug": "kitchen-renovation",
+      "name": {
+        "en": "Kitchen Renovation",
+        "ar": "تجديد مطابخ"
+      },
+      "summary": {
+        "en": "Full kitchen remodel & upgrades",
+        "ar": "إعادة تجديد وترقية المطابخ بالكامل"
+      },
+      "image": {
+        "asset": "assets/images/coffee-corner-white-cabinet-wine-cooler-led-shelves.webp",
+        "url": "https://www.baitalebdaa.com/assets/coffee-corner-white-cabinet-wine-cooler-led-shelves.jpeg",
+        "alt": null
+      },
+      "detail": {
+        "summary": {
+          "en": "Kitchen renovation from cabinetry replacement to a full layout rework — plumbing, electrics and ventilation upgraded alongside new custom cabinetry.",
+          "ar": "تجديد مطابخ يتراوح بين استبدال الخزائن وإعادة تصميم التوزيع بالكامل، مع تحديث السباكة والكهرباء والتهوية إلى جانب خزائن مخصصة جديدة."
+        },
+        "included": {
+          "en": [
+            "Condition survey & scope options",
+            "Plumbing/electrical/ventilation upgrade",
+            "New custom cabinetry",
+            "Fast-track installation to minimize downtime"
+          ],
+          "ar": [
+            "مسح الحالة وخيارات النطاق",
+            "تحديث السباكة والكهرباء والتهوية",
+            "خزائن مخصصة جديدة",
+            "تركيب سريع لتقليل فترة التوقف"
+          ]
+        },
+        "faqs": [
+          {
+            "question": {
+              "en": "Can we keep our layout and only replace cabinetry?",
+              "ar": "هل يمكن الاحتفاظ بالتوزيع الحالي واستبدال الخزائن فقط؟"
+            },
+            "answer": {
+              "en": "Yes, cabinetry-only refreshes — new doors, worktops and hardware on the existing layout — are common and considerably faster and cheaper than a full layout rework involving plumbing and electrical changes. We present both options with their real cost and timeline difference after the survey, so you can make the call based on numbers rather than guessing which approach is more sensible for your budget.",
+              "ar": "نعم، تحديث الخزائن فقط — أبواب وأسطح عمل وتجهيزات جديدة على التوزيع الحالي — خيار شائع وأسرع وأقل تكلفة بكثير من إعادة التصميم الكامل التي تشمل تغييرات السباكة والكهرباء. نعرض الخيارين بفارق التكلفة والمدة الحقيقي بعد المسح، بحيث تقرر بناءً على أرقام فعلية بدلاً من التخمين حول الأنسب لميزانيتك."
+            }
+          },
+          {
+            "question": {
+              "en": "How long is a household without a working kitchen during renovation?",
+              "ar": "كم تستغرق فترة عدم وجود مطبخ صالح للاستخدام أثناء التجديد؟"
+            },
+            "answer": {
+              "en": "We sequence works to minimize downtime wherever possible, and for longer programmes involving a full layout change we can discuss setting up a temporary kitchenette so you're not without any cooking facility for weeks. Exact duration depends on scope — a cabinetry-only refresh is measured in days, while plumbing and layout changes take longer — and we'll give you a realistic figure during the survey.",
+              "ar": "ننظم الأعمال لتقليل فترة التوقف قدر الإمكان، وبالنسبة للبرامج الأطول التي تشمل تغيير التوزيع بالكامل يمكننا مناقشة إعداد مطبخ مؤقت بحيث لا تبقى بلا أي مرفق طهي لأسابيع. تعتمد المدة الدقيقة على النطاق — تحديث الخزائن فقط يُقاس بالأيام بينما تستغرق تغييرات السباكة والتوزيع وقتاً أطول — وسنعطيك رقماً واقعياً أثناء المسح."
+            }
+          }
+        ]
+      },
+      "pricing": {
+        "direct": false,
+        "itemIds": [
+          "kitchen-laminate",
+          "kitchen-lacquer",
+          "kitchen-premium"
+        ]
+      },
+      "startingItemId": null
+    }
+  ],
+  "pricing": {
+    "currency": "AED",
+    "vatInclusive": false,
+    "vatRate": 0.05,
+    "disclaimer": {
+      "en": "Displayed prices are starting estimates based on standard conditions and selected specifications. Final pricing is confirmed after measurements, scope review, material selection and technical assessment. Prices exclude 5% VAT, authority fees, specialist access and third-party charges unless specifically included in the quotation.",
+      "ar": "الأسعار المعروضة هي تقديرات ابتدائية مبنية على ظروف قياسية ومواصفات مختارة. يتم تأكيد السعر النهائي بعد القياس ومراجعة النطاق واختيار المواد والتقييم الفني. الأسعار غير شاملة ضريبة القيمة المضافة 5٪، ورسوم الجهات الحكومية، والوصول المتخصص، والرسوم الخارجية، ما لم تكن مدرجة صراحة في عرض السعر."
+    },
+    "groups": [
+      {
+        "id": "curtainsManual",
+        "kicker": {
+          "en": "Curtains",
+          "ar": "الستائر"
+        },
+        "title": {
+          "en": "Manual Curtains",
+          "ar": "الستائر اليدوية"
+        },
+        "subtitle": {
+          "en": "Starting prices for a standard window up to approximately 2m × 3m. Final pricing depends on exact dimensions, fabric and finish selected.",
+          "ar": "أسعار ابتدائية لنافذة قياسية حتى 2×3 متر تقريبًا. يعتمد السعر النهائي على الأبعاد الدقيقة والقماش والتشطيب المختار."
+        },
+        "items": [
+          {
+            "id": "curtain-pinch-sheer",
+            "priceType": "from",
+            "min": 650,
+            "max": null,
+            "unit": null,
+            "plus": false,
+            "additional": false,
+            "name": {
+              "en": "Pinch-pleat sheer curtains",
+              "ar": "ستائر شفافة مطوية (Pinch-pleat)"
+            },
+            "display": {
+              "en": "From AED 650",
+              "ar": "يبدأ من AED 650"
+            }
+          },
+          {
+            "id": "curtain-wave-sheer",
+            "priceType": "from",
+            "min": 750,
+            "max": null,
+            "unit": null,
+            "plus": false,
+            "additional": false,
+            "name": {
+              "en": "Wave sheer curtains",
+              "ar": "ستائر شفافة موجية (Wave)"
+            },
+            "display": {
+              "en": "From AED 750",
+              "ar": "يبدأ من AED 750"
+            }
+          },
+          {
+            "id": "curtain-pinch-blackout",
+            "priceType": "from",
+            "min": 850,
+            "max": null,
+            "unit": null,
+            "plus": false,
+            "additional": false,
+            "name": {
+              "en": "Pinch-pleat blackout curtains",
+              "ar": "ستائر بلاك اوت مطوية"
+            },
+            "display": {
+              "en": "From AED 850",
+              "ar": "يبدأ من AED 850"
+            }
+          },
+          {
+            "id": "curtain-wave-blackout",
+            "priceType": "from",
+            "min": 975,
+            "max": null,
+            "unit": null,
+            "plus": false,
+            "additional": false,
+            "name": {
+              "en": "Wave blackout curtains",
+              "ar": "ستائر بلاك اوت موجية"
+            },
+            "display": {
+              "en": "From AED 975",
+              "ar": "يبدأ من AED 975"
+            }
+          },
+          {
+            "id": "curtain-pinch-layered",
+            "priceType": "from",
+            "min": 1450,
+            "max": null,
+            "unit": null,
+            "plus": false,
+            "additional": false,
+            "name": {
+              "en": "Pinch-pleat layered curtains",
+              "ar": "ستائر متعددة الطبقات مطوية"
+            },
+            "display": {
+              "en": "From AED 1,450",
+              "ar": "يبدأ من AED 1,450"
+            }
+          },
+          {
+            "id": "curtain-wave-layered",
+            "priceType": "from",
+            "min": 1750,
+            "max": null,
+            "unit": null,
+            "plus": false,
+            "additional": false,
+            "name": {
+              "en": "Wave layered curtains",
+              "ar": "ستائر متعددة الطبقات موجية"
+            },
+            "display": {
+              "en": "From AED 1,750",
+              "ar": "يبدأ من AED 1,750"
+            }
+          }
+        ]
+      },
+      {
+        "id": "curtainsSomfy",
+        "kicker": {
+          "en": "Somfy Automation",
+          "ar": "أتمتة سومفي"
+        },
+        "title": {
+          "en": "Somfy Motorized Curtains",
+          "ar": "ستائر سومفي الكهربائية"
+        },
+        "subtitle": {
+          "en": "The indicated package can include a genuine Somfy motor, compatible motorized track, selected fabric range, professional installation, initial programming and applicable written product/workmanship warranty.",
+          "ar": "يمكن أن تشمل الباقة المحددة محرك سومفي أصلي، سكة كهربائية متوافقة، مجموعة أقمشة مختارة، تركيب احترافي، برمجة أولية، وضمان مكتوب مطبق على المنتج / التصنيع."
+        },
+        "items": [
+          {
+            "id": "somfy-sheer",
+            "priceType": "from",
+            "min": 1850,
+            "max": null,
+            "unit": null,
+            "plus": false,
+            "additional": false,
+            "name": {
+              "en": "Somfy motorized sheer curtains",
+              "ar": "ستائر شفافة كهربائية سومفي"
+            },
+            "display": {
+              "en": "From AED 1,850",
+              "ar": "يبدأ من AED 1,850"
+            }
+          },
+          {
+            "id": "somfy-blackout",
+            "priceType": "from",
+            "min": 2100,
+            "max": null,
+            "unit": null,
+            "plus": false,
+            "additional": false,
+            "name": {
+              "en": "Somfy motorized blackout curtains",
+              "ar": "ستائر بلاك اوت كهربائية سومفي"
+            },
+            "display": {
+              "en": "From AED 2,100",
+              "ar": "يبدأ من AED 2,100"
+            }
+          },
+          {
+            "id": "somfy-layered",
+            "priceType": "from",
+            "min": 3500,
+            "max": null,
+            "unit": null,
+            "plus": false,
+            "additional": false,
+            "name": {
+              "en": "Somfy motorized layered curtains",
+              "ar": "ستائر متعددة الطبقات كهربائية سومفي"
+            },
+            "display": {
+              "en": "From AED 3,500",
+              "ar": "يبدأ من AED 3,500"
+            }
+          },
+          {
+            "id": "somfy-hub",
+            "priceType": "from",
+            "min": 750,
+            "max": null,
+            "unit": null,
+            "plus": false,
+            "additional": true,
+            "name": {
+              "en": "Somfy smart hub / app integration",
+              "ar": "وحدة التحكم الذكية سومفي (Hub / تطبيق)"
+            },
+            "display": {
+              "en": "From AED 750 additional",
+              "ar": "يبدأ من AED 750 إضافية"
+            }
+          },
+          {
+            "id": "somfy-remote",
+            "priceType": "from",
+            "min": 250,
+            "max": null,
+            "unit": null,
+            "plus": false,
+            "additional": true,
+            "name": {
+              "en": "Additional Somfy remote / channel",
+              "ar": "جهاز تحكم / قناة إضافية سومفي"
+            },
+            "display": {
+              "en": "From AED 250 additional",
+              "ar": "يبدأ من AED 250 إضافية"
+            }
+          }
+        ]
+      },
+      {
+        "id": "joineryWardrobes",
+        "kicker": {
+          "en": "Custom Joinery",
+          "ar": "النجارة المخصصة"
+        },
+        "title": {
+          "en": "Wardrobes",
+          "ar": "الخزائن"
+        },
+        "subtitle": {
+          "en": "Custom wardrobes price per linear metre, manufactured in our own Ajman factory.",
+          "ar": "سعر الخزائن المخصصة بالمتر الطولي، ومُصنّعة في مصنعنا الخاص بعجمان."
+        },
+        "items": [
+          {
+            "id": "wardrobe-laminate",
+            "priceType": "from",
+            "min": 1800,
+            "max": null,
+            "unit": "linearMetre",
+            "plus": false,
+            "additional": false,
+            "name": {
+              "en": "Laminate wardrobe",
+              "ar": "خزانة لامينيت"
+            },
+            "display": {
+              "en": "From AED 1,800 / linear metre",
+              "ar": "يبدأ من AED 1,800 / متر طولي"
+            }
+          },
+          {
+            "id": "wardrobe-lacquer",
+            "priceType": "from",
+            "min": 2800,
+            "max": null,
+            "unit": "linearMetre",
+            "plus": false,
+            "additional": false,
+            "name": {
+              "en": "Premium lacquer / veneer wardrobe",
+              "ar": "خزانة لاكيه / فينير فاخرة"
+            },
+            "display": {
+              "en": "From AED 2,800 / linear metre",
+              "ar": "يبدأ من AED 2,800 / متر طولي"
+            }
+          },
+          {
+            "id": "wardrobe-luxury",
+            "priceType": "from",
+            "min": 4000,
+            "max": null,
+            "unit": "linearMetre",
+            "plus": false,
+            "additional": false,
+            "name": {
+              "en": "Luxury wardrobe with premium hardware",
+              "ar": "خزانة فاخرة بإكسسوارات متميزة"
+            },
+            "display": {
+              "en": "From AED 4,000 / linear metre",
+              "ar": "يبدأ من AED 4,000 / متر طولي"
+            }
+          }
+        ]
+      },
+      {
+        "id": "joineryMedia",
+        "kicker": {
+          "en": "Custom Joinery",
+          "ar": "النجارة المخصصة"
+        },
+        "title": {
+          "en": "Media Walls & Custom Furniture",
+          "ar": "الحوائط الإعلامية والأثاث المخصص"
+        },
+        "subtitle": {
+          "en": "Starting prices for bespoke media walls, beds, seating and other custom furniture in Dubai.",
+          "ar": "أسعار ابتدائية للحوائط الإعلامية المخصصة والأسرّة والمقاعد وقطع الأثاث المخصص الأخرى في دبي."
+        },
+        "items": [
+          {
+            "id": "media-basic",
+            "priceType": "from",
+            "min": 4500,
+            "max": null,
+            "unit": null,
+            "plus": false,
+            "additional": false,
+            "name": {
+              "en": "Basic TV console / media wall",
+              "ar": "وحدة تلفزيون / حائط إعلامي أساسية"
+            },
+            "display": {
+              "en": "From AED 4,500",
+              "ar": "يبدأ من AED 4,500"
+            }
+          },
+          {
+            "id": "media-led",
+            "priceType": "from",
+            "min": 7500,
+            "max": null,
+            "unit": null,
+            "plus": false,
+            "additional": false,
+            "name": {
+              "en": "Media wall with storage and LED lighting",
+              "ar": "حائط إعلامي مع تخزين وإضاءة LED"
+            },
+            "display": {
+              "en": "From AED 7,500",
+              "ar": "يبدأ من AED 7,500"
+            }
+          },
+          {
+            "id": "media-stone",
+            "priceType": "from",
+            "min": 12500,
+            "max": null,
+            "unit": null,
+            "plus": false,
+            "additional": false,
+            "name": {
+              "en": "Luxury stone-and-joinery media wall",
+              "ar": "حائط إعلامي فاخر بالحجر والنجارة"
+            },
+            "display": {
+              "en": "From AED 12,500",
+              "ar": "يبدأ من AED 12,500"
+            }
+          },
+          {
+            "id": "bed-headboard",
+            "priceType": "from",
+            "min": 4000,
+            "max": null,
+            "unit": null,
+            "plus": false,
+            "additional": false,
+            "name": {
+              "en": "Custom upholstered bed / headboard",
+              "ar": "سرير مخصص منجد / لوح رأس"
+            },
+            "display": {
+              "en": "From AED 4,000",
+              "ar": "يبدأ من AED 4,000"
+            }
+          },
+          {
+            "id": "dressing-table",
+            "priceType": "from",
+            "min": 3500,
+            "max": null,
+            "unit": null,
+            "plus": false,
+            "additional": false,
+            "name": {
+              "en": "Dressing table / vanity",
+              "ar": "طاولة تسريحة"
+            },
+            "display": {
+              "en": "From AED 3,500",
+              "ar": "يبدأ من AED 3,500"
+            }
+          },
+          {
+            "id": "sofa-3seat",
+            "priceType": "from",
+            "min": 4500,
+            "max": null,
+            "unit": null,
+            "plus": false,
+            "additional": false,
+            "name": {
+              "en": "Custom three-seat sofa",
+              "ar": "كنبة ثلاثية مقاعد مخصصة"
+            },
+            "display": {
+              "en": "From AED 4,500",
+              "ar": "يبدأ من AED 4,500"
+            }
+          },
+          {
+            "id": "banquette",
+            "priceType": "from",
+            "min": 1500,
+            "max": null,
+            "unit": "linearMetre",
+            "plus": false,
+            "additional": false,
+            "name": {
+              "en": "Banquette / built-in seating",
+              "ar": "مقاعد مدمجة (Banquette)"
+            },
+            "display": {
+              "en": "From AED 1,500 / linear metre",
+              "ar": "يبدأ من AED 1,500 / متر طولي"
+            }
+          }
+        ]
+      },
+      {
+        "id": "joineryKitchens",
+        "kicker": {
+          "en": "Custom Joinery",
+          "ar": "النجارة المخصصة"
+        },
+        "title": {
+          "en": "Kitchens",
+          "ar": "المطابخ"
+        },
+        "subtitle": {
+          "en": "Custom kitchen and kitchen cabinets priced per linear metre of kitchen joinery in Dubai.",
+          "ar": "سعر المطبخ المخصص وخزائن المطبخ بالمتر الطولي لنجارة المطبخ في دبي."
+        },
+        "items": [
+          {
+            "id": "kitchen-laminate",
+            "priceType": "from",
+            "min": 2400,
+            "max": null,
+            "unit": "linearMetre",
+            "plus": false,
+            "additional": false,
+            "name": {
+              "en": "Laminate kitchen joinery",
+              "ar": "مطبخ لامينيت"
+            },
+            "display": {
+              "en": "From AED 2,400 / linear metre",
+              "ar": "يبدأ من AED 2,400 / متر طولي"
+            }
+          },
+          {
+            "id": "kitchen-lacquer",
+            "priceType": "from",
+            "min": 3800,
+            "max": null,
+            "unit": "linearMetre",
+            "plus": false,
+            "additional": false,
+            "name": {
+              "en": "Lacquer / veneer kitchen",
+              "ar": "مطبخ لاكيه / فينير"
+            },
+            "display": {
+              "en": "From AED 3,800 / linear metre",
+              "ar": "يبدأ من AED 3,800 / متر طولي"
+            }
+          },
+          {
+            "id": "kitchen-premium",
+            "priceType": "from",
+            "min": 5500,
+            "max": null,
+            "unit": "linearMetre",
+            "plus": false,
+            "additional": false,
+            "name": {
+              "en": "Premium kitchen joinery",
+              "ar": "مطبخ فاخر"
+            },
+            "display": {
+              "en": "From AED 5,500 / linear metre",
+              "ar": "يبدأ من AED 5,500 / متر طولي"
+            }
+          }
+        ]
+      },
+      {
+        "id": "design",
+        "kicker": {
+          "en": "Design & 3D Visualization",
+          "ar": "التصميم والتصور ثلاثي الأبعاد"
+        },
+        "title": {
+          "en": "Design & Visualization Packages",
+          "ar": "باقات التصميم والتصور ثلاثي الأبعاد"
+        },
+        "subtitle": {
+          "en": "Indicative interior design cost and interior design price ranges, from a complimentary initial consultation to full villa design packages, delivered with photorealistic 3D visuals before production begins.",
+          "ar": "نطاقات إرشادية لتكلفة وسعر التصميم الداخلي، من الاستشارة الأولية المجانية إلى باقات تصميم الفلل الكاملة، مع تصورات ثلاثية الأبعاد واقعية قبل بدء التنفيذ."
+        },
+        "items": [
+          {
+            "id": "design-consultation",
+            "priceType": "free",
+            "min": null,
+            "max": null,
+            "unit": null,
+            "plus": false,
+            "additional": false,
+            "name": {
+              "en": "Initial consultation",
+              "ar": "استشارة أولية"
+            },
+            "display": {
+              "en": "Complimentary",
+              "ar": "مجانية"
+            }
+          },
+          {
+            "id": "design-survey",
+            "priceType": "free",
+            "min": null,
+            "max": null,
+            "unit": null,
+            "plus": false,
+            "additional": false,
+            "name": {
+              "en": "Site survey (anywhere in the UAE, subject to project suitability)",
+              "ar": "مسح الموقع (في جميع أنحاء الإمارات، حسب ملاءمة المشروع)"
+            },
+            "display": {
+              "en": "Complimentary",
+              "ar": "مجانية"
+            }
+          },
+          {
+            "id": "design-single-room",
+            "priceType": "from",
+            "min": 2500,
+            "max": null,
+            "unit": null,
+            "plus": false,
+            "additional": false,
+            "name": {
+              "en": "Single-room concept + photorealistic 3D",
+              "ar": "تصور غرفة واحدة + رندر ثلاثي الأبعاد واقعي"
+            },
+            "display": {
+              "en": "From AED 2,500",
+              "ar": "يبدأ من AED 2,500"
+            }
+          },
+          {
+            "id": "design-apartment",
+            "priceType": "from",
+            "min": 12000,
+            "max": null,
+            "unit": null,
+            "plus": false,
+            "additional": false,
+            "name": {
+              "en": "Apartment design package",
+              "ar": "باقة تصميم شقة"
+            },
+            "display": {
+              "en": "From AED 12,000",
+              "ar": "يبدأ من AED 12,000"
+            }
+          },
+          {
+            "id": "design-townhouse",
+            "priceType": "from",
+            "min": 20000,
+            "max": null,
+            "unit": null,
+            "plus": false,
+            "additional": false,
+            "name": {
+              "en": "Townhouse design package",
+              "ar": "باقة تصميم تاون هاوس"
+            },
+            "display": {
+              "en": "From AED 20,000",
+              "ar": "يبدأ من AED 20,000"
+            }
+          },
+          {
+            "id": "design-villa",
+            "priceType": "from",
+            "min": 30000,
+            "max": null,
+            "unit": null,
+            "plus": false,
+            "additional": false,
+            "name": {
+              "en": "Villa design package",
+              "ar": "باقة تصميم فيلا"
+            },
+            "display": {
+              "en": "From AED 30,000",
+              "ar": "يبدأ من AED 30,000"
+            }
+          },
+          {
+            "id": "design-office",
+            "priceType": "from",
+            "min": 20,
+            "max": null,
+            "unit": "sqft",
+            "plus": false,
+            "additional": false,
+            "name": {
+              "en": "Office design package",
+              "ar": "باقة تصميم مكتب"
+            },
+            "display": {
+              "en": "From AED 20 / sq ft",
+              "ar": "يبدأ من AED 20 / قدم مربع"
+            }
+          },
+          {
+            "id": "design-drawings",
+            "priceType": "from",
+            "min": 12,
+            "max": null,
+            "unit": "sqft",
+            "plus": false,
+            "additional": false,
+            "name": {
+              "en": "Detailed working drawings",
+              "ar": "مخططات تنفيذية تفصيلية"
+            },
+            "display": {
+              "en": "From AED 12 / sq ft",
+              "ar": "يبدأ من AED 12 / قدم مربع"
+            }
+          },
+          {
+            "id": "design-material-schedule",
+            "priceType": "from",
+            "min": 3500,
+            "max": null,
+            "unit": null,
+            "plus": false,
+            "additional": false,
+            "name": {
+              "en": "Material specification schedule",
+              "ar": "جدول مواصفات المواد"
+            },
+            "display": {
+              "en": "From AED 3,500",
+              "ar": "يبدأ من AED 3,500"
+            }
+          }
+        ]
+      },
+      {
+        "id": "villa",
+        "kicker": {
+          "en": "Villa Interiors",
+          "ar": "تشطيب الفلل"
+        },
+        "title": {
+          "en": "Villa & Residential Fit-Out",
+          "ar": "تشطيب الفلل والمساكن"
+        },
+        "subtitle": {
+          "en": "Indicative villa renovation cost and villa renovation price ranges for villa and residential interiors in Dubai.",
+          "ar": "نطاقات إرشادية لتكلفة وسعر تجديد الفلل في دبي والمساكن السكنية."
+        },
+        "items": [
+          {
+            "id": "villa-selective",
+            "priceType": "from",
+            "min": 150000,
+            "max": null,
+            "unit": null,
+            "plus": false,
+            "additional": false,
+            "name": {
+              "en": "Selective interior upgrade",
+              "ar": "تحديث داخلي انتقائي"
+            },
+            "display": {
+              "en": "From AED 150,000",
+              "ar": "يبدأ من AED 150,000"
+            }
+          },
+          {
+            "id": "villa-townhouse",
+            "priceType": "from",
+            "min": 275000,
+            "max": null,
+            "unit": null,
+            "plus": false,
+            "additional": false,
+            "name": {
+              "en": "Townhouse turnkey interiors",
+              "ar": "تشطيب تاون هاوس كامل"
+            },
+            "display": {
+              "en": "From AED 275,000",
+              "ar": "يبدأ من AED 275,000"
+            }
+          },
+          {
+            "id": "villa-standard",
+            "priceType": "range",
+            "min": 300,
+            "max": 450,
+            "unit": "sqft",
+            "plus": false,
+            "additional": false,
+            "name": {
+              "en": "Standard villa fit-out",
+              "ar": "تشطيب فيلا قياسي"
+            },
+            "display": {
+              "en": "AED 300–450 / sq ft",
+              "ar": "AED 300–450 / قدم مربع"
+            }
+          },
+          {
+            "id": "villa-luxury",
+            "priceType": "range",
+            "min": 500,
+            "max": 750,
+            "unit": "sqft",
+            "plus": false,
+            "additional": false,
+            "name": {
+              "en": "Luxury villa fit-out",
+              "ar": "تشطيب فيلا فاخر"
+            },
+            "display": {
+              "en": "AED 500–750 / sq ft",
+              "ar": "AED 500–750 / قدم مربع"
+            }
+          },
+          {
+            "id": "villa-bespoke",
+            "priceType": "range",
+            "min": 800,
+            "max": 1200,
+            "unit": "sqft",
+            "plus": true,
+            "additional": false,
+            "name": {
+              "en": "Fully bespoke villa interiors",
+              "ar": "تشطيب فيلا مصمم بالكامل حسب الطلب"
+            },
+            "display": {
+              "en": "AED 800–1,200+ / sq ft",
+              "ar": "AED 800–1,200+ / قدم مربع"
+            }
+          }
+        ]
+      },
+      {
+        "id": "office",
+        "kicker": {
+          "en": "Office Fit-Out",
+          "ar": "تشطيب المكاتب"
+        },
+        "title": {
+          "en": "Office Fit-Out Budget Ranges",
+          "ar": "نطاقات ميزانية تشطيب المكاتب"
+        },
+        "subtitle": {
+          "en": "Indicative office fit-out cost and office fit-out price ranges for commercial projects in Dubai.",
+          "ar": "نطاقات إرشادية لتكلفة وسعر تجهيز المكاتب التجارية في دبي."
+        },
+        "items": [
+          {
+            "id": "office-essential",
+            "priceType": "range",
+            "min": 220,
+            "max": 350,
+            "unit": "sqft",
+            "plus": false,
+            "additional": false,
+            "name": {
+              "en": "Essential office fit-out",
+              "ar": "تشطيب مكتب أساسي"
+            },
+            "display": {
+              "en": "AED 220–350 / sq ft",
+              "ar": "AED 220–350 / قدم مربع"
+            }
+          },
+          {
+            "id": "office-premium",
+            "priceType": "range",
+            "min": 400,
+            "max": 650,
+            "unit": "sqft",
+            "plus": false,
+            "additional": false,
+            "name": {
+              "en": "Premium office fit-out",
+              "ar": "تشطيب مكتب متميز"
+            },
+            "display": {
+              "en": "AED 400–650 / sq ft",
+              "ar": "AED 400–650 / قدم مربع"
+            }
+          },
+          {
+            "id": "office-luxury",
+            "priceType": "from",
+            "min": 700,
+            "max": null,
+            "unit": "sqft",
+            "plus": false,
+            "additional": false,
+            "name": {
+              "en": "Executive / luxury office fit-out",
+              "ar": "مكتب تنفيذي / فاخر"
+            },
+            "display": {
+              "en": "From AED 700 / sq ft",
+              "ar": "يبدأ من AED 700 / قدم مربع"
+            }
+          }
+        ]
+      },
+      {
+        "id": "approvals",
+        "kicker": {
+          "en": "Approvals",
+          "ar": "الموافقات"
+        },
+        "title": {
+          "en": "Approvals & NOC Coordination",
+          "ar": "الموافقات وتنسيق عدم الممانعة"
+        },
+        "subtitle": {
+          "en": "Coordination with landlords, communities and government authorities for projects across the UAE.",
+          "ar": "تنسيق مع الملاك والمجتمعات السكنية والجهات الحكومية لمشاريعنا في جميع أنحاء الإمارات."
+        },
+        "items": [
+          {
+            "id": "approval-noc",
+            "priceType": "from",
+            "min": 2500,
+            "max": null,
+            "unit": null,
+            "plus": false,
+            "additional": false,
+            "name": {
+              "en": "Landlord / community NOC coordination",
+              "ar": "تنسيق عدم ممانعة المالك / المجتمع السكني"
+            },
+            "display": {
+              "en": "From AED 2,500",
+              "ar": "يبدأ من AED 2,500"
+            }
+          },
+          {
+            "id": "approval-dm",
+            "priceType": "from",
+            "min": 4500,
+            "max": null,
+            "unit": null,
+            "plus": false,
+            "additional": false,
+            "name": {
+              "en": "Dubai Municipality approval support",
+              "ar": "دعم الحصول على موافقة بلدية دبي"
+            },
+            "display": {
+              "en": "From AED 4,500",
+              "ar": "يبدأ من AED 4,500"
+            }
+          },
+          {
+            "id": "approval-office-package",
+            "priceType": "from",
+            "min": 7500,
+            "max": null,
+            "unit": null,
+            "plus": false,
+            "additional": false,
+            "name": {
+              "en": "Complete office fit-out approval package",
+              "ar": "باقة موافقة تشطيب مكتب كاملة"
+            },
+            "display": {
+              "en": "From AED 7,500",
+              "ar": "يبدأ من AED 7,500"
+            }
+          },
+          {
+            "id": "approval-civil-defence",
+            "priceType": "custom",
+            "min": null,
+            "max": null,
+            "unit": null,
+            "plus": false,
+            "additional": false,
+            "name": {
+              "en": "Applicable authority / MEP / specialist coordination",
+              "ar": "تنسيق الجهات المختصة / الأنظمة الكهروميكانيكية / الجهات المتخصصة"
+            },
+            "display": {
+              "en": "Custom quotation",
+              "ar": "عرض سعر مخصص"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "projects": [
+    {
+      "slug": "dubai-hills-estate-villa",
+      "title": {
+        "en": "Dubai Hills Estate Luxury Villa",
+        "ar": "فيلا فاخرة في دبي هيلز إستيت"
+      },
+      "place": {
+        "en": "Dubai Hills Estate, Dubai",
+        "ar": "دبي هيلز إستيت، دبي"
+      },
+      "subtitle": {
+        "en": "Turnkey Fit-out & European Joinery",
+        "ar": "تسليم مفتاح كامل ونجارة أوروبية"
+      },
+      "description": {
+        "en": "A full turnkey villa fit-out in Dubai Hills Estate — interior design, civil works and European walnut joinery delivered by one accountable team.\n\nThe brief called for a warm, contemporary palette. Fitted wardrobes, a media wall and bespoke dressing units were manufactured in European walnut at our Ajman factory and installed on site, keeping joinery and finishes consistent from room to room.\n\nMotorized curtain tracks and layered lighting were coordinated with the joinery installation, giving the family a home that looks resolved and works smoothly from handover day.",
+        "ar": "تجهيز فيلا بنظام تسليم مفتاح كامل في دبي هيلز إستيت — تصميم داخلي وأعمال مدنية ونجارة من خشب الجوز الأوروبي بإشراف فريق واحد مسؤول.\n\nطلب المشروع لوحة ألوان دافئة ومعاصرة. صُنعت الخزائن المثبتة وجدار الوسائط ووحدات التسريح المخصصة من خشب الجوز الأوروبي في مصنعنا بعجمان وتم تركيبها في الموقع، ليبقى تناسق النجارة والتشطيبات من غرفة إلى أخرى.\n\nجرى تنسيق سكك الستائر الآلية والإضاءة متعددة الطبقات مع تركيب النجارة، لتحصل العائلة على منزل متكامل يعمل بسلاسة منذ يوم التسليم."
+      },
+      "location": {
+        "en": "Dubai Hills Estate, Dubai, UAE",
+        "ar": "دبي هيلز إستيت، دبي، الإمارات"
+      },
+      "sector": {
+        "en": "Residential",
+        "ar": "سكني"
+      },
+      "size": {
+        "en": "8,200 sq ft",
+        "ar": "8,200 قدم مربع"
+      },
+      "year": "2026",
+      "service": {
+        "en": "Turnkey Fit-Out + Custom Joinery",
+        "ar": "تسليم مفتاح كامل ونجارة مخصصة"
+      },
+      "scope": {
+        "en": [
+          "Interior design and space planning",
+          "Civil and finishing works",
+          "Custom European walnut joinery — wardrobes, media wall and dressing units",
+          "Motorized curtains and layered lighting coordination",
+          "Snagging and final handover"
+        ],
+        "ar": [
+          "التصميم الداخلي وتخطيط المساحات",
+          "الأعمال المدنية وأعمال التشطيب",
+          "نجارة مخصصة من خشب الجوز الأوروبي — خزائن وجدار وسائط ووحدات تسريح",
+          "تنسيق الستائر الآلية والإضاءة متعددة الطبقات",
+          "المعاينة النهائية والتسليم"
+        ]
+      },
+      "cover": {
+        "asset": "assets/images/living-room-wood-slat-wall-lounge-seating.webp",
+        "url": "https://www.baitalebdaa.com/assets/living-room-wood-slat-wall-lounge-seating.jpeg",
+        "alt": null
+      },
+      "relatedServiceIds": [
+        "fit-out",
+        "joinery",
+        "interior-design"
+      ],
+      "images": [
+        {
+          "url": "https://www.baitalebdaa.com/assets/living-room-wood-slat-wall-lounge-seating.jpeg",
+          "alt": null
+        },
+        {
+          "url": "https://www.baitalebdaa.com/assets/master-bedroom-tufted-wall-panels-ceiling.jpeg",
+          "alt": null
+        },
+        {
+          "url": "https://www.baitalebdaa.com/assets/walk-in-closet-island-led-ceiling.jpeg",
+          "alt": {
+            "en": "Walk-in closet with a central island, glass-fronted wardrobes and LED ceiling lighting",
+            "ar": "غرفة ملابس واسعة بجزيرة مركزية وخزائن بواجهات زجاجية وإضاءة LED في السقف"
+          }
+        },
+        {
+          "url": "https://www.baitalebdaa.com/assets/living-room-tv-unit-floating-shelves-curtains.jpeg",
+          "alt": null
+        }
+      ]
+    },
+    {
+      "slug": "palm-jumeirah-penthouse",
+      "title": {
+        "en": "Palm Jumeirah Beachfront Penthouse",
+        "ar": "بنتهاوس على الواجهة البحرية في نخلة جميرا"
+      },
+      "place": {
+        "en": "Palm Jumeirah, Dubai",
+        "ar": "نخلة جميرا، دبي"
+      },
+      "subtitle": {
+        "en": "Somfy Motorized Drapes & Italian Panelling",
+        "ar": "ستائر سومفي الآلية وألواح إيطالية"
+      },
+      "description": {
+        "en": "A beachfront penthouse on Palm Jumeirah, redesigned around uninterrupted sea views with motorized Somfy curtains and in-house joinery.\n\nA calm, neutral material palette lets the views lead. Motorized Somfy drapery manages light and privacy without breaking the sightlines to the Gulf, while Italian panelling unifies the living and dining spaces.\n\nJoinery — from the media wall to the dressing room — was manufactured in-house and installed to suit the penthouse's existing structural constraints.",
+        "ar": "بنتهاوس على الواجهة البحرية في نخلة جميرا أُعيد تصميمه حول إطلالات بحرية مفتوحة، مع ستائر سومفي آلية ونجارة مصنّعة داخلياً.\n\nتترك لوحة المواد الهادئة والمحايدة المجال للإطلالة لتكون العنصر الأبرز. تتحكم ستائر سومفي الآلية بالإضاءة والخصوصية دون حجب خطوط الرؤية نحو الخليج، بينما توحّد الألواح الإيطالية مساحتي المعيشة والطعام.\n\nصُنعت النجارة — من جدار الوسائط إلى غرفة التسريح — داخلياً وتم تركيبها بما يناسب القيود الإنشائية القائمة في البنتهاوس."
+      },
+      "location": {
+        "en": "Palm Jumeirah, Dubai, UAE",
+        "ar": "نخلة جميرا، دبي، الإمارات"
+      },
+      "sector": {
+        "en": "Residential",
+        "ar": "سكني"
+      },
+      "size": {
+        "en": "5,400 sq ft",
+        "ar": "5,400 قدم مربع"
+      },
+      "year": "2026",
+      "service": {
+        "en": "Interior Design + Somfy Motorized Curtains",
+        "ar": "تصميم داخلي وستائر سومفي الآلية"
+      },
+      "scope": {
+        "en": [
+          "Interior design concept and material palette",
+          "Somfy motorized curtains and tracks",
+          "Italian wall panelling",
+          "Custom joinery — media wall and dressing room",
+          "Installation coordinated around the existing structure"
+        ],
+        "ar": [
+          "مفهوم التصميم الداخلي ولوحة المواد",
+          "ستائر وسكك سومفي الآلية",
+          "ألواح جدارية إيطالية",
+          "نجارة مخصصة — جدار الوسائط وغرفة التسريح",
+          "تركيب منسّق حول الهيكل الإنشائي القائم"
+        ]
+      },
+      "cover": {
+        "asset": "assets/images/luxury-living-room-stone-tv-wall-fireplace.webp",
+        "url": "https://www.baitalebdaa.com/assets/luxury-living-room-stone-tv-wall-fireplace.jpeg",
+        "alt": null
+      },
+      "relatedServiceIds": [
+        "interior-design",
+        "joinery"
+      ],
+      "images": [
+        {
+          "url": "https://www.baitalebdaa.com/assets/luxury-living-room-stone-tv-wall-fireplace.jpeg",
+          "alt": null
+        },
+        {
+          "url": "https://www.baitalebdaa.com/assets/double-height-tv-wall-fireplace-curtains.jpeg",
+          "alt": {
+            "en": "Double-height living room with a stone TV wall, linear fireplace and floor-to-ceiling curtains",
+            "ar": "غرفة معيشة بارتفاع مزدوج مع جدار تلفاز حجري ومدفأة خطية وستائر من الأرض إلى السقف"
+          }
+        },
+        {
+          "url": "https://www.baitalebdaa.com/assets/modern-bedroom-upholstered-headboard-wall-panels.jpeg",
+          "alt": null
+        },
+        {
+          "url": "https://www.baitalebdaa.com/assets/modern-dining-room-pendant-lights-oak-table.jpeg",
+          "alt": null
+        }
+      ]
+    },
+    {
+      "slug": "downtown-dubai-tech-hq",
+      "title": {
+        "en": "Downtown Dubai Tech HQ Office",
+        "ar": "مقر شركة تقنية في وسط مدينة دبي"
+      },
+      "place": {
+        "en": "Downtown Dubai, Dubai",
+        "ar": "وسط مدينة دبي، دبي"
+      },
+      "subtitle": {
+        "en": "Commercial Fit-out & DM Approval",
+        "ar": "تجهيز تجاري وموافقة بلدية دبي"
+      },
+      "description": {
+        "en": "A Downtown Dubai office fit-out for a technology company, covering MEP coordination, Dubai Municipality approvals and full interior delivery.\n\nOpen-plan workstations, meeting rooms and a reception area were finished with custom joinery panelling, with cable management and acoustic treatment designed in from the start rather than added later.\n\nBait Al Ebdaa's in-house design and fit-out team delivered the project end to end, including the DDA and Dubai Municipality submissions.",
+        "ar": "تجهيز مكتب شركة تقنية في وسط مدينة دبي، شمل تنسيق الأعمال الكهروميكانيكية وموافقات بلدية دبي وتنفيذ التصميم الداخلي بالكامل.\n\nجرى تشطيب محطات العمل المفتوحة وغرف الاجتماعات ومنطقة الاستقبال بألواح نجارة مخصصة، مع تصميم إدارة الأسلاك والمعالجة الصوتية ضمن المخطط منذ البداية بدلاً من إضافتها لاحقاً.\n\nنفّذ فريق التصميم والتجهيز الداخلي في بيت الإبداع المشروع من البداية إلى النهاية، بما في ذلك تقديمات سلطة دبي للتطوير وبلدية دبي."
+      },
+      "location": {
+        "en": "Downtown Dubai, Dubai, UAE",
+        "ar": "وسط مدينة دبي، دبي، الإمارات"
+      },
+      "sector": {
+        "en": "Commercial",
+        "ar": "تجاري"
+      },
+      "size": {
+        "en": "12,000 sq ft",
+        "ar": "12,000 قدم مربع"
+      },
+      "year": "2026",
+      "service": {
+        "en": "Office Fit-Out + MEP Works",
+        "ar": "تجهيز مكاتب وأعمال كهروميكانيكية"
+      },
+      "scope": {
+        "en": [
+          "Space planning for open-plan workstations and meeting rooms",
+          "MEP coordination",
+          "Dubai Municipality approvals and authority submissions",
+          "Custom joinery panelling for reception and meeting rooms",
+          "Acoustic treatment and cable management"
+        ],
+        "ar": [
+          "تخطيط المساحات لمحطات العمل المفتوحة وغرف الاجتماعات",
+          "تنسيق الأعمال الكهروميكانيكية",
+          "موافقات بلدية دبي والتقديمات للجهات المختصة",
+          "ألواح نجارة مخصصة لمنطقة الاستقبال وغرف الاجتماعات",
+          "معالجة صوتية وإدارة الأسلاك"
+        ]
+      },
+      "cover": {
+        "asset": "assets/images/tv-wall-unit-led-display-shelves.webp",
+        "url": "https://www.baitalebdaa.com/assets/tv-wall-unit-led-display-shelves.jpeg",
+        "alt": null
+      },
+      "relatedServiceIds": [
+        "office-fit-out",
+        "fit-out"
+      ],
+      "images": [
+        {
+          "url": "https://www.baitalebdaa.com/assets/tv-wall-unit-led-display-shelves.jpeg",
+          "alt": null
+        },
+        {
+          "url": "https://www.baitalebdaa.com/assets/tv-feature-wall-travertine-bio-fireplace.jpeg",
+          "alt": null
+        },
+        {
+          "url": "https://www.baitalebdaa.com/assets/corner-coffee-bar-black-fluted-cabinet-led-lighting.jpeg",
+          "alt": null
+        },
+        {
+          "url": "https://www.baitalebdaa.com/assets/glass-door-wardrobe-matte-handles.jpeg",
+          "alt": null
+        }
+      ]
+    },
+    {
+      "slug": "al-barari-eco-villa",
+      "title": {
+        "en": "Al Barari Eco-Villa Suite",
+        "ar": "جناح فيلا صديقة للبيئة في البراري"
+      },
+      "place": {
+        "en": "Al Barari, Dubai",
+        "ar": "البراري، دبي"
+      },
+      "subtitle": {
+        "en": "Bespoke Walnut Wardrobes & Soft Furnishings",
+        "ar": "خزائن جوز مخصصة ومفروشات ناعمة"
+      },
+      "description": {
+        "en": "A villa suite renovation in Al Barari with bespoke walnut wardrobes and soft furnishings, in a natural palette that suits the community's green setting.\n\nExisting joinery was replaced with custom-manufactured wardrobes and dressing units matched to the villa's natural materials.\n\nNew curtain tracks and layered window treatments complete the suite, adding softness and light control.",
+        "ar": "تجديد جناح فيلا في البراري بخزائن جوز مخصصة ومفروشات ناعمة، بلوحة ألوان طبيعية تناسب الطابع الأخضر للمجتمع.\n\nاستُبدلت النجارة القديمة بخزائن ووحدات تسريح مصنّعة خصيصاً تناسب المواد الطبيعية في الفيلا.\n\nوتكتمل الغرفة بسكك ستائر جديدة ومعالجات نوافذ متعددة الطبقات تضفي نعومة وتتحكم بالإضاءة."
+      },
+      "location": {
+        "en": "Al Barari, Dubai, UAE",
+        "ar": "البراري، دبي، الإمارات"
+      },
+      "sector": {
+        "en": "Residential",
+        "ar": "سكني"
+      },
+      "size": {
+        "en": "6,800 sq ft",
+        "ar": "6,800 قدم مربع"
+      },
+      "year": "2025",
+      "service": {
+        "en": "Villa Renovation + Custom Wardrobes",
+        "ar": "تجديد فلل وخزائن مخصصة"
+      },
+      "scope": {
+        "en": [
+          "Removal of existing joinery",
+          "Custom walnut wardrobes and dressing units",
+          "Curtain tracks and layered window treatments",
+          "Soft furnishings"
+        ],
+        "ar": [
+          "إزالة النجارة القائمة",
+          "خزائن جوز ووحدات تسريح مخصصة",
+          "سكك ستائر ومعالجات نوافذ متعددة الطبقات",
+          "مفروشات ناعمة"
+        ]
+      },
+      "cover": {
+        "asset": "assets/images/contemporary-living-room-wall-panelling-track-lighting.webp",
+        "url": "https://www.baitalebdaa.com/assets/contemporary-living-room-wall-panelling-track-lighting.jpeg",
+        "alt": null
+      },
+      "relatedServiceIds": [
+        "villa-renovation",
+        "custom-wardrobes"
+      ],
+      "images": [
+        {
+          "url": "https://www.baitalebdaa.com/assets/contemporary-living-room-wall-panelling-track-lighting.jpeg",
+          "alt": null
+        },
+        {
+          "url": "https://www.baitalebdaa.com/assets/built-in-wardrobe-study-desk-wood-shelves.jpeg",
+          "alt": null
+        },
+        {
+          "url": "https://www.baitalebdaa.com/assets/bedroom-wood-headboard-floating-nightstand.jpeg",
+          "alt": null
+        },
+        {
+          "url": "https://www.baitalebdaa.com/assets/living-room-wood-slat-wall-lounge-seating.jpeg",
+          "alt": null
+        }
+      ]
+    },
+    {
+      "slug": "saadiyat-island-villa",
+      "title": {
+        "en": "Saadiyat Island Villa Residence",
+        "ar": "فيلا سكنية في جزيرة السعديات"
+      },
+      "place": {
+        "en": "Saadiyat Island, Abu Dhabi",
+        "ar": "جزيرة السعديات، أبوظبي"
+      },
+      "subtitle": {
+        "en": "Full Turnkey Architecture & Joinery",
+        "ar": "عمارة تسليم مفتاح كاملة ونجارة"
+      },
+      "description": {
+        "en": "A full turnkey villa on Saadiyat Island, Abu Dhabi — interior design, civil coordination and architectural joinery from concept to handover.\n\nThe media wall, fitted wardrobes and dressing suite were manufactured at our Ajman factory and installed on site.\n\nThe design was developed around Abu Dhabi Municipality (DMT) approval requirements from the outset.",
+        "ar": "فيلا بنظام تسليم مفتاح كامل في جزيرة السعديات بأبوظبي — تصميم داخلي وتنسيق مدني ونجارة معمارية من المفهوم حتى التسليم.\n\nصُنع جدار الوسائط والخزائن المثبتة وجناح التسريح في مصنعنا بعجمان وتم تركيبها في الموقع.\n\nطُوِّر التصميم منذ البداية وفق متطلبات موافقات بلدية أبوظبي (دائرة البلديات والنقل)."
+      },
+      "location": {
+        "en": "Saadiyat Island, Abu Dhabi, UAE",
+        "ar": "جزيرة السعديات، أبوظبي، الإمارات"
+      },
+      "sector": {
+        "en": "Residential",
+        "ar": "سكني"
+      },
+      "size": {
+        "en": "7,500 sq ft",
+        "ar": "7,500 قدم مربع"
+      },
+      "year": "2026",
+      "service": {
+        "en": "Turnkey Fit-Out + Architectural Joinery",
+        "ar": "تسليم مفتاح كامل ونجارة معمارية"
+      },
+      "scope": {
+        "en": [
+          "Interior design and civil coordination",
+          "Architectural joinery — media wall, fitted wardrobes and dressing suite",
+          "Abu Dhabi Municipality (DMT) approval coordination",
+          "On-site installation and handover"
+        ],
+        "ar": [
+          "التصميم الداخلي والتنسيق المدني",
+          "نجارة معمارية — جدار الوسائط والخزائن المثبتة وجناح التسريح",
+          "تنسيق موافقات بلدية أبوظبي (دائرة البلديات والنقل)",
+          "التركيب في الموقع والتسليم"
+        ]
+      },
+      "cover": {
+        "asset": "assets/images/modern-living-room-beige-sofa-curtain-wall-panels.webp",
+        "url": "https://www.baitalebdaa.com/assets/modern-living-room-beige-sofa-curtain-wall-panels.jpeg",
+        "alt": null
+      },
+      "relatedServiceIds": [
+        "fit-out",
+        "joinery",
+        "interior-design"
+      ],
+      "images": [
+        {
+          "url": "https://www.baitalebdaa.com/assets/modern-living-room-beige-sofa-curtain-wall-panels.jpeg",
+          "alt": null
+        },
+        {
+          "url": "https://www.baitalebdaa.com/assets/tv-wall-marble-panel-bedroom-divider.jpeg",
+          "alt": null
+        },
+        {
+          "url": "https://www.baitalebdaa.com/assets/corner-wardrobe-glass-doors-black-handles.jpeg",
+          "alt": {
+            "en": "Corner wardrobe with smoked glass doors and long black handles",
+            "ar": "خزانة زاوية بأبواب زجاج مدخّن ومقابض سوداء طويلة"
+          }
+        },
+        {
+          "url": "https://www.baitalebdaa.com/assets/bedroom-wardrobe-led-shelves-pouf.jpeg",
+          "alt": null
+        }
+      ]
+    },
+    {
+      "slug": "government-authority",
+      "title": {
+        "en": "Confidential Government Authority Headquarters, Dubai Academic City",
+        "ar": "المقر الرئيسي السري لهيئة حكومية، مدينة دبي الأكاديمية"
+      },
+      "place": {
+        "en": "Academic City, Dubai",
+        "ar": "مدينة دبي الأكاديمية"
+      },
+      "subtitle": {
+        "en": "Interior Fit-Out + MEP Works",
+        "ar": "التجهيزات الداخلية والأعمال الكهروميكانيكية"
+      },
+      "description": {
+        "en": "Interior fit-out and MEP works for a confidential government authority headquarters in Dubai Academic City — 50,500 sq ft across three floors.\n\nThe design takes a minimalist, home-like approach, using soft beige, brown and white tones and natural textures to put employee well-being first.\n\nDistinct department zones encourage interaction and knowledge sharing, while reinforcing each team's identity, values and objectives.\n\nErgonomic workstations, sit-stand desks, privacy-enhancing elements and noise-control solutions support both focus and flexibility.\n\nA variety of collaboration spaces suit different work styles, encouraging creativity, inclusivity and effective teamwork.",
+        "ar": "تجهيزات داخلية وأعمال كهروميكانيكية لمقر رئيسي سري لهيئة حكومية في مدينة دبي الأكاديمية، بمساحة 50,500 قدم مربع موزعة على ثلاثة طوابق.\n\nيعتمد التصميم أسلوباً بسيطاً ومريحاً يشبه أجواء المنزل، بدرجات ناعمة من البيج والبني والأبيض وملمس طبيعي، مع إعطاء الأولوية لراحة الموظفين ورفاهيتهم.\n\nتشجع مناطق الأقسام المتميزة على التفاعل وتبادل المعرفة، وتعزز في الوقت نفسه هوية كل فريق وقيمه وأهدافه.\n\nتدعم محطات العمل المريحة ومكاتب الجلوس والوقوف وعناصر الخصوصية وحلول التحكم في الضوضاء التركيز والمرونة معاً.\n\nوتتنوع مساحات التعاون لتناسب أنماط العمل المختلفة، مما يشجع على الإبداع والشمولية والعمل الجماعي الفعّال."
+      },
+      "location": {
+        "en": "Academic City, Dubai, UAE",
+        "ar": "مدينة دبي الأكاديمية، الإمارات"
+      },
+      "sector": {
+        "en": "Commercial",
+        "ar": "تجاري"
+      },
+      "size": {
+        "en": "50,500 sq ft",
+        "ar": "50,500 قدم مربع"
+      },
+      "year": "2026",
+      "service": {
+        "en": "Interior Fit-Out + MEP Works",
+        "ar": "التجهيزات الداخلية والأعمال الكهروميكانيكية"
+      },
+      "scope": {
+        "en": [
+          "Interior fit-out across three floors (50,500 sq ft)",
+          "MEP works",
+          "Department zones designed around each team's objectives",
+          "Ergonomic workstations and sit-stand desks",
+          "Privacy and noise-control solutions",
+          "Collaboration spaces for different work styles"
+        ],
+        "ar": [
+          "أعمال التجهيزات الداخلية على ثلاثة طوابق (50,500 قدم مربع)",
+          "الأعمال الكهروميكانيكية",
+          "مناطق أقسام مصممة وفق أهداف كل فريق",
+          "محطات عمل مريحة ومكاتب للجلوس والوقوف",
+          "حلول الخصوصية والتحكم في الضوضاء",
+          "مساحات تعاون تناسب أنماط العمل المختلفة"
+        ]
+      },
+      "cover": {
+        "asset": "assets/images/built-in-wardrobe-study-desk-wood-shelves.webp",
+        "url": "https://www.baitalebdaa.com/assets/built-in-wardrobe-study-desk-wood-shelves.jpeg",
+        "alt": null
+      },
+      "relatedServiceIds": [
+        "office-fit-out",
+        "fit-out"
+      ],
+      "images": [
+        {
+          "url": "https://www.baitalebdaa.com/assets/built-in-wardrobe-study-desk-wood-shelves.jpeg",
+          "alt": null
+        },
+        {
+          "url": "https://www.baitalebdaa.com/assets/luxury-living-room-chandelier-wall-panelling.jpeg",
+          "alt": null
+        },
+        {
+          "url": "https://www.baitalebdaa.com/assets/living-room-curved-sofa-wood-slat-wall.jpeg",
+          "alt": {
+            "en": "Living room with a curved sofa in front of a wood-slat feature wall",
+            "ar": "غرفة معيشة بأريكة منحنية أمام جدار مميز بشرائح خشبية"
+          }
+        },
+        {
+          "url": "https://www.baitalebdaa.com/assets/minimalist-living-room-fluted-wall-panel-cove-lighting.jpeg",
+          "alt": null
+        }
+      ]
+    }
+  ],
+  "process": [
+    {
+      "title": {
+        "en": "Discover",
+        "ar": "اكتشف"
+      },
+      "body": {
+        "en": "Site review, brief, priorities and investment alignment.",
+        "ar": "مراجعة الموقع، موجز، أولويات وتوافق الاستثمار."
+      },
+      "where": {
+        "en": "At your site",
+        "ar": "في موقعك"
+      }
+    },
+    {
+      "title": {
+        "en": "Visualize",
+        "ar": "تصور"
+      },
+      "body": {
+        "en": "Plans, materials and photorealistic 3D CAD renders.",
+        "ar": "خطط، مواد وتصاميم CAD ثلاثية الأبعاد واقعية."
+      },
+      "where": {
+        "en": "In our studio",
+        "ar": "في استوديونا"
+      }
+    },
+    {
+      "title": {
+        "en": "Approve",
+        "ar": "اعتمد"
+      },
+      "body": {
+        "en": "Technical packages, Dubai Municipality and NOC coordination.",
+        "ar": "حزم تقنية، تنسيق مع بلدية دبي وشهادات عدم الممانعة."
+      },
+      "where": {
+        "en": "With the authorities",
+        "ar": "مع الجهات المختصة"
+      }
+    },
+    {
+      "title": {
+        "en": "Make",
+        "ar": "اصنع"
+      },
+      "body": {
+        "en": "Joinery production, fit-out, installation and considered handover.",
+        "ar": "إنتاج النجارة، التجهيز، التركيب وتسليم مدروس."
+      },
+      "where": {
+        "en": "At our Ajman factory",
+        "ar": "في مصنعنا بعجمان"
+      }
+    }
+  ],
+  "reviews": [
+    {
+      "id": "helena-brandt-nordhaus",
+      "name": "Helena Brandt",
+      "company": "NordHaus Design Consultancy",
+      "rating": null,
+      "date": null,
+      "source": null,
+      "sourceUrl": null,
+      "originalLang": "en",
+      "text": {
+        "en": "Bait Al Ebdaa understood our requirements from the start and translated them into a refined, functional space. The communication was clear, the detailing was thoughtful, and the final result felt polished and well executed.",
+        "ar": "فهم فريق بيت الإبداع متطلباتنا منذ البداية وحوّلها إلى مساحة راقية وعملية. كان التواصل واضحاً، والتفاصيل مدروسة، وجاءت النتيجة النهائية متقنة ومنفّذة بعناية."
+      }
+    },
+    {
+      "id": "rami-mansour-meridian",
+      "name": "Rami Mansour",
+      "company": "Meridian Workspace Solutions",
+      "rating": null,
+      "date": null,
+      "source": null,
+      "sourceUrl": null,
+      "originalLang": "en",
+      "text": {
+        "en": "What impressed us most was how smoothly the design, fit-out and joinery stages were coordinated. Having one team manage the process made everything more efficient, and the quality of workmanship was excellent.",
+        "ar": "أكثر ما أثار إعجابنا هو سلاسة التنسيق بين مراحل التصميم والتجهيز والنجارة. وجود فريق واحد يدير العملية جعل كل شيء أكثر كفاءة، وكانت جودة التنفيذ ممتازة."
+      }
+    },
+    {
+      "id": "julia-okafor-veridian",
+      "name": "Julia Okafor",
+      "company": "Veridian Property Group",
+      "rating": null,
+      "date": null,
+      "source": null,
+      "sourceUrl": null,
+      "originalLang": "en",
+      "text": {
+        "en": "The team was professional, responsive and very detail-focused throughout the project. From material selection to final installation, everything was handled carefully and the finished interior exceeded our expectations.",
+        "ar": "كان الفريق محترفاً وسريع الاستجابة ودقيقاً جداً في التفاصيل طوال المشروع. من اختيار المواد حتى التركيب النهائي، تمت معالجة كل شيء بعناية، وفاق التصميم الداخلي النهائي توقعاتنا."
+      }
+    }
+  ]
+}

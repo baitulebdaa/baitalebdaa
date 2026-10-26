@@ -25,6 +25,9 @@ export function ReviewCard({ review, lang, t, delay }) {
   const translated = review.originalLang !== lang && Boolean(review.text[lang]);
   const when = formatMonth(review.date, lang);
   const hasRating = Number.isInteger(review.rating);
+  // Arabic pages show the Arabic spelling of the name and company when there is one.
+  const name = (lang === "ar" && review.nameAr) || review.name;
+  const company = (lang === "ar" && review.companyAr) || review.company;
   return (
     <Reveal as="article" className="rv-card" delay={delay}>
       {(hasRating || translated) && (
@@ -37,10 +40,10 @@ export function ReviewCard({ review, lang, t, delay }) {
         <p>{text}</p>
       </blockquote>
       <footer className="rv-card__meta">
-        <span className="rv-card__avatar" aria-hidden="true">{review.name.trim().charAt(0)}</span>
+        <span className="rv-card__avatar" aria-hidden="true">{name.trim().charAt(0)}</span>
         <span className="rv-card__who">
-          <strong>{review.name}</strong>
-          <span>{[review.company, when].filter(Boolean).join(" · ")}</span>
+          <strong>{name}</strong>
+          <span>{[company, when].filter(Boolean).join(" · ")}</span>
         </span>
         {review.source && (
           <span className="rv-card__source">

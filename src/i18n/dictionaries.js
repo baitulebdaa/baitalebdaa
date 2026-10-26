@@ -120,6 +120,30 @@ export const dictionaries = {
       title: "Every service, under one roof",
       lede: "Interior design, fit-out, renovation and custom joinery for villas, apartments, offices, restaurants and retail — delivered across all seven emirates."
     },
+    challengesSection: {
+      micro: "Your challenges",
+      title: "Are you Struggling with these?",
+      imageAlt: "A living room shown half as a pencil sketch and half as the finished render",
+      items: [
+        { title: "Limited Local Selection", body: "Options in the local market are limited; you can't find the styles, designs, or materials you like." },
+        { title: "Costly Design Execution", body: "You have design ideas or design drawings, but realizing them is too expensive." },
+        { title: "Lack of Supplier Support", body: "You want to customize furniture or materials, but lack a suitable supplier to manufacture them." },
+        { title: "Fragmented Suppliers", body: "There are too many product categories involved, requiring procurement from various sources." }
+      ]
+    },
+    productCollection: {
+      micro: "Start building your space",
+      title: "Product Collection",
+      ask: "Hello! I'd like to know more about {item}.",
+      items: [
+        { title: "Door & Window", body: "Aluminum, Glass, and Wooden Systems Built to Last" },
+        { title: "Surface Materials", body: "Stone, Tile, Wall Panels and Decorative Finishes" },
+        { title: "Lighting Solution", body: "Architectural and decorative lighting design" },
+        { title: "Fixed Furniture", body: "Custom Cabinetry, Wardrobes and Built-in Fixed Furniture" },
+        { title: "Movable Furniture", body: "Custom Furniture and Furniture Matching Solutions" },
+        { title: "Soft Furnishings & Decoration", body: "Rugs, Curtains, Artwork, Décor, and Accessories" }
+      ]
+    },
     testimonialsSection: {
       micro: "Client Reviews",
       title: "What Our Clients Say",
@@ -1651,6 +1675,30 @@ export const dictionaries = {
       micro: "خدماتنا",
       title: "كل الخدمات تحت سقف واحد",
       lede: "تصميم داخلي وتجهيز شامل وتجديد ونجارة مخصصة للفلل والشقق والمكاتب والمطاعم والمحلات — في جميع الإمارات السبع."
+    },
+    challengesSection: {
+      micro: "تحدياتك",
+      title: "هل تواجه هذه التحديات؟",
+      imageAlt: "غرفة معيشة نصفها رسم بالقلم الرصاص ونصفها التصميم النهائي",
+      items: [
+        { title: "خيارات محلية محدودة", body: "الخيارات في السوق المحلي محدودة، ولا تجد الأنماط أو التصاميم أو المواد التي تحبها." },
+        { title: "تكلفة تنفيذ التصميم مرتفعة", body: "لديك أفكار أو مخططات تصميم، لكن تنفيذها مكلف جداً." },
+        { title: "غياب دعم المورّدين", body: "تريد تخصيص الأثاث أو المواد، لكن لا تجد مورّداً مناسباً لتصنيعها." },
+        { title: "تعدد المورّدين", body: "تتعدد فئات المنتجات المطلوبة، فتضطر إلى الشراء من مصادر مختلفة." }
+      ]
+    },
+    productCollection: {
+      micro: "ابدأ ببناء مساحتك",
+      title: "مجموعة المنتجات",
+      ask: "مرحباً! أرغب بمعرفة المزيد عن {item}.",
+      items: [
+        { title: "الأبواب والنوافذ", body: "أنظمة ألمنيوم وزجاج وخشب مصممة لتدوم" },
+        { title: "مواد الأسطح", body: "حجر وبلاط وألواح جدارية وتشطيبات زخرفية" },
+        { title: "حلول الإضاءة", body: "تصميم إضاءة معمارية وزخرفية" },
+        { title: "الأثاث الثابت", body: "خزائن مطبخ وخزائن ملابس وأثاث مدمج حسب الطلب" },
+        { title: "الأثاث المتنقل", body: "أثاث حسب الطلب وحلول تنسيق الأثاث" },
+        { title: "المفروشات والديكور", body: "سجاد وستائر وأعمال فنية وديكور وإكسسوارات" }
+      ]
     },
     testimonialsSection: {
       micro: "آراء العملاء",

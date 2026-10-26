@@ -1,0 +1,1347 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
+import 'app_localizations.dart';
+
+// ignore_for_file: type=lint
+
+/// The translations for English (`en`).
+class AppLocalizationsEn extends AppLocalizations {
+  AppLocalizationsEn([String locale = 'en']) : super(locale);
+
+  @override
+  String get appTitle => 'Bait Al Ebdaa';
+
+  @override
+  String get tabHome => 'Home';
+
+  @override
+  String get tabServices => 'Services';
+
+  @override
+  String get homeProjectsEyebrow => 'Selected projects';
+
+  @override
+  String get homeSeeAllProjects => 'See all projects';
+
+  @override
+  String get servicesTitle => 'Services';
+
+  @override
+  String get servicesQuotedAfterSurvey => 'Quoted after a free site survey';
+
+  @override
+  String servicesVatNote(String rate) {
+    return 'Prices exclude $rate VAT.';
+  }
+
+  @override
+  String get projectsTitle => 'Projects';
+
+  @override
+  String projectMeta(String sector, String year) {
+    return '$sector · $year';
+  }
+
+  @override
+  String get assistantYou => 'You';
+
+  @override
+  String contactWhatsAppFailed(String phone) {
+    return 'Couldn\'t open WhatsApp. You can call us on $phone.';
+  }
+
+  @override
+  String get accountEmptyTitle => 'No requests yet';
+
+  @override
+  String get accountEmptyBody => 'When you request a consultation, you can follow it here.';
+
+  @override
+  String get settingsTitle => 'Settings';
+
+  @override
+  String get settingsLanguage => 'Language';
+
+  @override
+  String get settingsLanguageSystem => 'Device language';
+
+  @override
+  String get languageEnglish => 'English';
+
+  @override
+  String get languageArabic => 'العربية';
+
+  @override
+  String get settingsAppearance => 'Appearance';
+
+  @override
+  String get appearanceSystem => 'Match device';
+
+  @override
+  String get appearanceLight => 'Light';
+
+  @override
+  String get appearanceDark => 'Dark';
+
+  @override
+  String get errorTitle => 'Something went wrong';
+
+  @override
+  String get actionRetry => 'Try again';
+
+  @override
+  String get actionGoHome => 'Go to Home';
+
+  @override
+  String get notFoundTitle => 'This page isn\'t available';
+
+  @override
+  String get notFoundBody => 'The link may be out of date.';
+
+  @override
+  String get failureOffline => 'You\'re offline. Check your connection and try again.';
+
+  @override
+  String get failureTimeout => 'This is taking longer than usual. Please try again.';
+
+  @override
+  String get failureUnauthorised => 'Please sign in again.';
+
+  @override
+  String get failureNotFound => 'We couldn\'t find that.';
+
+  @override
+  String get failureRateLimited => 'Too many attempts. Please wait a moment and try again.';
+
+  @override
+  String get failureValidation => 'Some details need checking.';
+
+  @override
+  String get failureServer => 'Something went wrong on our side. Please try again shortly.';
+
+  @override
+  String get failureUnavailable => 'This isn\'t available right now. You can reach us on WhatsApp or by phone.';
+
+  @override
+  String get failureDataFormat => 'The app needs an update to show this.';
+
+  @override
+  String get failureUnknown => 'Something went wrong. Please try again.';
+
+  @override
+  String get signInTitle => 'Sign in';
+
+  @override
+  String get signInIntro => 'Sign in to request consultations and follow them in one place.';
+
+  @override
+  String get registerTitle => 'Create your account';
+
+  @override
+  String get registerIntro => 'Create an account to request consultations and follow their progress.';
+
+  @override
+  String get resetTitle => 'Reset your password';
+
+  @override
+  String get resetIntro => 'Enter your email and we\'ll send you a link to set a new password.';
+
+  @override
+  String get fieldName => 'Full name';
+
+  @override
+  String get fieldEmail => 'Email';
+
+  @override
+  String get fieldPassword => 'Password';
+
+  @override
+  String passwordHint(int min) {
+    return 'At least $min characters';
+  }
+
+  @override
+  String get passwordShow => 'Show password';
+
+  @override
+  String get passwordHide => 'Hide password';
+
+  @override
+  String get actionSignIn => 'Sign in';
+
+  @override
+  String get actionCreateAccount => 'Create account';
+
+  @override
+  String get actionSendResetLink => 'Send reset link';
+
+  @override
+  String get linkForgotPassword => 'Forgot password?';
+
+  @override
+  String get linkToRegister => 'New here? Create an account';
+
+  @override
+  String get linkToSignIn => 'Already have an account? Sign in';
+
+  @override
+  String get linkBackToSignIn => 'Back to sign in';
+
+  @override
+  String resetSent(String email) {
+    return 'If an account exists for $email, we\'ve sent a link to reset the password.';
+  }
+
+  @override
+  String get validationRequired => 'Required';
+
+  @override
+  String get validationEmail => 'Enter a valid email address';
+
+  @override
+  String validationPasswordShort(int min) {
+    return 'Use at least $min characters';
+  }
+
+  @override
+  String validationNameLong(int max) {
+    return 'Use $max characters or fewer';
+  }
+
+  @override
+  String get authErrorInvalidCredentials => 'The email or password isn\'t right.';
+
+  @override
+  String get authErrorEmailInUse => 'An account with this email already exists. Sign in instead.';
+
+  @override
+  String get authErrorWeakPassword => 'Choose a stronger password.';
+
+  @override
+  String get authErrorInvalidEmail => 'Enter a valid email address.';
+
+  @override
+  String get authErrorTooManyAttempts => 'Too many attempts. Please wait a few minutes and try again.';
+
+  @override
+  String get authErrorUserDisabled => 'This account has been disabled. Please contact us.';
+
+  @override
+  String get authErrorMethodDisabled => 'This sign-in option isn\'t available right now.';
+
+  @override
+  String get accountSignInCta => 'Sign in or create an account';
+
+  @override
+  String get accountSignOut => 'Sign Out';
+
+  @override
+  String get accountVerifyEmail => 'Check your inbox to verify your email address.';
+
+  @override
+  String get requestPlanCta => 'Plan your project';
+
+  @override
+  String requestContinueDraft(int step, int total) {
+    return 'Continue your request · step $step of $total';
+  }
+
+  @override
+  String requestStepCount(int step, int total) {
+    return 'Step $step of $total';
+  }
+
+  @override
+  String get requestContinue => 'Continue';
+
+  @override
+  String get requestBack => 'Back';
+
+  @override
+  String get requestSkip => 'Skip';
+
+  @override
+  String get requestOptional => 'Optional';
+
+  @override
+  String get requestLeaveTitle => 'Leave your request?';
+
+  @override
+  String get requestLeaveBody => 'Your answers are saved on this phone. You can continue later.';
+
+  @override
+  String get requestKeepEditing => 'Keep editing';
+
+  @override
+  String get requestSaveAndExit => 'Save and exit';
+
+  @override
+  String get requestDiscard => 'Discard request';
+
+  @override
+  String get requestReplaceTitle => 'Start a new request?';
+
+  @override
+  String get requestReplaceBody => 'You have an unfinished request. Starting a new one will replace it.';
+
+  @override
+  String get requestResume => 'Continue it';
+
+  @override
+  String get requestStartNew => 'Start new';
+
+  @override
+  String get stepServicesTitle => 'What can we help with?';
+
+  @override
+  String stepServicesHelp(int max) {
+    return 'Choose up to $max.';
+  }
+
+  @override
+  String get stepServicesNotSure => 'Not sure yet';
+
+  @override
+  String get stepPropertyTitle => 'What kind of space is it?';
+
+  @override
+  String get stepLocationTitle => 'Where is the project?';
+
+  @override
+  String get stepLocationHelp => 'We work in all seven emirates, at the same price.';
+
+  @override
+  String get stepLocationArea => 'Area or community';
+
+  @override
+  String get stepLocationAreaHint => 'e.g. Dubai Hills Estate';
+
+  @override
+  String get stepSizeTitle => 'Roughly how big is the space?';
+
+  @override
+  String get stepSizeHelp => 'An estimate is fine.';
+
+  @override
+  String get stepSizeLabel => 'Size';
+
+  @override
+  String get stepSizeNotSure => 'Not sure';
+
+  @override
+  String get unitSqft => 'sq ft';
+
+  @override
+  String get unitSqm => 'sq m';
+
+  @override
+  String get stepBudgetTitle => 'Do you have a budget in mind?';
+
+  @override
+  String get stepBudgetHelp => 'It helps us suggest the right finishes.';
+
+  @override
+  String get stepBudgetLabel => 'Budget (AED)';
+
+  @override
+  String get stepBudgetDiscuss => 'I\'d rather discuss it';
+
+  @override
+  String get stepBudgetPublished => 'Published starting price';
+
+  @override
+  String get stepStageTitle => 'Where are you in the project?';
+
+  @override
+  String get stepConsultationTitle => 'How would you like to talk?';
+
+  @override
+  String get stepTimeTitle => 'When suits you?';
+
+  @override
+  String get stepTimeNotice => 'This is a preference. Our team will confirm a time with you.';
+
+  @override
+  String get stepTimeDay => 'Day';
+
+  @override
+  String get stepTimeOfDay => 'Time of day';
+
+  @override
+  String get stepTimeFlexible => 'I\'m flexible';
+
+  @override
+  String get stepContactTitle => 'How can we reach you?';
+
+  @override
+  String get stepContactPhone => 'Mobile number';
+
+  @override
+  String get stepContactPhoneHelp => 'UAE numbers can start with 05';
+
+  @override
+  String get stepContactEmail => 'Email (optional)';
+
+  @override
+  String get stepContactNote => 'Anything else we should know? (optional)';
+
+  @override
+  String get propertyVilla => 'Villa';
+
+  @override
+  String get propertyTownhouse => 'Townhouse';
+
+  @override
+  String get propertyApartment => 'Apartment';
+
+  @override
+  String get propertyPenthouse => 'Penthouse';
+
+  @override
+  String get propertyOffice => 'Office';
+
+  @override
+  String get propertyRestaurant => 'Restaurant or café';
+
+  @override
+  String get propertyRetail => 'Shop';
+
+  @override
+  String get propertyOther => 'Other';
+
+  @override
+  String get stageExploring => 'Exploring ideas';
+
+  @override
+  String get stageNeedDesign => 'I need a design';
+
+  @override
+  String get stageHaveDrawings => 'I already have drawings';
+
+  @override
+  String get stageReadyForFitOut => 'Ready for fit-out';
+
+  @override
+  String get stageRenovating => 'Renovating an existing space';
+
+  @override
+  String get stageJoineryOnly => 'Joinery only';
+
+  @override
+  String get consultPhone => 'Phone call';
+
+  @override
+  String get consultPhoneHelp => 'We call you to talk it through';
+
+  @override
+  String get consultWhatsapp => 'WhatsApp';
+
+  @override
+  String get consultWhatsappHelp => 'Chat with our team on WhatsApp';
+
+  @override
+  String get consultSiteSurvey => 'Free site survey';
+
+  @override
+  String get consultSiteSurveyHelp => 'We visit, measure and advise';
+
+  @override
+  String get consultFactoryVisit => 'Factory visit';
+
+  @override
+  String get consultFactoryVisitHelp => 'See our joinery factory in Ajman';
+
+  @override
+  String get windowMorning => 'Morning';
+
+  @override
+  String get windowAfternoon => 'Afternoon';
+
+  @override
+  String get windowEvening => 'Evening';
+
+  @override
+  String get issueChooseService => 'Choose at least one service.';
+
+  @override
+  String get issueChooseEmirate => 'Choose the emirate.';
+
+  @override
+  String issueTooLong(int max) {
+    return 'Use $max characters or fewer.';
+  }
+
+  @override
+  String get issueSizeInvalid => 'Enter a size greater than zero.';
+
+  @override
+  String get issueBudgetInvalid => 'Enter an amount greater than zero.';
+
+  @override
+  String get issueChooseConsultation => 'Choose how you\'d like to talk.';
+
+  @override
+  String get issuePhoneInvalid => 'Enter a mobile number, e.g. 050 123 4567 or +44 7700 900123.';
+
+  @override
+  String get reviewTitle => 'Review your request';
+
+  @override
+  String get reviewEdit => 'Edit';
+
+  @override
+  String get reviewSend => 'Send request';
+
+  @override
+  String get reviewServices => 'Services';
+
+  @override
+  String get reviewProperty => 'Space';
+
+  @override
+  String get reviewLocation => 'Location';
+
+  @override
+  String get reviewSize => 'Size';
+
+  @override
+  String get reviewBudget => 'Budget';
+
+  @override
+  String get reviewStage => 'Stage';
+
+  @override
+  String get reviewConsultation => 'Consultation';
+
+  @override
+  String get reviewTime => 'Preferred time';
+
+  @override
+  String get reviewContact => 'Contact';
+
+  @override
+  String get reviewNotGiven => 'Not given';
+
+  @override
+  String get reviewPreferenceNote => 'A preference, not yet confirmed';
+
+  @override
+  String get reviewPrivacy => 'By sending, you agree to our privacy policy.';
+
+  @override
+  String get reviewPrivacyLink => 'Read the privacy policy';
+
+  @override
+  String get requestNeedsAccount => 'Please sign in or create an account to send your request.';
+
+  @override
+  String get requestSendFailed => 'Your request is saved on this phone. Please try again, or contact us on WhatsApp.';
+
+  @override
+  String get receivedTitle => 'Project request received';
+
+  @override
+  String receivedReference(String reference) {
+    return 'Reference $reference';
+  }
+
+  @override
+  String get receivedNextTitle => 'What happens next';
+
+  @override
+  String get receivedNext1 => 'Our team reviews your request.';
+
+  @override
+  String get receivedNext2 => 'We contact you to agree a time.';
+
+  @override
+  String get receivedNext3 => 'We talk by phone, on WhatsApp or at your site, as agreed.';
+
+  @override
+  String get receivedPhotos => 'Share photos or plans on WhatsApp';
+
+  @override
+  String receivedPhotosMessage(String reference) {
+    return 'Hello! I sent request $reference in the Bait Al Ebdaa app. Here are photos of my space.';
+  }
+
+  @override
+  String get receivedDone => 'Done';
+
+  @override
+  String get myRequestsTitle => 'My requests';
+
+  @override
+  String get myRequestsNew => 'New request';
+
+  @override
+  String requestDetailTitle(String reference) {
+    return 'Request $reference';
+  }
+
+  @override
+  String requestSentOn(String date) {
+    return 'Sent $date';
+  }
+
+  @override
+  String get statusSubmitted => 'Request received';
+
+  @override
+  String get statusInReview => 'Being reviewed';
+
+  @override
+  String get statusActionRequired => 'We need a detail from you';
+
+  @override
+  String get statusContacted => 'We\'ve been in touch';
+
+  @override
+  String get statusScheduled => 'Appointment confirmed';
+
+  @override
+  String get statusRescheduleRequested => 'Waiting for a new time';
+
+  @override
+  String get statusCompleted => 'Consultation completed';
+
+  @override
+  String get statusCancelled => 'Cancelled';
+
+  @override
+  String get servicesRequestCta => 'Request a free site survey';
+
+  @override
+  String get tabProjects => 'Projects';
+
+  @override
+  String get tabBook => 'Book';
+
+  @override
+  String get tabProfile => 'Profile';
+
+  @override
+  String get homeGreetingMorning => 'Good morning';
+
+  @override
+  String get homeGreetingAfternoon => 'Good afternoon';
+
+  @override
+  String get homeGreetingEvening => 'Good evening';
+
+  @override
+  String homeGreetingName(String greeting, String name) {
+    return '$greeting, $name';
+  }
+
+  @override
+  String get homeWelcome => 'Welcome';
+
+  @override
+  String get homeProfileTooltip => 'Profile';
+
+  @override
+  String get homeServicesEyebrow => 'Our services';
+
+  @override
+  String get homeSeeAllServices => 'See all services';
+
+  @override
+  String get homePlanningTitle => 'What are you planning?';
+
+  @override
+  String get planningVilla => 'Villa';
+
+  @override
+  String get planningApartment => 'Apartment';
+
+  @override
+  String get planningOffice => 'Office';
+
+  @override
+  String get planningRestaurant => 'Restaurant';
+
+  @override
+  String get planningRetail => 'Retail';
+
+  @override
+  String get planningJoinery => 'Joinery & wardrobes';
+
+  @override
+  String get homePricingTitle => 'Prices, published';
+
+  @override
+  String get homePricingBody =>
+      'Starting prices for our services, before VAT. Your quotation follows a free site survey.';
+
+  @override
+  String get homePricingCta => 'See the price guide';
+
+  @override
+  String get homeWhyEyebrow => 'Why Bait Al Ebdaa';
+
+  @override
+  String get homeProcessEyebrow => 'How it works';
+
+  @override
+  String get homeReviewEyebrow => 'What clients say';
+
+  @override
+  String get reviewTranslated => 'Translated';
+
+  @override
+  String get homeAskAliCta => 'Ask a question';
+
+  @override
+  String get homeCtaTitle => 'Start with a free site survey';
+
+  @override
+  String get homeCtaBody => 'We visit, measure and advise. Your quotation follows the survey.';
+
+  @override
+  String get homeCtaButton => 'Book a free site survey';
+
+  @override
+  String get homeLatestRequest => 'Your latest request';
+
+  @override
+  String get contactCall => 'Call';
+
+  @override
+  String get contactWhatsApp => 'WhatsApp';
+
+  @override
+  String get contactEmail => 'Email';
+
+  @override
+  String get serviceIncluded => 'What\'s included';
+
+  @override
+  String get serviceFaqs => 'Questions';
+
+  @override
+  String get serviceProjects => 'Related projects';
+
+  @override
+  String get servicePrices => 'Published prices';
+
+  @override
+  String get serviceRelatedPrices => 'Related starting prices';
+
+  @override
+  String get priceGuideTitle => 'Price guide';
+
+  @override
+  String get projectLocation => 'Location';
+
+  @override
+  String get projectSize => 'Size';
+
+  @override
+  String get projectYear => 'Year';
+
+  @override
+  String get projectService => 'Service';
+
+  @override
+  String get projectScope => 'Scope of work';
+
+  @override
+  String get projectStory => 'About the project';
+
+  @override
+  String get projectPlanSimilar => 'Plan a similar project';
+
+  @override
+  String projectPhotoLabel(String title, int index, int total) {
+    return '$title, photo $index of $total';
+  }
+
+  @override
+  String get bookTitle => 'Plan your project';
+
+  @override
+  String get bookIntro => 'Tell us about your space in a few short steps. It\'s free, with no obligation.';
+
+  @override
+  String get bookStepsTitle => 'How it works';
+
+  @override
+  String get bookStep1 => 'Answer a few short questions about your space.';
+
+  @override
+  String get bookStep2 => 'Our team reviews your request and contacts you.';
+
+  @override
+  String get bookStep3 => 'We meet by phone, on WhatsApp or at your site for a free survey.';
+
+  @override
+  String get bookStart => 'Start a request';
+
+  @override
+  String get profileSupport => 'Support';
+
+  @override
+  String get profileLegal => 'Legal';
+
+  @override
+  String get profilePrivacy => 'Privacy Policy';
+
+  @override
+  String get profileTerms => 'Terms & Conditions';
+
+  @override
+  String get profileDelete => 'Delete Account';
+
+  @override
+  String get deleteTitle => 'Delete your account?';
+
+  @override
+  String get deleteBody =>
+      'This deletes your sign-in. Requests you already sent stay with our team so we can follow up; contact us if you want them removed.';
+
+  @override
+  String get deleteConfirm => 'Delete account';
+
+  @override
+  String get authErrorRecentLogin => 'For your security, sign in again, then delete your account.';
+
+  @override
+  String get reviewSignInToSend => 'Sign in to send';
+
+  @override
+  String get reviewSignInNote =>
+      'Sign in or create an account to send your request and follow it from any phone. Your answers are kept.';
+
+  @override
+  String get receivedViewRequest => 'View request';
+
+  @override
+  String receivedStatus(String status) {
+    return 'Status: $status';
+  }
+
+  @override
+  String get timelineTitle => 'Progress';
+
+  @override
+  String get detailNeedHelp => 'Need help with this request?';
+
+  @override
+  String get myRequestsActive => 'Active';
+
+  @override
+  String get myRequestsPast => 'Past';
+
+  @override
+  String get stepDetailsTitle => 'Tell us about your project';
+
+  @override
+  String get stepDetailsHelp => 'Anything that helps us prepare: rooms, style, timing.';
+
+  @override
+  String get stepDetailsLabel => 'Project details';
+
+  @override
+  String get reviewDetails => 'Project details';
+
+  @override
+  String get stageOther => 'Other';
+
+  @override
+  String get propertyCommercial => 'Commercial space';
+
+  @override
+  String heroSlideLabel(int index, int total) {
+    return 'Slide $index of $total';
+  }
+
+  @override
+  String reviewQuoted(String text) {
+    return '“$text”';
+  }
+
+  @override
+  String reviewEditSection(String section) {
+    return 'Edit $section';
+  }
+
+  @override
+  String fieldOptional(String label) {
+    return '$label (optional)';
+  }
+
+  @override
+  String get servicesHeaderSubtitle => 'Design, fit-out and joinery, each starting with a free site survey.';
+
+  @override
+  String get projectsHeaderSubtitle =>
+      'Homes and workplaces we\'ve designed and fitted out, with photos and the full scope of work.';
+
+  @override
+  String get bookEyebrow => 'Free consultation';
+
+  @override
+  String get projectsFilterAll => 'All';
+
+  @override
+  String get projectsFilterVillas => 'Villas';
+
+  @override
+  String get projectsFilterApartments => 'Apartments';
+
+  @override
+  String get projectsFilterOffices => 'Offices';
+
+  @override
+  String get projectsFilterJoinery => 'Joinery';
+
+  @override
+  String get projectsFilterSaved => 'Saved';
+
+  @override
+  String get projectKindVilla => 'Villa';
+
+  @override
+  String get projectKindApartment => 'Apartment';
+
+  @override
+  String get projectKindCommercial => 'Commercial';
+
+  @override
+  String get projectKindResidential => 'Residential';
+
+  @override
+  String get projectsSortRecent => 'Most Recent';
+
+  @override
+  String get projectsSortAlphabetical => 'A–Z';
+
+  @override
+  String get projectsSortTooltip => 'Sort projects';
+
+  @override
+  String get projectsFilterTooltip => 'Filter projects';
+
+  @override
+  String get projectsSearchTooltip => 'Search projects';
+
+  @override
+  String get projectsSearchHint => 'Search by name or area';
+
+  @override
+  String get projectsCloseSearch => 'Close search';
+
+  @override
+  String get projectsSave => 'Save project';
+
+  @override
+  String get projectsUnsave => 'Remove from saved';
+
+  @override
+  String get projectsFeatured => 'Featured project';
+
+  @override
+  String get projectsViewProject => 'View Project';
+
+  @override
+  String get projectsEmptyTitle => 'No projects match';
+
+  @override
+  String get projectsEmptySaved => 'Tap the heart on a project to keep it here.';
+
+  @override
+  String get projectsShowAll => 'Show all projects';
+
+  @override
+  String projectsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: '$count projects', one: '1 project');
+    return '$_temp0';
+  }
+
+  @override
+  String get homeServicesHeading => 'Our Services';
+
+  @override
+  String get homeFeaturedProjects => 'Featured Projects';
+
+  @override
+  String get homeViewAll => 'View All';
+
+  @override
+  String get homeHeroCta => 'Get Started';
+
+  @override
+  String get homeEstimateTitle => 'Get an Estimated Price for Your Project';
+
+  @override
+  String get homeEstimateBody => 'Published starting prices, before VAT. Your quotation follows a free site survey.';
+
+  @override
+  String get homeEstimateCta => 'See Starting Prices';
+
+  @override
+  String get homeWhyTitle => 'Why Bait Al Ebdaa';
+
+  @override
+  String get homeWhyTagline => 'More Than Spaces, Lasting Value';
+
+  @override
+  String get homeSearchTooltip => 'Search services and projects';
+
+  @override
+  String get homeRequestsTooltip => 'My requests';
+
+  @override
+  String get homeRequestsActiveTooltip => 'My requests, one in progress';
+
+  @override
+  String get homeEmirateTooltip => 'Choose your emirate';
+
+  @override
+  String get homeEmirateAll => 'UAE';
+
+  @override
+  String get homeEmirateAllOption => 'All of the UAE';
+
+  @override
+  String get homeEmirateSheetBody =>
+      'We work in all seven emirates at the same prices. Your choice is filled in when you start a request.';
+
+  @override
+  String get searchHint => 'Search services and projects';
+
+  @override
+  String get searchServices => 'Services';
+
+  @override
+  String get searchProjects => 'Projects';
+
+  @override
+  String get searchEmpty => 'Nothing matches your search';
+
+  @override
+  String get serviceDetailsTitle => 'Service Details';
+
+  @override
+  String get serviceSave => 'Save service';
+
+  @override
+  String get serviceUnsave => 'Remove from saved';
+
+  @override
+  String get serviceShare => 'Share';
+
+  @override
+  String serviceShareText(String service, String url) {
+    return '$service by Bait Al Ebdaa: $url';
+  }
+
+  @override
+  String get serviceFactSurvey => 'Free site survey';
+
+  @override
+  String get serviceFactEmirates => 'All seven emirates';
+
+  @override
+  String get serviceFactFactory => 'Own joinery factory';
+
+  @override
+  String get serviceStartingFrom => 'Starting price';
+
+  @override
+  String get serviceShowLess => 'Show Less';
+
+  @override
+  String get serviceHowItWorks => 'How It Works';
+
+  @override
+  String get serviceRequestConsultation => 'Request Consultation';
+
+  @override
+  String get profileSavedTitle => 'Saved';
+
+  @override
+  String get requestFlowTitle => 'Plan Your Project';
+
+  @override
+  String get requestPageRequirements => 'Your Requirements';
+
+  @override
+  String get requestPageDetails => 'Details';
+
+  @override
+  String get requestPageConsultation => 'Consultation';
+
+  @override
+  String get requestPageContact => 'Contact';
+
+  @override
+  String get requestPageReview => 'Review';
+
+  @override
+  String get requestPageComplete => 'Complete';
+
+  @override
+  String requestProgress(int current, int total, String name) {
+    return 'Step $current of $total: $name';
+  }
+
+  @override
+  String get requestSectionService => 'Service';
+
+  @override
+  String get requestSectionProperty => 'Property Type';
+
+  @override
+  String get requestSectionEmirate => 'Emirate';
+
+  @override
+  String get requestSectionSize => 'Approximate Size';
+
+  @override
+  String get requestSectionBudget => 'Budget';
+
+  @override
+  String get requestSectionStage => 'Project Stage';
+
+  @override
+  String get requestSectionDetails => 'Project Details';
+
+  @override
+  String get requestSectionConsultation => 'Consultation';
+
+  @override
+  String get requestSectionTime => 'Preferred Time';
+
+  @override
+  String get requestSectionContact => 'Your Details';
+
+  @override
+  String get requestSectionPhotos => 'Photos / Floor Plans';
+
+  @override
+  String get requestPhotosBody =>
+      'After you send your request, share photos, floor plans or inspiration images on WhatsApp. Your request number is added for you.';
+
+  @override
+  String get requestTimeInfoTitle => 'Preferred time and date will be confirmed later';
+
+  @override
+  String get requestTimeInfoBody => 'Our team will get in touch to schedule a consultation at your convenience.';
+
+  @override
+  String get requestSaveDraft => 'Save Draft';
+
+  @override
+  String get requestDraftSaved => 'Draft saved. Continue any time from Home or Book.';
+
+  @override
+  String get myRequestTitle => 'My Request';
+
+  @override
+  String get myRequestSubtitle => 'Track the progress of your project consultation request.';
+
+  @override
+  String get myRequestId => 'Request ID';
+
+  @override
+  String get myRequestCopy => 'Copy request ID';
+
+  @override
+  String get myRequestCopied => 'Request ID copied';
+
+  @override
+  String get myRequestConsultation => 'Preferred Consultation';
+
+  @override
+  String get myRequestPreferredDate => 'Preferred Date';
+
+  @override
+  String get myRequestPreferredTime => 'Preferred Time';
+
+  @override
+  String get myRequestPhotos => 'Photos & Plans';
+
+  @override
+  String get myRequestPhotosBody => 'Send photos or floor plans on WhatsApp; your request number is added for you.';
+
+  @override
+  String get myRequestHelpBody => 'Our team is here to support you with any questions about your request.';
+
+  @override
+  String get authLoginTitle => 'Welcome Back';
+
+  @override
+  String get authLoginIntro => 'Log in to continue planning and building exceptional spaces across the UAE.';
+
+  @override
+  String get authRegisterTitle => 'Create Your Account';
+
+  @override
+  String get authRegisterIntro => 'Join Bait Al Ebdaa and start planning your dream space with our expert team.';
+
+  @override
+  String get authLogIn => 'Log In';
+
+  @override
+  String get authCreateAccount => 'Create Account';
+
+  @override
+  String get authFullName => 'Full Name';
+
+  @override
+  String get authFullNameHelp => 'Enter your full name';
+
+  @override
+  String get authEmail => 'Email Address';
+
+  @override
+  String get authEmailHelp => 'Enter your email address';
+
+  @override
+  String get authPhone => 'Phone Number';
+
+  @override
+  String get authPhoneExample => '+971 50 123 4567';
+
+  @override
+  String get authPhoneHelp => 'Enter your phone number';
+
+  @override
+  String authPasswordHelp(int min) {
+    return 'Create a strong password (min. $min characters)';
+  }
+
+  @override
+  String authAgree(String terms, String privacy) {
+    return 'I agree to the $terms and $privacy';
+  }
+
+  @override
+  String get authTerms => 'Terms of Service';
+
+  @override
+  String get authPrivacy => 'Privacy Policy';
+
+  @override
+  String get authAgreeRequired => 'Please agree to the Terms of Service and Privacy Policy.';
+
+  @override
+  String get authOr => 'Or continue with';
+
+  @override
+  String get authGoogle => 'Continue with Google';
+
+  @override
+  String get authApple => 'Continue with Apple';
+
+  @override
+  String get authNoAccount => 'Don\'t have an account?';
+
+  @override
+  String get authSignUp => 'Sign Up';
+
+  @override
+  String get authHaveAccount => 'Already have an account?';
+
+  @override
+  String get authForgot => 'Forgot Password?';
+
+  @override
+  String get splashTagline => 'Designing exceptional spaces across the UAE.';
+
+  @override
+  String get brandServicesLine => 'INTERIORS | FIT-OUT | JOINERY';
+
+  @override
+  String get profileEditProfile => 'Edit Profile';
+
+  @override
+  String get profileSave => 'Save';
+
+  @override
+  String get profileSaved => 'Profile updated.';
+
+  @override
+  String get profileGuestTitle => 'Welcome';
+
+  @override
+  String get profileGuestBody => 'Sign in to follow your requests and keep your details.';
+
+  @override
+  String get profileActiveRequests => 'Active Requests';
+
+  @override
+  String get profileInProgress => 'In progress';
+
+  @override
+  String get profileScheduled => 'Scheduled Consultation';
+
+  @override
+  String get profileUpcoming => 'Upcoming';
+
+  @override
+  String get profileMyRequests => 'My Requests';
+
+  @override
+  String get profileMyRequestsBody => 'Track your project inquiries and requests';
+
+  @override
+  String get profileSavedProjects => 'Saved Projects';
+
+  @override
+  String get profileSavedBody => 'Your favorite projects and inspirations';
+
+  @override
+  String get profilePhotos => 'Photos & Plans';
+
+  @override
+  String get profilePhotosBody => 'Share drawings, references and documents on WhatsApp';
+
+  @override
+  String get profilePhotosMessage => 'Hello! I\'d like to share photos and plans for my project.';
+
+  @override
+  String get profileLanguage => 'Preferred Language';
+
+  @override
+  String get profileLanguageBody => 'English / العربية';
+
+  @override
+  String get profileNotifications => 'Notifications';
+
+  @override
+  String get profileNotificationsBody => 'Manage your notifications and preferences';
+
+  @override
+  String get profileWhatsapp => 'WhatsApp Support';
+
+  @override
+  String get profileWhatsappBody => 'Get instant assistance from our team';
+
+  @override
+  String get profilePrivacyBody => 'How we protect your information';
+
+  @override
+  String get profileTermsBody => 'Our terms of service';
+
+  @override
+  String get profileSignOutBody => 'Log out from your account';
+
+  @override
+  String get savedEmpty => 'Nothing saved yet. Tap the heart on a project or the bookmark on a service.';
+
+  @override
+  String get notificationsOn => 'Notifications are on. We\'ll tell you when your request status changes.';
+
+  @override
+  String get notificationsOff => 'Turn on notifications to hear when your request status changes.';
+
+  @override
+  String get notificationsAllow => 'Allow notifications';
+
+  @override
+  String get notificationsUnavailable =>
+      'Notifications aren\'t available on this device yet. We\'ll keep you updated on WhatsApp, by phone or by email.';
+}

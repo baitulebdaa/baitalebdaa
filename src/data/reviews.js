@@ -6,6 +6,8 @@
 //     id: "helena-brandt-nordhaus",          // stable, unique
 //     name: "Helena Brandt",                 // as the client agreed to be shown
 //     company: "NordHaus Design Consultancy",// optional
+//     nameAr: "هيلينا براندت",               // Arabic spelling shown on /ar (owner, 26 Oct 2026)
+//     companyAr: "نوردهاوس للاستشارات التصميمية", // optional, Arabic company name for /ar
 //     rating: 5,                             // optional, whole number 1–5 — only if the client gave one
 //     date: "2026-10-01",                    // optional, YYYY-MM-DD
 //     source: "Google",                      // optional: where it was left
@@ -19,6 +21,8 @@ export const REVIEWS = [
     id: "helena-brandt-nordhaus",
     name: "Helena Brandt",
     company: "NordHaus Design Consultancy",
+    nameAr: "هيلينا براندت",
+    companyAr: "نوردهاوس للاستشارات التصميمية",
     originalLang: "en",
     text: {
       en: "Bait Al Ebdaa understood our requirements from the start and translated them into a refined, functional space. The communication was clear, the detailing was thoughtful, and the final result felt polished and well executed.",
@@ -29,6 +33,8 @@ export const REVIEWS = [
     id: "rami-mansour-meridian",
     name: "Rami Mansour",
     company: "Meridian Workspace Solutions",
+    nameAr: "رامي منصور",
+    companyAr: "ميريديان لحلول بيئات العمل",
     originalLang: "en",
     text: {
       en: "What impressed us most was how smoothly the design, fit-out and joinery stages were coordinated. Having one team manage the process made everything more efficient, and the quality of workmanship was excellent.",
@@ -39,6 +45,8 @@ export const REVIEWS = [
     id: "julia-okafor-veridian",
     name: "Julia Okafor",
     company: "Veridian Property Group",
+    nameAr: "جوليا أوكافور",
+    companyAr: "مجموعة فيريديان العقارية",
     originalLang: "en",
     text: {
       en: "The team was professional, responsive and very detail-focused throughout the project. From material selection to final installation, everything was handled carefully and the finished interior exceeded our expectations.",
