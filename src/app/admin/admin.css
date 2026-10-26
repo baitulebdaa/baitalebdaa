@@ -233,8 +233,8 @@ a.a-nav__item:hover { background: rgba(255, 255, 255, 0.06); color: #fff; }
 }
 .a-field input:focus, .a-field select:focus { border-color: var(--a-brass); }
 .a-msg { font-size: 0.84rem; margin: 0; }
-.a-msg--error { color: var(--a-red); }
-.a-msg--ok { color: var(--a-green); }
+.a-msg--error, .a-auth__box .a-msg--error { color: var(--a-red); font-weight: 500; }
+.a-msg--ok, .a-auth__box .a-msg--ok { color: var(--a-green); }
 
 /* Lead detail */
 .a-detail { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 18px; align-items: start; }
@@ -247,6 +247,17 @@ a.a-nav__item:hover { background: rgba(255, 255, 255, 0.06); color: #fff; }
 .a-contact a:hover { border-color: var(--a-brass); }
 
 .a-preview { margin: 0; padding: 10px 14px; border-radius: 8px; background: #fbecd8; color: #7a4a0f; font-size: 0.85rem; }
+
+/* Password field with a show/hide button inside it. */
+.a-password { position: relative; display: block; }
+.a-password input { width: 100%; padding-right: 46px; }
+.a-password__toggle {
+  position: absolute; top: 50%; right: 6px; transform: translateY(-50%);
+  display: grid; place-items: center; width: 34px; height: 34px;
+  border: 0; border-radius: 6px; background: none; color: var(--a-muted); cursor: pointer;
+}
+.a-password__toggle:hover { color: var(--a-text); background: var(--a-paper); }
+.a-field input::placeholder { color: #a3a09a; }
 
 /* Sign-in and setup */
 .a-auth { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; }

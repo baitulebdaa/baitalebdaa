@@ -38,4 +38,6 @@ export {
   ArrowLeft as IconBack,
   Mobile as IconMobile,
   Messages2 as IconChat,
+  Eye as IconEye,
+  EyeSlash as IconEyeSlash,
 } from "iconsax-reactjs";

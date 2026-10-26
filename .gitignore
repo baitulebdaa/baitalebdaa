@@ -11,3 +11,5 @@ Thumbs.db
 # .env.local (FIREBASE_SERVICE_ACCOUNT) or Vercel.
 *firebase-adminsdk*.json
 *service-account*.json
+.vercel
+.env*
