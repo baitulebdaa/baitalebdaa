@@ -25,8 +25,12 @@ async function sendQuoteEmail({ name, email, phone, service, location, descripti
   const toEmail = process.env.CONTACT_TO_EMAIL;
   const fromEmail = process.env.CONTACT_FROM_EMAIL;
 
+  // Saved to the admin panel first (src/app/admin), so the quote is kept even if the
+  // email fails; either one is enough to tell the visitor it was received.
+  const saved = await saveLead({ source: "askAli", name, email, fields: { phone, service, location, description } });
+
   if (!apiKey || !toEmail || !fromEmail) {
-    return { ok: false, error: "Email sending is not configured." };
+    return saved ? { ok: true } : { ok: false, error: "Email sending is not configured." };
   }
 
   const rows = [
@@ -69,19 +73,12 @@ async function sendQuoteEmail({ name, email, phone, service, location, descripti
     });
     if (!res.ok) {
       console.error("[chat] Resend error:", res.status, await res.text());
-      return { ok: false, error: "Failed to send email." };
+      return saved ? { ok: true } : { ok: false, error: "Failed to send email." };
     }
-    // Also into the admin panel's inbox (src/app/admin).
-    await saveLead({
-      source: "askAli",
-      name,
-      email,
-      fields: { phone, service, location, description },
-    });
     return { ok: true };
   } catch (err) {
     console.error("[chat] Email send failed:", err);
-    return { ok: false, error: "Failed to send email." };
+    return saved ? { ok: true } : { ok: false, error: "Failed to send email." };
   }
 }
 

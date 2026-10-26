@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { ArrowUpRight, ChevronDown, Plus, Menu, X, Globe, Sparkles, Facebook, Instagram, Whatsapp, WhatsappLogo, Home, Services, Projects, Phone, Mail, MapPin, Clock } from "./icons";
+import { Account, ArrowUpRight, ChevronDown, Plus, Menu, X, Globe, Sparkles, Facebook, Instagram, Whatsapp, WhatsappLogo, Home, Services, Projects, Phone, Mail, MapPin, Clock, StageApprove, StageDiscover, StageMake, StageVisualize } from "./icons";
 import { useI18n } from "../i18n/I18nProvider";
 import { useRouter, usePathname } from "next/navigation";
 import { getServiceLabel } from "../data/service-catalog";
@@ -94,6 +94,19 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
   const router = useRouter();
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
+  // The signed-in customer's first name, read after the first render (the server can't see
+  // it), so the button reads "Sign in" until then. See src/lib/account/session.js.
+  const [accountName, setAccountName] = useState(null);
+  useEffect(() => {
+    const hint = document.cookie.match(/(?:^|;\s*)bae_signed_in=([^;]+)/)?.[1];
+    if (!hint) return;
+    let name = "";
+    try {
+      name = decodeURIComponent(hint);
+    } catch {}
+    setAccountName(name && name !== "1" ? name : dict.nav.account);
+  }, [dict.nav.account]);
+  const signedIn = accountName !== null;
   const [servicesOpen, setServicesOpen] = useState(false);
   const servicesRef = useRef(null);
   const [projectsOpen, setProjectsOpen] = useState(false);
@@ -235,6 +248,7 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
         </div>
         <a href={`/${lang}/process`}>{dict.menuItems[3]} <ArrowUpRight size={14} /></a>
         <a href={`/${lang}/pricing`}>{dict.menuItems[4]} <ArrowUpRight size={14} /></a>
+        <a href={`/${lang}/contact`}>{dict.menuItems[6]} <ArrowUpRight size={14} /></a>
         <a href={otherLangHref} hrefLang={otherLang} lang={otherLang} className="lang-switcher" style={{display: 'flex', alignItems: 'center', gap: '6px'}}>
           <Globe size={14} /> {lang === "en" ? "العربية" : "English"}
         </a>
@@ -245,6 +259,18 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
           <WhatsappLogo size={20} />
           {dict.nav.startProject} <ArrowUpRight size={15} />
         </a>
+        {/* Customer accounts (owner, 26 Oct 2026): the same account as the mobile app. Signed
+            out it reads "Sign in" and opens sign-in; signed in it is the account icon. */}
+        {signedIn ? (
+          <a className="outline-button header-account header-account--me" href={`/${lang}/account`} aria-label={`${dict.nav.account}: ${accountName}`} title={dict.nav.account} rel="nofollow">
+            <Account size={18} />
+            <span className="header-account__name">{accountName}</span>
+          </a>
+        ) : (
+          <a className="outline-button header-account header-account--signin" href={`/${lang}/account/login`} rel="nofollow">
+            <Account size={18} /> {dict.nav.signIn}
+          </a>
+        )}
       </div>
     </header>
     <div id="site-menu" className={`menu-overlay ${menuOpen ? "is-open" : ""}`} aria-hidden={!menuOpen}>
@@ -286,6 +312,9 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
         { key: "services", Icon: Services, label: dict.menuItems[1], href: `/${lang}/our-services`, active: pathname.includes("/our-services") },
         { key: "projects", Icon: Projects, label: dict.menuItems[2], href: `/${lang}/our-projects`, active: pathname.includes("/our-projects") },
         { key: "contact", Icon: Phone, label: dict.menuItems[6], href: `/${lang}/contact`, active: pathname.includes("/contact") },
+        signedIn
+          ? { key: "account", Icon: Account, label: accountName, href: `/${lang}/account`, active: pathname.includes("/account") }
+          : { key: "account", Icon: Account, label: dict.nav.signIn, href: `/${lang}/account/login`, active: pathname.includes("/account") },
       ].map(({ key, Icon, label, href, active }) => (
         <a key={key} href={href} className={active ? "is-active" : ""} aria-current={active ? "page" : undefined}>
           <Icon size={22} variant={active ? "Bold" : "Linear"} aria-hidden="true" />
@@ -529,6 +558,17 @@ export function FaqSplit({ kicker, title, subtitle, items, idPrefix = "faq" }) {
 // dict.processSection.items ([title, body, meta] tuples) — kicker/title stay
 // props since some pages need contextual SEO-targeted headings (e.g.
 // ServiceLocationPage's row.h2Themes[2]) instead of the generic homepage title.
+// The process stages (owner, 26 Oct 2026: "more modern"): a dark panel with a gold line
+// that fills as it scrolls into view, a glowing node per stage, and a card for each stage
+// with one of the studio's own photos, an outlined number, the stage, what happens and where.
+const STAGE_ICONS = [StageDiscover, StageVisualize, StageApprove, StageMake];
+const STAGE_PHOTOS = [
+  "/assets/luxury-living-room-chandelier-wall-panelling.jpeg",
+  "/assets/cad-render.jpg",
+  "/assets/project-office.jpg",
+  "/assets/joinery-factory.jpg",
+];
+
 export function ProcessTimeline({ kicker, title, items, headingClassName = "section-heading", titleStyle }) {
   const { lang } = useI18n();
   return (
@@ -537,19 +577,38 @@ export function ProcessTimeline({ kicker, title, items, headingClassName = "sect
         <p className="micro">{kicker}</p>
         <h2 className="section-title" style={titleStyle}>{title}</h2>
       </Reveal>
-      <div className="process-timeline">
-        {items.map(([itemTitle, body, meta], i) => (
-          <Reveal className="process-timeline__step" key={i} delay={i * 80}>
-            <span className="process-timeline__num">{formatIndex(i + 1, lang)}</span>
-            <span className="process-timeline__track" aria-hidden="true">
-              <span className="process-timeline__marker" />
-            </span>
-            <h3 className="process-timeline__title">{itemTitle}</h3>
-            <p className="process-timeline__body">{body}</p>
-            {meta && <p className="process-timeline__meta">{meta}</p>}
-          </Reveal>
-        ))}
-      </div>
+      <Reveal className="pt-panel">
+        <span className="pt-rail" aria-hidden="true"><span className="pt-rail__fill" /></span>
+        <ol className="process-timeline">
+          {items.map(([itemTitle, body, meta], i) => {
+            const Icon = STAGE_ICONS[i] || StageMake;
+            const photo = STAGE_PHOTOS[i];
+            return (
+              <li className="process-timeline__step" key={i} style={{ "--step": i }}>
+                <span className="pt-node" aria-hidden="true" />
+                {photo && (
+                  <span className="pt-photo" aria-hidden="true">
+                    <Image src={photo} alt="" fill sizes="(max-width: 700px) 100vw, (max-width: 980px) 50vw, 25vw" />
+                  </span>
+                )}
+                <span className="pt-card">
+                  <span className="pt-card__top">
+                    <span className="process-timeline__icon" aria-hidden="true"><Icon size={22} /></span>
+                    <span className="process-timeline__num" aria-hidden="true">{formatIndex(i + 1, lang)}</span>
+                  </span>
+                  <h3 className="process-timeline__title">{itemTitle}</h3>
+                  <p className="process-timeline__body">{body}</p>
+                  {meta && (
+                    <p className="process-timeline__meta">
+                      <MapPin size={14} aria-hidden="true" /> {meta}
+                    </p>
+                  )}
+                </span>
+              </li>
+            );
+          })}
+        </ol>
+      </Reveal>
     </>
   );
 }

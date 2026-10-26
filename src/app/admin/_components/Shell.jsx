@@ -80,16 +80,24 @@ export function Shell({ admin, newLeads, preview = false, children }) {
           })}
         </ul>
         <div className="a-side__foot">
+          {/* Logout sits at the end of the account row (owner, 26 Oct 2026). */}
           <div className="a-me">
             <span className="a-me__avatar" aria-hidden="true">{admin.name.charAt(0)}</span>
             <div>
               <strong>{admin.name}</strong>
               <span title={admin.email}>{admin.email}</span>
             </div>
+            <button
+              type="button"
+              className="a-logout"
+              onClick={signOut}
+              disabled={signingOut}
+              aria-label={signingOut ? "Signing out" : "Logout"}
+              title="Logout"
+            >
+              <IconLogout size={20} color="currentColor" />
+            </button>
           </div>
-          <button type="button" className="a-logout" onClick={signOut} disabled={signingOut}>
-            <IconLogout size={20} color="currentColor" /> {signingOut ? "Signing out…" : "Logout"}
-          </button>
         </div>
       </aside>
 

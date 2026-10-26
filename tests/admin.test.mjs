@@ -101,7 +101,7 @@ test("panel statuses are exactly the app's RequestStatus values", () => {
 });
 
 test("the admin panel is kept out of search engines", () => {
-  assert.match(read("src/app/robots.js"), /disallow: \['\/admin', '\/api\/'\]/);
+  assert.match(read("src/app/robots.js"), /disallow: \['\/admin', '\/api\/', '\/en\/account', '\/ar\/account'\]/);
   assert.match(read("src/app/admin/layout.jsx"), /robots: \{ index: false, follow: false/);
   assert.doesNotMatch(read("src/app/sitemap.js"), /\/admin/);
 });
@@ -134,4 +134,12 @@ test("the service-account code never reaches the browser", () => {
 test("the made-up preview leads can only appear in development", () => {
   assert.match(read("src/lib/admin/preview.js"), /process\.env\.NODE_ENV === "development" && process\.env\.ADMIN_PREVIEW === "1"/);
   assert.match(read("src/app/api/admin/leads/[kind]/[id]/route.js"), /if \(isPreview\(\)\) return/);
+});
+
+test("enquiries are saved to the admin panel before the email is sent", () => {
+  const contact = read("src/app/api/contact/route.js");
+  assert.ok(contact.indexOf("await saveLead(") < contact.indexOf("fetch(RESEND_API_URL"), "contact form saves first");
+  assert.match(contact, /formType !== "newsletter" && formType !== "careers"/);
+  const chat = read("src/app/api/chat/route.js");
+  assert.ok(chat.indexOf("await saveLead(") < chat.indexOf("fetch(RESEND_API_URL"), "Ask Ali saves first");
 });

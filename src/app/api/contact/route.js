@@ -44,9 +44,9 @@ export async function POST(request) {
   const toEmail = process.env.CONTACT_TO_EMAIL;
   const fromEmail = process.env.CONTACT_FROM_EMAIL;
 
-  if (!apiKey || !toEmail || !fromEmail) {
-    return fail("unavailable", "Email sending is not configured.", 500);
-  }
+  // Enquiries are saved to the admin panel (Firestore) as well as emailed, so either is
+  // enough to accept one; newsletter sign-ups and job applications (with a CV) need email.
+  const emailConfigured = Boolean(apiKey && toEmail && fromEmail);
 
   let body;
   try {
@@ -118,6 +118,17 @@ export async function POST(request) {
     return fail("invalid_cv", "Please upload your CV as a PDF, DOC or DOCX file.", 400);
   }
 
+  const isLead = formType !== "newsletter" && formType !== "careers";
+  if (!emailConfigured && !isLead) {
+    return fail("unavailable", "Email sending is not configured.", 500);
+  }
+
+  // Saved first, so the enquiry is in the admin panel even if the email then fails.
+  const saved = isLead ? await saveLead({ source: "website", formType: formType || "general", name, email, fields }) : false;
+  if (!emailConfigured) {
+    return saved ? Response.json({ success: true }) : fail("unavailable", "Email sending is not configured.", 500);
+  }
+
   const html = `
     <div style="font-family:sans-serif;max-width:560px;">
       <h2 style="margin-bottom:4px;">New ${escapeHtml(subjectLabel)}</h2>
@@ -146,18 +157,13 @@ export async function POST(request) {
     if (!resendResponse.ok) {
       const errorBody = await resendResponse.text();
       console.error("Resend API error:", resendResponse.status, errorBody);
-      return fail("unavailable", "Failed to send message.", 502);
-    }
-
-    // Enquiries also go to the admin panel's inbox (src/app/admin). Newsletter sign-ups
-    // and job applications are not leads.
-    if (formType !== "newsletter" && formType !== "careers") {
-      await saveLead({ source: "website", formType: formType || "general", name, email, fields });
+      // The team still has it in the admin panel.
+      return saved ? Response.json({ success: true }) : fail("unavailable", "Failed to send message.", 502);
     }
 
     return Response.json({ success: true });
   } catch (err) {
     console.error("Contact form submission failed:", err);
-    return fail("unavailable", "Failed to send message.", 500);
+    return saved ? Response.json({ success: true }) : fail("unavailable", "Failed to send message.", 500);
   }
 }

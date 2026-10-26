@@ -40,6 +40,18 @@ import {
   Home2,
   Category,
   Building3,
+  User as IsxUser,
+  Lock as IsxLock,
+  Eye as IsxEye,
+  EyeSlash as IsxEyeSlash,
+  DocumentText as IsxDocumentText,
+  LogoutCurve,
+  Trash as IsxTrash,
+  Edit2,
+  CalendarTick,
+  SearchNormal1,
+  ClipboardTick,
+  Ruler as IsxRuler,
   ShoppingCart as IsxShoppingCart,
   Box as IsxBox,
   Lamp as IsxLamp,
@@ -94,6 +106,21 @@ export const Paperclip = wrap(Paperclip2);
 export const Home = wrap(Home2);
 export const Services = wrap(Category);
 export const Projects = wrap(Building3);
+export const Account = wrap(IsxUser);
+export const User = Account;
+export const Lock = wrap(IsxLock);
+export const Eye = wrap(IsxEye);
+export const EyeSlash = wrap(IsxEyeSlash);
+export const DocumentText = wrap(IsxDocumentText);
+export const SignOut = wrap(LogoutCurve);
+export const Trash = wrap(IsxTrash);
+export const Edit = wrap(Edit2);
+export const CalendarCheck = wrap(CalendarTick);
+// The four process stages: Discover, Visualize, Approve, Make.
+export const StageDiscover = wrap(SearchNormal1);
+export const StageVisualize = wrap(IsxBox);
+export const StageApprove = wrap(ClipboardTick);
+export const StageMake = wrap(IsxRuler);
 export const ShoppingCart = wrap(IsxShoppingCart);
 export const Box = wrap(IsxBox);
 export const Lamp = wrap(IsxLamp);

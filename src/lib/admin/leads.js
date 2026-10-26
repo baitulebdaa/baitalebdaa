@@ -46,12 +46,11 @@ function pick(fields, names) {
 }
 
 /**
- * Saves a website or Ask Ali enquiry so it appears in the panel. Best effort: a missing
- * key or a Firestore error is logged and never fails the visitor's submission, which has
- * already been emailed.
+ * Saves a website or Ask Ali enquiry so it appears in the panel. Returns whether it was
+ * saved; a missing key or a Firestore error is logged, never thrown.
  */
 export async function saveLead({ source, formType = null, name, email, fields = {}, locale = null }) {
-  if (!isFirestoreConfigured()) return;
+  if (!isFirestoreConfigured()) return false;
   try {
     const clean = Object.fromEntries(
       Object.entries(fields)
@@ -65,7 +64,8 @@ export async function saveLead({ source, formType = null, name, email, fields = 
         source,
         formType,
         name: String(name || "").slice(0, 120) || null,
-        email: String(email || "").slice(0, 254) || null,
+        // Lower case, so a customer signed in on the website finds their enquiries.
+        email: String(email || "").trim().toLowerCase().slice(0, 254) || null,
         phone: pick(clean, ["phone", "company phone"]),
         service: pick(clean, ["servicetype", "service", "interested service", "applying for"]),
         location: pick(clean, ["location", "city", "region"]),
@@ -76,14 +76,16 @@ export async function saveLead({ source, formType = null, name, email, fields = 
         createdAt: FieldValue.serverTimestamp(),
         updatedAt: FieldValue.serverTimestamp(),
       });
+    return true;
   } catch (error) {
     console.error("Saving the lead to Firestore failed:", error);
+    return false;
   }
 }
 
 // ---- Reading ------------------------------------------------------------------------
 
-function fromLead(doc) {
+export function fromLead(doc) {
   const d = doc.data();
   return {
     key: `lead/${doc.id}`,
@@ -107,7 +109,7 @@ function fromLead(doc) {
   };
 }
 
-function fromRequest(doc) {
+export function fromRequest(doc) {
   const d = doc.data();
   const contact = d.contact || {};
   const services = (d.serviceIds || []).map(serviceLabel);
