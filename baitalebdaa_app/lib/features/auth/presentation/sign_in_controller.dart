@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/platform/auth_gateway.dart';
 import '../../request/domain/request_validation.dart';
 import '../data/account_phone.dart';
+import '../data/profile_photo.dart';
 
 enum SignInMode { signIn, register, reset }
 
@@ -84,15 +85,23 @@ class SessionActions {
   final Ref _ref;
 
   Future<void> signOut() async {
+    final uid = _ref.read(authGatewayProvider).currentUser?.uid;
     await _ref.read(authGatewayProvider).signOut();
-    await _ref.read(accountPhoneStoreProvider).clear();
+    await _forgetDeviceDetails(uid);
   }
 
   /// Deletes the sign-in. Requests already sent stay with the team (the profile screen says
   /// so before asking); a stale session errors with an [AuthFailure] asking to sign in again.
   Future<void> deleteAccount() async {
+    final uid = _ref.read(authGatewayProvider).currentUser?.uid;
     await _ref.read(authGatewayProvider).deleteAccount();
+    await _forgetDeviceDetails(uid);
+  }
+
+  /// The number and photo kept on this phone for the account.
+  Future<void> _forgetDeviceDetails(String? uid) async {
     await _ref.read(accountPhoneStoreProvider).clear();
+    if (uid != null) await _ref.read(profilePhotoStoreProvider).clear(uid);
   }
 }
 

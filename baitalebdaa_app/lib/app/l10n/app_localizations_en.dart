@@ -1344,4 +1344,16 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get notificationsUnavailable =>
       'Notifications aren\'t available on this device yet. We\'ll keep you updated on WhatsApp, by phone or by email.';
+
+  @override
+  String get profilePhotoChange => 'Change profile photo';
+
+  @override
+  String get profilePhotoChoose => 'Choose a photo';
+
+  @override
+  String get profilePhotoRemove => 'Remove photo';
+
+  @override
+  String get profilePhotoNote => 'Your photo stays on this phone.';
 }
