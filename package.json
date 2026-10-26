@@ -9,9 +9,11 @@
     "start": "next start",
     "preview": "next dev --hostname 0.0.0.0",
     "test:sites": "node --test tests/sites-worker.test.mjs",
-    "test:seo": "node --test tests/seo.test.mjs tests/site-health.test.mjs"
+    "test:seo": "node --test tests/seo.test.mjs tests/site-health.test.mjs",
+    "test:admin": "node --test tests/admin.test.mjs"
   },
   "dependencies": {
+    "firebase-admin": "^13.10.0",
     "iconsax-reactjs": "^0.0.8",
     "lucide-react": "^0.468.0",
     "next": "^16.0.0",

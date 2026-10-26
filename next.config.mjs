@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   agentRules: false,
+  // Next's development-only "N" button, out of the admin sidebar's Logout (bottom left).
+  devIndicators: { position: "bottom-right" },
   // Without this, Next's own built-in trailing-slash normalization runs BEFORE the
   // custom redirects below, so a legacy URL like /portfolio/ (the old site's real,
   // slash-terminated format) takes 2 hops: /portfolio/ -> /portfolio (Next's own

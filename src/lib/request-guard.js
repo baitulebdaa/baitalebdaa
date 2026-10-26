@@ -38,6 +38,8 @@ export const RATE_LIMITS = {
   newsletter: { limit: 3, windowMs: 10 * 60_000 },
   chatMessage: { limit: 40, windowMs: 10 * 60_000 },
   chatQuoteEmail: { limit: 3, windowMs: 60 * 60_000 },
+  // Admin sign-in: a few typos are fine, password guessing is not.
+  adminLogin: { limit: 8, windowMs: 15 * 60_000 },
 };
 
 // Seconds until `key` may call again (for the Retry-After header); 0 when it already can.

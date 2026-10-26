@@ -1,6 +1,7 @@
 // "Ask AI" chat backend — uses Gemini function calling so the assistant can
 // collect visitor details conversationally and submit a quote/survey request
 // directly, rather than only pointing to WhatsApp or the form.
+import { saveLead } from "../../../lib/admin/leads";
 import { clientIp, isSameOrigin, rateLimitedResponse, takeRateLimit, RATE_LIMITS } from "../../../lib/request-guard";
 
 const MODEL = "gemini-3.5-flash-lite";
@@ -70,6 +71,13 @@ async function sendQuoteEmail({ name, email, phone, service, location, descripti
       console.error("[chat] Resend error:", res.status, await res.text());
       return { ok: false, error: "Failed to send email." };
     }
+    // Also into the admin panel's inbox (src/app/admin).
+    await saveLead({
+      source: "askAli",
+      name,
+      email,
+      fields: { phone, service, location, description },
+    });
     return { ok: true };
   } catch (err) {
     console.error("[chat] Email send failed:", err);

@@ -1,3 +1,4 @@
+import { saveLead } from "../../../lib/admin/leads";
 import { clientIp, isAllowedCv, isHoneypotFilled, isSameOrigin, rateLimitedResponse, takeRateLimit, HONEYPOT_FIELD, RATE_LIMITS } from "../../../lib/request-guard";
 
 // Every error carries a stable `code`; the forms turn it into an English or Arabic message
@@ -146,6 +147,12 @@ export async function POST(request) {
       const errorBody = await resendResponse.text();
       console.error("Resend API error:", resendResponse.status, errorBody);
       return fail("unavailable", "Failed to send message.", 502);
+    }
+
+    // Enquiries also go to the admin panel's inbox (src/app/admin). Newsletter sign-ups
+    // and job applications are not leads.
+    if (formType !== "newsletter" && formType !== "careers") {
+      await saveLead({ source: "website", formType: formType || "general", name, email, fields });
     }
 
     return Response.json({ success: true });

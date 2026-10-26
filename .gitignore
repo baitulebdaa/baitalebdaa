@@ -7,3 +7,7 @@ dist/
 *.log
 .DS_Store
 Thumbs.db
+# Firebase service-account keys (admin panel). Secrets: never commit; they go in
+# .env.local (FIREBASE_SERVICE_ACCOUNT) or Vercel.
+*firebase-adminsdk*.json
+*service-account*.json

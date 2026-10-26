@@ -4,6 +4,8 @@ export default function robots() {
     rules: {
       userAgent: '*',
       allow: '/',
+      // The admin panel (owner, 26 Oct 2026) and the APIs are not for search engines.
+      disallow: ['/admin', '/api/'],
     },
     sitemap: 'https://www.baitalebdaa.com/sitemap.xml',
   }
