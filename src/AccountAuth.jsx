@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { ArrowRight, Lock, Mail, Phone, User, Eye, EyeSlash, WhatsappLogo } from "./components/icons";
-import { useI18n } from "./i18n/I18nProvider";
+import { useBusiness, useI18n } from "./i18n/I18nProvider";
 import { Header, Footer } from "./components/Shared";
 
 // Customer log in, sign up and password reset (owner's app designs, 26 Oct 2026): the same
@@ -11,6 +11,7 @@ import { Header, Footer } from "./components/Shared";
 // page's language (dict.accountPage.errors).
 export default function AccountAuth({ initialMode = "login", available = true }) {
   const { lang, dict } = useI18n();
+  const business = useBusiness();
   const t = dict.accountPage;
   const [menuOpen, setMenuOpen] = useState(false);
   const [mode, setMode] = useState(initialMode);
@@ -154,7 +155,7 @@ export default function AccountAuth({ initialMode = "login", available = true })
               )}
               {mode === "reset" && <button type="button" className="acct-link" onClick={() => switchTo("login")}>{t.backToLogin}</button>}
             </p>
-            <a className="acct-help" href="https://wa.me/971582621717" target="_blank" rel="noopener noreferrer">
+            <a className="acct-help" href={`https://wa.me/${business.whatsapp}`} target="_blank" rel="noopener noreferrer">
               <WhatsappLogo size={18} /> {t.help}
             </a>
           </div>

@@ -287,13 +287,16 @@ test("the browser dictionary has no article bodies; article pages get theirs as 
 });
 
 test("above-the-fold hero content is visible without JavaScript (eager Reveal)", () => {
-  for (const file of ["src/ServiceLocationPage.jsx", "src/OurServices.jsx", "src/OurProjects.jsx", "src/PricingPage.jsx", "src/Process.jsx", "src/ContactPage.jsx", "src/FurnitureMaintenanceCare.jsx", "src/ProjectDetail.jsx"]) {
-    const source = read(file);
-    const h1 = source.indexOf("<h1");
-    const hero = source.slice(source.lastIndexOf("<section", h1), source.indexOf("</section>", h1));
-    assert.doesNotMatch(hero, /<Reveal(?! eager)\b/, file);
+  // Every page's top is the shared PhotoHero (27 Oct 2026); its photo, breadcrumb, H1, lead
+  // and actions only use eager Reveals. The longer intro below the photo may fade in.
+  for (const file of ["src/ServiceLocationPage.jsx", "src/OurServices.jsx", "src/OurProjects.jsx", "src/PricingPage.jsx", "src/Process.jsx", "src/ContactPage.jsx", "src/FurnitureMaintenanceCare.jsx", "src/ProjectDetail.jsx", "src/About.jsx", "src/Reviews.jsx", "src/Media.jsx", "src/LegalPage.jsx"]) {
+    assert.match(read(file), /<PhotoHero\b/, file);
   }
-  assert.match(read("src/components/Shared.jsx"), /<Reveal eager>\s*<h1 className="project-detail-title">/);
+  const shared = read("src/components/Shared.jsx");
+  const start = shared.indexOf("<section className={`ph-hero");
+  const hero = shared.slice(start, shared.indexOf("</section>", start));
+  assert.doesNotMatch(hero, /<Reveal(?! eager)\b/);
+  assert.match(hero, /<Reveal eager>[\s\S]*?<h1 className=\{`ph-hero__title/);
   assert.match(read("src/styles.css"), /\.reveal-in\{animation:reveal-in[^}]*\}@keyframes reveal-in\{from\{transform:translateY\(18px\)\}to\{transform:none\}\}/);
 });
 

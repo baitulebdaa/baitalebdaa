@@ -1,10 +1,10 @@
 "use client";
 
-import Image from "next/image";
+import { formatPhone } from "./data/business";
 import { useState } from "react";
 import { ArrowUpRight, Clock, Mail, MapPin, Phone } from "./components/icons";
-import { useI18n } from "./i18n/I18nProvider";
-import { Header, Footer, Reveal, PageHeader, ProcessTimeline } from "./components/Shared";
+import { useBusiness, useI18n } from "./i18n/I18nProvider";
+import { Header, Footer, Reveal, PhotoHero, ProcessTimeline } from "./components/Shared";
 import { PageFaq } from "./components/PageFaq";
 import { getServiceLabel } from "./data/service-catalog";
 import { imageAlt } from "./data/image-alts";
@@ -18,6 +18,7 @@ const ABOUT_SERVICES = ["interior-design", "fit-out", "office-fit-out", "villa-r
 
 export default function About() {
   const { lang, dict } = useI18n();
+  const business = useBusiness();
   const [menuOpen, setMenuOpen] = useState(false);
   const t = dict.aboutPage;
   const project = dict.projectDetailPage.projects["government-authority"];
@@ -46,29 +47,25 @@ export default function About() {
   };
 
   const contacts = [
-    { icon: MapPin, label: t.companyDetails.address, value: t.companyDetails.addressValue },
-    { icon: Phone, label: t.companyDetails.phone, value: <bdi dir="ltr">+971 58 262 1717</bdi>, href: "tel:+971582621717" },
-    { icon: Mail, label: t.companyDetails.email, value: "info@baitalebdaa.com", href: "mailto:info@baitalebdaa.com" },
-    { icon: Clock, label: t.hoursLabel, value: t.hoursValue },
+    { icon: MapPin, label: t.companyDetails.address, value: business.address[lang] || business.address.en },
+    { icon: Phone, label: t.companyDetails.phone, value: <bdi dir="ltr">{formatPhone(business.phone)}</bdi>, href: `tel:${business.phone}` },
+    { icon: Mail, label: t.companyDetails.email, value: business.email, href: `mailto:${business.email}` },
+    { icon: Clock, label: t.hoursLabel, value: business.hours[lang] || business.hours.en },
   ];
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} useFooterLogo={true} lightTheme={true} />
+      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
 
       <main className="services-page about-page">
-        <PageHeader
-          kicker={t.navTitle}
-          breadcrumbs={<><a href={lang === "ar" ? "/ar" : "/"}>{home}</a> &nbsp;&#9656;&nbsp; <strong>{t.navTitle}</strong></>}
+        <PhotoHero
+          image={HERO_IMAGE}
+          alt={imageAlt(HERO_IMAGE, lang)}
+          crumbs={[{ label: home, href: lang === "ar" ? "/ar" : "/" }, { label: t.navTitle }]}
+          chip={t.navTitle}
           title={t.pageTitle}
         />
-
-        <section className="services-hero-section">
-          <Reveal eager className="services-hero-wrapper" delay={100}>
-            <Image src={HERO_IMAGE} alt={imageAlt(HERO_IMAGE, lang)} fill sizes="100vw" style={{ objectFit: "cover" }} priority />
-          </Reveal>
-        </section>
 
         <section className="shell slp-intro-section">
           <Reveal>

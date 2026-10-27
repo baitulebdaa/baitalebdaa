@@ -1,5 +1,6 @@
 import { ORGANIZATION_ID, ORG_REF, SITE_URL as BASE, WEBSITE_ID } from "./schema-ids";
 import { SOCIAL_PROFILES } from "../data/social-profiles";
+import { DEFAULT_BUSINESS } from "../data/business";
 
 // Builds a complete, self-referencing metadata object for a static page (one not
 // covered by the SEO map's generateMetadata in [service]/[location]/page.jsx).
@@ -89,7 +90,8 @@ const ORG_DESCRIPTION = {
   ar: "شركة تصميم داخلي وتجهيز متكامل وتجديد تنفّذ مشاريع الفلل والشقق والمكاتب في جميع الإمارات السبع، مع نجارة مخصصة تُصنع في مصنعها الخاص بمساحة 15,000 قدم مربع في الجرف الصناعية 2 بعجمان.",
 };
 
-export function organizationJsonLd(lang = "en") {
+/** `business` is the contact record edited in the admin panel (src/data/business.js). */
+export function organizationJsonLd(lang = "en", business = DEFAULT_BUSINESS) {
   return {
     "@context": "https://schema.org",
     "@type": "HomeAndConstructionBusiness",
@@ -100,19 +102,21 @@ export function organizationJsonLd(lang = "en") {
     url: BASE,
     logo: { "@type": "ImageObject", url: `${BASE}/assets/logo.png`, width: 2170, height: 725 },
     image: `${BASE}/assets/bait-al-ebdaa-luxury-interior-design-dubai-og.jpg`,
-    telephone: "+971582621717",
-    email: "info@baitalebdaa.com",
+    telephone: business.phone,
+    email: business.email,
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer service",
-      telephone: "+971582621717",
-      email: "info@baitalebdaa.com",
+      telephone: business.phone,
+      email: business.email,
       areaServed: "AE",
       availableLanguage: ["English", "Arabic"],
     },
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Showroom No. 052004009, Jurf Industrial 2",
+      // The default address's street part, or the whole edited address once it changes.
+      streetAddress:
+        business.address.en === DEFAULT_BUSINESS.address.en ? "Showroom No. 052004009, Jurf Industrial 2" : business.address.en,
       addressLocality: "Ajman",
       addressRegion: "Ajman",
       addressCountry: "AE",

@@ -2,6 +2,8 @@
 // collect visitor details conversationally and submit a quote/survey request
 // directly, rather than only pointing to WhatsApp or the form.
 import { saveLead } from "../../../lib/admin/leads";
+import { DEFAULT_BUSINESS, formatPhone } from "../../../data/business";
+import { getBusiness } from "../../../lib/business";
 import { clientIp, isSameOrigin, rateLimitedResponse, takeRateLimit, RATE_LIMITS } from "../../../lib/request-guard";
 
 const MODEL = "gemini-3.5-flash-lite";
@@ -108,6 +110,15 @@ const TOOLS = [
 ];
 
 // ── System prompt ───────────────────────────────────────────────────────────
+// The instructions and replies are written with the default contact details; these swap in
+// the ones edited in the admin panel (Settings → Business details).
+function withBusiness(text, business) {
+  return text
+    .replaceAll(formatPhone(DEFAULT_BUSINESS.phone), formatPhone(business.phone))
+    .replaceAll(DEFAULT_BUSINESS.email, business.email)
+    .replaceAll(DEFAULT_BUSINESS.salesEmail, business.salesEmail);
+}
+
 const SYSTEM_INSTRUCTION = `You are the friendly, knowledgeable website assistant for Bait Al Ebdaa (بيت الإبداع), a turnkey interior design, fit-out and architectural joinery company based in the UAE.
 
 أنت أيضاً تتحدث العربية بطلاقة. إذا كتب الزائر بالعربية، أجب بالعربية الكاملة. لا تمزج الإنجليزية مع العربية إلا إذا فعل الزائر ذلك أولاً. استخدم لهجة مهنية ودافئة.
@@ -276,6 +287,7 @@ function isClientImage(value) {
 
 // ── POST handler ────────────────────────────────────────────────────────────
 export async function POST(request) {
+  const business = await getBusiness();
   if (!isSameOrigin(request)) {
     return Response.json({ code: "forbidden", error: "Forbidden." }, { status: 403 });
   }
@@ -320,7 +332,7 @@ export async function POST(request) {
     });
 
     const requestBody = JSON.stringify({
-      systemInstruction: { parts: [{ text: SYSTEM_INSTRUCTION }] },
+      systemInstruction: { parts: [{ text: withBusiness(SYSTEM_INSTRUCTION, business) }] },
       contents,
       tools: TOOLS,
       generationConfig: { temperature: 0.35, maxOutputTokens: 500 },
@@ -383,7 +395,7 @@ export async function POST(request) {
       ];
 
       const followUpBody = JSON.stringify({
-        systemInstruction: { parts: [{ text: SYSTEM_INSTRUCTION }] },
+        systemInstruction: { parts: [{ text: withBusiness(SYSTEM_INSTRUCTION, business) }] },
         contents: followUpContents,
         tools: TOOLS,
         generationConfig: { temperature: 0.35, maxOutputTokens: 500 },
@@ -410,7 +422,7 @@ export async function POST(request) {
       const fallbackReply = emailResult.ok
         ? "Done! Your quote request has been sent to the Bait Al Ebdaa team. They will contact you within a few hours during working hours (Mon–Sat, 8 AM – 10 PM). You can also WhatsApp +971 58 262 1717 for faster response."
         : "I'm sorry, I wasn't able to send your request right now. Please WhatsApp us directly at +971 58 262 1717 or use the contact form on the website, and the team will arrange your free site survey.";
-      return Response.json({ reply: fallbackReply, model: MODEL, quoteSent: emailResult.ok });
+      return Response.json({ reply: withBusiness(fallbackReply, business), model: MODEL, quoteSent: emailResult.ok });
     }
 
     // Regular text response (no function call)

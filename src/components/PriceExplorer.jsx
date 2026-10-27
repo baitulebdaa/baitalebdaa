@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useId, useRef, useState } from "react";
 import { ArrowUpRight } from "./icons";
-import { useI18n } from "../i18n/I18nProvider";
+import { useBusiness, useI18n } from "../i18n/I18nProvider";
 import { Reveal } from "./Shared";
 import { pricingGroups, CURRENCY } from "../data/pricing";
 import { formatPrice } from "../lib/pricing";
@@ -32,6 +32,7 @@ const fmt = new Intl.NumberFormat("en-AE");
 
 export function PriceExplorer() {
   const { lang, dict } = useI18n();
+  const business = useBusiness();
   const t = dict.priceExplorerSection;
   const p = dict.pricingPage;
   const [active, setActive] = useState(0);
@@ -70,7 +71,7 @@ export function PriceExplorer() {
 
   const setQuantity = (n) => cfg.qty && setQty({ ...qty, [cfg.id]: Math.min(cfg.qty.max, Math.max(cfg.qty.min, n)) });
 
-  const waHref = `https://wa.me/971582621717?text=${encodeURIComponent(t.whatsappMessage.replace("{service}", copy.title))}`;
+  const waHref = `https://wa.me/${business.whatsapp}?text=${encodeURIComponent(t.whatsappMessage.replace("{service}", copy.title))}`;
 
   return (
     <section className="section price-explorer-section" id="price-guide">

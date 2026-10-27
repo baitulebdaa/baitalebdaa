@@ -112,17 +112,28 @@ test("every admin page and admin API checks the session", () => {
     "src/app/admin/(panel)/leads/page.jsx",
     "src/app/admin/(panel)/leads/[kind]/[id]/page.jsx",
     "src/app/admin/(panel)/visits/page.jsx",
+    "src/app/admin/(panel)/settings/page.jsx",
+    "src/app/admin/(panel)/users/page.jsx",
+    "src/app/admin/(panel)/users/[uid]/page.jsx",
   ]) {
     assert.match(read(file), /await requireAdmin\(\)/, file);
   }
   assert.match(read("src/app/api/admin/leads/[kind]/[id]/route.js"), /await currentAdmin\(\)/);
+  assert.match(read("src/app/api/admin/password/route.js"), /await currentAdmin\(\)/);
+  assert.match(read("src/app/api/admin/profile/route.js"), /await currentAdmin\(\)/);
+  assert.match(read("src/app/api/admin/business/route.js"), /await currentAdmin\(\)/);
+  assert.match(read("src/app/api/admin/leads/summary/route.js"), /await currentAdmin\(\)/);
+  assert.match(read("src/app/api/admin/users/[uid]/route.js"), /await currentAdmin\(\)/);
+  assert.match(read("src/app/api/admin/admins/route.js"), /await currentAdmin\(\)/);
 });
 
 test("the service-account code never reaches the browser", () => {
   for (const file of [
     "src/app/admin/_components/Shell.jsx",
     "src/app/admin/_components/StatusForm.jsx",
-    "src/app/admin/_components/RangeSelect.jsx",
+    "src/app/admin/_components/NewLeadsBell.jsx",
+    "src/app/admin/_components/UserActions.jsx",
+    "src/app/admin/_components/TeamManager.jsx",
     "src/app/admin/login/LoginForm.jsx",
   ]) {
     const source = read(file);
@@ -139,7 +150,48 @@ test("the made-up preview leads can only appear in development", () => {
 test("enquiries are saved to the admin panel before the email is sent", () => {
   const contact = read("src/app/api/contact/route.js");
   assert.ok(contact.indexOf("await saveLead(") < contact.indexOf("fetch(RESEND_API_URL"), "contact form saves first");
-  assert.match(contact, /formType !== "newsletter" && formType !== "careers"/);
+  assert.match(contact, /const isLead = formType !== "newsletter";/);
   const chat = read("src/app/api/chat/route.js");
   assert.ok(chat.indexOf("await saveLead(") < chat.indexOf("fetch(RESEND_API_URL"), "Ask Ali saves first");
+});
+
+test("business details fall back to today's values and ignore bad input", async () => {
+  const { DEFAULT_BUSINESS, mergeBusiness, formatPhone } = await import("../src/data/business.js");
+  assert.deepEqual(mergeBusiness(null), DEFAULT_BUSINESS);
+  const merged = mergeBusiness({ phone: "not a phone", email: " ", address: { en: "New address" } });
+  assert.equal(merged.phone, DEFAULT_BUSINESS.phone);
+  assert.equal(merged.email, DEFAULT_BUSINESS.email);
+  assert.equal(merged.address.en, "New address");
+  assert.equal(merged.address.ar, DEFAULT_BUSINESS.address.ar);
+  assert.equal(formatPhone(DEFAULT_BUSINESS.phone), "+971 58 262 1717");
+});
+
+test("a signed-in customer's quote is linked to their account and prefilled", () => {
+  const contact = read("src/app/api/contact/route.js");
+  assert.match(contact, /customerUid: customer\?\.uid/);
+  assert.match(read("src/lib/account/data.js"), /where\("customerUid", "==", customer\.uid\)/);
+  assert.match(read("src/components/QuoteModal.jsx"), /useAccountPrefill\(open\)/);
+  assert.match(read("src/components/ContactForm.jsx"), /useAccountPrefill\(\)/);
+});
+
+test("admin accounts can't be blocked or deleted from the Users page", () => {
+  const route = read("src/app/api/admin/users/[uid]/route.js");
+  assert.match(route, /if \(user\.admin\) return/);
+});
+
+test("owners and yourself can't be removed as admin", () => {
+  const route = read("src/app/api/admin/admins/route.js");
+  assert.match(route, /email === admin\.email\) return fail/);
+  assert.match(route, /isOwner\(email\)\) return fail/);
+});
+
+test("site visit requests reach the panel without an email and are never called a booking", async () => {
+  const contact = read("src/app/api/contact/route.js");
+  assert.match(contact, /formType === "siteVisit"/);
+  assert.match(read("src/lib/admin/leads.js"), /siteVisit: "Site visit request"/);
+  const form = read("src/components/SiteVisitModal.jsx");
+  assert.match(form, /formType: "siteVisit"/);
+  // What visitors read: a request, never "booked" or "confirmed" (the team confirms by phone).
+  const { dictionaries } = await import("../src/i18n/dictionaries.js");
+  assert.doesNotMatch(JSON.stringify(dictionaries.en.siteVisit), /confirmed|booked/i);
 });

@@ -8,10 +8,12 @@ import { dictionaries } from "../../i18n/dictionaries";
 import { SOCIAL_PROFILES } from "../../data/social-profiles";
 import { SITE_URL } from "../../lib/schema-ids";
 import { REAL_PROJECT_SLUGS } from "../../data/project-catalog";
+import { formatPhone } from "../../data/business";
+import { getBusiness } from "../../lib/business";
 
 export const dynamic = "force-static";
 
-function buildLlmsTxt() {
+function buildLlmsTxt(business) {
   const en = dictionaries.en;
   const articles = [en.mediaPage.featuredArticle, ...en.mediaPage.articles];
   const servicePages = Object.values(seoData.pages.en)
@@ -30,9 +32,9 @@ function buildLlmsTxt() {
     "",
     "Key facts:",
     "- Delivery area: all seven emirates (Dubai, Abu Dhabi, Sharjah, Ajman, Ras Al Khaimah, Fujairah, Umm Al Quwain).",
-    "- Registered address and factory: Showroom No. 052004009, Jurf Industrial 2, Ajman, UAE.",
-    "- Contact: +971 58 262 1717 (phone and WhatsApp), info@baitalebdaa.com.",
-    "- Opening hours: Monday to Saturday, 8:00 AM to 10:00 PM (UAE time).",
+    `- Registered address and factory: ${business.address.en.replace(/\.$/, "")}.`,
+    `- Contact: ${formatPhone(business.phone)} (phone and WhatsApp), ${business.email}.`,
+    `- Opening hours: ${business.hours.en.replace(/\.$/, "")} (UAE time).`,
     "- Design, authority approvals, fit-out and joinery are delivered by one team under one contract.",
     "- Languages: English and Arabic. Every page below has an Arabic version under /ar/.",
     "- Prices on the site are indicative starting prices in AED, excluding VAT.",
@@ -66,8 +68,8 @@ function buildLlmsTxt() {
   ].join("\n");
 }
 
-export function GET() {
-  return new Response(buildLlmsTxt(), {
+export async function GET() {
+  return new Response(buildLlmsTxt(await getBusiness()), {
     headers: { "Content-Type": "text/plain; charset=utf-8" },
   });
 }

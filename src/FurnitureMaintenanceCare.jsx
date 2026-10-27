@@ -1,13 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 import { ArrowUpRight, Check, Phone } from "./components/icons";
-import { useI18n } from "./i18n/I18nProvider";
-import { Header, Footer, Reveal, FaqSplit, ProcessTimeline } from "./components/Shared";
+import { useBusiness, useI18n } from "./i18n/I18nProvider";
+import { Header, Footer, Reveal, PhotoHero, FaqSplit, ProcessTimeline } from "./components/Shared";
 import { ORG_REF } from "./lib/schema-ids";
 import { imageAlt } from "./data/image-alts";
-import { MOSAIC_MAIN_SIZES, MOSAIC_SMALL_SIZES } from "./lib/image-sizes";
 
 // Joinery the aftercare team services: wardrobe doors and hardware, a fitted cabinet, a walk-in closet.
 // (Full-resolution photos only — the 588px glass-door shot looked soft at hero size.)
@@ -19,6 +17,7 @@ const HERO_IMAGES = [
 
 export default function FurnitureMaintenanceCare() {
   const { lang, dict } = useI18n();
+  const business = useBusiness();
   const [menuOpen, setMenuOpen] = useState(false);
   const t = dict.furnitureMaintenancePage;
 
@@ -27,7 +26,7 @@ export default function FurnitureMaintenanceCare() {
       ? "مرحباً! أرغب بحجز تقييم صيانة للأثاث/النجارة الخاصة بي."
       : "Hello! I'd like to book a furniture/joinery maintenance assessment."
   );
-  const waHref = `https://wa.me/971582621717?text=${waMessage}`;
+  const waHref = `https://wa.me/${business.whatsapp}?text=${waMessage}`;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -62,54 +61,28 @@ export default function FurnitureMaintenanceCare() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} useFooterLogo={true} lightTheme={true} />
+      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
 
       <main className="services-page">
-        {/* Hero — same split layout as the service pages: copy and actions beside a photo mosaic */}
-        <section className="shell slp-hero">
-          <div className="slp-hero__copy">
-            <Reveal eager>
-              <nav className="slp-crumbs" aria-label={lang === "ar" ? "مسار التنقل" : "Breadcrumb"}>
-                <a href={lang === "en" ? "/" : "/ar"}>{dict.ourProjectsPage.home}</a> &nbsp;&#9656;&nbsp; <strong aria-current="page">{t.navTitle}</strong>
-              </nav>
-              <span className="slp-chip">
-                <i aria-hidden="true" />
-                {t.kicker}
-              </span>
-              <h1 className="slp-hero__title">{t.pageTitle}</h1>
-              <p className="slp-hero__lead">{t.intro}</p>
-              <ul className="slp-hero__points">
-                {t.heroPoints.map((point) => (
-                  <li key={point}>
-                    <Check size={16} />
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-            <Reveal eager delay={120} className="slp-hero__foot">
-              <div className="slp-hero__actions">
-                <a className="slp-btn slp-btn--solid" href={waHref} target="_blank" rel="noopener noreferrer">
-                  {lang === "ar" ? "واتساب الآن" : "WhatsApp Now"} <ArrowUpRight size={15} />
-                </a>
-                <a className="slp-btn" href="tel:+971582621717">
-                  {lang === "ar" ? "اتصل الآن" : "Call Now"} <Phone size={15} />
-                </a>
-              </div>
-            </Reveal>
-          </div>
-
-          <Reveal eager className="slp-mosaic" delay={100}>
-            <div className="slp-mosaic__main">
-              <Image src={HERO_IMAGES[0]} alt={imageAlt(HERO_IMAGES[0], lang) || t.navTitle} fill sizes={MOSAIC_MAIN_SIZES} style={{ objectFit: "cover" }} priority />
-            </div>
-            {HERO_IMAGES.slice(1).map((src) => (
-              <div className="slp-mosaic__small" key={src}>
-                <Image src={src} alt={imageAlt(src, lang)} fill sizes={MOSAIC_SMALL_SIZES} style={{ objectFit: "cover" }} />
-              </div>
-            ))}
-          </Reveal>
-        </section>
+        <PhotoHero
+          image={HERO_IMAGES[0]}
+          alt={imageAlt(HERO_IMAGES[0], lang) || t.navTitle}
+          crumbs={[{ label: dict.ourProjectsPage.home, href: lang === "ar" ? "/ar" : "/" }, { label: t.navTitle }]}
+          chip={t.kicker}
+          title={t.pageTitle}
+          lead={t.intro}
+          tags={t.heroPoints}
+          actions={
+            <>
+              <a className="slp-btn slp-btn--solid" href={waHref} target="_blank" rel="noopener noreferrer">
+                {lang === "ar" ? "واتساب الآن" : "WhatsApp Now"} <ArrowUpRight size={15} />
+              </a>
+              <a className="slp-btn" href={`tel:${business.phone}`}>
+                {lang === "ar" ? "اتصل الآن" : "Call Now"} <Phone size={15} />
+              </a>
+            </>
+          }
+        />
 
         {/* What's included */}
         <section className="shell slp-included-section">

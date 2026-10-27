@@ -1,34 +1,44 @@
 "use client";
 
 import { useState } from "react";
-import { Check } from "./icons";
-import { useI18n } from "../i18n/I18nProvider";
+import { Calendar, Check, Curtains, Home, Minus, Plus, StageMake, WhatsappLogo } from "./icons";
+import { useBusiness, useI18n } from "../i18n/I18nProvider";
 import { Reveal } from "./Shared";
 import { sliderFillPosition } from "../lib/slider";
 
 // Base cost per sqft varies by scope only: prices are the same in every emirate.
 const BASE_RATE_BY_SCOPE = [220, 150, 80]; // Full Turnkey, Factory Joinery, Somfy Curtains
+const SCOPE_ICONS = [Home, StageMake, Curtains];
+const MIN = 500;
+const MAX = 15000;
+const STEP = 100;
+const PRESETS = [1500, 3500, 7500, 12000];
 
-// onBookSurvey, when passed (the homepage instance), hands the selected size straight
-// to the "Get Free Quote" modal instead of the CTA duplicating a second lead form —
-// ctaHref stays for the other instances (pricing page, service+location pages) that
-// link out to a real /contact page or WhatsApp instead.
+// The cost estimator (owner, 27 Oct 2026: "make it professional and modern"). Two steps
+// on the left (size, then scope as cards), the estimate on a deep green panel on the right
+// with a free site visit as the main action. The calculation is unchanged.
+//
+// onBookSurvey, when passed (the homepage), opens the site visit form with the chosen size;
+// ctaHref is where the other instances (pricing, service pages) send the visitor instead.
 export function Estimator({ compact = false, ctaHref, onBookSurvey }) {
   const { lang, dict } = useI18n();
-  // No inline #contact form exists on any page, so the fallback is the contact page's form.
-  const surveyHref = ctaHref || `/${lang}/contact#contact-form`;
+  const business = useBusiness();
   const t = dict.estimatorSection;
-  const unit = lang === "ar" ? "قدم²" : "sqft";
+  const surveyHref = ctaHref || `/${lang}/contact#contact-form`;
+  const unit = lang === "ar" ? "قدم²" : "sq ft";
+  const number = (value) => value.toLocaleString(lang === "ar" ? "ar-AE" : "en-US");
 
   const [size, setSize] = useState(3500);
   const [scope, setScope] = useState(0);
+  const setClamped = (value) => setSize(Math.min(MAX, Math.max(MIN, value)));
 
   const totalCost = size * BASE_RATE_BY_SCOPE[scope];
-  const formattedCost = new Intl.NumberFormat('en-AE', { style: 'currency', currency: 'AED', maximumFractionDigits: 0 }).format(totalCost);
-  const sizeFillPos = sliderFillPosition(size, 500, 15000, 28);
+  const formattedCost = new Intl.NumberFormat("en-AE", { maximumFractionDigits: 0 }).format(totalCost);
+  const fill = sliderFillPosition(size, MIN, MAX, 24);
+  const waMessage = t.whatsappMessage.replace("{scope}", t.scopeOptions[scope]).replace("{size}", number(size));
 
   return (
-    <section className={`section estimator-section${compact ? " estimator-section--compact" : ""}`}>
+    <section className={`section estimator-section est${compact ? " estimator-section--compact" : ""}`}>
       <div className="shell">
         {!compact && (
           <Reveal className="section-heading section-heading--center estimator-heading">
@@ -38,66 +48,117 @@ export function Estimator({ compact = false, ctaHref, onBookSurvey }) {
           </Reveal>
         )}
 
-        <div className="estimator-grid">
-          <Reveal className="estimator-controls" delay={100}>
-            <div className="estimator-control-group">
-              <div className="estimator-label-row">
-                <label>{t.propertySize}</label>
-                <div className="estimator-value-badge">{size.toLocaleString()} {unit}</div>
+        <Reveal className="est-card" delay={100}>
+          <div className="est-controls">
+            <div className="est-step">
+              <p className="est-step__label"><span>1</span>{t.sizeStep}</p>
+              <div className="est-size">
+                <button type="button" className="est-size__btn" onClick={() => setClamped(size - 500)} aria-label={t.smaller} disabled={size <= MIN}>
+                  <Minus size={20} />
+                </button>
+                <p className="est-size__value" aria-live="polite">
+                  <strong>{number(size)}</strong> <span>{unit}</span>
+                </p>
+                <button type="button" className="est-size__btn" onClick={() => setClamped(size + 500)} aria-label={t.larger} disabled={size >= MAX}>
+                  <Plus size={20} />
+                </button>
               </div>
               <input
                 type="range"
-                min="500"
-                max="15000"
-                step="100"
+                min={MIN}
+                max={MAX}
+                step={STEP}
                 value={size}
                 onChange={(e) => setSize(Number(e.target.value))}
-                className="estimator-slider"
+                className="est-slider"
                 aria-label={t.propertySize}
-                style={{ background: `linear-gradient(to ${lang === "ar" ? "left" : "right"}, #000 ${sizeFillPos}, rgba(0,0,0,.12) ${sizeFillPos})` }}
+                style={{ "--fill": fill }}
               />
-              <div className="estimator-slider-ticks">
-                <span>500 {unit}</span>
-                <span>15,000 {unit}</span>
+              <div className="est-ticks">
+                <span>{number(MIN)}</span>
+                <span>{number(MAX)} {unit}</span>
               </div>
-            </div>
-
-            <div className="estimator-control-group">
-              <label>{t.scope}</label>
-              <div className="project-types" dir="ltr" style={{ width: '100%', margin: '0', justifyContent: 'flex-start' }}>
-                {t.scopeOptions.map((opt, i) => (
-                  <button type="button" key={i} className={scope === i ? "is-active" : ""} onClick={() => setScope(i)}>{opt}</button>
+              <div className="est-presets" role="group" aria-label={t.presets}>
+                {PRESETS.map((preset) => (
+                  <button
+                    type="button"
+                    key={preset}
+                    className={`est-preset ${size === preset ? "is-on" : ""}`}
+                    onClick={() => setSize(preset)}
+                    aria-pressed={size === preset}
+                  >
+                    {number(preset)}
+                  </button>
                 ))}
               </div>
             </div>
 
-          </Reveal>
+            <div className="est-step">
+              <p className="est-step__label"><span>2</span>{t.scopeStep}</p>
+              <div className="est-scopes" role="radiogroup" aria-label={t.scope}>
+                {t.scopeOptions.map((option, i) => {
+                  const Icon = SCOPE_ICONS[i] || Home;
+                  return (
+                    <button
+                      type="button"
+                      key={option}
+                      role="radio"
+                      aria-checked={scope === i}
+                      className={`est-scope ${scope === i ? "is-on" : ""}`}
+                      onClick={() => setScope(i)}
+                    >
+                      <span className="est-scope__icon"><Icon size={22} /></span>
+                      <span className="est-scope__text">
+                        <strong>{option}</strong>
+                        <small>{t.scopeNotes?.[i]}</small>
+                      </span>
+                      <span className="est-scope__tick" aria-hidden="true"><Check size={18} /></span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
 
-          <Reveal className="estimator-result" delay={200}>
-            <div className="estimator-result-badge">{t.estimatedInvestment}</div>
-            <p className="estimator-result-label">{t.calculatedValue}</p>
-            <p className="estimator-result-price hx">{formattedCost}</p>
+          <div className="est-result">
+            <p className="est-result__badge">{t.estimatedInvestment}</p>
+            <p className="est-result__label">{t.calculatedValue}</p>
+            <p className="est-result__price" aria-live="polite">
+              <span>AED</span>
+              <strong>{formattedCost}</strong>
+            </p>
+            <p className="est-result__note">{t.disclaimer}</p>
 
-            <ul className="estimator-inclusions">
-              {t.inclusions.map((inc, i) => (
-                <li key={i}>
-                  <Check size={16} className="estimator-check" />
-                  {inc}
+            <p className="est-result__included">{t.included}</p>
+            <ul className="est-result__list">
+              {t.inclusions.map((item) => (
+                <li key={item}>
+                  <Check size={18} /> {item}
                 </li>
               ))}
             </ul>
 
-            {onBookSurvey ? (
-              <button type="button" className="estimator-submit-btn" onClick={() => onBookSurvey(size)}>
-                {t.bookSurvey}
-              </button>
-            ) : (
-              <a href={surveyHref} className="estimator-submit-btn">
-                {t.bookSurvey}
+            <div className="est-result__actions">
+              {onBookSurvey ? (
+                <button type="button" className="est-cta" onClick={() => onBookSurvey(size)}>
+                  <Calendar size={20} /> {t.siteVisit}
+                </button>
+              ) : (
+                <a href={surveyHref} className="est-cta">
+                  <Calendar size={20} /> {t.siteVisit}
+                </a>
+              )}
+              <a
+                className="est-cta est-cta--ghost"
+                href={`https://wa.me/${business.whatsapp}?text=${encodeURIComponent(waMessage)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <WhatsappLogo size={20} /> {t.whatsapp}
               </a>
-            )}
-          </Reveal>
-        </div>
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

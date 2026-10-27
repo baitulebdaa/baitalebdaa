@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { CalendarCheck, DocumentText, Edit, Mail, Phone, SignOut, Trash, WhatsappLogo } from "./components/icons";
-import { useI18n } from "./i18n/I18nProvider";
+import { CalendarCheck, DocumentText, Edit, Mail, MapPin, Phone, SignOut, Trash, WhatsappLogo } from "./components/icons";
+import { useBusiness, useI18n } from "./i18n/I18nProvider";
 import { Header, Footer } from "./components/Shared";
 
 const FINAL = new Set(["completed", "cancelled"]);
@@ -20,8 +20,9 @@ const TONE = {
 
 // The signed-in customer's account (owner's app Profile design, 26 Oct 2026): who they
 // are, counts, every request with the status the team set, and their details.
-export default function AccountDashboard({ customer, phone, requests }) {
+export default function AccountDashboard({ customer, phone, address = "", requests }) {
   const { lang, dict } = useI18n();
+  const business = useBusiness();
   const t = dict.accountPage;
   const [menuOpen, setMenuOpen] = useState(false);
   const [editing, setEditing] = useState(false);
@@ -70,7 +71,7 @@ export default function AccountDashboard({ customer, phone, requests }) {
   const saveProfile = async (event) => {
     event.preventDefault();
     const data = Object.fromEntries(new FormData(event.currentTarget));
-    if (await call("PATCH", "/api/account/profile", { name: data.name, phone: data.phone })) {
+    if (await call("PATCH", "/api/account/profile", { name: data.name, phone: data.phone, address: data.address })) {
       setMessage({ ok: true, text: t.saved });
       setEditing(false);
       window.location.reload();
@@ -100,6 +101,7 @@ export default function AccountDashboard({ customer, phone, requests }) {
                 <h1>{t.hello.replace("{name}", name)}</h1>
                 <p><Mail size={16} /> <bdi dir="ltr">{customer.email}</bdi></p>
                 {phone && <p><Phone size={16} /> <bdi dir="ltr">{phone}</bdi></p>}
+                {address && <p><MapPin size={16} /> {address}</p>}
                 {!customer.emailVerified && <p className="acct-hero__note">{t.verify}</p>}
                 <button type="button" className="acct-ghost" onClick={() => setEditing((value) => !value)}>
                   <Edit size={18} /> {t.profile}
@@ -133,6 +135,12 @@ export default function AccountDashboard({ customer, phone, requests }) {
                     <input name="phone" type="tel" defaultValue={phone} placeholder={t.phoneExample} autoComplete="tel" dir="ltr" />
                   </span>
                 </label>
+                <label className="acct-field">
+                  <span className="acct-field__label">{t.address}</span>
+                  <span className="acct-field__box">
+                    <input name="address" defaultValue={address} placeholder={t.addressPlaceholder} maxLength={300} autoComplete="street-address" />
+                  </span>
+                </label>
                 <button className="acct-btn" type="submit" disabled={busy}>{busy ? t.working : t.save}</button>
               </form>
             )}
@@ -142,7 +150,7 @@ export default function AccountDashboard({ customer, phone, requests }) {
             <section className="acct-card">
               <div className="acct-card__head">
                 <h2>{t.myRequests}</h2>
-                <a className="acct-link" href="https://wa.me/971582621717" target="_blank" rel="noopener noreferrer">{t.planCta}</a>
+                <a className="acct-link" href={`https://wa.me/${business.whatsapp}`} target="_blank" rel="noopener noreferrer">{t.planCta}</a>
               </div>
               {requests.length === 0 ? (
                 <p className="acct-empty">{t.noRequests}</p>
@@ -166,7 +174,7 @@ export default function AccountDashboard({ customer, phone, requests }) {
             </section>
 
             <section className="acct-card acct-rows">
-              <a href="https://wa.me/971582621717" target="_blank" rel="noopener noreferrer"><WhatsappLogo size={20} /> {t.help}</a>
+              <a href={`https://wa.me/${business.whatsapp}`} target="_blank" rel="noopener noreferrer"><WhatsappLogo size={20} /> {t.help}</a>
               <button type="button" onClick={signOut} disabled={busy}><SignOut size={20} /> {t.signOut}</button>
             </section>
 

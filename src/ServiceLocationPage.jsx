@@ -1,10 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import { SiteVisitButton } from "./components/SiteVisitButton";
 import { useState } from "react";
 import { ArrowUpRight, Check, Phone, Whatsapp } from "./components/icons";
-import { useI18n } from "./i18n/I18nProvider";
-import { Header, Footer, Reveal, FaqSplit, ProcessTimeline } from "./components/Shared";
+import { useBusiness, useI18n } from "./i18n/I18nProvider";
+import { Header, Footer, Reveal, PhotoHero, FaqSplit, ProcessTimeline } from "./components/Shared";
 import { Estimator } from "./components/Estimator";
 import { COST_GUIDE_LINKS } from "./data/cost-guide-links";
 import { serviceContent, priorityIntroExtra, whyChooseFacts } from "./data/service-content";
@@ -14,7 +15,6 @@ import { formatPrice, servicePricing, serviceStartingItem } from "./lib/pricing"
 import { CURRENCY, VAT_INCLUSIVE } from "./data/pricing";
 import { ORG_REF, SITE_URL } from "./lib/schema-ids";
 import { faqPageJsonLd } from "./lib/faq-schema";
-import { MOSAIC_MAIN_SIZES, MOSAIC_SMALL_SIZES, MOSAIC_SINGLE_SIZES } from "./lib/image-sizes";
 
 const HERO_IMAGE_BY_SERVICE = {
   "interior-design": "/assets/luxury-living-room-chandelier-wall-panelling.jpeg",
@@ -138,6 +138,7 @@ function pickByLocation(list, locationSlug) {
 
 export default function ServiceLocationPage({ lang, row, seoContext, pilot = null }) {
   const { dict } = useI18n();
+  const business = useBusiness();
   const [menuOpen, setMenuOpen] = useState(false);
 
   const { service, location, emirateName, authority, otherAreas, otherServices, description } = seoContext;
@@ -217,7 +218,7 @@ export default function ServiceLocationPage({ lang, row, seoContext, pilot = nul
       ? `مرحباً! أرغب بالاستفسار عن خدمة ${serviceName} في ${locationName}.`
       : `Hello! I'd like to enquire about ${serviceName} in ${locationName}.`
   );
-  const waHref = `https://wa.me/971582621717?text=${waMessage}`;
+  const waHref = `https://wa.me/${business.whatsapp}?text=${waMessage}`;
 
   const project = dict.projectDetailPage.projects["government-authority"];
   // Supporting-evidence link for the office fit-out money page only: the proof card
@@ -310,7 +311,7 @@ export default function ServiceLocationPage({ lang, row, seoContext, pilot = nul
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} useFooterLogo={true} lightTheme={true} />
+      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
 
       <aside className="slp-sticky-sidebar" aria-label={lang === "ar" ? "إجراءات تواصل سريعة" : "Quick contact actions"}>
         <a
@@ -323,74 +324,55 @@ export default function ServiceLocationPage({ lang, row, seoContext, pilot = nul
           <Whatsapp size={18} />
           <span>{lang === "ar" ? "واتساب الآن" : "WhatsApp Now"}</span>
         </a>
-        <a href="tel:+971582621717" className="slp-sticky-sidebar__btn slp-sticky-sidebar__btn--call" aria-label={lang === "ar" ? "اتصل الآن" : "Call Now"}>
+        <a href={`tel:${business.phone}`} className="slp-sticky-sidebar__btn slp-sticky-sidebar__btn--call" aria-label={lang === "ar" ? "اتصل الآن" : "Call Now"}>
           <Phone size={18} />
           <span>{lang === "ar" ? "اتصل الآن" : "Call Now"}</span>
         </a>
       </aside>
 
       <main className="services-page slp-page">
-        {/* Hero — split: copy, starting price and actions beside a photo mosaic */}
-        <section className="shell slp-hero">
-          <div className="slp-hero__copy">
-            <Reveal eager>
-              <nav className="slp-crumbs" aria-label={lang === "ar" ? "مسار التنقل" : "Breadcrumb"}>
-                <a href={lang === "en" ? "/" : "/ar"}>{home}</a> &nbsp;&#9656;&nbsp;
-                <a href={`/${lang}/our-services`}>{servicesLabel}</a>
-                &nbsp;&#9656;&nbsp; <strong aria-current="page">{row.h1}</strong>
-              </nav>
-              <span className="slp-chip">
-                <i aria-hidden="true" />
-                {locationName === emirateName ? locationName : `${locationName} · ${emirateName}`}
-              </span>
-              <h1 className="slp-hero__title">{pageH1}</h1>
-              {pilot ? (
-                <p className="slp-hero__lead" data-main="pilot">{pilot.lead}</p>
-              ) : (
-                <>
-                  <p className="slp-hero__lead">{content.summary}</p>
-                  <p className="slp-hero__lead slp-hero__lead--sub">{locationClause}</p>
-                </>
-              )}
-              <ul className="slp-hero__points" {...(pilot ? { "data-main": "pilot" } : {})}>
-                {(pilot ? pilot.points : content.included.slice(0, 4)).map((item, i) => (
-                  <li key={i}>
-                    <Check size={16} />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-            <Reveal eager delay={120} className="slp-hero__foot">
-              {startingItem && (
-                <div className="slp-hero__price">
-                  <span>{lang === "ar" ? "الأسعار الاسترشادية" : "Indicative pricing"}</span>
-                  <strong>{formatPrice(startingItem, lang)}</strong>
-                  <em>{dict.pricingPage.items[startingItem.id]}</em>
-                </div>
-              )}
-              <div className="slp-hero__actions">
-                <a className="slp-btn slp-btn--solid" href={waHref} target="_blank" rel="noopener noreferrer">
-                  {lang === "ar" ? "واتساب الآن" : "WhatsApp Now"} <ArrowUpRight size={15} />
-                </a>
-                <a className="slp-btn" href="tel:+971582621717">
-                  {lang === "ar" ? "اتصل الآن" : "Call Now"} <Phone size={15} />
-                </a>
+        {/* Hero: the photo under the header; the location note, points and price follow below it */}
+        <PhotoHero
+          image={heroImage}
+          alt={heroAlt}
+          crumbs={[{ label: home, href: lang === "en" ? "/" : "/ar" }, { label: servicesLabel, href: `/${lang}/our-services` }, { label: row.h1 }]}
+          chip={locationName === emirateName ? locationName : `${locationName} · ${emirateName}`}
+          title={pageH1}
+          lead={pilot ? pilot.lead : content.summary}
+          leadProps={pilot ? { "data-main": "pilot" } : {}}
+          actions={
+            <>
+              <a className="slp-btn slp-btn--solid" href={waHref} target="_blank" rel="noopener noreferrer">
+                {lang === "ar" ? "واتساب الآن" : "WhatsApp Now"} <ArrowUpRight size={15} />
+              </a>
+              <a className="slp-btn" href={`tel:${business.phone}`}>
+                {lang === "ar" ? "اتصل الآن" : "Call Now"} <Phone size={15} />
+              </a>
+              <SiteVisitButton className="slp-btn" iconSize={15} />
+            </>
+          }
+        >
+          <Reveal>
+            {!pilot && <p className="slp-hero__lead">{locationClause}</p>}
+            {startingItem && (
+              <div className="slp-hero__price">
+                <span>{lang === "ar" ? "الأسعار الاسترشادية" : "Indicative pricing"}</span>
+                <strong>{formatPrice(startingItem, lang)}</strong>
+                <em>{dict.pricingPage.items[startingItem.id]}</em>
               </div>
-            </Reveal>
-          </div>
-
-          <Reveal eager className={`slp-mosaic${mosaicPhotos.length ? "" : " slp-mosaic--single"}`} delay={100}>
-            <div className="slp-mosaic__main">
-              <Image src={heroImage} alt={heroAlt} fill sizes={mosaicPhotos.length ? MOSAIC_MAIN_SIZES : MOSAIC_SINGLE_SIZES} style={{ objectFit: "cover" }} priority />
-            </div>
-            {mosaicPhotos.map((photo) => (
-              <div className="slp-mosaic__small" key={photo.src}>
-                <Image src={photo.src} alt={photo.alt} fill sizes={MOSAIC_SMALL_SIZES} style={{ objectFit: "cover" }} />
-              </div>
-            ))}
+            )}
           </Reveal>
-        </section>
+          <Reveal delay={80}>
+            <ul className="slp-hero__points" {...(pilot ? { "data-main": "pilot" } : {})}>
+              {(pilot ? pilot.points : content.included.slice(0, 4)).map((item, i) => (
+                <li key={i}>
+                  <Check size={16} />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </PhotoHero>
 
         {/* Proof stats band */}
         <section className="slp-band">

@@ -119,9 +119,11 @@ export default async function BlogDetail({ params }) {
     ],
   };
 
-  const breadcrumbs = lang === "ar"
-    ? <>{dict.ourProjectsPage.home} &nbsp;&#9656;&nbsp; <a href={`/${lang}/media`}>{dict.nav.media || "الإعلام"}</a> &nbsp;&#9656;&nbsp; <strong>{article.title}</strong></>
-    : <>{dict.ourProjectsPage.home} &nbsp;&#9656;&nbsp; <a href={`/${lang}/media`}>{dict.nav.media || "Media"}</a> &nbsp;&#9656;&nbsp; <strong>{article.title}</strong></>;
+  const crumbs = [
+    { label: dict.ourProjectsPage.home, href: lang === "ar" ? "/ar" : "/" },
+    { label: dict.nav.media || (lang === "ar" ? "الإعلام" : "Media"), href: `/${lang}/media` },
+    { label: article.title },
+  ];
 
   const recentArticles = allArticles
     .filter((entry) => entry.slug !== article.slug)
@@ -136,7 +138,7 @@ export default async function BlogDetail({ params }) {
       />
       <BlogDetailClient
         article={article}
-        breadcrumbs={breadcrumbs}
+        crumbs={crumbs}
         newsAndInsights={dict.mediaPage.newsAndInsights}
         recentArticles={recentArticles}
         lang={lang}

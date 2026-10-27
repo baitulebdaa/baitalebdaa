@@ -50,6 +50,8 @@ import {
   Edit2,
   CalendarTick,
   SearchNormal1,
+  Minus as IsxMinus,
+  Wind as IsxWind,
   ClipboardTick,
   Ruler as IsxRuler,
   ShoppingCart as IsxShoppingCart,
@@ -121,6 +123,9 @@ export const StageDiscover = wrap(SearchNormal1);
 export const StageVisualize = wrap(IsxBox);
 export const StageApprove = wrap(ClipboardTick);
 export const StageMake = wrap(IsxRuler);
+export const Minus = wrap(IsxMinus);
+// Curtains (the estimator's scope cards): Iconsax has no curtain, wind reads as flowing fabric.
+export const Curtains = wrap(IsxWind);
 export const ShoppingCart = wrap(IsxShoppingCart);
 export const Box = wrap(IsxBox);
 export const Lamp = wrap(IsxLamp);

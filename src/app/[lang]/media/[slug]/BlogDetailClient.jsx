@@ -1,11 +1,13 @@
 "use client";
 
 import Image from "next/image";
+import { useBusiness } from "../../../../i18n/I18nProvider";
 import { useState } from "react";
 import { ArrowUpRight } from "../../../../components/icons";
-import { Header, Footer, Reveal, PageHeader } from "../../../../components/Shared";
+import { Header, Footer, Reveal, PhotoHero } from "../../../../components/Shared";
 
-export default function BlogDetailClient({ article, breadcrumbs, newsAndInsights, recentArticles, lang, discuss }) {
+export default function BlogDetailClient({ article, crumbs, newsAndInsights, recentArticles, lang, discuss }) {
+  const business = useBusiness();
   const [menuOpen, setMenuOpen] = useState(false);
   
   const waMessage = encodeURIComponent(
@@ -13,43 +15,36 @@ export default function BlogDetailClient({ article, breadcrumbs, newsAndInsights
       ? "مرحباً! أرغب بمناقشة مشروعي معكم."
       : "Hello! I'd like to discuss my project with you."
   );
-  const waHref = `https://wa.me/971582621717?text=${waMessage}`;
+  const waHref = `https://wa.me/${business.whatsapp}?text=${waMessage}`;
 
   return (
     <>
-      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} useFooterLogo={true} lightTheme={true} />
+      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
       
       <main className="blog-detail-page">
-        <PageHeader 
-          kicker={newsAndInsights}
-          breadcrumbs={breadcrumbs}
+        <PhotoHero
+          size="small"
+          image={article.image}
+          alt={article.title}
+          crumbs={crumbs}
+          chip={newsAndInsights}
           title={article.title}
+          titleClassName="ph-hero__title--article"
         />
         
-        <section className="shell article-layout" style={{ display: 'flex', flexWrap: 'wrap', gap: '60px', padding: '20px 0 60px' }}>
+        <section className="shell article-layout" style={{ display: 'flex', flexWrap: 'wrap', gap: '60px', padding: '48px 0 60px' }}>
           
           {/* Main Content — not wrapped in <Reveal>: that component only shows its
               content once an IntersectionObserver sees 14% of its (very tall, for a
               full article) height on screen at once, which a multi-thousand-word
               article can never satisfy in a normal viewport, leaving it permanently
-              opacity:0. Fade in just the compact meta/image row instead. */}
+              opacity:0. Fade in just the compact meta row instead (the photo is the page top). */}
           <div className="article-main" style={{ flex: '1 1 600px', minWidth: 0 }}>
             <Reveal eager>
               <div className="article-meta" style={{ display: 'flex', gap: '20px', color: 'var(--muted)', marginBottom: '30px', fontSize: '0.9rem' }}>
                 <span>{article.date}</span>
                 <span>•</span>
                 <span>{article.author}</span>
-              </div>
-
-              <div className="article-featured-image" style={{ position: 'relative', width: '100%', height: '400px', marginBottom: '50px', borderRadius: '12px', overflow: 'hidden' }}>
-                <Image
-                  src={article.image}
-                  alt={article.title}
-                  fill
-                  sizes="(max-width: 800px) 100vw, 800px"
-                  style={{ objectFit: 'cover' }}
-                  priority
-                />
               </div>
             </Reveal>
 

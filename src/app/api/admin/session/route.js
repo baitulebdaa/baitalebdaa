@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
-import { adminAuth, adminEmails, isAdminConfigured } from "../../../../lib/admin/firebase";
+import { allAdminEmails } from "../../../../lib/admin/admins";
+import { adminAuth, isAdminConfigured } from "../../../../lib/admin/firebase";
 import { SESSION_COOKIE, SESSION_MAX_AGE_SECONDS } from "../../../../lib/admin/session";
 import { clientIp, isSameOrigin, rateLimitedResponse, takeRateLimit, RATE_LIMITS } from "../../../../lib/request-guard";
 
@@ -27,7 +28,7 @@ export async function POST(request) {
   const email = String(body?.email || "").trim().toLowerCase();
   const password = String(body?.password || "");
   if (!email || !password || email.length > 254 || password.length > 200) return fail(WRONG, 401);
-  if (!adminEmails().includes(email)) return fail(WRONG, 401);
+  if (!(await allAdminEmails()).includes(email)) return fail(WRONG, 401);
 
   try {
     const res = await fetch(`${SIGN_IN_URL}?key=${encodeURIComponent(process.env.FIREBASE_WEB_API_KEY)}`, {
@@ -43,7 +44,7 @@ export async function POST(request) {
       return fail(WRONG, 401);
     }
     const claims = await adminAuth().verifyIdToken(result.idToken);
-    if (!adminEmails().includes(String(claims.email || "").toLowerCase())) return fail(WRONG, 401);
+    if (!(await allAdminEmails()).includes(String(claims.email || "").toLowerCase())) return fail(WRONG, 401);
     const session = await adminAuth().createSessionCookie(result.idToken, { expiresIn: SESSION_MAX_AGE_SECONDS * 1000 });
     (await cookies()).set(SESSION_COOKIE, session, {
       httpOnly: true,

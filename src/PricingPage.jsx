@@ -1,20 +1,17 @@
 "use client";
 
 import Image from "next/image";
-import { imageAlt } from "./data/image-alts";
 import { useEffect, useState } from "react";
 import { ArrowUpRight, Check, Info } from "./components/icons";
-import { useI18n } from "./i18n/I18nProvider";
-import { Header, Footer, Reveal } from "./components/Shared";
+import { useBusiness, useI18n } from "./i18n/I18nProvider";
+import { Header, Footer, Reveal, PhotoHero } from "./components/Shared";
 import { Estimator } from "./components/Estimator";
 import { pricingGroups, CURRENCY, VAT_INCLUSIVE } from "./data/pricing";
 import { formatPrice } from "./lib/pricing";
 import { COST_GUIDE_LINKS } from "./data/cost-guide-links";
 import { ORG_REF } from "./lib/schema-ids";
-import { MOSAIC_MAIN_SIZES, MOSAIC_SMALL_SIZES } from "./lib/image-sizes";
 
 // Matches the WhatsApp number already used site-wide (Hero, Header, QuoteModal).
-const WHATSAPP_NUMBER = "971582621717";
 const SITE_URL = "https://www.baitalebdaa.com";
 
 // Page order, each category's photograph, and the pricing item whose entry
@@ -137,12 +134,13 @@ function Category({ cfg, index, lang, t, extra }) {
 
 export default function PricingPage() {
   const { lang, dict } = useI18n();
+  const business = useBusiness();
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeId, setActiveId] = useState(CATEGORIES[0].id);
   const t = dict.pricingPage;
   const extra = dict.pricingPageLayout;
 
-  const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(t.whatsappMessage)}`;
+  const waHref = `https://wa.me/${business.whatsapp}?text=${encodeURIComponent(t.whatsappMessage)}`;
 
   // Highlights the jump-nav chip for the category currently in view.
   useEffect(() => {
@@ -163,57 +161,30 @@ export default function PricingPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(buildSchema(t)) }} />
-      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} useFooterLogo={true} lightTheme={true} />
+      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
 
       <main className="services-page pp-page">
-        {/* Hero */}
-        <section className="shell slp-hero pp-hero">
-          <div className="slp-hero__copy">
-            <Reveal eager>
-              <p className="slp-crumbs">
-                {dict.ourProjectsPage.home} &nbsp;&#9656;&nbsp; <strong>{t.navTitle}</strong>
-              </p>
-              <span className="slp-chip">
-                <i aria-hidden="true" />
-                {t.navTitle}
-              </span>
-              <h1 className="slp-hero__title">{t.pageTitle}</h1>
-              <p className="slp-hero__lead">{t.heroBody}</p>
-              <p className="slp-hero__lead slp-hero__lead--sub">{extra.intro2}</p>
-              <h2 className="cp-topics__title">{extra.includesTitle}</h2>
-              <ul className="slp-hero__points">
-                {extra.includes.map((item) => (
-                  <li key={item}>
-                    <Check size={16} />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-            <Reveal eager delay={120} className="slp-hero__foot pp-hero__foot">
-              <div className="slp-hero__actions">
-                <a href="#estimate" className="slp-btn slp-btn--solid">
-                  {t.heroPrimaryCta} <ArrowUpRight size={15} />
-                </a>
-                <a href={waHref} target="_blank" rel="noopener noreferrer" className="slp-btn">
-                  {t.heroSecondaryCta} <ArrowUpRight size={15} />
-                </a>
-              </div>
-              <p className="pp-hero__trust">{t.heroTrust}</p>
-            </Reveal>
-          </div>
-
-          <Reveal eager className="slp-mosaic" delay={100}>
-            <div className="slp-mosaic__main">
-              <Image src={HERO_IMAGES[0]} alt={t.pageTitle} fill sizes={MOSAIC_MAIN_SIZES} style={{ objectFit: "cover" }} priority />
-            </div>
-            {HERO_IMAGES.slice(1).map((src) => (
-              <div className="slp-mosaic__small" key={src}>
-                <Image src={src} alt={imageAlt(src, lang)} fill sizes={MOSAIC_SMALL_SIZES} style={{ objectFit: "cover" }} />
-              </div>
-            ))}
-          </Reveal>
-        </section>
+        <PhotoHero
+          image={HERO_IMAGES[0]}
+          alt={t.pageTitle}
+          crumbs={[{ label: dict.ourProjectsPage.home, href: lang === "ar" ? "/ar" : "/" }, { label: t.navTitle }]}
+          chip={t.navTitle}
+          title={t.pageTitle}
+          lead={t.heroBody}
+          note={extra.intro2}
+          tags={extra.includes}
+          tagsLabel={extra.includesTitle}
+          actions={
+            <>
+              <a href="#estimate" className="slp-btn slp-btn--solid">
+                {t.heroPrimaryCta} <ArrowUpRight size={15} />
+              </a>
+              <a href={waHref} target="_blank" rel="noopener noreferrer" className="slp-btn">
+                {t.heroSecondaryCta} <ArrowUpRight size={15} />
+              </a>
+            </>
+          }
+        />
 
         {/* Price basis notice — visible on the page, not hidden behind legal terms */}
         <section className="shell pp-notice-wrap">

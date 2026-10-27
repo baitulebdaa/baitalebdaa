@@ -1,102 +1,115 @@
 "use client";
 
-import Image from "next/image";
+import { formatPhone, whatsappLink } from "./data/business";
 import { useState } from "react";
-import { ArrowUpRight, Check, Clock, Mail, MapPin, Phone } from "./components/icons";
-import { useI18n } from "./i18n/I18nProvider";
-import { Header, Footer, Reveal } from "./components/Shared";
+import { ArrowUpRight, Clock, Mail, MapPin, Phone, Whatsapp } from "./components/icons";
+import { useBusiness, useI18n } from "./i18n/I18nProvider";
+import { Header, Footer, Reveal, PhotoHero } from "./components/Shared";
 import { PageFaq } from "./components/PageFaq";
 import { ContactForm } from "./components/ContactForm";
+import { SiteVisitButton } from "./components/SiteVisitButton";
 
-const WHATSAPP_NUMBER = "971582621717";
-
+// Contact page (owner, 27 Oct 2026: "update the whole contact page"). A short photo top, then
+// the form on a white card beside a deep green panel with every way to reach us, then the
+// four steps after a message, then the FAQ.
 export default function ContactPage() {
-  const { dict } = useI18n();
+  const { dict, lang } = useI18n();
+  const business = useBusiness();
   const [menuOpen, setMenuOpen] = useState(false);
   const t = dict.contactPage;
   const ui = dict.contactPageLayout;
 
-  const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(ui.whatsappMessage)}`;
-  const cards = [
-    { icon: Phone, label: ui.callLabel, value: "+971 58 262 1717", href: "tel:+971582621717" },
-    { icon: Mail, label: ui.emailLabel, value: "info@baitalebdaa.com", href: "mailto:info@baitalebdaa.com", sub: "sales@baitalebdaa.com", subHref: "mailto:sales@baitalebdaa.com" },
-    { icon: MapPin, label: ui.visitLabel, value: ui.address },
-    { icon: Clock, label: ui.hoursLabel, value: ui.hours },
+  const waHref = whatsappLink(business, ui.whatsappMessage);
+  const address = business.address[lang] || business.address.en;
+  const mapsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(business.address.en)}`;
+  const details = [
+    { icon: Phone, label: ui.callLabel, value: <bdi dir="ltr">{formatPhone(business.phone)}</bdi>, href: `tel:${business.phone}` },
+    { icon: Whatsapp, label: ui.whatsappLabel, value: <bdi dir="ltr">{formatPhone(`+${business.whatsapp}`)}</bdi>, href: waHref, external: true },
+    { icon: Mail, label: ui.emailLabel, value: business.email, href: `mailto:${business.email}`, sub: business.salesEmail, subHref: `mailto:${business.salesEmail}` },
+    { icon: MapPin, label: ui.visitLabel, value: address, sub: ui.mapsLink, subHref: mapsHref, subExternal: true },
+    { icon: Clock, label: ui.hoursLabel, value: business.hours[lang] || business.hours.en },
   ];
 
   return (
     <>
-      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} useFooterLogo={true} lightTheme={true} />
-      <main className="services-page cp-page">
-        <section className="shell slp-hero cp-hero">
-          <div className="slp-hero__copy">
-            <Reveal eager>
-              <p className="slp-crumbs">
-                {dict.ourProjectsPage.home} &nbsp;&#9656;&nbsp; <strong>{t.navTitle}</strong>
-              </p>
-              <span className="slp-chip">
-                <i aria-hidden="true" />
-                {t.navTitle}
-              </span>
-              <h1 className="slp-hero__title">{t.pageTitle}</h1>
-              <p className="slp-hero__lead">{ui.intro}</p>
-              <p className="slp-hero__lead slp-hero__lead--sub">{ui.intro2}</p>
-              <h2 className="cp-topics__title">{ui.topicsTitle}</h2>
-              <ul className="slp-hero__points">
-                {ui.topics.map((topic) => (
-                  <li key={topic}>
-                    <Check size={16} />
-                    <span>{topic}</span>
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-            <Reveal eager delay={120} className="cp-hero__actions">
+      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+      <main className="cp-page">
+        <PhotoHero
+          size="small"
+          image="/assets/luxury-living-room-chandelier-wall-panelling.jpeg"
+          alt={t.pageTitle}
+          crumbs={[{ label: dict.ourProjectsPage.home, href: lang === "ar" ? "/ar" : "/" }, { label: t.navTitle }]}
+          chip={t.navTitle}
+          title={t.pageTitle}
+          lead={ui.intro}
+          actions={
+            <>
               <a className="slp-btn slp-btn--solid" href={waHref} target="_blank" rel="noopener noreferrer">
                 {dict.nav.startProject} <ArrowUpRight size={15} />
               </a>
               <a className="slp-btn" href="#contact-form">
                 {ui.sendMessage} <ArrowUpRight size={15} />
               </a>
-            </Reveal>
+            </>
+          }
+        />
+
+        <section className="shell cp-hub">
+          <div id="contact-form" className="cp-hub__form">
+            <ContactForm />
+            <div className="cp-topics">
+              <p className="cp-topics__label">{ui.topicsTitle}</p>
+              <ul>
+                {ui.topics.map((topic) => <li key={topic}>{topic}</li>)}
+              </ul>
+            </div>
           </div>
-          <Reveal eager className="cp-hero__image" delay={100}>
-            <Image src="/assets/luxury-living-room-chandelier-wall-panelling.jpeg" alt={t.pageTitle} fill sizes="(max-width: 980px) 100vw, 50vw" style={{ objectFit: "cover" }} priority />
+
+          <Reveal as="aside" className="cp-panel" delay={80} aria-label={ui.quickContact}>
+            <p className="cp-panel__kicker">{ui.quickContact}</p>
+            <p className="cp-panel__reply">{ui.replyNote}</p>
+            <ul className="cp-panel__list">
+              {details.map((d) => (
+                <li key={d.label}>
+                  <span className="cp-panel__icon" aria-hidden="true"><d.icon size={18} /></span>
+                  <span className="cp-panel__text">
+                    <small>{d.label}</small>
+                    {d.href ? (
+                      <a href={d.href} {...(d.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}>{d.value}</a>
+                    ) : (
+                      <strong>{d.value}</strong>
+                    )}
+                    {d.sub && (
+                      <a className="cp-panel__sub" href={d.subHref} {...(d.subExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
+                        {d.sub}{d.subExternal && <ArrowUpRight size={13} />}
+                      </a>
+                    )}
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <SiteVisitButton className="cp-panel__visit" iconSize={18} />
           </Reveal>
         </section>
 
-        <section className="shell cp-cards" aria-label={ui.quickContact}>
-          {cards.map((c, i) => (
-            <Reveal className={`cp-card${i === 0 ? " cp-card--dark" : ""}`} key={c.label} delay={60 + i * 70}>
-              <div className="cp-card__icon"><c.icon size={20} aria-hidden="true" /></div>
-              <span>{c.label}</span>
-              {c.href ? <a href={c.href}><bdi dir={c.href.startsWith("tel:") ? "ltr" : undefined}>{c.value}</bdi></a> : <strong>{c.value}</strong>}
-              {c.sub && <a href={c.subHref} className="cp-card__sub">{c.sub}</a>}
-            </Reveal>
-          ))}
-        </section>
-
-        <section className="cp-steps">
+        <section className="cp-next">
           <div className="shell">
-            <Reveal>
+            <Reveal className="cp-next__head">
               <p className="micro">{ui.stepsKicker}</p>
-              <h2 className="slp-h2">{ui.stepsTitle}</h2>
+              <h2 className="cp-next__title">{ui.stepsTitle}</h2>
             </Reveal>
-            <ol className="cp-steps__grid">
-              {ui.steps.map((s, i) => (
-                <Reveal as="li" className="cp-steps__item" key={i} delay={80 + i * 70}>
-                  <span>{String(i + 1).padStart(2, "0")}</span>
-                  <h3>{s[0]}</h3>
-                  <p>{s[1]}</p>
+            <ol className="cp-next__steps">
+              {ui.steps.map(([title, body], i) => (
+                <Reveal as="li" className="cp-next__step" key={title} delay={80 + i * 70}>
+                  <span className="cp-next__num" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+                  <h3>{title}</h3>
+                  <p>{body}</p>
                 </Reveal>
               ))}
             </ol>
           </div>
         </section>
 
-        <div id="contact-form" className="cp-form">
-          <ContactForm />
-        </div>
         <PageFaq faqKey="contact" />
       </main>
       <Footer />

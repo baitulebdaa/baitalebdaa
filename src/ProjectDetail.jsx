@@ -3,8 +3,8 @@
 import Image from "next/image";
 import { useState } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Check } from "./components/icons";
-import { useI18n } from "./i18n/I18nProvider";
-import { Header, Footer, Reveal, ProcessTimeline, FaqSplit } from "./components/Shared";
+import { useBusiness, useI18n } from "./i18n/I18nProvider";
+import { Header, Footer, Reveal, PhotoHero, ProcessTimeline, FaqSplit } from "./components/Shared";
 import { QuoteModal } from "./components/QuoteModal";
 import { PageFaq } from "./components/PageFaq";
 import { getPageFaqs } from "./data/page-faqs";
@@ -15,6 +15,7 @@ const SITE_URL = "https://www.baitalebdaa.com";
 
 export default function ProjectDetail({ slug }) {
   const { lang, dict } = useI18n();
+  const business = useBusiness();
   const [menuOpen, setMenuOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [quoteOpen, setQuoteOpen] = useState(false);
@@ -32,7 +33,7 @@ export default function ProjectDetail({ slug }) {
       ? `مرحباً! أرغب بالاستفسار عن مشروع مشابه لـ "${projectData.title}".`
       : `Hello! I'd like to enquire about a project similar to "${projectData.title}".`
   );
-  const waHref = `https://wa.me/971582621717?text=${waMessage}`;
+  const waHref = `https://wa.me/${business.whatsapp}?text=${waMessage}`;
 
   // Other projects that have their own detail page, shown as cards at the foot.
   const otherProjects = dict.projectsSection.items
@@ -72,62 +73,57 @@ export default function ProjectDetail({ slug }) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema).replace(/</g, "\\u003c") }} />}
-      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} useFooterLogo={true} lightTheme={true} />
+      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
 
       <main className="project-detail-page">
-        {/* Hero — project summary and key facts beside the photo carousel */}
-        <section className="shell pd-hero">
-          <div className="pd-hero__copy">
-            <Reveal eager>
-              <nav className="slp-crumbs" aria-label={lang === "ar" ? "مسار التنقل" : "Breadcrumb"}>
-                <a href={lang === "en" ? "/" : "/ar"}>{dict.ourProjectsPage.home}</a> &nbsp;&#9656;&nbsp;
-                <a href={`/${lang}/our-projects`}>{dict.ourProjectsPage.ourProjects}</a> &nbsp;&#9656;&nbsp;
-                <strong aria-current="page">{projectData.title}</strong>
-              </nav>
-              <span className="slp-chip">
-                <i aria-hidden="true" />
-                {projectData.metadata.location}
-              </span>
-              <h1 className="slp-hero__title pd-hero__title">{projectData.pageH1 || projectData.title}</h1>
-              <p className="slp-hero__lead">{paragraphs[0]}</p>
-              {/* Highlights: the first four items of the confirmed scope of work */}
-              {projectData.scope?.length > 0 && (
-                <ul className="slp-hero__points">
-                  {projectData.scope.slice(0, 4).map((item) => (
-                    <li key={item}>
-                      <Check size={16} />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
-              <dl className="pd-hero__facts" aria-label={ui.keyFacts}>
-                {heroFacts.map((f) => (
-                  <div key={f.label}>
-                    <dt>{f.label}</dt>
-                    <dd>{f.value}</dd>
-                  </div>
-                ))}
-              </dl>
-            </Reveal>
-            <Reveal eager delay={120} className="slp-hero__actions">
+        {/* Hero: the first photo under the header; key facts and the photo carousel follow */}
+        <PhotoHero
+          image={images[0]}
+          alt={projectData.title}
+          crumbs={[{ label: dict.ourProjectsPage.home, href: lang === "ar" ? "/ar" : "/" }, { label: dict.ourProjectsPage.ourProjects, href: `/${lang}/our-projects` }, { label: projectData.title }]}
+          chip={projectData.metadata.location}
+          title={projectData.pageH1 || projectData.title}
+          lead={paragraphs[0]}
+          actions={
+            <>
               <a className="slp-btn slp-btn--solid" href={waHref} target="_blank" rel="noopener noreferrer">
                 {dict.nav.startProject} <ArrowUpRight size={15} />
               </a>
               <button type="button" className="slp-btn" onClick={() => setQuoteOpen(true)}>
                 {dict.nav.getFreeQuote} <ArrowUpRight size={15} />
               </button>
-            </Reveal>
-          </div>
-
-          <Reveal eager className="pd-hero__media" delay={100}>
+            </>
+          }
+          followClassName="pd-follow"
+        >
+          <Reveal className="pd-hero__copy">
+            {/* Highlights: the first four items of the confirmed scope of work */}
+            {projectData.scope?.length > 0 && (
+              <ul className="slp-hero__points">
+                {projectData.scope.slice(0, 4).map((item) => (
+                  <li key={item}>
+                    <Check size={16} />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+            <dl className="pd-hero__facts" aria-label={ui.keyFacts}>
+              {heroFacts.map((f) => (
+                <div key={f.label}>
+                  <dt>{f.label}</dt>
+                  <dd>{f.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </Reveal>
+          <Reveal className="pd-hero__media" delay={80}>
             <div className="pd-hero__frame" aria-roledescription="carousel" aria-label={projectData.title}>
               <Image
                 src={images[currentImageIndex]}
                 alt={`${projectData.title} — ${ui.photo} ${currentImageIndex + 1}`}
                 fill
                 sizes="(max-width: 980px) 100vw, 55vw"
-                priority
                 style={{ objectFit: "cover" }}
               />
               {images.length > 1 && (
@@ -157,7 +153,7 @@ export default function ProjectDetail({ slug }) {
               </div>
             )}
           </Reveal>
-        </section>
+        </PhotoHero>
 
         {/* About + scope */}
         <section className="shell slp-scope pd-overview">

@@ -1,4 +1,5 @@
 import { saveLead } from "../../../lib/admin/leads";
+import { currentCustomer } from "../../../lib/account/session";
 import { clientIp, isAllowedCv, isHoneypotFilled, isSameOrigin, rateLimitedResponse, takeRateLimit, HONEYPOT_FIELD, RATE_LIMITS } from "../../../lib/request-guard";
 
 // Every error carries a stable `code`; the forms turn it into an English or Arabic message
@@ -83,6 +84,12 @@ export async function POST(request) {
     if (!isValidEmail(email)) {
       return fail("invalid_email", "A valid email is required.", 400);
     }
+  } else if (formType === "siteVisit") {
+    // A site visit is arranged by phone, so the email is optional here (checked if given).
+    const phoneDigits = String(fields.phone || "").replace(/\D/g, "");
+    if (!name || typeof name !== "string" || phoneDigits.length < 7 || (email && !isValidEmail(email))) {
+      return fail("invalid_email", "A name and a phone number are required.", 400);
+    }
   } else if (!name || typeof name !== "string" || !isValidEmail(email)) {
     return fail("invalid_email", "A valid name and email are required.", 400);
   }
@@ -90,6 +97,7 @@ export async function POST(request) {
   const subjectLabel =
     {
       quote: "Free Quote Request",
+      siteVisit: "Free Site Visit Request",
       project: "Project Enquiry",
       procurement: "Procurement Enquiry",
       careers: "Careers Application",
@@ -118,13 +126,21 @@ export async function POST(request) {
     return fail("invalid_cv", "Please upload your CV as a PDF, DOC or DOCX file.", 400);
   }
 
-  const isLead = formType !== "newsletter" && formType !== "careers";
+  // Every form reaches the admin panel except the newsletter sign-up (owner, 27 Oct 2026:
+  // careers too, shown there as a job application; its CV stays in the email only).
+  const isLead = formType !== "newsletter";
   if (!emailConfigured && !isLead) {
     return fail("unavailable", "Email sending is not configured.", 500);
   }
 
   // Saved first, so the enquiry is in the admin panel even if the email then fails.
-  const saved = isLead ? await saveLead({ source: "website", formType: formType || "general", name, email, fields }) : false;
+  // A signed-in customer's quote is linked to their account (shows under My Requests).
+  // There is no file storage: the CV is attached to the email, and the panel says so.
+  const leadFields = safeAttachments.length > 0 ? { ...fields, CV: `${safeAttachments[0].filename} (sent by email)` } : fields;
+  const customer = isLead ? await currentCustomer().catch(() => null) : null;
+  const saved = isLead
+    ? await saveLead({ source: "website", formType: formType || "general", name, email, fields: leadFields, customerUid: customer?.uid })
+    : false;
   if (!emailConfigured) {
     return saved ? Response.json({ success: true }) : fail("unavailable", "Email sending is not configured.", 500);
   }
@@ -147,7 +163,7 @@ export async function POST(request) {
       body: JSON.stringify({
         from: `Bait Al Ebdaa Website <${fromEmail}>`,
         to: [toEmail],
-        reply_to: email,
+        ...(isValidEmail(email) ? { reply_to: email } : {}),
         subject: `${subjectLabel} — ${name || email}`,
         html,
         ...(safeAttachments.length > 0 ? { attachments: safeAttachments } : {}),

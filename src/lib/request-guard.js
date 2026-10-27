@@ -40,6 +40,7 @@ export const RATE_LIMITS = {
   chatQuoteEmail: { limit: 3, windowMs: 60 * 60_000 },
   // Admin sign-in: a few typos are fine, password guessing is not.
   adminLogin: { limit: 8, windowMs: 15 * 60_000 },
+  adminPasswordReset: { limit: 3, windowMs: 15 * 60_000 },
   // Customer accounts: sign-in and sign-up share a bucket; reset links have their own.
   accountAuth: { limit: 10, windowMs: 15 * 60_000 },
   accountReset: { limit: 3, windowMs: 15 * 60_000 },

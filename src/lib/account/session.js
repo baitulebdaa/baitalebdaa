@@ -2,12 +2,10 @@
 // panel's, issued after sign-in or sign-up (src/app/api/account).
 import { cookies } from "next/headers";
 import { adminAuth, isFirestoreConfigured } from "../admin/firebase";
+import { SIGNED_IN_COOKIE } from "./cookie-names";
 
+export { SIGNED_IN_COOKIE };
 export const ACCOUNT_COOKIE = "bae_account";
-// Readable by the page, not a credential: the customer's first name, which the header shows
-// under the account icon (owner, 26 Oct 2026) instead of "Sign in". The real session stays
-// in the httpOnly cookie above.
-export const SIGNED_IN_COOKIE = "bae_signed_in";
 
 const firstName = (name) => String(name || "").trim().split(/\s+/)[0].slice(0, 24);
 

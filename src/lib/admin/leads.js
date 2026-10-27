@@ -16,6 +16,8 @@ const FORM_LABELS = {
   quote: "Quote form",
   project: "Project enquiry",
   procurement: "Procurement enquiry",
+  careers: "Job application",
+  siteVisit: "Site visit request",
   general: "Contact form",
 };
 
@@ -49,7 +51,7 @@ function pick(fields, names) {
  * Saves a website or Ask Ali enquiry so it appears in the panel. Returns whether it was
  * saved; a missing key or a Firestore error is logged, never thrown.
  */
-export async function saveLead({ source, formType = null, name, email, fields = {}, locale = null }) {
+export async function saveLead({ source, formType = null, name, email, fields = {}, locale = null, customerUid = null }) {
   if (!isFirestoreConfigured()) return false;
   try {
     const clean = Object.fromEntries(
@@ -72,6 +74,8 @@ export async function saveLead({ source, formType = null, name, email, fields = 
         message: pick(clean, ["description", "message"]),
         fields: clean,
         locale,
+        // Set when sent by a signed-in customer, so it shows in their account.
+        customerUid: customerUid || null,
         status: "submitted",
         createdAt: FieldValue.serverTimestamp(),
         updatedAt: FieldValue.serverTimestamp(),
@@ -89,6 +93,7 @@ export function fromLead(doc) {
   const d = doc.data();
   return {
     key: `lead/${doc.id}`,
+    customerUid: d.customerUid || null,
     kind: "lead",
     id: doc.id,
     source: d.source === "askAli" ? "askAli" : "website",
@@ -104,8 +109,11 @@ export function fromLead(doc) {
     createdAt: toIso(d.createdAt),
     updatedAt: toIso(d.updatedAt),
     visitAt: toIso(d.visitAt),
-    preferred: null,
-    details: Object.entries(d.fields || {}),
+    preferred:
+      d.formType === "siteVisit"
+        ? [d.fields?.["Preferred day"], d.fields?.["Preferred time"]].filter(Boolean).join(" · ") || null
+        : null,
+    details: [...(d.customerUid ? [["Account", "Signed-in customer"]] : []), ...Object.entries(d.fields || {})],
   };
 }
 
@@ -121,6 +129,7 @@ export function fromRequest(doc) {
     .join(" · ");
   return {
     key: `request/${doc.id}`,
+    ownerUid: d.ownerUid || null,
     kind: "request",
     id: doc.id,
     source: "app",
@@ -208,4 +217,23 @@ export async function listActivity({ limit = 10 } = {}) {
     const d = doc.data();
     return { id: doc.id, type: d.type, text: d.text, by: d.by, at: toIso(d.at), leadKey: d.leadKey };
   });
+}
+
+/**
+ * For the top bar's bell: how many leads are still New, and the newest lead from either
+ * collection. Cheap (two counts and two single reads), so it can be polled.
+ */
+export async function newLeadsSummary() {
+  const db = adminDb();
+  const [leadsNew, requestsNew, latestLead, latestRequest] = await Promise.all([
+    db.collection("leads").where("status", "==", "submitted").count().get(),
+    db.collection("requests").where("status", "==", "submitted").count().get(),
+    db.collection("leads").orderBy("createdAt", "desc").limit(1).get(),
+    db.collection("requests").orderBy("createdAt", "desc").limit(1).get(),
+  ]);
+  const newest = [...latestLead.docs.map(fromLead), ...latestRequest.docs.map(fromRequest)].sort(byNewest)[0] || null;
+  return {
+    count: leadsNew.data().count + requestsNew.data().count,
+    newest: newest ? { key: newest.key, name: newest.name, createdAt: newest.createdAt } : null,
+  };
 }

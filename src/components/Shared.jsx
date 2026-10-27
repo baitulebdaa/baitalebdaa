@@ -1,9 +1,10 @@
 "use client";
 
 import Image from "next/image";
+import { formatPhone } from "../data/business";
 import { useEffect, useRef, useState } from "react";
-import { Account, ArrowUpRight, ChevronDown, Plus, Menu, X, Globe, Sparkles, Facebook, Instagram, Whatsapp, WhatsappLogo, Home, Services, Projects, Phone, Mail, MapPin, Clock, StageApprove, StageDiscover, StageMake, StageVisualize } from "./icons";
-import { useI18n } from "../i18n/I18nProvider";
+import { Account, ArrowUpRight, ChevronDown, Plus, Check, Menu, X, Globe, Sparkles, Facebook, Instagram, Whatsapp, WhatsappLogo, Home, Services, Projects, Phone, Mail, MapPin, Clock, StageApprove, StageDiscover, StageMake, StageVisualize } from "./icons";
+import { useBusiness, useI18n } from "../i18n/I18nProvider";
 import { useRouter, usePathname } from "next/navigation";
 import { getServiceLabel } from "../data/service-catalog";
 import { isPublishedProject } from "../data/project-catalog";
@@ -91,11 +92,15 @@ export function Reveal({ as: Tag = "div", className = "", children, delay = 0, e
 
 export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLogo = false, lightTheme = false }) {
   const { lang, dict } = useI18n();
+  const business = useBusiness();
   const router = useRouter();
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
-  // The signed-in customer's first name, read after the first render (the server can't see
-  // it), so the button reads "Sign in" until then. See src/lib/account/session.js.
+  // The signed-in customer's first name. Pages are static, so the server can't know who is
+  // signed in: a tiny script in the layout (SIGNED_IN_SCRIPT) marks <html data-signed-in> and
+  // the name before the page is drawn, and CSS shows the matching account button from the
+  // first frame (owner, 27 Oct 2026: it flickered from "Sign in" to the name on every page).
+  // This state only fills the name in as real text once React is running.
   const [accountName, setAccountName] = useState(null);
   useEffect(() => {
     const hint = document.cookie.match(/(?:^|;\s*)bae_signed_in=([^;]+)/)?.[1];
@@ -106,7 +111,6 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
     } catch {}
     setAccountName(name && name !== "1" ? name : dict.nav.account);
   }, [dict.nav.account]);
-  const signedIn = accountName !== null;
   const [servicesOpen, setServicesOpen] = useState(false);
   const servicesRef = useRef(null);
   const [projectsOpen, setProjectsOpen] = useState(false);
@@ -255,22 +259,19 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
       </nav>
       <button className="menu-button" type="button" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-controls="site-menu" aria-label={menuOpen ? dict.nav.close : dict.nav.menu}><span>{menuOpen ? dict.nav.close : dict.nav.menu}</span>{menuOpen ? <X size={24} /> : <Menu size={25} />}</button>
       <div className="header-actions">
-        <a className="outline-button header-cta" href={`https://wa.me/971582621717?text=${headerWaMessage}`} target="_blank" rel="noopener noreferrer">
+        <a className="outline-button header-cta" href={`https://wa.me/${business.whatsapp}?text=${headerWaMessage}`} target="_blank" rel="noopener noreferrer">
           <WhatsappLogo size={20} />
           {dict.nav.startProject} <ArrowUpRight size={15} />
         </a>
         {/* Customer accounts (owner, 26 Oct 2026): the same account as the mobile app. Signed
             out it reads "Sign in" and opens sign-in; signed in it is the account icon. */}
-        {signedIn ? (
-          <a className="outline-button header-account header-account--me" href={`/${lang}/account`} aria-label={`${dict.nav.account}: ${accountName}`} title={dict.nav.account} rel="nofollow">
-            <Account size={18} />
-            <span className="header-account__name">{accountName}</span>
-          </a>
-        ) : (
-          <a className="outline-button header-account header-account--signin" href={`/${lang}/account/login`} rel="nofollow">
-            <Account size={18} /> {dict.nav.signIn}
-          </a>
-        )}
+        <a className="outline-button header-account header-account--me show-signed-in" href={`/${lang}/account`} aria-label={accountName ? `${dict.nav.account}: ${accountName}` : dict.nav.account} title={dict.nav.account} rel="nofollow">
+          <Account size={18} />
+          <span className="header-account__name">{accountName}</span>
+        </a>
+        <a className="outline-button header-account header-account--signin show-signed-out" href={`/${lang}/account/login`} rel="nofollow">
+          <Account size={18} /> {dict.nav.signIn}
+        </a>
       </div>
     </header>
     <div id="site-menu" className={`menu-overlay ${menuOpen ? "is-open" : ""}`} aria-hidden={!menuOpen}>
@@ -294,8 +295,8 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
           <p className="menu-overlay__heading">{dict.nav.contactInfo}</p>
           <div className="menu-overlay__info-list">
             <span style={{whiteSpace: "pre-wrap"}}>{dict.nav.studioLocation}</span>
-            <a href="tel:+971582621717">{dict.nav.phoneLabel} | <bdi dir="ltr">+971 58 262 1717</bdi></a>
-            <a href="mailto:info@baitalebdaa.com">info@baitalebdaa.com</a>
+            <a href={`tel:${business.phone}`}>{dict.nav.phoneLabel} | <bdi dir="ltr">{formatPhone(business.phone)}</bdi></a>
+            <a href={`mailto:${business.email}`}>{business.email}</a>
           </div>
         </div>
         <div>
@@ -312,11 +313,11 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
         { key: "services", Icon: Services, label: dict.menuItems[1], href: `/${lang}/our-services`, active: pathname.includes("/our-services") },
         { key: "projects", Icon: Projects, label: dict.menuItems[2], href: `/${lang}/our-projects`, active: pathname.includes("/our-projects") },
         { key: "contact", Icon: Phone, label: dict.menuItems[6], href: `/${lang}/contact`, active: pathname.includes("/contact") },
-        signedIn
-          ? { key: "account", Icon: Account, label: accountName, href: `/${lang}/account`, active: pathname.includes("/account") }
-          : { key: "account", Icon: Account, label: dict.nav.signIn, href: `/${lang}/account/login`, active: pathname.includes("/account") },
-      ].map(({ key, Icon, label, href, active }) => (
-        <a key={key} href={href} className={active ? "is-active" : ""} aria-current={active ? "page" : undefined}>
+        // Both account entries are rendered; CSS shows the one matching <html data-signed-in>.
+        { key: "account-in", Icon: Account, label: accountName, href: `/${lang}/account`, active: pathname.includes("/account"), className: "show-signed-in" },
+        { key: "account-out", Icon: Account, label: dict.nav.signIn, href: `/${lang}/account/login`, active: pathname.includes("/account"), className: "show-signed-out" },
+      ].map(({ key, Icon, label, href, active, className = "" }) => (
+        <a key={key} href={href} className={`${active ? "is-active" : ""} ${className}`.trim() || undefined} aria-current={active ? "page" : undefined}>
           <Icon size={22} variant={active ? "Bold" : "Linear"} aria-hidden="true" />
           <span>{label}</span>
         </a>
@@ -330,6 +331,7 @@ const LEGAL_LINK_SLUGS = ["privacy-policy", "terms-and-conditions", "cookie-poli
 
 export function Footer() {
   const { lang, dict } = useI18n();
+  const business = useBusiness();
   const f = dict.footer;
   const [email, setEmail] = useState("");
   const [newsletterStatus, setNewsletterStatus] = useState("idle"); // idle | sending | sent | error
@@ -372,7 +374,7 @@ export function Footer() {
     return "#top";
   };
   const homeHref = lang === "en" ? "/" : `/${lang}`;
-  const waHref = `https://wa.me/971582621717?text=${encodeURIComponent(lang === "ar" ? "مرحباً! أرغب بمناقشة مشروعي معكم." : "Hello! I'd like to discuss my project with you.")}`;
+  const waHref = `https://wa.me/${business.whatsapp}?text=${encodeURIComponent(lang === "ar" ? "مرحباً! أرغب بمناقشة مشروعي معكم." : "Hello! I'd like to discuss my project with you.")}`;
   const about = dict.aboutPage;
   return <footer className="site-footer">
     <div className="shell footer-top">
@@ -407,11 +409,11 @@ export function Footer() {
 
       <div className="footer-links-col footer-contact">
         <p className="footer-col-title">{f.contactInfo}</p>
-        <a href="tel:+971582621717"><Phone size={16} /> <bdi dir="ltr">+971 58 262 1717</bdi></a>
-        <a href="mailto:info@baitalebdaa.com"><Mail size={16} /> info@baitalebdaa.com</a>
-        <a href="mailto:sales@baitalebdaa.com"><Mail size={16} /> <span>{f.salesLabel} sales@baitalebdaa.com</span></a>
-        <span><MapPin size={16} /> {about.companyDetails.addressValue}</span>
-        <span><Clock size={16} /> {about.hoursValue}</span>
+        <a href={`tel:${business.phone}`}><Phone size={16} /> <bdi dir="ltr">{formatPhone(business.phone)}</bdi></a>
+        <a href={`mailto:${business.email}`}><Mail size={16} /> {business.email}</a>
+        <a href={`mailto:${business.salesEmail}`}><Mail size={16} /> <span>{f.salesLabel} {business.salesEmail}</span></a>
+        <span><MapPin size={16} /> {business.address[lang] || business.address.en}</span>
+        <span><Clock size={16} /> {business.hours[lang] || business.hours.en}</span>
       </div>
     </div>
 
@@ -457,27 +459,50 @@ export function Footer() {
   </footer>;
 }
 
-export function PageHeader({ kicker, breadcrumbs, title, children }) {
+/**
+ * The page top used across the site (owner, 27 Oct 2026, after the product pages: "make the
+ * other pages' header like this"): breadcrumb, chip, title, a short lead and actions in white
+ * over a darkened photo, under the transparent header (render <Header> without lightTheme).
+ * note is one short extra line under the lead; tags, a short list shown as pills. Prices or
+ * facts go in children,
+ * shown in a light band just below the photo.
+ *
+ * crumbs: [{ label, href }], the last one being this page (no href).
+ */
+export function PhotoHero({ image, alt = "", crumbs = [], chip, title, titleClassName = "", lead, leadProps = {}, note, tags, tagsLabel, actions, children, size = "large", followClassName = "" }) {
+  const { lang } = useI18n();
   return (
     <>
-      {/* Top Bar */}
-      <div className="shell projects-top-bar">
-        <div className="projects-active-tab">
-          <span>{kicker}</span>
-          <div className="tab-underline"></div>
+      <section className={`ph-hero ph-hero--${size}`}>
+        <Image src={image} alt={alt} fill priority sizes="100vw" className="ph-hero__img" />
+        <div className="shell ph-hero__inner">
+          <Reveal eager>
+            {crumbs.length > 0 && (
+              <nav className="ph-crumbs" aria-label={lang === "ar" ? "مسار التنقل" : "Breadcrumb"}>
+                {crumbs.map((crumb, i) => (
+                  <span key={i}>
+                    {i > 0 && <i aria-hidden="true">/</i>}
+                    {crumb.href ? <a href={crumb.href}>{crumb.label}</a> : <strong aria-current="page">{crumb.label}</strong>}
+                  </span>
+                ))}
+              </nav>
+            )}
+            {chip && <span className="ph-chip">{chip}</span>}
+            <h1 className={`ph-hero__title ${titleClassName}`}>{title}</h1>
+            {lead && <p className="ph-hero__lead" {...leadProps}>{lead}</p>}
+            {note && <p className="ph-hero__note">{note}</p>}
+            {tags?.length > 0 && (
+              <ul className="ph-tags" aria-label={tagsLabel}>
+                {tags.map((tag) => (
+                  <li key={tag}><Check size={15} /> {tag}</li>
+                ))}
+              </ul>
+            )}
+          </Reveal>
+          {actions && <Reveal eager delay={120} className="ph-actions">{actions}</Reveal>}
         </div>
-        <div className="breadcrumbs">
-          <p>{breadcrumbs}</p>
-        </div>
-      </div>
-
-      {/* Title */}
-      <section className="shell page-title-section project-detail-title-section">
-        <Reveal eager>
-          <h1 className="project-detail-title">{title}</h1>
-        </Reveal>
-        {children}
       </section>
+      {children && <section className={`shell ph-follow ${followClassName}`}>{children}</section>}
     </>
   );
 }

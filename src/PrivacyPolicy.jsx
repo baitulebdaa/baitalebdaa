@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useI18n } from "./i18n/I18nProvider";
-import { Header, Footer, Reveal, PageHeader } from "./components/Shared";
+import { Header, Footer, Reveal, PhotoHero } from "./components/Shared";
 
 export default function PrivacyPolicy() {
   const { lang, dict } = useI18n();
@@ -11,12 +11,13 @@ export default function PrivacyPolicy() {
 
   return (
     <>
-      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} useFooterLogo={true} lightTheme={true} />
+      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
 
       <main className="services-page project-detail-page">
-        <PageHeader
-          kicker={t.navTitle}
-          breadcrumbs={<>{dict.ourProjectsPage.home} &nbsp;&#9656;&nbsp; <strong>{t.navTitle}</strong></>}
+        <PhotoHero
+          size="small"
+          image="/assets/minimalist-living-room-fluted-wall-panel-cove-lighting.jpeg"
+          crumbs={[{ label: dict.ourProjectsPage.home, href: lang === "ar" ? "/ar" : "/" }, { label: t.navTitle }]}
           title={t.pageTitle}
         />
 

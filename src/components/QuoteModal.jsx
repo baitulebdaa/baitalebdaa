@@ -2,17 +2,21 @@
 
 import { useEffect, useState } from "react";
 import { ArrowUpRight, X } from "./icons";
-import { useI18n } from "../i18n/I18nProvider";
+import { useBusiness, useI18n } from "../i18n/I18nProvider";
 import { sliderFillPosition } from "../lib/slider";
 import { Honeypot, honeypotValue } from "./Shared";
 import { HONEYPOT_FIELD } from "../lib/request-guard";
 import { apiErrorMessage, readJson } from "../lib/api-errors";
+import { useAccountPrefill } from "./useAccountPrefill";
 
 // initialSize lets the homepage estimator hand its selected size straight into this
 // modal (see Estimator's onBookSurvey) instead of the two duplicating a lead form.
 export function QuoteModal({ open, onClose, initialSize }) {
   const { lang, dict } = useI18n();
+  const business = useBusiness();
   const t = dict.quoteModal;
+  // Signed-in customers get their details filled in (owner, 27 Oct 2026).
+  const me = useAccountPrefill(open);
 
   const [size, setSize] = useState(initialSize || 3500);
   const [service, setService] = useState(0);
@@ -39,6 +43,7 @@ export function QuoteModal({ open, onClose, initialSize }) {
       name: data.get("name"),
       email: data.get("email"),
       phone: data.get("phone"),
+      address: data.get("address") || undefined,
       propertySize: `${size.toLocaleString()} sqft`,
       serviceType: t.serviceOptions[service],
       location: data.get("location"),
@@ -81,22 +86,30 @@ export function QuoteModal({ open, onClose, initialSize }) {
           <button type="button" className="quote-modal-close" onClick={onClose} aria-label={lang === "ar" ? "إغلاق" : "Close"}><X size={20} /></button>
         </div>
 
-        <form className="quote-modal-form" method="post" onSubmit={submit}>
+        <form className="quote-modal-form" method="post" onSubmit={submit} key={me ? "account" : "guest"}>
           <Honeypot />
           <label className="quote-modal-field">
             <span>{t.fullName} *</span>
-            <input name="name" required placeholder={t.fullNamePlaceholder} />
+            <input name="name" required placeholder={t.fullNamePlaceholder} defaultValue={me?.name || ""} />
           </label>
 
           <label className="quote-modal-field">
             <span>{t.email} *</span>
-            <input type="email" name="email" required placeholder={t.emailPlaceholder} />
+            <input type="email" name="email" required placeholder={t.emailPlaceholder} defaultValue={me?.email || ""} />
           </label>
 
           <label className="quote-modal-field">
             <span>{t.phone} *</span>
-            <input type="tel" name="phone" required defaultValue="+971" />
+            <input type="tel" name="phone" required defaultValue={me?.phone || "+971"} />
           </label>
+
+          {me && (
+            <label className="quote-modal-field">
+              <span>{dict.accountPage.address}</span>
+              <input name="address" defaultValue={me.address} placeholder={dict.accountPage.addressPlaceholder} maxLength={300} />
+            </label>
+          )}
+          {me && <p className="quote-modal-prefilled">✓ {dict.accountPage.prefilled}</p>}
 
           <div className="quote-modal-field">
             <div className="estimator-label-row">
@@ -156,7 +169,7 @@ export function QuoteModal({ open, onClose, initialSize }) {
             {sending ? t.sending || "Sending..." : t.submit}
           </button>
           <a
-            href="https://wa.me/971582621717"
+            href={`https://wa.me/${business.whatsapp}`}
             target="_blank"
             rel="noopener noreferrer"
             className="outline-button quote-modal-whatsapp"

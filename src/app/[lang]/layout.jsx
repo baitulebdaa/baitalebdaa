@@ -4,9 +4,11 @@ import "../../styles.css";
 import { I18nProvider } from "../../i18n/I18nProvider";
 import { getClientDictionary } from "../../i18n/client-dictionary";
 import { organizationJsonLd } from "../../lib/page-metadata";
+import { getBusiness } from "../../lib/business";
 import { AskAIWidget } from "../../components/AskAIWidget";
 import { CookieConsent } from "../../components/CookieConsent";
 import { CONSENT_COOKIE } from "../../lib/consent";
+import { signedInScript } from "../../lib/account/signed-in-script";
 
 // The site's GA4 web stream (owner, 25 Oct 2026). Only production deployments send data
 // (Vercel sets VERCEL_ENV); preview and local builds stay silent unless the env var is set.
@@ -99,11 +101,16 @@ export default async function RootLayout({ children, params }) {
   const resolvedParams = await params;
   const lang = resolvedParams.lang || "en";
   const isRtl = lang === "ar";
+  // Contact details as edited in the admin panel (Settings → Business details).
+  const business = await getBusiness();
   
   return (
-    <html lang={lang} dir={isRtl ? "rtl" : "ltr"} className={`${dmSans.variable} ${manrope.variable} ${tajawal.variable} ${cormorant.variable}`}>
+    // suppressHydrationWarning: the signed-in script below adds data-signed-in and the name to <html>.
+    <html lang={lang} dir={isRtl ? "rtl" : "ltr"} className={`${dmSans.variable} ${manrope.variable} ${tajawal.variable} ${cormorant.variable}`} suppressHydrationWarning>
       <body data-analytics={GA_MEASUREMENT_ID ? "on" : undefined}>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd(lang)).replace(/</g, "\\u003c") }} />
+        {/* Runs before the header is drawn, so the account button never flickers (see Header). */}
+        <script dangerouslySetInnerHTML={{ __html: signedInScript(getClientDictionary(lang).nav.account) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd(lang, business)).replace(/</g, "\\u003c") }} />
         {GA_MEASUREMENT_ID && (
           <>
             {/* Consent Mode v2: analytics cookies only after the visitor accepts (components/CookieConsent.jsx).
@@ -122,7 +129,7 @@ export default async function RootLayout({ children, params }) {
             <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} strategy="lazyOnload" />
           </>
         )}
-        <I18nProvider lang={lang} dict={getClientDictionary(lang)}>
+        <I18nProvider lang={lang} dict={getClientDictionary(lang)} business={business}>
           {children}
           <AskAIWidget />
           {GA_MEASUREMENT_ID && <CookieConsent />}

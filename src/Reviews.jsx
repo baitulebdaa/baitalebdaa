@@ -2,33 +2,33 @@
 
 import { useState } from "react";
 import { ArrowUpRight, Mail, Whatsapp } from "./components/icons";
-import { useI18n } from "./i18n/I18nProvider";
-import { Header, Footer, Reveal, PageHeader } from "./components/Shared";
+import { useBusiness, useI18n } from "./i18n/I18nProvider";
+import { Header, Footer, Reveal, PhotoHero } from "./components/Shared";
 import { ReviewCard, Stars } from "./components/ReviewCard";
 import { REVIEWS, reviewSummary } from "./data/reviews";
 
-const WHATSAPP_NUMBER = "971582621717";
 
 export default function Reviews() {
   const { lang, dict } = useI18n();
+  const business = useBusiness();
   const [menuOpen, setMenuOpen] = useState(false);
   const t = dict.reviewsPage;
   const summary = reviewSummary();
-  const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(t.whatsappMessage)}`;
-  const mailHref = `mailto:info@baitalebdaa.com?subject=${encodeURIComponent(t.emailSubject)}`;
+  const waHref = `https://wa.me/${business.whatsapp}?text=${encodeURIComponent(t.whatsappMessage)}`;
+  const mailHref = `mailto:${business.email}?subject=${encodeURIComponent(t.emailSubject)}`;
 
   return (
     <>
-      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} useFooterLogo={true} lightTheme={true} />
+      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
 
       <main className="services-page rv-page">
-        <PageHeader
-          kicker={t.navTitle}
-          breadcrumbs={<><a href={lang === "ar" ? "/ar" : "/"}>{dict.ourProjectsPage.home}</a> &nbsp;&#9656;&nbsp; <strong>{t.navTitle}</strong></>}
+        <PhotoHero
+          image="/assets/modern-living-room-beige-sofa-curtain-wall-panels.jpeg"
+          crumbs={[{ label: dict.ourProjectsPage.home, href: lang === "ar" ? "/ar" : "/" }, { label: t.navTitle }]}
+          chip={t.navTitle}
           title={t.pageTitle}
-        >
-          <p className="media-hub-intro">{t.intro}</p>
-        </PageHeader>
+          lead={t.intro}
+        />
 
         <section className="shell rv-section">
           {summary && (

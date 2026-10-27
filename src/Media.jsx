@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { ArrowUpRight } from "./components/icons";
 import { useI18n } from "./i18n/I18nProvider";
-import { Header, Footer, Reveal, PageHeader } from "./components/Shared";
+import { Header, Footer, Reveal, PhotoHero } from "./components/Shared";
 
 export default function Media() {
   const { lang, dict } = useI18n();
@@ -22,16 +22,16 @@ export default function Media() {
 
   return (
     <>
-      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} useFooterLogo={true} lightTheme={true} />
+      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
       
       <main className="media-page">
-        <PageHeader 
-          kicker={t.newsAndInsights}
-          breadcrumbs={<><a href={lang === "ar" ? "/ar" : "/"}>{dict.ourProjectsPage.home}</a> &nbsp;&#9656;&nbsp; <strong>{dict.nav.media || "Media"}</strong></>}
+        <PhotoHero
+          image="/assets/contemporary-living-room-wall-panelling-track-lighting.jpeg"
+          crumbs={[{ label: dict.ourProjectsPage.home, href: lang === "ar" ? "/ar" : "/" }, { label: dict.nav.media || "Media" }]}
+          chip={t.newsAndInsights}
           title={t.hubTitle}
-        >
-          <p className="media-hub-intro">{t.hubIntro}</p>
-        </PageHeader>
+          lead={t.hubIntro}
+        />
 
         {/* Bento Grid */}
         <section className="shell media-grid-section">

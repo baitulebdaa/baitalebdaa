@@ -2,10 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import { X, RotateCcw, ArrowUp, ImagePlus, ThumbsUp, ThumbsDown, MessageSquare, Check } from "./icons";
-import { useI18n } from "../i18n/I18nProvider";
+import { useBusiness, useI18n } from "../i18n/I18nProvider";
 import { apiErrorMessage, readJson } from "../lib/api-errors";
 
-const WHATSAPP_NUMBER = "971582621717";
 const INTRO_ID = 1;
 
 /** Photos are sent to the model as a JPEG no wider than 1280px. */
@@ -25,6 +24,7 @@ async function shrinkImage(file) {
 
 export function AskAIWidget() {
   const { lang, dict } = useI18n();
+  const business = useBusiness();
   const t = dict.askAi;
   const isRtl = lang === "ar";
 
@@ -145,7 +145,7 @@ export function AskAIWidget() {
   };
 
   const waMessage = encodeURIComponent(lang === "ar" ? "مرحباً! أرغب بالتواصل بخصوص مشروعي." : "Hello! I'd like to get in touch about my project.");
-  const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${waMessage}`;
+  const waHref = `https://wa.me/${business.whatsapp}?text=${waMessage}`;
 
   return (
     <div className={`ask-ai-root ${isRtl ? "ask-ai-root--rtl" : ""}`}>

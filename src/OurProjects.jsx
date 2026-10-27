@@ -1,17 +1,16 @@
 "use client";
 
 import Image from "next/image";
-import { imageAlt } from "./data/image-alts";
 import { useState } from "react";
 import { ArrowUpRight } from "./components/icons";
-import { useI18n } from "./i18n/I18nProvider";
-import { Header, Footer, Reveal } from "./components/Shared";
+import { useBusiness, useI18n } from "./i18n/I18nProvider";
+import { Header, Footer, Reveal, PhotoHero } from "./components/Shared";
 import { PageFaq } from "./components/PageFaq";
 import { isPublishedProject } from "./data/project-catalog";
-import { MOSAIC_MAIN_SIZES, MOSAIC_SMALL_SIZES } from "./lib/image-sizes";
 
 export default function OurProjects() {
   const { lang, dict } = useI18n();
+  const business = useBusiness();
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeFilter, setActiveFilter] = useState("all");
 
@@ -52,45 +51,27 @@ export default function OurProjects() {
 
   return (
     <>
-      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} useFooterLogo={true} lightTheme={true} />
+      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
       <main className="our-projects-page">
-        {/* Hero */}
-        <section className="shell slp-hero">
-          <div className="slp-hero__copy">
-            <Reveal eager>
-              <p className="slp-crumbs">
-                {t.home} &nbsp;&#9656;&nbsp; <strong>{t.ourProjects}</strong>
-              </p>
-              <span className="slp-chip">
-                <i aria-hidden="true" />
-                {t.ourProjects}
-              </span>
-              <h1 className="slp-hero__title">{t.explorePortfolio}</h1>
-              <p className="slp-hero__lead">{ui.intro}</p>
-              <p className="slp-hero__lead slp-hero__lead--sub">{ui.intro2}</p>
-              <p className="slp-hero__lead slp-hero__lead--sub">{ui.intro3}</p>
-            </Reveal>
-            <Reveal eager delay={120} className="cp-hero__actions">
-              <a className="slp-btn slp-btn--solid" href={`https://wa.me/971582621717?text=${encodeURIComponent(ui.whatsappMessage)}`} target="_blank" rel="noopener noreferrer">
+        <PhotoHero
+          image="/assets/study-nook-wardrobe-led-shelving-wood-slats.jpeg"
+          alt={t.explorePortfolio}
+          crumbs={[{ label: dict.ourProjectsPage.home, href: lang === "ar" ? "/ar" : "/" }, { label: t.ourProjects }]}
+          chip={t.ourProjects}
+          title={t.explorePortfolio}
+          lead={ui.intro}
+          note={ui.intro2}
+          actions={
+            <>
+              <a className="slp-btn slp-btn--solid" href={`https://wa.me/${business.whatsapp}?text=${encodeURIComponent(ui.whatsappMessage)}`} target="_blank" rel="noopener noreferrer">
                 {dict.nav.startProject} <ArrowUpRight size={15} />
               </a>
               <a className="slp-btn" href="#projects-grid">
                 {ui.browse} <ArrowUpRight size={15} />
               </a>
-            </Reveal>
-          </div>
-          <Reveal eager className="slp-mosaic" delay={100}>
-            <div className="slp-mosaic__main">
-              <Image src="/assets/study-nook-wardrobe-led-shelving-wood-slats.jpeg" alt={t.explorePortfolio} fill sizes={MOSAIC_MAIN_SIZES} style={{ objectFit: "cover" }} priority />
-            </div>
-            <div className="slp-mosaic__small">
-              <Image src="/assets/living-room-curved-sofa-wood-slat-wall.jpeg" alt={imageAlt("/assets/living-room-curved-sofa-wood-slat-wall.jpeg", lang)} fill sizes={MOSAIC_SMALL_SIZES} style={{ objectFit: "cover" }} />
-            </div>
-            <div className="slp-mosaic__small">
-              <Image src="/assets/villa-majlis-living-room-wood-wall-cove-ceiling.jpeg" alt={imageAlt("/assets/villa-majlis-living-room-wood-wall-cove-ceiling.jpeg", lang)} fill sizes={MOSAIC_SMALL_SIZES} style={{ objectFit: "cover" }} />
-            </div>
-          </Reveal>
-        </section>
+            </>
+          }
+        />
 
         {/* Proof stats band */}
         <section className="slp-band" aria-label={ui.statsLabel}>

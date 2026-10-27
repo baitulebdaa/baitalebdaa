@@ -3,81 +3,80 @@ import { requireAdmin } from "../../../../../../lib/admin/session";
 import { SOURCES } from "../../../../../../lib/admin/statuses";
 import { getOneLead } from "../../../../_components/data";
 import { formatDateTime } from "../../../../_components/format";
-import { IconBack, IconEmail, IconLocation, IconPhone, IconWhatsapp } from "../../../../_components/icons";
+import { IconBack, IconEmail, IconPhone, IconWhatsapp } from "../../../../_components/icons";
 import { StatusForm } from "../../../../_components/StatusForm";
 import { StatusPill } from "../../../../_components/StatusPill";
 
-export const metadata = { title: "Lead" };
+export const metadata = { title: "Customer" };
 
-// One lead: who, what they asked for, every field they sent, and the status control.
+const ALREADY_SHOWN = /^(name|full name|email|phone|description|message|location|service|servicetype|interested service|preferred day|preferred time)$/i;
+
+// One customer (owner, 27 Oct 2026: simple for people who read little): big buttons to
+// reach them first, then what they want in plain words, then the status buttons.
 export default async function LeadDetail({ params }) {
   await requireAdmin();
   const { kind, id } = await params;
   const lead = await getOneLead(kind, id);
   if (!lead) notFound();
-  const whatsapp = lead.phone ? lead.phone.replace(/[^\d]/g, "") : null;
+  const phone = lead.phone ? lead.phone.replace(/[^\d]/g, "") : null;
+  const rows = [
+    ["Wants", lead.service || "Not sure yet"],
+    ["Place", lead.location],
+    ["Visit", lead.visitAt ? formatDateTime(lead.visitAt) : null],
+    ["Best time", lead.preferred],
+    ["Message", lead.message],
+    ["Phone", lead.phone],
+    ["Email", lead.email],
+    ["Sent from", lead.channel || SOURCES[lead.source]],
+    ["Date", formatDateTime(lead.createdAt)],
+    // Anything else they sent that isn't already shown above.
+    ...lead.details.filter(([label]) => !ALREADY_SHOWN.test(String(label).trim())),
+  ].filter(([, value]) => value);
 
   return (
     <>
-      <a className="a-back" href="/admin/leads"><IconBack size={16} color="currentColor" /> All leads</a>
-      <div className="a-head">
-        <div>
+      <a className="a-back-big" href="/admin/leads"><IconBack size={22} color="currentColor" /> Back</a>
+
+      <div className="a-person">
+        <div className="a-person__head">
           <h1>{lead.name}</h1>
-          <p>
-            {lead.channel}
-            {lead.reference ? ` · ${lead.reference}` : ""} · received {formatDateTime(lead.createdAt)}
-          </p>
+          <StatusPill status={lead.status} />
         </div>
-        <StatusPill status={lead.status} />
+        <div className="a-person__actions">
+          {phone && (
+            <a className="a-big-btn a-big-btn--call a-big-btn--xl" href={`tel:+${phone}`}>
+              <IconPhone size={26} color="currentColor" /> Call
+            </a>
+          )}
+          {phone && (
+            <a className="a-big-btn a-big-btn--wa a-big-btn--xl" href={`https://wa.me/${phone}`} target="_blank" rel="noopener noreferrer">
+              <IconWhatsapp size={26} color="currentColor" /> WhatsApp
+            </a>
+          )}
+          {lead.email && (
+            <a className="a-big-btn a-big-btn--open a-big-btn--xl" href={`mailto:${lead.email}`}>
+              <IconEmail size={26} color="currentColor" /> Email
+            </a>
+          )}
+        </div>
       </div>
 
-      <div className="a-detail">
-        <section className="a-card">
-          <div className="a-card__head"><h2>Inquiry</h2></div>
-          <dl className="a-dl">
-            <dt>Service</dt><dd>{lead.service || "—"}</dd>
-            <dt>Location</dt><dd>{lead.location || "—"}</dd>
-            {lead.preferred && (<><dt>Preferred contact</dt><dd>{lead.preferred}</dd></>)}
-            {lead.visitAt && (<><dt>Site visit</dt><dd>{formatDateTime(lead.visitAt)}</dd></>)}
-            <dt>Message</dt><dd>{lead.message || "—"}</dd>
-            <dt>Source</dt><dd>{SOURCES[lead.source]}</dd>
-            {lead.details.map(([label, value]) => (
-              <FieldRow key={label} label={label} value={value} />
-            ))}
-            <dt>Last updated</dt><dd>{formatDateTime(lead.updatedAt)}</dd>
-          </dl>
-        </section>
+      <section className="a-block">
+        <h2>Change status</h2>
+        <StatusForm kind={lead.kind} id={lead.id} status={lead.status} visitAt={lead.visitAt} fromApp={lead.kind === "request"} />
+      </section>
 
-        <div style={{ display: "grid", gap: 18 }}>
-          <section className="a-card">
-            <div className="a-card__head"><h2>Contact</h2></div>
-            <div className="a-contact">
-              {lead.phone && <a href={`tel:${lead.phone}`}><IconPhone size={18} color="currentColor" /> {lead.phone}</a>}
-              {whatsapp && (
-                <a href={`https://wa.me/${whatsapp}`} target="_blank" rel="noopener noreferrer">
-                  <IconWhatsapp size={18} color="currentColor" /> WhatsApp
-                </a>
-              )}
-              {lead.email && <a href={`mailto:${lead.email}`}><IconEmail size={18} color="currentColor" /> {lead.email}</a>}
-              {lead.location && <span className="a-msg" style={{ display: "flex", gap: 10, padding: "4px 12px" }}><IconLocation size={18} color="currentColor" /> {lead.location}</span>}
-              {!lead.phone && !lead.email && <p className="a-empty">No contact details were given.</p>}
+      <section className="a-block">
+        <h2>Details</h2>
+        <dl className="a-facts">
+          {rows.map(([label, value]) => (
+            <div key={label}>
+              <dt>{label}</dt>
+              <dd>{value}</dd>
             </div>
-          </section>
-          <section className="a-card">
-            <div className="a-card__head"><h2>Status</h2></div>
-            <StatusForm kind={lead.kind} id={lead.id} status={lead.status} visitAt={lead.visitAt} fromApp={lead.kind === "request"} />
-          </section>
-        </div>
-      </div>
-    </>
-  );
-}
-
-function FieldRow({ label, value }) {
-  return (
-    <>
-      <dt>{label}</dt>
-      <dd>{value}</dd>
+          ))}
+        </dl>
+      </section>
     </>
   );
 }

@@ -3,12 +3,12 @@
 import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { ArrowUpRight, Check, Paperclip } from "./icons";
-import { useI18n } from "../i18n/I18nProvider";
+import { useBusiness, useI18n } from "../i18n/I18nProvider";
+import { useAccountPrefill } from "./useAccountPrefill";
 import { Honeypot, Reveal } from "./Shared";
 import { HONEYPOT_FIELD } from "../lib/request-guard";
 import { apiErrorMessage, readJson } from "../lib/api-errors";
 
-const WHATSAPP_NUMBER = "971582621717";
 
 const FIELD_LABELS = {
   name: "Full Name",
@@ -29,6 +29,7 @@ const FIELD_LABELS = {
   companyCity: "City",
   companyRegion: "Region",
   description: "Description",
+  address: "Address",
 };
 
 // Visible, programmatically-associated label above each control. Replaces placeholder-only fields,
@@ -52,7 +53,7 @@ function fileToBase64(file) {
 }
 
 // Shared, Resend-wired contact form, used on the standalone /contact page
-// (src/ContactPage.jsx). Wrapped in
+// (src/ContactPage.jsx), which places it on its card. Wrapped in
 // Suspense because useSearchParams() (reading ?service= from a pricing-page
 // CTA) requires it in a statically-generated route.
 export function ContactForm() {
@@ -65,6 +66,9 @@ export function ContactForm() {
 
 function ContactFormBody() {
   const { lang, dict } = useI18n();
+  const business = useBusiness();
+  // Signed-in customers get their details filled in (owner, 27 Oct 2026).
+  const me = useAccountPrefill();
   const t = dict.contactSection;
   const searchParams = useSearchParams();
   const presetService = searchParams.get("service") || "";
@@ -82,7 +86,7 @@ function ContactFormBody() {
         ? `مرحباً! أرغب بالاستفسار عن: ${presetService}.`
         : `Hello! I'd like to enquire about: ${presetService}.`)
     : (lang === "ar" ? "مرحباً! أرغب بالتواصل بخصوص مشروعي." : "Hello! I'd like to get in touch about my project.");
-  const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(waMessage)}`;
+  const waHref = `https://wa.me/${business.whatsapp}?text=${encodeURIComponent(waMessage)}`;
 
   const submit = async (event) => {
     event.preventDefault();
@@ -138,7 +142,7 @@ function ContactFormBody() {
     }
   };
 
-  return <section className="contact" id="contact"><div className="shell contact__centered"><Reveal as="form" className="project-form" delay={100} method="post" onSubmit={submit}>
+  return <Reveal as="form" className="project-form" delay={100} method="post" onSubmit={submit} key={me ? "account" : "guest"}>
     <Honeypot />
     <h2 className="form-main-heading">{t.mainHeading}</h2>
     <h3 className="form-heading">{t.heading}</h3>
@@ -220,15 +224,19 @@ function ContactFormBody() {
     {typeIndex === 0 && (
       <>
         <div className="form-row">
-          <Field label={t.placeholders.fullName} name="name" required />
-          <Field label={t.placeholders.emailAddress} type="email" name="email" required />
+          <Field label={t.placeholders.fullName} name="name" required defaultValue={me?.name || ""} />
+          <Field label={t.placeholders.emailAddress} type="email" name="email" required defaultValue={me?.email || ""} />
         </div>
         <div className="form-row">
-          <Field label={t.placeholders.phoneNumber} name="phone" required />
+          <Field label={t.placeholders.phoneNumber} name="phone" required defaultValue={me?.phone || ""} />
           <Field as="select" label={dict.quoteModal.locationLabel} name="location" defaultValue={t.locations[0]}>
             {t.locations.map(l => <option key={l}>{l}</option>)}
           </Field>
         </div>
+        {me && (
+          <Field label={dict.accountPage.address} name="address" defaultValue={me.address} placeholder={dict.accountPage.addressPlaceholder} maxLength={300} className="full-width-input" />
+        )}
+        {me && <p className="quote-modal-prefilled">✓ {dict.accountPage.prefilled}</p>}
         <Field label={t.placeholders.whatToCreate} as="textarea" name="message" rows="3" required />
       </>
     )}
@@ -241,5 +249,5 @@ function ContactFormBody() {
     </div>
     {error && <p className="quote-modal-error" role="status">{error}</p>}
     <p className={`form-success ${sent ? "is-visible" : ""}`} role="status"><Check size={18} /> {t.success}</p>
-  </Reveal></div></section>;
+  </Reveal>;
 }

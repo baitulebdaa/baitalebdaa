@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Box, Calendar, Check, Lamp, ShoppingCart, Users, Wrench } from "./components/icons";
-import { useI18n } from "./i18n/I18nProvider";
+import { useBusiness, useI18n } from "./i18n/I18nProvider";
 import { Header, Footer, Reveal, FaqSplit, ProcessTimeline } from "./components/Shared";
 import { ServiceTileGrid } from "./components/ServiceTiles";
 import { Estimator } from "./components/Estimator";
@@ -16,9 +16,11 @@ import { ReviewCard } from "./components/ReviewCard";
 
 // The quote form is opened by a button; its code is fetched then, not with the page.
 const QuoteModal = dynamic(() => import("./components/QuoteModal").then((m) => m.QuoteModal), { ssr: false });
+const SiteVisitModal = dynamic(() => import("./components/SiteVisitModal").then((m) => m.SiteVisitModal), { ssr: false });
 
-function Hero({ onGetQuote }) {
+function Hero({ onGetQuote, onSiteVisit }) {
   const { lang, dict } = useI18n();
+  const business = useBusiness();
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const slides = dict.hero.slides;
@@ -43,19 +45,20 @@ function Hero({ onGetQuote }) {
   return <section className="hero" id="top" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
     <div className="hero__media">{slides.map((item, i) => (allSlidesReady || i === active) && <Image key={i} className={i === active ? "is-active" : ""} src={heroImages[i]} alt="Luxury residential and commercial interiors in Dubai" fill sizes="100vw" priority={i === 0} />)}<div className="hero__shade" /></div>
     <p className="sr-only" aria-live="polite">{slide.eyebrow} — {slide.title}. {slide.body}</p>
-    <div className="hero__content shell"><p className="hero__eyebrow" key={`e-${active}`}>{slide.eyebrow}</p><h1 key={`t-${active}`}>{slide.title}</h1><div style={{display: 'flex', gap: '16px', flexWrap: 'wrap'}}><a className="outline-button outline-button--light" href="https://wa.me/971582621717" target="_blank" rel="noopener noreferrer">{dict.nav.startProject} <ArrowUpRight size={16} /></a><button type="button" className="outline-button outline-button--light" onClick={onGetQuote}>{dict.nav.getFreeQuote} <ArrowUpRight size={16} /></button></div></div>
+    <div className="hero__content shell"><p className="hero__eyebrow" key={`e-${active}`}>{slide.eyebrow}</p><h1 key={`t-${active}`}>{slide.title}</h1><div style={{display: 'flex', gap: '16px', flexWrap: 'wrap'}}><a className="outline-button outline-button--light" href={`https://wa.me/${business.whatsapp}`} target="_blank" rel="noopener noreferrer">{dict.nav.startProject} <ArrowUpRight size={16} /></a><button type="button" className="outline-button outline-button--light" onClick={onGetQuote}>{dict.nav.getFreeQuote} <ArrowUpRight size={16} /></button><button type="button" className="outline-button outline-button--light" onClick={onSiteVisit}><Calendar size={16} /> {dict.siteVisit.button}</button></div></div>
     <div className="hero__controls shell"><div className="hero__progress" aria-label={progressLabel}><span>{formatIndex(active + 1, lang)}</span><div>{slides.map((_, i) => <button key={i} aria-label={goToSlideLabel(i)} className={i === active ? "is-active" : ""} onClick={() => select(i)} />)}</div><span>{formatIndex(slides.length, lang)}</span></div><div className="hero__summary"><div className="arrow-pair"><button aria-label={prevSlideLabel} onClick={() => select(active - 1)}><ArrowLeft /></button><button aria-label={nextSlideLabel} onClick={() => select(active + 1)}><ArrowRight /></button></div><p key={`b-${active}`}>{slide.body}</p></div></div>
   </section>;
 }
 
 function Services() {
   const { lang, dict } = useI18n();
+  const business = useBusiness();
   const waMessage = encodeURIComponent(
     lang === "ar"
       ? "مرحباً! أرغب بمناقشة مشروعي معكم."
       : "Hello! I'd like to discuss my project with you."
   );
-  const waHref = `https://wa.me/971582621717?text=${waMessage}`;
+  const waHref = `https://wa.me/${business.whatsapp}?text=${waMessage}`;
   const images = ["/assets/minimalist-living-room-fluted-wall-panel-cove-lighting.jpeg", "/assets/tv-wall-unit-led-display-shelves.jpeg", "/assets/glass-door-wardrobe-matte-handles.jpeg"];
   return <section className="section section--light" id="services"><div className="shell"><Reveal className="section-heading section-heading--center"><p className="micro">{dict.servicesSection.micro}</p><h2 className="section-title" style={{whiteSpace: 'pre-wrap'}}>{dict.servicesSection.title}</h2><p className="lede">{dict.servicesSection.lede}</p></Reveal><div className="service-grid">{dict.servicesSection.items.map((s, i) => <Reveal className={`service-card service-card--${i + 1}`} delay={i * 110} key={i}><div className="service-card__image"><Image src={images[i]} alt={s.title} fill sizes="(max-width: 700px) 100vw, (max-width: 980px) 50vw, 33vw" /></div><div className="service-card__copy"><span>{s.number}</span><h3>{s.title}</h3><p>{s.body}</p><a href={waHref} target="_blank" rel="noopener noreferrer">{dict.servicesSection.discuss} <ArrowUpRight size={16} /></a></div></Reveal>)}</div></div></section>;
 }
@@ -96,15 +99,17 @@ function Challenges() {
 
 // One card per product range (owner's design and confirmation, 26 Oct 2026); each opens
 // WhatsApp with the range named, like the service cards above. Photos are the site's own.
+// Same order as dict.productCollection.items; each card opens its page (src/data/products.js).
+const PRODUCT_SLUGS = ["doors-windows", "surface-materials", "lighting", "fixed-furniture", "movable-furniture", "soft-furnishings"];
 const PRODUCT_IMAGES = ["/assets/hero-penthouse.jpg", "/assets/luxury-living-room-stone-tv-wall-fireplace.jpeg", "/assets/modern-dining-room-pendant-lights-oak-table.jpeg", "/assets/walk-in-closet-island-led-ceiling.jpeg", "/assets/dining-table.jpeg", "/assets/curtains-6.jpeg"];
 
 function ProductCollection() {
-  const { dict } = useI18n();
+  const { lang, dict } = useI18n();
   const t = dict.productCollection;
   return <section className="section product-collection" id="products">
     <div className="shell">
       <Reveal className="section-heading section-heading--center"><p className="micro">{t.micro}</p><h2 className="section-title">{t.title}</h2></Reveal>
-      <div className="product-grid">{t.items.map((item, i) => <Reveal className="product-card" delay={(i % 3) * 90} key={item.title}><a href={`https://wa.me/971582621717?text=${encodeURIComponent(t.ask.replace("{item}", item.title))}`} target="_blank" rel="noopener noreferrer"><Image src={PRODUCT_IMAGES[i]} alt="" fill sizes="(max-width: 600px) 100vw, (max-width: 980px) 50vw, 33vw" /><div className="product-card__copy"><h3>{item.title}</h3><p>{item.body}</p></div></a></Reveal>)}</div>
+      <div className="product-grid">{t.items.map((item, i) => <Reveal className="product-card" delay={(i % 3) * 90} key={item.title}><a href={`/${lang}/products/${PRODUCT_SLUGS[i]}`}><Image src={PRODUCT_IMAGES[i]} alt="" fill sizes="(max-width: 600px) 100vw, (max-width: 980px) 50vw, 33vw" /><div className="product-card__copy"><h3>{item.title}</h3><p>{item.body}</p></div></a></Reveal>)}</div>
     </div>
   </section>;
 }
@@ -196,10 +201,13 @@ export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [quoteOpen, setQuoteOpen] = useState(false);
   const [quotePrefillSize, setQuotePrefillSize] = useState(undefined);
+  // The free site visit form; the estimator opens it with its size (owner, 27 Oct 2026).
+  const [siteVisit, setSiteVisit] = useState(null);
   return <>
     <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-    <main className="home-main"><Hero onGetQuote={() => setQuoteOpen(true)} /><Services /><ServicesDirectory /><Challenges /><ProductCollection /><Factory /><Sectors /><Projects /><Testimonials /><Process /><PriceExplorer /><Estimator onBookSurvey={(size) => { setQuotePrefillSize(size); setQuoteOpen(true); }} /><Faq /><LatestNews /></main>
+    <main className="home-main"><Hero onGetQuote={() => setQuoteOpen(true)} onSiteVisit={() => setSiteVisit({})} /><Services /><ServicesDirectory /><Challenges /><ProductCollection /><Factory /><Sectors /><Projects /><Testimonials /><Process /><PriceExplorer /><Estimator onBookSurvey={(size) => setSiteVisit({ size })} /><Faq /><LatestNews /></main>
     <Footer />
     {quoteOpen && <QuoteModal open onClose={() => setQuoteOpen(false)} initialSize={quotePrefillSize} />}
+    {siteVisit && <SiteVisitModal open onClose={() => setSiteVisit(null)} size={siteVisit.size} />}
   </>;
 }

@@ -1,68 +1,48 @@
 "use client";
 
 import Image from "next/image";
-import { imageAlt } from "./data/image-alts";
 import { useState } from "react";
 import { ArrowUpRight, Clock } from "./components/icons";
-import { useI18n } from "./i18n/I18nProvider";
-import { Header, Footer, Reveal } from "./components/Shared";
+import { useBusiness, useI18n } from "./i18n/I18nProvider";
+import { Header, Footer, Reveal, PhotoHero } from "./components/Shared";
 import { PageFaq } from "./components/PageFaq";
 import { whyChooseFacts } from "./data/service-content";
-import { MOSAIC_MAIN_SIZES, MOSAIC_SMALL_SIZES } from "./lib/image-sizes";
 
-const WHATSAPP_NUMBER = "971582621717";
 
 export default function Process() {
   const { lang, dict } = useI18n();
+  const business = useBusiness();
   const [menuOpen, setMenuOpen] = useState(false);
 
   const t = dict.ourProcessPage;
   const ui = dict.processPageLayout;
-  const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(ui.whatsappMessage)}`;
+  const waHref = `https://wa.me/${business.whatsapp}?text=${encodeURIComponent(ui.whatsappMessage)}`;
   const heroImages = t.steps.slice(0, 3).map((s) => s.image);
 
   return (
     <>
-      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} useFooterLogo={true} lightTheme={true} />
+      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
 
       <main className="services-page pr-page">
-        {/* Hero */}
-        <section className="shell slp-hero">
-          <div className="slp-hero__copy">
-            <Reveal eager>
-              <p className="slp-crumbs">
-                {dict.ourProjectsPage.home} &nbsp;&#9656;&nbsp; <strong>{t.navTitle}</strong>
-              </p>
-              <span className="slp-chip">
-                <i aria-hidden="true" />
-                {t.whatWeDo}
-              </span>
-              <h1 className="slp-hero__title">{t.pageTitle}</h1>
-              <p className="slp-hero__lead">{t.processSubtitle}</p>
-              <p className="slp-hero__lead slp-hero__lead--sub">{ui.intro2}</p>
-              <p className="slp-hero__lead slp-hero__lead--sub">{ui.intro3}</p>
-            </Reveal>
-            <Reveal eager delay={120} className="cp-hero__actions">
+        <PhotoHero
+          image={heroImages[0]}
+          alt={t.pageTitle}
+          crumbs={[{ label: dict.ourProjectsPage.home, href: lang === "ar" ? "/ar" : "/" }, { label: t.navTitle }]}
+          chip={t.whatWeDo}
+          title={t.pageTitle}
+          lead={t.processSubtitle}
+          note={ui.intro2}
+          actions={
+            <>
               <a className="slp-btn slp-btn--solid" href={waHref} target="_blank" rel="noopener noreferrer">
                 {dict.nav.startProject} <ArrowUpRight size={15} />
               </a>
               <a className="slp-btn" href={`/${lang}/pricing`}>
                 {ui.viewPricing} <ArrowUpRight size={15} />
               </a>
-            </Reveal>
-          </div>
-
-          <Reveal eager className="slp-mosaic" delay={100}>
-            <div className="slp-mosaic__main">
-              <Image src={heroImages[0]} alt={t.pageTitle} fill sizes={MOSAIC_MAIN_SIZES} style={{ objectFit: "cover" }} priority />
-            </div>
-            {heroImages.slice(1).map((src) => (
-              <div className="slp-mosaic__small" key={src}>
-                <Image src={src} alt={imageAlt(src, lang)} fill sizes={MOSAIC_SMALL_SIZES} style={{ objectFit: "cover" }} />
-              </div>
-            ))}
-          </Reveal>
-        </section>
+            </>
+          }
+        />
 
         {/* Four-stage overview strip */}
         <section className="pr-overview" aria-label={ui.overviewLabel}>

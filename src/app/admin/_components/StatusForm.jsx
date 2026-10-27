@@ -2,24 +2,29 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { STATUSES } from "../../../lib/admin/statuses";
+import { MAIN_STATUSES, statusInfo } from "../../../lib/admin/statuses";
 
 // Dubai is UTC+4 all year, so a <input type="datetime-local"> value is read as Dubai time.
 const toDubaiInput = (iso) => (iso ? new Date(new Date(iso).getTime() + 4 * 3600000).toISOString().slice(0, 16) : "");
 const fromDubaiInput = (value) => (value ? new Date(`${value}:00+04:00`).toISOString() : null);
 
-/** Changes a lead's status; booking a site visit asks for its date and time. */
+const ICONS = { submitted: "●", contacted: "☎", scheduled: "📅", completed: "✓", cancelled: "✕" };
+
+/**
+ * The status as big buttons, one tap each (owner, 27 Oct 2026: simple for people who read
+ * little). "Visit booked" first asks for the date and time.
+ */
 export function StatusForm({ kind, id, status, visitAt, fromApp }) {
   const router = useRouter();
-  const [next, setNext] = useState(status);
+  const [picking, setPicking] = useState(status === "scheduled");
   const [visit, setVisit] = useState(toDubaiInput(visitAt));
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState(null);
 
-  const save = async (event) => {
-    event.preventDefault();
+  const save = async (next) => {
     if (next === "scheduled" && !visit) {
-      setMessage({ ok: false, text: "Add the visit's date and time." });
+      setPicking(true);
+      setMessage({ ok: false, text: "Choose the visit date and time, then press Save visit." });
       return;
     }
     setBusy(true);
@@ -36,44 +41,50 @@ export function StatusForm({ kind, id, status, visitAt, fromApp }) {
         return;
       }
       if (!res.ok || !result.ok) {
-        setMessage({ ok: false, text: result.error || "Couldn't save. Please try again." });
+        setMessage({ ok: false, text: result.error || "Not saved. Please try again." });
         return;
       }
-      setMessage({ ok: true, text: fromApp ? "Saved. The customer sees the new status in the app." : "Saved." });
+      setMessage({ ok: true, text: `✓ Saved: ${statusInfo(next).label}` });
+      if (next !== "scheduled") setPicking(false);
       router.refresh();
     } catch {
-      setMessage({ ok: false, text: "Couldn't reach the server. Please try again." });
+      setMessage({ ok: false, text: "No internet. Please try again." });
     } finally {
       setBusy(false);
     }
   };
 
   return (
-    <form onSubmit={save} style={{ display: "grid", gap: 12 }}>
-      <label className="a-field">
-        <span>Status</span>
-        <select value={next} onChange={(event) => setNext(event.target.value)}>
-          {STATUSES.map((s) => (
-            <option key={s.id} value={s.id}>{s.label}</option>
-          ))}
-        </select>
-      </label>
-      {next === "scheduled" && (
-        <label className="a-field">
-          <span>Site visit (Dubai time)</span>
-          <input type="datetime-local" value={visit} onChange={(event) => setVisit(event.target.value)} required />
-        </label>
+    <div className="a-status">
+      <div className="a-status__buttons">
+        {MAIN_STATUSES.map((s) => (
+          <button
+            key={s.id}
+            type="button"
+            className={`a-status__btn a-status__btn--${s.tone} ${status === s.id ? "is-on" : ""}`}
+            aria-pressed={status === s.id}
+            disabled={busy}
+            onClick={() => (s.id === "scheduled" ? setPicking(true) : save(s.id))}
+          >
+            <span aria-hidden="true">{ICONS[s.id]}</span> {s.label}
+          </button>
+        ))}
+      </div>
+
+      {picking && (
+        <div className="a-status__visit">
+          <label className="a-field">
+            <span>Visit date and time</span>
+            <input type="datetime-local" value={visit} onChange={(event) => setVisit(event.target.value)} />
+          </label>
+          <button type="button" className="a-big-btn a-big-btn--save" disabled={busy || !visit} onClick={() => save("scheduled")}>
+            📅 Save visit
+          </button>
+        </div>
       )}
-      {fromApp && (
-        <p className="a-msg" style={{ color: "var(--a-muted)" }}>
-          This request came from the app: the customer sees this status. Use “Site visit booked” only once the visit is
-          agreed with them.
-        </p>
-      )}
-      {message && <p className={`a-msg ${message.ok ? "a-msg--ok" : "a-msg--error"}`} role="status">{message.text}</p>}
-      <button className="a-btn" type="submit" disabled={busy || (next === status && next !== "scheduled")}>
-        {busy ? "Saving…" : "Save status"}
-      </button>
-    </form>
+
+      {message && <p className={`a-msg ${message.ok ? "a-msg--ok" : "a-msg--error"} a-status__msg`} role="status">{message.text}</p>}
+      {fromApp && <p className="a-status__note">The customer sees this in the app.</p>}
+    </div>
   );
 }

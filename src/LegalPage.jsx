@@ -2,22 +2,23 @@
 
 import { useState } from "react";
 import { useI18n } from "./i18n/I18nProvider";
-import { Header, Footer, Reveal, PageHeader } from "./components/Shared";
+import { Header, Footer, Reveal, PhotoHero } from "./components/Shared";
 
 // Renders one of the policy pages from src/data/legal-pages.js. `content` is already the active
 // language's page, picked on the server, so only that language is sent to the browser.
 export default function LegalPage({ content, reviewNote }) {
-  const { dict } = useI18n();
+  const { lang, dict } = useI18n();
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <>
-      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} useFooterLogo={true} lightTheme={true} />
+      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
 
       <main className="services-page project-detail-page">
-        <PageHeader
-          kicker={content.navTitle}
-          breadcrumbs={<>{dict.ourProjectsPage.home} &nbsp;&#9656;&nbsp; <strong>{content.navTitle}</strong></>}
+        <PhotoHero
+          size="small"
+          image="/assets/minimalist-living-room-fluted-wall-panel-cove-lighting.jpeg"
+          crumbs={[{ label: dict.ourProjectsPage.home, href: lang === "ar" ? "/ar" : "/" }, { label: content.navTitle }]}
           title={content.pageTitle}
         />
 
