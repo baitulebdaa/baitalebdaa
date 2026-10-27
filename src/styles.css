@@ -6025,7 +6025,8 @@ button.estimator-submit-btn {
   }
 }
 
-/* 1 + 3. Mobile: one floating action (Ask Ali, icon only), the bottom nav carries the rest */
+/* 1 + 3. Mobile: one floating action (Ask Ali, with its name since 27 Oct 2026 at the
+   owner's request), the bottom nav carries the rest */
 @media (max-width: 980px) {
   /* WhatsApp is already in the header and the hero; Call is in the hero */
   .slp-sticky-sidebar {
@@ -6033,20 +6034,13 @@ button.estimator-submit-btn {
   }
 
   .ask-ai-launcher {
-    width: 46px;
-    height: 46px;
-    padding: 0;
-    gap: 0;
-    justify-content: center;
+    height: 44px;
+    padding: 0 16px 0 13px;
+    font-size: 0.82rem;
   }
 
-  .ask-ai-launcher__label {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    white-space: nowrap;
+  [dir="rtl"] .ask-ai-launcher {
+    padding: 0 13px 0 16px;
   }
 
   /* Hero copy and slide controls sit above the bottom nav instead of under it */
@@ -9263,3 +9257,50 @@ html[data-signed-in] .show-signed-out { display: none !important; }
 /* The name comes from the script until React fills it in as text. */
 .header-account__name:empty::before,
 .mobile-bottom-nav .show-signed-in span:empty::before { content: var(--bae-name); }
+
+/* Home hero buttons (three since the site visit form, 27 Oct 2026). */
+.hero__actions { display: flex; flex-wrap: wrap; gap: 16px; }
+
+/* Phones (owner, 27 Oct 2026): the title, three buttons and the slide text overlapped. The
+   hero now stacks in normal flow (title, buttons, then the slide text and arrows) and grows
+   when it needs to, instead of pinning the slide text over the buttons. */
+@media (max-width: 700px) {
+  .hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: auto;
+    min-height: calc(100svh - 66px);
+  }
+
+  .hero__media { position: absolute; inset: 0; }
+
+  .hero__content {
+    height: auto;
+    padding-top: calc(var(--header-h) + 48px);
+  }
+
+  .hero h1 { margin-bottom: 22px; }
+
+  .hero__actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  .hero__actions .outline-button {
+    width: 100%;
+    justify-content: center;
+    min-height: 46px;
+    padding: 10px 12px;
+    font-size: 0.82rem;
+    white-space: nowrap;
+  }
+
+  .hero__actions > :last-child { grid-column: 1 / -1; }
+
+  .hero__controls {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    transform: none;
+    margin-inline: auto;
+    padding: 26px 0 24px;
+  }
+}

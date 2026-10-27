@@ -544,7 +544,7 @@ a.a-nav__item:hover { background: rgba(255, 255, 255, 0.05); color: #fff; }
 .a-side {
   background:
     linear-gradient(180deg, rgba(20, 19, 17, 0.82) 0%, rgba(20, 19, 17, 0.9) 45%, rgba(20, 19, 17, 0.96) 100%),
-    url("/_next/image?url=%2Fassets%2Fluxury-living-room-chandelier-wall-panelling.jpeg&w=640&q=70") center / cover no-repeat,
+    url("/_next/image?url=%2Fassets%2Fluxury-living-room-chandelier-wall-panelling.jpeg&w=640&q=75") center / cover no-repeat,
     #171716;
 }
 .a-side__foot { border-top-color: rgba(255, 255, 255, 0.12); background: rgba(12, 12, 11, 0.35); }

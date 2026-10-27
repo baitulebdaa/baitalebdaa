@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { formatPhone } from "../data/business";
 import { useEffect, useRef, useState } from "react";
-import { Account, ArrowUpRight, ChevronDown, Plus, Check, Menu, X, Globe, Sparkles, Facebook, Instagram, Whatsapp, WhatsappLogo, Home, Services, Projects, Phone, Mail, MapPin, Clock, StageApprove, StageDiscover, StageMake, StageVisualize } from "./icons";
+import { Account, ArrowUpRight, ChevronDown, Plus, Check, Menu, X, Globe, MessageSquare, Facebook, Instagram, Whatsapp, WhatsappLogo, Home, Services, Projects, Phone, Mail, MapPin, Clock, StageApprove, StageDiscover, StageMake, StageVisualize } from "./icons";
 import { useBusiness, useI18n } from "../i18n/I18nProvider";
 import { useRouter, usePathname } from "next/navigation";
 import { getServiceLabel } from "../data/service-catalog";
@@ -557,7 +557,7 @@ export function FaqSplit({ kicker, title, subtitle, items, idPrefix = "faq" }) {
               <p className="hx">{lang === "ar" ? "لديك سؤال آخر؟" : "Something else?"}</p>
               <p>{lang === "ar" ? "مساعدنا الذكي يجيب على أسئلتك حول خدماتنا في أي وقت." : "Our AI assistant answers questions about our services at any hour."}</p>
               <button type="button" onClick={() => window.dispatchEvent(new Event("askai:open"))} className="faq-split__ask-btn">
-                <Sparkles size={17} /> {dict.askAi.buttonLabel}
+                <MessageSquare size={17} /> {dict.askAi.buttonLabel}
               </button>
             </Reveal>
           </div>

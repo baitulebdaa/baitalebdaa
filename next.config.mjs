@@ -11,9 +11,21 @@ const nextConfig = {
   // — slash or no slash — resolves in exactly one hop. Verified against a live local
   // server (see redirect verification pass) after adding this.
   skipTrailingSlashRedirect: true,
-  // AVIF first (typically 20-30% smaller than WebP), WebP for browsers without AVIF.
+  // Image optimization is billed per transformation and per cache write on Vercel (owner,
+  // 27 Oct 2026: usage running out). Every (photo, width, quality, format) is one
+  // transformation, so:
+  // - WebP only: AVIF doubled the copies of every photo for a small saving in bytes.
+  // - Five page widths and four small ones instead of Next's 16, with no 2048/3840 copies:
+  //   1920 covers full-width photos on large screens.
+  // - One quality (Next 16 accepts only listed qualities; every image uses 75).
+  // - Cached for 31 days: the photos never change in place (a new photo gets a new file
+  //   name), so Vercel stops redoing them every few hours (Next 16's default TTL).
   images: {
-    formats: ["image/avif", "image/webp"],
+    formats: ["image/webp"],
+    deviceSizes: [640, 828, 1080, 1440, 1920],
+    imageSizes: [96, 160, 256, 384],
+    qualities: [75],
+    minimumCacheTTL: 2678400,
   },
   // The root layout sits under the [lang] segment, so unmatched URLs can only get a branded
   // 404 through src/app/global-not-found.jsx, which needs this flag (Next 16 docs).

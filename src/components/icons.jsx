@@ -20,10 +20,9 @@ import {
   Like1,
   Dislike,
   Star1,
-  Magicpen,
   ArrowRotateLeft,
   Add,
-  MessageText,
+  MessageText1,
   HamburgerMenu as IsxMenu,
   Location,
   Sms,
@@ -77,10 +76,10 @@ export const Wrench = wrap(Setting2);
 export const ThumbsUp = wrap(Like1);
 export const ThumbsDown = wrap(Dislike);
 export const Star = wrap(Star1, { variant: "Bold" });
-export const Sparkles = wrap(Magicpen);
 export const RotateCcw = wrap(ArrowRotateLeft);
 export const Plus = wrap(Add);
-export const MessageSquare = wrap(MessageText);
+// Ask Ali (owner, 27 Oct 2026): the speech bubble with two lines and a tail.
+export const MessageSquare = wrap(MessageText1);
 export const Menu = wrap(IsxMenu);
 export const MapPin = wrap(Location);
 export const Mail = wrap(Sms);
