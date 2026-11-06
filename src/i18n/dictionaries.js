@@ -7,6 +7,7 @@ export const dictionaries = {
       services: "Services",
       menu: "Menu",
       close: "Close",
+      back: "Back",
       startProject: "WhatsApp Now",
       account: "My account",
       signIn: "Sign in",
@@ -22,6 +23,15 @@ export const dictionaries = {
       media: "Media",
       projectGroups: { featured: "Featured Projects", services: "Services Behind Them" },
       viewAllProjects: "View all projects",
+      megaMenu: {
+        usefulLinks: "Useful links",
+        pricesLink: "Starting prices",
+        projectsLink: "Completed projects",
+        quoteLink: "Request a quote",
+        // Services with no published price of their own (restaurant, retail, commercial design…).
+        afterSurvey: "priced after survey",
+        projectsCard: "View all projects"
+      },
       serviceGroups: {
         interiorDesign: "Interior Design",
         fitOut: "Fit-Out",
@@ -1904,6 +1914,7 @@ export const dictionaries = {
       services: "الخدمات",
       menu: "القائمة",
       close: "إغلاق",
+      back: "رجوع",
       startProject: "واتساب الآن",
       account: "حسابي",
       signIn: "تسجيل الدخول",
@@ -1919,6 +1930,14 @@ export const dictionaries = {
       media: "الإعلام",
       projectGroups: { featured: "مشاريع مختارة", services: "الخدمات وراءها" },
       viewAllProjects: "عرض جميع المشاريع",
+      megaMenu: {
+        usefulLinks: "روابط مفيدة",
+        pricesLink: "الأسعار الابتدائية",
+        projectsLink: "المشاريع المنجزة",
+        quoteLink: "اطلب عرض سعر",
+        afterSurvey: "يُسعّر بعد المعاينة",
+        projectsCard: "عرض جميع المشاريع"
+      },
       serviceGroups: {
         interiorDesign: "التصميم الداخلي",
         fitOut: "التجهيز الشامل",

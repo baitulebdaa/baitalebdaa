@@ -3,7 +3,10 @@
 import Image from "next/image";
 import { formatPhone } from "../data/business";
 import { useEffect, useRef, useState } from "react";
-import { Account, ArrowUpRight, ChevronDown, Plus, Check, Menu, X, Globe, MessageSquare, Facebook, Instagram, Whatsapp, WhatsappLogo, Home, Services, Projects, Phone, Mail, MapPin, Clock, StageApprove, StageDiscover, StageMake, StageVisualize } from "./icons";
+import { Account, ArrowUpRight, ChevronDown, Plus, Check, Menu, X, Globe, MessageSquare, Facebook, Instagram, Whatsapp, WhatsappLogo, Home, Services, Projects, Phone, Mail, MapPin, Clock, StageApprove, StageDiscover, StageMake, StageVisualize, Box, Lamp, ShoppingCart, Wrench, Users, RotateCcw } from "./icons";
+import { serviceStartingItem } from "../lib/pricing";
+import { ArrowLeft, ArrowRight } from "./icons";
+import { useDialog } from "./useDialog";
 import { useBusiness, useI18n } from "../i18n/I18nProvider";
 import { useRouter, usePathname } from "next/navigation";
 import { getServiceLabel } from "../data/service-catalog";
@@ -24,6 +27,39 @@ const SERVICE_MENU_GROUPS = [
   { headingKey: "fitOut", slugs: ["fit-out", "office-fit-out", "restaurant-fit-out", "retail-fit-out"] },
   { headingKey: "renovationJoinery", slugs: ["villa-renovation", "apartment-renovation", "office-renovation", "joinery", "custom-wardrobes", "kitchen-design", "kitchen-renovation"] },
 ];
+
+// Header menu icons (6 Nov 2026 menu redesign), one per service, in a tinted tile.
+const SERVICE_MENU_ICONS = {
+  "interior-design": StageVisualize,
+  "residential-interior-design": Home,
+  "commercial-interior-design": Projects,
+  "office-interior-design": Services,
+  "restaurant-interior-design": Lamp,
+  "retail-interior-design": ShoppingCart,
+  "fit-out": Wrench,
+  "office-fit-out": Users,
+  "restaurant-fit-out": Lamp,
+  "retail-fit-out": ShoppingCart,
+  "villa-renovation": Home,
+  "apartment-renovation": Projects,
+  "office-renovation": RotateCcw,
+  joinery: StageMake,
+  "custom-wardrobes": Box,
+  "kitchen-design": StageVisualize,
+  "kitchen-renovation": RotateCcw,
+};
+
+// The header menu's price for a service: the same published starting price its page shows
+// ("Indicative pricing", lib/pricing.js serviceStartingItem), shortened to "from AED 300/sq ft".
+// Services without a price of their own get none, never a borrowed one.
+const menuNumber = new Intl.NumberFormat("en-AE");
+function menuPrice(slug, lang) {
+  const item = serviceStartingItem(slug);
+  if (!item) return null;
+  const ar = lang === "ar";
+  const unit = item.unit === "sqft" ? (ar ? "/قدم²" : "/sq ft") : item.unit === "linearMetre" ? (ar ? "/م" : "/m") : "";
+  return ar ? `من ${menuNumber.format(item.min)} درهم${unit}` : `from AED ${menuNumber.format(item.min)}${unit}`;
+}
 
 // Footer "Services" column: the core services, linked exactly as in the header menu above.
 const FOOTER_SERVICES = ["interior-design", "fit-out", "office-fit-out", "villa-renovation", "joinery", "custom-wardrobes"];
@@ -116,7 +152,11 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
   const [projectsOpen, setProjectsOpen] = useState(false);
   const projectsRef = useRef(null);
   useEffect(() => { const onScroll = () => setScrolled(window.scrollY > 40); onScroll(); window.addEventListener("scroll", onScroll, { passive: true }); return () => window.removeEventListener("scroll", onScroll); }, []);
-  useEffect(() => { document.body.style.overflow = menuOpen ? "hidden" : ""; return () => { document.body.style.overflow = ""; }; }, [menuOpen]);
+  // The MENU drawer: focus moves in, Tab stays inside, Escape closes, focus returns to MENU,
+  // and the page behind stops scrolling (useDialog). It reopens on the main list.
+  const drawerRef = useDialog(menuOpen, () => setMenuOpen(false));
+  const [menuView, setMenuView] = useState(null);
+  useEffect(() => { if (!menuOpen) setMenuView(null); }, [menuOpen]);
 
   // Services and Projects dropdowns: close on outside click and on Escape, in
   // addition to the hover/click handlers on the triggers themselves below.
@@ -149,7 +189,8 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
   );
 
   return <>
-    <header className={`site-header ${scrolled || menuOpen || alwaysSolid ? "site-header--solid" : ""} ${lightTheme ? "site-header--light-theme" : ""}`}>
+    {/* While a menu panel is open the bar turns solid, like the owner's reference (6 Nov 2026). */}
+    <header className={`site-header ${scrolled || menuOpen || alwaysSolid ? "site-header--solid" : ""} ${servicesOpen || projectsOpen ? "site-header--menu-open" : ""} ${lightTheme ? "site-header--light-theme" : ""}`}>
       <Brand light={!menuOpen && !useFooterLogo && !alwaysSolid && !lightTheme} priority customSrc={useFooterLogo ? "/assets/footer logo.png" : null} />
       <nav className="header-links" aria-label="Primary navigation">
         <div
@@ -167,21 +208,32 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
           >
             {dict.nav.projects} <ChevronDown size={14} className={projectsOpen ? "is-open" : ""} />
           </a>
+          {/* Menu panel (6 Nov 2026, owner's reference): a wide card under the header, the
+              projects as photo tiles with place and size, and a links column on the side. */}
           <div id="header-projects-panel" className={`header-nav-panel header-nav-panel--projects ${projectsOpen ? "is-open" : ""}`}>
-            <div className="header-nav-panel__columns">
-              <div className="header-nav-panel__col">
-                <p className="header-nav-panel__heading">{dict.nav.projectGroups.featured}</p>
-                <ul>
-                  {dict.projectsSection.items.filter((item) => isPublishedProject(item.slug)).map((item) => (
-                    <li key={item.slug}>
-                      <a href={`/${lang}/our-projects/${item.slug}`} onClick={() => setProjectsOpen(false)}>{item.title}</a>
-                    </li>
-                  ))}
+            <div className="mega">
+              <div className="mega__main">
+                <p className="mega__heading">{dict.nav.projectGroups.featured}</p>
+                <ul className="mega__grid">
+                  {dict.projectsSection.items.filter((item) => isPublishedProject(item.slug)).map((item) => {
+                    const project = dict.projectDetailPage.projects[item.slug];
+                    return (
+                      <li key={item.slug}>
+                        <a className="mega__item" href={`/${lang}/our-projects/${item.slug}`} onClick={() => setProjectsOpen(false)}>
+                          <span className="mega__thumb">{project?.images?.[0] && <Image src={project.images[0]} alt="" fill sizes="56px" />}</span>
+                          <span className="mega__name">
+                            {project?.title || item.title}
+                            {project?.metadata && <small>{project.metadata.location.replace(/, UAE$|، الإمارات$/, "")} · {project.metadata.size}</small>}
+                          </span>
+                        </a>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
-              <div className="header-nav-panel__col">
-                <p className="header-nav-panel__heading">{dict.nav.projectGroups.services}</p>
-                <ul>
+              <div className="mega__side">
+                <p className="mega__heading">{dict.nav.projectGroups.services}</p>
+                <ul className="mega__links">
                   {["residential-interior-design", "commercial-interior-design", "villa-renovation", "office-fit-out", "joinery"].map((slug) => {
                     const service = getServiceLabel(slug);
                     if (!service) return null;
@@ -192,8 +244,8 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
                     );
                   })}
                 </ul>
-                <a href={`/${lang}/our-projects`} onClick={() => setProjectsOpen(false)} className="header-nav-panel__all">
-                  {dict.nav.viewAllProjects} <ArrowUpRight size={13} />
+                <a href={`/${lang}/our-projects`} onClick={() => setProjectsOpen(false)} className="mega__all">
+                  {dict.nav.megaMenu.projectsCard} <ArrowUpRight size={14} />
                 </a>
               </div>
             </div>
@@ -214,37 +266,44 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
           >
             {dict.nav.services} <ChevronDown size={14} className={servicesOpen ? "is-open" : ""} />
           </a>
-          <div id="header-services-panel" className={`header-nav-panel ${servicesOpen ? "is-open" : ""}`}>
-            <div className="header-nav-panel__columns">
-              {SERVICE_MENU_GROUPS.map((group) => (
-                <div className="header-nav-panel__col" key={group.headingKey}>
-                  <p className="header-nav-panel__heading">{dict.nav.serviceGroups[group.headingKey]}</p>
-                  <ul>
-                    {group.slugs.map((slug) => {
-                      const service = getServiceLabel(slug);
-                      if (!service) return null;
-                      return (
-                        <li key={slug}>
-                          <a href={`/${lang}/${slug}/dubai`} onClick={() => setServicesOpen(false)}>
-                            {lang === "ar" ? service.ar : service.en}
-                          </a>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-              ))}
-              <div className="header-nav-panel__col">
-                <p className="header-nav-panel__heading">{dict.nav.serviceGroups.aftercare}</p>
-                <ul>
-                  <li>
-                    <a href={`/${lang}/furniture-maintenance-care`} onClick={() => setServicesOpen(false)}>
-                      {dict.furnitureMaintenancePage.navTitle}
-                    </a>
-                  </li>
+          {/* Services panel (6 Nov 2026, owner's reference): each group's services with an icon
+              tile and the published starting price on the right, and a links column on the side. */}
+          <div id="header-services-panel" className={`header-nav-panel header-nav-panel--services ${servicesOpen ? "is-open" : ""}`}>
+            <div className="mega">
+              <div className="mega__main mega__main--groups">
+                {SERVICE_MENU_GROUPS.map((group) => (
+                  <div className="mega__group" key={group.headingKey}>
+                    <p className="mega__heading">{dict.nav.serviceGroups[group.headingKey]}</p>
+                    <ul className="mega__list">
+                      {group.slugs.map((slug) => {
+                        const service = getServiceLabel(slug);
+                        if (!service) return null;
+                        const Icon = SERVICE_MENU_ICONS[slug] || Services;
+                        const price = menuPrice(slug, lang);
+                        return (
+                          <li key={slug}>
+                            <a className="mega__item" href={`/${lang}/${slug}/dubai`} onClick={() => setServicesOpen(false)}>
+                              <span className="mega__icon" aria-hidden="true"><Icon size={20} /></span>
+                              <span className="mega__name">{lang === "ar" ? service.ar : service.en}</span>
+                              <span className={`mega__price${price ? "" : " mega__price--quote"}`}>{price || dict.nav.megaMenu.afterSurvey}</span>
+                            </a>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+              <div className="mega__side">
+                <p className="mega__heading">{dict.nav.megaMenu.usefulLinks}</p>
+                <ul className="mega__links mega__links--large">
+                  <li><a href={`/${lang}/pricing`} onClick={() => setServicesOpen(false)}>{dict.nav.megaMenu.pricesLink}</a></li>
+                  <li><a href={`/${lang}/furniture-maintenance-care`} onClick={() => setServicesOpen(false)}>{dict.furnitureMaintenancePage.navTitle}</a></li>
+                  <li><a href={`/${lang}/our-projects`} onClick={() => setServicesOpen(false)}>{dict.nav.megaMenu.projectsLink}</a></li>
+                  <li><a href={`/${lang}/contact`} onClick={() => setServicesOpen(false)}>{dict.nav.megaMenu.quoteLink}</a></li>
                 </ul>
-                <a href={`/${lang}/our-services`} onClick={() => setServicesOpen(false)} className="header-nav-panel__all">
-                  {dict.servicesSection.viewAllServices} <ArrowUpRight size={13} />
+                <a href={`/${lang}/our-services`} onClick={() => setServicesOpen(false)} className="mega__all">
+                  {dict.servicesSection.viewAllServices} <ArrowUpRight size={14} />
                 </a>
               </div>
             </div>
@@ -274,7 +333,69 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
         </a>
       </div>
     </header>
-    <div id="site-menu" className={`menu-overlay ${menuOpen ? "is-open" : ""}`} aria-hidden={!menuOpen}>
+    {/* Dims the page behind an open menu panel; purely visual, so it never blocks the pointer. */}
+    <div className={`header-nav-backdrop ${servicesOpen || projectsOpen ? "is-open" : ""}`} aria-hidden="true" />
+    {/* The MENU drawer (6 Nov 2026, owner's reference): slides in from the side over a dimmed,
+        blurred page; Services and Projects open their own list inside it (→), with Back. */}
+    <div className={`menu-drawer-backdrop ${menuOpen ? "is-open" : ""}`} onClick={() => setMenuOpen(false)} aria-hidden="true" />
+    <div id="site-menu" ref={drawerRef} tabIndex={-1} role="dialog" aria-modal="true" aria-label={dict.nav.menu} className={`menu-overlay menu-drawer ${menuOpen ? "is-open" : ""}`} aria-hidden={!menuOpen}>
+      <button type="button" className="menu-drawer__close" onClick={() => setMenuOpen(false)} aria-label={dict.nav.close} tabIndex={menuOpen ? 0 : -1}><X size={30} /></button>
+      <div className="menu-drawer__top">
+        <a className="menu-drawer__logo" href={lang === "ar" ? "/ar" : "/"} onClick={() => setMenuOpen(false)} aria-label={lang === "ar" ? "الصفحة الرئيسية لبيت الإبداع" : "Bait Al Ebdaa home"}>
+          {/* The dark version of the logo, for the white drawer (logo.png is white). */}
+          <Image src="/assets/footer logo.png" alt="Bait Al Ebdaa" width={2170} height={725} sizes="160px" />
+        </a>
+      </div>
+      {menuView === "services" ? (
+        <div className="menu-drawer__sub">
+          <button type="button" className="menu-drawer__back" onClick={() => setMenuView(null)}><ArrowLeft size={20} /> {dict.nav.back}</button>
+          <p className="menu-drawer__title">{dict.menuItems[1]}</p>
+          {SERVICE_MENU_GROUPS.map((group) => (
+            <div className="menu-drawer__group" key={group.headingKey}>
+              <p className="menu-drawer__heading">{dict.nav.serviceGroups[group.headingKey]}</p>
+              <ul>
+                {group.slugs.map((slug) => {
+                  const service = getServiceLabel(slug);
+                  if (!service) return null;
+                  const price = menuPrice(slug, lang);
+                  return (
+                    <li key={slug}>
+                      <a href={`/${lang}/${slug}/dubai`} onClick={() => setMenuOpen(false)}>
+                        <span>{lang === "ar" ? service.ar : service.en}</span>
+                        {price && <small>{price}</small>}
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          ))}
+          <div className="menu-drawer__group">
+            <p className="menu-drawer__heading">{dict.nav.serviceGroups.aftercare}</p>
+            <ul><li><a href={`/${lang}/furniture-maintenance-care`} onClick={() => setMenuOpen(false)}><span>{dict.furnitureMaintenancePage.navTitle}</span></a></li></ul>
+          </div>
+          <a className="menu-drawer__all" href={`/${lang}/our-services`} onClick={() => setMenuOpen(false)}>{dict.servicesSection.viewAllServices} <ArrowUpRight size={15} /></a>
+        </div>
+      ) : menuView === "projects" ? (
+        <div className="menu-drawer__sub">
+          <button type="button" className="menu-drawer__back" onClick={() => setMenuView(null)}><ArrowLeft size={20} /> {dict.nav.back}</button>
+          <p className="menu-drawer__title">{dict.menuItems[2]}</p>
+          <ul className="menu-drawer__projects">
+            {dict.projectsSection.items.filter((item) => isPublishedProject(item.slug)).map((item) => {
+              const project = dict.projectDetailPage.projects[item.slug];
+              return (
+                <li key={item.slug}>
+                  <a href={`/${lang}/our-projects/${item.slug}`} onClick={() => setMenuOpen(false)}>
+                    <span className="mega__thumb">{project?.images?.[0] && <Image src={project.images[0]} alt="" fill sizes="56px" />}</span>
+                    <span className="mega__name">{project?.title || item.title}{project?.metadata && <small>{project.metadata.location.replace(/, UAE$|، الإمارات$/, "")} · {project.metadata.size}</small>}</span>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+          <a className="menu-drawer__all" href={`/${lang}/our-projects`} onClick={() => setMenuOpen(false)}>{dict.nav.viewAllProjects} <ArrowUpRight size={15} /></a>
+        </div>
+      ) : (
       <div className="menu-overlay__main">
         {/* About Us and Reviews appear here and in the footer only — deliberately not in the header nav. */}
         {[
@@ -288,8 +409,18 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
           { key: "about", label: dict.aboutPage.navTitle, href: `/${lang}/about` },
           { key: "reviews", label: dict.reviewsPage.navTitle, href: `/${lang}/reviews` },
           { key: "contact", label: dict.menuItems[6], href: `/${lang}/contact` },
-        ].map((item) => <a key={item.key} href={item.href} onClick={() => setMenuOpen(false)}>{item.label}</a>)}
+        ].map((item) =>
+          // Services and Projects open their list inside the drawer; every other page is a link.
+          item.key === "services" || item.key === "projects" ? (
+            <button type="button" key={item.key} className="menu-drawer__item" onClick={() => setMenuView(item.key)} aria-haspopup="true">
+              {item.label} <ArrowRight size={26} />
+            </button>
+          ) : (
+            <a key={item.key} className="menu-drawer__item" href={item.href} onClick={() => setMenuOpen(false)}>{item.label}</a>
+          )
+        )}
       </div>
+      )}
       <div className="menu-overlay__aside">
         <div>
           <p className="menu-overlay__heading">{dict.nav.contactInfo}</p>

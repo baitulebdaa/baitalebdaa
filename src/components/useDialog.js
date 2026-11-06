@@ -19,7 +19,9 @@ export function useDialog(open, onClose) {
     document.body.style.overflow = "hidden";
     // The first field, or the panel itself when it has none (the success message).
     const first = panel?.querySelector("input:not([type=hidden]):not([tabindex='-1']), select, textarea") || panel;
-    window.requestAnimationFrame(() => first?.focus({ preventScroll: true }));
+    // A moment later, not on the next frame: panels that fade or slide in are still
+    // visibility: hidden on their first frame, and a hidden element cannot take focus.
+    const focusTimer = window.setTimeout(() => first?.focus({ preventScroll: true }), 60);
 
     const onKey = (event) => {
       if (event.key === "Escape") {
@@ -42,6 +44,7 @@ export function useDialog(open, onClose) {
     };
     document.addEventListener("keydown", onKey);
     return () => {
+      window.clearTimeout(focusTimer);
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
       if (opener && typeof opener.focus === "function" && document.contains(opener)) opener.focus({ preventScroll: true });
