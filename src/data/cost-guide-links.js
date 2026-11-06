@@ -8,4 +8,5 @@ export const COST_GUIDE_LINKS = {
   "villa-renovation": { slug: "villa-renovation-cost-dubai", en: "How a villa renovation budget is built", ar: "كيف تُبنى ميزانية تجديد الفيلا؟" },
   "kitchen-design": { slug: "kitchen-cabinet-cost-dubai", en: "Reading a kitchen cabinet quote", ar: "كيف تقرأ عرض سعر خزائن المطبخ؟" },
   "custom-wardrobes": { slug: "custom-wardrobe-cost-dubai", en: "What changes the price of a fitted wardrobe", ar: "ما الذي يغيّر سعر خزانة الملابس؟" },
+  "office-fit-out": { slug: "office-fit-out-cost-dubai", en: "What drives an office fit-out budget", ar: "ما الذي يحدد ميزانية تجهيز المكتب؟" },
 };

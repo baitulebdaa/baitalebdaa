@@ -416,7 +416,7 @@ test("company prices in pilot pages and cost guides are read from the price list
   for (const amount of typed) assert.ok(authorityFees.has(amount), `typed amount ${amount} is not a quoted authority fee`);
 });
 
-test("cost guides: four guides in both languages, reviewed date visible, no FAQPage, linked to their money pages", async () => {
+test("cost guides: five guides in both languages, reviewed date visible, no FAQPage, linked to their money pages", async () => {
   const { costGuideArticles } = await import("../src/data/cost-guides.js");
   const { extractFaqsFromHtml } = await import("../src/lib/faq-schema.js");
   const required = {
@@ -424,18 +424,19 @@ test("cost guides: four guides in both languages, reviewed date visible, no FAQP
     "villa-renovation-cost-dubai": ["villa-renovation/dubai", "pricing", "our-projects/al-barari-eco-villa", "our-projects/dubai-hills-estate-villa"],
     "kitchen-cabinet-cost-dubai": ["kitchen-design/dubai", "kitchen-renovation/dubai", "pricing", "media/furniture-maintenance-care-humid-climate"],
     "custom-wardrobe-cost-dubai": ["custom-wardrobes/dubai", "pricing", "our-projects/al-barari-eco-villa", "furniture-maintenance-care"],
+    "office-fit-out-cost-dubai": ["office-fit-out/dubai", "pricing", "fit-out/dubai", "our-projects/downtown-dubai-tech-hq", "our-projects/government-authority", "media/interior-design-fees-dubai"],
   };
   for (const lang of ["en", "ar"]) {
     const guides = costGuideArticles(lang);
     assert.deepEqual(guides.map((g) => g.slug), Object.keys(required));
     for (const guide of guides) {
-      assert.match(guide.content, /class="guide-reviewed"><strong>(Reviewed October 2026|تمت المراجعة في أكتوبر 2026)/, guide.slug);
+      assert.match(guide.content, /class="guide-reviewed"><strong>(Reviewed (October|November) 2026|تمت المراجعة في (أكتوبر|نوفمبر) 2026)/, guide.slug);
       assert.deepEqual(extractFaqsFromHtml(guide.content), [], `${guide.slug} must not emit FAQPage`);
       for (const target of required[guide.slug]) assert.ok(guide.content.includes(`href="/${lang}/${target}"`), `${lang} ${guide.slug} -> ${target}`);
       assert.ok(guide.metaDescription.length <= 150 && guide.seoTitle.length <= 62, `${lang} ${guide.slug} snippet length`);
     }
     // Guides are listed on the media hub and in the sitemap source, but not in every service page's blog grid.
-    assert.equal(dictionaries[lang].mediaPage.articles.filter((a) => a.guide).length, 4);
+    assert.equal(dictionaries[lang].mediaPage.articles.filter((a) => a.guide).length, 5);
   }
   assert.match(read("src/ServiceLocationPage.jsx"), /\.filter\(\(post\) => !post\.guide\)/);
 });

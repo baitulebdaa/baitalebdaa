@@ -12,19 +12,28 @@
 import { amountText, priceItem, priceText } from "../lib/pricing.js";
 
 export const COST_GUIDE_DATE = "2026-10-16";
+// Guides published after the first four carry their own date (sitemap lastmod, article date).
+const GUIDE_DATES = { "office-fit-out-cost-dubai": "2026-11-06" };
+export const costGuideDate = (slug) => GUIDE_DATES[slug] || COST_GUIDE_DATE;
 const IMAGE = {
   "interior-design-fees-dubai": "/assets/luxury-living-room-chandelier-wall-panelling.jpeg",
   "villa-renovation-cost-dubai": "/assets/villa-majlis-living-room-wood-wall-cove-ceiling.jpeg",
   "kitchen-cabinet-cost-dubai": "/assets/coffee-corner-white-cabinet-wine-cooler-led-shelves.jpeg",
   "custom-wardrobe-cost-dubai": "/assets/walk-in-closet-island-led-ceiling.jpeg",
+  "office-fit-out-cost-dubai": "/assets/project-office.jpg",
 };
 const AUTHOR = { en: "Awais ul Haq, CEO of Bait Al Ebdaa", ar: "Awais ul Haq، الرئيس التنفيذي لبيت الإبداع" };
-const DATE_LABEL = { en: "October 16, 2026", ar: "١٦ أكتوبر ٢٠٢٦" };
-
-const reviewed = {
-  en: `<p class="guide-reviewed"><strong>Reviewed October 2026.</strong> Prices are Bait Al Ebdaa's published starting prices, in AED and excluding 5% VAT. Your own quotation follows a site survey.</p>`,
-  ar: `<p class="guide-reviewed"><strong>تمت المراجعة في أكتوبر 2026.</strong> الأسعار هي أسعار بيت الإبداع الابتدائية المنشورة بالدرهم الإماراتي، غير شاملة ضريبة القيمة المضافة 5%، ويُعدّ عرض سعرك بعد معاينة الموقع.</p>`,
+const DATE_LABELS = {
+  "2026-10-16": { en: "October 16, 2026", ar: "١٦ أكتوبر ٢٠٢٦" },
+  "2026-11-06": { en: "November 6, 2026", ar: "٦ نوفمبر ٢٠٢٦" },
 };
+
+const reviewedNote = (month) => ({
+  en: `<p class="guide-reviewed"><strong>Reviewed ${month.en} 2026.</strong> Prices are Bait Al Ebdaa's published starting prices, in AED and excluding 5% VAT. Your own quotation follows a site survey.</p>`,
+  ar: `<p class="guide-reviewed"><strong>تمت المراجعة في ${month.ar} 2026.</strong> الأسعار هي أسعار بيت الإبداع الابتدائية المنشورة بالدرهم الإماراتي، غير شاملة ضريبة القيمة المضافة 5%، ويُعدّ عرض سعرك بعد معاينة الموقع.</p>`,
+});
+const reviewed = reviewedNote({ en: "October", ar: "أكتوبر" });
+const reviewedNovember = reviewedNote({ en: "November", ar: "نوفمبر" });
 
 // Worked examples: area or length × the published per-unit minimum (and maximum for ranges).
 const times = (id, qty, lang, bound = "min") => amountText(priceItem(id)[bound] * qty, lang);
@@ -487,11 +496,180 @@ function customWardrobeCost(lang) {
   };
 }
 
+// Office fit-out (6 Nov 2026). Facts used: the three office levels, the approval and office
+// design prices (data/pricing.js), the published pricing-page notes (what moves an office
+// budget; authority fees at actual cost; design fee credit), the turnkey scope from the
+// fit-out/dubai pilot, and the two owner-confirmed office projects. Shell-and-core and
+// Category A are explained as general guidance, not as a company claim; which permit applies
+// is left to the fit-out/dubai pilot page, which cites the authorities.
+function officeFitOutCost(lang) {
+  const P = (id) => priceText(id, lang);
+  const small = 2000;
+  const mid = 5000;
+  const suite = 1500;
+  if (lang === "ar") {
+    return {
+      title: "تكلفة تجهيز المكاتب في دبي: السعر للقدم المربع وما الذي يحدده",
+      seoTitle: "تكلفة تجهيز المكاتب في دبي: دليل أسعار 2026 | بيت الإبداع",
+      metaDescription: `كم يكلف تجهيز مكتب في دبي؟ ${P("office-essential")} للمستوى الأساسي، ومستويان أعلى، مع أمثلة محسوبة وما يرفع التكلفة.`,
+      description: "دليل لتكلفة تجهيز وتشطيب المكاتب في دبي: السعر للقدم المربع في ثلاثة مستويات، وأمثلة لمكاتب صغيرة ومتوسطة، وتكاليف الموافقات والتصميم، وكيف تقارن بين العروض.",
+      content: `${reviewedNovember.ar}
+<p>سؤال «كم يكلف تجهيز مكتب في دبي؟» جوابه المعتاد «حسب المشروع»، وهو جواب صحيح لكنه لا يساعدك حين تحتاج ميزانية قبل توقيع عقد الإيجار. يوضح هذا الدليل كيف تُحتسب <strong>تكلفة تجهيز المكاتب في دبي</strong> لدينا: سعر للقدم المربع في ثلاثة مستويات، وأمثلة محسوبة من أسعارنا المنشورة، والتكاليف التي تقع خارج هذا السعر، وما يجب التحقق منه عند مقارنة العروض.</p>
+
+<h2>تكلفة تجهيز المكاتب للقدم المربع</h2>
+<p>يُسعّر تجهيز المكاتب بالمساحة، لأن معظم الأعمال تكبر معها: الأسقف والأرضيات والإضاءة والقواطع والأعمال الكهروميكانيكية. وننشر ثلاثة مستويات:</p>
+<ul>
+<li><strong>تشطيب مكتب أساسي، ${P("office-essential")}:</strong> مكان عمل عملي بتشطيب جيد، فيه محطات عمل مفتوحة وغرف اجتماعات واستقبال، بتشطيبات قياسية متينة.</li>
+<li><strong>تشطيب مكتب متميز، ${P("office-premium")}:</strong> قواطع زجاجية أكثر ومعالجة صوتية وأسقف وإضاءة مميزة، ونجارة مخصصة في المساحات التي يراها العملاء.</li>
+<li><strong>مكتب تنفيذي أو فاخر، يبدأ من ${P("office-luxury")}:</strong> نجارة مخصصة في كامل المساحة، ومواد طبيعية كالحجر والقشرة الخشبية، وأجنحة تنفيذية بتشطيب يضاهي المنازل الفاخرة.</li>
+</ul>
+<p>هذه أوصاف عامة لكل مستوى، أما ما يشمله مشروعك بالتحديد فيحدده عرض السعر. وموقع مشروعك داخل النطاق يتوقف على حالة المساحة والمواصفات المختارة، كما نشرح أدناه.</p>
+
+<h2>أمثلة محسوبة</h2>
+<ul>
+<li><strong>مكتب مساحته 2,000 قدم مربع بالمستوى الأساسي:</strong> من نحو ${times("office-essential", small, "ar")} إلى ${times("office-essential", small, "ar", "max")}.</li>
+<li><strong>مكتب مساحته 5,000 قدم مربع بالمستوى المتميز:</strong> من نحو ${times("office-premium", mid, "ar")} إلى ${times("office-premium", mid, "ar", "max")}.</li>
+<li><strong>جناح إداري مساحته 1,500 قدم مربع بالمستوى التنفيذي:</strong> يبدأ من ${times("office-luxury", suite, "ar")}.</li>
+</ul>
+<p>الجمع بين المستويات شائع، وغالباً ما يكون أفضل استخدام للميزانية: استقبال وقاعة اجتماعات بالمستوى المتميز، ومساحات عمل مفتوحة بالمستوى الأساسي خلفها. سعّر كل منطقة بمستواها ثم اجمعها. هذه أرقام ابتدائية للتخطيط، وليست عرض سعر.</p>
+
+<h2>ماذا يشمل تجهيز المكتب المتكامل؟</h2>
+<p>لدينا، ينقل عقد واحد المساحة من حالة التسليم إلى مكتب جاهز للعمل:</p>
+<ul>
+<li>تخطيط المساحة والتصميم، مع اعتماده بصور ثلاثية الأبعاد واقعية قبل بدء العمل في الموقع</li>
+<li>الأعمال المدنية: القواطع والأسقف والأرضيات وتشطيبات الجدران</li>
+<li>الأعمال الكهروميكانيكية: الكهرباء والإضاءة والسباكة وتعديلات التكييف</li>
+<li>النجارة، من تكسيات الاستقبال إلى ألواح الجدران ووحدات التخزين، تُصنع في مصنعنا بمساحة 15,000 قدم مربع في عجمان</li>
+<li>تقديم طلبات الجهات المختصة وتنسيق شهادات عدم الممانعة حسب المبنى ونطاق العمل</li>
+<li>معالجة الملاحظات النهائية والتسليم</li>
+</ul>
+
+<h2>ما الذي يغيّر تكلفة تجهيز المكتب؟</h2>
+<ul>
+<li><strong>حالة المساحة عند الاستلام:</strong> الوحدة المسلّمة على الهيكل (Shell and Core) تحتاج أسقفاً وأرضيات وتوزيع تكييف وإضاءة قبل أن يظهر أي تصميم. أما الوحدة التي تتوفر فيها هذه العناصر، وتُسمى غالباً الفئة A، فتحتاج أقل، وقد يحتاج مكتب قائم بتوزيع صالح أقل من ذلك.</li>
+<li><strong>نطاق الأعمال الكهروميكانيكية:</strong> كل غرفة اجتماعات إضافية تعني مناطق تكييف ودوائر إضاءة ونقاط كهرباء وبيانات أكثر، ونقل المطبخ الصغير أو دورات المياه يعني أعمال سباكة.</li>
+<li><strong>القواطع والزجاج:</strong> القواطع الزجاجية العازلة للصوت أغلى من الجدران الجبسية، وكل غرفة مغلقة تضيف باباً وإضاءة وتهوية.</li>
+<li><strong>العزل الصوتي:</strong> المكاتب المفتوحة تحتاج غالباً أسقفاً أو ألواحاً صوتية لتعمل جيداً. وفي مشروعنا بوسط مدينة دبي صُممت المعالجة الصوتية وإدارة الكابلات من البداية، وهذا أقل كلفة من إضافتها لاحقاً.</li>
+<li><strong>النجارة:</strong> مكاتب الاستقبال وتكسيات الجدران ووحدات المطبخ والتخزين المصنوعة بالمقاس تضيف تكلفة بقدر ما هو مخصص منها.</li>
+<li><strong>التشطيبات:</strong> بلاط السجاد مقابل الحجر أو الخشب، والدهان مقابل القشرة الخشبية أو تكسيات القماش، هي أكثر ما يفرّق بين المستويات.</li>
+<li><strong>العمل في مكتب قائم:</strong> التنفيذ على مراحل في مكتب يعمل فيه الموظفون، أو خارج ساعات الدوام، يستغرق وقتاً أطول من العمل في طابق فارغ.</li>
+</ul>
+
+<h2>الموافقات وشهادات عدم الممانعة ورسوم الجهات</h2>
+<p>قبل بدء العمل يحتاج تجهيز المكتب عادةً موافقة المالك أو إدارة المبنى، وتصريحاً من الجهة المختصة حسب نطاق العمل. والجهة المختصة تتحدد بموقع المبنى، وتشرح صفحة <a href="/ar/fit-out/dubai">التجهيز المتكامل في دبي</a> كيف يُحسم ذلك مع الإحالة إلى صفحات الجهات نفسها.</p>
+<p>رسوم التنسيق لدينا منشورة: تنسيق عدم ممانعة المالك أو المجتمع يبدأ من ${P("approval-noc")}، ودعم موافقة بلدية دبي من ${P("approval-dm")}، وباقة موافقات تشطيب المكتب الكاملة من ${P("approval-office-package")}. أما تنسيق الدفاع المدني والأنظمة الكهروميكانيكية والجهات المتخصصة فيُسعّر حسب المشروع. وتُحتسب رسوم الجهات الحكومية والمطورين والاستشاريين منفصلة بتكلفتها الفعلية.</p>
+
+<h2>رسوم تصميم المكتب</h2>
+<p>يُسعّر تصميم المكاتب بالمساحة بدءاً من ${P("design-office")}، ويشمل تخطيط المساحة واختيار المواد وتصميم الإضاءة وصوراً ثلاثية الأبعاد واقعية، فتصميم مكتب مساحته 5,000 قدم مربع يبدأ من ${times("design-office", mid, "ar")}. وإذا كنت ستطرح التنفيذ في مناقصة فستحتاج المخططات التنفيذية بدءاً من ${P("design-drawings")} وجدول المواد بدءاً من ${P("design-material-schedule")}، حتى يسعّر المقاولون العمل نفسه.</p>
+<p>وعند تكليف بيت الإبداع بالتشطيب الكامل، قد تُخصم رسوم التصميم المستحقة من قيمة المشروع وفق قيمة العقد والشروط المتفق عليها. لمزيد من التفاصيل راجع <a href="/ar/media/interior-design-fees-dubai">دليل أسعار التصميم الداخلي في دبي</a> أو خدمة <a href="/ar/office-interior-design/dubai">التصميم الداخلي للمكاتب في دبي</a>.</p>
+
+<h2>ما الذي لا يشمله سعر القدم المربع؟</h2>
+<p>أسعارنا المنشورة لا تشمل ضريبة القيمة المضافة 5% ورسوم الجهات الحكومية والوصول المتخصص والرسوم الخارجية، ما لم يذكرها عرض السعر صراحة. ويختلف الأثاث المتنقل وأنظمة تقنية المعلومات والصوت والصورة كثيراً من شركة لأخرى، لذلك يُفضّل تسعيرها بنوداً منفصلة. تحقق عند المقارنة من أن كل عرض يوضح هل يشملها أم لا.</p>
+
+<h2>مكتبان بحجمين مختلفين</h2>
+<p>في <a href="/ar/our-projects/downtown-dubai-tech-hq">مكتب شركة تقنية بمساحة 12,000 قدم مربع في وسط مدينة دبي</a> خططنا محطات العمل المفتوحة وغرف الاجتماعات والاستقبال المكسو بنجارة مخصصة، ونسقنا الأعمال الكهروميكانيكية، وتولينا طلبات بلدية دبي وسلطة دبي للتطوير.</p>
+<p>وعلى الطرف الآخر، امتد <a href="/ar/our-projects/government-authority">مقر هيئة حكومية بمساحة 50,500 قدم مربع</a> في مدينة دبي الأكاديمية على ثلاثة طوابق، مع مناطق مخصصة لكل إدارة، ومحطات عمل مريحة بمكاتب قابلة لتعديل الارتفاع، وعناصر للخصوصية والتحكم في الضوضاء، ومساحات تعاون لأساليب العمل المختلفة. ومساحة بهذا الحجم توضح لماذا يهم سعر القدم المربع أكثر من أي عنصر منفرد: فكل زيادة صغيرة في سعر القدم المربع تتضاعف 50,500 مرة.</p>
+
+<h2>كيف تقارن بين عروض تجهيز المكاتب؟</h2>
+<ol>
+<li>هل السعر للقدم المربع أم مبلغ إجمالي أم الاثنان، وعلى أي مساحة: المساحة المؤجرة أم المساحة التي سيُعمل فيها فعلاً؟</li>
+<li>هل تنطلق العروض من الحالة نفسها: هيكل، أو فئة A، أو مكتب قائم؟</li>
+<li>ما الأعمال الكهروميكانيكية المشمولة، وهل هي مبنية على مخططات أم على مبالغ تقديرية؟</li>
+<li>هل الموافقات وشهادات عدم الممانعة مشمولة، وهل رسوم الجهات موضحة منفصلة؟</li>
+<li>هل الأثاث المتنقل وتقنية المعلومات والصوت والصورة مشمولة أم مستثناة؟</li>
+<li>من يصنع النجارة، وما الضمان المقدم عليها؟</li>
+</ol>
+<p>نصنع نجارتنا في مصنعنا الخاص، ونقدم ضمان جودة الصنعة لمدة خمس سنوات على النجارة التي نصنّعها ونركّبها.</p>
+
+<h2>كيف تحصل على عرض سعر دقيق؟</h2>
+<p>أحضر مخطط المكتب، وإرشادات التجهيز الخاصة بالمبنى إن وُجدت، وعدد الموظفين وغرف الاجتماعات المطلوبة، وموعد الانتقال المستهدف. معاينة الموقع مجانية. تعرّف على <a href="/ar/office-fit-out/dubai">خدمة تجهيز المكاتب في دبي</a> أو راجع <a href="/ar/pricing">قائمة الأسعار الكاملة</a>.</p>`,
+    };
+  }
+  return {
+    title: "Office Fit-Out Cost in Dubai: Price per Sq Ft and What Drives It",
+    seoTitle: "Office Fit-Out Cost in Dubai: 2026 Price Guide | Bait Al Ebdaa",
+    metaDescription: `Office fit-out cost in Dubai: ${P("office-essential")} at the essential level, two higher levels, worked examples and what moves the price.`,
+    description: "A guide to office fit-out costs in Dubai: the price per square foot at three finish levels, worked examples for small and mid-size offices, approval and design costs, and how to compare quotes.",
+    content: `${reviewedNovember.en}
+<p>Ask how much an office fit-out costs in Dubai and the usual answer is "it depends". That is true, but it does not help when you need a budget before signing a lease. This guide sets out how <strong>office fit-out cost in Dubai</strong> is priced with us: a rate per square foot at three finish levels, worked examples from our published prices, the costs that sit outside that rate, and what to check when you compare quotes.</p>
+
+<h2>Office fit-out cost per square foot</h2>
+<p>Office fit-out is priced by floor area, because most of the work grows with it: ceilings, flooring, lighting, partitions and MEP. We publish three levels:</p>
+<ul>
+<li><strong>Essential office fit-out, ${P("office-essential")}:</strong> a practical, well-finished workplace with open-plan workstations, meeting rooms and a reception, in durable standard finishes.</li>
+<li><strong>Premium office fit-out, ${P("office-premium")}:</strong> more glass partitioning, acoustic treatment, feature ceilings and lighting, and custom joinery in the areas clients see.</li>
+<li><strong>Executive or luxury office fit-out, from ${P("office-luxury")}:</strong> bespoke joinery throughout, natural materials such as stone and veneer, and executive suites finished to the standard of a luxury home.</li>
+</ul>
+<p>These describe each level in general terms; what your project includes is set out in its quotation. Where a project lands inside a range depends on the condition of the space and the specification, explained below.</p>
+
+<h2>Worked examples</h2>
+<ul>
+<li><strong>A 2,000 sq ft office at the essential level:</strong> about ${times("office-essential", small, "en")} to ${times("office-essential", small, "en", "max")}.</li>
+<li><strong>A 5,000 sq ft office at the premium level:</strong> about ${times("office-premium", mid, "en")} to ${times("office-premium", mid, "en", "max")}.</li>
+<li><strong>A 1,500 sq ft management suite at the executive level:</strong> from ${times("office-luxury", suite, "en")}.</li>
+</ul>
+<p>Mixing levels is common, and often the best use of a budget: a premium reception and boardroom, with essential-level open-plan areas behind them. Price each zone at its own level and add them up. These are starting figures for planning, not a quote.</p>
+
+<h2>What a turnkey office fit-out covers</h2>
+<p>With us, one contract takes the space from its handover condition to a working office:</p>
+<ul>
+<li>Space planning and design, approved in photorealistic 3D before any site work starts</li>
+<li>Civil works: partitions, ceilings, flooring and wall finishes</li>
+<li>MEP: electrical, lighting, plumbing and air-conditioning changes</li>
+<li>Joinery, from reception panelling to wall cladding and storage, made in our own 15,000 sq ft factory in Ajman</li>
+<li>Authority submissions and NOC coordination for your building and scope</li>
+<li>Snagging and final handover</li>
+</ul>
+
+<h2>What changes the cost of an office fit-out</h2>
+<ul>
+<li><strong>The condition you start from.</strong> A unit handed over as shell and core needs ceilings, floors, air-conditioning distribution and lighting before any design shows. A unit that already has them, often called Category A, needs less, and an existing office with a usable layout can need less again.</li>
+<li><strong>MEP scope.</strong> Every extra meeting room means more air-conditioning zones, lighting circuits and power and data points; moving a pantry or washroom means plumbing work.</li>
+<li><strong>Partitions and glazing.</strong> Acoustic glass partitions cost more than drywall, and every enclosed room adds a door, lighting and ventilation.</li>
+<li><strong>Acoustics.</strong> Open-plan offices often need acoustic ceilings or panels to work well. On our Downtown Dubai project, acoustic treatment and cable management were designed in from the start, which costs less than adding them later.</li>
+<li><strong>Joinery.</strong> Reception counters, wall panelling, pantry units and storage made to measure add cost in proportion to how much is custom.</li>
+<li><strong>Finishes.</strong> Carpet tiles against stone or timber floors, and paint against veneer or fabric wall finishes, are where the three levels differ most.</li>
+<li><strong>Working around a live business.</strong> Phased work in an occupied office, or work outside business hours, takes longer than fitting out an empty floor.</li>
+</ul>
+
+<h2>Approvals, NOCs and authority fees</h2>
+<p>Before work starts, an office fit-out usually needs the landlord's or building's approval and, depending on the scope, a permit from the relevant authority. Which authority applies depends on where the building is; our <a href="/en/fit-out/dubai">turnkey fit-out in Dubai</a> page explains how that is decided and links to the authorities' own pages.</p>
+<p>Our coordination fees are published: landlord or community NOC coordination from ${P("approval-noc")}, Dubai Municipality approval support from ${P("approval-dm")}, and a complete office fit-out approval package from ${P("approval-office-package")}. Civil Defence, MEP and specialist coordination is quoted for each project. Authority, developer and consultant fees are charged separately at actual cost.</p>
+
+<h2>Design fees for an office</h2>
+<p>Office design is priced by area, from ${P("design-office")}, and covers space planning, material selection, lighting design and photorealistic 3D renders, so the design for a 5,000 sq ft office starts from ${times("design-office", mid, "en")}. If you plan to tender the build, you will also need working drawings, from ${P("design-drawings")}, and a material schedule, from ${P("design-material-schedule")}, so that every contractor prices the same work.</p>
+<p>When Bait Al Ebdaa is appointed for the complete fit-out, eligible design fees may be credited toward the project, subject to contract value and agreed terms. For more detail, read our <a href="/en/media/interior-design-fees-dubai">interior design fees guide</a> or see our <a href="/en/office-interior-design/dubai">office interior design service in Dubai</a>.</p>
+
+<h2>What the per-square-foot rate does not include</h2>
+<p>Our published prices exclude 5% VAT, authority fees, specialist access and third-party charges unless the quotation specifically includes them. Loose furniture, IT and audio-visual systems vary so much from one business to another that they are best priced as separate lines. When you compare quotes, check whether each one includes them.</p>
+
+<h2>Two offices, two scales</h2>
+<p>For a technology company's <a href="/en/our-projects/downtown-dubai-tech-hq">12,000 sq ft office in Downtown Dubai</a>, we planned open-plan workstations, meeting rooms and a reception finished with custom joinery panelling, coordinated the MEP works and handled the Dubai Municipality and DDA submissions.</p>
+<p>At the other end of the scale, a <a href="/en/our-projects/government-authority">50,500 sq ft government authority headquarters</a> in Dubai Academic City ran across three floors, with a zone for each department, ergonomic sit-stand workstations, privacy and noise-control elements, and collaboration spaces for different ways of working. A floor plate that size shows why the rate per square foot matters more than any single feature: every small increase in the rate is multiplied 50,500 times.</p>
+
+<h2>How to compare office fit-out quotes</h2>
+<p>Put the quotes side by side and ask the same six questions of each:</p>
+<ol>
+<li>Is it priced per square foot, as a lump sum, or both, and on which area: the leased area or the area actually being fitted out?</li>
+<li>Does every quote start from the same condition: shell and core, Category A, or an existing office?</li>
+<li>Which MEP works are included, and are they based on drawings or on allowances?</li>
+<li>Are approvals and NOCs included, and are authority fees shown separately?</li>
+<li>Are loose furniture, IT and audio-visual systems included or excluded?</li>
+<li>Who makes the joinery, and what guarantee comes with it?</li>
+</ol>
+<p>We make our joinery in our own factory and give a five-year workmanship guarantee on the joinery we manufacture and install.</p>
+
+<h2>Getting an accurate quote</h2>
+<p>Bring the floor plan, your building's fit-out guidelines if it has them, your headcount and the number of meeting rooms you need, and your target move-in date. The site survey is free. See our <a href="/en/office-fit-out/dubai">office fit-out service in Dubai</a> or the <a href="/en/pricing">full price list</a>.</p>`,
+  };
+}
+
 const BUILDERS = {
   "interior-design-fees-dubai": interiorDesignFees,
   "villa-renovation-cost-dubai": villaRenovationCost,
   "kitchen-cabinet-cost-dubai": kitchenCabinetCost,
   "custom-wardrobe-cost-dubai": customWardrobeCost,
+  "office-fit-out-cost-dubai": officeFitOutCost,
 };
 export const COST_GUIDE_SLUGS = Object.keys(BUILDERS);
 
@@ -505,7 +683,7 @@ export function costGuideArticles(lang) {
       link: `/${lang}/media/${slug}`,
       description: guide.description,
       image: IMAGE[slug],
-      date: DATE_LABEL[lang],
+      date: DATE_LABELS[costGuideDate(slug)][lang],
       author: AUTHOR[lang],
       guide: true,
       content: guide.content,
