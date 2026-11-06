@@ -28,13 +28,13 @@ export const legalPages = {
       pageTitle: "Bait Al Ebdaa Cookie Policy",
       metaTitle: "Cookie Policy | Bait Al Ebdaa",
       metaDescription: "How www.baitalebdaa.com uses cookies: Google Analytics cookies only if you accept them, plus one cookie that remembers your choice.",
-      lastUpdated: "Last updated: 25 October 2026",
+      lastUpdated: "Last updated: 6 November 2026",
       intro:
         "This page explains how www.baitalebdaa.com uses cookies and similar technologies. In short: we use Google Analytics to understand how the site is used, and its cookies are set only if you accept them. We do not use advertising or retargeting cookies.",
       sections: [
         { title: "What cookies are", body: "Cookies are small text files that a website can store in your browser. Similar technologies, such as your browser's local storage, work in a comparable way." },
         { title: "What this website uses", body: "One cookie of our own, bae_consent, remembers for 12 months whether you accepted or rejected analytics cookies. If you accept, Google Analytics 4 sets its cookies (_ga and _ga_3XNVMKSM87), which last up to 2 years and tell us how many people visit, which pages they view and how they found the site. We do not use your browser's local storage or session storage, and we do not run advertising or retargeting tools." },
-        { title: "Before you choose, or if you reject", body: "Google Analytics then sets no cookies. It still receives a basic signal when a page is viewed, without any identifier that recognises you from one visit to the next (Google calls this Consent Mode). We use it only for overall visit counts." },
+        { title: "Before you choose, or if you reject", body: "Google Analytics is not loaded at all: it sets no cookies and receives nothing from your visit. It loads only after you accept." },
         { title: "Forms and the Ask Ali assistant", body: "When you send a contact, quote or careers form, or message our Ask Ali assistant, your message is sent to our servers and handled as described in our Privacy Policy. This does not depend on cookies." },
         { title: "Links to other services", body: "Buttons that open WhatsApp, Facebook, Instagram, LinkedIn or YouTube take you to those services. They may set their own cookies under their own policies, which we do not control." },
         { title: "Changing your choice", body: "Use \"Cookie settings\" at the bottom of any page to change your choice at any time. You can also block or delete cookies in your browser settings, or install Google's opt-out add-on (tools.google.com/dlpage/gaoptout). None of this affects how you use the website." },
@@ -118,13 +118,13 @@ export const legalPages = {
       pageTitle: "سياسة ملفات تعريف الارتباط في بيت الإبداع",
       metaTitle: "سياسة ملفات تعريف الارتباط | بيت الإبداع",
       metaDescription: "كيف يستخدم موقع www.baitalebdaa.com ملفات تعريف الارتباط: ملفات Google Analytics فقط إذا وافقت عليها، وملف واحد يحفظ اختيارك. لا ملفات إعلانية.",
-      lastUpdated: "آخر تحديث: 25 أكتوبر 2026",
+      lastUpdated: "آخر تحديث: 6 نوفمبر 2026",
       intro:
         "توضّح هذه الصفحة كيف يستخدم موقع www.baitalebdaa.com ملفات تعريف الارتباط والتقنيات المشابهة. باختصار: نستخدم Google Analytics لفهم كيفية استخدام الموقع، ولا تُوضع ملفات تعريف الارتباط الخاصة به إلا إذا وافقت عليها. ولا نستخدم ملفات تعريف ارتباط للإعلانات أو إعادة الاستهداف.",
       sections: [
         { title: "ما هي ملفات تعريف الارتباط", body: "ملفات تعريف الارتباط ملفات نصية صغيرة يمكن لأي موقع تخزينها في متصفحك. وتعمل تقنيات مشابهة، مثل التخزين المحلي في المتصفح، بطريقة قريبة منها." },
         { title: "ما الذي يستخدمه هذا الموقع", body: "ملف واحد خاص بنا، bae_consent، يحفظ لمدة 12 شهراً ما إذا كنت قد وافقت على ملفات تعريف الارتباط التحليلية أو رفضتها. وإذا وافقت، يضع Google Analytics 4 ملفاته (_ga و_ga_3XNVMKSM87) التي تبقى حتى سنتين، وتخبرنا بعدد الزوار والصفحات التي يشاهدونها وكيف وصلوا إلى الموقع. لا نستخدم التخزين المحلي أو تخزين الجلسة في متصفحك، ولا نشغّل أدوات إعلانات أو إعادة استهداف." },
-        { title: "قبل أن تختار، أو إذا رفضت", body: "لا يضع Google Analytics عندها أي ملفات تعريف ارتباط. لكنه يتلقى إشارة أساسية عند مشاهدة الصفحة، من دون أي معرّف يميّزك من زيارة إلى أخرى (تسميها Google وضع الموافقة). ونستخدمها لإحصاء عدد الزيارات الإجمالي فقط." },
+        { title: "قبل أن تختار، أو إذا رفضت", body: "لا يُحمَّل Google Analytics إطلاقاً: فلا يضع أي ملفات تعريف ارتباط ولا يتلقى شيئاً من زيارتك، ولا يُحمَّل إلا بعد موافقتك." },
         { title: "النماذج ومساعد Ask Ali", body: "عندما ترسل نموذج تواصل أو طلب عرض سعر أو توظيف، أو تراسل مساعدنا Ask Ali، تُرسل رسالتك إلى خوادمنا وتُعالَج كما هو موضح في سياسة الخصوصية. ولا يعتمد ذلك على ملفات تعريف الارتباط." },
         { title: "روابط لخدمات أخرى", body: "الأزرار التي تفتح واتساب أو فيسبوك أو إنستغرام أو لينكدإن أو يوتيوب تنقلك إلى تلك الخدمات، وقد تضع ملفات تعريف ارتباط خاصة بها وفق سياساتها التي لا نتحكم بها." },
         { title: "تغيير اختيارك", body: "استخدم \"إعدادات ملفات تعريف الارتباط\" أسفل أي صفحة لتغيير اختيارك في أي وقت. ويمكنك أيضاً حظر ملفات تعريف الارتباط أو حذفها من إعدادات متصفحك، أو تثبيت إضافة إلغاء الاشتراك من Google ‏(tools.google.com/dlpage/gaoptout). ولا يؤثر أي من ذلك على استخدامك للموقع." },

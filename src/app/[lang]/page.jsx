@@ -38,7 +38,7 @@ export default async function Home({ params }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema).replace(/</g, "\\u003c") }}
         />
       )}
-      <App />
+      <App lang={lang} />
     </>
   );
 }

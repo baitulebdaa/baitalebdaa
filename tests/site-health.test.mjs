@@ -153,7 +153,7 @@ test("reviews are real, in the client's words, never given an invented rating, a
   assert.ok(read("src/app/[lang]/reviews/page.jsx").includes("hasRealReviews() ? { index: true, follow: true } : { index: false, follow: true }"));
   assert.ok(read("src/app/sitemap.js").includes('if (hasRealReviews()) entries.push(...localizedEntry("reviews"'));
   assert.doesNotMatch(read("src/app/[lang]/reviews/page.jsx") + read("src/Reviews.jsx"), /"@type": "(AggregateRating|Review)"/);
-  assert.ok(read("src/App.jsx").includes("<Projects /><Testimonials />"));
+  assert.match(read("src/App.jsx"), /<Projects \{\.\.\.props\} \/><Testimonials \{\.\.\.props\} \/>/);
 });
 
 test("About and Reviews are linked from the menu popup and footer, not the header nav", () => {
@@ -453,4 +453,85 @@ test("FAQPage schema on service pages is built from the same items the visible F
   assert.match(faqItem, /<h3>\{faq\.q\}<\/h3>/);
   assert.match(faqItem, /<p>\{faq\.a\}<\/p>/);
   assert.doesNotMatch(faqItem, /isOpen\s*&&/);
+});
+
+test("service estimators price only with that service's own published prices", async () => {
+  const { SERVICE_ESTIMATORS, serviceEstimator } = await import("../src/lib/pricing.js");
+  const UNIT = { area: "sqft", length: "linearMetre", package: undefined };
+  for (const slug of Object.keys(SERVICE_ESTIMATORS)) {
+    const est = serviceEstimator(slug);
+    for (const item of [...est.items, ...est.addons]) {
+      assert.ok(item.priceType === "from" || item.priceType === "range", `${slug} ${item.id} has a published amount`);
+      assert.equal(item.unit, UNIT[est.mode], `${slug} ${item.id} unit matches ${est.mode}`);
+      assert.ok(dictionaries.en.pricingPage.items[item.id] && dictionaries.ar.pricingPage.items[item.id], `${item.id} is named`);
+    }
+  }
+  // No published price for the whole service: no estimate, quoted after a survey.
+  for (const slug of ["restaurant-fit-out", "retail-fit-out", "apartment-renovation", "commercial-interior-design", "restaurant-interior-design", "retail-interior-design"]) {
+    assert.equal(serviceEstimator(slug), null, slug);
+  }
+  const page = read("src/ServiceLocationPage.jsx");
+  assert.doesNotMatch(page, /<Estimator\b/, "service pages no longer use the generic turnkey estimator");
+  assert.match(page, /<ServiceEstimator service=\{row\.serviceSlug\}/);
+});
+
+test("local evidence cites only official sources and real projects in that emirate", async () => {
+  const { localEvidence } = await import("../src/data/local-evidence.js");
+  const { OFFICIAL_SOURCES } = await import("../src/data/official-sources.js");
+  const { REAL_PROJECT_SLUGS } = await import("../src/data/project-catalog.js");
+  const { services } = JSON.parse(read("src/data/seo-pages.json"));
+  for (const emirate of ["Dubai", "Abu Dhabi", "Sharjah", "Ajman"]) {
+    for (const { slug } of services) {
+      for (const lang of ["en", "ar"]) {
+        const local = localEvidence(lang, slug, emirate);
+        assert.ok(local.points.length >= 2 && local.intro && local.base, `${lang} ${emirate} ${slug}`);
+        for (const id of local.sources) assert.ok(OFFICIAL_SOURCES[id], `${id} is a reviewed official source`);
+        for (const project of local.projects) {
+          assert.ok(REAL_PROJECT_SLUGS.has(project), project);
+          const where = dictionaries.en.projectDetailPage.projects[project].metadata.location;
+          assert.ok(where.includes(emirate), `${project} is in ${emirate}`);
+        }
+      }
+    }
+  }
+  // Nothing published in Sharjah or Ajman yet, so no project is claimed there.
+  assert.deepEqual(localEvidence("en", "fit-out", "Sharjah").projects, []);
+  assert.deepEqual(localEvidence("en", "joinery", "Ajman").projects, []);
+  assert.ok(localEvidence("en", "retail-fit-out", "Sharjah").sources.includes("shj-decor-permit"));
+  assert.equal(localEvidence("en", "fit-out", "Fujairah"), null);
+});
+
+test("homepage renders on the server; Google Analytics loads only after consent", () => {
+  // The page is a server component; only the islands (header, hero, sector tabs) and the
+  // shared interactive components hydrate in the browser.
+  assert.doesNotMatch(read("src/App.jsx"), /^["']use client["']/);
+  assert.match(read("src/components/HomeIslands.jsx"), /^"use client";/);
+  // No gtag.js until the visitor accepts: the layout loads it only for a stored "granted"
+  // choice, and the banner loads it when someone accepts.
+  const layout = read("src/app/[lang]/layout.jsx");
+  assert.doesNotMatch(layout, /<Script src=\{`https:\/\/www\.googletagmanager\.com/);
+  assert.match(layout, /=granted\/\.test\(document\.cookie\)\) \{/);
+  assert.match(read("src/components/CookieConsent.jsx"), /if \(choice === "granted"\) window\.baeLoadAnalytics\?\.\(\);/);
+  // The homepage and pricing estimators use only published prices.
+  assert.doesNotMatch(read("src/components/Estimator.jsx"), /\b(220|150|80)\b/);
+  assert.match(read("src/components/Estimator.jsx"), /scopes=\{GENERAL_ESTIMATOR_SCOPES\}/);
+});
+
+test("website icons ship only the variants they draw, and every icon used exists", async () => {
+  const icons = read("src/components/icons.jsx");
+  assert.doesNotMatch(icons, /from "iconsax-reactjs"/, "the package carries all six variants of every icon");
+  const { ICON_SVG } = await import("../src/components/icon-svg.js");
+  for (const [, name] of icons.matchAll(/(?:wrap|drawIcon)\("([A-Za-z0-9]+)"/g)) {
+    assert.ok(ICON_SVG[name]?.Linear, `${name} has its Linear markup`);
+  }
+  for (const name of ["TickCircle", "Star1", "Whatsapp", "Home2", "Category", "Building3", "Call", "User"]) {
+    assert.ok(ICON_SVG[name].Bold, `${name} has its Bold markup`);
+  }
+});
+
+test("hero photos load first on phones and project cards keep their proportions", () => {
+  assert.match(read("src/components/Shared.jsx"), /className="ph-hero__img"/);
+  assert.match(read("src/components/Shared.jsx"), /<Image src=\{image\} alt=\{alt\} fill preload fetchPriority="high"/);
+  assert.match(read("src/components/HomeIslands.jsx"), /preload=\{i === 0\} fetchPriority=\{i === 0 \? "high" : undefined\}/);
+  assert.match(read("src/styles.css"), /\.project-card-home__image img \{\s*object-fit: cover;/);
 });

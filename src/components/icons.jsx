@@ -1,6 +1,6 @@
 "use client";
 
-// Site-wide icon set: Iconsax (iconsax-reactjs). Every component imports icons
+// Site-wide icon set: Iconsax glyphs (pre-rendered from iconsax-reactjs, see icon-svg.js). Every component imports icons
 // from here instead of a vendor package, under the names it already used, so the
 // whole site can be re-skinned from one file.
 //
@@ -8,90 +8,50 @@
 // ArrowUp rotated 45° (mirrored to -45° in Arabic, matching the old RTL flip).
 // Iconsax has no LinkedIn mark either; that one stays an inline brand SVG.
 
-import {
-  ArrowUp as IsxArrowUp,
-  ArrowRight as IsxArrowRight,
-  ArrowLeft as IsxArrowLeft,
-  ArrowDown2,
-  TickCircle,
-  CloseCircle,
-  Call,
-  Setting2,
-  Like1,
-  Dislike,
-  Star1,
-  ArrowRotateLeft,
-  Add,
-  MessageText1,
-  HamburgerMenu as IsxMenu,
-  Location,
-  Sms,
-  InfoCircle,
-  GalleryAdd,
-  Global,
-  Facebook as IsxFacebook,
-  Instagram as IsxInstagram,
-  Youtube as IsxYoutube,
-  Clock as IsxClock,
-  Calendar as IsxCalendar,
-  Whatsapp as IsxWhatsapp,
-  Paperclip2,
-  Home2,
-  Category,
-  Building3,
-  User as IsxUser,
-  Lock as IsxLock,
-  Eye as IsxEye,
-  EyeSlash as IsxEyeSlash,
-  DocumentText as IsxDocumentText,
-  LogoutCurve,
-  Trash as IsxTrash,
-  Edit2,
-  CalendarTick,
-  SearchNormal1,
-  Minus as IsxMinus,
-  Wind as IsxWind,
-  ClipboardTick,
-  Ruler as IsxRuler,
-  ShoppingCart as IsxShoppingCart,
-  Box as IsxBox,
-  Lamp as IsxLamp,
-  Profile2User,
-} from "iconsax-reactjs";
+import { ICON_SVG } from "./icon-svg";
 import { useI18n } from "../i18n/I18nProvider";
 
-const wrap = (Icon, defaults = {}) =>
-  function SiteIcon({ size = 24, strokeWidth, absoluteStrokeWidth, ...props }) {
-    return <Icon size={size} color="currentColor" {...defaults} {...props} />;
+// Each icon draws its Iconsax markup from icon-svg.js (scripts/build-icons.mjs), which keeps
+// only the variants the site uses: the package itself shipped all six with every icon.
+function drawIcon(name, { size = 24, variant = "Linear", strokeWidth, absoluteStrokeWidth, color, ...props }) {
+  const svg = ICON_SVG[name];
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" {...props} dangerouslySetInnerHTML={{ __html: svg[variant] || svg.Linear }} />
+  );
+}
+
+const wrap = (name, defaults = {}) =>
+  function SiteIcon(props) {
+    return drawIcon(name, { ...defaults, ...props });
   };
 
-export const ArrowUp = wrap(IsxArrowUp);
-export const ArrowRight = wrap(IsxArrowRight);
-export const ArrowLeft = wrap(IsxArrowLeft);
-export const ChevronDown = wrap(ArrowDown2);
-export const Check = wrap(TickCircle, { variant: "Bold" });
-export const X = wrap(CloseCircle);
-export const Phone = wrap(Call);
-export const Wrench = wrap(Setting2);
-export const ThumbsUp = wrap(Like1);
-export const ThumbsDown = wrap(Dislike);
-export const Star = wrap(Star1, { variant: "Bold" });
-export const RotateCcw = wrap(ArrowRotateLeft);
-export const Plus = wrap(Add);
+export const ArrowUp = wrap("ArrowUp");
+export const ArrowRight = wrap("ArrowRight");
+export const ArrowLeft = wrap("ArrowLeft");
+export const ChevronDown = wrap("ArrowDown2");
+export const Check = wrap("TickCircle", { variant: "Bold" });
+export const X = wrap("CloseCircle");
+export const Phone = wrap("Call");
+export const Wrench = wrap("Setting2");
+export const ThumbsUp = wrap("Like1");
+export const ThumbsDown = wrap("Dislike");
+export const Star = wrap("Star1", { variant: "Bold" });
+export const RotateCcw = wrap("ArrowRotateLeft");
+export const Plus = wrap("Add");
 // Ask Ali (owner, 27 Oct 2026): the speech bubble with two lines and a tail.
-export const MessageSquare = wrap(MessageText1);
-export const Menu = wrap(IsxMenu);
-export const MapPin = wrap(Location);
-export const Mail = wrap(Sms);
-export const Info = wrap(InfoCircle);
-export const ImagePlus = wrap(GalleryAdd);
-export const Globe = wrap(Global);
-export const Facebook = wrap(IsxFacebook);
-export const Instagram = wrap(IsxInstagram);
-export const Youtube = wrap(IsxYoutube);
-export const Clock = wrap(IsxClock);
-export const Calendar = wrap(IsxCalendar);
-export const Whatsapp = wrap(IsxWhatsapp, { variant: "Bold" });
+export const MessageSquare = wrap("MessageText1");
+export const Menu = wrap("HamburgerMenu");
+export const MapPin = wrap("Location");
+export const Mail = wrap("Sms");
+export const Info = wrap("InfoCircle");
+export const ImagePlus = wrap("GalleryAdd");
+export const Globe = wrap("Global");
+export const Facebook = wrap("Facebook");
+export const Instagram = wrap("Instagram");
+export const Youtube = wrap("Youtube");
+export const Clock = wrap("Clock");
+export const Calendar = wrap("Calendar");
+export const Whatsapp = wrap("Whatsapp", { variant: "Bold" });
 
 // Official WhatsApp logo (Simple Icons glyph, CC0) — the mark everyone recognises, not the
 // Iconsax approximation used elsewhere. Takes `currentColor` like the other icons.
@@ -103,32 +63,32 @@ export function WhatsappLogo({ size = 24, strokeWidth, absoluteStrokeWidth, ...p
   );
 }
 
-export const Paperclip = wrap(Paperclip2);
-export const Home = wrap(Home2);
-export const Services = wrap(Category);
-export const Projects = wrap(Building3);
-export const Account = wrap(IsxUser);
+export const Paperclip = wrap("Paperclip2");
+export const Home = wrap("Home2");
+export const Services = wrap("Category");
+export const Projects = wrap("Building3");
+export const Account = wrap("User");
 export const User = Account;
-export const Lock = wrap(IsxLock);
-export const Eye = wrap(IsxEye);
-export const EyeSlash = wrap(IsxEyeSlash);
-export const DocumentText = wrap(IsxDocumentText);
-export const SignOut = wrap(LogoutCurve);
-export const Trash = wrap(IsxTrash);
-export const Edit = wrap(Edit2);
-export const CalendarCheck = wrap(CalendarTick);
+export const Lock = wrap("Lock");
+export const Eye = wrap("Eye");
+export const EyeSlash = wrap("EyeSlash");
+export const DocumentText = wrap("DocumentText");
+export const SignOut = wrap("LogoutCurve");
+export const Trash = wrap("Trash");
+export const Edit = wrap("Edit2");
+export const CalendarCheck = wrap("CalendarTick");
 // The four process stages: Discover, Visualize, Approve, Make.
-export const StageDiscover = wrap(SearchNormal1);
-export const StageVisualize = wrap(IsxBox);
-export const StageApprove = wrap(ClipboardTick);
-export const StageMake = wrap(IsxRuler);
-export const Minus = wrap(IsxMinus);
+export const StageDiscover = wrap("SearchNormal1");
+export const StageVisualize = wrap("Box");
+export const StageApprove = wrap("ClipboardTick");
+export const StageMake = wrap("Ruler");
+export const Minus = wrap("Minus");
 // Curtains (the estimator's scope cards): Iconsax has no curtain, wind reads as flowing fabric.
-export const Curtains = wrap(IsxWind);
-export const ShoppingCart = wrap(IsxShoppingCart);
-export const Box = wrap(IsxBox);
-export const Lamp = wrap(IsxLamp);
-export const Users = wrap(Profile2User);
+export const Curtains = wrap("Wind");
+export const ShoppingCart = wrap("ShoppingCart");
+export const Box = wrap("Box");
+export const Lamp = wrap("Lamp");
+export const Users = wrap("Profile2User");
 
 export function ArrowUpRight({ size = 24, style, ...props }) {
   let rtl = false;
@@ -137,14 +97,7 @@ export function ArrowUpRight({ size = 24, style, ...props }) {
   } catch {
     rtl = false;
   }
-  return (
-    <IsxArrowUp
-      size={size}
-      color="currentColor"
-      {...props}
-      style={{ transform: `rotate(${rtl ? -45 : 45}deg)`, ...style }}
-    />
-  );
+  return drawIcon("ArrowUp", { size, ...props, style: { transform: `rotate(${rtl ? -45 : 45}deg)`, ...style } });
 }
 
 export function Linkedin({ size = 24, ...props }) {

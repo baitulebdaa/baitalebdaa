@@ -314,9 +314,7 @@ export const dictionaries = {
       quantityLabels: { window: "Number of windows", linearMetre: "Linear metres", sqft: "Area (sq ft)", default: "Quantity" },
     },
     estimatorSection: {
-      sizeStep: "Property size",
       scopeStep: "What do you need?",
-      scopeNotes: ["Design, approvals, fit-out and joinery", "Kitchens, wardrobes and wall units", "Motorized and manual curtains"],
       presets: "Quick pick",
       smaller: "Smaller",
       larger: "Larger",
@@ -324,22 +322,39 @@ export const dictionaries = {
       included: "Included",
       siteVisit: "Book a free site visit",
       whatsapp: "Ask on WhatsApp",
-      whatsappMessage: "Hello! I used the cost estimator: {scope}, {size} sq ft. I'd like a quote.",
       kicker: "Instant Cost Estimator",
       title: "Turnkey Investment Estimator Engine",
-      subtitle: "Select your property size and scope to calculate your estimated turnkey fit-out investment in your chosen currency.",
-      propertySize: "Property Size (sq ft)",
-      scope: "Scope Selection",
-      scopeOptions: ["Full Turnkey", "Factory Joinery", "Somfy Curtains"],
-      estimatedInvestment: "ESTIMATED INVESTMENT",
-      calculatedValue: "Calculated Contract Value",
-      inclusions: [
-        "3D Architectural CAD Package",
-        "Municipality NOC coordination",
-        "15k sqft Ajman Joinery Production",
-        "5-Year Workmanship Guarantee"
-      ],
-      bookSurvey: "Book Survey & Formal Quote"
+      subtitle: "Choose what you need, then its size and level, for a starting estimate built from our published prices.",
+      // Service pages: the estimator built from that service's own published prices.
+      service: {
+        areaStep: "Floor area",
+        lengthStep: "Length of units",
+        lengthNote: "Measured along the wall, in linear metres.",
+        lengthUnit: "m",
+        levelStep: "Choose a level",
+        packageStep: "Choose a design package",
+        addonsStep: "Add to the estimate",
+        result: "Starting estimate",
+        resultPackage: "Starting price",
+        from: "From",
+        to: "to",
+        perUnit: { sqft: "per sq ft", linearMetre: "per linear metre" },
+        countStep: "Number of windows",
+        countUnit: "windows",
+        countNote: "Per standard window, up to about 2 m × 3 m.",
+        whatsappMessage: "Hello! I used your cost estimator: {choice}{size}. I'd like a quote.",
+        // Homepage and pricing page: what the visitor wants priced (lib/pricing.js GENERAL_ESTIMATOR_SCOPES).
+        scopes: {
+          "villa-renovation": { label: "Villa fit-out", note: "Standard, luxury or fully bespoke, per sq ft" },
+          "office-fit-out": { label: "Office fit-out", note: "Essential, premium or executive, per sq ft" },
+          "kitchen-design": { label: "Kitchen", note: "Cabinetry made in our Ajman factory, per linear metre" },
+          "custom-wardrobes": { label: "Wardrobes", note: "Fitted wardrobes and walk-ins, per linear metre" },
+          curtains: { label: "Curtains", note: "Manual or Somfy motorized, per window" },
+          "interior-design": { label: "Interior design", note: "Design packages with 3D renders" },
+        },
+        quotedTitle: "Quoted after a free site survey",
+        quotedBody: "{service} has no published starting price: every project is priced from its own drawings and a site survey. Book a free site visit, or ask us on WhatsApp.",
+      }
     },
     processSection: {
       micro: "A controlled journey",
@@ -485,7 +500,7 @@ export const dictionaries = {
       pageTitle: "Bait Al Ebdaa Privacy Policy",
       metaTitle: "Privacy Policy | Bait Al Ebdaa",
       metaDescription: "How Bait Al Ebdaa collects, uses and protects the personal information submitted through our website forms and contact channels.",
-      lastUpdated: "Last updated: 25 October 2026",
+      lastUpdated: "Last updated: 6 November 2026",
       intro: "This page explains what information Bait Al Ebdaa ('we', 'us') collects when you use www.baitalebdaa.com, and how we use it. We collect only what's needed to respond to your enquiry.",
       sections: [
         {
@@ -506,7 +521,7 @@ export const dictionaries = {
         },
         {
           title: "Cookies and Analytics",
-          body: "We use Google Analytics 4 to understand how visitors use the site: pages viewed, how they arrived, device type and approximate location. Its cookies are set only if you accept them in the cookie banner; until then it receives only cookieless signals with no identifier. We do not use advertising cookies or browser local storage. You can change your choice at any time with \"Cookie settings\" at the bottom of any page; our Cookie Policy has the details.",
+          body: "We use Google Analytics 4 to understand how visitors use the site: pages viewed, how they arrived, device type and approximate location. It loads, and sets its cookies, only if you accept them in the cookie banner; until then it receives nothing from your visit. We do not use advertising cookies or browser local storage. You can change your choice at any time with \"Cookie settings\" at the bottom of any page; our Cookie Policy has the details.",
         },
         {
           title: "Data Retention",
@@ -2011,9 +2026,7 @@ export const dictionaries = {
       quantityLabels: { window: "عدد النوافذ", linearMetre: "الأمتار الطولية", sqft: "المساحة (قدم مربع)", default: "الكمية" },
     },
     estimatorSection: {
-      sizeStep: "مساحة العقار",
       scopeStep: "ماذا تحتاج؟",
-      scopeNotes: ["تصميم وموافقات وتجهيز ونجارة", "مطابخ وخزائن ووحدات جدارية", "ستائر آلية ويدوية"],
       presets: "اختيار سريع",
       smaller: "أصغر",
       larger: "أكبر",
@@ -2021,22 +2034,37 @@ export const dictionaries = {
       included: "يشمل",
       siteVisit: "احجز زيارة موقع مجانية",
       whatsapp: "اسأل عبر واتساب",
-      whatsappMessage: "مرحباً! استخدمت حاسبة التكلفة: {scope}، {size} قدم مربع. أرغب بعرض سعر.",
       kicker: "حاسبة التكلفة الفورية",
       title: "محرك تقدير الاستثمار الشامل",
-      subtitle: "حدد حجم عقارك ونطاق العمل لحساب التكلفة التقديرية لتجهيز مشروعك بالعملة التي تختارها.",
-      propertySize: "مساحة العقار (قدم مربع)",
-      scope: "تحديد النطاق",
-      scopeOptions: ["تسليم مفتاح كامل", "نجارة المصنع", "ستائر سومفي"],
-      estimatedInvestment: "الاستثمار المقدر",
-      calculatedValue: "قيمة العقد المحسوبة",
-      inclusions: [
-        "حزمة CAD معمارية ثلاثية الأبعاد",
-        "تنسيق شهادة عدم الممانعة من البلدية",
-        "15 ألف قدم مربع من إنتاج النجارة",
-        "ضمان 5 سنوات على جودة العمل"
-      ],
-      bookSurvey: "حجز مسح واقتباس رسمي"
+      subtitle: "اختر ما تحتاجه، ثم المساحة والمستوى، لتحصل على تقدير مبدئي مبني على أسعارنا المنشورة.",
+      service: {
+        areaStep: "المساحة",
+        lengthStep: "طول الوحدات",
+        lengthNote: "يُقاس على امتداد الجدار بالمتر الطولي.",
+        lengthUnit: "م",
+        levelStep: "اختر المستوى",
+        packageStep: "اختر باقة التصميم",
+        addonsStep: "أضف إلى التقدير",
+        result: "التقدير المبدئي",
+        resultPackage: "السعر المبدئي",
+        from: "يبدأ من",
+        to: "إلى",
+        perUnit: { sqft: "للقدم المربع", linearMetre: "للمتر الطولي" },
+        countStep: "عدد النوافذ",
+        countUnit: "نوافذ",
+        countNote: "للنافذة القياسية حتى نحو 2 م × 3 م.",
+        whatsappMessage: "مرحباً! استخدمت حاسبة التكلفة: {choice}{size}. أرغب بعرض سعر.",
+        scopes: {
+          "villa-renovation": { label: "تشطيب فيلا", note: "قياسي أو فاخر أو حسب الطلب بالكامل، للقدم المربع" },
+          "office-fit-out": { label: "تجهيز مكتب", note: "أساسي أو متميز أو تنفيذي، للقدم المربع" },
+          "kitchen-design": { label: "مطبخ", note: "خزائن تُصنع في مصنعنا بعجمان، للمتر الطولي" },
+          "custom-wardrobes": { label: "خزائن ملابس", note: "خزائن مدمجة وغرف ملابس، للمتر الطولي" },
+          curtains: { label: "ستائر", note: "يدوية أو سومفي كهربائية، للنافذة" },
+          "interior-design": { label: "تصميم داخلي", note: "باقات تصميم مع صور ثلاثية الأبعاد" },
+        },
+        quotedTitle: "يُسعّر بعد معاينة مجانية للموقع",
+        quotedBody: "لا يوجد سعر ابتدائي منشور لخدمة {service}، فكل مشروع يُسعّر من مخططاته ومعاينة موقعه. احجز زيارة موقع مجانية، أو اسألنا عبر واتساب.",
+      }
     },
     faqSection: {
       kicker: "لديك أسئلة؟",
@@ -2172,7 +2200,7 @@ export const dictionaries = {
       pageTitle: "سياسة الخصوصية في بيت الإبداع",
       metaTitle: "سياسة الخصوصية | بيت الإبداع",
       metaDescription: "كيف تجمع بيت الإبداع وتستخدم وتحمي المعلومات الشخصية المُرسلة عبر نماذج الموقع وقنوات التواصل.",
-      lastUpdated: "آخر تحديث: 25 أكتوبر 2026",
+      lastUpdated: "آخر تحديث: 6 نوفمبر 2026",
       intro: "توضّح هذه الصفحة المعلومات التي تجمعها بيت الإبداع ('نحن') عند استخدامك لموقع www.baitalebdaa.com، وكيفية استخدامها. نجمع فقط ما هو ضروري للرد على استفسارك.",
       sections: [
         {
@@ -2193,7 +2221,7 @@ export const dictionaries = {
         },
         {
           title: "ملفات تعريف الارتباط والتحليلات",
-          body: "نستخدم Google Analytics 4 لفهم كيفية استخدام الزوار للموقع: الصفحات التي يشاهدونها، وكيف وصلوا إليه، ونوع الجهاز، والموقع التقريبي. ولا تُوضع ملفات تعريف الارتباط الخاصة به إلا إذا وافقت عليها في شريط ملفات تعريف الارتباط؛ وحتى ذلك الحين لا يتلقى إلا إشارات بلا ملفات تعريف ارتباط ولا معرّف. لا نستخدم ملفات تعريف ارتباط إعلانية ولا التخزين المحلي في المتصفح. ويمكنك تغيير اختيارك في أي وقت عبر \"إعدادات ملفات تعريف الارتباط\" أسفل أي صفحة، وتجد التفاصيل في سياسة ملفات تعريف الارتباط.",
+          body: "نستخدم Google Analytics 4 لفهم كيفية استخدام الزوار للموقع: الصفحات التي يشاهدونها، وكيف وصلوا إليه، ونوع الجهاز، والموقع التقريبي. ولا يُحمَّل ولا يضع ملفات تعريف الارتباط الخاصة به إلا إذا وافقت عليها في شريط ملفات تعريف الارتباط؛ وحتى ذلك الحين لا يتلقى شيئاً من زيارتك. لا نستخدم ملفات تعريف ارتباط إعلانية ولا التخزين المحلي في المتصفح. ويمكنك تغيير اختيارك في أي وقت عبر \"إعدادات ملفات تعريف الارتباط\" أسفل أي صفحة، وتجد التفاصيل في سياسة ملفات تعريف الارتباط.",
         },
         {
           title: "الاحتفاظ بالبيانات",

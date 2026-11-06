@@ -1,17 +1,18 @@
 "use client";
 
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import { SiteVisitButton } from "./components/SiteVisitButton";
-import { useState } from "react";
-import { ArrowUpRight, Check, Phone, Whatsapp } from "./components/icons";
+import { useEffect, useState } from "react";
+import { ArrowUpRight, Calendar, Check, Phone, Whatsapp } from "./components/icons";
 import { useBusiness, useI18n } from "./i18n/I18nProvider";
 import { Header, Footer, Reveal, PhotoHero, FaqSplit, ProcessTimeline } from "./components/Shared";
-import { Estimator } from "./components/Estimator";
+import { QuotedAfterSurvey, ServiceEstimator } from "./components/ServiceEstimator";
 import { COST_GUIDE_LINKS } from "./data/cost-guide-links";
 import { serviceContent, priorityIntroExtra, whyChooseFacts } from "./data/service-content";
 import { locationContent } from "./data/location-content";
 import { abuDhabiCopy } from "./data/abu-dhabi-copy";
-import { formatPrice, servicePricing, serviceStartingItem } from "./lib/pricing";
+import { formatPrice, serviceEstimator, servicePricing, serviceStartingItem } from "./lib/pricing";
 import { CURRENCY, VAT_INCLUSIVE } from "./data/pricing";
 import { ORG_REF, SITE_URL } from "./lib/schema-ids";
 import { faqPageJsonLd } from "./lib/faq-schema";
@@ -116,6 +117,101 @@ const PRIORITY_MONEY_PAGES = new Set([
 
 
 // Pilot page body blocks (see src/data/pilot-pages.js): ["p", html] | ["h3", text] | ["ul", [html]] | ["ol", [html]].
+// The site visit form loads only when someone opens it (estimator, quote card, mobile bar).
+const SiteVisitModal = dynamic(() => import("./components/SiteVisitModal").then((m) => m.SiteVisitModal), { ssr: false });
+
+// Phones (6 Nov 2026): once the hero's buttons scroll away, nothing on the page asked for
+// action except the header's WhatsApp. This bar sits above the bottom navigation from then
+// on: book a site visit, WhatsApp or call. Hidden on larger screens (they have the sidebar).
+function MobileCtaBar({ lang, waHref, phone, onBook }) {
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const root = document.documentElement;
+    root.classList.add("slp-cta-page");
+    const actions = document.querySelector(".ph-actions");
+    if (!actions || !("IntersectionObserver" in window)) return () => root.classList.remove("slp-cta-page");
+    const observer = new IntersectionObserver(([entry]) => setVisible(!entry.isIntersecting && entry.boundingClientRect.top < 0));
+    observer.observe(actions);
+    return () => {
+      observer.disconnect();
+      root.classList.remove("slp-cta-page", "slp-cta-on");
+    };
+  }, []);
+  // Ask Ali and the consent banner move up while the bar shows (styles.css, html.slp-cta-on).
+  useEffect(() => {
+    document.documentElement.classList.toggle("slp-cta-on", visible);
+  }, [visible]);
+  const ar = lang === "ar";
+  return (
+    <div className={`slp-mobile-cta${visible ? " is-visible" : ""}`} aria-hidden={!visible}>
+      <button type="button" className="slp-mobile-cta__book" onClick={onBook} tabIndex={visible ? 0 : -1}>
+        <Calendar size={18} /> {ar ? "احجز زيارة موقع مجانية" : "Book a free site visit"}
+      </button>
+      <a className="slp-mobile-cta__icon slp-mobile-cta__icon--wa" href={waHref} target="_blank" rel="noopener noreferrer" aria-label={ar ? "واتساب" : "WhatsApp"} tabIndex={visible ? 0 : -1}>
+        <Whatsapp size={20} />
+      </a>
+      <a className="slp-mobile-cta__icon" href={`tel:${phone}`} aria-label={ar ? "اتصل الآن" : "Call now"} tabIndex={visible ? 0 : -1}>
+        <Phone size={19} />
+      </a>
+    </div>
+  );
+}
+
+// Local permits and projects for an indexed emirate page (data/local-evidence.js, resolved on
+// the server): the authority's own requirements with their sources, and real projects there.
+function LocalEvidence({ lang, local, locationName, emirateName }) {
+  const ar = lang === "ar";
+  return (
+    <section className="shell slp-local" data-main="local">
+      <Reveal>
+        <p className="micro">{locationName}</p>
+        <h2 className="slp-h2">{ar ? `التصاريح والمشاريع في ${locationName}` : `Permits and projects in ${locationName}`}</h2>
+      </Reveal>
+      <div className="slp-local__grid">
+        <Reveal className="slp-local__permits">
+          <h3>{ar ? `تصاريح الأعمال الداخلية في ${emirateName}` : `Permits for interior works in ${emirateName}`}</h3>
+          <p>{local.intro}</p>
+          <ul>
+            {local.points.map((point) => <li key={point}>{point}</li>)}
+          </ul>
+          <p className="slp-local__note">
+            {ar
+              ? "يُحدَّد التصريح المناسب من المخططات عند إعداد نطاق العمل، والمرجع دائماً هو اشتراطات الجهة الحالية."
+              : "Which permit applies follows from the drawings, settled when the scope is drawn up; the authority's current rules always apply."}
+          </p>
+          <div className="slp-local__sources">
+            <p>{ar ? `المصادر الرسمية (تمت مراجعتها في ${local.sourcesReviewed})` : `Official sources (reviewed ${local.sourcesReviewed})`}</p>
+            <ul>
+              {local.sources.map((source) => (
+                <li key={source.id}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.name}</a></li>
+              ))}
+            </ul>
+          </div>
+        </Reveal>
+        <Reveal className="slp-local__side" delay={80}>
+          {local.projects.length > 0 && (
+            <>
+              <h3>{ar ? `مشاريعنا المنجزة في ${emirateName}` : `Our completed projects in ${emirateName}`}</h3>
+              <ul className="slp-local__projects">
+                {local.projects.map((project) => (
+                  <li key={project.slug}>
+                    <a href={`/${lang}/our-projects/${project.slug}`}>
+                      <strong>{project.title}</strong>
+                      <span>{project.location} · {project.size} · {project.year}</span>
+                      <em>{project.service}</em>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+          <p className="slp-local__base">{local.base}</p>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
 function PilotBlock({ block }) {
   const [type, value] = block;
   if (type === "h3") return <h3 className="slp-pilot__h3">{value}</h3>;
@@ -136,10 +232,13 @@ function pickByLocation(list, locationSlug) {
   return list[seed % list.length];
 }
 
-export default function ServiceLocationPage({ lang, row, seoContext, pilot = null }) {
+export default function ServiceLocationPage({ lang, row, seoContext, pilot = null, local = null }) {
   const { dict } = useI18n();
   const business = useBusiness();
   const [menuOpen, setMenuOpen] = useState(false);
+  // The site visit form: null when closed, else { size } (size from the estimator, if any).
+  const [siteVisit, setSiteVisit] = useState(null);
+  const openSiteVisit = (size) => setSiteVisit({ size });
 
   const { service, location, emirateName, authority, otherAreas, otherServices, description } = seoContext;
   const serviceName = lang === "ar" ? service.ar : service.en;
@@ -434,6 +533,8 @@ export default function ServiceLocationPage({ lang, row, seoContext, pilot = nul
         </section>
         )}
 
+        {local && <LocalEvidence lang={lang} local={local} locationName={locationName} emirateName={emirateName} />}
+
         {/* Examples of our work — real photos and design visuals, labelled as not specific to this location */}
         {workExamples.length > 0 && (
           <section className="shell slp-gallery-section">
@@ -464,7 +565,12 @@ export default function ServiceLocationPage({ lang, row, seoContext, pilot = nul
         <Reveal as="div" delay={100}>
           <h2 className="slp-section-label shell">{pilot ? (lang === "ar" ? "قدّر ميزانية مشروعك" : "Estimate your budget") : row.h2Themes[3]}</h2>
         </Reveal>
-        <Estimator compact ctaHref={waHref} />
+        {/* This service's own published prices; services without one are quoted after a survey */}
+        {serviceEstimator(row.serviceSlug) ? (
+          <ServiceEstimator service={row.serviceSlug} serviceName={serviceName} inclusions={(pilot ? pilot.points : content.included).slice(0, 4)} onBookSurvey={openSiteVisit} />
+        ) : (
+          <QuotedAfterSurvey serviceName={serviceName} onBookSurvey={openSiteVisit} waHref={waHref} />
+        )}
 
         {/* Indicative starting prices — real published figures from the pricing page */}
         {pricing && pricing.items.length > 0 && (
@@ -675,6 +781,8 @@ export default function ServiceLocationPage({ lang, row, seoContext, pilot = nul
         )}
       </main>
       <Footer />
+      <MobileCtaBar lang={lang} waHref={waHref} phone={business.phone} onBook={() => openSiteVisit()} />
+      {siteVisit && <SiteVisitModal open size={siteVisit.size} onClose={() => setSiteVisit(null)} />}
     </>
   );
 }

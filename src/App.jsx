@@ -1,58 +1,24 @@
-"use client";
-
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
-import { ArrowLeft, ArrowRight, ArrowUpRight, Box, Calendar, Check, Lamp, ShoppingCart, Users, Wrench } from "./components/icons";
-import { useBusiness, useI18n } from "./i18n/I18nProvider";
-import { Header, Footer, Reveal, FaqSplit, ProcessTimeline } from "./components/Shared";
+import { ArrowUpRight, Box, Calendar, Lamp, ShoppingCart, Users, Wrench } from "./components/icons";
+import { Footer, Reveal, FaqSplit, ProcessTimeline } from "./components/Shared";
 import { ServiceTileGrid } from "./components/ServiceTiles";
 import { Estimator } from "./components/Estimator";
 import { PriceExplorer } from "./components/PriceExplorer";
-import dynamic from "next/dynamic";
-import { formatIndex } from "./lib/format";
+import { Hero, Sectors, SiteHeader } from "./components/HomeIslands";
 import { isPublishedProject } from "./data/project-catalog";
 import { REVIEWS } from "./data/reviews";
 import { ReviewCard } from "./components/ReviewCard";
+import { dictionaries } from "./i18n/dictionaries";
+import { getBusiness } from "./lib/business";
 
-// The quote form is opened by a button; its code is fetched then, not with the page.
-const QuoteModal = dynamic(() => import("./components/QuoteModal").then((m) => m.QuoteModal), { ssr: false });
-const SiteVisitModal = dynamic(() => import("./components/SiteVisitModal").then((m) => m.SiteVisitModal), { ssr: false });
+// The homepage. A server component since 6 Nov 2026: until then the whole page was one client
+// component, so a phone downloaded the code for every section and re-rendered all of them
+// before the page responded (most of its Total Blocking Time after Google Analytics). Now
+// the sections below arrive as finished HTML and only the interactive parts run in the
+// browser: the header, hero slider and sector tabs (components/HomeIslands.jsx), the
+// service tiles, price explorer, estimator, FAQ and the scroll reveals.
 
-function Hero({ onGetQuote, onSiteVisit }) {
-  const { lang, dict } = useI18n();
-  const business = useBusiness();
-  const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const slides = dict.hero.slides;
-  // Fallback images since dictionary only has text
-  const heroImages = ["/assets/luxury-living-room-chandelier-wall-panelling.jpeg", "/assets/built-in-wardrobe-study-desk-wood-shelves.jpeg", "/assets/living-room-curved-sofa-wood-slat-wall.jpeg"];
-  // Only the first slide's photo loads with the page; the others wait for the page to finish
-  // loading, so on a slow connection they do not compete with what the visitor sees first.
-  const [allSlidesReady, setAllSlidesReady] = useState(false);
-  useEffect(() => {
-    const ready = () => setAllSlidesReady(true);
-    if (document.readyState === "complete") { ready(); return undefined; }
-    window.addEventListener("load", ready, { once: true });
-    return () => window.removeEventListener("load", ready);
-  }, []);
-
-  useEffect(() => { if (paused) return undefined; const timer = window.setInterval(() => setActive((v) => (v + 1) % slides.length), 7000); return () => window.clearInterval(timer); }, [paused, slides.length]);
-  const slide = slides[active]; const select = (i) => setActive((i + slides.length) % slides.length);
-  const progressLabel = lang === "ar" ? `الشريحة ${formatIndex(active + 1, lang)} من ${formatIndex(slides.length, lang)}` : `Slide ${active + 1} of ${slides.length}`;
-  const goToSlideLabel = (i) => (lang === "ar" ? `الانتقال إلى الشريحة ${formatIndex(i + 1, lang)}` : `Go to slide ${i + 1}`);
-  const prevSlideLabel = lang === "ar" ? "الشريحة السابقة" : "Previous hero slide";
-  const nextSlideLabel = lang === "ar" ? "الشريحة التالية" : "Next hero slide";
-  return <section className="hero" id="top" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
-    <div className="hero__media">{slides.map((item, i) => (allSlidesReady || i === active) && <Image key={i} className={i === active ? "is-active" : ""} src={heroImages[i]} alt="Luxury residential and commercial interiors in Dubai" fill sizes="100vw" priority={i === 0} />)}<div className="hero__shade" /></div>
-    <p className="sr-only" aria-live="polite">{slide.eyebrow} — {slide.title}. {slide.body}</p>
-    <div className="hero__content shell"><p className="hero__eyebrow" key={`e-${active}`}>{slide.eyebrow}</p><h1 key={`t-${active}`}>{slide.title}</h1><div className="hero__actions"><a className="outline-button outline-button--light" href={`https://wa.me/${business.whatsapp}`} target="_blank" rel="noopener noreferrer">{dict.nav.startProject} <ArrowUpRight size={16} /></a><button type="button" className="outline-button outline-button--light" onClick={onGetQuote}>{dict.nav.getFreeQuote} <ArrowUpRight size={16} /></button><button type="button" className="outline-button outline-button--light" onClick={onSiteVisit}><Calendar size={16} /> {dict.siteVisit.button}</button></div></div>
-    <div className="hero__controls shell"><div className="hero__progress" aria-label={progressLabel}><span>{formatIndex(active + 1, lang)}</span><div>{slides.map((_, i) => <button key={i} aria-label={goToSlideLabel(i)} className={i === active ? "is-active" : ""} onClick={() => select(i)} />)}</div><span>{formatIndex(slides.length, lang)}</span></div><div className="hero__summary"><div className="arrow-pair"><button aria-label={prevSlideLabel} onClick={() => select(active - 1)}><ArrowLeft /></button><button aria-label={nextSlideLabel} onClick={() => select(active + 1)}><ArrowRight /></button></div><p key={`b-${active}`}>{slide.body}</p></div></div>
-  </section>;
-}
-
-function Services() {
-  const { lang, dict } = useI18n();
-  const business = useBusiness();
+function Services({ lang, dict, business }) {
   const waMessage = encodeURIComponent(
     lang === "ar"
       ? "مرحباً! أرغب بمناقشة مشروعي معكم."
@@ -66,8 +32,7 @@ function Services() {
 // Featured services as the same tiles the services page uses; the full list is one click away.
 const FEATURED_SERVICES = ["interior-design", "residential-interior-design", "fit-out", "office-fit-out", "villa-renovation", "joinery", "custom-wardrobes", "kitchen-design"];
 
-function ServicesDirectory() {
-  const { lang, dict } = useI18n();
+function ServicesDirectory({ lang, dict }) {
   const t = dict.servicesDirectory;
   return <section className="section section--light services-directory" id="all-services">
     <div className="shell">
@@ -82,8 +47,7 @@ function ServicesDirectory() {
 // ranges that answer them. The photo is the site's own sketch-to-render image.
 const CHALLENGE_ICONS = [ShoppingCart, Box, Lamp, Users];
 
-function Challenges() {
-  const { dict } = useI18n();
+function Challenges({ dict }) {
   const t = dict.challengesSection;
   return <section className="section challenges" id="challenges">
     <div className="shell challenges__inner">
@@ -103,8 +67,7 @@ function Challenges() {
 const PRODUCT_SLUGS = ["doors-windows", "surface-materials", "lighting", "fixed-furniture", "movable-furniture", "soft-furnishings"];
 const PRODUCT_IMAGES = ["/assets/hero-penthouse.jpg", "/assets/luxury-living-room-stone-tv-wall-fireplace.jpeg", "/assets/modern-dining-room-pendant-lights-oak-table.jpeg", "/assets/walk-in-closet-island-led-ceiling.jpeg", "/assets/dining-table.jpeg", "/assets/curtains-6.jpeg"];
 
-function ProductCollection() {
-  const { lang, dict } = useI18n();
+function ProductCollection({ lang, dict }) {
   const t = dict.productCollection;
   return <section className="section product-collection" id="products">
     <div className="shell">
@@ -114,8 +77,7 @@ function ProductCollection() {
   </section>;
 }
 
-function Factory() {
-  const { dict, lang } = useI18n();
+function Factory({ lang, dict }) {
   const f = dict.factorySection;
   return <section className="section section--light" id="factory">
     <div className="shell factory-grid">
@@ -143,15 +105,7 @@ function Factory() {
   </section>;
 }
 
-function Sectors() {
-  const { lang, dict } = useI18n();
-  const [active, setActive] = useState(0);
-  const images = ["/assets/living-room-wood-slat-wall-lounge-seating.jpeg", "/assets/tv-media-wall-floating-console-fireplace.jpeg", "/assets/modern-living-room-beige-sofa-curtain-wall-panels.jpeg"];
-  return <section className="section sector-section"><div className="shell sectors"><Reveal className="sectors__copy"><p className="micro">{dict.sectorsSection.micro}</p><h2 className="section-title" style={{whiteSpace: 'pre-wrap'}}>{dict.sectorsSection.title}</h2><div className="sector-tabs" role="tablist" aria-label="Project sectors">{dict.sectorsSection.items.map((s, i) => <button key={i} role="tab" aria-selected={i === active} onClick={() => setActive(i)}><span>{formatIndex(i + 1, lang)}</span>{s.label}</button>)}</div><div className="sector-description"><p>{dict.sectorsSection.items[active].body}</p><a href={`/${lang}/contact#contact-form`}>{dict.sectorsSection.explore} <ArrowUpRight size={16} /></a></div></Reveal><Reveal className="sectors__image" delay={120}>{dict.sectorsSection.items.map((s, i) => <Image key={i} className={i === active ? "is-active" : ""} src={images[i]} alt={s.label} fill sizes="(max-width: 700px) 100vw, 60vw" />)}</Reveal></div></section>;
-}
-
-function Projects() {
-  const { lang, dict } = useI18n();
+function Projects({ lang, dict }) {
   // Homepage shows three cards: the published project first, then the next entries
   // that have a detail page (placeholders, still noindex — see data/project-catalog.js).
   const withDetail = dict.projectsSection.items.filter((project) => dict.projectDetailPage.projects[project.slug]);
@@ -161,14 +115,8 @@ function Projects() {
   return <section className="section projects" id="projects"><div className="shell projects__heading"><Reveal><p className="micro">{dict.projectsSection.micro}</p><h2 className="section-title" style={{whiteSpace: 'pre-wrap'}}>{dict.projectsSection.title}</h2></Reveal><Reveal className="projects__tools" delay={100} style={{display: 'flex', alignItems: 'flex-end'}}><a href={`/${lang}/our-projects`} className="outline-button outline-button--dark">{dict.projectsSection.viewAll} <ArrowUpRight size={16} /></a></Reveal></div><div className="shell project-grid-home">{projects.map((p) => <article className="project-card-home" key={p.slug}><a href={`/${lang}/our-projects/${p.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}><div className="project-card-home__image"><Image src={imageBySlug[p.slug]} alt="" fill sizes="(max-width: 700px) 100vw, 33vw" /></div><div className="project-card-home__meta"><h3>{p.title}{p.place ? `, ${p.place}` : ''} <ArrowUpRight size={16} style={{display: 'inline-block', verticalAlign: 'middle', marginLeft: '5px'}} /></h3></div></a></article>)}</div></section>;
 }
 
-function Capabilities() {
-  const { lang, dict } = useI18n();
-  return <section className="capabilities"><div className="shell capabilities__top"><Reveal><p className="micro micro--light">{dict.capabilitiesSection.micro}</p><h2 className="section-title" style={{whiteSpace: 'pre-wrap'}}>{dict.capabilitiesSection.title}</h2></Reveal><Reveal className="capabilities__image" delay={100}><Image src="/assets/corner-coffee-bar-black-fluted-cabinet-led-lighting.jpeg" alt="Interior concept transitioning from CAD to photorealistic render" fill sizes="(max-width: 700px) 100vw, 58vw" /></Reveal></div><div className="shell capability-list">{dict.capabilitiesSection.items.map(([title, body], i) => <Reveal className="capability-row" key={i} delay={i * 80}><span>{formatIndex(i + 1, lang)}</span><h3>{title}</h3><p>{body}</p><Check size={20} /></Reveal>)}</div></section>;
-}
-
 // Real client reviews (src/data/reviews.js), shown in the client's words; the full list is on /reviews.
-function Testimonials() {
-  const { lang, dict } = useI18n();
+function Testimonials({ lang, dict }) {
   const t = dict.testimonialsSection;
   if (REVIEWS.length === 0) return null;
   return <section className="section testimonials" id="reviews">
@@ -177,37 +125,31 @@ function Testimonials() {
   </section>;
 }
 
-function Process() {
-  const { dict } = useI18n();
+function Process({ dict }) {
   return <section className="section process-timeline-section" id="process"><div className="shell">
     <ProcessTimeline kicker={dict.processSection.micro} title={dict.processSection.title} items={dict.processSection.items} headingClassName="process__heading" titleStyle={{ whiteSpace: 'pre-wrap' }} />
   </div></section>;
 }
 
-function Faq() {
-  const { dict } = useI18n();
+function Faq({ dict }) {
   const faq = dict.faqSection;
   return <FaqSplit kicker={faq.kicker} title={faq.title} subtitle={faq.subtitle} items={faq.items} idPrefix="home" />;
 }
 
-function LatestNews() {
-  const { dict, lang } = useI18n();
+function LatestNews({ lang, dict }) {
   const t = dict.mediaPage;
   const articles = t.articles.slice(0, 4);
   return <section className="section latest-news-section" id="news"><div className="shell"><Reveal className="section-heading section-heading--center"><p className="micro">{t.newsAndInsights}</p><h2 className="section-title" style={{whiteSpace: 'pre-wrap'}}>{t.latestNewsAndInsights}</h2></Reveal><div className="media-grid" style={{ marginTop: '40px' }}>{articles.map((article, index) => <Reveal className="media-card" key={index} delay={100 + index * 100}><a href={article.link} className="media-card-link"><div className="media-image-wrapper"><Image src={article.image} alt={article.title} fill sizes="(max-width: 768px) 100vw, 25vw" style={{ objectFit: 'cover' }} /></div><div className="media-card-content"><h3>{article.title}</h3><span className="read-more">{t.readMore}</span></div></a></Reveal>)}</div><Reveal className="news-tools" delay={200} style={{ display: 'flex', justifyContent: 'center', marginTop: '40px' }}><a href={`/${lang}/media`} className="outline-button outline-button--dark">{dict.nav.media || "Media"} <ArrowUpRight size={16} /></a></Reveal></div></section>;
 }
 
-export default function App() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [quoteOpen, setQuoteOpen] = useState(false);
-  const [quotePrefillSize, setQuotePrefillSize] = useState(undefined);
-  // The free site visit form; the estimator opens it with its size (owner, 27 Oct 2026).
-  const [siteVisit, setSiteVisit] = useState(null);
+export default async function App({ lang }) {
+  const dict = dictionaries[lang] || dictionaries.en;
+  // Contact details as edited in the admin panel (Settings → Business details).
+  const business = await getBusiness();
+  const props = { lang, dict };
   return <>
-    <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-    <main className="home-main"><Hero onGetQuote={() => setQuoteOpen(true)} onSiteVisit={() => setSiteVisit({})} /><Services /><ServicesDirectory /><Challenges /><ProductCollection /><Factory /><Sectors /><Projects /><Testimonials /><Process /><PriceExplorer /><Estimator onBookSurvey={(size) => setSiteVisit({ size })} /><Faq /><LatestNews /></main>
+    <SiteHeader />
+    <main className="home-main"><Hero /><Services {...props} business={business} /><ServicesDirectory {...props} /><Challenges {...props} /><ProductCollection {...props} /><Factory {...props} /><Sectors /><Projects {...props} /><Testimonials {...props} /><Process {...props} /><PriceExplorer /><Estimator /><Faq {...props} /><LatestNews {...props} /></main>
     <Footer />
-    {quoteOpen && <QuoteModal open onClose={() => setQuoteOpen(false)} initialSize={quotePrefillSize} />}
-    {siteVisit && <SiteVisitModal open onClose={() => setSiteVisit(null)} size={siteVisit.size} />}
   </>;
 }

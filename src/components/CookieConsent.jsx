@@ -4,10 +4,11 @@ import { useEffect, useState } from "react";
 import { useI18n } from "../i18n/I18nProvider";
 import { CONSENT_COOKIE, OPEN_COOKIE_SETTINGS_EVENT } from "../lib/consent";
 
-// Google Analytics consent (Consent Mode v2). Until a visitor accepts, analytics_storage
-// stays "denied": GA sets no cookies and sends only cookieless pings. The choice is kept
-// in the first-party bae_consent cookie for a year; the init script in the [lang] layout
-// reads it on every page, and the footer's "Cookie settings" button reopens this banner.
+// Google Analytics consent. Until a visitor accepts, Google Analytics is not loaded at all:
+// no cookies, no requests (owner, 6 Nov 2026; before that it sent cookieless pings). The
+// choice is kept in the first-party bae_consent cookie for a year; the init script in the
+// [lang] layout reads it on every page, and the footer's "Cookie settings" button reopens
+// this banner.
 const COPY = {
   en: {
     label: "Cookie choice",
@@ -34,6 +35,8 @@ function saveChoice(choice) {
   const secure = window.location.protocol === "https:" ? "; Secure" : "";
   document.cookie = `${CONSENT_COOKIE}=${choice}; Max-Age=${60 * 60 * 24 * 365}; Path=/; SameSite=Lax${secure}`;
   window.gtag?.("consent", "update", { analytics_storage: choice });
+  // Google Analytics is only downloaded once someone accepts (see the [lang] layout).
+  if (choice === "granted") window.baeLoadAnalytics?.();
 }
 
 export function CookieConsent() {

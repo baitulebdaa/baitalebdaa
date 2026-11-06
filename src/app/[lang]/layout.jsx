@@ -112,22 +112,34 @@ export default async function RootLayout({ children, params }) {
         <script dangerouslySetInnerHTML={{ __html: signedInScript(getClientDictionary(lang).nav.account) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd(lang, business)).replace(/</g, "\\u003c") }} />
         {GA_MEASUREMENT_ID && (
-          <>
-            {/* Consent Mode v2: analytics cookies only after the visitor accepts (components/CookieConsent.jsx).
-                The library loads after the page, so it never competes with what the visitor sees first. */}
-            <Script id="ga4-init" strategy="afterInteractive">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                window.gtag = gtag;
-                var granted = /(?:^|; )${CONSENT_COOKIE}=granted/.test(document.cookie);
-                gtag('consent', 'default', { analytics_storage: granted ? 'granted' : 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
-                gtag('js', new Date());
-                gtag('config', '${GA_MEASUREMENT_ID}');
-              `}
-            </Script>
-            <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} strategy="lazyOnload" />
-          </>
+          // Google Analytics loads only for visitors who have accepted analytics cookies
+          // (owner, 6 Nov 2026: Consent Mode "basic"). Until then nothing is downloaded or sent.
+          // gtag.js is 177 KB and took about 2 s of a phone's main thread on every first visit,
+          // the largest part of the homepage's Total Blocking Time. The commands below wait in
+          // dataLayer; loadAnalytics() fetches the library once the page is idle, either here
+          // for a returning visitor who accepted, or from the banner when someone accepts.
+          <Script id="ga4-init" strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              window.gtag = gtag;
+              gtag('consent', 'default', { analytics_storage: 'granted', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+              gtag('js', new Date());
+              gtag('config', '${GA_MEASUREMENT_ID}');
+              window.baeLoadAnalytics = function () {
+                if (window.baeAnalyticsLoaded) return;
+                window.baeAnalyticsLoaded = true;
+                var s = document.createElement('script');
+                s.async = true;
+                s.src = 'https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}';
+                document.head.appendChild(s);
+              };
+              if (/(?:^|; )${CONSENT_COOKIE}=granted/.test(document.cookie)) {
+                var idle = function () { (window.requestIdleCallback || function (f) { setTimeout(f, 1500); })(window.baeLoadAnalytics); };
+                if (document.readyState === 'complete') idle(); else window.addEventListener('load', idle, { once: true });
+              }
+            `}
+          </Script>
         )}
         <I18nProvider lang={lang} dict={getClientDictionary(lang)} business={business}>
           {children}

@@ -235,7 +235,7 @@ export default function PricingPage() {
 
         {/* Cost estimator */}
         <div id="estimate" className="pp-estimate">
-          <Estimator compact ctaHref={`/${lang}/contact`} />
+          <Estimator compact />
         </div>
 
         {/* Final CTA */}

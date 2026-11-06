@@ -474,7 +474,9 @@ export function PhotoHero({ image, alt = "", crumbs = [], chip, title, titleClas
   return (
     <>
       <section className={`ph-hero ph-hero--${size}`}>
-        <Image src={image} alt={alt} fill priority sizes="100vw" className="ph-hero__img" />
+        {/* fetchPriority: Next 16's preload adds the <link> but not the priority, so without it the
+            hero photo (the LCP element on phones) queued behind fonts, CSS and scripts. */}
+        <Image src={image} alt={alt} fill preload fetchPriority="high" sizes="100vw" className="ph-hero__img" />
         <div className="shell ph-hero__inner">
           <Reveal eager>
             {crumbs.length > 0 && (

@@ -14,6 +14,27 @@ import {
 import ServiceLocationPage from "../../../../ServiceLocationPage";
 import { getPilotContent, pilotMetaDescription } from "../../../../data/pilot-pages";
 import { OFFICIAL_SOURCES, SOURCES_REVIEWED_LABEL } from "../../../../data/official-sources";
+import { localEvidence } from "../../../../data/local-evidence";
+import { dictionaries } from "../../../../i18n/dictionaries";
+
+// Local evidence (data/local-evidence.js) for the indexed emirate pages that have no pilot copy
+// of their own: that emirate's permit route with its official sources, and the real projects
+// there that match the service. Resolved here so the browser gets only this page's text.
+function localFor(lang, row, location, hasPilot) {
+  if (hasPilot || !row.approved || location.tier !== "core") return null;
+  const local = localEvidence(lang, row.serviceSlug, row.emirate);
+  if (!local) return null;
+  const projects = dictionaries[lang].projectDetailPage.projects;
+  return {
+    ...local,
+    sources: local.sources.map((id) => ({ id, name: OFFICIAL_SOURCES[id].name[lang], url: OFFICIAL_SOURCES[id].url })),
+    sourcesReviewed: SOURCES_REVIEWED_LABEL[lang],
+    projects: local.projects.map((slug) => {
+      const { title, metadata } = projects[slug];
+      return { slug, title, location: metadata.location, size: metadata.size, year: metadata.year, service: metadata.service };
+    }),
+  };
+}
 
 // Pilot pages get their own main content (src/data/pilot-pages.js), resolved here on the
 // server so the browser only receives this one page's copy and source list.
@@ -102,5 +123,6 @@ export default async function Page({ params }) {
     otherServices: getSiblingServices(lang, row.locationSlug, row.serviceSlug).filter((entry) => isPageIndexable(entry.page)),
   };
 
-  return <ServiceLocationPage lang={lang} row={row} seoContext={seoContext} pilot={pilotFor(lang, row.serviceSlug, row.locationSlug)} />;
+  const pilot = pilotFor(lang, row.serviceSlug, row.locationSlug);
+  return <ServiceLocationPage lang={lang} row={row} seoContext={seoContext} pilot={pilot} local={localFor(lang, row, locationEntry, Boolean(pilot))} />;
 }

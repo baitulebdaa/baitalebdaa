@@ -1548,6 +1548,11 @@ button.estimator-submit-btn {
   background-color: #f0f0f0;
 }
 
+/* The project photos are portrait (4:5); without this they were squashed into the 4:3 card. */
+.project-card-home__image img {
+  object-fit: cover;
+}
+
 .project-card-home__meta {
   padding-top: 15px;
 }
@@ -9303,4 +9308,299 @@ html[data-signed-in] .show-signed-out { display: none !important; }
     margin-inline: auto;
     padding: 26px 0 24px;
   }
+}
+
+/* ==========================================================================
+   Service page estimator (components/ServiceEstimator.jsx, 6 Nov 2026): the homepage
+   estimator's card, with the service's own levels and a range result.
+   ========================================================================== */
+.est-step__note {
+  margin: -6px 0 14px;
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.est--service .est-result__label {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.est-result__price small {
+  flex-basis: 100%;
+  margin-bottom: -6px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+/* Homepage and pricing page: the six "What do you need?" options, two across */
+.est-scopes--grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.est-scopes--grid .est-scope {
+  align-items: flex-start;
+}
+
+.est-scopes--grid .est-scope__text small {
+  font-size: 0.78rem;
+}
+
+@media (max-width: 420px) {
+  .est-scopes--grid { grid-template-columns: 1fr; }
+}
+
+/* A range ("2,000,000–3,250,000") is twice as long as a single figure */
+.est-result__price--range strong {
+  font-size: clamp(2.1rem, 3.6vw, 3.2rem);
+}
+
+@media (max-width: 480px) {
+  .est-result__price--range strong { font-size: 1.95rem; }
+}
+
+/* Services with no published price: a short "quoted after a survey" card in the same colours */
+.est-quoted {
+  --est-green: #1f4a3d;
+  --est-gold: #c9a877;
+  padding: 10px 0 60px;
+}
+
+.est-quoted__card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 28px;
+  align-items: center;
+  padding: clamp(24px, 3.4vw, 44px);
+  border-radius: 28px;
+  color: #fff;
+  background:
+    radial-gradient(80% 60% at 100% 0%, rgba(201, 168, 119, 0.28), transparent 60%),
+    linear-gradient(160deg, #1f4a3d, #11231d);
+}
+
+.est-quoted__card h3 {
+  margin: 0 0 10px;
+  font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+}
+
+.est-quoted__card p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.6;
+}
+
+.est-quoted__actions {
+  display: grid;
+  gap: 12px;
+}
+
+@media (max-width: 900px) {
+  .est-quoted__card { grid-template-columns: 1fr; border-radius: 22px; }
+}
+
+/* ==========================================================================
+   Local permits and projects on the indexed emirate pages (data/local-evidence.js)
+   ========================================================================== */
+.slp-local {
+  padding: 0 0 clamp(60px, 7vw, 110px);
+}
+
+.slp-local__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: clamp(28px, 5vw, 72px);
+  align-items: start;
+}
+
+.slp-local h3 {
+  margin: 0 0 12px;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.slp-local__permits > p,
+.slp-local__permits li {
+  color: #3d3a35;
+  line-height: 1.65;
+}
+
+.slp-local__permits ul {
+  display: grid;
+  gap: 12px;
+  margin: 14px 0 18px;
+  padding-inline-start: 20px;
+}
+
+.slp-local__note {
+  font-size: 0.92rem;
+}
+
+.slp-local__sources {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  font-size: 0.86rem;
+}
+
+.slp-local__sources p {
+  margin: 0 0 8px;
+  color: var(--muted);
+}
+
+.slp-local__sources ul {
+  margin: 0;
+  padding-inline-start: 18px;
+}
+
+.slp-local__sources a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+
+.slp-local__side {
+  padding: clamp(20px, 2.6vw, 32px);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: #faf8f4;
+}
+
+.slp-local__projects {
+  display: grid;
+  gap: 10px;
+  margin: 0 0 18px;
+  padding: 0;
+  list-style: none;
+}
+
+.slp-local__projects a {
+  display: grid;
+  gap: 4px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fff;
+  color: var(--ink);
+  transition: border-color 0.2s;
+}
+
+.slp-local__projects a:hover { border-color: #1f4a3d; }
+.slp-local__projects strong { font-size: 0.98rem; line-height: 1.35; }
+.slp-local__projects span { color: var(--muted); font-size: 0.82rem; }
+.slp-local__projects em { color: #1f4a3d; font-size: 0.82rem; font-style: normal; font-weight: 600; }
+
+.slp-local__base {
+  margin: 0;
+  color: #3d3a35;
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .slp-local__grid { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   Phones: service-page calls to action (6 Nov 2026)
+   ========================================================================== */
+.slp-mobile-cta { display: none; }
+
+@media (max-width: 980px) {
+  /* Shown once the hero's buttons have scrolled away, just above the bottom navigation */
+  .slp-mobile-cta {
+    position: fixed;
+    inset-inline: 0;
+    bottom: calc(66px + env(safe-area-inset-bottom));
+    z-index: 57;
+    display: flex;
+    gap: 8px;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--line);
+    transform: translateY(110%);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.25s ease, opacity 0.25s ease, visibility 0s linear 0.25s;
+  }
+
+  .slp-mobile-cta.is-visible {
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+
+  .slp-mobile-cta__book {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 46px;
+    border: 0;
+    border-radius: 999px;
+    background: #1f4a3d;
+    color: #fff;
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .slp-mobile-cta__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    flex: none;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    color: var(--ink);
+    background: #fff;
+  }
+
+  .slp-mobile-cta__icon--wa { color: #fff; background: #25d366; border-color: #25d366; }
+
+  /* While the bar shows, Ask Ali, the consent banner and the page's end clear it. MobileCtaBar
+     sets these classes on <html>; a body:has() rule did the same but made the browser re-check
+     the whole page's styles on every change. */
+  html.slp-cta-on .ask-ai-root {
+    bottom: calc(78px + 62px + env(safe-area-inset-bottom));
+  }
+
+  html.slp-cta-on .cookie-consent {
+    bottom: calc(82px + 62px + env(safe-area-inset-bottom));
+  }
+
+  html.slp-cta-page body {
+    padding-bottom: calc(66px + 62px + env(safe-area-inset-bottom));
+  }
+
+  /* A smaller consent banner: it covered the hero's third button on the first screen */
+  .cookie-consent {
+    padding: 12px 14px;
+    font-size: 0.78rem;
+    line-height: 1.45;
+  }
+
+  .cookie-consent p { margin-bottom: 10px; }
+  .cookie-consent__button { padding: 8px 12px; }
+}
+
+/* Phones: WhatsApp and Call share a row in the service hero, so Book a site visit is on the
+   first screen instead of under the consent banner and the bottom navigation. */
+@media (max-width: 700px) {
+  .slp-page .ph-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .slp-page .ph-actions > :last-child { grid-column: 1 / -1; }
+  .slp-page .ph-actions .slp-btn { min-height: 48px; padding-inline: 12px; }
 }
