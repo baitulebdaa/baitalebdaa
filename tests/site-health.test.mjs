@@ -472,7 +472,7 @@ test("service estimators price only with that service's own published prices", a
   }
   const page = read("src/ServiceLocationPage.jsx");
   assert.doesNotMatch(page, /<Estimator\b/, "service pages no longer use the generic turnkey estimator");
-  assert.match(page, /<ServiceEstimator service=\{row\.serviceSlug\}/);
+  assert.match(page, /<ServiceEstimator\s+service=\{row\.serviceSlug\}/);
 });
 
 test("local evidence cites only official sources and real projects in that emirate", async () => {
@@ -515,6 +515,39 @@ test("homepage renders on the server; Google Analytics loads only after consent"
   // The homepage and pricing estimators use only published prices.
   assert.doesNotMatch(read("src/components/Estimator.jsx"), /\b(220|150|80)\b/);
   assert.match(read("src/components/Estimator.jsx"), /scopes=\{GENERAL_ESTIMATOR_SCOPES\}/);
+});
+
+test("enquiries: short quote form, service preselected per page, honest wording", async () => {
+  const { QUOTE_SERVICES, QUOTE_SERVICE_EN, quoteServiceFor } = await import("../src/lib/enquiry.js");
+  const { services } = JSON.parse(read("src/data/seo-pages.json"));
+  // Every service page opens the quote form on a matching service.
+  for (const { slug } of services) assert.ok(QUOTE_SERVICES.includes(quoteServiceFor(slug)), slug);
+  assert.equal(quoteServiceFor("joinery"), "joinery");
+  assert.equal(quoteServiceFor("villa-renovation"), "villa-renovation");
+  assert.equal(quoteServiceFor("office-fit-out"), "office");
+  for (const lang of ["en", "ar"]) {
+    const t = dictionaries[lang].quoteModal;
+    for (const key of QUOTE_SERVICES) assert.ok(t.serviceOptions[key] && QUOTE_SERVICE_EN[key], `${lang} ${key}`);
+    assert.equal(t.countries[0][1], "+971");
+    // No unapproved response-time promise, and a request is never called a booking.
+    assert.doesNotMatch(JSON.stringify(t), /24|guarantee|ضمان/i);
+    assert.doesNotMatch(dictionaries[lang].siteVisit.button + dictionaries[lang].siteVisit.title, /^Book|احجز/);
+  }
+  const modal = read("src/components/QuoteModal.jsx");
+  // Only name, phone, service and emirate are required; email is checked only if given.
+  assert.equal((modal.match(/ required[ />]/g) || []).length, 4);
+  // generate_lead only after the backend confirms receipt.
+  assert.ok(modal.indexOf('setStatus("sent")') < modal.indexOf('track("generate_lead"'));
+  assert.match(read("src/app/api/contact/route.js"), /formType === "siteVisit" \|\| formType === "quote"/);
+});
+
+test("analytics: consent first, no personal data, leads separate from clicks", () => {
+  const lib = read("src/lib/analytics.js");
+  assert.match(lib, /typeof window\.gtag !== "function" \|\| !consented\(\)/);
+  const allowed = lib.match(/ALLOWED_PARAMS = new Set\(\[([^\]]*)\]/)[1];
+  assert.doesNotMatch(allowed, /name|phone|email|message|description/);
+  // WhatsApp and phone clicks are their own events, never generate_lead.
+  assert.doesNotMatch(read("src/components/AnalyticsClicks.jsx"), /generate_lead/);
 });
 
 test("website icons ship only the variants they draw, and every icon used exists", async () => {

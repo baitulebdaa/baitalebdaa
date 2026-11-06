@@ -6,6 +6,7 @@ import { getClientDictionary } from "../../i18n/client-dictionary";
 import { organizationJsonLd } from "../../lib/page-metadata";
 import { getBusiness } from "../../lib/business";
 import { AskAIWidget } from "../../components/AskAIWidget";
+import { AnalyticsClicks } from "../../components/AnalyticsClicks";
 import { CookieConsent } from "../../components/CookieConsent";
 import { CONSENT_COOKIE } from "../../lib/consent";
 import { signedInScript } from "../../lib/account/signed-in-script";
@@ -144,6 +145,7 @@ export default async function RootLayout({ children, params }) {
         <I18nProvider lang={lang} dict={getClientDictionary(lang)} business={business}>
           {children}
           <AskAIWidget />
+          {GA_MEASUREMENT_ID && <AnalyticsClicks />}
           {GA_MEASUREMENT_ID && <CookieConsent />}
         </I18nProvider>
       </body>

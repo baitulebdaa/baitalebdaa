@@ -1,7 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import { X } from "./icons";
+import { useDialog } from "./useDialog";
+import { track } from "../lib/analytics";
 import { useI18n } from "../i18n/I18nProvider";
 import { Honeypot, honeypotValue } from "./Shared";
 import { HONEYPOT_FIELD } from "../lib/request-guard";
@@ -12,7 +14,7 @@ import { useAccountPrefill } from "./useAccountPrefill";
 const dubaiToday = () => new Date(Date.now() + 4 * 3600000).toISOString().slice(0, 10);
 
 /**
- * "Book a free site visit" (owner, 27 Oct 2026): where, which day and time of day, sent to
+ * "Request a free site visit" (owner, 27 Oct 2026; "Book" until 6 Nov 2026): where, which day and time of day, sent to
  * the team (Firestore + email) as a request. It is not a booking: the team calls to confirm
  * the time, then marks "Visit booked" in the admin panel. Signed-in customers get their
  * details filled in. `size` comes from the cost estimator, when opened from there.
@@ -26,20 +28,24 @@ export function SiteVisitModal({ open, onClose, size }) {
   const [sent, setSent] = useState(false);
   const [error, setError] = useState("");
 
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    const onKey = (event) => event.key === "Escape" && onClose();
-    if (open) window.addEventListener("keydown", onKey);
-    return () => {
-      document.body.style.overflow = "";
-      window.removeEventListener("keydown", onKey);
-    };
-  }, [open, onClose]);
+  // Focus moves into the form, Tab stays inside, Escape closes, focus returns to the button.
+  const panelRef = useDialog(open, () => close());
+  const startedRef = useRef(false);
+  const sendingRef = useRef(false);
+  const onFirstInput = () => {
+    if (startedRef.current) return;
+    startedRef.current = true;
+    track("form_start", { form_type: "site_visit" });
+  };
 
   const submit = async (event) => {
     event.preventDefault();
     const form = event.currentTarget;
-    if (!form.reportValidity()) return;
+    if (sendingRef.current || sent) return;
+    if (!form.reportValidity()) {
+      track("form_error", { form_type: "site_visit", error_type: "validation" });
+      return;
+    }
     const data = new FormData(form);
     const fields = {
       name: data.get("name"),
@@ -54,6 +60,7 @@ export function SiteVisitModal({ open, onClose, size }) {
       description: data.get("notes") || undefined,
       ...(size ? { Size: `${Number(size).toLocaleString("en-US")} sqft` } : {}),
     };
+    sendingRef.current = true;
     setSending(true);
     setError("");
     try {
@@ -65,13 +72,18 @@ export function SiteVisitModal({ open, onClose, size }) {
       const result = await readJson(res);
       if (!res.ok || !result.success) {
         setError(apiErrorMessage(dict, result.code, dict.quoteModal.error));
+        track("form_error", { form_type: "site_visit", error_type: `server_${result.code || res.status}` });
         return;
       }
       setSent(true);
+      // A received request (not a confirmed appointment): the only generate_lead for this form.
+      track("generate_lead", { form_type: "site_visit", emirate: fields.location });
       form.reset();
     } catch {
       setError(dict.quoteModal.error);
+      track("form_error", { form_type: "site_visit", error_type: "network" });
     } finally {
+      sendingRef.current = false;
       setSending(false);
     }
   };
@@ -84,7 +96,7 @@ export function SiteVisitModal({ open, onClose, size }) {
 
   return (
     <div className={`quote-modal-overlay ${open ? "is-open" : ""}`} aria-hidden={!open} onClick={(e) => { if (e.target === e.currentTarget) close(); }}>
-      <div className="quote-modal-panel" role="dialog" aria-modal="true" aria-labelledby="site-visit-title">
+      <div className="quote-modal-panel" role="dialog" aria-modal="true" aria-labelledby="site-visit-title" ref={panelRef} tabIndex={-1}>
         <div className="quote-modal-header">
           <div>
             <h2 id="site-visit-title">{t.title}</h2>
@@ -101,7 +113,7 @@ export function SiteVisitModal({ open, onClose, size }) {
             <button type="button" className="submit-button" onClick={close}>{lang === "ar" ? "تم" : "Done"}</button>
           </div>
         ) : (
-          <form className="quote-modal-form" method="post" onSubmit={submit} key={me ? "account" : "guest"}>
+          <form className="quote-modal-form" method="post" onSubmit={submit} onInput={onFirstInput} key={me ? "account" : "guest"}>
             <Honeypot />
             <label className="quote-modal-field">
               <span>{t.name} *</span>
@@ -161,7 +173,7 @@ export function SiteVisitModal({ open, onClose, size }) {
             <button type="submit" className="submit-button quote-modal-submit" disabled={sending}>
               {sending ? t.sending : t.send}
             </button>
-            {error && <p className="quote-modal-error" role="status">{error}</p>}
+            {error && <p className="quote-modal-error" role="alert">{error}</p>}
           </form>
         )}
       </div>

@@ -36,6 +36,7 @@ export const dictionaries = {
       file_too_large: "This file is larger than 5 MB. Please upload a smaller PDF, DOC or DOCX file.",
       too_long: "Your message is too long. Please shorten it and try again.",
       invalid_email: "Please check your name and email address and try again.",
+      invalid_contact: "Please check your name and phone number and try again.",
     },
     reviewsPage: {
       "navTitle": "Reviews",
@@ -68,7 +69,18 @@ export const dictionaries = {
         { eyebrow: "Workplace", title: "Executive Workplaces Designed with Quiet Authority & Flow", body: "High-performing workplaces shaped around your people, brand and commercial priorities." },
         { eyebrow: "Private residences", title: "Luxury Private Villas Resolved to the Last Detail", body: "Architecture, bespoke joinery and intelligent furnishing brought together by one accountable team." }
       ],
-      viewWork: "View selected work"
+      viewWork: "View selected work",
+      // 6 Nov 2026: one fixed offer and one main action; only the photos and their caption rotate.
+      headline: "Interior Design, Turnkey Fit-Out & Custom Joinery Across the UAE",
+      subheadline: "One team for design, approvals, fit-out and the joinery we make in our own factory in Ajman, for villas, apartments and offices in all seven emirates.",
+      primaryCta: "Request a Quote",
+      secondaryCta: "Discuss on WhatsApp",
+      whatsappMessage: "Hello Bait Al Ebdaa! I'd like to discuss a project. (From your page: {page})",
+      visitPrompt: "Want us to measure first?",
+      visitLink: "Request a free site survey",
+      proof: ["15,000 sq ft joinery factory in Ajman", "5-year workmanship guarantee on our joinery", "Free site survey"],
+      pause: "Pause the slideshow",
+      play: "Play the slideshow"
     },
     servicesSection: {
       micro: "One team, end to end",
@@ -222,8 +234,8 @@ export const dictionaries = {
       }
     },
     siteVisit: {
-      "button": "Book a free site visit",
-      "title": "Book a free site visit",
+      "button": "Request a free site visit",
+      "title": "Request a free site visit",
       "subtitle": "Tell us where and when suits you. Our team will call you to confirm the time.",
       "name": "Full Name",
       "phone": "Phone Number",
@@ -320,7 +332,7 @@ export const dictionaries = {
       larger: "Larger",
       disclaimer: "Indicative estimate in AED, excluding VAT. Your exact quote follows the free site visit.",
       included: "Included",
-      siteVisit: "Book a free site visit",
+      siteVisit: "Request a free site visit",
       whatsapp: "Ask on WhatsApp",
       kicker: "Instant Cost Estimator",
       title: "Turnkey Investment Estimator Engine",
@@ -351,6 +363,16 @@ export const dictionaries = {
           "custom-wardrobes": { label: "Wardrobes", note: "Fitted wardrobes and walk-ins, per linear metre" },
           curtains: { label: "Curtains", note: "Manual or Somfy motorized, per window" },
           "interior-design": { label: "Interior design", note: "Design packages with 3D renders" },
+        },
+        requestQuote: "Request a quote for this",
+        unsure: "Don't know your measurements?",
+        unsureLink: "We'll measure on a free site survey",
+        howTitle: "How this estimate works",
+        how: {
+          area: "Floor area × the published price per sq ft for the level you choose.",
+          length: "Length of units along the wall × the published price per linear metre. It is not worked out from your floor area.",
+          count: "Number of windows × the published starting price per standard window.",
+          package: "The published starting price of the package you choose."
         },
         quotedTitle: "Quoted after a free site survey",
         quotedBody: "{service} has no published starting price: every project is priced from its own drawings and a site survey. Book a free site visit, or ask us on WhatsApp.",
@@ -790,26 +812,197 @@ export const dictionaries = {
         button: "Book a Site Visit"
       }
     },
+    nextSteps: {
+      kicker: "After you enquire",
+      title: "What happens next",
+      items: [
+        ["We get in touch", "Our team calls or messages you to understand the space, the work and your timing. A request is not an appointment: we agree a time with you first."],
+        ["Free site survey", "We visit to measure and check the site, free of charge and subject to project suitability. No measurements needed beforehand."],
+        ["Your quotation", "You receive a written quotation based on the survey, after measurements and material choices. Prices exclude 5% VAT, authority fees and third-party charges unless the quotation includes them."],
+        ["Design and programme", "The design is approved in 3D before work starts, and the programme is confirmed in writing, milestone by milestone."]
+      ]
+    },
+    mobileActions: {
+      quote: "Request a Quote",
+      whatsapp: "WhatsApp"
+    },
     quoteModal: {
-      title: "Get Your Free Quote",
-      subtitle: "Bait Al Ebdaa // 24-Hour Response Guarantee",
-      fullName: "Full Name",
-      fullNamePlaceholder: "Your full name",
-      email: "Email Address",
-      emailPlaceholder: "e.g. client@domain.ae",
-      phone: "UAE Phone Number",
-      propertySize: "Property Size (sq ft)",
-      serviceType: "Service Type",
-      serviceOptions: ["Turnkey Fit-out (Civil+MEP)", "Custom Joinery Only", "Somfy Motorized Curtains", "All of the Above"],
-      locationLabel: "Location Emirate",
-      locationOptions: ["Dubai", "Abu Dhabi", "Sharjah", "Ajman", "Ras Al Khaimah", "Fujairah", "Umm Al Quwain"],
-      descriptionLabel: "Project Description (Optional)",
-      descriptionPlaceholder: "Tell us your vision...",
-      submit: "Get My Quote",
-      whatsappCta: "Or chat on WhatsApp",
-      success: "Thank you — we'll respond within 24 hours.",
-      sending: "Sending...",
-      error: "Something went wrong. Please try WhatsApp instead.",
+      "title": "Request a Quote",
+      "subtitle": "Four quick questions. Our team will contact you to discuss your project.",
+      "close": "Close",
+      "choose": "Choose…",
+      "notSure": "Not sure yet",
+      "fullName": "Full name",
+      "phone": "Phone or WhatsApp number",
+      "phoneHint": "Any country. We will call or message you on this number.",
+      "countryCode": "Country code",
+      "serviceType": "Service required",
+      "serviceOptions": {
+        "interior-design": "Interior design",
+        "fit-out": "Turnkey fit-out",
+        "villa-renovation": "Villa renovation",
+        "apartment-renovation": "Apartment renovation",
+        "office": "Office fit-out or renovation",
+        "restaurant-retail": "Restaurant or retail fit-out",
+        "kitchen": "Kitchen",
+        "wardrobes": "Wardrobes",
+        "joinery": "Custom joinery",
+        "curtains": "Curtains (manual or Somfy)",
+        "not-sure": "Not sure yet"
+      },
+      "locationLabel": "Project emirate",
+      "locationOptions": [
+        "Dubai",
+        "Abu Dhabi",
+        "Sharjah",
+        "Ajman",
+        "Ras Al Khaimah",
+        "Fujairah",
+        "Umm Al Quwain"
+      ],
+      "locationValues": [
+        "Dubai",
+        "Abu Dhabi",
+        "Sharjah",
+        "Ajman",
+        "Ras Al Khaimah",
+        "Fujairah",
+        "Umm Al Quwain"
+      ],
+      "moreDetails": "Add more details (optional)",
+      "email": "Email (optional)",
+      "measurementsLabel": "Size or measurements (optional)",
+      "measurementsPlaceholder": "e.g. 3,500 sq ft villa, or a 4 m wardrobe wall",
+      "measureOnSurvey": "Not sure: please measure on the site survey",
+      "budgetLabel": "Budget (optional)",
+      "budgetOptions": [
+        "Not sure yet",
+        "Under AED 50,000",
+        "AED 50,000–150,000",
+        "AED 150,000–500,000",
+        "AED 500,000–1,000,000",
+        "Over AED 1,000,000"
+      ],
+      "descriptionLabel": "About the project (optional)",
+      "descriptionPlaceholder": "What would you like done, and roughly when?",
+      "estimateLabel": "From the estimator",
+      "submit": "Request a Quote",
+      "sending": "Sending…",
+      "successTitle": "Request received",
+      "success": "Thank you. Our team will contact you on the number you gave to talk through your project and, if it helps, arrange a free site survey. Nothing is booked until we agree a time with you.",
+      "done": "Done",
+      "error": "We couldn't send your request. Your details are still here: please try again, or send them to us on WhatsApp.",
+      "whatsappCta": "Discuss on WhatsApp instead",
+      "whatsappFallback": "Send on WhatsApp instead",
+      "whatsappAnyService": "a project",
+      "whatsappMessage": "Hello Bait Al Ebdaa! I'd like a quote for {service}. (From your page: {page})",
+      "errors": {
+        "name": "Please enter your name.",
+        "phone": "Please enter a phone number with at least 7 digits.",
+        "service": "Please choose a service, or “Not sure yet”.",
+        "emirate": "Please choose the project's emirate, or “Not sure yet”.",
+        "email": "Please check the email address, or leave it empty."
+      },
+      "countries": [
+        [
+          "AE",
+          "+971",
+          "UAE"
+        ],
+        [
+          "SA",
+          "+966",
+          "Saudi Arabia"
+        ],
+        [
+          "QA",
+          "+974",
+          "Qatar"
+        ],
+        [
+          "KW",
+          "+965",
+          "Kuwait"
+        ],
+        [
+          "BH",
+          "+973",
+          "Bahrain"
+        ],
+        [
+          "OM",
+          "+968",
+          "Oman"
+        ],
+        [
+          "GB",
+          "+44",
+          "UK"
+        ],
+        [
+          "IN",
+          "+91",
+          "India"
+        ],
+        [
+          "PK",
+          "+92",
+          "Pakistan"
+        ],
+        [
+          "EG",
+          "+20",
+          "Egypt"
+        ],
+        [
+          "LB",
+          "+961",
+          "Lebanon"
+        ],
+        [
+          "JO",
+          "+962",
+          "Jordan"
+        ],
+        [
+          "RU",
+          "+7",
+          "Russia"
+        ],
+        [
+          "DE",
+          "+49",
+          "Germany"
+        ],
+        [
+          "FR",
+          "+33",
+          "France"
+        ],
+        [
+          "US",
+          "+1",
+          "USA / Canada"
+        ],
+        [
+          "CN",
+          "+86",
+          "China"
+        ],
+        [
+          "XX",
+          "+",
+          "Other"
+        ]
+      ],
+      "budgetValues": [
+        "Not sure yet",
+        "Under AED 50,000",
+        "AED 50,000–150,000",
+        "AED 150,000–500,000",
+        "AED 500,000–1,000,000",
+        "Over AED 1,000,000"
+      ]
     },
     contactSection: {
       mainHeading: "Let's Talk",
@@ -1739,6 +1932,7 @@ export const dictionaries = {
       file_too_large: "حجم هذا الملف أكبر من 5 ميغابايت. يرجى رفع ملف أصغر بصيغة PDF أو DOC أو DOCX.",
       too_long: "رسالتك طويلة جداً. يرجى اختصارها والمحاولة مرة أخرى.",
       invalid_email: "يرجى التحقق من الاسم والبريد الإلكتروني والمحاولة مرة أخرى.",
+      invalid_contact: "يرجى التحقق من الاسم ورقم الهاتف والمحاولة مرة أخرى.",
     },
     reviewsPage: {
       "navTitle": "آراء العملاء",
@@ -1771,7 +1965,17 @@ export const dictionaries = {
         { eyebrow: "مساحات العمل", title: "مساحات عمل تنفيذية مصممة بهيبة هادئة وتدفق سلس", body: "مساحات عمل عالية الأداء مصممة حول موظفيك وعلامتك التجارية وأولوياتك التجارية." },
         { eyebrow: "مساكن خاصة", title: "فلل خاصة فاخرة مصممة بأدق التفاصيل المعمارية المميزة", body: "هندسة معمارية ونجارة مخصصة وأثاث ذكي يجمعها فريق واحد مسؤول." }
       ],
-      viewWork: "عرض الأعمال المختارة"
+      viewWork: "عرض الأعمال المختارة",
+      headline: "تصميم داخلي وتجهيز متكامل ونجارة مخصصة في جميع أنحاء الإمارات",
+      subheadline: "فريق واحد للتصميم والموافقات والتجهيز والنجارة التي نصنعها في مصنعنا بعجمان، للفلل والشقق والمكاتب في الإمارات السبع.",
+      primaryCta: "اطلب عرض سعر",
+      secondaryCta: "ناقش مشروعك عبر واتساب",
+      whatsappMessage: "مرحباً بيت الإبداع! أرغب بمناقشة مشروع. (من صفحتكم: {page})",
+      visitPrompt: "تريد أن نقيس أولاً؟",
+      visitLink: "اطلب معاينة مجانية للموقع",
+      proof: ["مصنع نجارة بمساحة 15,000 قدم مربع في عجمان", "ضمان 5 سنوات على صنعة النجارة", "معاينة مجانية للموقع"],
+      pause: "إيقاف العرض",
+      play: "تشغيل العرض"
     },
     servicesSection: {
       micro: "فريق واحد، من البداية للنهاية",
@@ -1925,8 +2129,8 @@ export const dictionaries = {
       }
     },
     siteVisit: {
-      "button": "احجز زيارة موقع مجانية",
-      "title": "احجز زيارة موقع مجانية",
+      "button": "اطلب زيارة موقع مجانية",
+      "title": "اطلب زيارة موقع مجانية",
       "subtitle": "أخبرنا بالمكان والوقت المناسبين لك. سيتصل بك فريقنا لتأكيد الموعد.",
       "name": "الاسم الكامل",
       "phone": "رقم الهاتف",
@@ -2032,7 +2236,7 @@ export const dictionaries = {
       larger: "أكبر",
       disclaimer: "تقدير مبدئي بالدرهم، غير شامل ضريبة القيمة المضافة. يصلك عرض السعر الدقيق بعد زيارة الموقع المجانية.",
       included: "يشمل",
-      siteVisit: "احجز زيارة موقع مجانية",
+      siteVisit: "اطلب زيارة موقع مجانية",
       whatsapp: "اسأل عبر واتساب",
       kicker: "حاسبة التكلفة الفورية",
       title: "محرك تقدير الاستثمار الشامل",
@@ -2061,6 +2265,16 @@ export const dictionaries = {
           "custom-wardrobes": { label: "خزائن ملابس", note: "خزائن مدمجة وغرف ملابس، للمتر الطولي" },
           curtains: { label: "ستائر", note: "يدوية أو سومفي كهربائية، للنافذة" },
           "interior-design": { label: "تصميم داخلي", note: "باقات تصميم مع صور ثلاثية الأبعاد" },
+        },
+        requestQuote: "اطلب عرض سعر لهذا الاختيار",
+        unsure: "لا تعرف المقاسات؟",
+        unsureLink: "سنقيس خلال معاينة مجانية للموقع",
+        howTitle: "كيف يُحسب هذا التقدير",
+        how: {
+          area: "المساحة × السعر المنشور للقدم المربع في المستوى الذي تختاره.",
+          length: "طول الوحدات على امتداد الجدار × السعر المنشور للمتر الطولي، ولا يُحسب من مساحة العقار.",
+          count: "عدد النوافذ × السعر الابتدائي المنشور للنافذة القياسية.",
+          package: "السعر الابتدائي المنشور للباقة التي تختارها."
         },
         quotedTitle: "يُسعّر بعد معاينة مجانية للموقع",
         quotedBody: "لا يوجد سعر ابتدائي منشور لخدمة {service}، فكل مشروع يُسعّر من مخططاته ومعاينة موقعه. احجز زيارة موقع مجانية، أو اسألنا عبر واتساب.",
@@ -2490,26 +2704,197 @@ export const dictionaries = {
         button: "احجز زيارة موقع"
       }
     },
+    nextSteps: {
+      kicker: "بعد استفسارك",
+      title: "ماذا يحدث بعد ذلك؟",
+      items: [
+        ["نتواصل معك", "يتصل بك فريقنا أو يراسلك لفهم المساحة والأعمال المطلوبة وتوقيتك. الطلب ليس موعداً محجوزاً: نتفق معك على الوقت أولاً."],
+        ["معاينة مجانية للموقع", "نزور الموقع لأخذ المقاسات وفحصه مجاناً، حسب ملاءمة المشروع. لا تحتاج إلى مقاسات مسبقاً."],
+        ["عرض السعر", "تتسلّم عرض سعر مكتوباً مبنياً على المعاينة بعد القياس واختيار المواد. الأسعار غير شاملة ضريبة القيمة المضافة 5% ورسوم الجهات والرسوم الخارجية ما لم يذكرها العرض."],
+        ["التصميم والجدول الزمني", "يُعتمد التصميم بصور ثلاثية الأبعاد قبل بدء العمل، ويُؤكَّد الجدول الزمني كتابياً مرحلةً بمرحلة."]
+      ]
+    },
+    mobileActions: {
+      quote: "اطلب عرض سعر",
+      whatsapp: "واتساب"
+    },
     quoteModal: {
-      title: "احصل على عرض سعر مجاني",
-      subtitle: "بيت الإبداع // ضمان الرد خلال 24 ساعة",
-      fullName: "الاسم الكامل",
-      fullNamePlaceholder: "اسمك الكامل",
-      email: "البريد الإلكتروني",
-      emailPlaceholder: "مثال: client@domain.ae",
-      phone: "رقم الهاتف الإماراتي",
-      propertySize: "مساحة العقار (قدم مربع)",
-      serviceType: "نوع الخدمة",
-      serviceOptions: ["تجهيز شامل (مدني + كهروميكانيك)", "نجارة مخصصة فقط", "ستائر سومفي الآلية", "جميع ما سبق"],
-      locationLabel: "الإمارة",
-      locationOptions: ["دبي", "أبوظبي", "الشارقة", "عجمان", "رأس الخيمة", "الفجيرة", "أم القيوين"],
-      descriptionLabel: "وصف المشروع (اختياري)",
-      descriptionPlaceholder: "أخبرنا عن رؤيتك...",
-      submit: "احصل على عرض السعر",
-      whatsappCta: "أو تحدث عبر واتساب",
-      success: "شكراً لك — سنرد خلال 24 ساعة.",
-      sending: "جارٍ الإرسال...",
-      error: "حدث خطأ ما. يرجى المحاولة عبر واتساب بدلاً من ذلك.",
+      "title": "اطلب عرض سعر",
+      "subtitle": "أربعة أسئلة سريعة، ثم يتواصل معك فريقنا لمناقشة مشروعك.",
+      "close": "إغلاق",
+      "choose": "اختر…",
+      "notSure": "لست متأكداً بعد",
+      "fullName": "الاسم الكامل",
+      "phone": "رقم الهاتف أو واتساب",
+      "phoneHint": "من أي دولة. سنتصل بك أو نراسلك على هذا الرقم.",
+      "countryCode": "رمز الدولة",
+      "serviceType": "الخدمة المطلوبة",
+      "serviceOptions": {
+        "interior-design": "تصميم داخلي",
+        "fit-out": "تجهيز متكامل",
+        "villa-renovation": "تجديد فيلا",
+        "apartment-renovation": "تجديد شقة",
+        "office": "تجهيز أو تجديد مكتب",
+        "restaurant-retail": "تجهيز مطعم أو محل",
+        "kitchen": "مطبخ",
+        "wardrobes": "خزائن ملابس",
+        "joinery": "نجارة مخصصة",
+        "curtains": "ستائر (يدوية أو سومفي)",
+        "not-sure": "لست متأكداً بعد"
+      },
+      "locationLabel": "إمارة المشروع",
+      "locationOptions": [
+        "دبي",
+        "أبوظبي",
+        "الشارقة",
+        "عجمان",
+        "رأس الخيمة",
+        "الفجيرة",
+        "أم القيوين"
+      ],
+      "locationValues": [
+        "Dubai",
+        "Abu Dhabi",
+        "Sharjah",
+        "Ajman",
+        "Ras Al Khaimah",
+        "Fujairah",
+        "Umm Al Quwain"
+      ],
+      "moreDetails": "أضف تفاصيل أكثر (اختياري)",
+      "email": "البريد الإلكتروني (اختياري)",
+      "measurementsLabel": "المساحة أو المقاسات (اختياري)",
+      "measurementsPlaceholder": "مثال: فيلا 3,500 قدم مربع، أو جدار خزائن بطول 4 م",
+      "measureOnSurvey": "لست متأكداً: يرجى القياس أثناء معاينة الموقع",
+      "budgetLabel": "الميزانية (اختياري)",
+      "budgetOptions": [
+        "لست متأكداً بعد",
+        "أقل من 50,000 درهم",
+        "50,000–150,000 درهم",
+        "150,000–500,000 درهم",
+        "500,000–1,000,000 درهم",
+        "أكثر من 1,000,000 درهم"
+      ],
+      "descriptionLabel": "عن المشروع (اختياري)",
+      "descriptionPlaceholder": "ما الأعمال المطلوبة، ومتى تقريباً؟",
+      "estimateLabel": "من حاسبة التكلفة",
+      "submit": "اطلب عرض سعر",
+      "sending": "جارٍ الإرسال…",
+      "successTitle": "تم استلام طلبك",
+      "success": "شكراً لك. سيتواصل فريقنا معك على الرقم الذي أدخلته لمناقشة مشروعك، وترتيب معاينة مجانية للموقع إن كانت مفيدة. لا يُحجز أي موعد قبل أن نتفق معك على الوقت.",
+      "done": "تم",
+      "error": "تعذّر إرسال طلبك. بياناتك ما زالت هنا: حاول مرة أخرى، أو أرسلها إلينا عبر واتساب.",
+      "whatsappCta": "ناقش مشروعك عبر واتساب بدلاً من ذلك",
+      "whatsappFallback": "أرسلها عبر واتساب",
+      "whatsappAnyService": "مشروع",
+      "whatsappMessage": "مرحباً بيت الإبداع! أرغب بعرض سعر لـ{service}. (من صفحتكم: {page})",
+      "errors": {
+        "name": "يرجى إدخال اسمك.",
+        "phone": "يرجى إدخال رقم هاتف من 7 أرقام على الأقل.",
+        "service": "يرجى اختيار الخدمة، أو «لست متأكداً بعد».",
+        "emirate": "يرجى اختيار إمارة المشروع، أو «لست متأكداً بعد».",
+        "email": "يرجى التحقق من البريد الإلكتروني، أو تركه فارغاً."
+      },
+      "countries": [
+        [
+          "AE",
+          "+971",
+          "الإمارات"
+        ],
+        [
+          "SA",
+          "+966",
+          "السعودية"
+        ],
+        [
+          "QA",
+          "+974",
+          "قطر"
+        ],
+        [
+          "KW",
+          "+965",
+          "الكويت"
+        ],
+        [
+          "BH",
+          "+973",
+          "البحرين"
+        ],
+        [
+          "OM",
+          "+968",
+          "عُمان"
+        ],
+        [
+          "GB",
+          "+44",
+          "المملكة المتحدة"
+        ],
+        [
+          "IN",
+          "+91",
+          "الهند"
+        ],
+        [
+          "PK",
+          "+92",
+          "باكستان"
+        ],
+        [
+          "EG",
+          "+20",
+          "مصر"
+        ],
+        [
+          "LB",
+          "+961",
+          "لبنان"
+        ],
+        [
+          "JO",
+          "+962",
+          "الأردن"
+        ],
+        [
+          "RU",
+          "+7",
+          "روسيا"
+        ],
+        [
+          "DE",
+          "+49",
+          "ألمانيا"
+        ],
+        [
+          "FR",
+          "+33",
+          "فرنسا"
+        ],
+        [
+          "US",
+          "+1",
+          "الولايات المتحدة / كندا"
+        ],
+        [
+          "CN",
+          "+86",
+          "الصين"
+        ],
+        [
+          "XX",
+          "+",
+          "أخرى"
+        ]
+      ],
+      "budgetValues": [
+        "Not sure yet",
+        "Under AED 50,000",
+        "AED 50,000–150,000",
+        "AED 150,000–500,000",
+        "AED 500,000–1,000,000",
+        "Over AED 1,000,000"
+      ]
     },
     contactSection: {
       mainHeading: "لنتحدث",

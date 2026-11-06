@@ -8,8 +8,11 @@ import { useBusiness, useI18n } from "../i18n/I18nProvider";
 import { Reveal } from "./Shared";
 import { sliderFillPosition } from "../lib/slider";
 import { formatPrice, serviceEstimator } from "../lib/pricing";
+import { quoteServiceFor } from "../lib/enquiry";
+import { track } from "../lib/analytics";
 
 const SiteVisitModal = dynamic(() => import("./SiteVisitModal").then((m) => m.SiteVisitModal), { ssr: false });
+const QuoteModal = dynamic(() => import("./QuoteModal").then((m) => m.QuoteModal), { ssr: false });
 const AED = new Intl.NumberFormat("en-AE", { maximumFractionDigits: 0 });
 const SCOPE_ICONS = { "villa-renovation": Home, "office-fit-out": Services, "kitchen-design": Box, "custom-wardrobes": StageMake, curtains: Curtains, "interior-design": StageVisualize };
 
@@ -18,9 +21,11 @@ const SCOPE_ICONS = { "villa-renovation": Home, "office-fit-out": Services, "kit
 //   service page:          service="kitchen-design" (that service's levels only)
 //   homepage, pricing:     scopes={[...]} adds a first step, "What do you need?"
 // Modes: area (sq ft), length (linear metres), count (windows) or package (fixed prices).
-// The main button opens the site visit form: through onBookSurvey when the page owns the
-// form, otherwise its own. Renders nothing for a service without a published price.
-export function ServiceEstimator({ service, scopes, heading, inclusions = [], onBookSurvey }) {
+// The main button opens the quote form with this choice and figure filled in (the visitor does
+// not repeat themselves); "Don't know your measurements?" opens the site visit form instead.
+// Both go through the page's own forms when it passes onRequestQuote / onBookSurvey, otherwise
+// the estimator opens its own. Renders nothing for a service without a published price.
+export function ServiceEstimator({ service, scopes, heading, inclusions = [], onBookSurvey, onRequestQuote }) {
   const { lang, dict } = useI18n();
   const business = useBusiness();
   const t = dict.estimatorSection;
@@ -31,6 +36,7 @@ export function ServiceEstimator({ service, scopes, heading, inclusions = [], on
   const [level, setLevel] = useState(0);
   const [addons, setAddons] = useState([]);
   const [visit, setVisit] = useState(null);
+  const [quote, setQuote] = useState(null);
   if (!config) return null;
 
   const chooseScope = (key) => {
@@ -39,7 +45,11 @@ export function ServiceEstimator({ service, scopes, heading, inclusions = [], on
     setLevel(0);
     setAddons([]);
   };
-  const book = (sqft) => (onBookSurvey ? onBookSurvey(sqft) : setVisit({ size: sqft }));
+  const book = (sqft) => {
+    if (onBookSurvey) return onBookSurvey(sqft);
+    track("cta_click", { cta: "site_visit", cta_location: "estimator", service: quoteServiceFor(scope) });
+    return setVisit({ size: sqft });
+  };
 
   const number = (value) => value.toLocaleString(lang === "ar" ? "ar-AE" : "en-US");
   const isPackage = config.mode === "package";
@@ -59,6 +69,25 @@ export function ServiceEstimator({ service, scopes, heading, inclusions = [], on
   const toggleAddon = (id) => setAddons((on) => (on.includes(id) ? on.filter((x) => x !== id) : [...on, id]));
 
   const choice = [label(item), ...chosenAddons.map(label)].join(" + ");
+  const figure = high ? `AED ${AED.format(low)}–${AED.format(high)}` : `${s.from} AED ${AED.format(low)}`;
+  // One line for the quote form and the team: the choice, the size and the figure shown.
+  const summary = `${choice}${isPackage ? "" : `, ${number(size)} ${unit}`}: ${figure}`;
+  const requestQuote = () => {
+    const estimate = { estimate: summary };
+    if (onRequestQuote) return onRequestQuote(estimate);
+    track("cta_click", { cta: "quote", cta_location: "estimator", service: quoteServiceFor(scope) });
+    return setQuote(estimate);
+  };
+  // What the figure assumes: how it is worked out, the published note for this kind of work
+  // (pricing page), and the site-wide exclusions and VAT.
+  const groups = dict.pricingPage.groups;
+  const itemNote =
+    item.id.startsWith("villa-") ? groups.villa.note
+    : item.id.startsWith("office-") ? groups.office.note
+    : item.id.startsWith("somfy-") ? groups.curtainsSomfy.note
+    : item.id.startsWith("curtain-") ? groups.curtainsManual.subtitle
+    : item.id.startsWith("design-") ? groups.design.note
+    : dict.pricingPage.joineryDisclaimer;
   const waMessage = s.whatsappMessage.replace("{choice}", choice).replace("{size}", isPackage ? "" : `, ${number(size)} ${unit}`);
 
   // Step numbers: the scope choice (homepage), the size, the level, the add-ons.
@@ -200,16 +229,27 @@ export function ServiceEstimator({ service, scopes, heading, inclusions = [], on
             )}
 
             <div className="est-result__actions">
-              <button type="button" className="est-cta" onClick={() => book(config.mode === "area" ? size : undefined)}>
-                <Calendar size={20} /> {t.siteVisit}
+              <button type="button" className="est-cta" onClick={requestQuote}>
+                {s.requestQuote}
               </button>
-              <a className="est-cta est-cta--ghost" href={`https://wa.me/${business.whatsapp}?text=${encodeURIComponent(waMessage)}`} target="_blank" rel="noopener noreferrer">
+              <a className="est-cta est-cta--ghost" href={`https://wa.me/${business.whatsapp}?text=${encodeURIComponent(waMessage)}`} target="_blank" rel="noopener noreferrer" data-cta-location="estimator">
                 <WhatsappLogo size={20} /> {t.whatsapp}
               </a>
             </div>
+            <p className="est-unsure">
+              {s.unsure}{" "}
+              <button type="button" onClick={() => book(undefined)}><Calendar size={15} /> {s.unsureLink}</button>
+            </p>
+            <details className="est-how">
+              <summary>{s.howTitle}</summary>
+              <p>{s.how[config.mode]}</p>
+              <p>{itemNote}</p>
+              <p>{dict.pricingPage.globalDisclaimer}</p>
+            </details>
           </div>
         </Reveal>
       </div>
+      {quote && createPortal(<QuoteModal open service={quoteServiceFor(scope)} estimate={quote.estimate} source="estimator" onClose={() => setQuote(null)} />, document.body)}
       {/* Into <body>: on the homepage this section has content-visibility (styles.css), whose
           containment would place a position: fixed form relative to the section, not the screen. */}
       {visit && createPortal(<SiteVisitModal open size={visit.size} onClose={() => setVisit(null)} />, document.body)}
@@ -218,7 +258,7 @@ export function ServiceEstimator({ service, scopes, heading, inclusions = [], on
 }
 
 // For services with no published price: no estimate, a clear "quoted after a survey" card.
-export function QuotedAfterSurvey({ serviceName, onBookSurvey, waHref }) {
+export function QuotedAfterSurvey({ serviceName, onRequestQuote, waHref }) {
   const { dict } = useI18n();
   const t = dict.estimatorSection;
   return (
@@ -229,10 +269,10 @@ export function QuotedAfterSurvey({ serviceName, onBookSurvey, waHref }) {
           <p>{t.service.quotedBody.replace("{service}", serviceName)}</p>
         </div>
         <div className="est-quoted__actions">
-          <button type="button" className="est-cta" onClick={() => onBookSurvey?.()}>
-            <Calendar size={20} /> {t.siteVisit}
+          <button type="button" className="est-cta" onClick={() => onRequestQuote?.()}>
+            {dict.hero.primaryCta}
           </button>
-          <a className="est-cta est-cta--ghost" href={waHref} target="_blank" rel="noopener noreferrer">
+          <a className="est-cta est-cta--ghost" href={waHref} target="_blank" rel="noopener noreferrer" data-cta-location="quoted-card">
             <WhatsappLogo size={20} /> {t.whatsapp}
           </a>
         </div>

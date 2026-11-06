@@ -84,11 +84,13 @@ export async function POST(request) {
     if (!isValidEmail(email)) {
       return fail("invalid_email", "A valid email is required.", 400);
     }
-  } else if (formType === "siteVisit") {
+  } else if (formType === "siteVisit" || formType === "quote") {
     // A site visit is arranged by phone, so the email is optional here (checked if given).
+    // The quote form too since 6 Nov 2026: it asks for a phone or WhatsApp number first and
+    // keeps email optional, to lose fewer enquiries on phones.
     const phoneDigits = String(fields.phone || "").replace(/\D/g, "");
     if (!name || typeof name !== "string" || phoneDigits.length < 7 || (email && !isValidEmail(email))) {
-      return fail("invalid_email", "A name and a phone number are required.", 400);
+      return fail("invalid_contact", "A name and a phone number are required.", 400);
     }
   } else if (!name || typeof name !== "string" || !isValidEmail(email)) {
     return fail("invalid_email", "A valid name and email are required.", 400);

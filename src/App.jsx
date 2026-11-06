@@ -4,6 +4,7 @@ import { Footer, Reveal, FaqSplit, ProcessTimeline } from "./components/Shared";
 import { ServiceTileGrid } from "./components/ServiceTiles";
 import { Estimator } from "./components/Estimator";
 import { PriceExplorer } from "./components/PriceExplorer";
+import { NextSteps } from "./components/NextSteps";
 import { Hero, Sectors, SiteHeader } from "./components/HomeIslands";
 import { isPublishedProject } from "./data/project-catalog";
 import { REVIEWS } from "./data/reviews";
@@ -149,7 +150,7 @@ export default async function App({ lang }) {
   const props = { lang, dict };
   return <>
     <SiteHeader />
-    <main className="home-main"><Hero /><Services {...props} business={business} /><ServicesDirectory {...props} /><Challenges {...props} /><ProductCollection {...props} /><Factory {...props} /><Sectors /><Projects {...props} /><Testimonials {...props} /><Process {...props} /><PriceExplorer /><Estimator /><Faq {...props} /><LatestNews {...props} /></main>
+    <main className="home-main"><Hero /><Services {...props} business={business} /><ServicesDirectory {...props} /><Challenges {...props} /><ProductCollection {...props} /><Factory {...props} /><Sectors /><Projects {...props} /><Testimonials {...props} /><Process {...props} /><PriceExplorer /><Estimator /><NextSteps /><Faq {...props} /><LatestNews {...props} /></main>
     <Footer />
   </>;
 }

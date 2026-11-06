@@ -2,12 +2,15 @@
 
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import { SiteVisitButton } from "./components/SiteVisitButton";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ArrowUpRight, Calendar, Check, Phone, Whatsapp } from "./components/icons";
 import { useBusiness, useI18n } from "./i18n/I18nProvider";
 import { Header, Footer, Reveal, PhotoHero, FaqSplit, ProcessTimeline } from "./components/Shared";
 import { QuotedAfterSurvey, ServiceEstimator } from "./components/ServiceEstimator";
+import { MobileActionBar } from "./components/MobileActionBar";
+import { NextSteps } from "./components/NextSteps";
+import { quoteServiceFor, whatsappHref } from "./lib/enquiry";
+import { track } from "./lib/analytics";
 import { COST_GUIDE_LINKS } from "./data/cost-guide-links";
 import { serviceContent, priorityIntroExtra, whyChooseFacts } from "./data/service-content";
 import { locationContent } from "./data/location-content";
@@ -117,45 +120,9 @@ const PRIORITY_MONEY_PAGES = new Set([
 
 
 // Pilot page body blocks (see src/data/pilot-pages.js): ["p", html] | ["h3", text] | ["ul", [html]] | ["ol", [html]].
-// The site visit form loads only when someone opens it (estimator, quote card, mobile bar).
+// The forms load only when someone opens them.
 const SiteVisitModal = dynamic(() => import("./components/SiteVisitModal").then((m) => m.SiteVisitModal), { ssr: false });
-
-// Phones (6 Nov 2026): once the hero's buttons scroll away, nothing on the page asked for
-// action except the header's WhatsApp. This bar sits above the bottom navigation from then
-// on: book a site visit, WhatsApp or call. Hidden on larger screens (they have the sidebar).
-function MobileCtaBar({ lang, waHref, phone, onBook }) {
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const root = document.documentElement;
-    root.classList.add("slp-cta-page");
-    const actions = document.querySelector(".ph-actions");
-    if (!actions || !("IntersectionObserver" in window)) return () => root.classList.remove("slp-cta-page");
-    const observer = new IntersectionObserver(([entry]) => setVisible(!entry.isIntersecting && entry.boundingClientRect.top < 0));
-    observer.observe(actions);
-    return () => {
-      observer.disconnect();
-      root.classList.remove("slp-cta-page", "slp-cta-on");
-    };
-  }, []);
-  // Ask Ali and the consent banner move up while the bar shows (styles.css, html.slp-cta-on).
-  useEffect(() => {
-    document.documentElement.classList.toggle("slp-cta-on", visible);
-  }, [visible]);
-  const ar = lang === "ar";
-  return (
-    <div className={`slp-mobile-cta${visible ? " is-visible" : ""}`} aria-hidden={!visible}>
-      <button type="button" className="slp-mobile-cta__book" onClick={onBook} tabIndex={visible ? 0 : -1}>
-        <Calendar size={18} /> {ar ? "احجز زيارة موقع مجانية" : "Book a free site visit"}
-      </button>
-      <a className="slp-mobile-cta__icon slp-mobile-cta__icon--wa" href={waHref} target="_blank" rel="noopener noreferrer" aria-label={ar ? "واتساب" : "WhatsApp"} tabIndex={visible ? 0 : -1}>
-        <Whatsapp size={20} />
-      </a>
-      <a className="slp-mobile-cta__icon" href={`tel:${phone}`} aria-label={ar ? "اتصل الآن" : "Call now"} tabIndex={visible ? 0 : -1}>
-        <Phone size={19} />
-      </a>
-    </div>
-  );
-}
+const QuoteModal = dynamic(() => import("./components/QuoteModal").then((m) => m.QuoteModal), { ssr: false });
 
 // Local permits and projects for an indexed emirate page (data/local-evidence.js, resolved on
 // the server): the authority's own requirements with their sources, and real projects there.
@@ -238,7 +205,18 @@ export default function ServiceLocationPage({ lang, row, seoContext, pilot = nul
   const [menuOpen, setMenuOpen] = useState(false);
   // The site visit form: null when closed, else { size } (size from the estimator, if any).
   const [siteVisit, setSiteVisit] = useState(null);
-  const openSiteVisit = (size) => setSiteVisit({ size });
+  const openSiteVisit = (size, source = "page") => {
+    track("cta_click", { cta: "site_visit", cta_location: source, service: quoteService });
+    setSiteVisit({ size });
+  };
+  // The quote form, with this page's service preselected (lib/enquiry.js) and, from the
+  // estimator, its choice and figure: null when closed, else { source, estimate, measurements }.
+  const quoteService = quoteServiceFor(row.serviceSlug);
+  const [quote, setQuote] = useState(null);
+  const openQuote = (source, extra = {}) => {
+    track("cta_click", { cta: "quote", cta_location: source, service: quoteService });
+    setQuote({ source, ...extra });
+  };
 
   const { service, location, emirateName, authority, otherAreas, otherServices, description } = seoContext;
   const serviceName = lang === "ar" ? service.ar : service.en;
@@ -312,12 +290,14 @@ export default function ServiceLocationPage({ lang, row, seoContext, pilot = nul
     new Set([heroImage, ...mosaicPhotos.map((photo) => photo.src)])
   );
 
-  const waMessage = encodeURIComponent(
+  // WhatsApp opens with this message typed in, naming the service, the place and the page;
+  // the visitor can change it and nothing is sent until they press send.
+  const waHref = whatsappHref(
+    business.whatsapp,
     lang === "ar"
-      ? `مرحباً! أرغب بالاستفسار عن خدمة ${serviceName} في ${locationName}.`
-      : `Hello! I'd like to enquire about ${serviceName} in ${locationName}.`
+      ? `مرحباً بيت الإبداع! أرغب بالاستفسار عن خدمة ${serviceName} في ${locationName}. (من صفحتكم: ${row.canonical})`
+      : `Hello Bait Al Ebdaa! I'd like to enquire about ${serviceName} in ${locationName}. (From your page: ${row.canonical})`
   );
-  const waHref = `https://wa.me/${business.whatsapp}?text=${waMessage}`;
 
   const project = dict.projectDetailPage.projects["government-authority"];
   // Supporting-evidence link for the office fit-out money page only: the proof card
@@ -429,7 +409,7 @@ export default function ServiceLocationPage({ lang, row, seoContext, pilot = nul
         </a>
       </aside>
 
-      <main className="services-page slp-page">
+      <main className="services-page slp-page" data-service={quoteService || undefined}>
         {/* Hero: the photo under the header; the location note, points and price follow below it */}
         <PhotoHero
           image={heroImage}
@@ -440,14 +420,19 @@ export default function ServiceLocationPage({ lang, row, seoContext, pilot = nul
           lead={pilot ? pilot.lead : content.summary}
           leadProps={pilot ? { "data-main": "pilot" } : {}}
           actions={
+            // One main action (the quote form, this service preselected) and WhatsApp with a
+            // message naming the service and page; calling and the site survey are quieter links.
             <>
-              <a className="slp-btn slp-btn--solid" href={waHref} target="_blank" rel="noopener noreferrer">
-                {lang === "ar" ? "واتساب الآن" : "WhatsApp Now"} <ArrowUpRight size={15} />
+              <button type="button" className="slp-btn slp-btn--solid" onClick={() => openQuote("hero")}>
+                {dict.hero.primaryCta} <ArrowUpRight size={15} />
+              </button>
+              <a className="slp-btn" href={waHref} target="_blank" rel="noopener noreferrer" data-cta-location="hero">
+                <Whatsapp size={16} /> {dict.hero.secondaryCta}
               </a>
-              <a className="slp-btn" href={`tel:${business.phone}`}>
-                {lang === "ar" ? "اتصل الآن" : "Call Now"} <Phone size={15} />
-              </a>
-              <SiteVisitButton className="slp-btn" iconSize={15} />
+              <p className="slp-hero__more" data-cta-location="hero">
+                <a href={`tel:${business.phone}`}><Phone size={15} /> {lang === "ar" ? "اتصل بنا" : "Call us"}</a>
+                <button type="button" onClick={() => openSiteVisit(undefined, "hero")}><Calendar size={15} /> {dict.siteVisit.button}</button>
+              </p>
             </>
           }
         >
@@ -567,9 +552,20 @@ export default function ServiceLocationPage({ lang, row, seoContext, pilot = nul
         </Reveal>
         {/* This service's own published prices; services without one are quoted after a survey */}
         {serviceEstimator(row.serviceSlug) ? (
-          <ServiceEstimator service={row.serviceSlug} serviceName={serviceName} inclusions={(pilot ? pilot.points : content.included).slice(0, 4)} onBookSurvey={openSiteVisit} />
+          <ServiceEstimator
+            service={row.serviceSlug}
+            serviceName={serviceName}
+            inclusions={(pilot ? pilot.points : content.included).slice(0, 4)}
+            onBookSurvey={(size) => openSiteVisit(size, "estimator")}
+            onRequestQuote={(estimate) => openQuote("estimator", estimate)}
+          />
         ) : (
-          <QuotedAfterSurvey serviceName={serviceName} onBookSurvey={openSiteVisit} waHref={waHref} />
+          <QuotedAfterSurvey serviceName={serviceName} onRequestQuote={() => openQuote("quoted-card")} waHref={waHref} />
+        )}
+        <NextSteps />
+
+        {quote && (
+          <QuoteModal open onClose={() => setQuote(null)} service={quoteService} source={quote.source} estimate={quote.estimate} measurements={quote.measurements} />
         )}
 
         {/* Indicative starting prices — real published figures from the pricing page */}
@@ -781,7 +777,7 @@ export default function ServiceLocationPage({ lang, row, seoContext, pilot = nul
         )}
       </main>
       <Footer />
-      <MobileCtaBar lang={lang} waHref={waHref} phone={business.phone} onBook={() => openSiteVisit()} />
+      <MobileActionBar watch=".ph-actions" waHref={waHref} service={quoteService} source="service-mobile-bar" onQuote={() => setQuote({ source: "service-mobile-bar" })} />
       {siteVisit && <SiteVisitModal open size={siteVisit.size} onClose={() => setSiteVisit(null)} />}
     </>
   );
