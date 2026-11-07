@@ -91,9 +91,11 @@ const nextConfig = {
       { source: "/commercial-%26-office-interiors", destination: "/en/office-fit-out/dubai", permanent: true },
       { source: "/commercial-%26-office-interiors/", destination: "/en/office-fit-out/dubai", permanent: true },
       // /luxury-interior-design/services showed real Search Console impressions (position ~7),
-      // proving the URL existed; /luxury-interior-design/pricing has no such evidence and stays 404.
+      // proving the URL existed; legacy /luxury-interior-design/pricing maps directly to /en/pricing.
       { source: "/luxury-interior-design/services", destination: "/en/our-services", permanent: true },
       { source: "/luxury-interior-design/services/", destination: "/en/our-services", permanent: true },
+      { source: "/luxury-interior-design/pricing", destination: "/en/pricing", permanent: true },
+      { source: "/luxury-interior-design/pricing/", destination: "/en/pricing", permanent: true },
 
       // Old WordPress pages that redirected (via the trailing-slash rule) and then 404ed. Each now goes
       // to the genuinely equivalent current page. /faq-frequently-asked-questions, /bespoke-upholstery-curtains

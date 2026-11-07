@@ -5,14 +5,14 @@ import { dictionaries } from "../../i18n/dictionaries";
 
 const COPY = {
   en: {
-    title: "Bait Al Ebdaa | Turnkey Interior Design Dubai",
+    title: "Interior Design & Fit-Out Company Dubai | Bait Al Ebdaa",
     description:
-      "Bait Al Ebdaa delivers villa and office interior design, turnkey fit-out and in-house joinery across the UAE.",
+      "Interior design & turnkey fit-out in Dubai & UAE. Custom joinery from our Ajman factory, villa renovation & free site surveys. Request a quote.",
   },
   ar: {
-    title: "بيت الإبداع | تجهيزات ونجارة معمارية فاخرة في دبي",
+    title: "شركة تصميم داخلي وتجهيزات في دبي | بيت الإبداع",
     description:
-      "بيت الإبداع يصمم فلل ومكاتب فاخرة في جميع أنحاء الإمارات، بنجارة داخلية خاصة وتصور ثلاثي الأبعاد واقعي وموافقات وتجهيز فاخر.",
+      "تصميم داخلي وتجهيزات متكاملة في دبي والإمارات. نجارة مخصصة من مصنعنا في عجمان، تجديد الفلل ومعاينة موقع مجانية. اطلب عرض سعر.",
   },
 };
 

@@ -63,14 +63,14 @@ export const metadata = {
   // second (landline-looking) phone number and turn it into a call link.
   formatDetection: { telephone: false, address: false, email: false },
   title: {
-    default: "Bait Al Ebdaa | Turnkey Interior Design Dubai",
+    default: "Interior Design & Fit-Out Company Dubai | Bait Al Ebdaa",
     template: "%s | Bait Al Ebdaa",
   },
   description:
-    "Bait Al Ebdaa delivers villa and office interior design, turnkey fit-out and in-house joinery across the UAE.",
+    "Interior design & turnkey fit-out in Dubai & UAE. Custom joinery from our Ajman factory, villa renovation & free site surveys. Request a quote.",
   openGraph: {
-    title: "Bait Al Ebdaa | Turnkey Interior Design Dubai",
-    description: "Villa and office interior design, turnkey fit-out and in-house joinery across the UAE.",
+    title: "Interior Design & Fit-Out Company Dubai | Bait Al Ebdaa",
+    description: "Interior design & turnkey fit-out in Dubai & UAE. Custom joinery from our Ajman factory, villa renovation & free site surveys.",
     url: 'https://www.baitalebdaa.com',
     siteName: 'Bait Al Ebdaa',
     locale: 'en_AE',
@@ -78,8 +78,8 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Bait Al Ebdaa | Turnkey Interior Design Dubai",
-    description: "Villa and office interior design, turnkey fit-out and in-house joinery across the UAE.",
+    title: "Interior Design & Fit-Out Company Dubai | Bait Al Ebdaa",
+    description: "Interior design & turnkey fit-out in Dubai & UAE. Custom joinery from our Ajman factory, villa renovation & free site surveys.",
   },
   // No site-wide canonical/hreflang default here on purpose: a layout-level canonical is
   // inherited by any page that forgets its own, silently pointing it at the homepage. Every
