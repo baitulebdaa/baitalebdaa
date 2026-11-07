@@ -30,16 +30,24 @@ export const isOwner = (email) => adminEmails().includes(String(email || "").toL
 export async function addAdmin({ email, name, password }) {
   const clean = String(email).trim().toLowerCase();
   let created = false;
+  let user;
   try {
-    await adminAuth().getUserByEmail(clean);
+    user = await adminAuth().getUserByEmail(clean);
   } catch (error) {
     if (error?.code !== "auth/user-not-found") throw error;
     // A new account needs a password, or nobody could log in with it.
     if (!password || password.length < 8) throw Object.assign(new Error("password needed"), { code: "auth/invalid-password" });
-    await adminAuth().createUser({ email: clean, password, displayName: name || undefined });
+    user = await adminAuth().createUser({ email: clean, password, displayName: name || undefined });
     created = true;
   }
   await ref().set({ emails: FieldValue.arrayUnion(clean), updatedAt: FieldValue.serverTimestamp() }, { merge: true });
+  if (user?.uid) {
+    const db = adminDb();
+    await Promise.all([
+      db.collection("profiles").doc(user.uid).set({ email: clean, role: "admin", updatedAt: FieldValue.serverTimestamp() }, { merge: true }),
+      db.collection("adminProfiles").doc(user.uid).set({ email: clean, role: "admin", updatedAt: FieldValue.serverTimestamp() }, { merge: true }),
+    ]);
+  }
   return { created };
 }
 
@@ -49,6 +57,9 @@ export async function removeAdmin(email) {
   await ref().set({ emails: FieldValue.arrayRemove(clean), updatedAt: FieldValue.serverTimestamp() }, { merge: true });
   try {
     const user = await adminAuth().getUserByEmail(clean);
+    if (user?.uid) {
+      await adminDb().collection("profiles").doc(user.uid).set({ role: "customer", updatedAt: FieldValue.serverTimestamp() }, { merge: true });
+    }
     await adminAuth().revokeRefreshTokens(user.uid);
   } catch {
     // No account: nothing to sign out.

@@ -27,7 +27,7 @@ function serviceAccount() {
 }
 
 export function adminEmails() {
-  return (process.env.ADMIN_EMAILS || "")
+  return (process.env.ADMIN_EMAILS || "info@baitalebdaa.com")
     .split(",")
     .map((email) => email.trim().toLowerCase())
     .filter(Boolean);

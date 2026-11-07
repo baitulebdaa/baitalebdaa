@@ -33,15 +33,26 @@ export async function customerRequests(customer) {
     .sort((a, b) => String(b.createdAt || "").localeCompare(String(a.createdAt || "")));
 }
 
-/** The phone and address kept on the customer's profile (profiles/{uid}); "" when unset. */
+/** The phone, address, and role kept on the customer's profile (profiles/{uid}); "" when unset. */
 export async function customerProfile(uid) {
   const doc = await adminDb().collection("profiles").doc(uid).get();
-  return { phone: (doc.exists && doc.get("phone")) || "", address: (doc.exists && doc.get("address")) || "" };
+  return {
+    phone: (doc.exists && doc.get("phone")) || "",
+    address: (doc.exists && doc.get("address")) || "",
+    role: (doc.exists && doc.get("role")) || "customer",
+  };
 }
 
 /** The phone on the customer's profile, or "". */
 export async function customerPhone(uid) {
   return (await customerProfile(uid)).phone;
+}
+
+export async function saveCustomerRole(uid, role) {
+  await adminDb()
+    .collection("profiles")
+    .doc(uid)
+    .set({ role: role || "customer", updatedAt: FieldValue.serverTimestamp() }, { merge: true });
 }
 
 export async function saveCustomerPhone(uid, phone) {

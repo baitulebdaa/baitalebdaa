@@ -23,6 +23,7 @@ export default async function UserDetail({ params }) {
   const now = Date.now();
   const rows = [
     ["Email", user.email],
+    ["Role", user.role ? (user.role.charAt(0).toUpperCase() + user.role.slice(1)) : (user.admin ? "Admin" : "Customer")],
     ["Phone", user.phone],
     ["Address", user.address],
     ["Joined", formatDateTime(user.createdAt)],

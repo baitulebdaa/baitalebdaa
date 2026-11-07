@@ -9,15 +9,17 @@ const toIso = (value) => (value ? new Date(value).toISOString() : null);
 
 function fromUser(user, profile = {}, admins = []) {
   const email = (user.email || "").toLowerCase();
+  const isAdmin = profile.role === "admin" || admins.includes(email);
   return {
     uid: user.uid,
     name: user.displayName || email.split("@")[0] || "No name",
     email,
     phone: profile.phone || user.phoneNumber || "",
     address: profile.address || "",
+    role: profile.role || (isAdmin ? "admin" : "customer"),
     blocked: Boolean(user.disabled),
     verified: Boolean(user.emailVerified),
-    admin: admins.includes(email),
+    admin: isAdmin,
     createdAt: toIso(user.metadata?.creationTime),
     lastSignInAt: toIso(user.metadata?.lastSignInTime),
     signInWith: (user.providerData || []).map((p) => p.providerId.replace(".com", "")).join(", ") || "email",
