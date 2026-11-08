@@ -737,6 +737,9 @@ export const dictionaries = {
         "design-townhouse": "Townhouse design package",
         "design-villa": "Villa design package",
         "design-office": "Office design package",
+        "design-commercial": "Commercial interior design concept & layouts",
+        "design-restaurant": "Restaurant & café interior concept & design",
+        "design-retail": "Retail boutique & showroom interior design",
         "design-drawings": "Detailed working drawings",
         "design-material-schedule": "Material specification schedule",
         "villa-selective": "Selective interior upgrade",
@@ -747,6 +750,11 @@ export const dictionaries = {
         "office-essential": "Essential office fit-out",
         "office-premium": "Premium office fit-out",
         "office-luxury": "Executive / luxury office fit-out",
+        "fitout-restaurant": "Turnkey restaurant & F&B fit-out",
+        "fitout-retail": "Turnkey retail & boutique fit-out",
+        "renovation-apartment": "Full apartment interior renovation",
+        "renovation-office": "Turnkey office refurbishment & upgrade",
+        "renovation-kitchen": "Complete turnkey kitchen renovation",
         "approval-noc": "Landlord / community NOC coordination",
         "approval-dm": "Dubai Municipality approval support",
         "approval-office-package": "Complete office fit-out approval package",
@@ -805,6 +813,20 @@ export const dictionaries = {
           note: "Budget ranges vary according to base-build condition, MEP scope, authority requirements, joinery, furniture, technology and selected finishes.",
           cta: "Request Fit-Out Budget"
         },
+        commercialFitout: {
+          kicker: "Commercial Fit-Out",
+          title: "Restaurant & Retail Fit-Out",
+          subtitle: "Indicative fit-out cost guidance for F&B dining spaces, cafes and retail boutiques across the UAE.",
+          note: "Commercial kitchen equipment, specialized refrigeration, extract ducts and brand-specific equipment quoted separately.",
+          cta: "Plan Commercial Project"
+        },
+        renovation: {
+          kicker: "Turnkey Renovation",
+          title: "Apartment & Property Renovation",
+          subtitle: "Indicative comprehensive renovation pricing for apartments, offices and kitchens in Dubai and the UAE.",
+          note: "Final pricing follows site survey; covers standard scope, demolition, joinery and finishes. Structural or major MEP relocations quoted as needed.",
+          cta: "Plan Renovation Project"
+        },
         approvals: {
           kicker: "Approvals",
           title: "Approvals & NOC Coordination",
@@ -820,7 +842,190 @@ export const dictionaries = {
         title: "Book a Complimentary Site Visit",
         body: "Receive measurements, material recommendations and a detailed quotation with no hidden scope items.",
         button: "Book a Site Visit"
-      }
+      },
+
+      heroEyebrow: "Project Pricing Guide",
+      heroH1: "Plan Your Interior Project Budget",
+      heroGuidanceNotice: "Starting prices are planning guidance, not quotations.",
+      heroEstimateBtn: "Estimate Your Project",
+      heroSurveyBtn: "Request Free Site Survey",
+
+      principlesKicker: "Transparent Planning",
+      principlesTitle: "Three Principles Behind Our Pricing",
+      principlesCards: [
+        {
+          title: "What a Starting Price Means",
+          body: "Our baseline figures reflect standard project conditions, defined base scopes, and verified workshop standards. They offer an honest starting baseline so you know where investment begins before customising materials, finishes, or layouts."
+        },
+        {
+          title: "How Services Are Measured",
+          body: "Every discipline uses its authentic architectural unit: turnkey fit-out by floor area (per sq ft), custom joinery by length (per linear metre), curtains per window, and design by complete package. No arbitrary square-foot rates for bespoke furniture."
+        },
+        {
+          title: "What Moves the Final Figure",
+          body: "Final project quotations are determined by existing property condition, finish level, joinery density, structural/MEP work, custom hardware, access logistics, and statutory authority requirements. Every quotation is itemised line by line with zero hidden scope."
+        }
+      ],
+
+      explorerKicker: "Compare Disciplines",
+      explorerTitle: "Interactive Service Price Explorer",
+      explorerSubtitle: "Browse starting rates, understand the baseline specification, and see what moves the budget across all our primary interior disciplines.",
+      explorerTabs: {
+        all: "All Services",
+        design: "Design",
+        fitOut: "Fit-Out",
+        renovation: "Renovation",
+        joinery: "Joinery",
+        curtains: "Curtains",
+        approvals: "Approvals"
+      },
+      explorerStartingFrom: "Starting from",
+      explorerUnitLabel: "Pricing Unit",
+      explorerIncludesLabel: "Base specification covers",
+      explorerDependsLabel: "Final price depends on",
+      explorerEstimateBtn: "Estimate This Service",
+      explorerViewBtn: "View Service",
+      explorerGuideBtn: "Read Cost Guide",
+
+      calculatorKicker: "Project Budget Planner",
+      calculatorTitle: "Calculate Your Starting Budget",
+      calculatorSubtitle: "Select your project type, input your measurements, and choose your finish level to calculate a realistic starting investment figure.",
+      calculatorNotice: "This is indicative planning guidance, not a quotation.",
+
+      catalogKicker: "Full Schedule",
+      catalogTitle: "Complete Published Baseline Rates",
+      catalogSubtitle: "Direct itemised rates from our published workshop schedule. Every rate is backed by our in-house manufacturing in Ajman and turnkey delivery across the UAE.",
+
+      factorsKicker: "Decision Support",
+      factorsTitle: "What Moves Your Project Budget",
+      factorsSubtitle: "Why two properties with identical square footage can require very different investment levels.",
+      factorsList: [
+        {
+          title: "Property & Base-Build Condition",
+          body: "Shell-and-core units, handover developer finishes, and older resale properties each require different levels of MEP demolition, screeding, and infrastructure preparation."
+        },
+        {
+          title: "Ceiling Height & Architectural Volume",
+          body: "Double-height living spaces, grand entryways, and floor-to-ceiling joinery increase surface area, scaffolding requirements, and curtain drop lengths."
+        },
+        {
+          title: "Finish & Material Specification",
+          body: "Standard laminates vs. natural wood veneers, large-format porcelain vs. bookmatched natural marble, and standard emulsion vs. artisanal microcement or acoustic panelling."
+        },
+        {
+          title: "Joinery Density & Customization",
+          body: "Projects with extensive walk-in dressing rooms, integrated bar counters, wall panelling, and bespoke cabinetry allocate a higher share of budget to in-house manufacturing."
+        },
+        {
+          title: "MEP & Structural Reconfiguration",
+          body: "Relocating bathrooms, modifying HVAC ducting, adding smart automation circuits, or removing non-loadbearing partitions increases engineering and compliance scope."
+        },
+        {
+          title: "Hardware, Glazing & Motorization",
+          body: "Upgrading from standard soft-close mechanisms to concealed European hardware (Blum, Hettich), fluted glass doors, integrated LED channels, and Somfy motorization."
+        },
+        {
+          title: "Site Access, Timing & Logistics",
+          body: "High-rise towers with limited service elevator hours, gated community security permits, and accelerated completion schedules influence labour allocation."
+        },
+        {
+          title: "Authority & Developer Approvals",
+          body: "Mandatory NOCs, security deposits, third-party MEP consultant reviews, and statutory approvals (Dubai Municipality, Civil Defence, Trakhees) vary by property type."
+        }
+      ],
+
+      projectsKicker: "Verified Portfolios",
+      projectsTitle: "Real UAE Project Scopes",
+      projectsSubtitle: "Explore real completed projects across Dubai and Abu Dhabi to see how different design, fit-out, and joinery scopes take shape.",
+      projectsList: [
+        {
+          title: "Palm Jumeirah Penthouse",
+          location: "Palm Jumeirah, Dubai",
+          type: "Residential Interior & Joinery",
+          scope: "Complete luxury turnkey interior design, custom media wall, fluted wall cladding, and walk-in dressing suite.",
+          slug: "palm-jumeirah-penthouse",
+          image: "/assets/hero-penthouse.jpg"
+        },
+        {
+          title: "Al Barari Eco-Villa",
+          location: "Al Barari, Dubai",
+          type: "Villa Renovation & Fit-Out",
+          scope: "Full-floor living room remodelling, travertine fireplace wall, custom dining joinery, and concealed motorized curtains.",
+          slug: "al-barari-eco-villa",
+          image: "/assets/luxury-living-room-stone-tv-wall-fireplace.jpeg"
+        },
+        {
+          title: "Downtown Tech HQ",
+          location: "Downtown Dubai",
+          type: "Commercial Office Fit-Out",
+          scope: "Executive boardroom acoustic joinery, open-plan workstations, glass partitions, and authority-approved MEP layout.",
+          slug: "downtown-dubai-tech-hq",
+          image: "/assets/built-in-wardrobe-study-desk-wood-shelves.jpeg"
+        }
+      ],
+      exploreProjectsBtn: "Explore All Projects",
+
+      timelineKicker: "Quotation Journey",
+      timelineTitle: "How Your Final Quotation is Created",
+      timelineSubtitle: "Our transparent 4-stage process ensures you receive an itemised, binding proposal before making any financial commitment.",
+      timelineSteps: [
+        {
+          step: "01",
+          title: "Initial Consultation & Scope Review",
+          body: "We review your architectural plans, design inspirations, and functional requirements to define the preliminary project scope."
+        },
+        {
+          step: "02",
+          title: "Complimentary On-Site Survey",
+          body: "Our engineers visit your villa, apartment, or commercial space across all seven emirates for precise laser measurements and MEP inspection."
+        },
+        {
+          step: "03",
+          title: "Material Selection & Technical Planning",
+          body: "You select finishes, veneers, hardware, and equipment at our studio or workshop, while our engineers finalize detailed compliance drawings."
+        },
+        {
+          step: "04",
+          title: "Itemised Written Quotation",
+          body: "You receive a transparent, line-by-line quotation detailing every trade, material grade, and milestone schedule with no hidden scope items."
+        }
+      ],
+      timelineNote: "The online budget estimate does not constitute a contract or financial obligation. Final binding pricing follows on-site survey and material sign-off.",
+
+      faqKicker: "Frequently Asked Questions",
+      faqTitle: "Pricing & Budget Planning FAQ",
+      faqs: [
+        {
+          q: "Are the prices displayed on this website final quotations?",
+          a: "No. All published prices and estimator figures are indicative starting budgets based on baseline specifications and standard site conditions. A binding quotation is only provided after an engineer conducts an on-site survey, reviews the property's condition, and confirms your exact material selections."
+        },
+        {
+          q: "Is UAE VAT included in the starting prices?",
+          a: "Displayed prices are exclusive of 5% UAE VAT, statutory authority fees, and third-party consultant charges unless specifically noted. All formal written quotations clearly itemise VAT as a distinct line item in full compliance with UAE Federal Tax Authority regulations."
+        },
+        {
+          q: "Is the site survey really free of charge across all seven emirates?",
+          a: "Yes. We offer complimentary on-site measurement and scope review surveys across Dubai, Abu Dhabi, Sharjah, Ajman, and all seven emirates for qualifying residential renovation, commercial fit-out, and custom joinery projects, subject to project suitability."
+        },
+        {
+          q: "How are custom wardrobes and kitchens measured?",
+          a: "Custom fitted wardrobes and kitchen cabinetry are priced per linear metre along the wall. This includes standard height configurations, carcass joinery, soft-close hinges, and baseline internal shelving. Additional customization (such as integrated LED channels, glass doors, or luxury pull-out accessories) is itemised transparently."
+        },
+        {
+          q: "Can I receive an initial quotation before hand-over of my property?",
+          a: "Yes. If your villa, apartment, or office is still under construction or awaiting handover, we can produce an indicative preliminary estimate from your developer floor plans and architectural CAD drawings. We then re-verify all dimensions on-site once keys are issued."
+        },
+        {
+          q: "Are authority approval and permit fees included in fit-out packages?",
+          a: "Our team handles the end-to-end preparation, engineering submissions, and NOC coordination with developers (Emaar, Nakheel, Dubai Holding) and authorities (Dubai Municipality, Civil Defence, Trakhees). Statutory and permit fees charged by authorities are passed through at actual cost without markup."
+        }
+      ],
+
+      finalCtaHeading: "Know the Space. Let's Price the Scope.",
+      finalCtaBody: "Book a complimentary site survey across Dubai, Abu Dhabi and the UAE, or discuss your architectural drawings with our estimating engineers on WhatsApp.",
+      finalCtaSurvey: "Request Free Site Survey",
+      finalCtaWhatsApp: "Discuss on WhatsApp",
+      finalCtaCall: "Call Studio Directly"
     },
     nextSteps: {
       kicker: "After you enquire",
@@ -2638,6 +2843,9 @@ export const dictionaries = {
         "design-townhouse": "باقة تصميم تاون هاوس",
         "design-villa": "باقة تصميم فيلا",
         "design-office": "باقة تصميم مكتب",
+        "design-commercial": "مفهوم ومخططات التصميم الداخلي التجاري",
+        "design-restaurant": "تصميم داخلي للمطاعم والمقاهي",
+        "design-retail": "تصميم داخلي للمحلات التجارية وصالات العرض",
         "design-drawings": "مخططات تنفيذية تفصيلية",
         "design-material-schedule": "جدول مواصفات المواد",
         "villa-selective": "تحديث داخلي انتقائي",
@@ -2648,6 +2856,11 @@ export const dictionaries = {
         "office-essential": "تشطيب مكتب أساسي",
         "office-premium": "تشطيب مكتب متميز",
         "office-luxury": "مكتب تنفيذي / فاخر",
+        "fitout-restaurant": "تشطيب وتجهيز مطاعم ومقاهي متكامل",
+        "fitout-retail": "تشطيب وتجهيز محلات تجارية متكامل",
+        "renovation-apartment": "تجديد داخلي متكامل للشقق",
+        "renovation-office": "تجديد وتحديث المكاتب بالكامل",
+        "renovation-kitchen": "تجديد متكامل للمطابخ",
         "approval-noc": "تنسيق عدم ممانعة المالك / المجتمع السكني",
         "approval-dm": "دعم الحصول على موافقة بلدية دبي",
         "approval-office-package": "باقة موافقة تشطيب مكتب كاملة",
@@ -2706,6 +2919,20 @@ export const dictionaries = {
           note: "تختلف نطاقات الميزانية وفقًا لحالة الهيكل الأساسي ونطاق الأنظمة الكهروميكانيكية ومتطلبات الجهات الحكومية والنجارة والأثاث والتقنية والتشطيبات المختارة.",
           cta: "اطلب ميزانية تشطيب"
         },
+        commercialFitout: {
+          kicker: "تشطيب تجاري",
+          title: "تشطيب المطاعم والمحلات التجارية",
+          subtitle: "إرشادات تكلفة تجهيز وتشطيب مساحات المطاعم والمقاهي والمحلات في جميع أنحاء الإمارات.",
+          note: "معدات المطابخ التجارية، التبريد المتخصص، وتمديدات سحب الهواء تُسعّر منفصلة حسب المواصفات الفنية.",
+          cta: "خطط لمشروعك التجاري"
+        },
+        renovation: {
+          kicker: "تجديد متكامل",
+          title: "تجديد الشقق والمساحات الداخلية",
+          subtitle: "أسعار استرشادية لتجديد الشقق والمكاتب والمطابخ بالكامل في دبي والإمارات.",
+          note: "يُحدد السعر النهائي بعد معاينة الموقع؛ يشمل الأعمال القياسية والهدم والنجارة والتشطيبات. التعديلات الإنشائية تُسعّر حسب الحاجة.",
+          cta: "خطط لمشروع التجديد"
+        },
         approvals: {
           kicker: "الموافقات",
           title: "الموافقات وتنسيق عدم الممانعة",
@@ -2721,7 +2948,190 @@ export const dictionaries = {
         title: "احجز زيارة موقع مجانية",
         body: "احصل على القياسات وتوصيات المواد وعرض سعر تفصيلي دون أي بنود عمل خفية.",
         button: "احجز زيارة موقع"
-      }
+      },
+
+      heroEyebrow: "دليل ميزانيات المشاريع",
+      heroH1: "خطط لميزانية مشروعك الداخلي",
+      heroGuidanceNotice: "الأسعار الابتدائية هي إرشادات للتخطيط وليست عروض أسعار نهائية.",
+      heroEstimateBtn: "احسب ميزانية مشروعك",
+      heroSurveyBtn: "اطلب معاينة مجانية للموقع",
+
+      principlesKicker: "تسعير شفاف وواضح",
+      principlesTitle: "ثلاثة مبادئ تحكم تسعيرنا",
+      principlesCards: [
+        {
+          title: "ماذا يعني السعر الابتدائي؟",
+          body: "أرقامنا الأساسية تعكس ظروف الموقع القياسية، ومواصفات الدخول المحددة، ومعايير ورشتنا المعتمدة. توفر معياراً أولياً واقعياً لتعرف من أين يبدأ الاستثمار قبل تخصيص المواد والتشطيبات والمخططات."
+        },
+        {
+          title: "كيف تُقاس الخدمات؟",
+          body: "يستخدم كل تخصص وحدة القياس المعمارية الأصيلة الخاصة به: التجهيز المتكامل بمساحة الأرضية (للقدم المربع)، والنجارة المخصصة بالطول (للمتر الطولي)، والستائر لكل نافذة، والتصميم بالباقة المتكاملة. لا نستخدم معدلات اعتباطية للقدم المربع في الأثاث المخصص."
+        },
+        {
+          title: "ما الذي يحدد الرقم النهائي؟",
+          body: "تُحدد عروض الأسعار النهائية وفقاً لحالة الموقع الفعلية، ومستوى التشطيب، وكثافة أعمال النجارة، والأعمال الإنشائية والكهروميكانيكية، والإكسسوارات المخصصة، والخدمات اللوجستية، وموافقات الجهات المختصة. يُفصل كل عرض سعر بنداً بنداً دون بنود خفية."
+        }
+      ],
+
+      explorerKicker: "قارن التخصصات",
+      explorerTitle: "مستكشف أسعار الخدمات التفاعلي",
+      explorerSubtitle: "تصفح الأسعار الابتدائية، وافهم المواصفات الأساسية، وما الذي يحدد الميزانية عبر جميع تخصصاتنا الداخلية الرئيسية.",
+      explorerTabs: {
+        all: "جميع الخدمات",
+        design: "التصميم",
+        fitOut: "التجهيزات",
+        renovation: "التجديد",
+        joinery: "النجارة المخصصة",
+        curtains: "الستائر",
+        approvals: "الموافقات"
+      },
+      explorerStartingFrom: "يبدأ من",
+      explorerUnitLabel: "وحدة التسعير",
+      explorerIncludesLabel: "تشمل المواصفات الأساسية",
+      explorerDependsLabel: "يعتمد السعر النهائي على",
+      explorerEstimateBtn: "احسب تكلفة هذه الخدمة",
+      explorerViewBtn: "عرض صفحة الخدمة",
+      explorerGuideBtn: "اقرأ دليل التكلفة المفصل",
+
+      calculatorKicker: "مخطط ميزانية المشروع",
+      calculatorTitle: "احسب ميزانيتك الابتدائية التقديرية",
+      calculatorSubtitle: "اختر نوع الخدمة المطلوبة، وأدخل قياساتك أو كميتك، واختر مستوى التشطيب لحساب ميزانية استثمار أولية واقعية.",
+      calculatorNotice: "هذا التقدير هو إرشاد تخطيطي أولي وليس عرض سعر تعاقدي.",
+
+      catalogKicker: "الجدول الكامل",
+      catalogTitle: "الأسعار الابتدائية المعلنة بالكامل",
+      catalogSubtitle: "أسعار مفصلة مباشرة من جدول أسعار ورشتنا المعلن. كل سعر مدعوم بتصنيعنا الداخلي في عجمان وتسليم متكامل في جميع أنحاء الإمارات.",
+
+      factorsKicker: "دعم القرار",
+      factorsTitle: "ما الذي يحدد ميزانية مشروعك الفعلي",
+      factorsSubtitle: "لماذا يمكن لعقارين متطابقين في المساحة أن يتطلبا مستويات استثمار مختلفة تماماً.",
+      factorsList: [
+        {
+          title: "حالة العقار والهيكل الأساسي",
+          body: "المساحات على الهيكل الأسود (Shell & Core)، وتسليمات المطور الجاهزة، والعقارات المعاد بيعها القديمة، يتطلب كل منها مستويات مختلفة من الإزالة وتسوية الأرضيات وتجهيز البنية التحتية."
+        },
+        {
+          title: "ارتفاع الأسقف والحجم المعماري",
+          body: "الأسقف ذات الارتفاع المزدوج، والمداخل الفسيحة، والنجارة الممتدة من الأرض إلى السقف تزيد من مساحة الأسطح واحتياجات السقالات وأطوال الستائر."
+        },
+        {
+          title: "مواصفات المواد والتشطيبات",
+          body: "اللامينيت القياسي مقارنة بقشور الأخشاب الطبيعية، والبورسلان ذو الحجم الكبير مقارنة بالرخام الطبيعي المتطابق (Bookmatched)، والدهانات القياسية مقارنة بالميكروسمنت الحرفي."
+        },
+        {
+          title: "كثافة النجارة والتخصيص",
+          body: "المشاريع التي تتضمن غرف ملابس واسعة (Walk-in Closets)، وأركان قهوة مدمجة، وتكسيات جدارية، وخزائن مصممة خصيصاً تخصص نسبة أكبر من الميزانية للتصنيع الداخلي."
+        },
+        {
+          title: "التعديلات الكهروميكانيكية والإنشائية",
+          body: "نقل أماكن الحمامات، أو تعديل مجاري التكييف، أو إضافة دوائر أتمتة ذكية، أو إزالة قواطع غير حاملة يرفع نطاق الأعمال الهندسية ومتطلبات الامتثال."
+        },
+        {
+          title: "الإكسسوارات والزجاج والأتمتة",
+          body: "الترقية من الآليات القياسية إلى الإكسسوارات الأوروبية المخفية (Blum، Hettich)، والأبواب الزجاجية المضلعة، وقنوات الإضاءة المدمجة، ومحركات ستائر سومفي."
+        },
+        {
+          title: "الوصول للموقع والتوقيت واللوجستيات",
+          body: "الأبراج السكنية ذات الساعات المحددة لمصاعد الخدمات، وتصاريح أمن المجمعات المغلقة، والجداول الزمنية السريعة تؤثر على تخطيط وتوزيع فرق العمل."
+        },
+        {
+          title: "موافقات المطورين والجهات المختصة",
+          body: "شهادات عدم الممانعة الإلزامية، وتأمينات العمل، ومراجعات استشاريي الكهروميكانيك، والموافقات الرسمية (بلدية دبي، الدفاع المدني، تراخيص) تختلف بحسب نوع العقار."
+        }
+      ],
+
+      projectsKicker: "مشاريع معتمدة",
+      projectsTitle: "نطاقات مشاريع حقيقية في الإمارات",
+      projectsSubtitle: "استكشف مشاريع منجزة فعلياً عبر دبي وأبوظبي لتشاهد كيف تتجسد نطاقات التصميم والتجهيز والنجارة على أرض الواقع.",
+      projectsList: [
+        {
+          title: "بنتهاوس نخلة جميرا",
+          location: "نخلة جميرا، دبي",
+          type: "تصميم داخلي ونجارة سكنية",
+          scope: "تصميم داخلي فاخر متكامل، حائط شاشة مخصص، تكسيات جدارية مضلعة، وجناح ملابس رئيسي.",
+          slug: "palm-jumeirah-penthouse",
+          image: "/assets/hero-penthouse.jpg"
+        },
+        {
+          title: "فيلا إيكو في البراري",
+          location: "البراري، دبي",
+          type: "تجديد فيلا وتجهيز متكامل",
+          scope: "تجديد صالة معيشة بالكامل، حائط مدفأة من الترافرتين، نجارة غرفة طعام مخصصة، وستائر كهربائية مخفية.",
+          slug: "al-barari-eco-villa",
+          image: "/assets/luxury-living-room-stone-tv-wall-fireplace.jpeg"
+        },
+        {
+          title: "مقر شركة تقنية في داون تاون",
+          location: "وسط مدينة دبي",
+          type: "تجهيز مكاتب تجارية",
+          scope: "نجارة صوتية لغرفة اجتماعات تنفيذية، مكاتب عمل مفتوحة، قواطع زجاجية، وشبكة كهروميكانيكية معتمدة.",
+          slug: "downtown-dubai-tech-hq",
+          image: "/assets/built-in-wardrobe-study-desk-wood-shelves.jpeg"
+        }
+      ],
+      exploreProjectsBtn: "استكشف جميع المشاريع",
+
+      timelineKicker: "رحلة التسعير",
+      timelineTitle: "كيف يتم إعداد عرض السعر النهائي",
+      timelineSubtitle: "تضمن عمليتنا الشفافة من 4 مراحل حصولك على عرض مفصل وملزم قبل أي التزام مالي.",
+      timelineSteps: [
+        {
+          step: "01",
+          title: "الاستشارة الأولية ومراجعة النطاق",
+          body: "نراجع مخططاتك الهندسية وتفضيلاتك التصميمية ومتطلباتك الوظيفية لتحديد النطاق الأولي للمشروع."
+        },
+        {
+          step: "02",
+          title: "معاينة موقع مجانية وقياس ليزري",
+          body: "يزور مهندسونا فيلتك أو شقتك أو مكتبك التجاري في جميع الإمارات السبع لأخذ قياسات ليزرية دقيقة وفحص البنية التحتية."
+        },
+        {
+          step: "03",
+          title: "اختيار المواد والتخطيط الفني",
+          body: "تختار التشطيبات والقشور والإكسسوارات في استوديونا أو ورشتنا، بينما ينهي مهندسونا المخططات التنفيذية التفصيلية."
+        },
+        {
+          step: "04",
+          title: "عرض سعر مفصل ومكتوب",
+          body: "تتلقى عرض سعر شفافاً ومفصلاً بنداً بنداً، يحدد كل عمل ونوعية المواد والجدول الزمني دون أي بنود خفية."
+        }
+      ],
+      timelineNote: "التقدير الإلكتروني للميزانية لا يُعد عقداً ولا يرتب أي التزام مالي. يصدر السعر التعاقدي النهائي بعد المعاينة الميدانية واعتماد المواصفات الفنية.",
+
+      faqKicker: "الأسئلة الشائعة",
+      faqTitle: "الأسئلة الشائعة حول الأسعار وتخطيط الميزانية",
+      faqs: [
+        {
+          q: "هل الأسعار المعروضة في هذا الموقع عروض أسعار نهائية؟",
+          a: "كلا. جميع الأسعار المعلنة وأرقام الحاسبة التقديرية هي ميزانيات ابتدائية إرشادية مبنية على المواصفات الأساسية وظروف الموقع القياسية. لا يصدر عرض السعر التعاقدي الملزم إلا بعد معاينة ميدانية من مهندس متخصص ومراجعة الموقع واعتماد اختياراتك المحددة من المواد."
+        },
+        {
+          q: "هل ضريبة القيمة المضافة مشمولة في الأسعار الابتدائية؟",
+          a: "الأسعار المعروضة غير شاملة لضريبة القيمة المضافة 5٪ في الإمارات، ورسوم الجهات الحكومية، ورسوم الاستشاريين، ما لم يُذكر خلاف ذلك صراحة. تفصل جميع عروض الأسعار الرسمية المكتوبة ضريبة القيمة المضافة كبند مستقل وواضح امتثالاً لقوانين الهيئة الاتحادية للضرائب."
+        },
+        {
+          q: "هل معاينة الموقع مجانية بالفعل في جميع الإمارات السبع؟",
+          a: "نعم. نقدم خدمات قياس الموقع ومراجعة النطاق مجاناً وبدون أي التزام عبر دبي وأبوظبي والشارقة وعجمان وكافة الإمارات السبع لمشاريع التجديد السكني والتجهيز التجاري والنجارة المخصصة المؤهلة، حسب ملاءمة المشروع."
+        },
+        {
+          q: "كيف يتم قياس وتسعير الخزائن والمطابخ المخصصة؟",
+          a: "تُسعّر الخزائن المجهزة وخزائن المطبخ بالمتر الطولي على طول الجدار. يشمل ذلك الارتفاعات القياسية، وهيكل النجارة الداخلي، والمفصلات ذات الإغلاق الناعم، والرفوف الأساسية. أما الإضافات المخصصة (مثل إضاءة LED المدمجة، أو الأبواب الزجاجية، أو إكسسوارات السحب الفاخرة) فتُفصل بشفافية."
+        },
+        {
+          q: "هل يمكنني الحصول على عرض سعر تقديري قبل استلام العقار؟",
+          a: "نعم. إذا كانت فيلتك أو شقتك أو مكتبك قيد الإنشاء أو بانتظار التسليم، يمكننا إعداد تقدير أولي إرشادي استناداً إلى مخططات المطور المعمارية وملفات CAD. ثم نعيد التحقق من القياسات على أرض الواقع فور تسلّم المفاتيح."
+        },
+        {
+          q: "هل رسوم وتصاريح الجهات الحكومية مشمولة في باقات التجهيز؟",
+          a: "يتولى فريقنا الإعداد الكامل للمخططات الهندسية، وتقديم المعاملات، وتنسيق شهادات عدم الممانعة مع المطورين (إعمار، نخيل، دبي القابضة) والجهات الرسمية (بلدية دبي، الدفاع المدني، تراخيص). وتُدفع رسوم الجهات الحكومية بسعرها الفعلي دون أي زيادة."
+        }
+      ],
+
+      finalCtaHeading: "تعرف على المساحة؟ دعنا نسعّر النطاق بدقة.",
+      finalCtaBody: "احجز معاينة موقع مجانية عبر دبي وأبوظبي والإمارات، أو ناقش مخططاتك المعمارية مع مهندسي التقدير لدينا مباشرة عبر واتساب.",
+      finalCtaSurvey: "طلب معاينة مجانية للموقع",
+      finalCtaWhatsApp: "محادثة عبر واتساب",
+      finalCtaCall: "اتصال مباشر بالاستوديو"
     },
     nextSteps: {
       kicker: "بعد استفسارك",

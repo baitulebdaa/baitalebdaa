@@ -57,7 +57,14 @@ function menuPrice(slug, lang) {
   const item = serviceStartingItem(slug);
   if (!item) return null;
   const ar = lang === "ar";
-  const unit = item.unit === "sqft" ? (ar ? "/قدم²" : "/sq ft") : item.unit === "linearMetre" ? (ar ? "/م" : "/m") : "";
+  const unit =
+    item.unit === "sqft"
+      ? (ar ? "/قدم²" : "/sq ft")
+      : item.unit === "linearMetre"
+      ? (ar ? "/م" : "/m")
+      : item.unit === "project"
+      ? (ar ? "/مشروع" : "/project")
+      : "";
   return ar ? `من ${menuNumber.format(item.min)} درهم${unit}` : `from AED ${menuNumber.format(item.min)}${unit}`;
 }
 

@@ -84,6 +84,8 @@ export function ServiceEstimator({ service, scopes, heading, inclusions = [], on
   const itemNote =
     item.id.startsWith("villa-") ? groups.villa.note
     : item.id.startsWith("office-") ? groups.office.note
+    : item.id.startsWith("fitout-") ? (groups.commercialFitout?.note || groups.office.note)
+    : item.id.startsWith("renovation-") ? (groups.renovation?.note || groups.villa.note)
     : item.id.startsWith("somfy-") ? groups.curtainsSomfy.note
     : item.id.startsWith("curtain-") ? groups.curtainsManual.subtitle
     : item.id.startsWith("design-") ? groups.design.note

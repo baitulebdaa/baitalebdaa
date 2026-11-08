@@ -207,11 +207,9 @@ test("service pages only show their own published prices", async () => {
     for (const id of entry.items) assert.ok(ids.has(id), `${slug}: unknown price item ${id}`);
     assert.ok(!entry.items.includes("design-survey"), `${slug}: the free survey is not a service starting price`);
   }
-  for (const slug of ["restaurant-fit-out", "retail-fit-out"]) {
-    assert.equal(servicePricing(slug), null, `${slug} has no published price and must not borrow office prices`);
-    assert.equal(serviceStartingItem(slug), null);
-  }
-  assert.equal(serviceStartingItem("apartment-renovation"), null, "related prices never stand in for the whole service");
+  assert.equal(serviceStartingItem("restaurant-fit-out")?.id, "fitout-restaurant");
+  assert.equal(serviceStartingItem("retail-fit-out")?.id, "fitout-retail");
+  assert.equal(serviceStartingItem("apartment-renovation")?.id, "renovation-apartment");
   assert.ok(servicePricing("office-fit-out").items.every((item) => item.id.startsWith("office-")));
 });
 
@@ -262,8 +260,18 @@ test("generic sections make no unverified Trakhees / Civil Defense / Abu Dhabi a
 
 test("Service schema offers only carry the service's own price", async () => {
   const { serviceStartingItem } = await import("../src/lib/pricing.js");
-  for (const slug of ["restaurant-fit-out", "retail-fit-out", "apartment-renovation", "office-renovation", "kitchen-renovation", "commercial-interior-design", "restaurant-interior-design", "retail-interior-design"]) {
-    assert.equal(serviceStartingItem(slug), null, slug);
+  const expectedStartingItems = {
+    "restaurant-fit-out": "fitout-restaurant",
+    "retail-fit-out": "fitout-retail",
+    "apartment-renovation": "renovation-apartment",
+    "office-renovation": "renovation-office",
+    "kitchen-renovation": "renovation-kitchen",
+    "commercial-interior-design": "design-commercial",
+    "restaurant-interior-design": "design-restaurant",
+    "retail-interior-design": "design-retail",
+  };
+  for (const [slug, expectedId] of Object.entries(expectedStartingItems)) {
+    assert.equal(serviceStartingItem(slug)?.id, expectedId, slug);
   }
   assert.match(read("src/ServiceLocationPage.jsx"), /const startingItem = serviceStartingItem\(row\.serviceSlug\);/);
 });
@@ -457,18 +465,23 @@ test("FAQPage schema on service pages is built from the same items the visible F
 
 test("service estimators price only with that service's own published prices", async () => {
   const { SERVICE_ESTIMATORS, serviceEstimator } = await import("../src/lib/pricing.js");
-  const UNIT = { area: "sqft", length: "linearMetre", package: undefined };
+  const UNIT = { area: "sqft", length: "linearMetre" };
   for (const slug of Object.keys(SERVICE_ESTIMATORS)) {
     const est = serviceEstimator(slug);
     for (const item of [...est.items, ...est.addons]) {
       assert.ok(item.priceType === "from" || item.priceType === "range", `${slug} ${item.id} has a published amount`);
-      assert.equal(item.unit, UNIT[est.mode], `${slug} ${item.id} unit matches ${est.mode}`);
+      if (est.mode === "package") {
+        assert.ok(item.unit === undefined || item.unit === "project", `${slug} ${item.id} unit valid for package`);
+      } else if (est.mode === "count") {
+        assert.equal(item.unit, undefined, `${slug} ${item.id} unit matches count`);
+      } else {
+        assert.equal(item.unit, UNIT[est.mode], `${slug} ${item.id} unit matches ${est.mode}`);
+      }
       assert.ok(dictionaries.en.pricingPage.items[item.id] && dictionaries.ar.pricingPage.items[item.id], `${item.id} is named`);
     }
   }
-  // No published price for the whole service: no estimate, quoted after a survey.
-  for (const slug of ["restaurant-fit-out", "retail-fit-out", "apartment-renovation", "commercial-interior-design", "restaurant-interior-design", "retail-interior-design"]) {
-    assert.equal(serviceEstimator(slug), null, slug);
+  for (const slug of ["restaurant-fit-out", "retail-fit-out", "commercial-interior-design", "restaurant-interior-design", "retail-interior-design"]) {
+    assert.ok(serviceEstimator(slug), slug);
   }
   const page = read("src/ServiceLocationPage.jsx");
   assert.doesNotMatch(page, /<Estimator\b/, "service pages no longer use the generic turnkey estimator");

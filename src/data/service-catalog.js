@@ -17,7 +17,7 @@ export const serviceCatalog = [
   { slug: "office-renovation", en: "Office Renovation", ar: "تجديد مكاتب" },
   { slug: "joinery", en: "Joinery", ar: "شركة نجارة" },
   { slug: "custom-wardrobes", en: "Custom Wardrobes", ar: "خزائن حسب الطلب" },
-  { slug: "kitchen-design", en: "Kitchen Design", ar: "تصميم مطابخ" },
+  { slug: "kitchen-design", en: "Custom Kitchens", ar: "مطابخ مخصصة" },
   { slug: "kitchen-renovation", en: "Kitchen Renovation", ar: "تجديد مطابخ" },
 ];
 

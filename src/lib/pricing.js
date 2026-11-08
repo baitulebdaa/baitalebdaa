@@ -6,8 +6,8 @@ import { CURRENCY, pricingGroups } from "../data/pricing.js";
 const numberFormatter = new Intl.NumberFormat("en-AE");
 
 const UNIT_LABEL = {
-  en: { linearMetre: "/ linear metre", sqft: "/ sq ft" },
-  ar: { linearMetre: "/ متر طولي", sqft: "/ قدم مربع" },
+  en: { linearMetre: "/ linear metre", sqft: "/ sq ft", project: "/ project" },
+  ar: { linearMetre: "/ متر طولي", sqft: "/ قدم مربع", project: "/ مشروع" },
 };
 
 const FROM_LABEL = { en: "From", ar: "يبدأ من" };
@@ -36,31 +36,26 @@ export function formatPrice(item, lang = "en") {
 // Which published prices each service page may show (item ids from data/pricing.js).
 //   direct:  the items ARE this service's prices, so the card is headed "<service> starting
 //            prices" and the first priced item feeds the hero and the Service schema offer.
-//   related: real prices for work that is part of this service (e.g. kitchens and wardrobes in
-//            an apartment renovation); shown under a "related starting prices" heading, never as
-//            the price of the whole service and never in the schema offer.
-//   null:    no published price exists (restaurant and retail fit-out) — show no price at all
-//            rather than borrowing another service's figures.
+//   related: real prices for work that is part of this service.
 // The free site survey is not a starting price, so it stays off the service price lists.
 export const SERVICE_PRICING = {
-  "interior-design": { direct: true, items: ["design-consultation", "design-single-room", "design-apartment", "design-villa"] },
-  "residential-interior-design": { direct: true, items: ["design-single-room", "design-apartment", "design-townhouse", "design-villa"] },
+  "interior-design": { direct: true, items: ["design-single-room", "design-apartment", "design-townhouse", "design-villa", "design-consultation"] },
+  "residential-interior-design": { direct: true, items: ["design-apartment", "design-townhouse", "design-villa", "design-single-room"] },
+  "commercial-interior-design": { direct: true, items: ["design-commercial", "design-office", "design-restaurant", "design-retail", "design-drawings", "design-material-schedule"] },
   "office-interior-design": { direct: true, items: ["design-office", "design-drawings", "design-material-schedule", "design-consultation"] },
-  // Commercial covers offices, F&B and retail; the office design package is only part of that.
-  "commercial-interior-design": { direct: false, items: ["design-office", "design-drawings", "design-material-schedule", "design-consultation"] },
-  "restaurant-interior-design": { direct: false, items: ["design-drawings", "design-material-schedule", "design-consultation"] },
-  "retail-interior-design": { direct: false, items: ["design-drawings", "design-material-schedule", "design-consultation"] },
+  "restaurant-interior-design": { direct: true, items: ["design-restaurant", "design-drawings", "design-material-schedule", "design-consultation"] },
+  "retail-interior-design": { direct: true, items: ["design-retail", "design-drawings", "design-material-schedule", "design-consultation"] },
   "fit-out": { direct: true, items: ["villa-standard", "villa-luxury", "office-essential", "office-premium"] },
-  "villa-renovation": { direct: true, items: ["villa-selective", "villa-standard", "villa-luxury", "villa-bespoke"] },
-  "apartment-renovation": { direct: false, items: ["kitchen-laminate", "wardrobe-laminate", "design-apartment"] },
   "office-fit-out": { direct: true, items: ["office-essential", "office-premium", "office-luxury"] },
-  "office-renovation": { direct: false, items: ["office-essential", "office-premium", "office-luxury"] },
-  "restaurant-fit-out": null,
-  "retail-fit-out": null,
+  "restaurant-fit-out": { direct: true, items: ["fitout-restaurant", "approval-office-package"] },
+  "retail-fit-out": { direct: true, items: ["fitout-retail", "approval-office-package"] },
+  "villa-renovation": { direct: true, items: ["villa-selective", "villa-standard", "villa-luxury", "villa-bespoke"] },
+  "apartment-renovation": { direct: true, items: ["renovation-apartment", "kitchen-laminate", "wardrobe-laminate"] },
+  "office-renovation": { direct: true, items: ["renovation-office", "office-essential", "office-premium"] },
   joinery: { direct: true, items: ["wardrobe-laminate", "kitchen-laminate", "media-basic", "bed-headboard"] },
   "custom-wardrobes": { direct: true, items: ["wardrobe-laminate", "wardrobe-lacquer", "wardrobe-luxury"] },
   "kitchen-design": { direct: true, items: ["kitchen-laminate", "kitchen-lacquer", "kitchen-premium"] },
-  "kitchen-renovation": { direct: false, items: ["kitchen-laminate", "kitchen-lacquer", "kitchen-premium"] },
+  "kitchen-renovation": { direct: true, items: ["renovation-kitchen", "kitchen-laminate", "kitchen-lacquer"] },
 };
 
 // The cost estimator on each service page (6 Nov 2026), built only from that service's
@@ -68,27 +63,30 @@ export const SERVICE_PRICING = {
 //   area:    size in sq ft × the chosen level's per-sq-ft price (addons add their own rate)
 //   length:  linear metres of units × the chosen level's per-metre price
 //   package: the chosen package's fixed starting price
-// Services left out (apartment renovation; commercial, restaurant and retail design; restaurant
-// and retail fit-out) have no price that stands for the whole service, so they get no
-// estimator and are quoted after a survey.
 const OFFICE_LEVELS = ["office-essential", "office-premium", "office-luxury"];
 const DESIGN_PACKAGES = ["design-single-room", "design-apartment", "design-townhouse", "design-villa"];
-const KITCHENS = { mode: "length", items: ["kitchen-laminate", "kitchen-lacquer", "kitchen-premium"], size: 5, presets: [3, 4, 5, 7] };
+const KITCHENS = { mode: "length", items: ["kitchen-laminate", "kitchen-lacquer", "kitchen-premium"], size: 4, presets: [2, 3, 4, 6] };
 export const SERVICE_ESTIMATORS = {
-  "fit-out": { mode: "area", items: ["villa-standard", "villa-luxury", "office-essential", "office-premium"] },
-  "villa-renovation": { mode: "area", items: ["villa-standard", "villa-luxury", "villa-bespoke"] },
-  "office-fit-out": { mode: "area", items: OFFICE_LEVELS, size: 3000 },
-  "office-renovation": { mode: "area", items: OFFICE_LEVELS, size: 3000 },
-  "office-interior-design": { mode: "area", items: ["design-office"], addons: ["design-drawings"], size: 3000 },
+  "fit-out": { mode: "area", items: ["villa-standard", "villa-luxury", "office-essential", "office-premium"], size: 1000, presets: [500, 1000, 2500, 5000] },
+  "villa-renovation": { mode: "area", items: ["villa-standard", "villa-luxury", "villa-bespoke"], size: 1000, presets: [500, 1000, 2500, 5000] },
+  "office-fit-out": { mode: "area", items: OFFICE_LEVELS, size: 1000, presets: [500, 1000, 2500, 5000] },
+  "office-renovation": { mode: "area", items: ["renovation-office", ...OFFICE_LEVELS], size: 1000, presets: [500, 1000, 2500, 5000] },
+  "restaurant-fit-out": { mode: "area", items: ["fitout-restaurant"], size: 1000, presets: [500, 1000, 2000, 4000] },
+  "retail-fit-out": { mode: "area", items: ["fitout-retail"], size: 1000, presets: [500, 1000, 2000, 3000] },
+  "office-interior-design": { mode: "area", items: ["design-office"], addons: ["design-drawings"], size: 1000, presets: [500, 1000, 2500, 5000] },
+  "commercial-interior-design": { mode: "area", items: ["design-commercial"], addons: ["design-drawings"], size: 1000, presets: [500, 1000, 2500, 5000] },
+  "restaurant-interior-design": { mode: "area", items: ["design-restaurant"], addons: ["design-drawings"], size: 1000, presets: [500, 1000, 2000, 4000] },
+  "retail-interior-design": { mode: "area", items: ["design-retail"], addons: ["design-drawings"], size: 1000, presets: [500, 1000, 2000, 3000] },
   "interior-design": { mode: "package", items: DESIGN_PACKAGES },
-  "residential-interior-design": { mode: "package", items: DESIGN_PACKAGES },
-  "custom-wardrobes": { mode: "length", items: ["wardrobe-laminate", "wardrobe-lacquer", "wardrobe-luxury"], size: 4, presets: [2, 3, 4, 6] },
+  "residential-interior-design": { mode: "package", items: ["design-apartment", "design-townhouse", "design-villa"] },
+  "apartment-renovation": { mode: "package", items: ["renovation-apartment"] },
+  "custom-wardrobes": { mode: "length", items: ["wardrobe-laminate", "wardrobe-lacquer", "wardrobe-luxury"], size: 3, presets: [2, 3, 4, 6] },
   "kitchen-design": KITCHENS,
-  "kitchen-renovation": KITCHENS,
-  joinery: { mode: "length", items: ["wardrobe-laminate", "wardrobe-lacquer", "kitchen-laminate", "kitchen-lacquer"], size: 4, presets: [2, 3, 4, 6] },
+  "kitchen-renovation": { mode: "package", items: ["renovation-kitchen"] },
+  joinery: { mode: "length", items: ["wardrobe-laminate", "wardrobe-lacquer", "kitchen-laminate", "kitchen-lacquer"], size: 3, presets: [2, 3, 4, 6] },
   // Not a service page: the curtains choice on the homepage and pricing estimators. Curtain
   // prices are per standard window (about 2 m × 3 m, as the pricing page's manual curtains note says).
-  curtains: { mode: "count", items: ["curtain-pinch-sheer", "curtain-pinch-blackout", "somfy-sheer", "somfy-blackout"] },
+  curtains: { mode: "count", items: ["curtain-pinch-sheer", "curtain-pinch-blackout", "somfy-sheer", "somfy-blackout"], size: 3, presets: [2, 3, 5, 8] },
 };
 
 // The homepage and pricing page estimators (6 Nov 2026; they used flat 220/150/80 AED per sq ft
@@ -96,9 +94,9 @@ export const SERVICE_ESTIMATORS = {
 export const GENERAL_ESTIMATOR_SCOPES = ["villa-renovation", "office-fit-out", "kitchen-design", "custom-wardrobes", "curtains", "interior-design"];
 
 const ESTIMATOR_LIMITS = {
-  area: { min: 500, max: 15000, step: 100, nudge: 500, size: 3500, presets: [1500, 3500, 7500, 12000] },
-  length: { min: 1, max: 20, step: 0.5, nudge: 1, size: 4, presets: [2, 3, 4, 6] },
-  count: { min: 1, max: 30, step: 1, nudge: 1, size: 4, presets: [2, 4, 6, 10] },
+  area: { min: 300, max: 15000, step: 50, nudge: 250, size: 1000, presets: [500, 1000, 2500, 5000] },
+  length: { min: 1, max: 20, step: 0.5, nudge: 1, size: 3, presets: [2, 3, 4, 6] },
+  count: { min: 1, max: 30, step: 1, nudge: 1, size: 3, presets: [2, 3, 5, 8] },
   package: {},
 };
 
@@ -135,8 +133,8 @@ export function priceItem(id) {
 // Used by the pilot service pages and cost guides so their copy can never drift from
 // data/pricing.js.
 const PROSE_UNIT = {
-  en: { linearMetre: " per linear metre", sqft: " per sq ft" },
-  ar: { linearMetre: " للمتر الطولي", sqft: " للقدم المربع" },
+  en: { linearMetre: " per linear metre", sqft: " per sq ft", project: " per project" },
+  ar: { linearMetre: " للمتر الطولي", sqft: " للقدم المربع", project: " للمشروع" },
 };
 export function priceText(id, lang = "en") {
   const item = priceItem(id);

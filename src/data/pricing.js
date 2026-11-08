@@ -70,10 +70,13 @@ export const pricingGroups = [
       { id: "design-consultation", priceType: "free" },
       { id: "design-survey", priceType: "free" },
       { id: "design-single-room", priceType: "from", min: 2500 },
-      { id: "design-apartment", priceType: "from", min: 12000 },
-      { id: "design-townhouse", priceType: "from", min: 20000 },
-      { id: "design-villa", priceType: "from", min: 30000 },
-      { id: "design-office", priceType: "from", min: 20, unit: "sqft" },
+      { id: "design-apartment", priceType: "from", min: 12000, unit: "project" },
+      { id: "design-townhouse", priceType: "from", min: 20000, unit: "project" },
+      { id: "design-villa", priceType: "from", min: 30000, unit: "project" },
+      { id: "design-office", priceType: "from", min: 25, unit: "sqft" },
+      { id: "design-commercial", priceType: "from", min: 25, unit: "sqft" },
+      { id: "design-restaurant", priceType: "from", min: 30, unit: "sqft" },
+      { id: "design-retail", priceType: "from", min: 25, unit: "sqft" },
       { id: "design-drawings", priceType: "from", min: 12, unit: "sqft" },
       { id: "design-material-schedule", priceType: "from", min: 3500 },
     ],
@@ -81,8 +84,8 @@ export const pricingGroups = [
   {
     id: "villa",
     items: [
-      { id: "villa-selective", priceType: "from", min: 150000 },
-      { id: "villa-townhouse", priceType: "from", min: 275000 },
+      { id: "villa-selective", priceType: "from", min: 150000, unit: "project" },
+      { id: "villa-townhouse", priceType: "from", min: 275000, unit: "project" },
       { id: "villa-standard", priceType: "range", min: 300, max: 450, unit: "sqft" },
       { id: "villa-luxury", priceType: "range", min: 500, max: 750, unit: "sqft" },
       { id: "villa-bespoke", priceType: "range", min: 800, max: 1200, unit: "sqft", plus: true },
@@ -94,6 +97,21 @@ export const pricingGroups = [
       { id: "office-essential", priceType: "range", min: 220, max: 350, unit: "sqft" },
       { id: "office-premium", priceType: "range", min: 400, max: 650, unit: "sqft" },
       { id: "office-luxury", priceType: "from", min: 700, unit: "sqft" },
+    ],
+  },
+  {
+    id: "commercialFitout",
+    items: [
+      { id: "fitout-restaurant", priceType: "from", min: 450, unit: "sqft" },
+      { id: "fitout-retail", priceType: "from", min: 350, unit: "sqft" },
+    ],
+  },
+  {
+    id: "renovation",
+    items: [
+      { id: "renovation-apartment", priceType: "from", min: 60000, unit: "project" },
+      { id: "renovation-office", priceType: "from", min: 150, unit: "sqft" },
+      { id: "renovation-kitchen", priceType: "from", min: 50000, unit: "project" },
     ],
   },
   {
