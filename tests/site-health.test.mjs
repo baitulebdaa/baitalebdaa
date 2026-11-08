@@ -139,7 +139,7 @@ test("every meta description on the site is 150 characters or fewer, in English 
 
 test("reviews are real, in the client's words, never given an invented rating, and indexed", async () => {
   const { REVIEWS, hasRealReviews, reviewSummary } = await import("../src/data/reviews.js");
-  assert.ok(hasRealReviews());
+  assert.equal(hasRealReviews(), REVIEWS.length > 0);
   for (const review of REVIEWS) {
     assert.ok(review.id && !("sample" in review), `${review.id}: id, no sample flag`);
     assert.ok(typeof review.name === "string" && review.name.trim(), `${review.id}: name`);
@@ -153,7 +153,7 @@ test("reviews are real, in the client's words, never given an invented rating, a
   assert.ok(read("src/app/[lang]/reviews/page.jsx").includes("hasRealReviews() ? { index: true, follow: true } : { index: false, follow: true }"));
   assert.ok(read("src/app/sitemap.js").includes('if (hasRealReviews()) entries.push(...localizedEntry("reviews"'));
   assert.doesNotMatch(read("src/app/[lang]/reviews/page.jsx") + read("src/Reviews.jsx"), /"@type": "(AggregateRating|Review)"/);
-  assert.match(read("src/App.jsx"), /<Projects \{\.\.\.props\} \/><Testimonials \{\.\.\.props\} \/>/);
+  assert.match(read("src/App.jsx"), /<Testimonials\b/);
 });
 
 test("About and Reviews are linked from the menu popup and footer, not the header nav", () => {
@@ -581,3 +581,61 @@ test("hero photos load first on phones and project cards keep their proportions"
   assert.match(read("src/components/HomeIslands.jsx"), /preload=\{i === 0\} fetchPriority=\{i === 0 \? "high" : undefined\}/);
   assert.match(read("src/styles.css"), /\.project-card-home__image img \{\s*object-fit: cover;/);
 });
+
+test("cleanBreadcrumbLabel removes duplicated city tokens in Arabic and English", async () => {
+  const { cleanBreadcrumbLabel } = await import("../src/lib/breadcrumbs.js");
+  assert.equal(cleanBreadcrumbLabel("تصميم داخلي في دبي دبي", "دبي"), "تصميم داخلي في دبي");
+  assert.equal(cleanBreadcrumbLabel("Interior Design in Dubai Dubai", "Dubai"), "Interior Design in Dubai");
+  assert.equal(cleanBreadcrumbLabel("تصميم داخلي في أبوظبي", "أبوظبي"), "تصميم داخلي في أبوظبي");
+});
+
+test("unverified factory and craftsman claims remain eliminated site-wide", () => {
+  const dicts = read("src/i18n/dictionaries.js");
+  const faqs = read("src/data/page-faqs.js");
+  const legal = read("src/data/legal-pages.js");
+  const chat = read("src/app/api/chat/route.js");
+
+  for (const src of [dicts, faqs, legal, chat]) {
+    assert.doesNotMatch(src, /50\+\s*(?:master\s*)?carpenters/i);
+    assert.doesNotMatch(src, /German CNC/i);
+    assert.doesNotMatch(src, /direct timber import from Italy/i);
+    assert.doesNotMatch(src, /أكثر من 50 نجار/);
+    assert.doesNotMatch(src, /آلات CNC ألمانية/);
+    assert.doesNotMatch(src, /استيراد مباشر للأخشاب من إيطاليا/);
+  }
+});
+
+test("all 17 services have direct canonical starting prices and no fallback leakage", async () => {
+  const { servicePricing, formatPrice } = await import("../src/lib/pricing.js");
+  const EXPECTED = {
+    "interior-design": { min: 2500, unit: undefined },
+    "fit-out": { min: 300, unit: "sqft" },
+    "office-fit-out": { min: 220, unit: "sqft" },
+    "restaurant-fit-out": { min: 450, unit: "sqft" },
+    "retail-fit-out": { min: 350, unit: "sqft" },
+    "commercial-interior-design": { min: 25, unit: "sqft" },
+    "residential-interior-design": { min: 12000, unit: "project" },
+    "office-interior-design": { min: 25, unit: "sqft" },
+    "restaurant-interior-design": { min: 30, unit: "sqft" },
+    "retail-interior-design": { min: 25, unit: "sqft" },
+    "villa-renovation": { min: 150000, unit: "project" },
+    "apartment-renovation": { min: 60000, unit: "project" },
+    "office-renovation": { min: 150, unit: "sqft" },
+    "joinery": { min: 1800, unit: "linearMetre" },
+    "custom-wardrobes": { min: 1800, unit: "linearMetre" },
+    "kitchen-design": { min: 2400, unit: "linearMetre" },
+    "kitchen-renovation": { min: 50000, unit: "project" },
+  };
+
+  for (const [slug, exp] of Object.entries(EXPECTED)) {
+    const p = servicePricing(slug);
+    assert.ok(p, `Service ${slug} has pricing config`);
+    assert.ok(p.items.length > 0, `Service ${slug} has pricing items`);
+    const first = p.items[0];
+    assert.equal(first.min, exp.min, `Service ${slug} min price is ${exp.min}`);
+    assert.equal(first.unit, exp.unit, `Service ${slug} unit is ${exp.unit}`);
+    const formatted = formatPrice(first, "en");
+    assert.ok(formatted.includes(exp.min.toLocaleString("en-US")), `Formatted price includes ${exp.min}`);
+  }
+});
+

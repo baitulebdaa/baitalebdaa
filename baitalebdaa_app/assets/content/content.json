@@ -2883,48 +2883,5 @@
       }
     }
   ],
-  "reviews": [
-    {
-      "id": "helena-brandt-nordhaus",
-      "name": "Helena Brandt",
-      "company": "NordHaus Design Consultancy",
-      "rating": null,
-      "date": null,
-      "source": null,
-      "sourceUrl": null,
-      "originalLang": "en",
-      "text": {
-        "en": "Bait Al Ebdaa understood our requirements from the start and translated them into a refined, functional space. The communication was clear, the detailing was thoughtful, and the final result felt polished and well executed.",
-        "ar": "فهم فريق بيت الإبداع متطلباتنا منذ البداية وحوّلها إلى مساحة راقية وعملية. كان التواصل واضحاً، والتفاصيل مدروسة، وجاءت النتيجة النهائية متقنة ومنفّذة بعناية."
-      }
-    },
-    {
-      "id": "rami-mansour-meridian",
-      "name": "Rami Mansour",
-      "company": "Meridian Workspace Solutions",
-      "rating": null,
-      "date": null,
-      "source": null,
-      "sourceUrl": null,
-      "originalLang": "en",
-      "text": {
-        "en": "What impressed us most was how smoothly the design, fit-out and joinery stages were coordinated. Having one team manage the process made everything more efficient, and the quality of workmanship was excellent.",
-        "ar": "أكثر ما أثار إعجابنا هو سلاسة التنسيق بين مراحل التصميم والتجهيز والنجارة. وجود فريق واحد يدير العملية جعل كل شيء أكثر كفاءة، وكانت جودة التنفيذ ممتازة."
-      }
-    },
-    {
-      "id": "julia-okafor-veridian",
-      "name": "Julia Okafor",
-      "company": "Veridian Property Group",
-      "rating": null,
-      "date": null,
-      "source": null,
-      "sourceUrl": null,
-      "originalLang": "en",
-      "text": {
-        "en": "The team was professional, responsive and very detail-focused throughout the project. From material selection to final installation, everything was handled carefully and the finished interior exceeded our expectations.",
-        "ar": "كان الفريق محترفاً وسريع الاستجابة ودقيقاً جداً في التفاصيل طوال المشروع. من اختيار المواد حتى التركيب النهائي، تمت معالجة كل شيء بعناية، وفاق التصميم الداخلي النهائي توقعاتنا."
-      }
-    }
-  ]
+  "reviews": []
 }

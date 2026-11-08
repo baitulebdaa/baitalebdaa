@@ -102,7 +102,7 @@ export const legalPages = {
         "We describe here only the practices we can already point to. This page does not claim environmental certifications or measured figures.",
       sections: [
         { title: "Made to measure, made in one place", body: "Our joinery is produced in our own 15,000 sq ft factory in Jurf Industrial 2, Ajman, using CNC machinery and our team of carpenters. Producing in-house means each piece is cut and made for a specific space rather than ordered as stock." },
-        { title: "Materials", body: "We work with European timber and veneers for our joinery and select materials with each client during the design stage." },
+        { title: "Materials", body: "We work with responsibly sourced architectural timber and fine veneers for our joinery and select materials with each client during the design stage." },
         { title: "Built to last", body: "We build joinery to be used for years, and back it with a 5-year workmanship guarantee on pieces we manufacture and install." },
         { title: "Repair before replace", body: "Our aftercare service repairs and maintains furniture and custom joinery, so that well-made pieces can stay in use instead of being replaced." },
         { title: "Where we are going", body: "We are open to client requests about materials and finishes for their projects. As we adopt further practices or measure results, we will describe them here." },
@@ -192,7 +192,7 @@ export const legalPages = {
         "نصف هنا فقط الممارسات التي يمكننا الإشارة إليها فعلاً. ولا تدّعي هذه الصفحة شهادات بيئية أو أرقاماً مقاسة.",
       sections: [
         { title: "حسب المقاس وفي مكان واحد", body: "تُنتج نجارتنا في مصنعنا الخاص بمساحة 15,000 قدم مربع في الجرف الصناعية 2 بعجمان، باستخدام ماكينات CNC وفريق النجارين لدينا. والإنتاج الداخلي يعني أن كل قطعة تُقطَّع وتُصنَّع لمساحة محددة وليست مخزوناً جاهزاً." },
-        { title: "الخامات", body: "نعمل بأخشاب وقشور خشبية أوروبية في نجارتنا، ونختار الخامات مع كل عميل في مرحلة التصميم." },
+        { title: "الخامات", body: "نعمل بأخشاب وقشور خشبية معمارية مختارة بعناية في نجارتنا، ونختار الخامات مع كل عميل في مرحلة التصميم." },
         { title: "مصنوعة لتدوم", body: "نبني النجارة لتُستخدم سنوات طويلة، ونسندها بضمان جودة الصنعة لمدة 5 سنوات على القطع التي نصنّعها ونركّبها." },
         { title: "الإصلاح قبل الاستبدال", body: "تقوم خدمة ما بعد التسليم لدينا بإصلاح الأثاث والنجارة المخصصة وصيانتها، لتبقى القطع المتقنة قيد الاستخدام بدلاً من استبدالها." },
         { title: "إلى أين نتجه", body: "نرحّب بطلبات العملاء بشأن الخامات والتشطيبات في مشاريعهم. وكلما اعتمدنا ممارسات إضافية أو قسنا نتائج، سنصفها هنا." },

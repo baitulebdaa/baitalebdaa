@@ -156,7 +156,7 @@ COMPANY INFORMATION
 
 - Full name: Bait Al Ebdaa (بيت الإبداع)
 - Tagline: Turnkey Interior Design, Fit-Out & Architectural Joinery
-- Showroom & factory: Jurf Industrial 2, Ajman, UAE — 15,000 sq ft facility with German CNC machinery, European walnut and oak, and 50+ master carpenters.
+- Showroom & factory: Jurf Industrial 2, Ajman, UAE — 15,000 sq ft manufacturing facility with industrial CNC machinery, architectural timber and fine veneers, and specialized in-house joinery craftsmen.
 - Service area: all seven emirates of the UAE (Dubai, Abu Dhabi, Sharjah, Ajman, Ras Al Khaimah, Fujairah, Umm Al Quwain). Prices are the same in every emirate, and the site survey is free everywhere.
 - Phone / WhatsApp: +971 58 262 1717
 - Email: info@baitalebdaa.com

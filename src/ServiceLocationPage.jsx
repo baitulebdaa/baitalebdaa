@@ -19,6 +19,7 @@ import { formatPrice, serviceEstimator, servicePricing, serviceStartingItem } fr
 import { CURRENCY, VAT_INCLUSIVE } from "./data/pricing";
 import { ORG_REF, SITE_URL } from "./lib/schema-ids";
 import { faqPageJsonLd } from "./lib/faq-schema";
+import { cleanBreadcrumbLabel } from "./lib/breadcrumbs";
 
 const HERO_IMAGE_BY_SERVICE = {
   "interior-design": "/assets/luxury-living-room-chandelier-wall-panelling.jpeg",
@@ -277,6 +278,7 @@ export default function ServiceLocationPage({ lang, row, seoContext, pilot = nul
   // flagged as too short; append the brand so every H1 is a full phrase of 20+ characters.
   // The keyword stays first and unchanged.
   const pageH1 = lang === "ar" && row.h1.length < 20 ? `${row.h1} من بيت الإبداع` : row.h1;
+  const crumbLabel = cleanBreadcrumbLabel(row.h1, locationName);
   const servicesLabel = dict.nav.services;
   const gallery = WORK_GALLERY_BY_SERVICE[row.serviceSlug] || [];
   const heroPhoto = pickByLocation(gallery, row.locationSlug);
@@ -377,7 +379,7 @@ export default function ServiceLocationPage({ lang, row, seoContext, pilot = nul
         itemListElement: [
           { "@type": "ListItem", position: 1, name: home, item: lang === "en" ? `${SITE_URL}/` : `${SITE_URL}/ar` },
           { "@type": "ListItem", position: 2, name: servicesLabel, item: `${SITE_URL}/${lang}/our-services` },
-          { "@type": "ListItem", position: 3, name: row.h1, item: row.canonical },
+          { "@type": "ListItem", position: 3, name: crumbLabel, item: row.canonical },
         ],
       },
       // FAQPage mirrors the FAQ section that is visibly rendered below, on indexable pages
@@ -414,7 +416,7 @@ export default function ServiceLocationPage({ lang, row, seoContext, pilot = nul
         <PhotoHero
           image={heroImage}
           alt={heroAlt}
-          crumbs={[{ label: home, href: lang === "en" ? "/" : "/ar" }, { label: servicesLabel, href: `/${lang}/our-services` }, { label: row.h1 }]}
+          crumbs={[{ label: home, href: lang === "en" ? "/" : "/ar" }, { label: servicesLabel, href: `/${lang}/our-services` }, { label: crumbLabel }]}
           chip={locationName === emirateName ? locationName : `${locationName} · ${emirateName}`}
           title={pageH1}
           lead={pilot ? pilot.lead : content.summary}
