@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { formatPhone } from "../data/business";
 import { useEffect, useRef, useState } from "react";
-import { Account, ArrowUpRight, ChevronDown, Plus, Check, Menu, X, Globe, MessageSquare, Facebook, Instagram, Whatsapp, WhatsappLogo, Home, Services, Projects, Phone, Mail, MapPin, Clock, StageApprove, StageDiscover, StageMake, StageVisualize, Box, Lamp, ShoppingCart, Wrench, Users, RotateCcw } from "./icons";
+import { Account, ArrowUpRight, ChevronDown, Plus, Check, Menu, X, Globe, MessageSquare, Facebook, Instagram, Whatsapp, WhatsappLogo, Home, Services, Projects, Phone, Mail, MapPin, Clock, StageMake, StageVisualize, Box, Lamp, ShoppingCart, Wrench, Users, RotateCcw } from "./icons";
 import { serviceStartingItem } from "../lib/pricing";
 import { ArrowLeft, ArrowRight } from "./icons";
 import { useDialog } from "./useDialog";
@@ -726,7 +726,6 @@ export function FaqSplit({ kicker, title, subtitle, items, idPrefix = "faq" }) {
 // The process stages (owner, 26 Oct 2026: "more modern"): a dark panel with a gold line
 // that fills as it scrolls into view, a glowing node per stage, and a card for each stage
 // with one of the studio's own photos, an outlined number, the stage, what happens and where.
-const STAGE_ICONS = [StageDiscover, StageVisualize, StageApprove, StageMake];
 const STAGE_PHOTOS = [
   "/assets/luxury-living-room-chandelier-wall-panelling.jpeg",
   "/assets/cad-render.jpg",
@@ -743,14 +742,11 @@ export function ProcessTimeline({ kicker, title, items, headingClassName = "sect
         <h2 className="section-title" style={titleStyle}>{title}</h2>
       </Reveal>
       <Reveal className="pt-panel">
-        <span className="pt-rail" aria-hidden="true"><span className="pt-rail__fill" /></span>
         <ol className="process-timeline">
           {items.map(([itemTitle, body, meta], i) => {
-            const Icon = STAGE_ICONS[i] || StageMake;
             const photo = STAGE_PHOTOS[i];
             return (
               <li className="process-timeline__step" key={i} style={{ "--step": i }}>
-                <span className="pt-node" aria-hidden="true" />
                 {photo && (
                   <span className="pt-photo" aria-hidden="true">
                     <Image src={photo} alt="" fill sizes="(max-width: 700px) 100vw, (max-width: 980px) 50vw, 25vw" />
@@ -758,7 +754,6 @@ export function ProcessTimeline({ kicker, title, items, headingClassName = "sect
                 )}
                 <span className="pt-card">
                   <span className="pt-card__top">
-                    <span className="process-timeline__icon" aria-hidden="true"><Icon size={22} /></span>
                     <span className="process-timeline__num" aria-hidden="true">{formatIndex(i + 1, lang)}</span>
                   </span>
                   <h3 className="process-timeline__title">{itemTitle}</h3>

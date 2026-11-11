@@ -3,7 +3,7 @@
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-import { ArrowLeft, ArrowRight, ArrowUpRight, Calendar, Check, WhatsappLogo } from "./icons";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Calendar, Check, MapPin, WhatsappLogo } from "./icons";
 import { useBusiness, useI18n } from "../i18n/I18nProvider";
 import { Header, Reveal } from "./Shared";
 import { MobileActionBar } from "./MobileActionBar";
@@ -80,6 +80,7 @@ export function Hero() {
   return <><section className="hero" id="top" onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} aria-roledescription={ar ? "عرض صور" : "carousel"}>
     <div className="hero__media">{slides.map((item, i) => (allSlidesReady || i === active) && <Image key={i} className={i === active ? "is-active" : ""} src={HERO_IMAGES[i]} alt="Luxury residential and commercial interiors in Dubai" fill sizes="100vw" preload={i === 0} fetchPriority={i === 0 ? "high" : undefined} />)}<div className="hero__shade" /></div>
     <div className="hero__content shell">
+      <p className="hero__badge"><span className="hero__badge-dot" aria-hidden="true" /><MapPin size={14} aria-hidden="true" /> {t.badge}</p>
       <h1>{t.headline}</h1>
       <p className="hero__lede">{t.subheadline}</p>
       <div className="hero__actions" data-cta-location="hero">

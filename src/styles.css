@@ -3444,6 +3444,22 @@ button.estimator-submit-btn {
   outline: none;
 }
 
+/* 11 Nov 2026 (owner): no gold box around the text box (the site-wide :focus-visible rule
+   drew one); the rounded bar shows a soft ring instead while typing. */
+.ask-ai-composer .ask-ai-textarea:focus,
+.ask-ai-composer .ask-ai-textarea:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+.ask-ai-composer {
+  transition: box-shadow 0.2s;
+}
+
+.ask-ai-composer:focus-within {
+  box-shadow: 0 0 0 1px rgba(17, 17, 15, 0.14);
+}
+
 .ask-ai-textarea::placeholder {
   color: var(--muted);
 }
@@ -3606,57 +3622,10 @@ button.estimator-submit-btn {
   background: var(--paper);
 }
 
-/* The process stages (owner, 26 Oct 2026: "more modern"): a dark rounded panel with a warm
-   glow, a gold line that fills as it scrolls into view, a glowing node per stage, and a
-   glass card per stage with a photo, an outlined number and a location pill. */
-.pt-panel {
-  --pt-gold: #c9a877;
-  position: relative;
-  overflow: hidden;
-  padding: clamp(36px, 4vw, 56px) clamp(20px, 3vw, 40px) clamp(28px, 3vw, 40px);
-  border-radius: 32px;
-  background:
-    radial-gradient(60% 80% at 15% 0%, rgba(201, 168, 119, 0.22), transparent 60%),
-    radial-gradient(50% 70% at 100% 100%, rgba(47, 107, 85, 0.25), transparent 60%),
-    #11110f;
-  color: #fff;
-  isolation: isolate;
-}
-
-/* The line behind the nodes; it fills left to right once the panel is in view. */
-.pt-rail {
-  position: absolute;
-  z-index: 0;
-  top: calc(clamp(36px, 4vw, 56px) + 9px);
-  inset-inline: clamp(20px, 3vw, 40px);
-  height: 2px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 2px;
-}
-
-.pt-rail__fill {
-  position: absolute;
-  inset-block: 0;
-  inset-inline-start: 0;
-  width: 0;
-  background: linear-gradient(90deg, var(--pt-gold), #f0dcb8 60%, rgba(240, 220, 184, 0.2));
-  border-radius: 2px;
-  box-shadow: 0 0 14px rgba(201, 168, 119, 0.6);
-  transition: width 1.8s cubic-bezier(0.2, 0.7, 0.2, 1) 0.2s;
-}
-
-[dir="rtl"] .pt-rail__fill {
-  background: linear-gradient(270deg, var(--pt-gold), #f0dcb8 60%, rgba(240, 220, 184, 0.2));
-}
-
-.pt-panel.is-visible .pt-rail__fill,
-.pt-panel.reveal-in .pt-rail__fill {
-  width: 100%;
-}
-
+/* The process stages (owner, 11 Nov 2026: the dark glowing panel, gold line, glowing nodes,
+   gold icon tiles, outlined numerals and pills were "too much"). Now four plain white cards:
+   photo, a small step number, title, text, and where it happens as a quiet footer line. */
 .process-timeline {
-  position: relative;
-  z-index: 1;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -3668,128 +3637,60 @@ button.estimator-submit-btn {
 .process-timeline__step {
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(17, 17, 15, 0.09);
+  border-radius: 18px;
+  background: #fff;
+  transition: box-shadow 0.3s, transform 0.3s;
 }
 
-/* A glowing node on the line, lit one after another as the line reaches it. */
-.pt-node {
-  position: relative;
-  width: 20px;
-  height: 20px;
-  margin-bottom: 26px;
-  border-radius: 50%;
-  background: #11110f;
-  border: 2px solid rgba(255, 255, 255, 0.25);
-  transition: border-color 0.4s, box-shadow 0.4s;
-  transition-delay: calc(0.4s + var(--step) * 0.4s);
-}
-
-.pt-node::after {
-  content: "";
-  position: absolute;
-  inset: 4px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.25);
-  transition: background 0.4s;
-  transition-delay: inherit;
-}
-
-.pt-panel.is-visible .pt-node,
-.pt-panel.reveal-in .pt-node {
-  border-color: var(--pt-gold);
-  box-shadow: 0 0 0 6px rgba(201, 168, 119, 0.14), 0 0 18px rgba(201, 168, 119, 0.55);
-}
-
-.pt-panel.is-visible .pt-node::after,
-.pt-panel.reveal-in .pt-node::after {
-  background: var(--pt-gold);
+.process-timeline__step:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 44px -28px rgba(17, 17, 15, 0.35);
 }
 
 .pt-photo {
   position: relative;
   display: block;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
-  border-radius: 20px 20px 0 0;
-  background: #2a2622;
+  background: #e9e5dd;
 }
 
 .pt-photo img {
   object-fit: cover;
-  transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-
-.pt-photo::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 45%, rgba(17, 17, 15, 0.55));
+  transition: transform 0.6s ease;
 }
 
 .process-timeline__step:hover .pt-photo img {
-  transform: scale(1.07);
+  transform: scale(1.04);
 }
 
 .pt-card {
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 20px 20px 22px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-top: 0;
-  border-radius: 0 0 20px 20px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.025));
-  backdrop-filter: blur(6px);
-  transition: border-color 0.4s, background 0.4s, transform 0.4s;
-}
-
-.process-timeline__step:hover .pt-card {
-  border-color: rgba(201, 168, 119, 0.45);
-  background: linear-gradient(180deg, rgba(201, 168, 119, 0.12), rgba(255, 255, 255, 0.03));
+  padding: 22px 22px 20px;
 }
 
 .pt-card__top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: -44px 0 16px;
+  margin: 0 0 8px;
 }
 
-.process-timeline__icon {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  place-items: center;
-  width: 50px;
-  height: 50px;
-  border-radius: 15px;
-  background: linear-gradient(135deg, #e6cfa3, var(--pt-gold) 55%, #9c7d4f);
-  color: #11110f;
-  box-shadow: 0 10px 24px -10px rgba(201, 168, 119, 0.8);
-}
-
-/* Outlined numerals, filled gold on hover. */
 .process-timeline__num {
-  font-family: var(--font-cormorant), Georgia, serif;
-  font-size: clamp(2.6rem, 3.4vw, 3.4rem);
-  font-weight: 500;
-  line-height: 1;
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.35);
-  transition: color 0.4s, -webkit-text-stroke-color 0.4s;
-}
-
-.process-timeline__step:hover .process-timeline__num {
-  color: var(--pt-gold);
-  -webkit-text-stroke-color: var(--pt-gold);
+  color: #1f4a3d;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
 }
 
 .process-timeline__title {
   margin: 0 0 8px;
   font-family: var(--font-cormorant), Georgia, serif;
-  font-size: clamp(1.5rem, 1.9vw, 1.85rem);
-  font-weight: 500;
+  font-size: clamp(1.5rem, 1.8vw, 1.75rem);
+  font-weight: 600;
   letter-spacing: -0.01em;
-  color: #fff;
+  color: var(--ink);
 }
 
 [dir="rtl"] .process-timeline__title {
@@ -3798,58 +3699,33 @@ button.estimator-submit-btn {
 }
 
 .process-timeline__body {
-  margin: 0 0 20px;
-  color: rgba(255, 255, 255, 0.68);
-  font-size: 0.9rem;
-  line-height: 1.65;
+  margin: 0 0 18px;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
 }
 
 .process-timeline__meta {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 6px;
-  align-self: flex-start;
   margin: auto 0 0;
-  padding: 7px 12px;
-  border-radius: 999px;
-  border: 1px solid rgba(201, 168, 119, 0.35);
-  background: rgba(201, 168, 119, 0.1);
-  color: #f0dcb8;
-  font-size: 0.68rem;
+  padding-top: 14px;
+  border-top: 1px solid rgba(17, 17, 15, 0.08);
+  color: #5f5d58;
+  font-size: 0.8rem;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .pt-rail__fill,
-  .pt-node,
-  .pt-node::after {
-    transition: none;
-  }
-}
+.process-timeline__meta svg { color: #1f4a3d; flex: none; }
 
 @media (max-width: 980px) {
   .process-timeline {
     grid-template-columns: repeat(2, 1fr);
-    row-gap: 22px;
-  }
-
-  /* One line can't join a 2x2 grid; the nodes stay lit without it. */
-  .pt-rail {
-    display: none;
-  }
-
-  .pt-node {
-    display: none;
   }
 }
 
 @media (max-width: 700px) {
-  .pt-panel {
-    border-radius: 24px;
-  }
-
   .process-timeline {
     grid-template-columns: 1fr;
   }
@@ -7490,8 +7366,10 @@ button.estimator-submit-btn {
 }
 
 /* Homepage: featured service tiles (App.jsx ServicesDirectory, components/ServiceTiles.jsx). */
+/* 11 Nov 2026: it follows the hero directly now, so it keeps the normal section padding
+   (it was 0 when the capability cards sat above it and the heading touched the hero). */
 .services-directory {
-  padding-top: 0;
+  padding-top: clamp(64px, 6vw, 96px);
 }
 
 /* The capability cards above share this background: keep one normal gap, not two paddings. */
@@ -10190,12 +10068,29 @@ html[data-signed-in] .show-signed-out { display: none !important; }
 
 .hero-cta:hover { transform: translateY(-2px); }
 
+/* 11 Nov 2026 (owner): the gold gradient looked dull and old-fashioned on the photos. The main
+   button is now crisp white with the brand's deep green in a round arrow chip. */
 .hero-cta--primary {
+  gap: 14px;
+  padding: 0 7px 0 26px;
   border: 0;
   color: #11110f;
-  background: linear-gradient(135deg, #e6cfa3, #c9a877 55%, #b08f5c);
-  box-shadow: 0 14px 30px -14px rgba(201, 168, 119, 0.9);
+  background: #fff;
+  box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.6);
 }
+.hero-cta--primary svg {
+  width: 38px;
+  height: 38px;
+  padding: 11px;
+  flex: none;
+  border-radius: 50%;
+  color: #fff;
+  background: #1f4a3d;
+  transition: transform 0.25s, background 0.25s;
+}
+.hero-cta--primary:hover { background: #f4f1ea; }
+.hero-cta--primary:hover svg { background: #2a6450; transform: rotate(45deg); }
+[dir="rtl"] .hero-cta--primary { padding: 0 26px 0 7px; }
 
 .hero-cta--secondary {
   border: 1px solid rgba(255, 255, 255, 0.45);
@@ -10262,7 +10157,76 @@ html[data-signed-in] .show-signed-out { display: none !important; }
 
 .hero__summary p strong { font-weight: 700; }
 
+/* 11 Nov 2026 (owner): the hero's headline, text, buttons and proof points sit centred */
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.hero h1 { max-width: 1200px; margin-inline: auto; text-wrap: balance; }
+.hero__lede { margin-inline: auto; }
+.hero__actions,
+.hero__proof { justify-content: center; }
+
+/* Centred copy needs an even shade: the old one was dark only on the left */
+.hero__shade {
+  background:
+    radial-gradient(ellipse 70% 62% at 50% 44%, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.18) 72%, transparent),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.5), transparent 46%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.35), transparent 30%);
+}
+
+/* 11 Nov 2026 (owner): a small "Serving all seven emirates" badge above the headline */
+.hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 22px;
+  padding: 7px 16px 7px 12px;
+  border: 1px solid rgba(230, 207, 163, 0.45);
+  border-radius: 999px;
+  background: rgba(17, 17, 15, 0.38);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #f3e6cc;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  animation: rise 0.7s both;
+}
+.hero__badge svg { color: #e6cfa3; flex: none; }
+.hero__badge-dot {
+  position: relative;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #34c27a;
+  flex: none;
+}
+.hero__badge-dot::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1px solid #34c27a;
+  opacity: 0;
+  animation: hero-badge-pulse 2.4s ease-out infinite;
+}
+@keyframes hero-badge-pulse {
+  0% { transform: scale(0.5); opacity: 0.9; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__badge, .hero__badge-dot::after { animation: none; }
+}
+[dir="rtl"] .hero__badge { letter-spacing: 0; text-transform: none; font-size: 0.85rem; padding: 7px 12px 7px 16px; }
+
 @media (max-width: 700px) {
+  .hero__actions { align-self: stretch; }
+  .hero__badge { margin-bottom: 16px; padding: 6px 12px 6px 10px; font-size: 0.66rem; letter-spacing: 0.1em; }
   .hero h1 { font-size: clamp(1.9rem, 8.4vw, 2.6rem); line-height: 1.04; }
   .hero__lede { font-size: 0.95rem; margin-bottom: 20px; }
   .hero__actions { display: grid; grid-template-columns: 1fr; gap: 10px; }
@@ -10884,4 +10848,29 @@ button.slp-btn { font: inherit; font-size: 0.78rem; cursor: pointer; }
 
 @media (min-width: 701px) and (max-width: 980px) {
   .hero__content { padding-top: calc(var(--header-h) + 32px); }
+}
+/* 11 Nov 2026 (owner's screenshot): with the copy centred, the slide caption pinned to the
+   bottom right ran into the proof points. From tablet up the hero is now a column: the copy
+   fills the space and centres in it, and the slide controls and caption sit under it in the
+   normal flow, so the two can never overlap (the hero grows on short screens instead). */
+@media (min-width: 701px) {
+  .hero {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+  }
+  .hero__content {
+    flex: 1;
+    height: auto;
+    justify-content: center;
+    padding-top: calc(var(--header-h) + 28px);
+    padding-bottom: 32px;
+  }
+  .hero__controls {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    transform: none;
+    margin: 0 auto 22px;
+  }
 }

@@ -158,11 +158,11 @@ export default async function App({ lang }) {
       <Factory {...props} />
       <Sectors />
       <ProductCollection {...props} />
+      <NextSteps />
       <Process {...props} />
       <Testimonials {...props} />
       <Faq {...props} />
       <LatestNews {...props} />
-      <NextSteps />
     </main>
     <Footer />
   </>;

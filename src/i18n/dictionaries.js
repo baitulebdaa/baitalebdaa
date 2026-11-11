@@ -81,6 +81,8 @@ export const dictionaries = {
       ],
       viewWork: "View selected work",
       // 6 Nov 2026: one fixed offer and one main action; only the photos and their caption rotate.
+      // 11 Nov 2026 (owner): a small badge above the headline.
+      badge: "Serving all seven emirates of the UAE",
       headline: "Interior Design, Turnkey Fit-Out & Custom Joinery Across the UAE",
       subheadline: "One team for design, approvals, fit-out and the joinery we make in our own factory in Ajman, for villas, apartments and offices in all seven emirates.",
       primaryCta: "Request a Quote",
@@ -2190,6 +2192,7 @@ export const dictionaries = {
         { eyebrow: "مساكن خاصة", title: "فلل خاصة فاخرة مصممة بأدق التفاصيل المعمارية المميزة", body: "هندسة معمارية ونجارة مخصصة وأثاث ذكي يجمعها فريق واحد مسؤول." }
       ],
       viewWork: "عرض الأعمال المختارة",
+      badge: "نخدم الإمارات السبع في جميع أنحاء الدولة",
       headline: "تصميم داخلي وتجهيز متكامل ونجارة مخصصة في جميع أنحاء الإمارات",
       subheadline: "فريق واحد للتصميم والموافقات والتجهيز والنجارة التي نصنعها في مصنعنا بعجمان، للفلل والشقق والمكاتب في الإمارات السبع.",
       primaryCta: "اطلب عرض سعر",
