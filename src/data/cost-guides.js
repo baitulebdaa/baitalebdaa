@@ -587,7 +587,7 @@ function officeFitOutCost(lang) {
   }
   return {
     title: "Office Fit-Out Cost in Dubai: Price per Sq Ft and What Drives It",
-    seoTitle: "Office Fit-Out Cost in Dubai: 2026 Price Guide | Bait Al Ebdaa",
+    seoTitle: "Office Fit-Out Cost Dubai: 2026 Price Guide | Bait Al Ebdaa",
     metaDescription: `Office fit-out cost in Dubai: ${P("office-essential")} at the essential level, two higher levels, worked examples and what moves the price.`,
     description: "A guide to office fit-out costs in Dubai: the price per square foot at three finish levels, worked examples for small and mid-size offices, approval and design costs, and how to compare quotes.",
     content: `${reviewedNovember.en}

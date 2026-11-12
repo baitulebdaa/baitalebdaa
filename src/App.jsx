@@ -1,3 +1,4 @@
+import { PhoneFold } from "./components/PhoneFold";
 import Image from "next/image";
 import { ArrowUpRight, Box, Calendar, Lamp, ShoppingCart, Users, Wrench } from "./components/icons";
 import { Footer, Reveal, FaqSplit, ProcessTimeline } from "./components/Shared";
@@ -154,7 +155,9 @@ export default async function App({ lang }) {
       <ServicesDirectory {...props} />
       <Projects {...props} />
       <Challenges {...props} />
-      <Estimator />
+      <PhoneFold className="phone-fold--estimator" title={lang === "ar" ? "احسب ميزانية مشروعك" : "Estimate your project budget"}>
+        <Estimator />
+      </PhoneFold>
       <Factory {...props} />
       <Sectors />
       <ProductCollection {...props} />

@@ -1,3 +1,4 @@
+import { BreadcrumbSchema } from "../../../components/BreadcrumbSchema";
 import LegalPage from "../../../LegalPage";
 import { legalPages } from "../../../data/legal-pages";
 import { buildPageMetadata } from "../../../lib/page-metadata";
@@ -14,5 +15,10 @@ export async function generateMetadata({ params }) {
 export default async function Page({ params }) {
   const { lang } = await params;
   const pages = pick(lang);
-  return <LegalPage content={pages[SLUG]} reviewNote={pages.reviewNote} />;
+  return (
+    <>
+      <BreadcrumbSchema lang={lang} path={SLUG} title={pages[SLUG].title || pages[SLUG].metaTitle} />
+      <LegalPage content={pages[SLUG]} reviewNote={pages.reviewNote} />
+    </>
+  );
 }

@@ -1,3 +1,4 @@
+import { BreadcrumbSchema } from "../../../components/BreadcrumbSchema";
 import ContactPage from "../../../ContactPage";
 import { dictionaries } from "../../../i18n/dictionaries";
 import { buildPageMetadata } from "../../../lib/page-metadata";
@@ -14,6 +15,7 @@ export default async function ContactPageRoute({ params }) {
   return (
     <>
       <PageFaqSchema lang={lang} faqKey="contact" />
+      <BreadcrumbSchema lang={lang} path="contact" title={(dictionaries[lang] || dictionaries.en).contactPage.navTitle} />
       <ContactPage />
     </>
   );

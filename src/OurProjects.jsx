@@ -2,7 +2,12 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { ArrowUpRight } from "./components/icons";
+import dynamic from "next/dynamic";
+import { track } from "./lib/analytics";
+
+// The quote form loads only when someone opens it.
+const QuoteModal = dynamic(() => import("./components/QuoteModal").then((m) => m.QuoteModal), { ssr: false });
+import { ArrowUpRight, WhatsappLogo } from "./components/icons";
 import { useBusiness, useI18n } from "./i18n/I18nProvider";
 import { Header, Footer, Reveal, PhotoHero } from "./components/Shared";
 import { PageFaq } from "./components/PageFaq";
@@ -31,6 +36,7 @@ export default function OurProjects() {
   const business = useBusiness();
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeFilter, setActiveFilter] = useState("all");
+  const [quoteOpen, setQuoteOpen] = useState(false);
 
   const t = dict.ourProjectsPage;
   const ui = dict.projectsPageLayout;
@@ -86,11 +92,11 @@ export default function OurProjects() {
           note={ui.intro2}
           actions={
             <>
-              <a className="slp-btn slp-btn--solid" href={`https://wa.me/${business.whatsapp}?text=${encodeURIComponent(ui.whatsappMessage)}`} target="_blank" rel="noopener noreferrer">
-                {dict.nav.startProject} <ArrowUpRight size={15} />
-              </a>
-              <a className="slp-btn" href="#projects-grid">
-                {ui.browse} <ArrowUpRight size={15} />
+              <button type="button" className="slp-btn slp-btn--solid" onClick={() => { track("cta_click", { cta: "quote", cta_location: "projects-hero" }); setQuoteOpen(true); }}>
+                {dict.hero.primaryCta} <ArrowUpRight size={15} />
+              </button>
+              <a className="slp-btn" href={`https://wa.me/${business.whatsapp}?text=${encodeURIComponent(ui.whatsappMessage)}`} target="_blank" rel="noopener noreferrer">
+                <WhatsappLogo size={16} /> {dict.hero.secondaryCta}
               </a>
             </>
           }
@@ -229,6 +235,7 @@ export default function OurProjects() {
         <PageFaq faqKey="projects" />
       </main>
       <Footer />
+      {quoteOpen && <QuoteModal open onClose={() => setQuoteOpen(false)} source="projects-hero" />}
     </>
   );
 }

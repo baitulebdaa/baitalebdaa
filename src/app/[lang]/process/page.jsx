@@ -1,3 +1,4 @@
+import { BreadcrumbSchema } from "../../../components/BreadcrumbSchema";
 import Process from "../../../Process";
 import { dictionaries } from "../../../i18n/dictionaries";
 import { buildPageMetadata } from "../../../lib/page-metadata";
@@ -14,6 +15,7 @@ export default async function ProcessPage({ params }) {
   return (
     <>
       <PageFaqSchema lang={lang} faqKey="process" />
+      <BreadcrumbSchema lang={lang} path="process" title={(dictionaries[lang] || dictionaries.en).ourProcessPage.navTitle} />
       <Process />
     </>
   );

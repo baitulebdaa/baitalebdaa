@@ -452,7 +452,8 @@ test("cost guides: five guides in both languages, reviewed date visible, no FAQP
 test("FAQPage schema on service pages is built from the same items the visible FAQ renders", () => {
   const page = read("src/ServiceLocationPage.jsx");
   // One list feeds both the rendered FAQ section and the FAQPage markup.
-  assert.match(page, /const faqItems = pilot \? pilot\.faqs : \[\.\.\.content\.faqs, \.\.\.pageFaqs\];/);
+  // Indexed emirate pages (12 Nov 2026) use one category FAQ plus the emirate FAQ from verified facts.
+  assert.match(page, /const faqItems = pilot \? pilot\.faqs : local\?\.faqs\?\.length \? \[content\.faqs\[0\], \.\.\.local\.faqs\] : \[\.\.\.content\.faqs, \.\.\.pageFaqs\];/);
   assert.match(page, /faqPageJsonLd\(faqItems\)/);
   assert.match(page, /items=\{faqItems\}/);
   // Every question and answer is server-rendered in the accordion (answers collapse visually but

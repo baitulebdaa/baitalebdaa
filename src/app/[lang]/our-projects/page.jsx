@@ -1,3 +1,4 @@
+import { BreadcrumbSchema } from "../../../components/BreadcrumbSchema";
 import OurProjects from "../../../OurProjects";
 import { dictionaries } from "../../../i18n/dictionaries";
 import { buildPageMetadata } from "../../../lib/page-metadata";
@@ -44,6 +45,7 @@ export default async function OurProjectsPage({ params }) {
   return (
     <>
       <PageFaqSchema lang={lang} faqKey="projects" />
+      <BreadcrumbSchema lang={lang} path="our-projects" title={(dictionaries[lang] || dictionaries.en).ourProjectsPage.ourProjects} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: schema }} />
       <OurProjects />
     </>

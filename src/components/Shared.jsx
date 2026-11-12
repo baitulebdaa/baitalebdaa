@@ -454,7 +454,7 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
         // Both account entries are rendered; CSS shows the one matching <html data-signed-in>.
         // Phone tab: "Account", or the signed-in person's first name, so it fits on one line.
         { key: "account-in", Icon: Account, label: accountName && accountName !== dict.nav.account ? accountName.split(" ")[0] : accountName && (dict.nav.accountShort || dict.nav.account), href: `/${lang}/account`, active: pathname.includes("/account"), className: "show-signed-in" },
-        { key: "account-out", Icon: Account, label: dict.nav.signIn, href: `/${lang}/account/login`, active: pathname.includes("/account"), className: "show-signed-out" },
+        { key: "account-out", Icon: Account, label: dict.nav.signInShort || dict.nav.signIn, href: `/${lang}/account/login`, active: pathname.includes("/account"), className: "show-signed-out" },
       ].map(({ key, Icon, label, href, active, className = "" }) => (
         <a key={key} href={href} className={`${active ? "is-active" : ""} ${className}`.trim() || undefined} aria-current={active ? "page" : undefined}>
           <Icon size={22} variant={active ? "Bold" : "Linear"} aria-hidden="true" />

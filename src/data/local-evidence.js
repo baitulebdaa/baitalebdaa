@@ -169,3 +169,85 @@ export function localEvidence(lang, serviceSlug, emirate) {
     base: base[lang],
   };
 }
+
+// Emirate FAQ (12 Nov 2026, content audit): on the indexed emirate pages the template FAQ was
+// the same text on every emirate's page of a service (about 90% shared). These four questions
+// are answered only from the facts above: the official permit routes, where the joinery is
+// made relative to that emirate, the owner-confirmed projects, and the published price, which
+// is the same in all seven emirates (owner, 13 Oct 2026). ctx: { serviceName, emirateName,
+// price (formatted starting price or null), projectTitle(slug) }.
+const PROJECT_EMIRATE_AR = { Dubai: "دبي", "Abu Dhabi": "أبوظبي" };
+const JOINERY_ANSWER = {
+  Ajman: {
+    en: () => "In Ajman itself. Our showroom and 15,000 sq ft joinery factory are in Jurf Industrial 2, so the joinery for your project is made in the same emirate, to the drawings you approved, and installed by our own team.",
+    ar: () => "في عجمان نفسها. تقع صالة العرض ومصنع النجارة بمساحة 15,000 قدم مربع في الجرف الصناعية 2، فتُصنع نجارة مشروعك في الإمارة نفسها وفق الرسومات التي اعتمدتها، ويركّبها فريقنا.",
+  },
+  Sharjah: {
+    en: () => "In Ajman, the emirate next door. Our 15,000 sq ft joinery factory is in Jurf Industrial 2; your joinery is made there to the drawings you approved, then delivered to Sharjah and installed by our own team.",
+    ar: () => "في عجمان، الإمارة المجاورة. يقع مصنع النجارة بمساحة 15,000 قدم مربع في الجرف الصناعية 2، وتُصنع فيه نجارة مشروعك وفق الرسومات التي اعتمدتها، ثم تُنقل إلى الشارقة ويركّبها فريقنا.",
+  },
+  other: {
+    en: (em) => `At our own 15,000 sq ft factory in Jurf Industrial 2, Ajman. It is made there to the drawings you approved, then delivered to ${em} and installed by our own team, not a subcontractor.`,
+    ar: (em) => `في مصنعنا الخاص بمساحة 15,000 قدم مربع في الجرف الصناعية 2 بعجمان. تُصنع هناك وفق الرسومات التي اعتمدتها، ثم تُنقل إلى ${em} ويركّبها فريقنا وليس مقاولاً من الباطن.`,
+  },
+};
+
+export function emirateFaqs(lang, serviceSlug, emirate, ctx) {
+  const permits = PERMITS[emirate];
+  if (!permits) return [];
+  const ar = lang === "ar";
+  const { serviceName, emirateName, price, projectTitle } = ctx;
+  const pick = (pair) => (ar ? pair[1] : pair[0]);
+  const isShop = SHOP_SERVICES.has(serviceSlug);
+  const isHome = HOME_SERVICES.has(serviceSlug);
+  // The permit point that fits this kind of service, then the general one.
+  const specific = (isShop && permits.shop?.[0]) || (isHome && permits.home?.[0]) || null;
+  const permitPoints = [...(specific ? [specific] : []), permits.points[0]].map(pick).join(" ");
+
+  const matching = SERVICE_PROJECTS[serviceSlug] || [];
+  const here = matching.filter((slug) => PROJECT_EMIRATE[slug] === emirate).slice(0, 3);
+  const elsewhere = matching.filter((slug) => PROJECT_EMIRATE[slug] !== emirate).slice(0, 3);
+  const titles = (slugs) => slugs.map(projectTitle).join(ar ? "، " : "; ");
+  const places = [...new Set(elsewhere.map((slug) => (ar ? PROJECT_EMIRATE_AR[PROJECT_EMIRATE[slug]] : PROJECT_EMIRATE[slug])))].join(ar ? " و" : " and ");
+
+  const projectAnswer = here.length
+    ? ar
+      ? `نعم. من مشاريعنا المنشورة في ${emirateName} التي تطابق هذه الخدمة: ${titles(here)}. لكل مشروع صفحته التي تعرض موقعه ومساحته ونطاقه.`
+      : `Yes. Our published projects in ${emirateName} that match this service include ${titles(here)}. Each has its own page with the location, size and scope.`
+    : elsewhere.length
+      ? ar
+        ? `مشاريعنا المنشورة لهذه الخدمة حتى الآن في ${places}: ${titles(elsewhere)}. ننفذ ${serviceName} في ${emirateName} بالفريق نفسه والأسعار المنشورة نفسها، والمعاينة الأولى للموقع مجانية.`
+        : `Our published projects for this service so far are in ${places}: ${titles(elsewhere)}. We deliver ${serviceName.toLowerCase()} in ${emirateName} with the same team and the same published prices, and the first site survey is free.`
+      : ar
+        ? `لم ننشر بعد مشروعاً لهذه الخدمة تحديداً. ننفذها في ${emirateName} وفي الإمارات السبع بالفريق نفسه والأسعار المنشورة نفسها، والمعاينة الأولى للموقع مجانية.`
+        : `We have not yet published a project for this specific service. We deliver it in ${emirateName}, as in all seven emirates, with the same team and published prices, and the first site survey is free.`;
+
+  const priceAnswer = price
+    ? ar
+      ? `السعر الابتدائي المنشور لخدمة ${serviceName} هو ${price}. الأسعار المنشورة نفسها تنطبق في الإمارات السبع، فلا تختلف التكلفة في ${emirateName}، ويأتي عرض السعر المفصّل بعد معاينة مجانية للموقع. الأسعار غير شاملة ضريبة القيمة المضافة 5٪.`
+      : `Our published starting price for ${serviceName.toLowerCase()} is ${price}. The same published prices apply in all seven emirates, so ${emirateName} costs the same as anywhere else; your itemised quotation follows a free site survey. Prices exclude 5% VAT.`
+    : ar
+      ? `تُسعَّر ${serviceName} بعد معاينة مجانية للموقع، لأن النطاق يختلف كثيراً من مشروع لآخر. أساس التسعير نفسه في الإمارات السبع، فلا تختلف التكلفة في ${emirateName}.`
+      : `${serviceName} is quoted after a free site survey, because the scope varies too much for one figure. The pricing basis is the same in all seven emirates, so ${emirateName} costs the same as anywhere else.`;
+
+  return [
+    {
+      q: ar ? `هل أحتاج إلى تصريح لـ${serviceName} في ${emirateName}؟` : `Do I need a permit for ${serviceName.toLowerCase()} in ${emirateName}?`,
+      a: ar
+        ? `${permits.intro.ar} ${permitPoints} يُعدّ فريقنا الطلبات التي يحتاجها مشروعك ويتابعها، وتُفصَّل أي رسوم متعلقة بالموافقات في عرض السعر.`
+        : `${permits.intro.en} ${permitPoints} Our team prepares the submissions your project needs and follows them up, and any approval-related fee is itemised in your quotation.`,
+    },
+    {
+      q: ar ? `أين تُصنع النجارة لمشروعي في ${emirateName}؟` : `Where is the joinery for my ${emirateName} project made?`,
+      a: (JOINERY_ANSWER[emirate] || JOINERY_ANSWER.other)[lang](emirateName),
+    },
+    {
+      q: ar ? `هل نفذتم مشاريع ${serviceName} في ${emirateName}؟` : `Have you delivered ${serviceName.toLowerCase()} projects in ${emirateName}?`,
+      a: projectAnswer,
+    },
+    {
+      q: ar ? `كم تكلفة ${serviceName} في ${emirateName}؟` : `How much does ${serviceName.toLowerCase()} cost in ${emirateName}?`,
+      a: priceAnswer,
+    },
+  ];
+}

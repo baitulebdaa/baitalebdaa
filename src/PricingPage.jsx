@@ -3,6 +3,7 @@
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { useId, useMemo, useState } from "react";
+import { PhoneFold } from "./components/PhoneFold";
 import {
   ArrowUpRight,
   Box,
@@ -421,6 +422,8 @@ export default function PricingPage() {
               <p className="lede">{t.catalogSubtitle}</p>
             </Reveal>
 
+            {/* Phones: the full rate tables fold away; the explorer above already shows each starting price. */}
+            <PhoneFold className="phone-fold--catalog" title={lang === "ar" ? "عرض جميع الأسعار المنشورة" : "Show all published rates"}>
             <div className="pp-catalog-grid">
               {PRICING_DISCIPLINES.map((cfg) => {
                 const group = findGroup(cfg.id);
@@ -476,6 +479,7 @@ export default function PricingPage() {
                 );
               })}
             </div>
+            </PhoneFold>
 
             {/* Hardware Specification Card */}
             <div className="pp-hardware-wrap">

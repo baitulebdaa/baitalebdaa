@@ -2,7 +2,7 @@
 
 import { formatPhone, whatsappLink } from "./data/business";
 import { useState } from "react";
-import { ArrowUpRight, Clock, Mail, MapPin, Phone, Whatsapp } from "./components/icons";
+import { ArrowUpRight, Clock, Mail, MapPin, Phone, Whatsapp, WhatsappLogo } from "./components/icons";
 import { useBusiness, useI18n } from "./i18n/I18nProvider";
 import { Header, Footer, Reveal, PhotoHero } from "./components/Shared";
 import { PageFaq } from "./components/PageFaq";
@@ -44,11 +44,11 @@ export default function ContactPage() {
           lead={ui.intro}
           actions={
             <>
-              <a className="slp-btn slp-btn--solid" href={waHref} target="_blank" rel="noopener noreferrer">
-                {dict.nav.startProject} <ArrowUpRight size={15} />
-              </a>
-              <a className="slp-btn" href="#contact-form">
+              <a className="slp-btn slp-btn--solid" href="#contact-form">
                 {ui.sendMessage} <ArrowUpRight size={15} />
+              </a>
+              <a className="slp-btn" href={waHref} target="_blank" rel="noopener noreferrer">
+                <WhatsappLogo size={16} /> {dict.hero.secondaryCta}
               </a>
             </>
           }

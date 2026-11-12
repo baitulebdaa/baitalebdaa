@@ -11531,3 +11531,302 @@ input.hp-field,
 @media (max-width: 980px) {
   html[data-signed-in] .mobile-bottom-nav .show-signed-in span:empty::before { content: var(--bae-nav-name, var(--bae-name)); }
 }
+
+/* 12 Nov 2026 (owner, audit): on phones Ask Ali is a 48px round chat icon instead of the
+   "Ask Ali" pill, which covered text, buttons and form fields. The name stays for screen
+   readers (aria-label) and on desktop. */
+@media (max-width: 980px) {
+  .ask-ai-launcher,
+  [dir="rtl"] .ask-ai-launcher {
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    justify-content: center;
+    border-radius: 50%;
+  }
+  .ask-ai-launcher svg { width: 20px; height: 20px; }
+  .ask-ai-launcher__label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .ask-ai-root { right: 14px; }
+  [dir="rtl"] .ask-ai-root { right: auto; left: 14px; }
+}
+
+/* ==========================================================================
+   Audit fixes (12 Nov 2026): tap targets and smallest text
+   ========================================================================== */
+/* 1. Phone menu button: 44x44 touch area (was 37x27); the icon stays the same size. */
+@media (max-width: 980px) {
+  .menu-button {
+    min-width: 44px;
+    min-height: 44px;
+    justify-content: center;
+    margin-inline-end: -6px;
+  }
+}
+
+/* 2. Homepage slider arrows: 44x44 touch area (were 26-30px); the arrows look the same. */
+.arrow-pair button {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.arrow-pair { gap: 0; }
+
+/* 6. No label below 12px: pricing card labels, chips, badges and footer headings. */
+.pp-explorer-card__badge-sub,
+.pp-explorer-card__badge-unit,
+.pp-explorer-card__kicker,
+.pp-catalog-card__kicker,
+.pp-project-card__type,
+.pp-project-card__loc,
+.est-result__badge,
+.factory-live-badge,
+.project-grid-badge,
+.pd-similar__label,
+.slp-scope__num,
+.ph-chip,
+.footer-col-title,
+.footer-label,
+.footer-email-label {
+  font-size: 0.75rem;
+}
+.hero__badge { font-size: 0.75rem; }
+@media (max-width: 700px) {
+  .hero__badge { font-size: 0.75rem; letter-spacing: 0.06em; padding: 6px 12px 6px 10px; }
+}
+/* ...and the unnamed labels inside these blocks (slide numbers, sector tab numbers, the stats
+   band, the indicative price label, numbered "why" items, About contact card labels). */
+.hero__progress span,
+.sector-tabs button span,
+.slp-hero__price span,
+.slp-band__stat span,
+.slp-why__item > span,
+.pd-why__item > span,
+.cp-card > span {
+  font-size: 0.75rem;
+}
+/* Phone slider arrows: a wider first column so each arrow gets a 44x44 touch area. */
+@media (max-width: 700px) {
+  .hero__summary { grid-template-columns: 92px 1fr; }
+}
+.pd-services__card > span { font-size: 0.75rem; }
+
+/* ==========================================================================
+   Phones (12 Nov 2026, audit): long card lists swipe sideways instead of stacking, which
+   made Pricing about 32 screens tall. Every card stays on the page (and in the HTML for
+   search engines); the next card peeks in at the edge so people know to swipe.
+   ========================================================================== */
+@media (max-width: 700px) {
+  .pp-explorer-grid,
+  .pp-catalog-grid,
+  .slp-blog-grid,
+  .latest-news-section .media-grid,
+  .product-grid,
+  .process-timeline {
+    display: flex !important;
+    flex-wrap: nowrap;
+    gap: 14px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 20px;
+    margin-inline: -20px;
+    padding: 4px 20px 12px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .pp-explorer-grid::-webkit-scrollbar,
+  .pp-catalog-grid::-webkit-scrollbar,
+  .slp-blog-grid::-webkit-scrollbar,
+  .latest-news-section .media-grid::-webkit-scrollbar,
+  .product-grid::-webkit-scrollbar,
+  .process-timeline::-webkit-scrollbar { display: none; }
+
+  .pp-explorer-grid > *,
+  .pp-catalog-grid > *,
+  .slp-blog-grid > *,
+  .latest-news-section .media-grid > *,
+  .product-grid > *,
+  .process-timeline > * {
+    flex: 0 0 82%;
+    min-width: 0;
+    scroll-snap-align: start;
+    /* Cards off to the side would otherwise wait for their fade-in until swiped to. */
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (max-width: 700px) {
+  /* Anchor screen-reader-only captions (position: absolute) inside each card, or they escape
+     the swipe row and make the whole page scroll sideways. */
+  .pp-explorer-grid > *,
+  .pp-catalog-grid > *,
+  .slp-blog-grid > *,
+  .latest-news-section .media-grid > *,
+  .product-grid > *,
+  .process-timeline > * { position: relative; }
+}
+
+/* ==========================================================================
+   Audit (12 Nov 2026): text contrast to WCAG AA (4.5:1 for body text)
+   ========================================================================== */
+:root { --muted: #5f5d58; }                 /* was #6b6963: 4.49:1 on the beige sections */
+.faq-answer, .faq-answer p { color: #5f5d58; } /* was #716f69: 4.41:1 */
+.sector-tabs button { color: #6b6963; }     /* unselected sector tabs: was #96938c (2.5:1) */
+.sector-tabs button span { color: #5f5d58; } /* tab numbers: was #8a8780 (2.9:1) */
+/* Desktop quick-contact WhatsApp pill: dark text on the WhatsApp green (white was 2:1). */
+.slp-sticky-sidebar__btn--whatsapp,
+.slp-sticky-sidebar__btn--whatsapp:hover { color: #0b2a1a; }
+
+/* Link to the About page from the "why" sections (12 Nov 2026, audit). */
+.sv-about-link { margin: 18px 0 0; }
+.sv-about-link a { display: inline-flex; align-items: center; gap: 6px; color: #1f4a3d; font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
+
+/* ==========================================================================
+   Phones (12 Nov 2026, page length to 9.5): more card grids swipe sideways, same pattern as
+   the rows above. Our Services keeps its full tile grid (browsing all services is its job).
+   ========================================================================== */
+@media (max-width: 700px) {
+  .slp-gallery-grid,
+  .next-steps__list,
+  .slp-why__grid,
+  .slp-pilot-projects__grid,
+  .est-scopes,
+  .pp-principles-grid,
+  .pp-factors-grid,
+  .pp-projects-grid,
+  .pp-timeline-grid,
+  .services-directory .services-grid-visual,
+  .project-grid-home,
+  .factory-feature-grid {
+    display: flex !important;
+    flex-wrap: nowrap;
+    gap: 14px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 20px;
+    margin-inline: -20px;
+    padding: 4px 20px 12px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .slp-gallery-grid::-webkit-scrollbar,
+  .next-steps__list::-webkit-scrollbar,
+  .slp-why__grid::-webkit-scrollbar,
+  .slp-pilot-projects__grid::-webkit-scrollbar,
+  .est-scopes::-webkit-scrollbar,
+  .pp-principles-grid::-webkit-scrollbar,
+  .pp-factors-grid::-webkit-scrollbar,
+  .pp-projects-grid::-webkit-scrollbar,
+  .pp-timeline-grid::-webkit-scrollbar,
+  .services-directory .services-grid-visual::-webkit-scrollbar,
+  .project-grid-home::-webkit-scrollbar,
+  .factory-feature-grid::-webkit-scrollbar { display: none; }
+
+  .slp-gallery-grid > *,
+  .next-steps__list > *,
+  .slp-why__grid > *,
+  .slp-pilot-projects__grid > *,
+  .pp-principles-grid > *,
+  .pp-factors-grid > *,
+  .pp-projects-grid > *,
+  .pp-timeline-grid > *,
+  .services-directory .services-grid-visual > *,
+  .project-grid-home > *,
+  .factory-feature-grid > * {
+    flex: 0 0 82%;
+    min-width: 0;
+    position: relative;
+    scroll-snap-align: start;
+    opacity: 1;
+    transform: none;
+    grid-column: auto !important;
+  }
+  /* Estimator scope choices are small buttons: show two and a half at a time. */
+  .est-scopes > * {
+    flex: 0 0 auto;
+    min-width: 0;
+    position: relative;
+    scroll-snap-align: start;
+  }
+
+  /* FAQ rows: less empty space around each question (answers unchanged). */
+  .faq-question { min-height: 0; padding: 16px 18px 16px 18px; gap: 14px; }
+  .faq-answer p { padding: 0 18px 20px; }
+}
+
+/* Phones (12 Nov 2026, page length): link pills on one swipeable line, no duplicate Ask Ali card
+   beside FAQs (the Ask Ali button is always on screen), the Our Services guide and emirate
+   lists as swipe rows, and shorter photos on service tiles and the homepage sector picture. */
+@media (max-width: 700px) {
+  .slp-links-pills,
+  .sv-group__list,
+  .sv-areas__grid {
+    display: flex !important;
+    flex-wrap: nowrap;
+    gap: 10px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+    margin-inline: -20px;
+    padding: 4px 20px 10px;
+    scrollbar-width: none;
+  }
+  .slp-links-pills::-webkit-scrollbar,
+  .sv-group__list::-webkit-scrollbar,
+  .sv-areas__grid::-webkit-scrollbar { display: none; }
+  .slp-links-pills > * { flex: 0 0 auto; white-space: nowrap; scroll-snap-align: start; }
+  .sv-group__list > *,
+  .sv-areas__grid > * { flex: 0 0 82%; min-width: 0; scroll-snap-align: start; }
+  .sv-areas__grid > * { padding: 16px; border: 1px solid rgba(17, 17, 15, 0.1); border-radius: 12px; }
+  .sv-group { padding: 22px 0; gap: 14px; }
+
+  .faq-split__ask-card { display: none; }
+
+  .service-tile__image { aspect-ratio: 4 / 3; }
+  .sectors__image { height: 70vw; max-height: 340px; }
+  .challenges__image { aspect-ratio: 16 / 9; }
+}
+
+/* Tap-to-expand on phones (src/components/PhoneFold.jsx, 12 Nov 2026). Larger screens: always open. */
+.phone-fold__toggle { display: none; }
+@media (max-width: 700px) {
+  .phone-fold__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    min-height: 48px;
+    margin: 6px 0 12px;
+    padding: 12px 16px;
+    border: 1px solid rgba(17, 17, 15, 0.14);
+    border-radius: 12px;
+    background: #fff;
+    color: var(--ink);
+    font: inherit;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-align: start;
+    cursor: pointer;
+  }
+  .phone-fold__toggle svg { flex: none; color: #1f4a3d; transition: transform 0.2s; }
+  .phone-fold.is-open .phone-fold__toggle svg { transform: rotate(180deg); }
+  .phone-fold:not(.is-open) .phone-fold__body { display: none; }
+  .phone-fold--estimator .phone-fold__toggle { background: #1f4a3d; border-color: #1f4a3d; color: #fff; }
+  .phone-fold--estimator .phone-fold__toggle svg { color: #fff; }
+  .phone-fold--estimator.shell { margin-block: 8px 24px; }
+}
+@media (max-width: 700px) {
+  .phone-fold--estimator .phone-fold__toggle { width: calc(100% - 40px); margin: 8px auto 24px; }
+}

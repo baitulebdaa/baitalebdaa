@@ -1,3 +1,4 @@
+import { BreadcrumbSchema } from "../../../components/BreadcrumbSchema";
 import OurServices from "../../../OurServices";
 import { dictionaries } from "../../../i18n/dictionaries";
 import { buildPageMetadata } from "../../../lib/page-metadata";
@@ -75,6 +76,7 @@ export default async function OurServicesPage({ params }) {
   return (
     <>
       <PageFaqSchema lang={lang} faqKey="services" />
+      <BreadcrumbSchema lang={lang} path="our-services" title={(dictionaries[lang] || dictionaries.en).ourServicesPage.navTitle} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: schema }} />
       <OurServices guide={guide} />
     </>

@@ -2,7 +2,12 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { ArrowUpRight, Check } from "./components/icons";
+import dynamic from "next/dynamic";
+import { track } from "./lib/analytics";
+
+// The quote form loads only when someone opens it.
+const QuoteModal = dynamic(() => import("./components/QuoteModal").then((m) => m.QuoteModal), { ssr: false });
+import { ArrowUpRight, Check, WhatsappLogo } from "./components/icons";
 import { useBusiness, useI18n } from "./i18n/I18nProvider";
 import { Header, Footer, Reveal, PhotoHero } from "./components/Shared";
 import { PageFaq } from "./components/PageFaq";
@@ -20,6 +25,7 @@ export default function Process() {
   const { lang, dict } = useI18n();
   const business = useBusiness();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [quoteOpen, setQuoteOpen] = useState(false);
 
   const t = dict.ourProcessPage;
   const ui = dict.processPageLayout;
@@ -44,11 +50,11 @@ export default function Process() {
           note={ui.intro2}
           actions={
             <>
-              <a className="slp-btn slp-btn--solid" href={waHref} target="_blank" rel="noopener noreferrer">
-                {dict.nav.startProject} <ArrowUpRight size={15} />
-              </a>
-              <a className="slp-btn" href={`/${lang}/pricing`}>
-                {ui.viewPricing} <ArrowUpRight size={15} />
+              <button type="button" className="slp-btn slp-btn--solid" onClick={() => { track("cta_click", { cta: "quote", cta_location: "process-hero" }); setQuoteOpen(true); }}>
+                {dict.hero.primaryCta} <ArrowUpRight size={15} />
+              </button>
+              <a className="slp-btn" href={waHref} target="_blank" rel="noopener noreferrer">
+                <WhatsappLogo size={16} /> {dict.hero.secondaryCta}
               </a>
             </>
           }
@@ -159,6 +165,7 @@ export default function Process() {
                 </Reveal>
               ))}
             </div>
+            <p className="sv-about-link"><a href={`/${lang}/about`}>{dict.nav.aboutLink} <ArrowUpRight size={14} /></a></p>
           </div>
         </section>
 
@@ -195,6 +202,7 @@ export default function Process() {
         <PageFaq faqKey="process" />
       </main>
       <Footer />
+      {quoteOpen && <QuoteModal open onClose={() => setQuoteOpen(false)} source="process-hero" />}
     </>
   );
 }

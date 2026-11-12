@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { ArrowLeft, ArrowRight, ArrowUpRight, Check } from "./components/icons";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Check, WhatsappLogo } from "./components/icons";
 import { useBusiness, useI18n } from "./i18n/I18nProvider";
 import { Header, Footer, Reveal, PhotoHero, ProcessTimeline, FaqSplit } from "./components/Shared";
 import { QuoteModal } from "./components/QuoteModal";
@@ -86,12 +86,12 @@ export default function ProjectDetail({ slug }) {
           lead={paragraphs[0]}
           actions={
             <>
-              <a className="slp-btn slp-btn--solid" href={waHref} target="_blank" rel="noopener noreferrer">
-                {dict.nav.startProject} <ArrowUpRight size={15} />
-              </a>
-              <button type="button" className="slp-btn" onClick={() => setQuoteOpen(true)}>
-                {dict.nav.getFreeQuote} <ArrowUpRight size={15} />
+              <button type="button" className="slp-btn slp-btn--solid" onClick={() => setQuoteOpen(true)}>
+                {dict.hero.primaryCta} <ArrowUpRight size={15} />
               </button>
+              <a className="slp-btn" href={waHref} target="_blank" rel="noopener noreferrer">
+                <WhatsappLogo size={16} /> {dict.hero.secondaryCta}
+              </a>
             </>
           }
           followClassName="pd-follow"
@@ -247,12 +247,12 @@ export default function ProjectDetail({ slug }) {
           <Reveal className="slp-cta-card">
             <h2>{lang === "ar" ? "أعجبك هذا المشروع؟ لنبدأ مشروعك" : "Like what you see? Let's start your project"}</h2>
             <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-              <a className="slp-btn slp-btn--light" href={waHref} target="_blank" rel="noopener noreferrer">
-                {dict.nav.startProject} <ArrowUpRight size={15} />
-              </a>
               <button type="button" className="slp-btn slp-btn--light" onClick={() => setQuoteOpen(true)}>
-                {dict.nav.getFreeQuote} <ArrowUpRight size={15} />
+                {dict.hero.primaryCta} <ArrowUpRight size={15} />
               </button>
+              <a className="slp-btn slp-btn--light" href={waHref} target="_blank" rel="noopener noreferrer">
+                <WhatsappLogo size={16} /> {dict.hero.secondaryCta}
+              </a>
             </div>
           </Reveal>
         </section>

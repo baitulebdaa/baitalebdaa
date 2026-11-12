@@ -1,8 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
+import { track } from "./lib/analytics";
+
+// The quote form loads only when someone opens it.
+const QuoteModal = dynamic(() => import("./components/QuoteModal").then((m) => m.QuoteModal), { ssr: false });
 import { useBusiness, useI18n } from "./i18n/I18nProvider";
-import { ArrowUpRight, Check } from "./components/icons";
+import { ArrowUpRight, Check, WhatsappLogo } from "./components/icons";
 import { Header, Footer, Reveal, PhotoHero } from "./components/Shared";
 import { ServiceTileGrid } from "./components/ServiceTiles";
 import { PageFaq } from "./components/PageFaq";
@@ -13,6 +18,7 @@ export default function OurServices({ guide }) {
   const { lang, dict } = useI18n();
   const business = useBusiness();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [quoteOpen, setQuoteOpen] = useState(false);
 
   const t = dict.ourServicesPage;
   const ui = dict.servicesPageLayout;
@@ -32,11 +38,11 @@ export default function OurServices({ guide }) {
           note={ui.intro2}
           actions={
             <>
-              <a className="slp-btn slp-btn--solid" href={`https://wa.me/${business.whatsapp}?text=${encodeURIComponent(ui.whatsappMessage)}`} target="_blank" rel="noopener noreferrer">
-                {dict.nav.startProject} <ArrowUpRight size={15} />
-              </a>
-              <a className="slp-btn" href="#all-services">
-                {ui.browse} <ArrowUpRight size={15} />
+              <button type="button" className="slp-btn slp-btn--solid" onClick={() => { track("cta_click", { cta: "quote", cta_location: "services-hero" }); setQuoteOpen(true); }}>
+                {dict.hero.primaryCta} <ArrowUpRight size={15} />
+              </button>
+              <a className="slp-btn" href={`https://wa.me/${business.whatsapp}?text=${encodeURIComponent(ui.whatsappMessage)}`} target="_blank" rel="noopener noreferrer">
+                <WhatsappLogo size={16} /> {dict.hero.secondaryCta}
               </a>
             </>
           }
@@ -111,6 +117,7 @@ export default function OurServices({ guide }) {
                 <Reveal className="sv-head">
                   <p className="micro">{ui.whyKicker}</p>
                   <h2 id="sv-why-title" className="sv-title">{ui.whyTitle}</h2>
+                  <p className="sv-about-link"><a href={`/${lang}/about`}>{dict.nav.aboutLink} <ArrowUpRight size={14} /></a></p>
                 </Reveal>
                 <ul className="sv-why__list">
                   {guide.why.map((fact) => (
@@ -152,6 +159,7 @@ export default function OurServices({ guide }) {
 
       </main>
       <Footer />
+      {quoteOpen && <QuoteModal open onClose={() => setQuoteOpen(false)} source="services-hero" />}
     </>
   );
 }

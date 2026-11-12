@@ -1,3 +1,4 @@
+import { serviceHeroPhoto } from "../../../../data/service-photos";
 import { notFound } from "next/navigation";
 import {
   getEmirateAuthority,
@@ -14,7 +15,8 @@ import {
 import ServiceLocationPage from "../../../../ServiceLocationPage";
 import { getPilotContent, pilotMetaDescription } from "../../../../data/pilot-pages";
 import { OFFICIAL_SOURCES, SOURCES_REVIEWED_LABEL } from "../../../../data/official-sources";
-import { localEvidence } from "../../../../data/local-evidence";
+import { emirateFaqs, localEvidence } from "../../../../data/local-evidence";
+import { priceText, serviceStartingItem } from "../../../../lib/pricing";
 import { dictionaries } from "../../../../i18n/dictionaries";
 
 // Local evidence (data/local-evidence.js) for the indexed emirate pages that have no pilot copy
@@ -25,8 +27,19 @@ function localFor(lang, row, location, hasPilot) {
   const local = localEvidence(lang, row.serviceSlug, row.emirate);
   if (!local) return null;
   const projects = dictionaries[lang].projectDetailPage.projects;
+  // Emirate FAQ (12 Nov 2026): answered from the same verified facts as the block above.
+  const service = getService(row.serviceSlug);
+  const serviceName = lang === "ar" ? (service?.ar || "").replace(/^شركةs+/, "") : service?.en || "";
+  const startingItem = serviceStartingItem(row.serviceSlug);
+  const faqs = emirateFaqs(lang, row.serviceSlug, row.emirate, {
+    serviceName,
+    emirateName: getEmirateName(lang, row.emirate),
+    price: startingItem ? priceText(startingItem.id, lang) : null,
+    projectTitle: (slug) => projects[slug]?.title || slug,
+  });
   return {
     ...local,
+    faqs,
     sources: local.sources.map((id) => ({ id, name: OFFICIAL_SOURCES[id].name[lang], url: OFFICIAL_SOURCES[id].url })),
     sourcesReviewed: SOURCES_REVIEWED_LABEL[lang],
     projects: local.projects.map((slug) => {
@@ -66,7 +79,8 @@ export async function generateMetadata({ params }) {
   const otherUrl = row.hreflang;
   const shouldIndex = isPageIndexable(row);
   const safeDescription = pilotMetaDescription(lang, service, location) || getSafeMetaDescription(row, lang);
-  const socialImage = "/assets/bait-al-ebdaa-luxury-interior-design-dubai-og.jpg";
+  // 12 Nov 2026 (audit): share the page's own hero photo, not one image for all 1,020 pages.
+  const socialImage = serviceHeroPhoto(service, location).src;
 
   return {
     // { absolute } bypasses the root layout's "%s | Bait Al Ebdaa" template — the
@@ -89,7 +103,7 @@ export async function generateMetadata({ params }) {
       siteName: "Bait Al Ebdaa",
       locale: lang === "ar" ? "ar_AE" : "en_AE",
       type: "website",
-      images: [{ url: socialImage, width: 1200, height: 630, alt: row.h1 }],
+      images: [{ url: socialImage, alt: row.h1 }],
     },
     twitter: {
       card: "summary_large_image",

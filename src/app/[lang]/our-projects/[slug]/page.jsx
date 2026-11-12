@@ -25,8 +25,16 @@ export async function generateMetadata({ params }) {
     ? (lang === "ar" ? "مشروع تجهيز مكاتب في مدينة دبي الأكاديمية | بيت الإبداع" : "Office Fit-Out Project, Dubai Academic City | Bait Al Ebdaa")
     : `${project.title} | Bait Al Ebdaa`;
   const description = project.metaDescription || project.description.split("\n\n")[0];
+  const base = buildPageMetadata({ lang, path: `our-projects/${slug}`, title, description });
+  // 12 Nov 2026 (audit): share the project's own first photo instead of the site-wide image.
+  const photo = project.images?.[0];
+  const photoSrc = typeof photo === "string" ? photo : photo?.src;
   return {
-    ...buildPageMetadata({ lang, path: `our-projects/${slug}`, title, description }),
+    ...base,
+    ...(photoSrc ? {
+      openGraph: { ...base.openGraph, images: [{ url: photoSrc, alt: project.title }] },
+      twitter: { ...base.twitter, images: [photoSrc] },
+    } : {}),
     robots: REAL_PROJECT_SLUGS.has(slug) ? { index: true, follow: true } : { index: false, follow: true },
   };
 }

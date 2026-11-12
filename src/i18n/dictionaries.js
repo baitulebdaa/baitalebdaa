@@ -14,6 +14,10 @@ export const dictionaries = {
       // 12 Nov 2026: the phone bottom navigation's tab; "My account" did not fit on one line.
       accountShort: "Account",
       signIn: "Sign in",
+      // 12 Nov 2026 (audit): in-content link to the About page.
+      aboutLink: "More about our studio",
+      // Phone bottom navigation tab when signed out (fits one line).
+      signInShort: "Sign in",
       navigate: "Navigate",
       studio: "Studio",
       studioLocation: "Ajman, United Arab Emirates\nServing all seven emirates",
@@ -500,7 +504,7 @@ export const dictionaries = {
     aboutPage: {
       navTitle: "About Us",
       pageTitle: "About Bait Al Ebdaa: Interior Design & Joinery",
-      metaTitle: "About Us: Interior Design & Joinery Studio | Bait Al Ebdaa",
+      metaTitle: "About Bait Al Ebdaa: Interior Design & Joinery Studio",
       metaDescription: "Bait Al Ebdaa is a turnkey interior design, fit-out and joinery company in Ajman, serving all seven emirates with its own in-house manufacturing.",
       intro: "Bait Al Ebdaa is a turnkey interior design, fit-out and architectural joinery company serving all seven emirates of the UAE. We deliver villa and office interiors from initial concept through to final handover, with design, approvals, joinery manufacturing and installation coordinated by one accountable team rather than a chain of separate subcontractors.",
       sections: {
@@ -747,7 +751,7 @@ export const dictionaries = {
       pageTitle: "Interior Design & Fit-Out Prices in Dubai",
       metaTitle: "Interior Design & Fit-Out Prices Dubai | Bait Al Ebdaa",
       metaDescription: "Indicative fit-out, interior design, villa renovation and joinery costs in Dubai, plus starting prices for wardrobes, kitchens and Somfy curtains.",
-      heroBody: "See indicative fit-out cost, joinery cost and interior design cost guidance for villas, offices and custom furniture in Dubai and Abu Dhabi. Every project is individually measured, specified and quoted.",
+      heroBody: "See indicative fit-out cost, joinery cost and interior design cost guidance for villas, offices and custom furniture in all seven emirates of the UAE. Every project is individually measured, specified and quoted.",
       heroPrimaryCta: "Get My Project Estimate",
       heroSecondaryCta: "Discuss on WhatsApp",
       whatsappMessage: "Hello! I viewed your pricing page and would like an estimate for my project.",
@@ -1070,7 +1074,7 @@ export const dictionaries = {
       ],
 
       finalCtaHeading: "Know the Space. Let's Price the Scope.",
-      finalCtaBody: "Book a complimentary site survey across Dubai, Abu Dhabi and the UAE, or discuss your architectural drawings with our estimating engineers on WhatsApp.",
+      finalCtaBody: "Request a free site survey anywhere in the seven emirates, or discuss your drawings with our team on WhatsApp.",
       finalCtaSurvey: "Request Free Site Survey",
       finalCtaWhatsApp: "Discuss on WhatsApp",
       finalCtaCall: "Call Studio Directly"
@@ -1329,7 +1333,7 @@ export const dictionaries = {
     },
     ourProjectsPage: {
       metaTitle: "Interior & Fit-Out Projects in Dubai | Bait Al Ebdaa",
-      metaDescription: "Browse Bait Al Ebdaa's interior design and fit-out projects in Dubai and Abu Dhabi, from first concept to final handover.",
+      metaDescription: "Completed interior design, fit-out and joinery projects by Bait Al Ebdaa in the UAE: villas, a penthouse and offices, with size, year and scope.",
       home: "Home",
       ourProjects: "Our Projects",
       explorePortfolio: "Explore Our Project Portfolio",
@@ -1549,7 +1553,7 @@ export const dictionaries = {
     },
     mediaPage: {
       metaTitle: "Interior Design & Fit-Out Guides, UAE | Bait Al Ebdaa",
-      metaDescription: "Practical guides on luxury fit-out, custom joinery, motorized curtains and furniture care in Dubai and Abu Dhabi, from Bait Al Ebdaa's own teams.",
+      metaDescription: "Practical guides and cost guides on fit-out, custom joinery, motorized curtains and furniture care in the UAE, from Bait Al Ebdaa's own teams.",
       hubTitle: "Interior Design & Fit-Out Guides",
       hubIntro: "Practical guides from our design, fit-out and joinery teams: what a luxury fit-out in Dubai involves and costs, how custom joinery is made in our Ajman factory, how motorized curtains work, and how to care for furniture in the UAE climate. Our cost guides explain, from our published prices, what interior design fees, villa renovations, kitchen cabinets and fitted wardrobes cost in Dubai.",
       // 11 Nov 2026 (owner: "professional, no extra space"): a short hero line, then two sections.
@@ -2104,7 +2108,7 @@ export const dictionaries = {
       ]
     },
     ourServicesPage: {
-      metaTitle: "Interior Design, Fit-Out & Joinery Services | Bait Al Ebdaa",
+      metaTitle: "Interior Design, Fit-Out & Joinery | Bait Al Ebdaa",
       metaDescription: "Explore Bait Al Ebdaa's interior design, turnkey fit-out and custom joinery services across the UAE, from concept to handover.",
       navTitle: "Our Services",
       pageTitle: "Interior Design, Fit-Out & Joinery Services",
@@ -2126,7 +2130,7 @@ export const dictionaries = {
       ]
     },
     ourProcessPage: {
-      metaTitle: "Our Design & Fit-Out Process, Step by Step | Bait Al Ebdaa",
+      metaTitle: "Design & Fit-Out Process, Step by Step | Bait Al Ebdaa",
       metaDescription: "See how Bait Al Ebdaa delivers projects from 3D design and municipality approvals to in-house manufacturing and handover.",
       navTitle: "Our Process",
       pageTitle: "Our Interior Design & Fit-Out Process",
@@ -2184,6 +2188,8 @@ export const dictionaries = {
       account: "حسابي",
       accountShort: "حسابي",
       signIn: "تسجيل الدخول",
+      aboutLink: "المزيد عن الاستوديو",
+      signInShort: "دخول",
       navigate: "تصفح",
       studio: "الاستوديو",
       studioLocation: "عجمان، الإمارات العربية المتحدة\nنخدم جميع الإمارات السبع",
@@ -2804,7 +2810,7 @@ export const dictionaries = {
     contactPage: {
       navTitle: "اتصل بنا",
       pageTitle: "تواصل مع بيت الإبداع بخصوص مشروعك",
-      metaTitle: "تواصل معنا: معاينة مجانية في جميع أنحاء الإمارات | بيت الإبداع",
+      metaTitle: "تواصل معنا: معاينة مجانية في الإمارات | بيت الإبداع",
       metaDescription: "تواصل مع بيت الإبداع لخدمات التصميم الداخلي والتشطيبات الكاملة والنجارة في جميع أنحاء الإمارات — اطلب عرض سعر، أو ناقش التوريد، أو تقدم لوظيفة."
     },
     projectsPageLayout: {
@@ -2907,7 +2913,7 @@ export const dictionaries = {
       pageTitle: "أسعار التصميم الداخلي والتشطيب في دبي",
       metaTitle: "أسعار التصميم الداخلي والتشطيب في دبي | بيت الإبداع",
       metaDescription: "تكلفة تقديرية للتجهيز الشامل والتصميم الداخلي وتجديد الفلل والنجارة في دبي — إضافة إلى أسعار ابتدائية للخزائن وخزائن المطبخ وستائر سومفي.",
-      heroBody: "اطّلع على تكلفة التجهيز الشامل وتكلفة النجارة وتكلفة التصميم الداخلي للفلل والمكاتب والأثاث المخصص في دبي وأبوظبي. كل مشروع يُقاس ويُحدد نطاقه ويُسعّر بشكل فردي.",
+      heroBody: "اطّلع على تكلفة التجهيز الشامل وتكلفة النجارة وتكلفة التصميم الداخلي للفلل والمكاتب والأثاث المخصص في الإمارات السبع. كل مشروع يُقاس ويُحدد نطاقه ويُسعّر بشكل فردي.",
       heroPrimaryCta: "احصل على تقدير مشروعي",
       heroSecondaryCta: "تحدث عبر واتساب",
       whatsappMessage: "مرحباً! اطلعت على صفحة الأسعار لديكم وأرغب بالحصول على تقدير لمشروعي.",
@@ -3230,7 +3236,7 @@ export const dictionaries = {
       ],
 
       finalCtaHeading: "تعرف على المساحة؟ دعنا نسعّر النطاق بدقة.",
-      finalCtaBody: "احجز معاينة موقع مجانية عبر دبي وأبوظبي والإمارات، أو ناقش مخططاتك المعمارية مع مهندسي التقدير لدينا مباشرة عبر واتساب.",
+      finalCtaBody: "اطلب معاينة مجانية للموقع في أي من الإمارات السبع، أو ناقش مخططاتك مع فريقنا عبر واتساب.",
       finalCtaSurvey: "طلب معاينة مجانية للموقع",
       finalCtaWhatsApp: "محادثة عبر واتساب",
       finalCtaCall: "اتصال مباشر بالاستوديو"
@@ -3489,7 +3495,7 @@ export const dictionaries = {
     },
     ourProjectsPage: {
       metaTitle: "مشاريع التصميم الداخلي والتجهيز في دبي | بيت الإبداع",
-      metaDescription: "تصفح مشاريع بيت الإبداع في التصميم الداخلي والتجهيز في دبي وأبوظبي، من المفهوم الأول حتى التسليم النهائي.",
+      metaDescription: "مشاريع تصميم داخلي وتجهيز ونجارة منجزة لبيت الإبداع في الإمارات: فلل وبنتهاوس ومكاتب، مع المساحة والسنة ونطاق كل مشروع.",
       home: "الرئيسية",
       ourProjects: "مشاريعنا",
       explorePortfolio: "استكشف محفظة مشاريعنا",
@@ -3704,7 +3710,7 @@ export const dictionaries = {
     },
     mediaPage: {
       metaTitle: "أدلة التصميم الداخلي والتجهيز في الإمارات | بيت الإبداع",
-      metaDescription: "أدلة عملية حول التجهيز الفاخر والنجارة المخصصة والستائر الآلية والعناية بالأثاث في دبي وأبوظبي، من فرق التصميم والنجارة في بيت الإبداع.",
+      metaDescription: "أدلة عملية وأدلة أسعار حول التجهيز والنجارة المخصصة والستائر الآلية والعناية بالأثاث في الإمارات، من فرق التصميم والنجارة في بيت الإبداع.",
       hubTitle: "أدلة التصميم الداخلي والتجهيز",
       hubIntro: "أدلة عملية من فرق التصميم والتجهيز والنجارة لدينا: ما يتضمنه التجهيز الفاخر في دبي وتكلفته، وكيف تُصنع النجارة المخصصة في مصنعنا بعجمان، وكيف تعمل الستائر الآلية، وكيف تعتني بالأثاث في مناخ الإمارات. وتشرح أدلة الأسعار، انطلاقاً من أسعارنا المنشورة، تكلفة التصميم الداخلي وتجديد الفلل وخزائن المطبخ وخزائن الملابس في دبي.",
       hubLead: "أدلة عملية من فرق التصميم والتجهيز والنجارة لدينا، وأدلة أسعار مبنية على أسعارنا المنشورة.",
