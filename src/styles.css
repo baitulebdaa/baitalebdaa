@@ -10874,3 +10874,660 @@ button.slp-btn { font: inherit; font-size: 0.78rem; cursor: pointer; }
     margin: 0 auto 22px;
   }
 }
+
+/* 11 Nov 2026 (owner): the other pages' photo tops (PhotoHero in Shared.jsx) are centred like
+   the homepage hero: breadcrumb, chip, title, lead, note, tags and buttons. The shade is even
+   instead of darker on one side, so centred text reads over any photo. */
+.ph-hero__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.ph-hero__inner > * { width: 100%; }
+.ph-crumbs,
+.ph-tags,
+.ph-actions,
+.slp-hero__more { justify-content: center; }
+.ph-hero__title,
+.ph-hero__lead,
+.ph-hero__note,
+.ph-tags { margin-inline: auto; }
+/* Owner, 11 Nov 2026: titles like "Fit Out Company in Dubai" stay on one line (the 18ch cap
+   broke them in two); only long titles wrap, into balanced lines. */
+.ph-hero__title { max-width: min(100%, 1200px); text-wrap: balance; }
+.ph-hero__lead,
+.ph-hero__note { text-wrap: pretty; }
+.ph-hero::after,
+[dir="rtl"] .ph-hero::after {
+  background:
+    radial-gradient(ellipse 72% 70% at 50% 42%, rgba(10, 14, 12, 0.5), rgba(10, 14, 12, 0.2) 75%, transparent),
+    linear-gradient(0deg, rgba(10, 14, 12, 0.75), rgba(10, 14, 12, 0.35) 55%, rgba(10, 14, 12, 0.4));
+}
+@media (max-width: 600px) {
+  .ph-actions { align-items: stretch; }
+}
+
+/* 11 Nov 2026 (owner: "show this in a managed way"): on service pages the price and the four
+   points under the photo were spread across the full width with a large gap between them,
+   ran under the floating buttons and touched the dark stats band. They now sit in one centred
+   card: price on the left, a thin divider, the points in two columns on the right. */
+.slp-page .ph-follow {
+  grid-template-columns: minmax(220px, 0.8fr) minmax(0, 2fr);
+  align-items: center;
+  gap: 0;
+  max-width: 1200px;
+  margin: clamp(28px, 3.5vw, 48px) auto clamp(36px, 4.5vw, 64px);
+  padding: clamp(24px, 3vw, 36px) clamp(22px, 3vw, 40px);
+  border: 1px solid rgba(17, 17, 15, 0.08);
+  border-radius: 22px;
+  background: #faf8f4;
+  box-shadow: 0 24px 50px -38px rgba(17, 17, 15, 0.4);
+}
+.slp-page .ph-follow > :first-child {
+  padding-inline-end: clamp(20px, 3vw, 40px);
+  border-inline-end: 1px solid rgba(17, 17, 15, 0.1);
+}
+.slp-page .ph-follow > :last-child { padding-inline-start: clamp(20px, 3vw, 40px); }
+.slp-page .ph-follow > :first-child:empty { display: none; }
+.slp-page .ph-follow:has(> :first-child:empty) { grid-template-columns: 1fr; }
+.slp-page .ph-follow:has(> :first-child:empty) > :last-child { padding-inline-start: 0; }
+.slp-page .ph-follow .slp-hero__lead { margin-bottom: 18px; font-size: 1rem; line-height: 1.65; }
+.slp-page .ph-follow .slp-hero__price span { color: #1f4a3d; font-weight: 700; }
+.slp-page .ph-follow .slp-hero__price strong { font-size: clamp(1.7rem, 2.4vw, 2.3rem); }
+.slp-page .ph-follow .slp-hero__price em { font-size: 0.86rem; }
+.slp-page .ph-follow .slp-hero__points { gap: 16px 32px; }
+.slp-page .ph-follow .slp-hero__points li { font-size: 0.95rem; line-height: 1.5; color: var(--ink); }
+.slp-page .ph-follow .slp-hero__points svg { color: #1f4a3d; }
+
+@media (max-width: 900px) {
+  .slp-page .ph-follow { grid-template-columns: 1fr; }
+  .slp-page .ph-follow > :first-child {
+    padding: 0 0 20px;
+    border-inline-end: 0;
+    border-bottom: 1px solid rgba(17, 17, 15, 0.1);
+  }
+  .slp-page .ph-follow > :last-child { padding: 20px 0 0; }
+}
+
+/* 11 Nov 2026 (owner): the inner pages' hero buttons match the homepage: the main one is a
+   white pill (deep green icons; a diagonal arrow sits in a round green chip), the second a
+   glass pill. Was a gold gradient in a 14px-rounded box. */
+.ph-hero .slp-btn { border-radius: 999px; }
+.ph-hero .slp-btn--solid,
+.ph-hero .slp-btn--solid:hover {
+  border-color: transparent;
+  color: #11110f;
+  background: #fff;
+  box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.6);
+}
+.ph-hero .slp-btn--solid:hover { background: #f4f1ea; }
+.ph-hero .slp-btn--solid svg { color: #1f4a3d; }
+.ph-hero .slp-btn--solid:has(svg[style*="rotate"]) { gap: 14px; padding-inline: 26px 7px; }
+.ph-hero .slp-btn--solid svg[style*="rotate"] {
+  width: 38px;
+  height: 38px;
+  padding: 11px;
+  flex: none;
+  border-radius: 50%;
+  color: #fff;
+  background: #1f4a3d;
+  transition: background 0.25s;
+}
+.ph-hero .slp-btn--solid:hover svg[style*="rotate"] { background: #2a6450; }
+
+/* ==========================================================================
+   Contact page, simple and professional (owner, 11 Nov 2026: it "looked AI-made").
+   No glowing gradient panel, heavy shadows, cards overlapping the photo, gold gradient
+   button, pill tags or joined timeline: flat white cards with thin borders, plain
+   underline tabs, sentence-case labels, one solid green action per card.
+   ========================================================================== */
+.cp-page .ph-hero__inner { padding-bottom: clamp(44px, 5vw, 72px); }
+
+.cp-hub {
+  margin-top: 0;
+  padding: clamp(40px, 5vw, 72px) 0 clamp(56px, 6vw, 88px);
+  grid-template-columns: minmax(0, 1.5fr) minmax(300px, 1fr);
+  gap: clamp(20px, 2.4vw, 32px);
+  align-items: start;
+}
+
+.cp-hub__form,
+.cp-panel {
+  padding: clamp(24px, 3vw, 40px);
+  border: 1px solid rgba(17, 17, 15, 0.1);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: none;
+  color: var(--ink);
+}
+
+.cp-hub .form-main-heading,
+.cp-panel__kicker {
+  margin: 0 0 6px;
+  font-family: var(--font-manrope), var(--font-dm-sans), sans-serif;
+  font-size: clamp(1.5rem, 2vw, 1.8rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+[dir="rtl"] .cp-hub .form-main-heading,
+[dir="rtl"] .cp-panel__kicker { font-family: inherit; letter-spacing: 0; }
+
+.cp-hub .form-heading { margin-bottom: 20px; font-size: 0.95rem; }
+
+/* Form type: plain tabs with an underline instead of a pill switch */
+.cp-hub .project-types {
+  gap: 0;
+  padding: 0;
+  border-radius: 0;
+  border-bottom: 1px solid rgba(17, 17, 15, 0.12);
+  background: none;
+}
+.cp-hub .project-types button,
+.cp-hub .project-types button:first-child,
+.cp-hub .project-types button:last-child {
+  margin-bottom: -1px;
+  padding: 12px 8px;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  font-size: 0.92rem;
+}
+.cp-hub .project-types button.is-active {
+  border-bottom-color: #1f4a3d;
+  background: none;
+  box-shadow: none;
+  color: #1f4a3d;
+}
+
+.cp-hub .ff__label {
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink);
+}
+
+.cp-hub .project-form input,
+.cp-hub .project-form select,
+.cp-hub .project-form textarea {
+  border: 1px solid rgba(17, 17, 15, 0.16);
+  border-radius: 8px;
+  background: #fff;
+}
+.cp-hub .project-form input:focus,
+.cp-hub .project-form select:focus,
+.cp-hub .project-form textarea:focus {
+  border-color: #1f4a3d;
+  box-shadow: 0 0 0 3px rgba(31, 74, 61, 0.1);
+}
+
+.cp-hub .form-section-header { letter-spacing: 0; text-transform: none; font-size: 0.95rem; }
+
+.cp-hub .submit-button,
+.cp-hub .contact-whatsapp-link { min-height: 48px; border-radius: 10px; }
+
+/* Topics: a plain line of text, not pills */
+.cp-topics__label,
+[dir="rtl"] .cp-topics__label {
+  font-size: 0.86rem;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink);
+  font-weight: 600;
+}
+.cp-topics ul { display: block; color: var(--muted); font-size: 0.9rem; line-height: 1.7; }
+.cp-topics li { display: inline; padding: 0; border-radius: 0; background: none; color: inherit; font-size: inherit; }
+.cp-topics li + li::before { content: " · "; color: rgba(17, 17, 15, 0.3); }
+
+/* Contact details: white card, compact rows, green icons */
+.cp-panel__reply { color: var(--muted); margin-bottom: 8px; }
+.cp-panel__list { flex: none; align-content: start; gap: 0; margin: 0 0 24px; }
+.cp-panel__list li { padding: 16px 0; border-bottom: 1px solid rgba(17, 17, 15, 0.08); }
+.cp-panel__icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: #eef3f0;
+  color: #1f4a3d;
+}
+.cp-panel__text small,
+[dir="rtl"] .cp-panel__text small {
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.cp-panel__text a,
+.cp-panel__text strong { color: var(--ink); font-weight: 600; }
+.cp-panel__text a:hover { color: #1f4a3d; }
+.cp-panel__text .cp-panel__sub { color: var(--muted); font-weight: 500; }
+
+.cp-panel__visit {
+  min-height: 48px;
+  border-radius: 10px;
+  background: #1f4a3d;
+  color: #fff;
+  box-shadow: none;
+}
+.cp-panel__visit:hover { transform: none; background: #163a30; }
+
+/* What happens next: four plain columns, each with a small number over a thin rule */
+.cp-next__steps::before { display: none; }
+.cp-next__step { padding-top: 18px; border-top: 1px solid rgba(17, 17, 15, 0.12); }
+.cp-next__num {
+  display: block;
+  width: auto;
+  height: auto;
+  margin-bottom: 10px;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  color: #1f4a3d;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 600px) {
+  .cp-hub { margin-top: 0; padding-top: 28px; }
+  .cp-hub__form { border-radius: 14px; }
+}
+
+/* ==========================================================================
+   Our Services: service guide, reasons and emirate links (11 Nov 2026, more content for
+   SEO). Plain and readable: text on the page background, thin rules, green accents.
+   ========================================================================== */
+.sv-guide,
+.sv-why,
+.sv-areas { padding: clamp(56px, 6vw, 96px) 0; }
+.sv-guide { background: #fff; }
+.sv-why { background: var(--paper); }
+.sv-areas { background: #fff; }
+
+.sv-head { max-width: 760px; margin-bottom: clamp(28px, 3.5vw, 48px); }
+.sv-title {
+  margin: 0 0 14px;
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(2.1rem, 3.6vw, 3.2rem);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+}
+[dir="rtl"] .sv-title { font-family: inherit; font-weight: 600; letter-spacing: 0; line-height: 1.3; }
+.sv-lede { margin: 0; color: var(--muted); font-size: 1.02rem; line-height: 1.7; }
+
+/* One row per group: its intro on the left, its services on the right */
+.sv-groups { display: grid; gap: 0; border-top: 1px solid rgba(17, 17, 15, 0.12); }
+.sv-group {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 2fr);
+  gap: clamp(20px, 4vw, 64px);
+  padding: clamp(28px, 3.5vw, 44px) 0;
+  border-bottom: 1px solid rgba(17, 17, 15, 0.12);
+}
+.sv-group__intro h3 { margin: 0 0 10px; font-size: 1.35rem; font-weight: 600; letter-spacing: -0.02em; }
+.sv-group__intro p { margin: 0; color: var(--muted); font-size: 0.95rem; line-height: 1.65; }
+
+.sv-group__list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.sv-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  height: 100%;
+  padding: 18px 20px;
+  border: 1px solid rgba(17, 17, 15, 0.1);
+  border-radius: 12px;
+  color: var(--ink);
+  transition: border-color 0.2s, background 0.2s;
+}
+.sv-item:hover { border-color: #1f4a3d; background: #f7faf8; }
+.sv-item__name { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; font-size: 1rem; }
+.sv-item__name svg { color: #1f4a3d; }
+.sv-item__summary { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+.sv-item__price { margin-top: auto; padding-top: 6px; color: #1f4a3d; font-size: 0.86rem; font-weight: 700; }
+
+.sv-pricing-link { margin: 24px 0 0; }
+.sv-pricing-link a,
+.sv-area a { color: #1f4a3d; font-weight: 600; }
+.sv-pricing-link a { display: inline-flex; align-items: center; gap: 6px; text-decoration: underline; text-underline-offset: 4px; }
+
+/* Why one team */
+.sv-why__inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: clamp(24px, 5vw, 80px); align-items: start; }
+.sv-why__inner .sv-head { margin-bottom: 0; }
+.sv-why__list { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
+.sv-why__list li {
+  display: flex;
+  gap: 12px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(17, 17, 15, 0.1);
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+.sv-why__list li:first-child { padding-top: 0; }
+.sv-why__list svg { flex: none; margin-top: 3px; color: #1f4a3d; }
+
+/* Services by emirate */
+.sv-areas__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(20px, 3vw, 40px); }
+.sv-area h3 {
+  margin: 0 0 12px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #1f4a3d;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+.sv-area ul { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.sv-area a { font-size: 0.9rem; font-weight: 500; line-height: 1.45; color: var(--ink); }
+.sv-area a:hover { color: #1f4a3d; text-decoration: underline; text-underline-offset: 3px; }
+
+@media (max-width: 980px) {
+  .sv-group,
+  .sv-why__inner { grid-template-columns: 1fr; }
+  .sv-areas__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .sv-group__list,
+  .sv-areas__grid { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   Our Projects (11 Nov 2026, more content for SEO): filter counts, card facts and opening
+   paragraph, a facts table and the services behind the projects. Same plain look as the
+   services guide (.sv-head, .sv-title, .sv-lede).
+   ========================================================================== */
+.filter-btn__count { margin-inline-start: 6px; opacity: 0.6; font-variant-numeric: tabular-nums; }
+
+.project-grid-facts {
+  margin: 8px 0 0;
+  color: #1f4a3d;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+.project-grid-summary {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.pj-glance,
+.pj-services { padding: clamp(56px, 6vw, 96px) 0; }
+.pj-glance { background: #fff; }
+.pj-services { background: var(--paper); }
+
+.pj-table-wrap { overflow-x: auto; border: 1px solid rgba(17, 17, 15, 0.1); border-radius: 12px; }
+.pj-table { width: 100%; min-width: 760px; border-collapse: collapse; font-size: 0.92rem; }
+.pj-table th,
+.pj-table td { padding: 14px 16px; text-align: start; vertical-align: top; border-bottom: 1px solid rgba(17, 17, 15, 0.08); }
+.pj-table thead th { background: #f6f4ef; color: var(--muted); font-size: 0.8rem; font-weight: 600; }
+.pj-table tbody tr:last-child > * { border-bottom: 0; }
+.pj-table tbody th { font-weight: 600; }
+.pj-table tbody th a { color: #1f4a3d; }
+.pj-table tbody th a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.pj-table td { color: var(--ink); }
+
+.pj-services__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.pj-service {
+  padding: 22px;
+  border: 1px solid rgba(17, 17, 15, 0.1);
+  border-radius: 12px;
+  background: #fff;
+}
+.pj-service h3 { margin: 0 0 12px; font-size: 1.1rem; font-weight: 700; }
+.pj-service h3 a { display: inline-flex; align-items: center; gap: 6px; color: var(--ink); }
+.pj-service h3 a:hover { color: #1f4a3d; }
+.pj-service h3 svg { color: #1f4a3d; }
+.pj-service ul { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.pj-service li a { color: var(--muted); font-size: 0.9rem; line-height: 1.45; }
+.pj-service li a:hover { color: #1f4a3d; text-decoration: underline; text-underline-offset: 3px; }
+
+@media (max-width: 980px) {
+  .pj-services__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .pj-services__grid { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   Process page (11 Nov 2026, more content for SEO): before work starts, timelines and
+   approvals, and the services delivered this way. Same plain look as .sv-head / .sv-title.
+   ========================================================================== */
+.pr-before,
+.pr-facts,
+.pr-services { padding: clamp(56px, 6vw, 96px) 0; }
+.pr-before { background: #fff; }
+.pr-facts { background: var(--paper); }
+.pr-services { background: #fff; }
+
+.pr-before__steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.pr-before__steps li { padding-top: 18px; border-top: 1px solid rgba(17, 17, 15, 0.12); }
+.pr-before__num { display: block; margin-bottom: 10px; color: #1f4a3d; font-size: 0.85rem; font-weight: 700; }
+.pr-before__steps h3 { margin: 0 0 8px; font-size: 1.1rem; font-weight: 600; }
+.pr-before__steps p { margin: 0; color: var(--muted); font-size: 0.94rem; line-height: 1.6; }
+
+.pr-facts__grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 80px); align-items: start; }
+.pr-time { display: grid; gap: 0; margin: 0; }
+.pr-time > div { display: grid; grid-template-columns: minmax(150px, 0.6fr) minmax(0, 1.4fr); gap: 16px; padding: 16px 0; border-bottom: 1px solid rgba(17, 17, 15, 0.1); }
+.pr-time > div:first-child { padding-top: 0; }
+.pr-time dt { font-weight: 700; }
+.pr-time dd { margin: 0; color: var(--muted); line-height: 1.6; }
+
+.pr-approvals {
+  padding: clamp(22px, 3vw, 32px);
+  border: 1px solid rgba(17, 17, 15, 0.1);
+  border-radius: 14px;
+  background: #fff;
+}
+.pr-approvals .sv-title { font-size: clamp(1.6rem, 2.4vw, 2.1rem); }
+.pr-approvals p { margin: 0 0 16px; color: var(--muted); line-height: 1.7; }
+.pr-approvals ul { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.pr-approvals li { display: flex; align-items: center; gap: 8px; }
+.pr-approvals svg { flex: none; color: #1f4a3d; }
+.pr-approvals a { color: #1f4a3d; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+
+.pr-services__list { display: flex; flex-wrap: wrap; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.pr-services__list a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 18px;
+  border: 1px solid rgba(17, 17, 15, 0.14);
+  border-radius: 10px;
+  color: var(--ink);
+  font-weight: 600;
+  transition: border-color 0.2s, color 0.2s;
+}
+.pr-services__list a:hover { border-color: #1f4a3d; color: #1f4a3d; }
+.pr-services__list svg { color: #1f4a3d; }
+.pr-services__list .pr-services__all { border-color: #1f4a3d; background: #1f4a3d; color: #fff; }
+.pr-services__list .pr-services__all svg { color: #fff; }
+.pr-services__list .pr-services__all:hover { background: #163a30; color: #fff; }
+
+@media (max-width: 980px) {
+  .pr-before__steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pr-facts__grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .pr-before__steps { grid-template-columns: 1fr; }
+  .pr-time > div { grid-template-columns: 1fr; gap: 4px; }
+}
+
+/* 11 Nov 2026 (owner's screenshot): the Media page's article grid had no top spacing, so the
+   first photos started right at the edge of the hero photo. */
+.media-grid-section { padding-top: clamp(40px, 5vw, 72px); }
+
+/* ==========================================================================
+   Media hub (owner, 11 Nov 2026: "professional, no extra space"). Two compact sections with
+   full rows: the featured guide as one wide card, then even rows of same-size cards.
+   ========================================================================== */
+.md-section { padding: clamp(40px, 5vw, 64px) 0; background: #fff; }
+.md-section--alt { background: var(--paper); }
+.md-section + .md-section { padding-top: clamp(40px, 5vw, 64px); }
+
+.md-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 32px;
+  margin-bottom: clamp(20px, 2.5vw, 32px);
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(17, 17, 15, 0.12);
+}
+.md-head__title {
+  margin: 0;
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(1.9rem, 3vw, 2.6rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+[dir="rtl"] .md-head__title { font-family: inherit; font-weight: 600; letter-spacing: 0; }
+.md-head__intro { max-width: 640px; margin: 0; color: var(--muted); font-size: 0.95rem; line-height: 1.6; }
+
+.md-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+  gap: clamp(16px, 2vw, 24px);
+}
+.md-card--featured + .md-grid { margin-top: clamp(16px, 2vw, 24px); }
+
+.md-card__link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid rgba(17, 17, 15, 0.1);
+  border-radius: 14px;
+  background: #fff;
+  color: var(--ink);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.md-card__link:hover { border-color: rgba(31, 74, 61, 0.5); box-shadow: 0 18px 36px -28px rgba(17, 17, 15, 0.4); }
+.md-card__image { position: relative; aspect-ratio: 3 / 2; overflow: hidden; background: #ece8e1; }
+.md-card__image img { transition: transform 0.5s ease; }
+.md-card__link:hover .md-card__image img { transform: scale(1.03); }
+.md-card__body { display: flex; flex-direction: column; flex: 1; padding: 18px 20px 20px; }
+.md-card__meta { margin: 0 0 8px; color: #1f4a3d; font-size: 0.78rem; font-weight: 600; }
+.md-card__title { margin: 0 0 8px; font-size: 1.05rem; font-weight: 600; line-height: 1.35; letter-spacing: -0.01em; }
+.md-card__desc {
+  margin: 0 0 16px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.md-card__more { display: inline-flex; align-items: center; gap: 6px; margin-top: auto; color: #1f4a3d; font-size: 0.88rem; font-weight: 700; }
+
+/* The featured guide: one wide card, photo beside the text */
+.md-card--featured .md-card__link { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); }
+.md-card--featured .md-card__image { aspect-ratio: auto; min-height: 320px; }
+.md-card--featured .md-card__body { justify-content: center; padding: clamp(24px, 3.5vw, 48px); }
+.md-card--featured .md-card__title {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(1.7rem, 2.6vw, 2.3rem);
+  font-weight: 500;
+  line-height: 1.15;
+}
+[dir="rtl"] .md-card--featured .md-card__title { font-family: inherit; font-weight: 600; }
+.md-card--featured .md-card__desc { -webkit-line-clamp: 4; font-size: 1rem; }
+.md-card--featured .md-card__more { margin-top: 4px; }
+
+.md-topics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+  gap: 20px 28px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.md-topics a { display: inline-flex; align-items: center; gap: 6px; color: var(--ink); font-weight: 700; }
+.md-topics a:hover { color: #1f4a3d; }
+.md-topics svg { color: #1f4a3d; }
+.md-topics p { margin: 6px 0 0; color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+
+@media (max-width: 900px) {
+  .md-card--featured .md-card__link { grid-template-columns: 1fr; }
+  .md-card--featured .md-card__image { min-height: 0; aspect-ratio: 3 / 2; }
+}
+
+/* Article bodies: numbered lists and comparison tables (11 Nov 2026, the fit-out company guide). */
+.article-body ol { margin: 0 0 24px; padding-inline-start: 24px; }
+.article-body ol li { padding-inline-start: 4px; }
+.article-body table {
+  width: 100%;
+  margin: 8px 0 24px;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  border: 1px solid rgba(17, 17, 15, 0.12);
+}
+.article-body th,
+.article-body td { padding: 12px 14px; text-align: start; vertical-align: top; border-bottom: 1px solid rgba(17, 17, 15, 0.1); line-height: 1.55; }
+.article-body thead th { background: #f6f4ef; font-weight: 600; }
+.article-body tbody td:first-child { width: 28%; font-weight: 600; }
+@media (max-width: 600px) {
+  .article-body table { font-size: 0.88rem; }
+  .article-body th, .article-body td { padding: 10px; }
+}
+
+/* Audit fix (11 Nov 2026): the simplified Contact layout above set two columns without the
+   phone/tablet rule, so on phones the form and the details card were squeezed side by side
+   (form tabs 16px wide, page scrolling sideways). Stack them below 1080px again. */
+@media (max-width: 1080px) {
+  .cp-hub { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .cp-hub .project-types { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .cp-hub .project-types button,
+  .cp-hub .project-types button:first-child,
+  .cp-hub .project-types button:last-child { padding: 12px 4px; font-size: 0.84rem; }
+}
+
+/* Audit fix (11 Nov 2026): form field rules (".cp-hub .project-form input" etc.) gave the
+   hidden anti-spam field 100% width, so it stuck out 4px and phones scrolled sideways. */
+input.hp-field,
+.hp-field {
+  width: 1px !important;
+  height: 1px !important;
+  min-width: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+/* 12 Nov 2026 (owner): bottom navigation labels stay on one line on phones; "My Account" or a
+   signed-in name used to wrap onto two lines. Long names end in "…". */
+@media (max-width: 980px) {
+  .mobile-bottom-nav a { min-width: 0; }
+  .mobile-bottom-nav a span {
+    display: block;
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    line-height: 1.3;
+  }
+}
+/* Before React fills the tab in, the first-frame name is the short label too. */
+@media (max-width: 980px) {
+  html[data-signed-in] .mobile-bottom-nav .show-signed-in span:empty::before { content: var(--bae-nav-name, var(--bae-name)); }
+}

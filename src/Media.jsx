@@ -6,117 +6,107 @@ import { ArrowUpRight } from "./components/icons";
 import { useI18n } from "./i18n/I18nProvider";
 import { Header, Footer, Reveal, PhotoHero } from "./components/Shared";
 
+// Media hub (owner, 11 Nov 2026: "make it professional, no extra space"). A short hero line,
+// then two sections: Guides (the featured guide as one wide card, then the others in a row) and
+// Cost guides (the articles with a `guide`), every row full, so no tall gap beside the featured
+// card and no lone card on the last row. Each card shows its type and date.
+function ArticleCard({ article, label, readMore, featured = false, delay = 0 }) {
+  return (
+    <Reveal className={`md-card${featured ? " md-card--featured" : ""}`} delay={delay}>
+      <a href={article.link} className="md-card__link">
+        <div className="md-card__image">
+          <Image
+            src={article.image}
+            alt={article.title}
+            fill
+            sizes={featured ? "(max-width: 900px) 100vw, 55vw" : "(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 25vw"}
+            style={{ objectFit: "cover" }}
+          />
+        </div>
+        <div className="md-card__body">
+          <p className="md-card__meta">{[label, article.date].filter(Boolean).join(" · ")}</p>
+          <h3 className="md-card__title">{article.title}</h3>
+          <p className="md-card__desc">{article.description}</p>
+          <span className="md-card__more">{readMore.replace(/\s*↗\s*$/, "")} <ArrowUpRight size={14} /></span>
+        </div>
+      </a>
+    </Reveal>
+  );
+}
+
 export default function Media() {
   const { lang, dict } = useI18n();
   const [menuOpen, setMenuOpen] = useState(false);
 
   const t = dict.mediaPage;
-  
   const featured = t.featuredArticle;
-  const articles = t.articles;
-  
-  // The first 2 articles from the array go next to the featured one
-  const topArticles = articles.slice(0, 2);
-  // The rest go below
-  const bottomArticles = articles.slice(2);
+  const guides = t.articles.filter((a) => !a.guide);
+  const costGuides = t.articles.filter((a) => a.guide);
 
   return (
     <>
       <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-      
+
       <main className="media-page">
         <PhotoHero
+          size="small"
           image="/assets/contemporary-living-room-wall-panelling-track-lighting.jpeg"
           crumbs={[{ label: dict.ourProjectsPage.home, href: lang === "ar" ? "/ar" : "/" }, { label: dict.nav.media || "Media" }]}
           chip={t.newsAndInsights}
           title={t.hubTitle}
-          lead={t.hubIntro}
+          lead={t.hubLead || t.hubIntro}
         />
 
-        {/* Bento Grid */}
-        <section className="shell media-grid-section">
-          <div className="media-grid">
-            
-            {/* Featured Item (Spans 2 columns) */}
-            <Reveal className="media-card media-card--featured" delay={100}>
-              <a href={featured.link} className="media-card-link">
-                <div className="media-image-wrapper featured-image-wrapper">
-                  <Image 
-                    src={featured.image} 
-                    alt={featured.title} 
-                    fill 
-                    sizes="(max-width: 768px) 100vw, 50vw" 
-                    style={{ objectFit: 'cover' }} 
-                  />
-                </div>
-                <div className="media-card-content">
-                  <h2>{featured.title}</h2>
-                  <p className="media-featured-desc">{featured.description}</p>
-                  <span className="read-more">{t.readMore}</span>
-                </div>
-              </a>
-            </Reveal>
-
-            {/* Top 2 side items */}
-            {topArticles.map((article, index) => (
-              <Reveal className="media-card" key={index} delay={200 + index * 100}>
-                <a href={article.link} className="media-card-link">
-                  <div className="media-image-wrapper">
-                    <Image 
-                      src={article.image} 
-                      alt={article.title} 
-                      fill 
-                      sizes="(max-width: 768px) 100vw, 25vw" 
-                      style={{ objectFit: 'cover' }} 
-                    />
-                  </div>
-                  <div className="media-card-content">
-                    <h3>{article.title}</h3>
-                    <p className="media-card-desc">{article.description}</p>
-                    <span className="read-more">{t.readMore}</span>
-                  </div>
-                </a>
-              </Reveal>
-            ))}
-
-            {/* Bottom Row items */}
-            {bottomArticles.map((article, index) => (
-              <Reveal className="media-card" key={index + 2} delay={100 + index * 100}>
-                <a href={article.link} className="media-card-link">
-                  <div className="media-image-wrapper">
-                    <Image 
-                      src={article.image} 
-                      alt={article.title} 
-                      fill 
-                      sizes="(max-width: 768px) 100vw, 25vw" 
-                      style={{ objectFit: 'cover' }} 
-                    />
-                  </div>
-                  <div className="media-card-content">
-                    <h3>{article.title}</h3>
-                    <p className="media-card-desc">{article.description}</p>
-                    <span className="read-more">{t.readMore}</span>
-                  </div>
-                </a>
-              </Reveal>
-            ))}
-
+        {/* Guides */}
+        <section className="md-section" aria-labelledby="md-guides">
+          <div className="shell">
+            {/* Owner, 11 Nov 2026: no visible "Guides" heading; the featured guide follows the
+                hero directly. The heading stays for screen readers and the page outline. */}
+            <h2 id="md-guides" className="sr-only">{t.guidesTitle}</h2>
+            <ArticleCard article={featured} label={t.guideLabel} readMore={t.readMore} featured />
+            {guides.length > 0 && (
+              <div className="md-grid">
+                {guides.map((article, i) => (
+                  <ArticleCard key={article.slug} article={article} label={t.guideLabel} readMore={t.readMore} delay={60 + i * 50} />
+                ))}
+              </div>
+            )}
           </div>
-          
-          {/* No "View more" button: every published article is already listed above. */}
-          <Reveal className="media-topics" delay={100}>
-            <h2 className="slp-h2">{t.topicsTitle}</h2>
-            <ul className="media-topics__list">
+        </section>
+
+        {/* Cost guides */}
+        {costGuides.length > 0 && (
+          <section className="md-section md-section--alt" aria-labelledby="md-costs">
+            <div className="shell">
+              <div className="md-head">
+                <h2 id="md-costs" className="md-head__title">{t.costTitle}</h2>
+                <p className="md-head__intro">{t.costIntro}</p>
+              </div>
+              <div className="md-grid">
+                {costGuides.map((article, i) => (
+                  <ArticleCard key={article.slug} article={article} label={t.costLabel} readMore={t.readMore} delay={60 + i * 50} />
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* The services behind the guides */}
+        <section className="md-section" aria-labelledby="md-topics">
+          <div className="shell">
+            <div className="md-head">
+              <h2 id="md-topics" className="md-head__title">{t.topicsTitle}</h2>
+            </div>
+            <ul className="md-topics">
               {t.topics.map((topic) => (
                 <li key={topic.href}>
-                  <a href={topic.href}>{topic.label}</a>
+                  <a href={topic.href}>{topic.label} <ArrowUpRight size={14} /></a>
                   <p>{topic.text}</p>
                 </li>
               ))}
             </ul>
-          </Reveal>
+          </div>
         </section>
-
       </main>
       <Footer />
     </>

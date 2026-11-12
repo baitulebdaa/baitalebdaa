@@ -3,6 +3,8 @@
 // elsewhere (about page, process copy, homepage FAQ, articles, case study, contact details);
 // nothing new is claimed. Rendered with FaqSplit and mirrored as FAQPage schema by the route.
 
+import { priceText } from "../lib/pricing.js";
+
 export const PAGE_FAQS = {
   en: {
     about: {
@@ -60,6 +62,20 @@ export const PAGE_FAQS = {
         { q: "Why is the client not named?", a: "The project was delivered under confidentiality terms. Site access, documents and even progress photos needed clearance, so we share the scope and approach without naming the authority." },
       ],
     },
+    // Our Services hub (11 Nov 2026): restates the service summaries, prices and facts the
+    // site already publishes; nothing new is claimed.
+    services: {
+      title: "Our Services: FAQs",
+      subtitle: "What we do, where we work, what it costs and how a project starts.",
+      items: [
+        { q: "What services does Bait Al Ebdaa offer?", a: "Interior design for homes, offices, restaurants and shops; turnkey fit-out for villas, offices, restaurants and retail units; villa, apartment, office and kitchen renovation; and custom joinery, including wardrobes, kitchens and wall panelling. After handover, our aftercare team also services furniture, hardware and Somfy curtain tracks." },
+        { q: "Can one company handle design, approvals and fit-out?", a: "Yes. Design, applicable authority approvals, fit-out and joinery run under one contract with one accountable team, so you deal with a single point of contact instead of a separate designer, contractor and joinery supplier. Design-only engagements are available too." },
+        { q: "Which emirates do you work in?", a: "All seven: Dubai, Abu Dhabi, Sharjah, Ajman, Ras Al Khaimah, Fujairah and Umm Al Quwain. Our showroom and joinery factory are in Jurf Industrial 2, Ajman." },
+        { q: "How much do your services cost?", a: `We publish starting prices on our pricing page: for example, a standard villa fit-out is ${priceText("villa-standard")}, essential office fit-out ${priceText("office-essential")}, laminate wardrobes from ${priceText("wardrobe-laminate")} and a single-room design concept from ${priceText("design-single-room")}. Prices exclude 5% VAT; your final price is confirmed in an itemised quotation after a free site survey.` },
+        { q: "Is your joinery made in-house?", a: "Yes. Kitchens, wardrobes, panelling and other joinery are produced in our own 15,000 sq ft factory in Ajman and installed by our team, and the joinery we manufacture and install carries a 5-year workmanship guarantee." },
+        { q: "How do I start a project?", a: "Send your project type, location and rough scope by the quote form, WhatsApp or phone. We arrange a free site survey, agree the specification with you and send an itemised quotation, with no obligation to continue." },
+      ],
+    },
   },
   ar: {
     about: {
@@ -115,6 +131,18 @@ export const PAGE_FAQS = {
         { q: "كيف تحققت الخصوصية الصوتية؟", a: "صنع مصنعنا في عجمان ألواح جدران عازلة للصوت لقاعة الاجتماعات والمكاتب التنفيذية، لتبقى الاجتماعات السرية خاصة. وتصنيعها داخلياً أبقاها على الجدول الزمني نفسه لبقية أعمال النجارة." },
         { q: "ما أنظمة الأتمتة التي رُكّبت؟", a: "ستائر سومفي الكهربائية والتحكم بالإضاءة، ما منح فريق إدارة المرافق تحكماً مركزياً في الخصوصية واستهلاك الطاقة عبر الطوابق الثلاثة." },
         { q: "لماذا لا يُذكر اسم العميل؟", a: "نُفّذ المشروع بموجب شروط سرية، فقد تطلب دخول الموقع والمستندات وحتى صور سير العمل تصاريح خاصة، لذا نشارك النطاق وطريقة العمل دون ذكر اسم الهيئة الحكومية." },
+      ],
+    },
+    services: {
+      title: "خدماتنا: الأسئلة الشائعة",
+      subtitle: "ما نقدمه، وأين نعمل، وكم يكلف، وكيف يبدأ المشروع.",
+      items: [
+        { q: "ما الخدمات التي تقدمها بيت الإبداع؟", a: "التصميم الداخلي للمنازل والمكاتب والمطاعم والمحلات؛ والتجهيز الشامل للفلل والمكاتب والمطاعم ومحلات التجزئة؛ وتجديد الفلل والشقق والمكاتب والمطابخ؛ والنجارة المخصصة بما فيها الخزائن والمطابخ وألواح الجدران. وبعد التسليم، يقدم فريق خدمة ما بعد البيع صيانة الأثاث والإكسسوارات ومسارات ستائر Somfy." },
+        { q: "هل يمكن لشركة واحدة تنفيذ التصميم والموافقات والتجهيز؟", a: "نعم. يجري التصميم وموافقات الجهات المختصة والتجهيز والنجارة ضمن عقد واحد وفريق واحد مسؤول، فتتعامل مع جهة اتصال واحدة بدلاً من مصمم ومقاول ومورد نجارة منفصلين. وتتوفر أيضاً خدمة التصميم فقط." },
+        { q: "في أي إمارات تعملون؟", a: "في الإمارات السبع: دبي وأبوظبي والشارقة وعجمان ورأس الخيمة والفجيرة وأم القيوين. ويقع معرضنا ومصنع النجارة في منطقة الجرف الصناعية 2 في عجمان." },
+        { q: "كم تكلف خدماتكم؟", a: `ننشر الأسعار الابتدائية في صفحة الأسعار: مثلاً تشطيب الفيلا القياسي ${priceText("villa-standard", "ar")}، وتشطيب المكتب الأساسي ${priceText("office-essential", "ar")}، وخزائن اللامينيت ابتداءً من ${priceText("wardrobe-laminate", "ar")}، وتصور غرفة واحدة ابتداءً من ${priceText("design-single-room", "ar")}. الأسعار غير شاملة ضريبة القيمة المضافة 5٪، ويُؤكد السعر النهائي في عرض سعر مفصّل بعد معاينة مجانية للموقع.` },
+        { q: "هل تُصنع النجارة لديكم داخلياً؟", a: "نعم. تُنتج المطابخ والخزائن وألواح الجدران وغيرها من أعمال النجارة في مصنعنا الخاص بمساحة 15,000 قدم مربع في عجمان ويركّبها فريقنا، وتحمل النجارة التي نصنعها ونركّبها ضمان جودة صنعة لمدة 5 سنوات." },
+        { q: "كيف أبدأ مشروعي؟", a: "أرسل نوع المشروع وموقعه ونطاقه التقريبي عبر نموذج طلب عرض السعر أو واتساب أو الهاتف. نرتب معاينة مجانية للموقع، ونتفق معك على المواصفات، ثم نرسل عرض سعر مفصلاً دون أي التزام بالمتابعة." },
       ],
     },
   },

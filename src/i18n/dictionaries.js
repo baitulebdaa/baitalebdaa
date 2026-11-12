@@ -1,4 +1,5 @@
 import { costGuideArticles } from "../data/cost-guides.js";
+import { guideArticles } from "../data/guide-articles.js";
 
 export const dictionaries = {
   en: {
@@ -10,6 +11,8 @@ export const dictionaries = {
       back: "Back",
       startProject: "WhatsApp Now",
       account: "My account",
+      // 12 Nov 2026: the phone bottom navigation's tab; "My account" did not fit on one line.
+      accountShort: "Account",
       signIn: "Sign in",
       navigate: "Navigate",
       studio: "Studio",
@@ -647,12 +650,38 @@ export const dictionaries = {
       browse: "Browse projects",
       whatsappMessage: "Hello! I viewed your projects and would like to discuss mine.",
       statsLabel: "Bait Al Ebdaa at a glance",
+      // 11 Nov 2026: project facts table and the services behind the projects (SEO).
+      glanceKicker: "At a glance",
+      glanceTitle: "Project facts",
+      glanceIntro: "Location, type, size, year and main service of each published project, as confirmed by the owner.",
+      cols: { project: "Project", location: "Location", type: "Type", size: "Size", year: "Year", service: "Services" },
+      servicesKicker: "Services used",
+      servicesTitle: "The services behind these projects",
+      servicesIntro: "Each service links to its own page, with scope, process, pricing and FAQs; the projects show it in practice.",
+      viewService: "About this service",
     },
     servicesPageLayout: {
       intro2: "From concept design to turnkey fit-out and custom joinery, every service is delivered by one accountable team, with approvals and in-house manufacturing included.",
       browse: "Browse services",
       whatsappMessage: "Hello! I would like to know more about your services.",
       statsLabel: "Bait Al Ebdaa at a glance",
+      // 11 Nov 2026: the service guide, reasons, emirate links and FAQ below the tiles (SEO).
+      guideKicker: "Service guide",
+      guideTitle: "What each service covers",
+      guideIntro: "Bait Al Ebdaa is an interior design, fit-out and joinery company working in all seven emirates of the UAE. Here is what each service includes, with its published starting price where there is one.",
+      groups: {
+        design: { title: "Interior design", body: "Concept, space planning, materials and lighting, resolved into photorealistic 3D renders that you approve before any site work begins. Design-only is available, or the same team carries the design into fit-out." },
+        fitOut: { title: "Turnkey fit-out", body: "One contract for civil works, MEP, finishes, joinery and installation, with applicable authority approvals and NOCs coordinated by our team and itemised in the quotation." },
+        renovation: { title: "Renovation", body: "Villa, apartment, office and kitchen renovation, from a selective refresh to a full remodel. We survey the space first, so scope and price are agreed on real measurements." },
+        joinery: { title: "Joinery, wardrobes and kitchens", body: "Made in our own 15,000 sq ft factory in Ajman, installed by our team and covered by a 5-year workmanship guarantee." },
+      },
+      quotedAfterSurvey: "Quoted after a free site survey",
+      pricingLink: "See the full price list",
+      whyKicker: "Why one team",
+      whyTitle: "Why clients choose Bait Al Ebdaa",
+      areasKicker: "By emirate",
+      areasTitle: "Find a service in your emirate",
+      areasIntro: "We work in all seven emirates. Each page below covers the service locally: scope, approvals, process, pricing and FAQs.",
     },
     processPageLayout: {
       intro2: "Design, approvals, manufacturing and installation sit under one roof, so decisions move quickly and one team is accountable from the first sketch to handover.",
@@ -662,6 +691,23 @@ export const dictionaries = {
       whyTitle: "Why clients trust the process",
       ctaTitle: "Ready to start the first stage?",
       ctaBody: "Book a complimentary consultation and we will walk you through the steps for your own project.",
+      // 11 Nov 2026: before work starts, timelines, approvals and the services that follow this process (SEO).
+      beforeKicker: "Before work starts",
+      beforeTitle: "From first message to quotation",
+      beforeIntro: "Every project starts the same way, with no obligation until you accept the quotation.",
+      timeKicker: "Timelines",
+      timeTitle: "How long it takes",
+      timeItems: [
+        ["Full turnkey villa", "Three to six months from first consultation to handover, including concept design, 3D sign-off and authority approvals."],
+        ["On-site fit-out", "Typically 6–10 weeks once the design is approved."],
+        ["Offices and commercial units", "Planned around your move-in date and the building's requirements."],
+        ["Your own programme", "Confirmed in writing after the free site survey, once real measurements and access are known."],
+      ],
+      approvalsTitle: "Authority approvals",
+      approvalsBody: "Our team coordinates the applicable authority submissions and NOC requirements for your project's location and scope, prepares the paperwork and follows it up; any approval-related package or fee is itemised in the quotation. In Dubai that means Dubai Municipality and Dubai Development Authority (DDA) submissions, as on these projects; in the other emirates, the relevant local authorities.",
+      servicesKicker: "Where this process applies",
+      servicesTitle: "Services delivered this way",
+      allServices: "All services",
     },
     contactPageLayout: {
       whatsappLabel: "WhatsApp",
@@ -1288,8 +1334,9 @@ export const dictionaries = {
       ourProjects: "Our Projects",
       explorePortfolio: "Explore Our Project Portfolio",
       projectsPortfolio: "Projects Portfolio",
-      redefiningHeading: "Redefining Spaces With Bespoke Interior Fit-Out Solutions",
-      redefiningBody: "From fine dining establishments to commercial offices, residential properties, and entertainment venues, we approach each project with passion and precision, ensuring seamless execution and exceptional outcomes tailored to your specific needs.",
+      redefiningHeading: "Villas, Penthouses and Offices Delivered by One Team",
+      // 11 Nov 2026: only what the six published projects show (was "fine dining" and "entertainment venues").
+      redefiningBody: "Our published projects are homes and offices in Dubai and Abu Dhabi, from a Palm Jumeirah penthouse to a government authority headquarters in Dubai Academic City. Each was delivered by one team covering design, approvals, fit-out and joinery made in our own Ajman factory. Every project below lists its location, size, year and the services it used.",
       filters: {
         all: "All Projects",
         hospitality: "Hospitality",
@@ -1505,6 +1552,14 @@ export const dictionaries = {
       metaDescription: "Practical guides on luxury fit-out, custom joinery, motorized curtains and furniture care in Dubai and Abu Dhabi, from Bait Al Ebdaa's own teams.",
       hubTitle: "Interior Design & Fit-Out Guides",
       hubIntro: "Practical guides from our design, fit-out and joinery teams: what a luxury fit-out in Dubai involves and costs, how custom joinery is made in our Ajman factory, how motorized curtains work, and how to care for furniture in the UAE climate. Our cost guides explain, from our published prices, what interior design fees, villa renovations, kitchen cabinets and fitted wardrobes cost in Dubai.",
+      // 11 Nov 2026 (owner: "professional, no extra space"): a short hero line, then two sections.
+      hubLead: "Practical guides from our design, fit-out and joinery teams, and cost guides built on our published prices.",
+      guidesTitle: "Guides",
+      guidesIntro: "What a luxury fit-out in Dubai involves, how custom joinery is made in our Ajman factory, how motorized curtains work and how to care for furniture in the UAE climate.",
+      costTitle: "Cost guides",
+      costIntro: "What interior design fees, villa renovations, kitchen cabinets, fitted wardrobes and office fit-outs cost in Dubai, worked out from our published prices.",
+      guideLabel: "Guide",
+      costLabel: "Cost guide",
       topicsTitle: "Explore the services behind our guides",
       topics: [
         { label: "Turnkey fit-out in Dubai", href: "/en/fit-out/dubai", text: "One contract for civil works, MEP, finishes and in-house joinery, from design to handover." },
@@ -2055,7 +2110,7 @@ export const dictionaries = {
       pageTitle: "Interior Design, Fit-Out & Joinery Services",
       whatWeOffer: "What Do We Offer",
       comprehensiveOfferings: "Comprehensive Service Offerings",
-      offeringsSubtitle: "We provide customized interior solutions tailored every project need.",
+      offeringsSubtitle: "Interior design, turnkey fit-out, renovation and custom joinery for villas, apartments, offices, restaurants and shops in all seven emirates of the UAE.",
       learnMore: "Learn More ↗",
       exploreByServiceKicker: "Browse by service",
       exploreByServiceTitle: "Every Service, Across the UAE",
@@ -2077,38 +2132,41 @@ export const dictionaries = {
       pageTitle: "Our Interior Design & Fit-Out Process",
       whatWeDo: "Step-by-Step",
       processOverview: "Our Working Process",
-      processSubtitle: "We follow a meticulous process to ensure every project is delivered on time, within budget, and beyond expectations.",
+      // 11 Nov 2026: only what the site states elsewhere (was "on time, within budget, beyond expectations",
+      // day timelines that contradicted the published 3–6 months, a customer photo portal and a 5-year
+      // warranty package; the guarantee covers the joinery we make and install).
+      processSubtitle: "Four stages under one accountable team: 3D design and approvals, manufacturing in our own Ajman factory, installation on site, and handover with a 5-year workmanship guarantee on our joinery.",
       learnMore: "Learn More ↗",
       steps: [
         {
           num: "01",
-          title: "3D Spatial Design & DM Approval",
-          description: "Photorealistic 3D renders, with the drawings prepared for the applicable authority submissions.",
-          meta: "Timeline: 5–7 Days",
+          title: "3D Design & Authority Approvals",
+          description: "Concept, space planning, materials and lighting are resolved into photorealistic 3D renders that you approve before any site work begins, and the drawings are prepared for the applicable authority submissions.",
+          meta: "In our studio",
           image: "/assets/luxury-lounge-feature-wall-led-sconces.jpeg",
           link: "#"
         },
         {
           num: "02",
-          title: "15k sqft Factory Fabrication",
-          description: "Precision CNC cutting, European walnut joinery, and custom Italian curtain stitching in our Ajman facility.",
-          meta: "Timeline: 10–14 Days",
+          title: "Manufacturing in Our Ajman Factory",
+          description: "Kitchens, wardrobes, panelling and other joinery are cut on CNC machinery and finished in our own 15,000 sq ft factory, made to the drawings you approved rather than built on site.",
+          meta: "At our Ajman factory",
           image: "/assets/study-nook-wardrobe-led-shelving-wood-slats.jpeg",
           link: "#"
         },
         {
           num: "03",
-          title: "On-Site Turnkey Installation",
-          description: "Clean installation by certified site engineers with daily photo feeds pushed to your customer portal.",
-          meta: "Timeline: 7–10 Days",
+          title: "On-Site Installation",
+          description: "Our own team carries out the site works and installs the joinery and finishes, following the programme agreed with you in writing after the site survey.",
+          meta: "At your site",
           image: "/assets/hallway-wardrobe-bench-upholstered-panel.jpeg",
           link: "#"
         },
         {
           num: "04",
           title: "Final Handover & Guarantee",
-          description: "Final walk-through, municipality completion certificate, and 5-year warranty package.",
-          meta: "Warranty: 5 Years Included",
+          description: "A final walk-through and snagging check, the completion certificate where the project needed authority approval, and a 5-year workmanship guarantee on the joinery we manufactured and installed.",
+          meta: "5-year joinery guarantee",
           image: "/assets/walnut-coffee-bar-cabinet-led-shelving.jpeg",
           link: "#"
         }
@@ -2124,6 +2182,7 @@ export const dictionaries = {
       back: "رجوع",
       startProject: "واتساب الآن",
       account: "حسابي",
+      accountShort: "حسابي",
       signIn: "تسجيل الدخول",
       navigate: "تصفح",
       studio: "الاستوديو",
@@ -2754,12 +2813,36 @@ export const dictionaries = {
       browse: "تصفح المشاريع",
       whatsappMessage: "مرحباً! اطلعت على مشاريعكم وأرغب بمناقشة مشروعي.",
       statsLabel: "بيت الإبداع في لمحة",
+      glanceKicker: "في لمحة",
+      glanceTitle: "حقائق المشاريع",
+      glanceIntro: "موقع كل مشروع منشور ونوعه ومساحته وسنته وخدمته الرئيسية، كما أكدها المالك.",
+      cols: { project: "المشروع", location: "الموقع", type: "النوع", size: "المساحة", year: "السنة", service: "الخدمات" },
+      servicesKicker: "الخدمات المستخدمة",
+      servicesTitle: "الخدمات وراء هذه المشاريع",
+      servicesIntro: "لكل خدمة صفحتها الخاصة بالنطاق وخطوات العمل والأسعار والأسئلة الشائعة، وتُظهرها المشاريع عملياً.",
+      viewService: "عن هذه الخدمة",
     },
     servicesPageLayout: {
       intro2: "من التصميم المبدئي إلى التجهيز الشامل والنجارة المخصصة، يقدم فريق واحد مسؤول كل خدمة، مع الموافقات والتصنيع الداخلي.",
       browse: "تصفح الخدمات",
       whatsappMessage: "مرحباً! أرغب بمعرفة المزيد عن خدماتكم.",
       statsLabel: "بيت الإبداع في لمحة",
+      guideKicker: "دليل الخدمات",
+      guideTitle: "ماذا تشمل كل خدمة",
+      guideIntro: "بيت الإبداع شركة تصميم داخلي وتجهيز ونجارة تعمل في الإمارات السبع. إليك ما تشمله كل خدمة، مع السعر الابتدائي المنشور حيثما وُجد.",
+      groups: {
+        design: { title: "التصميم الداخلي", body: "المفهوم وتخطيط المساحات والمواد والإضاءة، تُترجم إلى تصاميم ثلاثية الأبعاد واقعية تعتمدها قبل بدء أي عمل في الموقع. تتوفر خدمة التصميم فقط، أو يكمل الفريق نفسه التصميم إلى التجهيز." },
+        fitOut: { title: "التجهيز الشامل", body: "عقد واحد للأعمال المدنية والكهروميكانيكية والتشطيبات والنجارة والتركيب، مع تنسيق موافقات الجهات المختصة وشهادات عدم الممانعة عبر فريقنا وتفصيلها في عرض السعر." },
+        renovation: { title: "التجديد", body: "تجديد الفلل والشقق والمكاتب والمطابخ، من تحديث جزئي إلى إعادة تصميم كاملة. نعاين المساحة أولاً، فيُتفق على النطاق والسعر بناءً على قياسات حقيقية." },
+        joinery: { title: "النجارة والخزائن والمطابخ", body: "تُصنع في مصنعنا الخاص بمساحة 15,000 قدم مربع في عجمان، ويركّبها فريقنا، مع ضمان جودة صنعة لمدة 5 سنوات." },
+      },
+      quotedAfterSurvey: "يُسعَّر بعد معاينة مجانية للموقع",
+      pricingLink: "قائمة الأسعار الكاملة",
+      whyKicker: "لماذا فريق واحد",
+      whyTitle: "لماذا يختار العملاء بيت الإبداع",
+      areasKicker: "حسب الإمارة",
+      areasTitle: "اختر الخدمة في إمارتك",
+      areasIntro: "نعمل في الإمارات السبع. تشرح كل صفحة أدناه الخدمة محلياً: النطاق والموافقات وخطوات العمل والأسعار والأسئلة الشائعة.",
     },
     processPageLayout: {
       intro2: "التصميم والموافقات والتصنيع والتركيب تحت سقف واحد، فتتحرك القرارات بسرعة ويكون فريق واحد مسؤولاً من أول رسم حتى التسليم.",
@@ -2769,6 +2852,22 @@ export const dictionaries = {
       whyTitle: "لماذا يثق العملاء بمراحل عملنا",
       ctaTitle: "هل أنت مستعد لبدء المرحلة الأولى؟",
       ctaBody: "احجز استشارة مجانية وسنشرح لك الخطوات الخاصة بمشروعك.",
+      beforeKicker: "قبل بدء العمل",
+      beforeTitle: "من أول رسالة إلى عرض السعر",
+      beforeIntro: "يبدأ كل مشروع بالطريقة نفسها، دون أي التزام حتى تقبل عرض السعر.",
+      timeKicker: "المدد الزمنية",
+      timeTitle: "كم يستغرق المشروع",
+      timeItems: [
+        ["فيلا بتسليم مفتاح كامل", "من ثلاثة إلى ستة أشهر من الاستشارة الأولى حتى التسليم، بما في ذلك التصميم المبدئي واعتماد التصاميم ثلاثية الأبعاد وموافقات الجهات."],
+        ["التجهيز في الموقع", "عادةً من 6 إلى 10 أسابيع بعد اعتماد التصميم."],
+        ["المكاتب والوحدات التجارية", "يُخطَّط البرنامج حول موعد انتقالك ومتطلبات المبنى."],
+        ["برنامج مشروعك", "يُؤكَّد كتابياً بعد المعاينة المجانية للموقع، بعد معرفة القياسات وظروف الوصول الفعلية."],
+      ],
+      approvalsTitle: "موافقات الجهات المختصة",
+      approvalsBody: "ينسق فريقنا طلبات الجهات المختصة ومتطلبات شهادات عدم الممانعة حسب موقع مشروعك ونطاقه، ويُعد المستندات ويتابعها، وتُفصَّل أي باقة أو رسوم متعلقة بالموافقات في عرض السعر. في دبي يعني ذلك تقديمات بلدية دبي وسلطة دبي للتطوير، كما في هذين المشروعين؛ وفي الإمارات الأخرى، الجهات المحلية المختصة.",
+      servicesKicker: "أين تُطبق هذه المراحل",
+      servicesTitle: "خدمات تُنفذ بهذه الطريقة",
+      allServices: "جميع الخدمات",
     },
     contactPageLayout: {
       whatsappLabel: "واتساب",
@@ -3395,8 +3494,8 @@ export const dictionaries = {
       ourProjects: "مشاريعنا",
       explorePortfolio: "استكشف محفظة مشاريعنا",
       projectsPortfolio: "محفظة المشاريع",
-      redefiningHeading: "إعادة تعريف المساحات بحلول تجهيز داخلي مخصصة",
-      redefiningBody: "من مؤسسات تناول الطعام الفاخرة إلى المكاتب التجارية والعقارات السكنية وأماكن الترفيه، نتعامل مع كل مشروع بشغف ودقة، مما يضمن التنفيذ السلس والنتائج الاستثنائية المصممة خصيصاً لاحتياجاتك.",
+      redefiningHeading: "فلل وبنتهاوس ومكاتب ينفذها فريق واحد",
+      redefiningBody: "مشاريعنا المنشورة منازل ومكاتب في دبي وأبوظبي، من بنتهاوس في نخلة جميرا إلى مقر رئيسي لهيئة حكومية في مدينة دبي الأكاديمية. نفذ كل مشروع فريق واحد يغطي التصميم والموافقات والتجهيز والنجارة المصنوعة في مصنعنا الخاص بعجمان. يعرض كل مشروع أدناه موقعه ومساحته وسنته والخدمات التي شملها.",
       filters: {
         all: "جميع المشاريع",
         hospitality: "الضيافة",
@@ -3608,6 +3707,13 @@ export const dictionaries = {
       metaDescription: "أدلة عملية حول التجهيز الفاخر والنجارة المخصصة والستائر الآلية والعناية بالأثاث في دبي وأبوظبي، من فرق التصميم والنجارة في بيت الإبداع.",
       hubTitle: "أدلة التصميم الداخلي والتجهيز",
       hubIntro: "أدلة عملية من فرق التصميم والتجهيز والنجارة لدينا: ما يتضمنه التجهيز الفاخر في دبي وتكلفته، وكيف تُصنع النجارة المخصصة في مصنعنا بعجمان، وكيف تعمل الستائر الآلية، وكيف تعتني بالأثاث في مناخ الإمارات. وتشرح أدلة الأسعار، انطلاقاً من أسعارنا المنشورة، تكلفة التصميم الداخلي وتجديد الفلل وخزائن المطبخ وخزائن الملابس في دبي.",
+      hubLead: "أدلة عملية من فرق التصميم والتجهيز والنجارة لدينا، وأدلة أسعار مبنية على أسعارنا المنشورة.",
+      guidesTitle: "الأدلة",
+      guidesIntro: "ما يتضمنه التجهيز الفاخر في دبي، وكيف تُصنع النجارة المخصصة في مصنعنا بعجمان، وكيف تعمل الستائر الآلية، وكيف تعتني بالأثاث في مناخ الإمارات.",
+      costTitle: "أدلة الأسعار",
+      costIntro: "تكلفة التصميم الداخلي وتجديد الفلل وخزائن المطبخ وخزائن الملابس وتجهيز المكاتب في دبي، محسوبة من أسعارنا المنشورة.",
+      guideLabel: "دليل",
+      costLabel: "دليل أسعار",
       topicsTitle: "اكتشف الخدمات التي تستند إليها أدلتنا",
       topics: [
         { label: "التجهيز الشامل في دبي", href: "/ar/fit-out/dubai", text: "عقد واحد للأعمال المدنية والكهروميكانيكية والتشطيبات والنجارة الداخلية، من التصميم حتى التسليم." },
@@ -4182,7 +4288,7 @@ export const dictionaries = {
       pageTitle: "خدمات التصميم الداخلي والتجهيز والنجارة",
       whatWeOffer: "ماذا نقدم",
       comprehensiveOfferings: "عروض الخدمات الشاملة",
-      offeringsSubtitle: "نحن نقدم حلولًا داخلية مخصصة ومصممة لتلبية احتياجات كل مشروع.",
+      offeringsSubtitle: "تصميم داخلي وتجهيز شامل وتجديد ونجارة مخصصة للفلل والشقق والمكاتب والمطاعم والمحلات في الإمارات السبع.",
       learnMore: "اعرف المزيد ↗",
       exploreByServiceKicker: "تصفح حسب الخدمة",
       exploreByServiceTitle: "كل خدمة، في جميع أنحاء الإمارات",
@@ -4204,38 +4310,38 @@ export const dictionaries = {
       pageTitle: "مراحل التصميم الداخلي والتجهيز لدينا",
       whatWeDo: "خطوة بخطوة",
       processOverview: "عملية العمل لدينا",
-      processSubtitle: "نحن نتبع عملية دقيقة لضمان تسليم كل مشروع في الوقت المحدد وفي حدود الميزانية وبما يتجاوز التوقعات.",
+      processSubtitle: "أربع مراحل بإشراف فريق واحد مسؤول: التصميم ثلاثي الأبعاد والموافقات، والتصنيع في مصنعنا الخاص بعجمان، والتركيب في الموقع، والتسليم مع ضمان جودة صنعة لمدة 5 سنوات على النجارة.",
       learnMore: "اعرف المزيد ↗",
       steps: [
         {
           num: "01",
-          title: "تصميم مكاني ثلاثي الأبعاد وموافقة بلدية دبي",
-          description: "تصاميم ثلاثية الأبعاد واقعية، مع إعداد الرسومات اللازمة لطلبات الجهات المختصة.",
-          meta: "المدة الزمنية: 5–7 أيام",
+          title: "التصميم ثلاثي الأبعاد وموافقات الجهات",
+          description: "يُترجم المفهوم وتخطيط المساحات والمواد والإضاءة إلى تصاميم ثلاثية الأبعاد واقعية تعتمدها قبل بدء أي عمل في الموقع، وتُعد الرسومات اللازمة لطلبات الجهات المختصة.",
+          meta: "في الاستوديو",
           image: "/assets/luxury-lounge-feature-wall-led-sconces.jpeg",
           link: "#"
         },
         {
           num: "02",
-          title: "تصنيع في مصنع بمساحة 15 ألف قدم مربع",
-          description: "قطع دقيق بتقنية CNC، ونجارة جوز أوروبي، وخياطة ستائر إيطالية مخصصة في منشأتنا بعجمان.",
-          meta: "المدة الزمنية: 10–14 يوماً",
+          title: "التصنيع في مصنعنا بعجمان",
+          description: "تُقطع المطابخ والخزائن وألواح الجدران وغيرها من أعمال النجارة بآلات CNC وتُشطَّب في مصنعنا الخاص بمساحة 15,000 قدم مربع، وفق الرسومات التي اعتمدتها بدلاً من تنفيذها في الموقع.",
+          meta: "في مصنعنا بعجمان",
           image: "/assets/study-nook-wardrobe-led-shelving-wood-slats.jpeg",
           link: "#"
         },
         {
           num: "03",
-          title: "تركيب تسليم مفتاح في الموقع",
-          description: "تركيب نظيف بواسطة مهندسي موقع معتمدين مع بث صور يومي إلى بوابة العميل الخاصة بك.",
-          meta: "المدة الزمنية: 7–10 أيام",
+          title: "التركيب في الموقع",
+          description: "ينفذ فريقنا أعمال الموقع ويركّب النجارة والتشطيبات، وفق البرنامج الزمني المتفق عليه معك كتابياً بعد معاينة الموقع.",
+          meta: "في موقعك",
           image: "/assets/hallway-wardrobe-bench-upholstered-panel.jpeg",
           link: "#"
         },
         {
           num: "04",
           title: "التسليم النهائي والضمان",
-          description: "جولة تفقد نهائية، وشهادة إنجاز من البلدية، وحزمة ضمان لمدة 5 سنوات.",
-          meta: "الضمان: 5 سنوات شاملة",
+          description: "جولة تفقد نهائية وفحص الملاحظات، وشهادة الإنجاز حين يتطلب المشروع موافقة الجهات، وضمان جودة صنعة لمدة 5 سنوات على النجارة التي صنعناها وركّبناها.",
+          meta: "ضمان 5 سنوات على النجارة",
           image: "/assets/walnut-coffee-bar-cabinet-led-shelving.jpeg",
           link: "#"
         }
@@ -4246,3 +4352,5 @@ export const dictionaries = {
 
 // Cost guides (src/data/cost-guides.js) join each language's article list, after the existing posts.
 for (const lang of ["en", "ar"]) dictionaries[lang].mediaPage.articles.push(...costGuideArticles(lang));
+// Newest long-form guides first (src/data/guide-articles.js), so the homepage's latest four include them.
+for (const lang of ["en", "ar"]) dictionaries[lang].mediaPage.articles.unshift(...guideArticles(lang));

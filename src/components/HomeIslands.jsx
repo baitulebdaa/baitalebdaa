@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Calendar, Check, MapPin, WhatsappLogo } from "./icons";
 import { useBusiness, useI18n } from "../i18n/I18nProvider";
 import { Header, Reveal } from "./Shared";
-import { MobileActionBar } from "./MobileActionBar";
 import { formatIndex } from "../lib/format";
 import { whatsappHref } from "../lib/enquiry";
 import { track } from "../lib/analytics";
@@ -105,7 +104,6 @@ export function Hero() {
   </section>
     {quoteOpen && <QuoteModal open onClose={() => setQuoteOpen(false)} source="hero" />}
     {siteVisitOpen && <SiteVisitModal open onClose={() => setSiteVisitOpen(false)} />}
-    <MobileActionBar watch=".hero__actions" source="home-mobile-bar" waHref={waHref} />
   </>;
 }
 

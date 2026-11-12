@@ -7,7 +7,6 @@ import { ArrowUpRight, Calendar, Check, Phone, Whatsapp } from "./components/ico
 import { useBusiness, useI18n } from "./i18n/I18nProvider";
 import { Header, Footer, Reveal, PhotoHero, FaqSplit, ProcessTimeline } from "./components/Shared";
 import { QuotedAfterSurvey, ServiceEstimator } from "./components/ServiceEstimator";
-import { MobileActionBar } from "./components/MobileActionBar";
 import { NextSteps } from "./components/NextSteps";
 import { quoteServiceFor, whatsappHref } from "./lib/enquiry";
 import { track } from "./lib/analytics";
@@ -779,7 +778,6 @@ export default function ServiceLocationPage({ lang, row, seoContext, pilot = nul
         )}
       </main>
       <Footer />
-      <MobileActionBar watch=".ph-actions" waHref={waHref} service={quoteService} source="service-mobile-bar" onQuote={() => setQuote({ source: "service-mobile-bar" })} />
       {siteVisit && <SiteVisitModal open size={siteVisit.size} onClose={() => setSiteVisit(null)} />}
     </>
   );

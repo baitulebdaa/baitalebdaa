@@ -110,7 +110,7 @@ export default async function RootLayout({ children, params }) {
     <html lang={lang} dir={isRtl ? "rtl" : "ltr"} className={`${dmSans.variable} ${manrope.variable} ${tajawal.variable} ${cormorant.variable}`} suppressHydrationWarning>
       <body data-analytics={GA_MEASUREMENT_ID ? "on" : undefined}>
         {/* Runs before the header is drawn, so the account button never flickers (see Header). */}
-        <script dangerouslySetInnerHTML={{ __html: signedInScript(getClientDictionary(lang).nav.account) }} />
+        <script dangerouslySetInnerHTML={{ __html: signedInScript(getClientDictionary(lang).nav.account, getClientDictionary(lang).nav.accountShort) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd(lang, business)).replace(/</g, "\\u003c") }} />
         {GA_MEASUREMENT_ID && (
           // Google Analytics loads only for visitors who have accepted analytics cookies

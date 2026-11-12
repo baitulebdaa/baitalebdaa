@@ -2,11 +2,18 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { ArrowUpRight, Clock } from "./components/icons";
+import { ArrowUpRight, Check } from "./components/icons";
 import { useBusiness, useI18n } from "./i18n/I18nProvider";
 import { Header, Footer, Reveal, PhotoHero } from "./components/Shared";
 import { PageFaq } from "./components/PageFaq";
 import { whyChooseFacts } from "./data/service-content";
+import { serviceCatalog } from "./data/service-catalog";
+import { isPublishedProject } from "./data/project-catalog";
+
+// Services that run through these four stages, linked to their Dubai pages (11 Nov 2026, SEO).
+const PROCESS_SERVICES = ["interior-design", "fit-out", "office-fit-out", "villa-renovation", "apartment-renovation", "joinery", "custom-wardrobes", "kitchen-design"];
+// Published projects whose pages describe the Dubai authority submissions.
+const APPROVAL_PROJECTS = ["government-authority", "downtown-dubai-tech-hq"];
 
 
 export default function Process() {
@@ -18,6 +25,9 @@ export default function Process() {
   const ui = dict.processPageLayout;
   const waHref = `https://wa.me/${business.whatsapp}?text=${encodeURIComponent(ui.whatsappMessage)}`;
   const heroImages = t.steps.slice(0, 3).map((s) => s.image);
+  const approvalProjects = dict.projectsSection.items.filter((p) => APPROVAL_PROJECTS.includes(p.slug) && isPublishedProject(p.slug));
+  const services = PROCESS_SERVICES.map((slug) => serviceCatalog.find((s) => s.slug === slug)).filter(Boolean);
+  const enquirySteps = dict.contactPageLayout.steps || [];
 
   return (
     <>
@@ -57,6 +67,28 @@ export default function Process() {
           </Reveal>
         </section>
 
+        {/* Before work starts: the enquiry steps up to the quotation */}
+        {enquirySteps.length > 0 && (
+          <section className="pr-before" aria-labelledby="pr-before-title">
+            <div className="shell">
+              <Reveal className="sv-head">
+                <p className="micro">{ui.beforeKicker}</p>
+                <h2 id="pr-before-title" className="sv-title">{ui.beforeTitle}</h2>
+                <p className="sv-lede">{ui.beforeIntro}</p>
+              </Reveal>
+              <ol className="pr-before__steps">
+                {enquirySteps.map(([title, body], i) => (
+                  <li key={title}>
+                    <span className="pr-before__num" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+                    <h3>{title}</h3>
+                    <p>{body}</p>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </section>
+        )}
+
         {/* Detailed steps */}
         <section className="shell pr-steps">
           <Reveal className="pr-steps__head">
@@ -71,11 +103,7 @@ export default function Process() {
                   <span className="pr-step__num">{step.num}</span>
                   <h3>{step.title}</h3>
                   <p>{step.description}</p>
-                  {step.meta && (
-                    <span className="pr-step__meta">
-                      <Clock size={14} aria-hidden="true" /> {step.meta}
-                    </span>
-                  )}
+                  {step.meta && <span className="pr-step__meta">{step.meta}</span>}
                 </Reveal>
                 <Reveal className="pr-step__image" delay={100}>
                   <Image src={step.image} alt={step.title} fill sizes="(max-width: 980px) 100vw, 48vw" style={{ objectFit: "cover" }} />
@@ -83,6 +111,37 @@ export default function Process() {
               </li>
             ))}
           </ol>
+        </section>
+
+        {/* Timelines and approvals, from the facts the site already publishes */}
+        <section className="pr-facts">
+          <div className="shell pr-facts__grid">
+            <div>
+              <Reveal className="sv-head">
+                <p className="micro">{ui.timeKicker}</p>
+                <h2 className="sv-title">{ui.timeTitle}</h2>
+              </Reveal>
+              <dl className="pr-time">
+                {ui.timeItems.map(([label, body]) => (
+                  <div key={label}>
+                    <dt>{label}</dt>
+                    <dd>{body}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+            <div className="pr-approvals">
+              <h2 className="sv-title">{ui.approvalsTitle}</h2>
+              <p>{ui.approvalsBody}</p>
+              {approvalProjects.length > 0 && (
+                <ul>
+                  {approvalProjects.map((p) => (
+                    <li key={p.slug}><Check size={16} /> <a href={`/${lang}/our-projects/${p.slug}`}>{p.title}</a></li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </div>
         </section>
 
         {/* Why choose */}
@@ -100,6 +159,24 @@ export default function Process() {
                 </Reveal>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* Services delivered through this process */}
+        <section className="pr-services" aria-labelledby="pr-services-title">
+          <div className="shell">
+            <Reveal className="sv-head">
+              <p className="micro">{ui.servicesKicker}</p>
+              <h2 id="pr-services-title" className="sv-title">{ui.servicesTitle}</h2>
+            </Reveal>
+            <ul className="pr-services__list">
+              {services.map((service) => (
+                <li key={service.slug}>
+                  <a href={`/${lang}/${service.slug}/dubai`}>{lang === "ar" ? service.ar : service.en} <ArrowUpRight size={14} /></a>
+                </li>
+              ))}
+              <li><a href={`/${lang}/our-services`} className="pr-services__all">{ui.allServices} <ArrowUpRight size={14} /></a></li>
+            </ul>
           </div>
         </section>
 

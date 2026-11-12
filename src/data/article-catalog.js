@@ -1,4 +1,5 @@
 import { COST_GUIDE_SLUGS, costGuideArticles, costGuideDate } from "./cost-guides.js";
+import { GUIDE_ARTICLE_DATES, guideArticles } from "./guide-articles.js";
 
 export const ARTICLE_DATES = {
   "luxury-interior-fit-out-guide-dubai": "2026-09-25",
@@ -50,6 +51,15 @@ export const META_DESCRIPTION_MAX = 150;
 for (const slug of COST_GUIDE_SLUGS) ARTICLE_DATES[slug] = costGuideDate(slug);
 for (const lang of ["en", "ar"]) {
   for (const guide of costGuideArticles(lang)) {
+    ARTICLE_SEO_TITLES[lang][guide.slug] = guide.seoTitle;
+    ARTICLE_META_DESCRIPTIONS[lang][guide.slug] = guide.metaDescription;
+  }
+}
+
+// Long-form guides (src/data/guide-articles.js) carry their own date, SEO title and description too.
+Object.assign(ARTICLE_DATES, GUIDE_ARTICLE_DATES);
+for (const lang of ["en", "ar"]) {
+  for (const guide of guideArticles(lang)) {
     ARTICLE_SEO_TITLES[lang][guide.slug] = guide.seoTitle;
     ARTICLE_META_DESCRIPTIONS[lang][guide.slug] = guide.metaDescription;
   }
