@@ -12202,3 +12202,17 @@ input.hp-field,
   .footer-email-row { flex-wrap: wrap; min-width: 0; }
   .footer-email-row input { min-width: 0; flex: 1 1 140px; }
 }
+
+/* 13 Nov 2026 (owner: "reduce this space", desktop): homepage sections have 48px above and below on
+   tablets and desktops (was ~86–96px; ~173–192px of empty space between two sections). */
+@media (min-width: 701px) {
+  .home-main > section:not(.hero),
+  .home-main > .next-steps { padding-top: 48px; padding-bottom: 48px; }
+}
+
+/* 13 Nov 2026 (owner: "make the logo a bit bigger", desktop): about 15% larger at each width,
+   still clear of the menu links. */
+@media (min-width: 1601px) { .site-header .brand { width: 270px; } }
+@media (min-width: 1181px) and (max-width: 1600px) { .site-header .brand { width: clamp(190px, 15vw, 240px); } }
+@media (min-width: 1081px) and (max-width: 1180px) { .site-header .brand { width: 168px; } }
+@media (min-width: 981px) and (max-width: 1080px) { .site-header .brand { width: 140px; } }
