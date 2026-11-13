@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Calendar, Check, MapPin, WhatsappLogo } from "./icons";
 import { useBusiness, useI18n } from "../i18n/I18nProvider";
-import { Header, Reveal } from "./Shared";
+import { Header } from "./Shared";
 import { formatIndex } from "../lib/format";
 import { whatsappHref } from "../lib/enquiry";
 import { track } from "../lib/analytics";
@@ -13,7 +13,7 @@ import { SITE_URL } from "../lib/schema-ids";
 
 // The homepage's interactive parts (6 Nov 2026). The page itself (src/App.jsx) is a server
 // component, so only these run in the browser: the header menu, the hero slider with its
-// quote and site visit buttons, and the sector tabs. Everything else arrives as plain HTML,
+// quote and site visit buttons. Everything else arrives as plain HTML,
 // which cut the work a phone does to hydrate the page.
 
 // The forms load only when someone opens them.
@@ -115,9 +115,3 @@ function Play() {
   return <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5Z" /></svg>;
 }
 
-export function Sectors() {
-  const { lang, dict } = useI18n();
-  const [active, setActive] = useState(0);
-  const images = ["/assets/living-room-wood-slat-wall-lounge-seating.jpeg", "/assets/tv-media-wall-floating-console-fireplace.jpeg", "/assets/modern-living-room-beige-sofa-curtain-wall-panels.jpeg"];
-  return <section className="section sector-section"><div className="shell sectors"><Reveal className="sectors__copy"><p className="micro">{dict.sectorsSection.micro}</p><h2 className="section-title" style={{whiteSpace: 'pre-wrap'}}>{dict.sectorsSection.title}</h2><div className="sector-tabs" role="tablist" aria-label="Project sectors">{dict.sectorsSection.items.map((s, i) => <button key={i} role="tab" aria-selected={i === active} onClick={() => setActive(i)}><span>{formatIndex(i + 1, lang)}</span>{s.label}</button>)}</div><div className="sector-description"><p>{dict.sectorsSection.items[active].body}</p><a href={`/${lang}/contact#contact-form`}>{dict.sectorsSection.explore} <ArrowUpRight size={16} /></a></div></Reveal><Reveal className="sectors__image" delay={120}>{dict.sectorsSection.items.map((s, i) => <Image key={i} className={i === active ? "is-active" : ""} src={images[i]} alt={s.label} fill sizes="(max-width: 700px) 100vw, 60vw" />)}</Reveal></div></section>;
-}

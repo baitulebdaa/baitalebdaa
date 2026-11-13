@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 import { useState } from "react";
 import { createPortal } from "react-dom";
-import { Box, Calendar, Check, Curtains, Home, Minus, Plus, Services, StageMake, StageVisualize, WhatsappLogo } from "./icons";
+import { Box, Calendar, Check, Curtains, Home, Minus, Plus, Services, StageMake, StageVisualize, WhatsappLogo, ArrowUpRight, ChevronDown } from "./icons";
 import { useBusiness, useI18n } from "../i18n/I18nProvider";
 import { Reveal } from "./Shared";
 import { sliderFillPosition } from "../lib/slider";
@@ -115,6 +115,16 @@ export function ServiceEstimator({ service, scopes, heading, inclusions = [], on
             {scopes && (
               <div className="est-step">
                 <p className="est-step__label"><span>{scopeStep}</span>{t.scopeStep}</p>
+                {/* Phones (13 Nov 2026, owner): the choices are one dropdown; larger screens keep the cards. */}
+                <label className="est-scope-select">
+                  <span className="sr-only">{t.scopeStep}</span>
+                  <select value={scope} onChange={(event) => chooseScope(event.target.value)}>
+                    {scopes.map((key) => (
+                      <option key={key} value={key}>{s.scopes[key].label}</option>
+                    ))}
+                  </select>
+                  <ChevronDown size={18} aria-hidden="true" />
+                </label>
                 <div className="est-scopes est-scopes--grid" role="radiogroup" aria-label={t.scopeStep}>
                   {scopes.map((key) => {
                     const Icon = SCOPE_ICONS[key] || Home;
@@ -232,7 +242,7 @@ export function ServiceEstimator({ service, scopes, heading, inclusions = [], on
 
             <div className="est-result__actions">
               <button type="button" className="est-cta" onClick={requestQuote}>
-                {s.requestQuote}
+                {s.requestQuote} <ArrowUpRight size={16} />
               </button>
               <a className="est-cta est-cta--ghost" href={`https://wa.me/${business.whatsapp}?text=${encodeURIComponent(waMessage)}`} target="_blank" rel="noopener noreferrer" data-cta-location="estimator">
                 <WhatsappLogo size={20} /> {t.whatsapp}

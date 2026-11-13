@@ -11830,3 +11830,375 @@ input.hp-field,
 @media (max-width: 700px) {
   .phone-fold--estimator .phone-fold__toggle { width: calc(100% - 40px); margin: 8px auto 24px; }
 }
+
+/* Fix (13 Nov 2026, owner: "mobile UI broken"): swipe rows on phones must start 20px from the
+   edge. The homepage projects row is itself a page-width (.shell) box, so the -20px margin
+   pushed it off the edge; and three rows snapped their first card to the very edge because
+   they had no snap padding. */
+@media (max-width: 700px) {
+  .project-grid-home {
+    width: auto !important;
+    margin-inline: 0 !important;
+    padding-inline: 20px !important;
+  }
+  .project-grid-home,
+  .slp-links-pills,
+  .sv-group__list,
+  .sv-areas__grid { scroll-padding-inline: 20px; }
+}
+
+/* 13 Nov 2026 (owner): on phones the homepage services show 4 tiles, 2 per row (like the desktop
+   grid), instead of the swipe row; "View all services" below leads to the rest. */
+@media (max-width: 700px) {
+  .services-directory .services-grid-visual {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px 12px;
+    overflow: visible;
+    margin-inline: 0;
+    padding: 0;
+    scroll-snap-type: none;
+  }
+  .services-directory .services-grid-visual > * { flex: none; }
+  .services-directory .services-grid-visual > :nth-child(n + 5) { display: none; }
+  .services-directory .service-tile__image { aspect-ratio: 1 / 1; border-radius: 14px; }
+}
+
+/* 13 Nov 2026 (owner): homepage projects on phones are 4 cards, 2 per row (like the services
+   above them); larger screens keep their row of three, so the 4th card is hidden there. */
+@media (min-width: 701px) {
+  .project-grid-home > :nth-child(4) { display: none; }
+}
+@media (max-width: 700px) {
+  .project-grid-home {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px 12px;
+    overflow: visible;
+    width: auto !important;
+    margin-inline: 20px !important;
+    padding: 0 !important;
+    scroll-snap-type: none;
+  }
+  .project-grid-home > * { flex: none; min-width: 0; }
+}
+
+/* 13 Nov 2026 (owner): on phones the homepage project names are a size smaller in the 2x2 grid,
+   and the Product Collection shows 2 per row too (all six, no swipe row), with just the name
+   on each photo. */
+@media (max-width: 700px) {
+  .project-card-home__meta,
+  .project-card-home__meta * { font-size: 0.92rem; line-height: 1.35; }
+
+  .product-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    overflow: visible;
+    margin-inline: 0;
+    padding: 0;
+    scroll-snap-type: none;
+  }
+  .product-grid > * { flex: none; min-width: 0; }
+  .product-card a { aspect-ratio: 1 / 1; height: auto; }
+  .product-card__copy { padding: 12px; }
+  .product-card__copy h3 { font-size: 1rem; line-height: 1.2; margin: 0; }
+  .product-card__copy p { display: none; }
+}
+
+/* 13 Nov 2026 (owner: "reduce this space"): on phones sections had 92px above and below, so two
+   sections stacked ~180px of empty space between them. 40px each side now. */
+@media (max-width: 700px) {
+  .section,
+  .home-main > section {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  .home-main > .hero { padding: 0; }
+  .services-directory { padding-top: 40px; }
+}
+
+/* 13 Nov 2026 (owner): on phones "View All Projects" sits below the project cards, centred like
+   "View all services"; larger screens keep it beside the heading. */
+.projects__more { display: none; }
+@media (max-width: 700px) {
+  .projects__tools { display: none !important; }
+  .projects__more { display: flex; justify-content: center; margin-top: 28px; }
+}
+
+/* 13 Nov 2026 (owner: "why only Villa fit-out?"): the estimator's choices were a swipe row on
+   phones, so only the first showed. Now every choice is visible: "What do you need?" as a
+   2-per-row grid (icon and name), the level/package and extras as a stacked list with prices. */
+@media (max-width: 700px) {
+  .est-scopes {
+    display: grid !important;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    overflow: visible;
+    margin-inline: 0;
+    padding: 0;
+    scroll-snap-type: none;
+  }
+  .est-scopes > * { flex: none !important; width: auto; }
+  .est-scopes--grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .est-scopes--grid .est-scope {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 12px;
+    text-align: start;
+  }
+  .est-scopes--grid .est-scope__icon { width: 36px; height: 36px; }
+  .est-scopes--grid .est-scope__text strong { font-size: 0.92rem; line-height: 1.25; }
+  .est-scopes--grid .est-scope__text small { display: none; }
+}
+
+/* 13 Nov 2026 (owner): the estimator's "Request a quote for this" matches the hero buttons: a
+   white pill with the deep green arrow in a round chip (was the gold gradient); WhatsApp below
+   it is a matching glass pill. */
+.est-cta:not(.est-cta--ghost) {
+  gap: 14px;
+  padding: 0 7px 0 24px;
+  border-radius: 999px;
+  background: #fff;
+  color: #11110f;
+  box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.6);
+}
+.est-cta:not(.est-cta--ghost):hover { background: #f4f1ea; box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.7); }
+.est-cta:not(.est-cta--ghost) svg {
+  width: 40px;
+  height: 40px;
+  padding: 12px;
+  flex: none;
+  border-radius: 50%;
+  background: #1f4a3d;
+  color: #fff;
+}
+[dir="rtl"] .est-cta:not(.est-cta--ghost) { padding: 0 24px 0 7px; }
+.est-cta--ghost { border-radius: 999px; }
+
+/* 13 Nov 2026 (owner): on phones "What do you need?" is one dropdown instead of six cards. */
+.est-scope-select { display: none; }
+@media (max-width: 700px) {
+  .est-scopes--grid { display: none !important; }
+  .est-scope-select {
+    position: relative;
+    display: block;
+  }
+  .est-scope-select select {
+    width: 100%;
+    min-height: 52px;
+    padding: 12px 44px 12px 16px;
+    border: 1.5px solid #1f4a3d;
+    border-radius: 14px;
+    background: #f1f6f3;
+    color: var(--ink);
+    font: inherit;
+    font-size: 0.98rem;
+    font-weight: 600;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+  }
+  [dir="rtl"] .est-scope-select select { padding: 12px 16px 12px 44px; }
+  .est-scope-select svg {
+    position: absolute;
+    inset-inline-end: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #1f4a3d;
+    pointer-events: none;
+  }
+}
+/* 13 Nov 2026 (owner: "why a double border?"): the site-wide gold focus ring drew a second border
+   around the dropdown while it was focused (and it stays focused after a choice). A soft green
+   glow on its own border shows focus instead. */
+.est-scope-select select:focus,
+.est-scope-select select:focus-visible {
+  outline: none;
+  border-color: #1f4a3d;
+  box-shadow: 0 0 0 3px rgba(31, 74, 61, 0.16);
+}
+
+/* 13 Nov 2026 (owner: "this colour isn't right"): the challenge icons use the site's green
+   style (light green square, deep green icon), not the old gold-tan square. */
+.challenges__icon {
+  background: #eef3f0;
+  color: #1f4a3d;
+  border: 1px solid rgba(31, 74, 61, 0.12);
+  box-shadow: none;
+}
+.challenges__icon svg { color: #1f4a3d; }
+
+/* 13 Nov 2026 (owner: About page on phones "not good at all"): the stats band is a 2x2 grid with
+   each label under its number (was one long column), and the "What we do" cards are one per row
+   at full width (two narrow columns made a 1,700px block of squeezed text). */
+@media (max-width: 700px) {
+  .slp-band__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 22px 16px;
+    padding: 28px 0;
+  }
+  .slp-band__stat { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .slp-band__stat strong { font-size: 2.1rem; }
+  .slp-band__stat span { max-width: none; }
+  .included-grid { grid-template-columns: 1fr; gap: 12px; }
+}
+
+/* 13 Nov 2026 (owner: "no boxes"): the About page's "What we do / In-house manufacturing / …"
+   items are plain text separated by thin lines, not bordered cards. */
+.about-fact-item.included-item {
+  padding: 20px 0;
+  border: 0;
+  border-bottom: 1px solid rgba(17, 17, 15, 0.1);
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+.slp-included-section .included-grid { gap: 0 48px; }
+
+/* ==========================================================================
+   13 Nov 2026 (owner): on phones the four stages are 2 on top and 2 below, joined by dotted
+   green arrows in a snake: 1 → 2, ↓ to 3 (below 2), ← to 4. Arabic mirrors it. Replaces the
+   swipe row for this timeline; larger screens keep their row of four.
+   ========================================================================== */
+@media (max-width: 700px) {
+  .process-timeline {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 34px 30px;
+    overflow: visible;
+    margin-inline: 0;
+    padding: 0;
+    scroll-snap-type: none;
+  }
+  .process-timeline > .process-timeline__step {
+    flex: none;
+    overflow: visible;
+    position: relative;
+  }
+  .process-timeline > .process-timeline__step:nth-child(3) { grid-column: 2; grid-row: 2; }
+  .process-timeline > .process-timeline__step:nth-child(4) { grid-column: 1; grid-row: 2; }
+  .process-timeline .pt-photo { border-radius: 18px 18px 0 0; aspect-ratio: 4 / 3; }
+  .process-timeline .pt-card { padding: 14px 14px 14px; }
+  .process-timeline .process-timeline__title { font-size: 1.15rem; }
+  .process-timeline .process-timeline__body { font-size: 0.84rem; line-height: 1.5; margin-bottom: 12px; }
+  .process-timeline .process-timeline__meta { font-size: 0.75rem; padding-top: 10px; }
+
+  /* The dotted arrows */
+  .process-timeline > .process-timeline__step:nth-child(-n + 3)::after {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    background: no-repeat center / contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 14'%3E%3Cpath d='M1 7h21' fill='none' stroke='%231f4a3d' stroke-width='2' stroke-linecap='round' stroke-dasharray='0.1 4.5'/%3E%3Cpath d='M20 2.5l5.5 4.5-5.5 4.5' fill='none' stroke='%231f4a3d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  /* 1 → 2 */
+  .process-timeline > .process-timeline__step:nth-child(1)::after {
+    width: 26px; height: 14px;
+    top: 22%;
+    inset-inline-end: -28px;
+  }
+  /* 2 ↓ 3 */
+  .process-timeline > .process-timeline__step:nth-child(2)::after {
+    width: 26px; height: 14px;
+    left: 50%;
+    bottom: -24px;
+    transform: translateX(-50%) rotate(90deg);
+  }
+  /* 3 → 4 (to its left) */
+  .process-timeline > .process-timeline__step:nth-child(3)::after {
+    width: 26px; height: 14px;
+    top: 22%;
+    inset-inline-start: -28px;
+    transform: rotate(180deg);
+  }
+  /* Arabic reads right to left: flip the side arrows. */
+  [dir="rtl"] .process-timeline > .process-timeline__step:nth-child(1)::after { transform: rotate(180deg); }
+  [dir="rtl"] .process-timeline > .process-timeline__step:nth-child(3)::after { transform: none; }
+  [dir="rtl"] .process-timeline > .process-timeline__step:nth-child(2)::after { left: auto; right: 50%; transform: translateX(50%) rotate(90deg); }
+}
+
+/* 13 Nov 2026 (owner: "that colour is back here"): the About page's company-details icons use the
+   site's green style (light green circle, deep green icon) instead of the tan (--sand) circle. */
+.cp-card__icon {
+  background: #eef3f0;
+  color: #1f4a3d;
+  border: 1px solid rgba(31, 74, 61, 0.12);
+}
+.cp-card__icon svg { color: #1f4a3d; }
+
+/* 13 Nov 2026 (owner: "show it like the process, so everything is visible"): on phones "What
+   happens next" is 2 on top and 2 below with the same dotted arrows (1 → 2, ↓ 3, ← 4), not a
+   swipe row. */
+@media (max-width: 700px) {
+  .next-steps__list {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 34px 30px;
+    overflow: visible;
+    margin-inline: 0;
+    padding: 0;
+    scroll-snap-type: none;
+  }
+  .next-steps__list > li { flex: none; position: relative; padding: 16px 14px; overflow: visible; }
+  .next-steps__list > li:nth-child(3) { grid-column: 2; grid-row: 2; }
+  .next-steps__list > li:nth-child(4) { grid-column: 1; grid-row: 2; }
+  .next-steps__list h3 { font-size: 0.98rem; line-height: 1.3; }
+  .next-steps__list p { font-size: 0.84rem; line-height: 1.5; }
+  .next-steps__list > li:nth-child(-n + 3)::after {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    width: 26px;
+    height: 14px;
+    background: no-repeat center / contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 14'%3E%3Cpath d='M1 7h21' fill='none' stroke='%231f4a3d' stroke-width='2' stroke-linecap='round' stroke-dasharray='0.1 4.5'/%3E%3Cpath d='M20 2.5l5.5 4.5-5.5 4.5' fill='none' stroke='%231f4a3d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .next-steps__list > li:nth-child(1)::after { top: 28px; inset-inline-end: -28px; }
+  .next-steps__list > li:nth-child(2)::after { left: 50%; bottom: -24px; transform: translateX(-50%) rotate(90deg); }
+  .next-steps__list > li:nth-child(3)::after { top: 28px; inset-inline-start: -28px; transform: rotate(180deg); }
+  [dir="rtl"] .next-steps__list > li:nth-child(1)::after { transform: rotate(180deg); }
+  [dir="rtl"] .next-steps__list > li:nth-child(3)::after { transform: none; }
+  [dir="rtl"] .next-steps__list > li:nth-child(2)::after { left: auto; right: 50%; transform: translateX(50%) rotate(90deg); }
+}
+@media (max-width: 700px) {
+  /* The earlier swipe-row rule forced grid-column: auto !important on these cards. */
+  .next-steps__list > li:nth-child(3) { grid-column: 2 !important; grid-row: 2 !important; }
+  .next-steps__list > li:nth-child(4) { grid-column: 1 !important; grid-row: 2 !important; }
+  .next-steps__list > li:nth-child(1), .next-steps__list > li:nth-child(2) { grid-row: 1 !important; }
+}
+
+/* 13 Nov 2026 (owner: "align these points"): on phones the hero's three proof points are one
+   block centred as a whole, with every line starting at the same place so the ticks line up. */
+@media (max-width: 700px) {
+  .hero__proof {
+    flex-direction: column;
+    align-items: flex-start;
+    width: fit-content;
+    max-width: 100%;
+    margin-inline: auto;
+    gap: 6px;
+    text-align: start;
+  }
+  .hero__proof li { justify-content: flex-start; text-align: start; }
+}
+
+/* 13 Nov 2026 (owner: "make it a bit bigger"): the header logo on phones, as large as the
+   header allows beside the WhatsApp button and menu at each width. */
+@media (max-width: 700px) { .site-header .brand { width: 160px; } }
+@media (max-width: 400px) { .site-header .brand { width: 150px; } }
+@media (max-width: 370px) { .site-header .brand { width: 136px; } }
+@media (max-width: 340px) { .site-header .brand { width: 112px; } }
+@media (max-width: 340px) {
+  .site-header { gap: 6px; padding-inline: 12px; }
+  .site-header .header-cta { padding: 7px 9px; gap: 5px; font-size: 0.72rem; }
+  .site-header .header-cta svg { width: 16px; height: 16px; }
+}
+/* Very small phones (320px): the footer newsletter's email box and Subscribe button were wider
+   than the screen. Let them shrink and wrap. */
+@media (max-width: 360px) {
+  .site-footer .shell > *, .footer-newsletter__copy, .site-footer form { min-width: 0; max-width: 100%; }
+  .footer-email-row { flex-wrap: wrap; min-width: 0; }
+  .footer-email-row input { min-width: 0; flex: 1 1 140px; }
+}

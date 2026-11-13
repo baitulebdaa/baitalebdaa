@@ -94,7 +94,8 @@ export const SERVICE_ESTIMATORS = {
 export const GENERAL_ESTIMATOR_SCOPES = ["villa-renovation", "office-fit-out", "kitchen-design", "custom-wardrobes", "curtains", "interior-design"];
 
 const ESTIMATOR_LIMITS = {
-  area: { min: 300, max: 15000, step: 50, nudge: 250, size: 1000, presets: [500, 1000, 2500, 5000] },
+  // 13 Nov 2026 (owner): floor area from 50 sq ft (was 300), for single rooms and small units.
+  area: { min: 50, max: 15000, step: 50, nudge: 250, size: 1000, presets: [500, 1000, 2500, 5000] },
   length: { min: 1, max: 20, step: 0.5, nudge: 1, size: 3, presets: [2, 3, 4, 6] },
   count: { min: 1, max: 30, step: 1, nudge: 1, size: 3, presets: [2, 3, 5, 8] },
   package: {},

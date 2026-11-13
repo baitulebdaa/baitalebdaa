@@ -504,6 +504,8 @@ export const dictionaries = {
     aboutPage: {
       navTitle: "About Us",
       pageTitle: "About Bait Al Ebdaa: Interior Design & Joinery",
+      // 13 Nov 2026 (owner): the photo top had only a title; one short line from the facts below.
+      heroLead: "One team for interior design, approvals, fit-out and the joinery we make in our own 15,000 sq ft factory in Ajman, serving all seven emirates.",
       metaTitle: "About Bait Al Ebdaa: Interior Design & Joinery Studio",
       metaDescription: "Bait Al Ebdaa is a turnkey interior design, fit-out and joinery company in Ajman, serving all seven emirates with its own in-house manufacturing.",
       intro: "Bait Al Ebdaa is a turnkey interior design, fit-out and architectural joinery company serving all seven emirates of the UAE. We deliver villa and office interiors from initial concept through to final handover, with design, approvals, joinery manufacturing and installation coordinated by one accountable team rather than a chain of separate subcontractors.",
@@ -2669,6 +2671,7 @@ export const dictionaries = {
     aboutPage: {
       navTitle: "من نحن",
       pageTitle: "عن بيت الإبداع: التصميم الداخلي والنجارة",
+      heroLead: "فريق واحد للتصميم الداخلي والموافقات والتجهيز والنجارة التي نصنعها في مصنعنا الخاص بمساحة 15,000 قدم مربع في عجمان، في الإمارات السبع.",
       metaTitle: "من نحن: استوديو تصميم داخلي ونجارة | بيت الإبداع",
       metaDescription: "بيت الإبداع شركة تصميم داخلي وتجهيز شامل ونجارة معمارية مقرها عجمان، تخدم جميع الإمارات السبع بتصنيع داخلي خاص.",
       intro: "بيت الإبداع شركة تصميم داخلي وتجهيز شامل ونجارة معمارية تخدم جميع إمارات الدولة السبع. ننفّذ تصاميم الفلل والمكاتب من المفهوم الأولي وحتى التسليم النهائي، بإدارة فريق واحد مسؤول عن التصميم والموافقات والتصنيع والتركيب، دون سلسلة من مقاولين من الباطن منفصلين.",

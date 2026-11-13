@@ -506,15 +506,13 @@ export default function ServiceLocationPage({ lang, row, seoContext, pilot = nul
         </Reveal>
         {/* This service's own published prices; services without one are quoted after a survey */}
         {serviceEstimator(row.serviceSlug) ? (
-          <PhoneFold className="phone-fold--estimator" title={lang === "ar" ? "افتح حاسبة الميزانية" : "Open the budget estimator"}>
-            <ServiceEstimator
-              service={row.serviceSlug}
-              serviceName={serviceName}
-              inclusions={(pilot ? pilot.points : content.included).slice(0, 4)}
-              onBookSurvey={(size) => openSiteVisit(size, "estimator")}
-              onRequestQuote={(estimate) => openQuote("estimator", estimate)}
-            />
-          </PhoneFold>
+          <ServiceEstimator
+            service={row.serviceSlug}
+            serviceName={serviceName}
+            inclusions={(pilot ? pilot.points : content.included).slice(0, 4)}
+            onBookSurvey={(size) => openSiteVisit(size, "estimator")}
+            onRequestQuote={(estimate) => openQuote("estimator", estimate)}
+          />
         ) : (
           <QuotedAfterSurvey serviceName={serviceName} onRequestQuote={() => openQuote("quoted-card")} waHref={waHref} />
         )}

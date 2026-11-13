@@ -1,11 +1,10 @@
-import { PhoneFold } from "./components/PhoneFold";
 import Image from "next/image";
 import { ArrowUpRight, Box, Calendar, Lamp, ShoppingCart, Users, Wrench } from "./components/icons";
 import { Footer, Reveal, FaqSplit, ProcessTimeline } from "./components/Shared";
 import { ServiceTileGrid } from "./components/ServiceTiles";
 import { Estimator } from "./components/Estimator";
 import { NextSteps } from "./components/NextSteps";
-import { Hero, Sectors, SiteHeader } from "./components/HomeIslands";
+import { Hero, SiteHeader } from "./components/HomeIslands";
 import { isPublishedProject } from "./data/project-catalog";
 import { REVIEWS } from "./data/reviews";
 import { ReviewCard } from "./components/ReviewCard";
@@ -16,7 +15,7 @@ import { getBusiness } from "./lib/business";
 // component, so a phone downloaded the code for every section and re-rendered all of them
 // before the page responded (most of its Total Blocking Time after Google Analytics). Now
 // the sections below arrive as finished HTML and only the interactive parts run in the
-// browser: the header, hero slider and sector tabs (components/HomeIslands.jsx), the
+// browser: the header and hero slider (components/HomeIslands.jsx), the
 // service tiles, price explorer, estimator, FAQ and the scroll reveals.
 
 function Services({ lang, dict, business }) {
@@ -110,10 +109,10 @@ function Projects({ lang, dict }) {
   // Homepage shows three cards: the published project first, then the next entries
   // that have a detail page (placeholders, still noindex — see data/project-catalog.js).
   const withDetail = dict.projectsSection.items.filter((project) => dict.projectDetailPage.projects[project.slug]);
-  const projects = [...withDetail.filter((p) => isPublishedProject(p.slug)), ...withDetail.filter((p) => !isPublishedProject(p.slug))].slice(0, 3);
+  const projects = [...withDetail.filter((p) => isPublishedProject(p.slug)), ...withDetail.filter((p) => !isPublishedProject(p.slug))].slice(0, 4); // 4th shows on phones only (2x2 grid, 13 Nov 2026)
   const imageBySlug = Object.fromEntries(projects.map((p) => [p.slug, dict.projectDetailPage.projects[p.slug].images[0]]));
   imageBySlug["government-authority"] = "/assets/tv-wall-unit-led-display-shelves.jpeg";
-  return <section className="section projects" id="projects"><div className="shell projects__heading"><Reveal><p className="micro">{dict.projectsSection.micro}</p><h2 className="section-title" style={{whiteSpace: 'pre-wrap'}}>{dict.projectsSection.title}</h2></Reveal><Reveal className="projects__tools" delay={100} style={{display: 'flex', alignItems: 'flex-end'}}><a href={`/${lang}/our-projects`} className="outline-button outline-button--dark">{dict.projectsSection.viewAll} <ArrowUpRight size={16} /></a></Reveal></div><div className="shell project-grid-home">{projects.map((p) => <article className="project-card-home" key={p.slug}><a href={`/${lang}/our-projects/${p.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}><div className="project-card-home__image"><Image src={imageBySlug[p.slug]} alt="" fill sizes="(max-width: 700px) 100vw, 33vw" /></div><div className="project-card-home__meta"><h3>{p.title}{p.place ? `, ${p.place}` : ''} <ArrowUpRight size={16} style={{display: 'inline-block', verticalAlign: 'middle', marginLeft: '5px'}} /></h3></div></a></article>)}</div></section>;
+  return <section className="section projects" id="projects"><div className="shell projects__heading"><Reveal><p className="micro">{dict.projectsSection.micro}</p><h2 className="section-title" style={{whiteSpace: 'pre-wrap'}}>{dict.projectsSection.title}</h2></Reveal><Reveal className="projects__tools" delay={100} style={{display: 'flex', alignItems: 'flex-end'}}><a href={`/${lang}/our-projects`} className="outline-button outline-button--dark">{dict.projectsSection.viewAll} <ArrowUpRight size={16} /></a></Reveal></div><div className="shell project-grid-home">{projects.map((p) => <article className="project-card-home" key={p.slug}><a href={`/${lang}/our-projects/${p.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}><div className="project-card-home__image"><Image src={imageBySlug[p.slug]} alt="" fill sizes="(max-width: 700px) 100vw, 33vw" /></div><div className="project-card-home__meta"><h3>{p.title}{p.place ? `, ${p.place}` : ''} <ArrowUpRight size={16} style={{display: 'inline-block', verticalAlign: 'middle', marginLeft: '5px'}} /></h3></div></a></article>)}</div>{/* Phones: the button sits below the cards (13 Nov 2026, owner). */}<div className="shell projects__more"><a href={`/${lang}/our-projects`} className="outline-button outline-button--dark">{dict.projectsSection.viewAll} <ArrowUpRight size={16} /></a></div></section>;
 }
 
 // Real client reviews (src/data/reviews.js), shown in the client's words; the full list is on /reviews.
@@ -154,13 +153,11 @@ export default async function App({ lang }) {
       <Hero />
       <ServicesDirectory {...props} />
       <Projects {...props} />
-      <Challenges {...props} />
-      <PhoneFold className="phone-fold--estimator" title={lang === "ar" ? "احسب ميزانية مشروعك" : "Estimate your project budget"}>
-        <Estimator />
-      </PhoneFold>
-      <Factory {...props} />
-      <Sectors />
+      {/* 13 Nov 2026 (owner): Product Collection sits directly below the projects. */}
       <ProductCollection {...props} />
+      <Challenges {...props} />
+      <Estimator />
+      <Factory {...props} />
       <NextSteps />
       <Process {...props} />
       <Testimonials {...props} />

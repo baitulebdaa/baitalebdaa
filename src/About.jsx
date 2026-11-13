@@ -2,7 +2,12 @@
 
 import { formatPhone } from "./data/business";
 import { useState } from "react";
-import { ArrowUpRight, Clock, Mail, MapPin, Phone } from "./components/icons";
+import dynamic from "next/dynamic";
+import { track } from "./lib/analytics";
+
+// The quote form loads only when someone opens it.
+const QuoteModal = dynamic(() => import("./components/QuoteModal").then((m) => m.QuoteModal), { ssr: false });
+import { ArrowUpRight, Clock, Mail, MapPin, Phone, WhatsappLogo } from "./components/icons";
 import { useBusiness, useI18n } from "./i18n/I18nProvider";
 import { Header, Footer, Reveal, PhotoHero, ProcessTimeline } from "./components/Shared";
 import { PageFaq } from "./components/PageFaq";
@@ -20,6 +25,7 @@ export default function About() {
   const { lang, dict } = useI18n();
   const business = useBusiness();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [quoteOpen, setQuoteOpen] = useState(false);
   const t = dict.aboutPage;
   const project = dict.projectDetailPage.projects["government-authority"];
   const home = dict.ourProjectsPage.home;
@@ -65,7 +71,19 @@ export default function About() {
           crumbs={[{ label: home, href: lang === "ar" ? "/ar" : "/" }, { label: t.navTitle }]}
           chip={t.navTitle}
           title={t.pageTitle}
+          lead={t.heroLead}
+          actions={
+            <>
+              <button type="button" className="slp-btn slp-btn--solid" onClick={() => { track("cta_click", { cta: "quote", cta_location: "about-hero" }); setQuoteOpen(true); }}>
+                {dict.hero.primaryCta} <ArrowUpRight size={15} />
+              </button>
+              <a className="slp-btn" href={`https://wa.me/${business.whatsapp}`} target="_blank" rel="noopener noreferrer">
+                <WhatsappLogo size={16} /> {dict.hero.secondaryCta}
+              </a>
+            </>
+          }
         />
+        {quoteOpen && <QuoteModal open onClose={() => setQuoteOpen(false)} source="about-hero" />}
 
         <section className="shell slp-intro-section">
           <Reveal>
