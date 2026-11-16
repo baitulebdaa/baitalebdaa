@@ -55,18 +55,19 @@ const QuoteModal = dynamic(() => import("./components/QuoteModal").then((m) => m
 
 // Local permits and projects for an indexed emirate page (data/local-evidence.js, resolved on
 // the server): the authority's own requirements with their sources, and real projects there.
-function LocalEvidence({ lang, local, locationName, emirateName }) {
+// `copy` (optional, src/data/intent-overrides.js) reframes the heading and intro for one page.
+function LocalEvidence({ lang, local, locationName, emirateName, copy = null }) {
   const ar = lang === "ar";
   return (
     <section className="shell slp-local" data-main="local">
       <Reveal>
         <p className="micro">{locationName}</p>
-        <h2 className="slp-h2">{ar ? `التصاريح والمشاريع في ${locationName}` : `Permits and projects in ${locationName}`}</h2>
+        <h2 className="slp-h2">{copy?.h2 ?? (ar ? `التصاريح والمشاريع في ${locationName}` : `Permits and projects in ${locationName}`)}</h2>
       </Reveal>
       <div className="slp-local__grid">
         <Reveal className="slp-local__permits">
           <h3>{ar ? `تصاريح الأعمال الداخلية في ${emirateName}` : `Permits for interior works in ${emirateName}`}</h3>
-          <p>{local.intro}</p>
+          <p>{copy?.intro ?? local.intro}</p>
           <PhoneFold className="phone-fold--permits" title={ar ? "تفاصيل التصاريح" : "Show the permit details"}>
             <ul>
               {local.points.map((point) => <li key={point}>{point}</li>)}
@@ -141,7 +142,8 @@ const SERVICE_ARTICLES = {
   "apartment-renovation": [CHOOSE, LUXURY, CARE],
 };
 
-export default function ServiceLocationPage({ lang, row, seoContext, pilot = null, local = null }) {
+// `intent`: a page-specific override from src/data/intent-overrides.js (null on every other page).
+export default function ServiceLocationPage({ lang, row, seoContext, pilot = null, local = null, intent = null }) {
   const { dict } = useI18n();
   const business = useBusiness();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -287,7 +289,9 @@ export default function ServiceLocationPage({ lang, row, seoContext, pilot = nul
   // Pilot pages answer their own questions only; the template's category FAQs stay on the rest.
   // Indexed emirate pages (12 Nov 2026): one category FAQ, then four answered from that emirate's
   // verified facts (data/local-evidence.js emirateFaqs), instead of text repeated on every emirate.
-  const faqItems = pilot ? pilot.faqs : local?.faqs?.length ? [content.faqs[0], ...local.faqs] : [...content.faqs, ...pageFaqs];
+  // An intent override lists its own questions, and can keep the service's own FAQs by index.
+  const intentFaqs = intent?.faqs?.map((faq) => (typeof faq.content === "number" ? content.faqs[faq.content] : faq)).filter(Boolean);
+  const faqItems = pilot ? pilot.faqs : intentFaqs?.length ? intentFaqs : local?.faqs?.length ? [content.faqs[0], ...local.faqs] : [...content.faqs, ...pageFaqs];
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -385,7 +389,7 @@ export default function ServiceLocationPage({ lang, row, seoContext, pilot = nul
           }
         >
           <Reveal>
-            {!pilot && <p className="slp-hero__lead">{locationClause}</p>}
+            {!pilot && <p className="slp-hero__lead">{intent?.heroLine ?? locationClause}</p>}
             {startingItem && (
               <div className="slp-hero__price">
                 <span>{lang === "ar" ? "الأسعار الاسترشادية" : "Indicative pricing"}</span>
@@ -444,6 +448,54 @@ export default function ServiceLocationPage({ lang, row, seoContext, pilot = nul
               ))}
             </div>
           </section>
+        ) : intent?.scope ? (
+          <>
+            {/* Intent override: the definition, the price and the merged scope, then design vs fit-out */}
+            <section className="shell slp-scope" data-main="intent">
+              <div className="slp-scope__aside">
+                <Reveal>
+                  <p className="micro">{serviceName}</p>
+                  <h2 className="slp-h2">{intent.scope.h2}</h2>
+                  {intent.scope.paragraphs.map((html, i) => (
+                    <p className="slp-scope__text" key={i} dangerouslySetInnerHTML={{ __html: html }} />
+                  ))}
+                </Reveal>
+              </div>
+              <div className="slp-scope__list">
+                <Reveal>
+                  <h3 className="slp-scope__label">{intent.scope.listLabel}</h3>
+                </Reveal>
+                <ol>
+                  {intent.scope.items.map((item, i) => (
+                    <Reveal as="li" className="slp-scope__row" key={i} delay={60 + i * 50}>
+                      <span className="slp-scope__num">{String(i + 1).padStart(2, "0")}</span>
+                      <span className="slp-scope__item">{item}</span>
+                      <Check size={18} className="slp-scope__check" />
+                    </Reveal>
+                  ))}
+                </ol>
+              </div>
+            </section>
+            {intent.split && (
+              <section className="shell slp-split" data-main="intent">
+                <Reveal>
+                  <h2 className="slp-h2">{intent.split.h2}</h2>
+                </Reveal>
+                <Reveal className="slp-split__grid" delay={60}>
+                  <div className="slp-split__col">
+                    <h3>{intent.split.design.h3}</h3>
+                    <ul>{intent.split.design.items.map((item) => <li key={item}>{item}</li>)}</ul>
+                  </div>
+                  <div className="slp-split__col">
+                    <h3>{intent.split.fitOut.h3}</h3>
+                    <ul>{intent.split.fitOut.items.map((item) => <li key={item}>{item}</li>)}</ul>
+                    <a href={intent.split.fitOut.link.href}>{intent.split.fitOut.link.label}</a>
+                  </div>
+                </Reveal>
+                <p className="slp-split__note">{intent.split.note}</p>
+              </section>
+            )}
+          </>
         ) : (
         <section className="shell slp-scope">
           <div className="slp-scope__aside">
@@ -472,7 +524,7 @@ export default function ServiceLocationPage({ lang, row, seoContext, pilot = nul
         </section>
         )}
 
-        {local && <LocalEvidence lang={lang} local={local} locationName={locationName} emirateName={emirateName} />}
+        {local && intent?.permits?.after !== "cost" && <LocalEvidence lang={lang} local={local} locationName={locationName} emirateName={emirateName} copy={intent?.permits} />}
 
         {/* Examples of our work — real photos and design visuals, labelled as not specific to this location */}
         {workExamples.length > 0 && (
@@ -497,12 +549,13 @@ export default function ServiceLocationPage({ lang, row, seoContext, pilot = nul
 
         {/* Process (compact) */}
         <section className="shell section slp-process-section">
-          <ProcessTimeline kicker={dict.processSection.micro} title={row.h2Themes[2]} items={dict.processSection.items.map(([title, body, meta]) => [title, localize(body), meta])} />
+          <ProcessTimeline kicker={dict.processSection.micro} title={intent?.processTitle ?? row.h2Themes[2]} items={dict.processSection.items.map(([title, body, meta]) => [title, localize(body), meta])} />
+          {intent?.processNote && <p className="slp-process-note">{intent.processNote}</p>}
         </section>
 
         {/* Cost context */}
         <Reveal as="div" delay={100}>
-          <h2 className="slp-section-label shell">{pilot ? (lang === "ar" ? "قدّر ميزانية مشروعك" : "Estimate your budget") : row.h2Themes[3]}</h2>
+          <h2 className="slp-section-label shell">{pilot ? (lang === "ar" ? "قدّر ميزانية مشروعك" : "Estimate your budget") : intent?.costTitle ?? row.h2Themes[3]}</h2>
         </Reveal>
         {/* This service's own published prices; services without one are quoted after a survey */}
         {serviceEstimator(row.serviceSlug) ? (
@@ -555,6 +608,9 @@ export default function ServiceLocationPage({ lang, row, seoContext, pilot = nul
           </section>
         )}
 
+        {/* Intent override: the permit block moves below the cost section so it does not lead the page */}
+        {local && intent?.permits?.after === "cost" && <LocalEvidence lang={lang} local={local} locationName={locationName} emirateName={emirateName} copy={intent.permits} />}
+
         {/* Why choose Bait Al Ebdaa — company-level facts, reused site-wide */}
         <section className="slp-why">
           <div className="shell">
@@ -602,6 +658,12 @@ export default function ServiceLocationPage({ lang, row, seoContext, pilot = nul
             <div className="slp-proof-copy">
               <p className="micro">{dict.ourProjectsPage.ourProjects}</p>
               <p className="hx">{project.title}</p>
+              {intent?.proof && (
+                <>
+                  <p className="slp-proof-text">{intent.proof.text}</p>
+                  <a href={intent.proof.link.href} className="service-learn-more">{intent.proof.link.label}</a>
+                </>
+              )}
               {caseStudyLinkLabel && (
                 <a href={`/${lang}/our-projects/government-authority`} className="service-learn-more">
                   {caseStudyLinkLabel}
@@ -671,7 +733,14 @@ export default function ServiceLocationPage({ lang, row, seoContext, pilot = nul
               </div>
             </Reveal>
           )}
-          {otherServices.length > 0 && (
+          {intent?.related ? (
+            <Reveal className="slp-links-block" delay={100}>
+              <p className="hx">{intent.related.title}</p>
+              <div className="slp-links-pills">
+                {intent.related.links.map((link) => <a key={link.href} href={link.href}>{link.label}</a>)}
+              </div>
+            </Reveal>
+          ) : otherServices.length > 0 && (
             <Reveal className="slp-links-block" delay={100}>
               <p className="hx">{lang === "ar" ? `خدمات أخرى في ${locationName}` : `Other services in ${locationName}`}</p>
               <div className="slp-links-pills">

@@ -453,7 +453,8 @@ test("FAQPage schema on service pages is built from the same items the visible F
   const page = read("src/ServiceLocationPage.jsx");
   // One list feeds both the rendered FAQ section and the FAQPage markup.
   // Indexed emirate pages (12 Nov 2026) use one category FAQ plus the emirate FAQ from verified facts.
-  assert.match(page, /const faqItems = pilot \? pilot\.faqs : local\?\.faqs\?\.length \? \[content\.faqs\[0\], \.\.\.local\.faqs\] : \[\.\.\.content\.faqs, \.\.\.pageFaqs\];/);
+  // An intent override (15 Nov 2026, src/data/intent-overrides.js) lists its own questions.
+  assert.match(page, /const faqItems = pilot \? pilot\.faqs : intentFaqs\?\.length \? intentFaqs : local\?\.faqs\?\.length \? \[content\.faqs\[0\], \.\.\.local\.faqs\] : \[\.\.\.content\.faqs, \.\.\.pageFaqs\];/);
   assert.match(page, /faqPageJsonLd\(faqItems\)/);
   assert.match(page, /items=\{faqItems\}/);
   // Every question and answer is server-rendered in the accordion (answers collapse visually but
@@ -640,3 +641,62 @@ test("all 17 services have direct canonical starting prices and no fallback leak
   }
 });
 
+
+test("intent override: only /ar/office-interior-design/sharjah, with title, H1, canonical and price untouched", async () => {
+  const { INTENT_OVERRIDES, getIntentOverride, intentMetaDescription } = await import("../src/data/intent-overrides.js");
+  const { priceText } = await import("../src/lib/pricing.js");
+  const seo = JSON.parse(read("src/data/seo-pages.json"));
+  assert.deepEqual(Object.keys(INTENT_OVERRIDES), ["office-interior-design/sharjah"]);
+  assert.deepEqual(Object.keys(INTENT_OVERRIDES["office-interior-design/sharjah"]), ["ar"]);
+  // Nothing else is overridden: not the generic Sharjah page, not the English page, not the fit-out page.
+  for (const [lang, service, location] of [["ar", "interior-design", "sharjah"], ["en", "office-interior-design", "sharjah"], ["ar", "office-fit-out", "sharjah"], ["ar", "office-interior-design", "dubai"]]) {
+    assert.equal(getIntentOverride(lang, service, location), null, `${lang}/${service}/${location}`);
+    assert.equal(intentMetaDescription(lang, service, location), null, `${lang}/${service}/${location} meta`);
+  }
+  // Title, H1, canonical and hreflang stay in seo-pages.json exactly as published.
+  const row = seo.pages.ar["office-interior-design/sharjah"];
+  assert.equal(row.seoTitle, "تصميم داخلي للمكاتب في الشارقة | بيت الإبداع");
+  assert.equal(row.h1, "تصميم داخلي للمكاتب في الشارقة");
+  assert.equal(row.canonical, "https://www.baitalebdaa.com/ar/office-interior-design/sharjah");
+  assert.equal(row.hreflang, "https://www.baitalebdaa.com/en/office-interior-design/sharjah");
+  const source = read("src/data/intent-overrides.js").replace(/^\s*\/\/.*$/gm, "");
+  assert.doesNotMatch(source, /seoTitle|h1:|canonical|hreflang|robots/, "the override never sets title, H1, canonical, hreflang or robots");
+  // The price is read from the price list, never typed in; the meta description carries it.
+  assert.doesNotMatch(source, /AED\s?\d|\d[\d,.]*\s?درهم/);
+  const meta = intentMetaDescription("ar", "office-interior-design", "sharjah");
+  assert.ok(meta.length >= 120 && meta.length <= 150, `meta length ${meta.length}`);
+  assert.ok(meta.includes(priceText("design-office", "ar")) && meta.includes("25"));
+  assert.doesNotMatch(meta, /التنفيذ|التسليم/, "the meta description is about design, not execution");
+});
+
+test("intent override: office-specific copy, honest project proof, curated links to live pages, plain-text FAQ", async () => {
+  const { getIntentOverride } = await import("../src/data/intent-overrides.js");
+  const seo = JSON.parse(read("src/data/seo-pages.json"));
+  const o = getIntentOverride("ar", "office-interior-design", "sharjah");
+  // Headings: the three approved rewrites.
+  assert.equal(o.scope.h2, "ما الذي يشمله تصميم المكتب؟");
+  assert.equal(o.processTitle, "كيف يسير مشروع تصميم المكتب");
+  assert.equal(o.costTitle, "تكلفة تصميم المكتب");
+  // No generic-intent targeting and no office-design timeline.
+  const copy = JSON.stringify(o);
+  assert.doesNotMatch(copy, /أفضل شركة|شركة تصميم داخلي|شركات تصميم داخلي/);
+  assert.doesNotMatch(copy, /\d+\s*(–|-)?\s*\d*\s*(أيام|أسابيع|أشهر|يوم|أسبوع|شهر)/, "no typed timeline");
+  assert.doesNotMatch(o.costTitle, /المدة/);
+  // Project proof is labelled as a Dubai Academic City project, never a Sharjah one.
+  assert.match(o.proof.text, /مدينة دبي الأكاديمية/);
+  assert.match(o.proof.text, /وليس مشروعاً في الشارقة/);
+  // Every internal link points at a live, approved Arabic page or the case study.
+  const hrefs = [...copy.matchAll(/\/ar\/[a-z0-9/-]+/g)].map((m) => m[0]);
+  assert.ok(hrefs.includes("/ar/office-fit-out/sharjah") && hrefs.includes("/ar/interior-design/sharjah"));
+  for (const href of new Set(hrefs)) {
+    const [, , service, location] = href.split("/");
+    if (service === "media") assert.ok(read("src/data/guide-articles.js").length > 0 && href === "/ar/media/government-authority-hq-case-study");
+    else assert.ok(seo.pages.ar[`${service}/${location}`]?.approved, `${href} is not an approved page`);
+  }
+  // FAQ: the kept brand and stakeholder questions come from the service's own FAQs; the rest is plain text.
+  assert.equal(o.faqs.length, 7);
+  assert.deepEqual(o.faqs.filter((f) => typeof f.content === "number").map((f) => f.content), [0, 1]);
+  for (const f of o.faqs.filter((f) => !("content" in f))) assert.doesNotMatch(f.q + f.a, /[<>]/, "FAQ text is plain");
+  // Schema parity: one list feeds the visible FAQ and FAQPage (asserted in the FAQPage test above).
+  assert.match(read("src/ServiceLocationPage.jsx"), /faqPageJsonLd\(faqItems\)/);
+});

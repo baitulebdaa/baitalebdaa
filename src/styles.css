@@ -9934,6 +9934,29 @@ html[data-signed-in] .show-signed-out { display: none !important; }
 }
 
 /* ==========================================================================
+   Intent override blocks (15 Nov 2026, src/data/intent-overrides.js): the design-vs-fit-out
+   block, the process note and the project-proof line on /ar/office-interior-design/sharjah.
+   Flat white cards with thin borders, like the Contact page.
+   ========================================================================== */
+.slp-scope[data-main="intent"] .slp-scope__text + .slp-scope__text { margin-top: 14px; }
+.slp-scope[data-main="intent"] .slp-scope__text a,
+.slp-split a { color: #1f4a3d; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+
+.slp-split { padding: 0 0 clamp(60px, 7vw, 100px); }
+.slp-split__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 3vw, 32px); margin-top: 22px; }
+.slp-split__col { padding: clamp(20px, 2.6vw, 30px); border: 1px solid var(--line); border-radius: 16px; background: #fff; }
+.slp-split__col h3 { margin: 0 0 12px; font-size: 1.15rem; font-weight: 600; }
+.slp-split__col ul { display: grid; gap: 8px; margin: 0 0 14px; padding-inline-start: 20px; color: #3d3a35; line-height: 1.6; }
+.slp-split__note { margin: 18px 0 0; color: var(--muted); line-height: 1.7; }
+
+.slp-process-note { margin: 18px 0 0; color: var(--muted); font-size: 0.95rem; line-height: 1.7; }
+.slp-proof-text { margin: 0 0 14px; color: #3d3a35; line-height: 1.7; }
+
+@media (max-width: 700px) {
+  .slp-split__grid { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
    Phones: service-page calls to action (6 Nov 2026)
    ========================================================================== */
 .slp-mobile-cta { display: none; }

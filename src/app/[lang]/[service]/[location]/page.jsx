@@ -14,6 +14,7 @@ import {
 } from "../../../../lib/seo-pages";
 import ServiceLocationPage from "../../../../ServiceLocationPage";
 import { getPilotContent, pilotMetaDescription } from "../../../../data/pilot-pages";
+import { getIntentOverride, intentMetaDescription } from "../../../../data/intent-overrides";
 import { OFFICIAL_SOURCES, SOURCES_REVIEWED_LABEL } from "../../../../data/official-sources";
 import { emirateFaqs, localEvidence } from "../../../../data/local-evidence";
 import { priceText, serviceStartingItem } from "../../../../lib/pricing";
@@ -22,7 +23,9 @@ import { dictionaries } from "../../../../i18n/dictionaries";
 // Local evidence (data/local-evidence.js) for the indexed emirate pages that have no pilot copy
 // of their own: that emirate's permit route with its official sources, and the real projects
 // there that match the service. Resolved here so the browser gets only this page's text.
-function localFor(lang, row, location, hasPilot) {
+// `ownFaqs`: the page's intent override lists its own questions, so the emirate FAQ is not built
+// (it would only be serialized into the page payload, unused).
+function localFor(lang, row, location, hasPilot, ownFaqs = false) {
   if (hasPilot || !row.approved || location.tier !== "core") return null;
   const local = localEvidence(lang, row.serviceSlug, row.emirate);
   if (!local) return null;
@@ -31,12 +34,14 @@ function localFor(lang, row, location, hasPilot) {
   const service = getService(row.serviceSlug);
   const serviceName = lang === "ar" ? (service?.ar || "").replace(/^شركةs+/, "") : service?.en || "";
   const startingItem = serviceStartingItem(row.serviceSlug);
-  const faqs = emirateFaqs(lang, row.serviceSlug, row.emirate, {
-    serviceName,
-    emirateName: getEmirateName(lang, row.emirate),
-    price: startingItem ? priceText(startingItem.id, lang) : null,
-    projectTitle: (slug) => projects[slug]?.title || slug,
-  });
+  const faqs = ownFaqs
+    ? []
+    : emirateFaqs(lang, row.serviceSlug, row.emirate, {
+        serviceName,
+        emirateName: getEmirateName(lang, row.emirate),
+        price: startingItem ? priceText(startingItem.id, lang) : null,
+        projectTitle: (slug) => projects[slug]?.title || slug,
+      });
   return {
     ...local,
     faqs,
@@ -78,7 +83,7 @@ export async function generateMetadata({ params }) {
   const selfUrl = row.canonical;
   const otherUrl = row.hreflang;
   const shouldIndex = isPageIndexable(row);
-  const safeDescription = pilotMetaDescription(lang, service, location) || getSafeMetaDescription(row, lang);
+  const safeDescription = pilotMetaDescription(lang, service, location) || intentMetaDescription(lang, service, location) || getSafeMetaDescription(row, lang);
   // 12 Nov 2026 (audit): share the page's own hero photo, not one image for all 1,020 pages.
   const socialImage = serviceHeroPhoto(service, location).src;
 
@@ -121,7 +126,7 @@ export default async function Page({ params }) {
   const { lang, service, location } = await params;
   const row = getPage(lang, service, location);
   if (!row) notFound();
-  const safeDescription = pilotMetaDescription(lang, service, location) || getSafeMetaDescription(row, lang);
+  const safeDescription = pilotMetaDescription(lang, service, location) || intentMetaDescription(lang, service, location) || getSafeMetaDescription(row, lang);
 
   const serviceEntry = getService(row.serviceSlug);
   const locationEntry = getLocation(row.locationSlug);
@@ -138,5 +143,7 @@ export default async function Page({ params }) {
   };
 
   const pilot = pilotFor(lang, row.serviceSlug, row.locationSlug);
-  return <ServiceLocationPage lang={lang} row={row} seoContext={seoContext} pilot={pilot} local={localFor(lang, row, locationEntry, Boolean(pilot))} />;
+  // Page-specific intent override (src/data/intent-overrides.js): null for every other page.
+  const intent = getIntentOverride(lang, row.serviceSlug, row.locationSlug);
+  return <ServiceLocationPage lang={lang} row={row} seoContext={seoContext} pilot={pilot} local={localFor(lang, row, locationEntry, Boolean(pilot), Boolean(intent?.faqs?.length))} intent={intent} />;
 }
