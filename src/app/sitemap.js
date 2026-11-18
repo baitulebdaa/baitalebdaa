@@ -90,11 +90,15 @@ export default function sitemap() {
   // Derive article URLs from the content source so newly published posts cannot be
   // forgotten in the sitemap. Publication dates are stable, verifiable lastmod values.
   const articles = [dictionaries.en.mediaPage.featuredArticle, ...dictionaries.en.mediaPage.articles];
+  const arMedia = dictionaries.ar.mediaPage;
+  const arabicSlugs = new Set([arMedia.featuredArticle, ...arMedia.articles].map((article) => article.slug));
   for (const article of articles) {
     const publishedAt = ARTICLE_DATES[article.slug]
       ? new Date(`${ARTICLE_DATES[article.slug]}T09:00:00+04:00`)
       : CONTENT_UPDATED;
-    entries.push(...localizedEntry(`media/${article.slug}`, publishedAt));
+    const localized = localizedEntry(`media/${article.slug}`, publishedAt);
+    if (arabicSlugs.has(article.slug)) entries.push(...localized);
+    else entries.push({ ...localized[0], alternates: { languages: { en: localized[0].url } } });
   }
 
   // Only indexable service pages (UAE-wide + emirate level) belong here, decided by the

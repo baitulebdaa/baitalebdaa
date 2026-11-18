@@ -1,3 +1,5 @@
+import { homeOfficeGuide } from "./home-office-guide.js";
+
 // Long-form guides added after launch (11 Nov 2026), in the shape dict.mediaPage.articles uses
 // plus their SEO fields, like the cost guides (src/data/cost-guides.js). Company facts are only
 // those the site already publishes: one contract, approvals coordinated and itemised, 3D sign-off
@@ -9,14 +11,17 @@
 const AUTHOR = { en: "Awais ul Haq, CEO of Bait Al Ebdaa", ar: "Awais ul Haq، الرئيس التنفيذي لبيت الإبداع" };
 
 export const GUIDE_ARTICLE_DATES = {
+  "home-office-renovation-cost-dubai": "2026-11-18",
   "how-to-choose-fit-out-company-dubai": "2026-11-11",
 };
 
 const DATE_LABELS = {
+  "2026-11-18": { en: "November 18, 2026" },
   "2026-11-11": { en: "November 11, 2026", ar: "١١ نوفمبر ٢٠٢٦" },
 };
 
 const IMAGE = {
+  "home-office-renovation-cost-dubai": "/assets/built-in-wardrobe-study-desk-wood-shelves.jpeg",
   "how-to-choose-fit-out-company-dubai": "/assets/travertine-tv-wall-linear-fireplace.jpeg",
 };
 
@@ -219,12 +224,13 @@ ${li("No trade licence or comparable finished projects when you ask for them.")}
 }
 
 const BUILDERS = {
+  "home-office-renovation-cost-dubai": homeOfficeGuide,
   "how-to-choose-fit-out-company-dubai": chooseFitOutCompany,
 };
 export const GUIDE_ARTICLE_SLUGS = Object.keys(BUILDERS);
 
 export function guideArticles(lang) {
-  return GUIDE_ARTICLE_SLUGS.map((slug) => {
+  return GUIDE_ARTICLE_SLUGS.filter((slug) => DATE_LABELS[GUIDE_ARTICLE_DATES[slug]][lang]).map((slug) => {
     const guide = BUILDERS[slug](lang);
     return {
       title: guide.title,

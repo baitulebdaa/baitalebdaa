@@ -26,8 +26,8 @@ function compactDescription(description, maxLength = META_DESCRIPTION_MAX) {
   return `${shortened.slice(0, wordBoundary > 110 ? wordBoundary : shortened.length).trim()}…`;
 }
 
-export function generateStaticParams() {
-  return getArticles("en").map((article) => ({ slug: article.slug }));
+export function generateStaticParams({ params }) {
+  return getArticles(params.lang).map((article) => ({ slug: article.slug }));
 }
 
 export async function generateMetadata({ params }) {
@@ -43,6 +43,7 @@ export async function generateMetadata({ params }) {
 
   const enUrl = `${BASE}/en/media/${slug}`;
   const arUrl = `${BASE}/ar/media/${slug}`;
+  const hasArabic = getArticles("ar").some((entry) => entry.slug === slug);
   const selfUrl = lang === "ar" ? arUrl : enUrl;
   const description = articleMetaDescription(lang, article);
   const publishedTime = ARTICLE_DATES[slug] ? `${ARTICLE_DATES[slug]}T09:00:00+04:00` : undefined;
@@ -53,7 +54,7 @@ export async function generateMetadata({ params }) {
     description,
     alternates: {
       canonical: selfUrl,
-      languages: { en: enUrl, ar: arUrl, "x-default": enUrl },
+      languages: { en: enUrl, ...(hasArabic && { ar: arUrl }), "x-default": enUrl },
     },
     openGraph: {
       title: article.title,
@@ -61,7 +62,7 @@ export async function generateMetadata({ params }) {
       url: selfUrl,
       siteName: "Bait Al Ebdaa",
       locale: lang === "ar" ? "ar_AE" : "en_AE",
-      alternateLocale: lang === "ar" ? ["en_AE"] : ["ar_AE"],
+      alternateLocale: hasArabic ? [lang === "ar" ? "en_AE" : "ar_AE"] : [],
       images: [{ url: article.image, alt: article.title }],
       type: "article",
       publishedTime,
@@ -137,6 +138,7 @@ export default async function BlogDetail({ params }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }}
       />
       <BlogDetailClient
+        languageHref={getArticles(lang === "ar" ? "en" : "ar").some((entry) => entry.slug === slug) ? undefined : `/${lang === "ar" ? "en" : "ar"}/media`}
         article={article}
         crumbs={crumbs}
         newsAndInsights={dict.mediaPage.newsAndInsights}

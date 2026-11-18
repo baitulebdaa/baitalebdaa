@@ -133,7 +133,7 @@ export function Reveal({ as: Tag = "div", className = "", children, delay = 0, e
   return <Tag ref={ref} className={`reveal ${className} ${isVisible ? 'is-visible' : ''}`} style={{ "--delay": `${delay}ms` }} {...props}>{children}</Tag>;
 }
 
-export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLogo = false, lightTheme = false }) {
+export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLogo = false, lightTheme = false, languageHref }) {
   const { lang, dict } = useI18n();
   const business = useBusiness();
   const router = useRouter();
@@ -187,7 +187,7 @@ export function Header({ menuOpen, setMenuOpen, alwaysSolid = false, useFooterLo
   const otherLang = lang === "en" ? "ar" : "en";
   const pathSegments = (pathname || "/").split("/").filter(Boolean);
   const restOfPath = pathSegments[0] === "en" || pathSegments[0] === "ar" ? pathSegments.slice(1) : pathSegments;
-  const otherLangHref = restOfPath.length === 0 && otherLang === "en" ? "/" : `/${[otherLang, ...restOfPath].join("/")}`;
+  const otherLangHref = languageHref ?? (restOfPath.length === 0 && otherLang === "en" ? "/" : `/${[otherLang, ...restOfPath].join("/")}`);
 
   const headerWaMessage = encodeURIComponent(
     lang === "ar"

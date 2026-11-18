@@ -3,12 +3,10 @@
 //
 // Every company price is read from data/pricing.js through priceText()/priceItem(); worked
 // examples are computed from those same numbers, so a price change updates the guides too.
-// No price is typed into this file. Authority requirements are not restated here: the guides
-// link to the pilot service pages, which cite the official sources.
+// Regulatory guidance links to the applicable authority or the relevant service page.
 //
-// The guides deliberately have no "Frequently Asked Questions" heading, so the article route
-// emits BlogPosting + BreadcrumbList only (no FAQPage). They are marked `guide: true` so the
-// service-page blog grid links them contextually instead of on every page.
+// Visible FAQs on the English office guide use the article route's shared schema extractor.
+// Guides are marked `guide: true` for contextual placement in service-page blog grids.
 import { amountText, priceItem, priceText } from "../lib/pricing.js";
 
 export const COST_GUIDE_DATE = "2026-10-16";
@@ -587,20 +585,19 @@ function officeFitOutCost(lang) {
   }
   return {
     title: "Office Fit-Out Cost in Dubai: Price per Sq Ft and What Drives It",
-    seoTitle: "Office Fit-Out Cost Dubai: 2026 Price Guide | Bait Al Ebdaa",
-    metaDescription: `Office fit-out cost in Dubai: ${P("office-essential")} at the essential level, two higher levels, worked examples and what moves the price.`,
+    seoTitle: "Office Fit-Out Cost in Dubai (2026): Price per Sq Ft",
+    metaDescription: `Dubai office fit-out costs: ${P("office-essential")} for our essential finish. Compare levels, sample budgets, MEP work and approval fees before leasing.`,
     description: "A guide to office fit-out costs in Dubai: the price per square foot at three finish levels, worked examples for small and mid-size offices, approval and design costs, and how to compare quotes.",
     content: `${reviewedNovember.en}
-<p>Ask how much an office fit-out costs in Dubai and the usual answer is "it depends". That is true, but it does not help when you need a budget before signing a lease. This guide sets out how <strong>office fit-out cost in Dubai</strong> is priced with us: a rate per square foot at three finish levels, worked examples from our published prices, the costs that sit outside that rate, and what to check when you compare quotes.</p>
+<p>Bait Al Ebdaa prices an essential office fit-out in Dubai at ${P("office-essential")}, excluding VAT. For a 1,000 sq ft office, that gives an indicative budget of ${times("office-essential", 1000, "en")} to ${times("office-essential", 1000, "en", "max")} before VAT and separately quoted costs. Start with the area you will actually fit out, then check what the landlord hands over and which works the contractor has included.</p>
 
 <h2>Office fit-out cost per square foot</h2>
-<p>Office fit-out is priced by floor area, because most of the work grows with it: ceilings, flooring, lighting, partitions and MEP. We publish three levels:</p>
-<ul>
-<li><strong>Essential office fit-out, ${P("office-essential")}:</strong> a practical, well-finished workplace with open-plan workstations, meeting rooms and a reception, in durable standard finishes.</li>
-<li><strong>Premium office fit-out, ${P("office-premium")}:</strong> more glass partitioning, acoustic treatment, feature ceilings and lighting, and custom joinery in the areas clients see.</li>
-<li><strong>Executive or luxury office fit-out, from ${P("office-luxury")}:</strong> bespoke joinery throughout, natural materials such as stone and veneer, and executive suites finished to the standard of a luxury home.</li>
-</ul>
-<p>These describe each level in general terms; what your project includes is set out in its quotation. Where a project lands inside a range depends on the condition of the space and the specification, explained below.</p>
+<table><thead><tr><th scope="col">Finish level</th><th scope="col">Our published rate</th><th scope="col">Typical specification</th></tr></thead><tbody>
+<tr><th scope="row">Essential</th><td>${P("office-essential")}</td><td>Standard finishes for workstations, meeting rooms and reception.</td></tr>
+<tr><th scope="row">Premium</th><td>${P("office-premium")}</td><td>More glazing, acoustic treatment, feature lighting and client-facing joinery.</td></tr>
+<tr><th scope="row">Executive</th><td>From ${P("office-luxury")}</td><td>Bespoke joinery, stone or veneer and executive suites.</td></tr>
+</tbody></table>
+<p>Multiply the agreed fit-out area by the rate for your chosen finish. If your lease gives square metres, multiply the area by about 10.764 to obtain square feet. Use the same area and tax basis in every comparison. These are company rates. Your written quotation lists the items included.</p>
 
 <h2>Worked examples</h2>
 <ul>
@@ -623,20 +620,21 @@ function officeFitOutCost(lang) {
 
 <h2>What changes the cost of an office fit-out</h2>
 <ul>
-<li><strong>The condition you start from.</strong> A unit handed over as shell and core needs ceilings, floors, air-conditioning distribution and lighting before any design shows. A unit that already has them, often called Category A, needs less, and an existing office with a usable layout can need less again.</li>
+<li><strong>The condition you start from.</strong> Shell and core generally leaves the tenant to finish the interior. Category A usually provides basic finishes and building services. Category B adds the layout and finishes for a particular tenant. Check the handover schedule for floors, ceilings, cooling and lighting before comparing rates. Landlords can use these labels differently.</li>
 <li><strong>MEP scope.</strong> Every extra meeting room means more air-conditioning zones, lighting circuits and power and data points; moving a pantry or washroom means plumbing work.</li>
 <li><strong>Partitions and glazing.</strong> Acoustic glass partitions cost more than drywall, and every enclosed room adds a door, lighting and ventilation.</li>
-<li><strong>Acoustics.</strong> Open-plan offices often need acoustic ceilings or panels to work well. On our Downtown Dubai project, acoustic treatment and cable management were designed in from the start, which costs less than adding them later.</li>
+<li><strong>Acoustics.</strong> Open-plan offices often need acoustic ceilings or panels to work well. On our Downtown Dubai project, acoustic treatment and cable management were designed in from the start, so the ceiling and workstation layouts could accommodate both.</li>
 <li><strong>Joinery.</strong> Reception counters, wall panelling, pantry units and storage made to measure add cost in proportion to how much is custom.</li>
 <li><strong>Finishes.</strong> Carpet tiles against stone or timber floors, and paint against veneer or fabric wall finishes, are where the three levels differ most.</li>
 <li><strong>Working around a live business.</strong> Phased work in an occupied office, or work outside business hours, takes longer than fitting out an empty floor.</li>
 </ul>
 
 <h2>Approvals, NOCs and authority fees</h2>
-<p>Before work starts, an office fit-out usually needs the landlord's or building's approval and, depending on the scope, a permit from the relevant authority. Which authority applies depends on where the building is; our <a href="/en/fit-out/dubai">turnkey fit-out in Dubai</a> page explains how that is decided and links to the authorities' own pages.</p>
+<p>Before work starts, an office fit-out usually needs the landlord's or building's approval and, depending on the scope, a permit from the relevant authority. Confirm the building jurisdiction and whether changes to ventilation, fire alarms or escape routes affect submissions. In DDA-regulated areas, consult the <a href="https://dda.gov.ae/planning-development/construction/permits-nocs/fit-out-permit">Dubai Development Authority fit-out permit guidance</a>. For other jurisdictions, our <a href="/en/fit-out/dubai">turnkey fit-out in Dubai</a> page explains how that is decided and links to the authorities' own pages.</p>
 <p>Our coordination fees are published: landlord or community NOC coordination from ${P("approval-noc")}, Dubai Municipality approval support from ${P("approval-dm")}, and a complete office fit-out approval package from ${P("approval-office-package")}. Civil Defence, MEP and specialist coordination is quoted for each project. Authority, developer and consultant fees are charged separately at actual cost.</p>
 
 <h2>Design fees for an office</h2>
+<p>Design fees cover the plans and specification. Fit-out carries those plans through to construction. If you are keeping an occupied workplace and upgrading selected rooms or services, compare the scope with an <a href="/en/office-renovation/dubai">office renovation</a> before applying a whole-floor fit-out rate.</p>
 <p>Office design is priced by area, from ${P("design-office")}, and covers space planning, material selection, lighting design and photorealistic 3D renders, so the design for a 5,000 sq ft office starts from ${times("design-office", mid, "en")}. If you plan to tender the build, you will also need working drawings, from ${P("design-drawings")}, and a material schedule, from ${P("design-material-schedule")}, so that every contractor prices the same work.</p>
 <p>When Bait Al Ebdaa is appointed for the complete fit-out, eligible design fees may be credited toward the project, subject to contract value and agreed terms. For more detail, read our <a href="/en/media/interior-design-fees-dubai">interior design fees guide</a> or see our <a href="/en/office-interior-design/dubai">office interior design service in Dubai</a>.</p>
 
@@ -659,8 +657,17 @@ function officeFitOutCost(lang) {
 </ol>
 <p>We make our joinery in our own factory and give a five-year workmanship guarantee on the joinery we manufacture and install.</p>
 
+<h2>Frequently Asked Questions</h2>
+<h3>What is the average office fit-out cost per sq ft in Dubai?</h3>
+<p>A citywide average would combine offices handed over in different conditions. For an essential specification, our published range is ${P("office-essential")} before VAT. Check the survey and scope before using it as your budget.</p>
+<h3>What should I budget for a 1,000 sq ft office?</h3>
+<p>At the essential level, multiplying the area by our published rate gives ${times("office-essential", 1000, "en")} to ${times("office-essential", 1000, "en", "max")} before VAT. Allow separately for exclusions listed in the quote.</p>
+<h3>Does the fit-out price include office furniture?</h3>
+<p>Check loose desks, chairs and meeting tables against the furniture schedule. A price for fitted reception joinery does not establish an allowance for loose furniture.</p>
+<h3>How do I compare MEP and approval costs?</h3>
+<p>Ask each contractor to identify mechanical, electrical and plumbing work against the same layout. Separate contractor coordination from authority fees and confirm which submissions your building and scope require.</p>
 <h2>Getting an accurate quote</h2>
-<p>Bring the floor plan, your building's fit-out guidelines if it has them, your headcount and the number of meeting rooms you need, and your target move-in date. The site survey is free. See our <a href="/en/office-fit-out/dubai">office fit-out service in Dubai</a> or the <a href="/en/pricing">full price list</a>.</p>`,
+<p>Bring the floor plan, your building's fit-out guidelines if it has them, your headcount and the number of meeting rooms you need, and your target move-in date. <a href="/en/contact">Request a free site survey and an itemised quote</a> based on that brief. See our <a href="/en/office-fit-out/dubai">office fit-out service in Dubai</a> or the <a href="/en/pricing">full price list</a>.</p>`,
   };
 }
 

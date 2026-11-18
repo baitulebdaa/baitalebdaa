@@ -424,7 +424,7 @@ test("company prices in pilot pages and cost guides are read from the price list
   for (const amount of typed) assert.ok(authorityFees.has(amount), `typed amount ${amount} is not a quoted authority fee`);
 });
 
-test("cost guides: five guides in both languages, reviewed date visible, no FAQPage, linked to their money pages", async () => {
+test("cost guides retain their review dates, contextual links and expected visible FAQs", async () => {
   const { costGuideArticles } = await import("../src/data/cost-guides.js");
   const { extractFaqsFromHtml } = await import("../src/lib/faq-schema.js");
   const required = {
@@ -439,7 +439,13 @@ test("cost guides: five guides in both languages, reviewed date visible, no FAQP
     assert.deepEqual(guides.map((g) => g.slug), Object.keys(required));
     for (const guide of guides) {
       assert.match(guide.content, /class="guide-reviewed"><strong>(Reviewed (October|November) 2026|تمت المراجعة في (أكتوبر|نوفمبر) 2026)/, guide.slug);
-      assert.deepEqual(extractFaqsFromHtml(guide.content), [], `${guide.slug} must not emit FAQPage`);
+      const questions = extractFaqsFromHtml(guide.content).map(({ q }) => q);
+      assert.deepEqual(questions, lang === "en" && guide.slug === "office-fit-out-cost-dubai" ? [
+        "What is the average office fit-out cost per sq ft in Dubai?",
+        "What should I budget for a 1,000 sq ft office?",
+        "Does the fit-out price include office furniture?",
+        "How do I compare MEP and approval costs?",
+      ] : [], guide.slug);
       for (const target of required[guide.slug]) assert.ok(guide.content.includes(`href="/${lang}/${target}"`), `${lang} ${guide.slug} -> ${target}`);
       assert.ok(guide.metaDescription.length <= 150 && guide.seoTitle.length <= 62, `${lang} ${guide.slug} snippet length`);
     }

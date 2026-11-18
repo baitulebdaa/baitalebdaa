@@ -6,7 +6,7 @@ import { useState } from "react";
 import { ArrowUpRight } from "../../../../components/icons";
 import { Header, Footer, Reveal, PhotoHero } from "../../../../components/Shared";
 
-export default function BlogDetailClient({ article, crumbs, newsAndInsights, recentArticles, lang, discuss }) {
+export default function BlogDetailClient({ article, crumbs, newsAndInsights, recentArticles, lang, discuss, languageHref }) {
   const business = useBusiness();
   const [menuOpen, setMenuOpen] = useState(false);
   
@@ -19,7 +19,7 @@ export default function BlogDetailClient({ article, crumbs, newsAndInsights, rec
 
   return (
     <>
-      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} languageHref={languageHref} />
       
       <main className="blog-detail-page">
         <PhotoHero
@@ -56,7 +56,7 @@ export default function BlogDetailClient({ article, crumbs, newsAndInsights, rec
           </div>
 
           {/* Sidebar */}
-          <aside className="article-sidebar" style={{ flex: '0 0 350px', minWidth: '280px' }}>
+          <aside className="article-sidebar" style={{ flex: '0 1 350px', minWidth: 0, maxWidth: '100%' }}>
             <Reveal delay={200}>
               {/* Recent Articles Widget */}
               <div className="sidebar-widget" style={{ padding: '30px', backgroundColor: 'var(--paper)', borderRadius: '12px', marginBottom: '40px' }}>
