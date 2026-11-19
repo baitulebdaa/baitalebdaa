@@ -202,7 +202,12 @@ export default function ServiceLocationPage({ lang, row, seoContext, pilot = nul
         ? " ويقع مصنع النجارة الخاص بنا بمساحة 15,000 قدم مربع هنا في الجرف الصناعية 2."
         : " Our own 15,000 sq ft joinery factory is here, in Jurf Industrial 2."
       : "";
-  const locationClause = fullLocationClause + factoryNote;
+  const restaurantDesignDubai = row.serviceSlug === "restaurant-interior-design" && row.locationSlug === "dubai";
+  const locationClause = restaurantDesignDubai
+    ? lang === "ar"
+      ? "تتحدد الموافقات بحسب عنوان المطعم ونشاطه والأعمال المقترحة. راجع مسار تقييم المخطط لدى بلدية دبي، ومتطلبات سلطة دبي للتطوير إذا كان الموقع ضمن اختصاصها."
+      : "The approval route depends on the restaurant’s address, food activity and proposed works. Check Dubai Municipality’s food layout assessment and, for premises within its jurisdiction, Dubai Development Authority’s fit-out requirements."
+    : fullLocationClause + factoryNote;
 
   const coreAreas = otherAreas.filter((entry) => entry.location.tier === "core");
   const nearbyAreas = otherAreas.filter((entry) => entry.location.tier === "district" && entry.location.emirate === row.emirate);
@@ -248,13 +253,11 @@ export default function ServiceLocationPage({ lang, row, seoContext, pilot = nul
   );
 
   const project = dict.projectDetailPage.projects["government-authority"];
-  // Supporting-evidence link for the office fit-out money page only: the proof card
-  // already features this project, so give it a descriptive contextual link to its page.
   const caseStudyLinkLabel =
-    row.serviceSlug === "office-fit-out" && row.locationSlug === "dubai"
+    ["office-fit-out", "commercial-interior-design", "office-interior-design"].includes(row.serviceSlug) && row.locationSlug === "dubai"
       ? lang === "ar"
         ? "مشروع تجهيز مكاتب بمساحة 50,500 قدم مربع في مدينة دبي الأكاديمية"
-        : "50,500 sq ft Dubai Academic City office fit-out project"
+        : "Dubai Academic City: 50,500 sq ft of office fit-out and MEP across three floors"
       : null;
 
   // Two location-specific FAQs (not reused site-wide) so pages don't share identical
@@ -395,6 +398,13 @@ export default function ServiceLocationPage({ lang, row, seoContext, pilot = nul
                 <span>{lang === "ar" ? "الأسعار الاسترشادية" : "Indicative pricing"}</span>
                 <strong>{formatPrice(startingItem, lang)}</strong>
                 <em>{dict.pricingPage.items[startingItem.id]}</em>
+                {restaurantDesignDubai && (
+                  <p>
+                    {lang === "ar" ? "هذا سعر التصميم. لأعمال التنفيذ، راجع " : "This rate covers design. For construction costs, see "}
+                    <a href={`/${lang}/restaurant-fit-out/dubai`}>{lang === "ar" ? "تجهيز المطاعم في دبي" : "restaurant fit-out in Dubai"}</a>.
+                    {" "}<a href={`/${lang}/media/restaurant-interior-design-dubai-pre-lease-guide`}>{lang === "ar" ? "ما الذي تفحصه قبل توقيع عقد الإيجار؟" : "What should you check before signing the lease?"}</a>
+                  </p>
+                )}
               </div>
             )}
           </Reveal>

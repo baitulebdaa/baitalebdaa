@@ -398,7 +398,9 @@ function customWardrobeCost(lang) {
       seoTitle: "أسعار تفصيل خزائن الملابس في دبي | بيت الإبداع",
       metaDescription: `تفصيل خزائن الملابس في دبي من ${P("wardrobe-laminate")}: كيف يُحتسب السعر، وما تضيفه الأبواب والتقسيمات والتشطيبات، مع أمثلة.`,
       description: "دليل أسعار تفصيل خزائن الملابس في دبي: التسعير بالمتر الطولي، ومستويات التشطيب الثلاثة لدينا، وأمثلة لغرفة نوم وغرفة رئيسية وغرفة ملابس، وما يغيّر السعر.",
-      content: `${reviewed.ar}
+      content: `${reviewedNovember.ar}
+<h2>كم يكلف تجديد غرفة الملابس في دبي؟</h2>
+<p>إذا أبقيت هياكل الخزائن، اطلب تسعيراً منفصلاً للأبواب والأدراج والمفصلات والتركيب. أما عند الاستبدال الكامل، فيبدأ سعر خزائن اللامينيت الجديدة لدى بيت الإبداع من ${P("wardrobe-laminate")} قبل الضريبة. بطول ${bedroom} متر يبدأ المثال من ${times("wardrobe-laminate", bedroom, "ar")}. تأكد من بند إزالة الخزائن القديمة في عرض السعر.</p>
 <p>الخزانة المدمجة من أكثر قطع النجارة طلباً في منازل دبي، وسعرها يختلف كثيراً بحسب الطول والأبواب والتقسيم الداخلي والتشطيب. يشرح هذا الدليل كيف تُحسب <strong>أسعار تفصيل خزائن الملابس</strong> لدينا، مع أمثلة محسوبة من أسعارنا المنشورة.</p>
 
 <h2>كيف تُسعّر خزائن الملابس المدمجة؟</h2>
@@ -445,11 +447,15 @@ function customWardrobeCost(lang) {
   }
   return {
     title: "Custom Wardrobe Cost in Dubai: Fitted Wardrobe and Walk-In Prices",
-    seoTitle: "Wardrobe Price in Dubai: 2026 Guide | Bait Al Ebdaa",
-    metaDescription: `Fitted wardrobes in Dubai from ${P("wardrobe-laminate")}: how they are priced, what doors, interiors and finishes add, with worked examples.`,
+    seoTitle: "Closet Renovation Cost in Dubai: Fitted Wardrobe Prices",
+    metaDescription: "Planning a walk-in closet renovation in Dubai? Compare new fitted wardrobe prices per linear metre and see what to ask for in a renovation quote.",
     description: "A guide to custom wardrobe prices in Dubai: linear-metre pricing, our three finish levels, worked examples for a bedroom, a master bedroom and a walk-in closet, and what changes the price.",
-    content: `${reviewed.en}
-<p>A fitted wardrobe is one of the most requested pieces of joinery in Dubai homes, and its price varies a lot with length, doors, interior layout and finish. This guide explains how <strong>custom wardrobe prices in Dubai</strong> are worked out with us, with examples calculated from our published prices.</p>
+    content: `${reviewedNovember.en}
+<p>If you're budgeting for a wardrobe in Dubai, first decide which parts of the existing closet you want to keep. For new fitted wardrobes, the starting price depends on the length of the cabinets and the finish you choose.</p>
+
+<h2>How much does it cost to renovate a walk-in closet in Dubai?</h2>
+<p>If the cabinet frames are in good condition, ask for an itemised quote for replacement doors, drawers and fittings. If you plan to replace the cabinetry, measure the length of each wall that will have new units and ask whether the quote includes removal of the old ones.</p>
+<p>For comparison, Bait Al Ebdaa's new fitted laminate wardrobes start at ${P("wardrobe-laminate")}, excluding VAT. A ${bedroom}-metre run starts at ${times("wardrobe-laminate", bedroom, "en")} before VAT. Ask the quotation to list installation, internal fittings, hardware and removal separately so you can see which items the quoted rate covers. For a quote based on your measurements, see our <a href="/en/custom-wardrobes/dubai">custom wardrobes in Dubai</a>.</p>
 
 <h2>How fitted wardrobes are priced</h2>
 <p>Wardrobes are priced per linear metre, the length of the wardrobe along the wall. The other factors, such as full ceiling height, depth and interior layout, decide which price level each metre falls into.</p>

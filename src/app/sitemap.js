@@ -1,6 +1,6 @@
 import seoData from "../data/seo-pages.json";
 import { isPageIndexable } from "../lib/seo-pages";
-import { ARTICLE_DATES } from "../data/article-catalog";
+import { ARTICLE_DATES, ARTICLE_UPDATED_DATES } from "../data/article-catalog";
 import { REAL_PROJECT_SLUGS } from "../data/project-catalog";
 import { dictionaries } from "../i18n/dictionaries";
 import { hasRealReviews } from "../data/reviews";
@@ -20,7 +20,11 @@ const OCT_15_UPDATE = new Date("2026-10-15");
 const OCT_15_PATHS = new Set(["about", "our-projects", "reviews"]);
 // 16 Oct 2026: the six pilot service pages (EN + AR) were rewritten with page-specific content.
 const PILOT_UPDATED = new Date("2026-10-16");
-const serviceLastModified = (key) => (PILOT_PAGES[key] ? PILOT_UPDATED : COVERAGE_UPDATED);
+function serviceLastModified(key, lang) {
+  if (["restaurant-interior-design/dubai", "commercial-interior-design/dubai", "office-interior-design/dubai", "office-fit-out/dubai"].includes(key)) return new Date("2026-11-19");
+  if (lang === "ar" && key === "office-interior-design/sharjah") return new Date("2026-11-16");
+  return PILOT_PAGES[key] ? PILOT_UPDATED : COVERAGE_UPDATED;
+}
 const lastModifiedFor = (path) => (OCT_15_PATHS.has(path) ? OCT_15_UPDATE : COVERAGE_PATHS.has(path) ? COVERAGE_UPDATED : CONTENT_UPDATED);
 
 const STATIC_PATHS = [
@@ -96,7 +100,8 @@ export default function sitemap() {
     const publishedAt = ARTICLE_DATES[article.slug]
       ? new Date(`${ARTICLE_DATES[article.slug]}T09:00:00+04:00`)
       : CONTENT_UPDATED;
-    const localized = localizedEntry(`media/${article.slug}`, publishedAt);
+    const updated = ARTICLE_UPDATED_DATES[article.slug];
+    const localized = localizedEntry(`media/${article.slug}`, updated ? new Date(updated) : publishedAt);
     if (arabicSlugs.has(article.slug)) entries.push(...localized);
     else entries.push({ ...localized[0], alternates: { languages: { en: localized[0].url } } });
   }
@@ -109,14 +114,14 @@ export default function sitemap() {
     if (!isPageIndexable(enPage) || !isPageIndexable(arPage)) continue;
     entries.push({
       url: enPage.canonical,
-      lastModified: serviceLastModified(key),
+      lastModified: serviceLastModified(key, "en"),
       changeFrequency: "monthly",
       priority: 0.6,
       alternates: { languages: { en: enPage.canonical, ar: arPage.canonical } },
     });
     entries.push({
       url: arPage.canonical,
-      lastModified: serviceLastModified(key),
+      lastModified: serviceLastModified(key, "ar"),
       changeFrequency: "monthly",
       priority: 0.6,
       alternates: { languages: { en: enPage.canonical, ar: arPage.canonical } },

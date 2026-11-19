@@ -9,6 +9,10 @@ export const ARTICLE_DATES = {
   "government-authority-hq-case-study": "2026-07-15",
 };
 
+export const ARTICLE_UPDATED_DATES = {
+  "custom-wardrobe-cost-dubai": "2026-11-19",
+};
+
 export const ARTICLE_SEO_TITLES = {
   en: {
     "luxury-interior-fit-out-guide-dubai": "Luxury Interior Fit-Out Dubai Guide | Bait Al Ebdaa",

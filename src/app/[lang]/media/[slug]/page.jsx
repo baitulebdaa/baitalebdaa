@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { dictionaries } from "../../../../i18n/dictionaries";
-import { ARTICLE_DATES, ARTICLE_META_DESCRIPTIONS, ARTICLE_SEO_TITLES, META_DESCRIPTION_MAX } from "../../../../data/article-catalog";
+import { ARTICLE_DATES, ARTICLE_UPDATED_DATES, ARTICLE_META_DESCRIPTIONS, ARTICLE_SEO_TITLES, META_DESCRIPTION_MAX } from "../../../../data/article-catalog";
 import BlogDetailClient from "./BlogDetailClient";
 import { ORG_REF } from "../../../../lib/schema-ids";
 import { extractFaqsFromHtml, faqPageJsonLd } from "../../../../lib/faq-schema";
@@ -66,7 +66,7 @@ export async function generateMetadata({ params }) {
       images: [{ url: article.image, alt: article.title }],
       type: "article",
       publishedTime,
-      modifiedTime: publishedTime,
+      modifiedTime: ARTICLE_UPDATED_DATES[slug] || publishedTime,
       authors: [ARTICLE_AUTHOR.name],
     },
     twitter: {
@@ -101,7 +101,7 @@ export default async function BlogDetail({ params }) {
         description: articleMetaDescription(lang, article),
         image: [`${BASE}${article.image}`],
         datePublished: publishedTime,
-        dateModified: publishedTime,
+        dateModified: ARTICLE_UPDATED_DATES[slug] || publishedTime,
         inLanguage: lang === "ar" ? "ar-AE" : "en-AE",
         mainEntityOfPage: { "@type": "WebPage", "@id": selfUrl },
         author: { "@id": ARTICLE_AUTHOR_ID },
