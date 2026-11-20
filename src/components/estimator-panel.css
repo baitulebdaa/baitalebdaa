@@ -9,3 +9,25 @@
 @media(max-width:600px){.budget-panel,.budget-panel--single{grid-template-columns:minmax(0,1fr);gap:16px}.budget-photo{height:180px;min-height:0}.budget-calc{padding:14px}.budget-actions a,.budget-actions button{font-size:14px}.budget-main h3{font-size:28px}}
 .budget-level-list{display:none}
 @media(max-width:700px){.budget-level-select{display:none}.budget-level-list{display:grid;gap:5px;border:0;padding:0;margin:0;min-width:0}.budget-level-list legend{font-size:14px;margin-bottom:6px}.budget-level-list button{padding:8px 12px;min-height:44px;font:inherit;font-size:14px;text-align:start;border:1px solid #bdccbf;border-radius:7px;background:white;color:var(--forest);cursor:pointer}.budget-level-list button[aria-pressed=true]{background:var(--tint);border-color:var(--forest)}}
+
+/* Palette study, flat primary action and underlined secondary links from Design Lab. */
+.budget-panel:not(.budget-panel--single) {
+  background: white;
+  border: clamp(6px, 1vw, 14px) solid var(--canvas, #f8f6f0);
+}
+.budget-panel:not(.budget-panel--single) select {
+  border-color: #718077;
+}
+.budget-panel:not(.budget-panel--single) .budget-actions button:hover {
+  background: color-mix(in srgb, var(--forest) 85%, black);
+}
+.budget-panel:not(.budget-panel--single) .budget-actions button:active {
+  opacity: .9;
+}
+.budget-panel:not(.budget-panel--single) .budget-survey {
+  min-height: 44px;
+  text-underline-offset: 4px;
+}
+.budget-panel:not(.budget-panel--single) .budget-survey:is(:hover, :focus-visible) {
+  text-decoration: underline;
+}

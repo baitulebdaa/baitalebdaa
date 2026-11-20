@@ -35,6 +35,7 @@ export default function FoundationsPage() {
       <PageHeader title="Foundations" description="The colours, type and buttons the site is built from, with every colour pairing checked against WCAG 2.2 AA." actions={<ApprovalControl slot="palette" variantId="studio-green" version="v1" label="Studio green v1" decisions={decisions} onChange={setDecisions}/>}/>
 
       <section aria-labelledby="palette-title" className="mt-8">
+        <a href="/design-lab/palettes" className="mb-4 inline-block font-semibold underline">Compare estimator colour schemes</a>
         <div className="flex flex-wrap items-center gap-2">
           <h2 id="palette-title" className="text-xl font-bold tracking-tight">
             Studio green palette

@@ -40,8 +40,9 @@ export function ServiceEstimator({ service, serviceName, scopes, heading, inclus
   const [visit, setVisit] = useState(null);
   const [quote, setQuote] = useState(null);
   const category = scopes ? budgetCategories[scope] : null;
-  if (!config && !category?.quote) return null;
+  if (!config && !category) return null;
 
+  const menuPrice = key => budgetCategories[key].rate ? AED.format(budgetCategories[key].rate) : budgetCategories[key].terms[lang];
   const chooseScope = (key) => {
     setScope(key);
     setSize(serviceEstimator(key)?.size ?? 0);
@@ -69,23 +70,17 @@ export function ServiceEstimator({ service, serviceName, scopes, heading, inclus
           {scopes && <aside className="budget-menu" aria-label={t.scopeStep}>
             <label className="budget-mobile">{t.scopeStep}
               <select value={scope} onChange={e => chooseScope(e.target.value)}>
-                {scopes.map(key => <option key={key} value={key}>{budgetCategories[key][lang]}</option>)}
+                {scopes.map(key => <option key={key} value={key}>{budgetCategories[key][lang]} · {menuPrice(key)}</option>)}
               </select>
             </label>
             <div className="budget-tabs">
               {scopes.map(key => <button key={key} type="button" aria-pressed={scope === key} onClick={() => chooseScope(key)}>
-                <span>{budgetCategories[key][lang]}</span><bdi>{serviceEstimator(key) ? AED.format(serviceEstimator(key).items[0].min) : (lang === "ar" ? "حسب الطلب" : "On request")}</bdi>
+                <span>{budgetCategories[key][lang]}</span><bdi>{menuPrice(key)}</bdi>
               </button>)}
             </div>
           </aside>}
-          {config ? <CalculatorBody {...{ config, size, level, addons, setSize, setLevel, setAddons, lang, dict, business, t, s, onRequestQuote, setQuote, book, scope, inclusions }} serviceName={category?.[lang] || serviceName} /> :
-            <div className="budget-main"><h3>{category[lang]}</h3>
-              <p className="budget-rate">{lang === "ar" ? "عرض سعر بعد المعاينة" : "Quoted after a site survey"}</p>
-              <p>{lang === "ar" ? "أرسل المقاسات ونطاق العمل لطلب عرض سعر مفصّل." : "Share your measurements and the work you need for an itemised quote."}</p>
-              <div className="budget-actions"><button type="button" onClick={() => { track("cta_click", { cta: "quote", cta_location: "estimator", service: category.quote }); setQuote({ estimate: category[lang] }); }}>{s.requestQuote} <ArrowUpRight size={16}/></button>
-              <a href={`https://wa.me/${business.whatsapp}?text=${encodeURIComponent(category[lang])}`} target="_blank" rel="noopener noreferrer" data-cta-location="estimator"><WhatsappLogo size={18}/>{t.whatsapp}</a></div>
-              <button type="button" className="budget-survey" onClick={() => book(undefined)}><Calendar size={15}/>{s.unsureLink}</button>
-            </div>}
+          {category ? <CategoryBudget key={scope} {...{ category, scope, lang, business, t, s, book, setQuote, onRequestQuote }} /> :
+            <CalculatorBody {...{ config, size, level, addons, setSize, setLevel, setAddons, lang, dict, business, t, s, onRequestQuote, setQuote, book, scope, inclusions, serviceName }} />}
           <img className="budget-photo" src={category ? `/assets/${category.photo}` : HERO_IMAGE_BY_SERVICE[scope] || "/assets/living-room-tv-unit-floating-shelves-curtains.jpeg"} alt="" loading="lazy" />
         </div>
       </div>
@@ -95,6 +90,46 @@ export function ServiceEstimator({ service, serviceName, scopes, heading, inclus
       {visit && createPortal(<SiteVisitModal open size={visit.size} onClose={() => setVisit(null)} />, document.body)}
     </section>
   );
+}
+
+const budgetUnits = {
+  window: { en: ["per window", "Number of windows"], ar: ["لكل نافذة", "عدد النوافذ"] },
+  project: { en: ["per project", "Number of projects"], ar: ["لكل مشروع", "عدد المشاريع"] },
+  unit: { en: ["per unit", "Number of units"], ar: ["لكل وحدة", "عدد الوحدات"] },
+  sqm: { en: ["per m²", "Area (m²)"], ar: ["لكل م²", "المساحة (م²)"] },
+};
+
+function CategoryBudget({ category, scope, lang, business, t, s, book, setQuote, onRequestQuote }) {
+  const [quantity, setQuantity] = useState(scope === "curtains" ? 5 : 1);
+  const unit = budgetUnits[category.unit]?.[lang];
+  const price = category.rate ? `AED ${AED.format(category.rate)} ${unit[0]}` : category.terms[lang];
+  const total = category.rate ? `AED ${AED.format(quantity * category.rate)}` : "";
+  const summary = category.rate ? `${category[lang]} · ${quantity} × ${price} · ${s.from} ${total}` : `${category[lang]} · ${price}`;
+  const request = () => {
+    if (onRequestQuote) return onRequestQuote({ estimate: summary });
+    track("cta_click", { cta: "quote", cta_location: "estimator", service: category.quote || quoteServiceFor(scope) });
+    setQuote({ estimate: summary });
+  };
+  return <div className="budget-main">
+    <h3>{category[lang]}</h3>
+    {category.rate && <span>{s.from}</span>}
+    <p className="budget-rate"><bdi>{price}</bdi></p>
+    {category.rate && <div className="budget-calc">
+      <span>{unit[1]}</span>
+      <div className="budget-stepper">
+        <button type="button" aria-label={t.smaller} disabled={quantity <= 1} onClick={() => setQuantity(q => q - 1)}><Minus size={16}/></button>
+        <bdi>{quantity}</bdi>
+        <button type="button" aria-label={t.larger} onClick={() => setQuantity(q => q + 1)}><Plus size={16}/></button>
+      </div>
+      <p className="budget-total" aria-live="polite">{lang === "ar" ? "الميزانية المبدئية" : "Starting budget"} <strong><bdi>{total}</bdi></strong></p>
+      <small>{t.disclaimer}</small>
+    </div>}
+    <div className="budget-actions">
+      <button type="button" onClick={request}>{s.requestQuote} <ArrowUpRight size={16}/></button>
+      <a href={`https://wa.me/${business.whatsapp}?text=${encodeURIComponent(summary)}`} target="_blank" rel="noopener noreferrer" data-cta-location="estimator"><WhatsappLogo size={18}/>{t.whatsapp}</a>
+    </div>
+    <button className="budget-survey" type="button" onClick={() => book(undefined)}><Calendar size={15}/>{s.unsureLink}</button>
+  </div>;
 }
 
 function CalculatorBody({ config, size, level, addons, setSize, setLevel, setAddons, lang, dict, business, t, s, onRequestQuote, setQuote, book, scope, inclusions, serviceName }) {
@@ -205,3 +240,4 @@ export function QuotedAfterSurvey({ serviceName, onRequestQuote, waHref }) {
     </section>
   );
 }
+

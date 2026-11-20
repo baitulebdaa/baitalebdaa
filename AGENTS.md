@@ -83,3 +83,4 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 - 20 Nov 2026 (owner): Use the supplied service-list, calculator and photo reference for the website estimator, in the site's deep green palette and with its published rates.
 
 - 20 Nov 2026 (owner): Homepage and pricing estimators list the eight Al Tareeq reference categories in screenshot order, starting with Curtains & Blinds. Use Bait Al Ebdaa's palette and published pricing; unpriced work receives an itemised quote.
+- 20 Nov 2026 (owner): The eight-category homepage and pricing estimators use the screenshot starting rates and quote terms in src/data/budget-categories.js, including wardrobes per square metre. Detailed service specifications retain their own catalogue rates.

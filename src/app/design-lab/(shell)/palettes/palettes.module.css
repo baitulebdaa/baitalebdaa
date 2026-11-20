@@ -1,0 +1,6 @@
+.choices { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1rem 0; }
+.choices button { min-height: 44px; padding: .5rem 1rem; border: 1px solid #718077; border-radius: .5rem; background: white; color: #20352d; }
+.choices button[aria-pressed="true"] { background: #1f4a3d; color: white; }
+.canvas { background: var(--canvas); border: 1px solid #dce3da; padding: clamp(.5rem, 2vw, 2rem); border-radius: 1rem; }
+.preview :global(.budget-panel) { --forest: var(--accent); --tint: var(--selection); background: white; }
+.preview :global(.budget-panel select) { border-color: #718077; }
