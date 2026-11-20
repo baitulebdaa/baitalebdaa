@@ -73,3 +73,13 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 - 6 Nov 2026: the quote form asks four things (name, phone or WhatsApp with country code, service, emirate); email, size, budget and description are optional. Success shows only after `/api/contact` confirms. Site visits are "Request a free site visit", never "Book", until staff confirm a time. No response-time promise unless the owner approves one.
 - 6 Nov 2026: analytics events follow `docs/conversion-measurement.md` (consent first, no personal data, `generate_lead` only after a received enquiry, WhatsApp/phone clicks separate).
 - 27 Oct 2026 (owner): for a signed-in customer the quote form and the Contact page project form fill in name, email, phone and address from their account (/api/account/me; address lives on profiles/{uid}). The saved lead carries customerUid, so it shows under their My Requests and the panel marks it "Signed-in customer".
+
+- 19 Nov 2026 (owner reference): /design-lab is a local website design-review dashboard following the supplied sidebar and overview reference, with service-page comparisons, foundations, components, motion, snapshots and decisions.
+
+- 20 Nov 2026 (owner): expand Design Lab with hands-on variations grounded in research from international design sites. Use the Just Shine Design Lab as a reference for comparing alternatives.
+
+- 20 Nov 2026 (owner): use the actual Just Shine Design Lab shell, comparison, cards, motion library and review workflow locally at /design-lab. Keep its reference examples identifiable and keep Bait Al Ebdaa decisions and snapshots separate.
+
+- 20 Nov 2026 (owner): Use the supplied service-list, calculator and photo reference for the website estimator, in the site's deep green palette and with its published rates.
+
+- 20 Nov 2026 (owner): Homepage and pricing estimators list the eight Al Tareeq reference categories in screenshot order, starting with Curtains & Blinds. Use Bait Al Ebdaa's palette and published pricing; unpriced work receives an itemised quote.

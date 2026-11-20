@@ -13,3 +13,6 @@ Thumbs.db
 *service-account*.json
 .vercel
 .env*
+
+# Local Design Lab review history and frozen previews
+/lab-data/

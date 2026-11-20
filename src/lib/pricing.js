@@ -1,3 +1,4 @@
+import { budgetCategories } from "../data/budget-categories.js";
 import { CURRENCY, pricingGroups } from "../data/pricing.js";
 
 // Matches the currency formatter already used by the homepage Estimator
@@ -67,6 +68,8 @@ const OFFICE_LEVELS = ["office-essential", "office-premium", "office-luxury"];
 const DESIGN_PACKAGES = ["design-single-room", "design-apartment", "design-townhouse", "design-villa"];
 const KITCHENS = { mode: "length", items: ["kitchen-laminate", "kitchen-lacquer", "kitchen-premium"], size: 4, presets: [2, 3, 4, 6] };
 export const SERVICE_ESTIMATORS = {
+  "media-walls": { mode: "package", items: ["media-basic", "media-led", "media-stone"] },
+  "dressing-units": { mode: "package", items: ["dressing-table"] },
   "fit-out": { mode: "area", items: ["villa-standard", "villa-luxury", "office-essential", "office-premium"], size: 1000, presets: [500, 1000, 2500, 5000] },
   "villa-renovation": { mode: "area", items: ["villa-standard", "villa-luxury", "villa-bespoke"], size: 1000, presets: [500, 1000, 2500, 5000] },
   "office-fit-out": { mode: "area", items: OFFICE_LEVELS, size: 1000, presets: [500, 1000, 2500, 5000] },
@@ -91,7 +94,7 @@ export const SERVICE_ESTIMATORS = {
 
 // The homepage and pricing page estimators (6 Nov 2026; they used flat 220/150/80 AED per sq ft
 // rates that are not in the price list): the visitor picks one of these, then its size and level.
-export const GENERAL_ESTIMATOR_SCOPES = ["villa-renovation", "office-fit-out", "kitchen-design", "custom-wardrobes", "curtains", "interior-design"];
+export const GENERAL_ESTIMATOR_SCOPES = Object.keys(budgetCategories);
 
 const ESTIMATOR_LIMITS = {
   // 13 Nov 2026 (owner): floor area from 50 sq ft (was 300), for single rooms and small units.

@@ -1,0 +1,66 @@
+/* Just Shine motion library: shared stage, controls and keyframes.
+   Colours are the flat site palette only (no forest or leaf green).
+   Shared keyframes use the individual rotate / translate / scale properties,
+   so they never clobber a transform an element already has. */
+
+.jm-stage {
+  --lime: #9fe870; --lime2: #b2f08b; --tint: #f6faf2; --tint2: #f1fbe9; --tint3: #e3f6d3;
+  --ink: #111827; --mute: #4b5563; --line: #eceef1;
+  --sp: cubic-bezier(0.3, 1.6, 0.5, 1); --ez: cubic-bezier(0.22, 0.8, 0.32, 1);
+  position: relative; display: grid; place-items: center; height: 11rem; padding: 12px;
+  overflow: hidden; border-radius: 0.9rem; background: var(--tint); color: var(--ink); text-align: center;
+}
+.jm-stage i { font-style: normal; }
+.jm-stage b { font-weight: 700; }
+.jm-stage s { text-decoration: none; }
+
+.jm-btn {
+  position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 48px; padding: 0 22px; border-radius: 999px; background-color: var(--lime); color: #000;
+  font-weight: 700; font-size: 15px; white-space: nowrap; isolation: isolate; transition: background-color 0.15s;
+}
+.jm-btn:hover { background-color: var(--lime2); }
+.jm-btn > span { position: relative; z-index: 1; display: inline-block; }
+.jm-ghost, .jm-ghost:hover { background-color: #fff; color: var(--ink); box-shadow: inset 0 0 0 1.5px rgba(17, 24, 39, 0.2); }
+.jm-link { position: relative; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-weight: 700; font-size: 16px; color: var(--ink); }
+.jm-link > span { position: relative; z-index: 1; display: inline-block; }
+.jm-split > span { display: inline-block; white-space: pre; }
+.jm-pill { min-height: 32px; padding: 0 12px; border-radius: 8px; background: #fff; box-shadow: inset 0 0 0 1px rgba(17, 24, 39, 0.15); font-size: 13px; font-weight: 600; color: var(--ink); }
+.jm-field {
+  height: 44px; width: 15rem; padding: 0 12px; border-radius: 10px; background: #fff; color: var(--ink);
+  box-shadow: inset 0 0 0 1.5px rgba(17, 24, 39, 0.15); font-size: 15px; outline: none; text-align: start;
+}
+.jm-star { clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%); }
+.jm-h { font-size: 24px; font-weight: 700; line-height: 1.2; letter-spacing: -0.01em; color: var(--ink); }
+
+.jm-burst { position: absolute; inset: 0; pointer-events: none; }
+.jm-burst i {
+  position: absolute; left: 50%; top: 50%; width: 9px; height: 9px; margin: -4.5px; border-radius: 50%;
+  border: 1.5px solid var(--ink); animation: jm-burst 0.8s var(--ez) both;
+}
+@keyframes jm-burst {
+  0% { transform: rotate(var(--a)) translateY(0) scale(0.3); opacity: 1; }
+  100% { transform: rotate(var(--a)) translateY(-48px) scale(1); opacity: 0; }
+}
+
+@keyframes jm-spin { to { rotate: 360deg; } }
+@keyframes jm-wisp {
+  0% { translate: 0 16px; scale: 1 0.5; opacity: 0; }
+  40% { opacity: 1; }
+  100% { translate: 0 -22px; scale: 1 1; opacity: 0; }
+}
+@keyframes jm-rise { 0% { translate: 0 0; scale: 0.5; opacity: 0; } 15% { opacity: 1; } 100% { translate: 0 -80px; scale: 1; opacity: 0; } }
+@keyframes jm-tw { 0%, 100% { scale: 0.2; rotate: 0deg; opacity: 0.3; } 50% { scale: 1; rotate: 90deg; opacity: 1; } }
+@keyframes jm-ring { 0% { scale: 0.1; opacity: 0.8; } 100% { scale: 1; opacity: 0; } }
+@keyframes jm-sway { from { rotate: -8deg; } to { rotate: 8deg; } }
+@keyframes jm-bob { 0%, 100% { translate: 0 0; } 50% { translate: 0 -6px; } }
+@keyframes jm-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+@keyframes jm-fadeup { from { opacity: 0; translate: 0 10px; } to { opacity: 1; translate: 0 0; } }
+@keyframes jm-pop { 0% { scale: 0; } 60% { scale: 1.15; } 100% { scale: 1; } }
+
+/* Under reduced motion every study jumps to its finished state. */
+@media (prefers-reduced-motion: reduce) {
+  .jm-stage *, .jm-stage *::before, .jm-stage *::after {
+    animation-duration: 1ms !important; animation-iteration-count: 1 !important; transition-duration: 1ms !important;
+  }
+}

@@ -11,19 +11,9 @@ import { ArrowUpRight, WhatsappLogo } from "./components/icons";
 import { useBusiness, useI18n } from "./i18n/I18nProvider";
 import { Header, Footer, Reveal, PhotoHero } from "./components/Shared";
 import { PageFaq } from "./components/PageFaq";
-import { isPublishedProject } from "./data/project-catalog";
+import { HERO_IMAGE_BY_SLUG, isPublishedProject } from "./data/project-catalog";
 import { serviceCatalog } from "./data/service-catalog";
 
-// Every card whose project has a real detail page uses that page's own hero photo
-// (first image in its images array), so the card matches what it links to.
-const HERO_IMAGE_BY_SLUG = {
-  "government-authority": "/assets/tv-wall-unit-led-display-shelves.jpeg",
-  "dubai-hills-estate-villa": "/assets/living-room-wood-slat-wall-lounge-seating.jpeg",
-  "palm-jumeirah-penthouse": "/assets/luxury-living-room-stone-tv-wall-fireplace.jpeg",
-  "downtown-dubai-tech-hq": "/assets/tv-media-wall-floating-console-fireplace.jpeg",
-  "al-barari-eco-villa": "/assets/contemporary-living-room-wall-panelling-track-lighting.jpeg",
-  "saadiyat-island-villa": "/assets/modern-living-room-beige-sofa-curtain-wall-panels.jpeg",
-};
 const FALLBACK_IMAGE = "/assets/living-room-curved-sofa-wood-slat-wall.jpeg";
 
 // Projects page (11 Nov 2026, more content for SEO). Everything shown comes from the six

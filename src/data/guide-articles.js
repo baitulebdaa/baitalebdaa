@@ -1,3 +1,4 @@
+import { kitchenRefacingGuide } from "./kitchen-refacing-guide.js";
 import { homeOfficeGuide } from "./home-office-guide.js";
 import { restaurantGuide } from "./restaurant-guide.js";
 
@@ -12,18 +13,21 @@ import { restaurantGuide } from "./restaurant-guide.js";
 const AUTHOR = { en: "Awais ul Haq, CEO of Bait Al Ebdaa", ar: "Awais ul Haq، الرئيس التنفيذي لبيت الإبداع" };
 
 export const GUIDE_ARTICLE_DATES = {
+  "kitchen-cabinet-refacing-vs-replacement-dubai": "2026-11-20",
   "restaurant-interior-design-dubai-pre-lease-guide": "2026-11-19",
   "home-office-renovation-cost-dubai": "2026-11-18",
   "how-to-choose-fit-out-company-dubai": "2026-11-11",
 };
 
 const DATE_LABELS = {
+  "2026-11-20": { en: "November 20, 2026", ar: "٢٠ نوفمبر ٢٠٢٦" },
   "2026-11-19": { en: "November 19, 2026", ar: "١٩ نوفمبر ٢٠٢٦" },
   "2026-11-18": { en: "November 18, 2026" },
   "2026-11-11": { en: "November 11, 2026", ar: "١١ نوفمبر ٢٠٢٦" },
 };
 
 const IMAGE = {
+  "kitchen-cabinet-refacing-vs-replacement-dubai": "/assets/coffee-corner-white-cabinet-wine-cooler-led-shelves.jpeg",
   "restaurant-interior-design-dubai-pre-lease-guide": "/assets/modern-dining-room-pendant-lights-oak-table.jpeg",
   "home-office-renovation-cost-dubai": "/assets/built-in-wardrobe-study-desk-wood-shelves.jpeg",
   "how-to-choose-fit-out-company-dubai": "/assets/travertine-tv-wall-linear-fireplace.jpeg",
@@ -228,6 +232,7 @@ ${li("No trade licence or comparable finished projects when you ask for them.")}
 }
 
 const BUILDERS = {
+  "kitchen-cabinet-refacing-vs-replacement-dubai": kitchenRefacingGuide,
   "restaurant-interior-design-dubai-pre-lease-guide": restaurantGuide,
   "home-office-renovation-cost-dubai": homeOfficeGuide,
   "how-to-choose-fit-out-company-dubai": chooseFitOutCompany,

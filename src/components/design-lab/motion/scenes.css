@@ -1,0 +1,310 @@
+/* Scenes: small ambient service scenes in CSS. */
+@property --js-a { syntax: "<angle>"; inherits: true; initial-value: 0deg; }
+@property --js-m { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+
+.js-sofa { position: relative; width: 140px; height: 96px; }
+.js-sofa::before { content: ""; position: absolute; left: 12px; right: 12px; bottom: 22px; height: 42px; border-radius: 14px 14px 4px 4px; background: var(--lime); box-shadow: inset 0 0 0 2px var(--ink); }
+.js-sofa::after { content: ""; position: absolute; left: 0; right: 0; bottom: 4px; height: 26px; border-radius: 10px; background: #c4f0a2; box-shadow: inset 0 0 0 2px var(--ink); }
+.js-sofa i { position: absolute; top: 0; left: calc(40px + var(--i) * 28px); width: 2px; height: 24px; border-radius: 2px; background: rgba(17,24,39,0.4); opacity: 0; animation: jm-wisp 2.2s ease-in-out infinite; animation-delay: calc(var(--i) * 0.5s); }
+
+/* Refined 14 Nov: the ink edge sits on an overlay above the stripes (it was hidden under them). */
+.js-carpet { position: relative; display: flex; width: 150px; height: 90px; overflow: hidden; border-radius: 6px; }
+.js-carpet::after { content: ""; position: absolute; inset: 0; z-index: 1; border-radius: inherit; box-shadow: inset 0 0 0 2px var(--ink); pointer-events: none; }
+.js-carpet i { flex: 1; background: #b5dc98; animation: js-stripe 3.2s infinite; animation-delay: calc(var(--i) * 0.25s); }
+.js-carpet i:nth-child(even) { background: #a8d388; }
+@keyframes js-stripe { 0%, 20% { filter: brightness(1); } 35%, 80% { filter: brightness(1.18); } 100% { filter: brightness(1); } }
+
+.js-window { position: relative; width: 136px; height: 96px; overflow: hidden; border-radius: 6px; background: #d4dacd; box-shadow: inset 0 0 0 3px var(--ink); }
+.js-window::before { content: ""; position: absolute; inset: 3px; background: linear-gradient(160deg, #fff 0 60%, #eef7e6); transform-origin: left; animation: js-clear 3s var(--ez) infinite; }
+.js-window::after { content: ""; position: absolute; left: 50%; top: 3px; bottom: 3px; width: 3px; margin-left: -1.5px; background: var(--ink); }
+.js-window i { position: absolute; z-index: 1; top: 8px; bottom: 8px; left: 4px; width: 5px; border-radius: 3px; background: var(--ink); animation: js-blade 3s var(--ez) infinite; }
+@keyframes js-clear { 0% { transform: scaleX(0); } 70%, 100% { transform: scaleX(1); } }
+@keyframes js-blade { 0% { transform: translateX(0); } 70%, 100% { transform: translateX(124px); } }
+
+.js-vent { position: relative; width: 146px; height: 114px; }
+.js-vent::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 36px; border-radius: 8px; background: repeating-linear-gradient(#fff 0 6px, var(--ink) 6px 8px); box-shadow: inset 0 0 0 2px var(--ink); }
+.js-vent i { position: absolute; top: 42px; left: calc(16px + var(--i) * 27px); width: 2px; height: 24px; border-radius: 2px; background: rgba(17,24,39,0.45); animation: js-air 1.6s linear infinite; animation-delay: calc(var(--i) * 0.2s); }
+@keyframes js-air { 0% { transform: translateY(0) scaleY(0.4); opacity: 0; } 30% { opacity: 1; } 100% { transform: translateY(48px) scaleY(1); opacity: 0; } }
+
+.js-tank { position: relative; width: 104px; height: 116px; overflow: hidden; border-radius: 16px / 12px; background: #fff; box-shadow: inset 0 0 0 2px var(--ink); }
+.js-tank::before { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 60%; background: #cdeeb4; box-shadow: inset 0 0 0 2px var(--ink); }
+.js-tank i { position: absolute; left: 10%; width: 80%; height: 18px; bottom: calc(60% - 9px); border-radius: 50%; border: 2px solid rgba(17,24,39,0.35); animation: js-ripple 2.4s ease-in-out infinite; animation-delay: calc(var(--i) * 1.2s); }
+@keyframes js-ripple { 0% { transform: scale(0.3); opacity: 0; } 30% { opacity: 1; } 100% { transform: scale(1.1); opacity: 0; } }
+
+.js-curtain { position: relative; width: 146px; height: 116px; border-top: 4px solid var(--ink); }
+.js-curtain i { position: absolute; top: 0; width: 60px; height: 100%; background: repeating-linear-gradient(90deg, var(--lime) 0 9px, #c2ef9f 9px 14px); box-shadow: inset 0 0 0 2px var(--ink); transform-origin: top; animation: js-sway 3s ease-in-out infinite alternate; }
+.js-curtain i:first-child { left: 4px; border-radius: 0 0 4px 20px; }
+.js-curtain i:last-child { right: 4px; border-radius: 0 0 20px 4px; animation-delay: -1.5s; }
+@keyframes js-sway { from { transform: skewX(4deg); } to { transform: skewX(-4deg); } }
+
+.js-mattress { position: relative; width: 146px; height: 66px; margin-top: 36px; border-radius: 12px; background: radial-gradient(circle, rgba(17,24,39,0.2) 1.5px, transparent 2px) 0 0 / 14px 14px, #fff; box-shadow: inset 0 0 0 2px var(--ink); transform-origin: bottom; animation: js-squash 1.6s ease-in-out infinite; }
+.js-mattress i { position: absolute; left: 14px; top: -16px; width: 46px; height: 22px; border-radius: 10px; background: var(--lime); box-shadow: inset 0 0 0 2px var(--ink); animation: js-hop 1.6s ease-in-out infinite; }
+@keyframes js-squash { 0%, 100% { transform: none; } 50% { transform: scale(1.03, 0.9); } }
+@keyframes js-hop { 0%, 100% { transform: translateY(-20px); } 50% { transform: translateY(4px); } }
+
+.js-marble { position: relative; width: 124px; height: 124px; overflow: hidden; border-radius: 6px; background: linear-gradient(125deg, transparent 0 30%, rgba(17,24,39,0.14) 31% 32%, transparent 33% 60%, rgba(17,24,39,0.1) 61% 62%, transparent 63%), linear-gradient(35deg, transparent 0 45%, rgba(17,24,39,0.08) 46% 47%, transparent 48%), #f2f3ef; box-shadow: inset 0 0 0 2px var(--ink); }
+.js-marble::after { content: ""; position: absolute; top: -50%; left: -60%; width: 30%; height: 200%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.95), transparent); transform: rotate(25deg); animation: js-glint 3s ease-in-out infinite; }
+@keyframes js-glint { 0%, 30% { left: -60%; } 100% { left: 140%; } }
+
+.js-villa { position: relative; width: 136px; height: 116px; }
+.js-villa::before { content: ""; position: absolute; left: 10px; right: 10px; top: 10px; height: 42px; background: var(--ink); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+.js-villa::after { content: ""; position: absolute; left: 24px; right: 24px; top: 52px; bottom: 0; background: linear-gradient(var(--ink), var(--ink)) 50% 100% / 22px 34px no-repeat, linear-gradient(var(--tint3), var(--tint3)) 18% 30% / 18px 16px no-repeat, linear-gradient(var(--tint3), var(--tint3)) 82% 30% / 18px 16px no-repeat, #fff; box-shadow: inset 0 0 0 2px var(--ink); }
+.js-villa i, .js-sink i, .js-field i { position: absolute; z-index: 1; width: 14px; height: 14px; background: var(--ink); clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%); animation: jm-tw 1.8s ease-in-out infinite; animation-delay: calc(var(--i) * 0.6s); }
+.js-villa i:nth-child(1) { left: 0; top: 50px; } .js-villa i:nth-child(2) { right: 0; top: 30px; } .js-villa i:nth-child(3) { left: 61px; top: -6px; }
+
+.js-desk { position: relative; width: 156px; height: 96px; }
+.js-desk::before { content: ""; position: absolute; left: 0; right: 0; top: 34px; height: 8px; border-radius: 3px; background: var(--ink); }
+.js-desk::after { content: ""; position: absolute; left: 14px; right: 14px; top: 42px; height: 54px; border-left: 6px solid var(--ink); border-right: 6px solid var(--ink); }
+.js-desk i { position: absolute; top: 20px; left: 0; width: 36px; height: 14px; border-radius: 5px; background: var(--lime); box-shadow: inset 0 0 0 2px var(--ink); animation: js-wipe 2s ease-in-out infinite alternate; }
+@keyframes js-wipe { from { transform: translateX(0) rotate(-4deg); } to { transform: translateX(120px) rotate(4deg); } }
+
+.js-hob { position: relative; width: 156px; height: 100px; border-radius: 10px; background: #fff; box-shadow: inset 0 0 0 2px var(--ink); }
+.js-hob::before, .js-hob::after { content: ""; position: absolute; top: 26px; width: 46px; height: 46px; border-radius: 50%; box-shadow: inset 0 0 0 3px var(--ink), inset 0 0 0 10px #fff, inset 0 0 0 12px var(--ink); }
+.js-hob::before { left: 20px; } .js-hob::after { right: 20px; }
+.js-hob i { position: absolute; width: 11px; height: 7px; border-radius: 50%; background: rgba(120,90,40,0.5); animation: js-spot 4s infinite; animation-delay: calc(var(--i) * 0.4s); }
+.js-hob i:nth-child(1) { left: 12px; top: 12px; } .js-hob i:nth-child(2) { left: 74px; top: 44px; } .js-hob i:nth-child(3) { right: 12px; bottom: 12px; } .js-hob i:nth-child(4) { left: 60px; bottom: 10px; }
+@keyframes js-spot { 0%, 10% { opacity: 1; transform: scale(1); } 30%, 80% { opacity: 0; transform: scale(0.3); } 100% { opacity: 1; transform: scale(1); } }
+
+.js-tiles { display: grid; grid-template-columns: repeat(3, 36px); gap: 3px; padding: 3px; border-radius: 4px; background: var(--ink); }
+.js-tiles i { height: 36px; background: #fff; animation: js-tile 2.4s infinite; animation-delay: calc(var(--d) * 0.15s); }
+@keyframes js-tile { 0%, 30%, 100% { background: #fff; } 15% { background: var(--tint3); } }
+
+.js-deep { position: relative; width: 156px; height: 116px; border-bottom: 2px solid var(--ink); }
+.js-deep i { position: absolute; bottom: 0; left: var(--x); width: var(--s); height: var(--s); border-radius: 50%; border: 1.5px solid var(--ink); opacity: 0; animation: js-up 3s ease-in infinite; animation-delay: calc(var(--i) * 0.3s); }
+@keyframes js-up { 0% { transform: translateY(0) scale(0.4); opacity: 0; } 15% { opacity: 1; } 100% { transform: translateY(-104px) scale(1); opacity: 0; } }
+
+.js-boxes { position: relative; width: 96px; height: 116px; border-bottom: 2px solid var(--ink); }
+.js-boxes i { position: absolute; left: calc(14px + var(--i) * 6px); bottom: calc(var(--i) * 30px); width: 58px; height: 30px; border-radius: 3px; background: linear-gradient(var(--ink), var(--ink)) 50% 0 / 2px 10px no-repeat, #f1dfb8; box-shadow: inset 0 0 0 2px var(--ink); animation: js-drop 3.6s var(--sp) infinite both; animation-delay: calc(var(--i) * 0.4s); }
+@keyframes js-drop { 0% { transform: translateY(-120px); opacity: 0; } 15% { opacity: 1; transform: none; } 80% { opacity: 1; transform: none; } 100% { opacity: 0; transform: none; } }
+
+.js-dust { position: relative; width: 156px; height: 104px; overflow: hidden; border-bottom: 2px solid var(--ink); }
+.js-dust i { position: absolute; top: 0; left: calc(10px + var(--i) * 17px); width: 4px; height: 4px; border-radius: 50%; background: rgba(17,24,39,0.55); animation: js-dust 4s ease-in infinite; animation-delay: calc(var(--i) * 0.1s); }
+@keyframes js-dust { 0% { transform: translate(0, 0); opacity: 0; } 10% { opacity: 1; } 50%, 70% { transform: translate(0, 98px); } 100% { transform: translate(170px, 98px); opacity: 1; } }
+.js-dust::after { content: ""; position: absolute; bottom: 0; left: -20px; width: 6px; height: 42px; background: var(--ink); transform: rotate(-20deg); transform-origin: bottom; animation: js-broom 4s ease-in infinite; }
+@keyframes js-broom { 0%, 65% { left: -20px; } 100% { left: 176px; } }
+
+.js-hclock { position: relative; width: 104px; height: 104px; border-radius: 50%; background: conic-gradient(var(--tint3) var(--js-a), #fff 0); box-shadow: inset 0 0 0 3px var(--ink); animation: js-hours 4s linear infinite; }
+.js-hclock::before { content: ""; position: absolute; left: 50%; bottom: 50%; width: 3px; height: 40px; margin-left: -1.5px; background: var(--ink); transform-origin: bottom; transform: rotate(var(--js-a)); }
+.js-hclock::after { content: ""; position: absolute; left: 50%; top: 50%; width: 8px; height: 8px; margin: -4px; border-radius: 50%; background: var(--ink); }
+@keyframes js-hours { 0% { --js-a: 0deg; } 80%, 100% { --js-a: 120deg; } }
+
+.js-floor { position: relative; width: 156px; height: 62px; margin-top: 40px; overflow: hidden; border-radius: 6px; background: #e5e9dc; }
+.js-floor::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(255,255,255,0.95), rgba(255,255,255,0.2)); transform-origin: left; animation: js-wet 2.4s ease-in-out infinite; }
+.js-floor i { position: absolute; top: 15px; left: 0; width: 30px; height: 32px; border-radius: 6px; background: repeating-linear-gradient(90deg, var(--ink) 0 2px, transparent 2px 5px); animation: js-mophead 2.4s ease-in-out infinite; }
+@keyframes js-wet { 0% { transform: scaleX(0); opacity: 1; } 70% { transform: scaleX(1); opacity: 1; } 100% { transform: scaleX(1); opacity: 0; } }
+@keyframes js-mophead { 0% { transform: translateX(0); } 70%, 100% { transform: translateX(126px); } }
+
+.js-bottle { position: relative; width: 156px; height: 116px; }
+.js-bottle::before { content: ""; position: absolute; left: 12px; bottom: 0; width: 38px; height: 66px; border-radius: 8px 8px 6px 6px; background: var(--lime); box-shadow: inset 0 0 0 2px var(--ink); }
+.js-bottle::after { content: ""; position: absolute; left: 8px; bottom: 64px; width: 46px; height: 18px; border-radius: 4px 10px 2px 2px; background: var(--ink); }
+.js-bottle i { position: absolute; left: 56px; bottom: 72px; width: 5px; height: 5px; border-radius: 50%; background: rgba(17,24,39,0.4); animation: js-mist 1.4s ease-out infinite; animation-delay: calc(var(--i) * 0.1s); }
+@keyframes js-mist { from { transform: translate(0, 0); opacity: 1; } to { transform: translate(92px, calc((var(--i) - 3) * 8px)); opacity: 0; } }
+
+/* Refined 14 Nov: a slight perspective so it reads as a floor, softer tiles, a faint lime
+   wash near the viewer, and the sheen sweeps once then rests instead of running constantly. */
+.js-checker { position: relative; width: 156px; height: 104px; overflow: hidden; border-radius: 6px; background: conic-gradient(#e9ede4 25%, #fff 0 50%, #e9ede4 0 75%, #fff 0) 0 0 / 26px 26px; box-shadow: inset 0 0 0 2px var(--ink); transform: perspective(320px) rotateX(24deg); transform-origin: bottom; }
+.js-checker::before { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 55%, rgba(159, 232, 112, 0.18)); }
+.js-checker::after { content: ""; position: absolute; inset: 0; background: linear-gradient(115deg, transparent 32%, rgba(255,255,255,0.9) 46%, rgba(255,255,255,0.55) 50%, transparent 62%) -150% 0 / 200% 100% no-repeat; animation: js-sheen 3.6s cubic-bezier(0.45, 0, 0.25, 1) infinite; }
+@keyframes js-sheen { 0% { background-position: -150% 0; } 60%, 100% { background-position: 250% 0; } }
+
+.js-glass { display: flex; gap: 6px; }
+.js-glass i { position: relative; width: 60px; height: 116px; overflow: hidden; border-radius: 4px; background: #dce7d4; box-shadow: inset 0 0 0 2px var(--ink); }
+.js-glass i::after { content: ""; position: absolute; top: -20%; left: -60%; width: 30%; height: 140%; background: rgba(255,255,255,0.95); transform: skewX(-20deg); animation: js-refl 3s ease-in-out infinite; animation-delay: calc(var(--i) * 0.4s); }
+@keyframes js-refl { 0%, 40% { left: -60%; } 100% { left: 140%; } }
+
+.js-pile { display: flex; align-items: flex-end; gap: 6px; height: 64px; padding: 0 6px 4px; border-bottom: 5px solid var(--ink); }
+.js-pile i { width: 3px; height: 32px; border-radius: 2px; background: var(--ink); transform-origin: bottom; animation: js-pile 3s ease-in-out infinite; animation-delay: calc(var(--i) * 0.08s); }
+@keyframes js-pile { 0%, 100% { transform: rotate(55deg); } 40%, 70% { transform: rotate(0); } }
+
+.js-stain { position: relative; width: 126px; height: 104px; border-radius: 10px; background: repeating-linear-gradient(45deg, #e3f6d3 0 6px, #d7efc3 6px 12px); box-shadow: inset 0 0 0 2px var(--ink); }
+.js-stain::before { content: ""; position: absolute; left: 40px; top: 32px; width: 46px; height: 36px; border-radius: 45% 55% 50% 50%; background: rgba(120,85,40,0.55); animation: js-stain 4s ease-in-out infinite; }
+@keyframes js-stain { 0%, 15% { opacity: 1; transform: scale(1); } 60%, 85% { opacity: 0; transform: scale(0.6); } 100% { opacity: 1; transform: scale(1); } }
+.js-stain i { position: absolute; right: -6px; top: 20px; width: 5px; height: 5px; border-radius: 50%; background: rgba(17,24,39,0.45); animation: js-hit 1s ease-out infinite; animation-delay: calc(var(--i) * 0.15s); }
+@keyframes js-hit { from { transform: translate(0, calc(var(--i) * 6px)); opacity: 1; } to { transform: translate(-62px, calc(var(--i) * 8px + 6px)); opacity: 0; } }
+
+.js-bucket { position: relative; width: 112px; height: 116px; }
+.js-bucket::before { content: ""; position: absolute; left: 22px; top: 18px; width: 66px; height: 62px; border: 3px solid var(--ink); border-top-width: 0; border-radius: 0 0 18px 18px; background: linear-gradient(transparent 30%, var(--lime) 30%); }
+.js-bucket::after { content: ""; position: absolute; left: 26px; top: 0; width: 58px; height: 30px; border: 3px solid var(--ink); border-bottom: 0; border-radius: 30px 30px 0 0; }
+.js-bucket i { position: absolute; top: 76px; left: calc(34px + var(--i) * 20px); width: 7px; height: 10px; border-radius: 50% 50% 55% 55% / 35% 35% 65% 65%; background: var(--ink); animation: js-drips 1.8s ease-in infinite; animation-delay: calc(var(--i) * 0.5s); }
+@keyframes js-drips { 0% { transform: translateY(0) scale(0.3); opacity: 0; } 20% { opacity: 1; transform: translateY(0) scale(1); } 100% { transform: translateY(34px); opacity: 0; } }
+
+.js-sponge { position: relative; width: 116px; height: 104px; }
+.js-sponge::before { content: ""; position: absolute; left: 10px; right: 10px; bottom: 6px; height: 46px; border-radius: 10px; background: radial-gradient(circle, rgba(17,24,39,0.25) 2px, transparent 2.5px) 0 0 / 10px 10px, var(--lime); box-shadow: inset 0 0 0 2px var(--ink); animation: js-scrub 1.2s ease-in-out infinite alternate; }
+.js-sponge i { position: absolute; bottom: 48px; left: calc(14px + var(--i) * 18px); width: 18px; height: 18px; border-radius: 50%; background: #fff; box-shadow: inset 0 0 0 1.5px var(--ink); animation: js-suds 2.4s var(--sp) infinite; animation-delay: calc(var(--i) * 0.2s); }
+@keyframes js-scrub { from { transform: translateX(-6px) rotate(-2deg); } to { transform: translateX(6px) rotate(2deg); } }
+@keyframes js-suds { 0% { transform: scale(0) translateY(0); } 30%, 70% { transform: scale(1) translateY(-6px); } 100% { transform: scale(0) translateY(-20px); } }
+
+.js-duster { position: relative; width: 116px; height: 116px; }
+.js-duster::before { content: ""; position: absolute; left: 56px; bottom: 4px; width: 4px; height: 62px; border-radius: 2px; background: var(--ink); transform-origin: bottom; animation: js-flick 1.2s ease-in-out infinite alternate; }
+.js-duster::after { content: ""; position: absolute; left: 40px; bottom: 58px; width: 36px; height: 30px; border-radius: 50% 50% 40% 40%; background: repeating-conic-gradient(var(--lime) 0 15deg, #c9f2aa 15deg 30deg); box-shadow: inset 0 0 0 2px var(--ink); transform-origin: 50% 280%; animation: js-flick 1.2s ease-in-out infinite alternate; }
+@keyframes js-flick { from { transform: rotate(-18deg); } to { transform: rotate(18deg); } }
+.js-duster i { position: absolute; left: 58px; top: 12px; width: 4px; height: 4px; border-radius: 50%; background: rgba(17,24,39,0.5); animation: js-fly 1.2s ease-out infinite; animation-delay: calc(var(--i) * 0.24s); }
+@keyframes js-fly { from { transform: translate(0, 0); opacity: 1; } to { transform: translate(calc((var(--i) - 2) * 14px), -18px); opacity: 0; } }
+
+.js-washer { position: relative; display: grid; place-items: center; width: 98px; height: 116px; padding-top: 18px; border-radius: 12px; background: #fff; box-shadow: inset 0 0 0 2px var(--ink); }
+.js-washer::before { content: ""; position: absolute; top: 10px; left: 12px; width: 28px; height: 5px; border-radius: 3px; background: var(--ink); }
+.js-washer i { width: 64px; height: 64px; border-radius: 50%; background: repeating-linear-gradient(90deg, var(--lime) 0 6px, #c9f2aa 6px 10px); box-shadow: inset 0 0 0 3px var(--ink); animation: jm-spin 1.4s linear infinite; }
+
+.js-wand { position: relative; width: 146px; height: 104px; }
+.js-wand::before { content: ""; position: absolute; left: 10px; bottom: 12px; width: 84px; height: 8px; border-radius: 4px; background: var(--ink); transform: rotate(-25deg); transform-origin: left; }
+.js-wand i { position: absolute; left: 82px; top: 30px; width: 16px; height: 16px; border-radius: 50%; background: rgba(255,255,255,0.95); box-shadow: inset 0 0 0 1.5px rgba(17,24,39,0.25); animation: js-puff 1.8s ease-out infinite; animation-delay: calc(var(--i) * 0.45s); }
+@keyframes js-puff { from { transform: translate(0, 0) scale(0.3); opacity: 1; } to { transform: translate(32px, -28px) scale(1.6); opacity: 0; } }
+
+.js-sun { position: relative; width: 156px; height: 116px; overflow: hidden; }
+.js-sun::before { content: ""; position: absolute; left: 12px; top: 6px; width: 42px; height: 52px; border-radius: 4px; background: linear-gradient(var(--ink), var(--ink)) 50% 0 / 2px 100% no-repeat, linear-gradient(var(--ink), var(--ink)) 0 50% / 100% 2px no-repeat, #fff7d6; box-shadow: inset 0 0 0 2px var(--ink); }
+.js-sun::after { content: ""; position: absolute; left: 22px; top: 58px; width: 64px; height: 58px; background: linear-gradient(rgba(255,226,130,0.75), rgba(255,226,130,0)); clip-path: polygon(0 0, 40% 0, 100% 100%, 30% 100%); transform-origin: top left; animation: js-beam 6s ease-in-out infinite alternate; }
+@keyframes js-beam { from { transform: skewX(0); } to { transform: skewX(-25deg) translateX(30px); } }
+
+.js-rain { position: relative; width: 136px; height: 100px; overflow: hidden; border-radius: 6px; background: #eef3ea; box-shadow: inset 0 0 0 3px var(--ink); }
+.js-rain i { position: absolute; top: -10px; left: calc(8px + var(--i) * 15px); width: 3px; height: 9px; border-radius: 2px; background: rgba(17,24,39,0.35); animation: js-drip 1.6s linear infinite; animation-delay: calc(var(--i) * 0.2s); }
+@keyframes js-drip { to { transform: translateY(116px); } }
+.js-rain::after { content: ""; position: absolute; top: 0; bottom: 0; left: -10px; width: 6px; background: var(--ink); animation: js-wiper 3.2s ease-in-out infinite; }
+@keyframes js-wiper { 0%, 50% { left: -10px; } 75% { left: 140px; } 100% { left: -10px; } }
+
+.js-grout { width: 124px; height: 124px; background-color: #fff; background-image: linear-gradient(var(--ink), var(--ink)), linear-gradient(var(--ink), var(--ink)), linear-gradient(var(--ink), var(--ink)), linear-gradient(var(--ink), var(--ink)); background-repeat: no-repeat; background-position: 0 33.3%, 100% 66.6%, 33.3% 0, 66.6% 100%; background-size: 0 2px, 0 2px, 2px 0, 2px 0; box-shadow: inset 0 0 0 2px var(--ink); animation: js-grout 3s var(--ez) infinite; }
+@keyframes js-grout { 0% { background-size: 0 2px, 0 2px, 2px 0, 2px 0; } 60%, 100% { background-size: 100% 2px, 100% 2px, 2px 100%, 2px 100%; } }
+
+.js-prints { position: relative; width: 150px; height: 100px; }
+.js-prints i { position: absolute; left: calc(12px + var(--i) * 34px); width: 12px; height: 20px; border-radius: 50% 50% 45% 45%; background: rgba(17,24,39,0.35); transform: rotate(90deg); opacity: 0; animation: js-print 3.2s infinite; animation-delay: calc(var(--i) * 0.4s); }
+.js-prints i:nth-child(odd) { top: 32px; } .js-prints i:nth-child(even) { top: 56px; }
+@keyframes js-print { 0% { opacity: 0; } 10%, 50% { opacity: 1; } 80%, 100% { opacity: 0; } }
+
+.js-key { position: relative; width: 20px; height: 20px; margin-bottom: 70px; border-radius: 50%; box-shadow: inset 0 0 0 3px var(--ink); transform-origin: 50% 0; animation: jm-sway 1.4s ease-in-out infinite alternate; }
+.js-key::before { content: ""; position: absolute; left: -4px; top: 16px; width: 28px; height: 28px; border-radius: 50%; background: var(--lime); box-shadow: inset 0 0 0 3px var(--ink); }
+.js-key::after { content: ""; position: absolute; left: 7px; top: 42px; width: 12px; height: 38px; background: linear-gradient(var(--ink), var(--ink)) 0 0 / 6px 100% no-repeat, linear-gradient(var(--ink), var(--ink)) 6px 24px / 6px 4px no-repeat, linear-gradient(var(--ink), var(--ink)) 6px 32px / 4px 4px no-repeat; }
+
+.js-arrive { position: relative; width: 166px; height: 84px; overflow: hidden; border-bottom: 2px solid var(--ink); }
+.js-arrive::before { content: ""; position: absolute; bottom: 10px; left: 52px; width: 62px; height: 34px; border-radius: 6px 16px 4px 4px; background: linear-gradient(90deg, transparent 70%, #fff 70% 88%, transparent 88%) 0 6px / 100% 12px no-repeat, var(--lime); box-shadow: inset 0 0 0 2px var(--ink); animation: js-arrive 4s var(--sp) infinite; }
+.js-arrive i { position: absolute; bottom: 3px; left: calc(60px + var(--i) * 34px); width: 14px; height: 14px; border-radius: 50%; background: var(--ink); animation: js-arrive 4s var(--sp) infinite; }
+@keyframes js-arrive { 0% { transform: translateX(-150px); opacity: 0; } 10% { opacity: 1; } 35%, 85% { transform: none; opacity: 1; } 100% { transform: none; opacity: 0; } }
+
+.js-pins { position: relative; width: 156px; height: 116px; border-radius: 12px; background: linear-gradient(var(--line), var(--line)) 0 50% / 100% 1px no-repeat, linear-gradient(var(--line), var(--line)) 50% 0 / 1px 100% no-repeat, #fff; box-shadow: inset 0 0 0 1.5px rgba(17,24,39,0.15); }
+.js-pins i { position: absolute; left: var(--x); top: var(--y); width: 14px; height: 14px; margin: -14px 0 0 -7px; border-radius: 50% 50% 50% 0; background: var(--lime); box-shadow: inset 0 0 0 2px var(--ink); animation: js-pin 4s var(--sp) infinite both; animation-delay: calc(var(--i) * 0.35s); }
+@keyframes js-pin { 0% { transform: rotate(-45deg) scale(0); } 12%, 80% { transform: rotate(-45deg) scale(1); } 100% { transform: rotate(-45deg) scale(0); } }
+
+.js-ontime { position: relative; width: 84px; height: 84px; border-radius: 50%; background: #fff; box-shadow: inset 0 0 0 3px var(--ink); }
+.js-ontime i { position: absolute; left: 50%; bottom: 50%; width: 3px; height: 30px; margin-left: -1.5px; background: var(--ink); transform-origin: bottom; animation: js-tick 3s var(--ez) infinite; }
+@keyframes js-tick { 0% { transform: rotate(0); } 50%, 100% { transform: rotate(300deg); } }
+.js-ontime::after { content: ""; position: absolute; right: -12px; bottom: -6px; width: 30px; height: 30px; border-radius: 50%; background: var(--lime); box-shadow: inset 0 0 0 2px var(--ink); animation: js-ok 3s var(--sp) infinite; }
+.js-ontime::before { content: ""; position: absolute; z-index: 1; right: -2px; bottom: 3px; width: 7px; height: 12px; border: solid var(--ink); border-width: 0 3px 3px 0; animation: js-ok2 3s var(--sp) infinite; }
+@keyframes js-ok { 0%, 50% { transform: scale(0); } 60%, 100% { transform: scale(1); } }
+@keyframes js-ok2 { 0%, 55% { transform: rotate(45deg) scale(0); } 65%, 100% { transform: rotate(45deg) scale(1); } }
+
+.js-mirror { width: 92px; height: 120px; border-radius: 50%; background: conic-gradient(from 180deg, #fff var(--js-m), #d4dacd 0); box-shadow: inset 0 0 0 4px var(--ink); animation: js-mirror 3s var(--ez) infinite; }
+@keyframes js-mirror { 0% { --js-m: 0deg; } 70%, 100% { --js-m: 360deg; } }
+
+.js-sink { position: relative; width: 146px; height: 104px; }
+.js-sink::before { content: ""; position: absolute; left: 14px; right: 14px; bottom: 10px; height: 46px; border-radius: 0 0 64px 64px; background: #fff; box-shadow: inset 0 0 0 3px var(--ink); }
+.js-sink::after { content: ""; position: absolute; left: 64px; top: 12px; width: 30px; height: 30px; border: solid var(--ink); border-width: 4px 4px 0 0; border-radius: 0 12px 0 0; }
+.js-sink i:nth-child(1) { left: 26px; top: 40px; } .js-sink i:nth-child(2) { right: 20px; top: 52px; } .js-sink i:nth-child(3) { left: 50%; top: 66px; }
+
+.js-robot { position: relative; width: 136px; height: 104px; border-radius: 8px; background: #eceee7; box-shadow: inset 0 0 0 1.5px rgba(17,24,39,0.15); }
+.js-robot i { position: absolute; left: 8px; top: 8px; width: 28px; height: 28px; border-radius: 50%; background: var(--lime); box-shadow: inset 0 0 0 2px var(--ink); animation: js-robot 6s linear infinite; }
+.js-robot i::after { content: ""; position: absolute; left: 10px; top: 4px; width: 8px; height: 4px; border-radius: 2px; background: var(--ink); }
+@keyframes js-robot { 0% { transform: translate(0, 0); } 25% { transform: translate(100px, 0); } 50% { transform: translate(100px, 68px); } 75% { transform: translate(0, 68px); } 100% { transform: translate(0, 0); } }
+
+.js-unroll { position: relative; width: 156px; height: 60px; margin-top: 40px; }
+.js-unroll::before { content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 16px; border-radius: 3px; background: repeating-linear-gradient(90deg, #c4e6aa 0 10px, #b1dc92 10px 20px); box-shadow: inset 0 0 0 2px var(--ink); transform-origin: left; animation: js-unroll 3s var(--ez) infinite; }
+.js-unroll i { position: absolute; left: 0; bottom: 0; width: 40px; height: 40px; border-radius: 50%; background: radial-gradient(circle, #fff 0 4px, transparent 5px), repeating-radial-gradient(circle, #c4e6aa 0 4px, #b1dc92 4px 8px); box-shadow: inset 0 0 0 2px var(--ink); animation: js-roll 3s var(--ez) infinite; }
+@keyframes js-unroll { 0% { transform: scaleX(0); } 70%, 100% { transform: scaleX(1); } }
+@keyframes js-roll { 0% { transform: translateX(0) scale(1) rotate(0); } 70% { transform: translateX(126px) scale(0.45) rotate(540deg); } 71%, 100% { transform: translateX(126px) scale(0); } }
+
+.js-pillow { width: 116px; height: 72px; border-radius: 30px; background: radial-gradient(circle at 50% 50%, rgba(17,24,39,0.25) 3px, transparent 4px), var(--lime); box-shadow: inset 0 0 0 2px var(--ink); animation: js-fluff 2s var(--sp) infinite; }
+@keyframes js-fluff { 0%, 100% { transform: none; border-radius: 30px; } 30% { transform: scale(1.12, 0.7); border-radius: 40px 40px 20px 20px; } 55% { transform: scale(0.95, 1.08); } }
+
+.js-crings { position: relative; width: 156px; height: 64px; margin-bottom: 40px; border-top: 4px solid var(--ink); }
+/* Refined 14 Nov: spring physics. The leading (far) ring moves first and pulls the others
+   after it one by one; each overshoots and settles, and the fabric gathers on a spring too.
+   Moves with translate, not left, so it stays smooth. */
+.js-crings::after { content: ""; position: absolute; left: 4px; top: 4px; width: 146px; height: 58px; background: repeating-linear-gradient(90deg, var(--lime) 0 8px, #c9f2aa 8px 12px); box-shadow: inset 0 0 0 2px var(--ink); transform-origin: left; animation: js-cfab 4.4s infinite; }
+.js-crings i { position: absolute; z-index: 1; top: -10px; left: calc(var(--i) * 32px + 4px); width: 16px; height: 16px; border-radius: 50%; background: #fff; box-shadow: inset 0 0 0 3px var(--ink); animation: js-rings 4.4s infinite; animation-delay: calc((var(--n) - 1 - var(--i)) * 90ms); }
+@keyframes js-rings {
+  0%, 8% { translate: 0 0; animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1); }
+  42%, 58% { translate: calc(var(--i) * -20px) 0; animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1); }
+  92%, 100% { translate: 0 0; }
+}
+@keyframes js-cfab {
+  0%, 8% { transform: scaleX(1); animation-timing-function: cubic-bezier(0.34, 1.4, 0.64, 1); }
+  42%, 58% { transform: scaleX(0.46); animation-timing-function: cubic-bezier(0.34, 1.4, 0.64, 1); }
+  92%, 100% { transform: scaleX(1); }
+}
+
+.js-balcony { position: relative; width: 72px; height: 124px; overflow: hidden; border-radius: 4px; background: #d4dacd; box-shadow: inset 0 0 0 3px var(--ink); }
+.js-balcony::before { content: ""; position: absolute; inset: 3px; background: #fff; transform-origin: top; animation: js-bclear 3s var(--ez) infinite; }
+.js-balcony::after { content: ""; position: absolute; left: 3px; right: 3px; bottom: 3px; height: 30px; background: repeating-linear-gradient(90deg, var(--ink) 0 2px, transparent 2px 12px); border-top: 3px solid var(--ink); }
+.js-balcony i { position: absolute; z-index: 1; left: 6px; right: 6px; top: 0; height: 5px; border-radius: 3px; background: var(--ink); animation: js-bblade 3s var(--ez) infinite; }
+@keyframes js-bclear { 0% { transform: scaleY(0); } 75%, 100% { transform: scaleY(1); } }
+@keyframes js-bblade { 0% { transform: translateY(0); } 75%, 100% { transform: translateY(118px); } }
+
+.js-duct { position: relative; width: 116px; height: 116px; background: #fff; box-shadow: inset 0 0 0 3px var(--ink); }
+.js-duct i { position: absolute; inset: 10%; box-shadow: inset 0 0 0 2px rgba(17,24,39,0.5); animation: js-duct 2.4s linear infinite; animation-delay: calc(var(--i) * -0.6s); }
+@keyframes js-duct { from { transform: scale(0); opacity: 0; } 30% { opacity: 1; } to { transform: scale(1.1); opacity: 0; } }
+
+.js-filter { position: relative; width: 72px; height: 124px; }
+.js-filter::before { content: ""; position: absolute; left: 0; right: 0; top: 42px; height: 46px; background: linear-gradient(#cdd3c6 0 30%, transparent 30% 35%, #dde3d6 35% 65%, transparent 65% 70%, var(--tint3) 70%); box-shadow: inset 0 0 0 2px var(--ink); }
+.js-filter i { position: absolute; left: 29px; top: 0; width: 14px; height: 18px; border-radius: 50% 50% 55% 55% / 35% 35% 65% 65%; background: #9a8f7a; animation: js-filter 2.4s ease-in infinite; }
+@keyframes js-filter { 0% { transform: translateY(0); background: #9a8f7a; } 40% { background: #9a8f7a; } 75% { background: var(--lime); } 100% { transform: translateY(104px); background: var(--lime); opacity: 0.6; } }
+
+.js-swirl { width: 116px; height: 116px; border-radius: 50%; background: conic-gradient(from 0deg, #eef0ea, #fff 20%, #e3e7dc 40%, #fff 60%, #eef0ea); box-shadow: inset 0 0 0 3px var(--ink); animation: jm-spin 3s linear infinite; }
+
+.js-sheet { position: relative; width: 156px; height: 96px; }
+.js-sheet::before { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 20px; border-radius: 4px; background: var(--ink); }
+.js-sheet::after { content: ""; position: absolute; left: 4px; right: 4px; bottom: 18px; height: 50px; border-radius: 6px 6px 0 0; background: #fff; box-shadow: inset 0 0 0 2px var(--ink); transform-origin: bottom; animation: js-sheet 2.4s ease-in-out infinite; }
+@keyframes js-sheet { 0%, 100% { transform: scaleY(1) skewX(0); } 30% { transform: scaleY(1.25) skewX(-6deg); } 60% { transform: scaleY(0.95) skewX(3deg); } }
+
+.js-chairs { display: flex; gap: 12px; align-items: flex-end; height: 96px; }
+.js-chairs i { position: relative; width: 26px; height: 52px; border-left: 4px solid var(--ink); }
+.js-chairs i::before { content: ""; position: absolute; left: -4px; right: 0; bottom: 14px; height: 12px; border-radius: 2px; background: var(--lime); box-shadow: inset 0 0 0 2px var(--ink); }
+.js-chairs i::after { content: ""; position: absolute; left: 6px; top: -20px; width: 14px; height: 14px; background: var(--ink); clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%); animation: jm-tw 2.4s ease-in-out infinite; animation-delay: calc(var(--i) * 0.6s); }
+
+.js-uphol { position: relative; width: 146px; height: 94px; overflow: hidden; border-radius: 14px; background: repeating-linear-gradient(90deg, #b9c6ad 0 10px, #c9d4bd 10px 20px); box-shadow: inset 0 0 0 2px var(--ink); }
+.js-uphol::before { content: ""; position: absolute; inset: 2px; background: repeating-linear-gradient(90deg, var(--lime) 0 10px, #c9f2aa 10px 20px); transform-origin: left; animation: js-uphol 3s ease-in-out infinite; }
+.js-uphol i { position: absolute; z-index: 1; top: 10px; bottom: 10px; left: 0; width: 14px; border-radius: 6px; background: #fff; box-shadow: inset 0 0 0 2px var(--ink); animation: js-brush 3s ease-in-out infinite; }
+@keyframes js-uphol { 0% { transform: scaleX(0); } 80%, 100% { transform: scaleX(1); } }
+@keyframes js-brush { 0% { transform: translateX(0); } 80%, 100% { transform: translateX(132px); } }
+
+.js-sunrise { position: relative; width: 156px; height: 104px; overflow: hidden; border-bottom: 2px solid var(--ink); }
+.js-sunrise i { position: absolute; left: 58px; bottom: -42px; width: 40px; height: 40px; border-radius: 50%; background: #ffd76a; box-shadow: inset 0 0 0 2px var(--ink), 0 0 0 8px rgba(255,215,106,0.25); animation: js-rise 4s var(--ez) infinite; }
+@keyframes js-rise { 0% { transform: translateY(0); } 60%, 100% { transform: translateY(-84px); } }
+.js-sunrise span { position: absolute; right: 6px; top: 6px; font-size: 13px; font-weight: 700; animation: js-fade8 4s infinite; }
+@keyframes js-fade8 { 0%, 50% { opacity: 0; } 65%, 100% { opacity: 1; } }
+
+.js-field { position: relative; width: 100%; height: 100%; }
+.js-field i { left: var(--x); top: var(--y); width: 12px; height: 12px; animation-duration: 2.4s; animation-delay: calc(var(--i) * 0.37s); }
+
+.js-floatb { position: relative; width: 156px; height: 116px; }
+.js-floatb i { position: absolute; left: 0; top: 40px; width: 46px; height: 46px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #fff 0 5px, transparent 6px), radial-gradient(circle, rgba(159,232,112,0.12), rgba(159,232,112,0.4)); box-shadow: inset 0 0 0 1.5px rgba(17,24,39,0.4); animation: js-floatb 5s ease-in-out infinite; }
+@keyframes js-floatb { 0% { transform: translate(0, 20px); opacity: 0; } 10% { opacity: 1; } 25% { transform: translate(30px, -10px); } 50% { transform: translate(60px, 10px); } 75% { transform: translate(90px, -20px); } 100% { transform: translate(110px, 10px); opacity: 0; } }
+
+.js-fresh { position: relative; width: 156px; height: 104px; perspective: 300px; }
+.js-fresh::before, .js-fresh::after { content: ""; position: absolute; top: 10px; width: 42px; height: 84px; background: #eef6e8; box-shadow: inset 0 0 0 3px var(--ink); animation: js-open 3s ease-in-out infinite alternate; }
+.js-fresh::before { left: 10px; transform-origin: left; }
+.js-fresh::after { left: 52px; transform-origin: right; animation-name: js-open2; }
+@keyframes js-open { to { transform: rotateY(55deg); } }
+@keyframes js-open2 { to { transform: rotateY(-55deg); } }
+.js-fresh i { position: absolute; left: 100px; top: calc(30px + var(--i) * 16px); width: 42px; height: 2px; border-radius: 2px; background: var(--ink); transform-origin: left; animation: js-breeze 1.8s ease-in-out infinite; animation-delay: calc(var(--i) * 0.25s); }
+@keyframes js-breeze { 0% { transform: translateX(-30%) scaleX(0.2); opacity: 0; } 50% { opacity: 1; transform: translateX(0) scaleX(0.8); } 100% { transform: translateX(40%) scaleX(0.2); opacity: 0; } }
+
+/* Opening hours, 8 AM to 10 PM (added 14 Nov, owner request): the sun rises at 8 AM,
+   crosses the sky and sets, the evening dims, then the moon rises and stars come out at 10 PM. */
+.js-day { position: relative; width: 168px; height: 108px; overflow: hidden; border-bottom: 2px solid var(--ink); }
+.js-day::before { content: ""; position: absolute; inset: 0; background: #e3e8ef; opacity: 0; animation: js-dusk 9s infinite; }
+.js-day i { position: absolute; left: 50%; bottom: -14px; width: 0; height: 74px; transform-origin: bottom; }
+.js-day i::before { content: ""; position: absolute; left: -14px; top: -14px; width: 28px; height: 28px; border-radius: 50%; }
+.js-day i:nth-of-type(1) { animation: js-sunarc 9s linear infinite; }
+.js-day i:nth-of-type(1)::before { background: #ffd76a; box-shadow: inset 0 0 0 2px var(--ink), 0 0 0 7px rgba(255, 215, 106, 0.25); }
+.js-day i:nth-of-type(2) { opacity: 0; animation: js-moonarc 9s linear infinite; }
+.js-day i:nth-of-type(2)::before { width: 22px; height: 22px; left: -11px; top: -11px; background: #fff; box-shadow: inset 0 0 0 2px var(--ink), inset -7px -3px 0 0 #e6e9ef; }
+.js-day s { position: absolute; width: 7px; height: 7px; background: var(--ink); clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%); opacity: 0; animation: js-star 9s infinite; }
+.js-day s:nth-of-type(1) { left: 22px; top: 18px; }
+.js-day s:nth-of-type(2) { left: 128px; top: 14px; animation-delay: 0.25s; }
+.js-day s:nth-of-type(3) { left: 100px; top: 42px; animation-delay: 0.5s; }
+.js-day b { position: absolute; top: 6px; right: 8px; z-index: 1; font-size: 13px; font-weight: 700; opacity: 0; }
+.js-day b:nth-of-type(1) { animation: js-am 9s infinite; }
+.js-day b:nth-of-type(2) { animation: js-pm 9s infinite; }
+@keyframes js-sunarc { 0% { rotate: -96deg; opacity: 1; } 52% { rotate: 96deg; opacity: 1; } 53%, 100% { rotate: 96deg; opacity: 0; } }
+@keyframes js-moonarc { 0%, 55% { rotate: -96deg; opacity: 0; } 60% { opacity: 1; } 92% { rotate: -38deg; opacity: 1; } 100% { rotate: -32deg; opacity: 0; } }
+@keyframes js-dusk { 0%, 40% { opacity: 0; } 58%, 92% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes js-star { 0%, 62% { opacity: 0; scale: 0.4; } 70%, 90% { opacity: 1; scale: 1; } 98%, 100% { opacity: 0; scale: 0.4; } }
+@keyframes js-am { 0%, 2% { opacity: 0; } 10%, 40% { opacity: 1; } 48%, 100% { opacity: 0; } }
+@keyframes js-pm { 0%, 60% { opacity: 0; } 68%, 92% { opacity: 1; } 98%, 100% { opacity: 0; } }

@@ -1,0 +1,200 @@
+/* Touch: hover, press and focus on buttons and links. */
+.jt-squeegee, .jt-glint, .jt-streak, .jt-roll, .jt-send, .jt-fizz, .jt-soap, .jt-circle, .jt-orbit, .jt-steps { overflow: hidden; }
+
+.jt-squeegee::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent 38%, rgba(255,255,255,0.75) 47%, #fff 50%, transparent 53%); transform: translateX(-100%); }
+.jt-squeegee:hover::before { animation: jt-sweep 0.8s var(--ez); }
+@keyframes jt-sweep { to { transform: translateX(100%); } }
+
+.jt-soap::before { content: ""; position: absolute; left: -15%; top: 100%; width: 130%; height: 180%; border-radius: 42%; background: var(--lime); z-index: -1; transition: transform 0.8s var(--ez); animation: jm-spin 5s linear infinite; }
+.jt-soap:hover::before { transform: translateY(-78%); }
+
+.jt-press { transition: transform 0.55s var(--sp), background-color 0.15s; }
+.jt-press:active { transform: scale(1.06, 0.86); transition-duration: 0.08s; }
+
+.jt-glint::after { content: ""; position: absolute; top: -60%; left: 0; width: 22px; height: 220%; background: rgba(255,255,255,0.85); transform: rotate(25deg) translateX(-70px); opacity: 0; }
+.jt-glint:hover::after { animation: jt-glint 0.7s ease-out; }
+@keyframes jt-glint { from { opacity: 1; transform: rotate(25deg) translateX(-70px); } to { opacity: 1; transform: rotate(25deg) translateX(300px); } }
+
+.jt-steam { transition: transform 0.4s var(--ez), background-color 0.15s; }
+.jt-steam:hover { transform: translateY(-2px); }
+.jt-steam i { position: absolute; bottom: 100%; left: calc(40% + var(--i) * 18%); width: 2px; height: 14px; border-radius: 2px; background: rgba(17,24,39,0.35); opacity: 0; }
+.jt-steam:hover i { animation: jm-wisp 1.4s ease-out infinite; animation-delay: calc(var(--i) * 0.5s); }
+
+.jt-drip::after { content: ""; position: absolute; left: 0; right: 0; bottom: 8px; height: 2px; background: var(--ink); transform: scaleX(0); transform-origin: left; transition: transform 0.45s var(--ez); }
+.jt-drip:hover::after { transform: scaleX(1); }
+.jt-drip i { position: absolute; right: 0; bottom: 6px; width: 6px; height: 8px; border-radius: 50% 50% 55% 55% / 35% 35% 65% 65%; background: var(--ink); opacity: 0; }
+.jt-drip:hover i { animation: jt-fall 1.1s 0.4s ease-in infinite; }
+@keyframes jt-fall { from { transform: translateY(0) scale(0.3); opacity: 1; } to { transform: translateY(30px) scale(1); opacity: 0; } }
+
+.jt-mop span { background: linear-gradient(var(--tint3), var(--tint3)) no-repeat left 88% / 0% 45%; transition: background-size 0.45s var(--ez); }
+.jt-mop:hover span { background-size: 100% 45%; }
+
+.jt-corner i { position: absolute; top: -7px; right: 8px; width: 15px; height: 15px; background: var(--ink); clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%); transform: scale(0) rotate(-45deg); transition: transform 0.5s var(--sp); }
+.jt-corner:hover i { transform: scale(1) rotate(0); }
+
+.jt-rim:hover { animation: jt-rim 1.2s ease-out infinite; }
+@keyframes jt-rim { from { box-shadow: inset 0 0 0 0 rgba(255,255,255,0.95); } to { box-shadow: inset 0 0 0 10px rgba(255,255,255,0); } }
+
+.jt-spray i { position: absolute; right: 12px; top: 50%; width: 5px; height: 5px; margin-top: -2.5px; border-radius: 50%; background: var(--ink); opacity: 0; }
+.jt-spray:hover i { animation: jt-spray 0.8s var(--ez) infinite; animation-delay: calc(var(--i) * 0.12s); }
+@keyframes jt-spray { from { transform: translate(0, 0); opacity: 1; } to { transform: translate(32px, calc((var(--i) - 1) * 14px)); opacity: 0; } }
+
+.jt-roll span { transition: transform 0.45s var(--ez); }
+.jt-roll::after { content: attr(data-alt); position: absolute; inset: 0; display: grid; place-items: center; transform: translateY(100%); transition: transform 0.45s var(--ez); }
+.jt-roll:hover span { transform: translateY(-160%); }
+.jt-roll:hover::after { transform: none; }
+
+.jt-band:active { animation: jt-band 0.6s; }
+@keyframes jt-band { 30% { transform: scale(1.15, 0.8); } 45% { transform: scale(0.9, 1.1); } 60% { transform: scale(1.04, 0.96); } 100% { transform: none; } }
+
+.jt-ring::after { content: ""; position: absolute; left: 50%; top: 50%; width: 20px; height: 20px; margin: -10px; border-radius: 50%; border: 2px solid var(--ink); opacity: 0; }
+.jt-ring:active::after { animation: jt-ring 0.7s ease-out; }
+@keyframes jt-ring { from { transform: scale(0.3); opacity: 0.7; } to { transform: scale(9); opacity: 0; } }
+
+.jt-orbit, .jt-orbit:hover { box-shadow: none; }
+.jt-orbit::before { content: ""; position: absolute; inset: -150%; background: conic-gradient(var(--lime) 0 22%, rgba(17,24,39,0.18) 22% 100%); animation: jm-spin 2.4s linear infinite paused; z-index: -2; }
+.jt-orbit::after { content: ""; position: absolute; inset: 2px; border-radius: 999px; background: #fff; z-index: -1; }
+.jt-orbit:hover::before { animation-play-state: running; }
+
+.jt-thick { transition: box-shadow 0.3s var(--ez); }
+.jt-thick:hover { box-shadow: inset 0 0 0 3px var(--ink); }
+
+.jt-centre::after { content: ""; position: absolute; left: 0; right: 0; bottom: 8px; height: 2px; background: var(--ink); transform: scaleX(0); transition: transform 0.4s var(--ez); }
+.jt-centre:hover::after { transform: scaleX(1); }
+
+.jt-swapline::before, .jt-swapline::after { content: ""; position: absolute; left: 0; right: 0; bottom: 8px; height: 2px; background: var(--ink); }
+.jt-swapline::before { transform-origin: right; transition: transform 0.35s var(--ez); }
+.jt-swapline::after { transform: scaleX(0); transform-origin: left; transition: transform 0.35s 0.25s var(--ez); }
+.jt-swapline:hover::before { transform: scaleX(0); }
+.jt-swapline:hover::after { transform: scaleX(1); }
+
+.jt-trail i { position: relative; display: inline-block; transition: transform 0.35s var(--ez); }
+.jt-trail i::before { content: "\2192"; }
+.jt-trail i::after { content: "\2192"; position: absolute; left: 0; opacity: 0; transition: transform 0.5s var(--ez), opacity 0.5s; }
+.jt-trail:hover i { transform: translateX(6px); }
+.jt-trail:hover i::after { transform: translateX(-10px); opacity: 0.25; }
+
+.jt-dust i { position: absolute; left: calc(14% + var(--i) * 17%); top: 26%; width: 3px; height: 3px; border-radius: 50%; background: rgba(17,24,39,0.5); opacity: 0; }
+.jt-dust:hover i { animation: jt-dust 1s ease-out both; animation-delay: calc(var(--i) * 60ms); }
+@keyframes jt-dust { from { opacity: 1; transform: none; } to { opacity: 0; transform: translate(calc(-8px + var(--i) * 4px), -28px); } }
+
+.jt-lift { transition: transform 0.4s var(--sp), box-shadow 0.4s; }
+.jt-lift:hover { transform: translateY(-3px); box-shadow: inset 0 0 0 1.5px rgba(17,24,39,0.35), 0 5px 0 -2px rgba(17,24,39,0.12); }
+
+.jt-tilt { transition: transform 0.5s var(--sp), background-color 0.15s; }
+.jt-tilt:hover { transform: rotate(-2deg); }
+
+.jt-start::before { content: ""; position: absolute; inset: 0; border-radius: inherit; background: var(--lime); transform: scaleX(0); transform-origin: left; transition: transform 0.45s var(--ez); z-index: -1; }
+.jt-start:hover::before { transform: scaleX(1); }
+
+.jt-circle::before { content: ""; position: absolute; left: 50%; top: 50%; width: 240px; height: 240px; margin: -120px; border-radius: 50%; background: var(--lime); transform: scale(0); transition: transform 0.55s var(--ez); z-index: -1; }
+.jt-circle:hover::before { transform: scale(1); }
+
+.jt-wave:hover span span { animation: jt-wave 0.5s var(--ez); animation-delay: calc(var(--i) * 25ms); }
+@keyframes jt-wave { 50% { transform: translateY(-4px); } }
+
+.jt-fizz i { position: absolute; bottom: -6px; left: calc(14% + var(--i) * 14%); width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.9); opacity: 0; }
+.jt-fizz:hover i { animation: jt-fizz 1.2s ease-in infinite; animation-delay: calc(var(--i) * 0.17s); }
+@keyframes jt-fizz { 0% { transform: translateY(0); opacity: 0; } 20% { opacity: 1; } 100% { transform: translateY(-54px); opacity: 0; } }
+
+.jt-jiggle:hover { animation: jt-jiggle 0.5s; }
+@keyframes jt-jiggle { 20% { transform: rotate(-3deg); } 40% { transform: rotate(3deg); } 60% { transform: rotate(-2deg); } 80% { transform: rotate(1deg); } }
+
+.jt-pulse::after { content: ""; position: absolute; inset: 0; border-radius: inherit; animation: jt-pulse 2.4s ease-out infinite; }
+.jt-pulse:hover::after { animation: none; }
+@keyframes jt-pulse { from { box-shadow: 0 0 0 0 rgba(159,232,112,0.8); } to { box-shadow: 0 0 0 16px rgba(159,232,112,0); } }
+
+.jt-halo:focus-visible { outline: none; animation: jt-halo 0.5s var(--ez) both; }
+@keyframes jt-halo { from { box-shadow: 0 0 0 0 #fff, 0 0 0 0 var(--ink); } to { box-shadow: 0 0 0 3px #fff, 0 0 0 5px var(--ink); } }
+
+.jt-dent { transition: transform 0.3s var(--sp), box-shadow 0.2s; }
+.jt-dent:active { transform: scale(0.97); box-shadow: inset 0 2px 0 1.5px rgba(17,24,39,0.25); }
+
+.jt-weight span { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 6px; transition: text-decoration-thickness 0.3s, text-underline-offset 0.3s; }
+.jt-weight:hover span { text-decoration-thickness: 3px; text-underline-offset: 3px; }
+
+.jt-half span { padding: 0 2px; background: linear-gradient(var(--tint3), var(--tint3)) no-repeat 0 100% / 100% 35%; transition: background-size 0.35s var(--ez); }
+.jt-half:hover span { background-size: 100% 100%; }
+
+.jt-ticks { padding: 0 10px; }
+.jt-ticks::before, .jt-ticks::after { content: ""; position: absolute; width: 8px; height: 8px; border: 2px solid var(--ink); opacity: 0; transition: transform 0.35s var(--sp), opacity 0.2s; }
+.jt-ticks::before { left: 0; top: 8px; border-right: 0; border-bottom: 0; transform: translate(5px, 5px); }
+.jt-ticks::after { right: 0; bottom: 8px; border-left: 0; border-top: 0; transform: translate(-5px, -5px); }
+.jt-ticks:hover::before, .jt-ticks:hover::after { opacity: 1; transform: none; }
+
+.jt-chev i::before { content: "\203A"; display: inline-block; font-size: 22px; line-height: 1; }
+.jt-chev:hover i::before { animation: jt-chev 0.6s var(--sp); }
+@keyframes jt-chev { 40% { transform: translateX(7px); } }
+
+.jt-price span { transform-origin: left center; transition: transform 0.35s var(--sp); }
+.jt-price:hover span { transform: scale(1.08); }
+
+.jt-callshake:hover span { animation: jt-buzz 0.18s linear 4; }
+@keyframes jt-buzz { 25% { transform: translateX(-1.5px) rotate(-1deg); } 75% { transform: translateX(1.5px) rotate(1deg); } }
+
+.jt-breathe { animation: jt-breathe 3.2s ease-in-out infinite; }
+@keyframes jt-breathe { 50% { transform: scale(1.03); } }
+
+.jt-streak::before, .jt-streak::after { content: ""; position: absolute; top: -50%; left: -20%; width: 6px; height: 200%; background: rgba(255,255,255,0.85); transform: rotate(20deg); }
+.jt-streak:hover::before { animation: jt-streak 0.7s ease-out; }
+.jt-streak:hover::after { animation: jt-streak 0.7s 0.12s ease-out; }
+@keyframes jt-streak { to { left: 120%; } }
+
+.jt-crisp span { filter: blur(1.5px); opacity: 0.5; }
+.jt-crisp::after { content: attr(data-alt); position: absolute; inset: 0; display: grid; place-items: center; clip-path: inset(0 100% 0 0); transition: clip-path 0.6s var(--ez); }
+.jt-crisp:hover::after { clip-path: inset(0); }
+
+.jt-dot i { position: absolute; left: 0; bottom: 4px; width: 7px; height: 7px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 0 1.5px var(--ink); opacity: 0; transition: left 0.5s var(--ez), opacity 0.2s; }
+.jt-dot:hover i { left: calc(100% - 7px); opacity: 1; }
+
+.jt-wavy span { padding-bottom: 6px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='6'%3E%3Cpath d='M0 3 Q3 0 6 3 T12 3' fill='none' stroke='%23111827' stroke-width='1.5'/%3E%3C/svg%3E") repeat-x 0 100% / 12px 0; transition: background-size 0.3s; }
+.jt-wavy:hover span { background-size: 12px 6px; animation: jt-wavy 0.6s linear infinite; }
+@keyframes jt-wavy { to { background-position: 12px 100%; } }
+
+.jt-stamp { transition: transform 0.6s var(--sp), background-color 0.15s; }
+.jt-stamp:active { transform: scale(0.88); transition-duration: 0.1s; }
+
+.jt-edge, .jt-edge:hover { box-shadow: inset 0 0 0 1.5px rgba(17,24,39,0.12); }
+.jt-edge::before, .jt-edge::after { content: ""; position: absolute; left: 16px; right: 16px; height: 2px; background: var(--ink); transform: scaleX(0); transition: transform 0.45s var(--ez); }
+.jt-edge::before { top: 0; transform-origin: left; }
+.jt-edge::after { bottom: 0; transform-origin: right; }
+.jt-edge:hover::before, .jt-edge:hover::after { transform: scaleX(1); }
+
+.jt-glow { transition: box-shadow 0.4s var(--ez), background-color 0.15s; }
+.jt-glow:hover { box-shadow: 0 0 0 8px rgba(159,232,112,0.35); }
+
+.jt-steps::before, .jt-steps::after { content: ""; position: absolute; left: 0; right: 0; height: 50%; background: var(--tint3); transform: scaleX(0); z-index: -1; transition: transform 0.35s var(--ez); }
+.jt-steps::before { top: 0; transform-origin: left; }
+.jt-steps::after { bottom: 0; transform-origin: right; transition-delay: 0.12s; }
+.jt-steps:hover::before, .jt-steps:hover::after { transform: scaleX(1); }
+
+.jt-inkfill span { background: linear-gradient(90deg, var(--ink) 50%, #9ca3af 50%) 100% 0 / 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; transition: background-position 0.5s var(--ez); }
+.jt-inkfill:hover span { background-position: 0 0; }
+
+.jt-carrow i { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px rgba(17,24,39,0.25); transition: background-color 0.3s, box-shadow 0.3s; }
+.jt-carrow i::before { content: "\2192"; transition: transform 0.35s var(--ez); }
+.jt-carrow:hover i { background-color: var(--tint3); box-shadow: inset 0 0 0 1.5px var(--ink); }
+.jt-carrow:hover i::before { transform: translateX(2px); }
+
+.jt-send span { transition: transform 0.4s var(--ez), opacity 0.3s; }
+.jt-send::after { content: attr(data-alt); position: absolute; inset: 0; display: grid; place-items: center; font-size: 20px; transform: translateX(-100%); opacity: 0; transition: transform 0.4s var(--ez), opacity 0.3s; }
+.jt-send:hover span { transform: translateX(130%); opacity: 0; }
+.jt-send:hover::after { transform: none; opacity: 1; }
+
+.jt-wide { transition: padding 0.5s var(--sp), background-color 0.15s; }
+.jt-wide:hover { padding: 0 34px; }
+
+.jt-sheen, .jt-sheen:hover { background-image: linear-gradient(110deg, transparent 40%, rgba(255,255,255,0.55) 50%, transparent 60%); background-size: 250% 100%; background-position: 100% 0; animation: jt-sheen 3.5s ease-in-out infinite; }
+@keyframes jt-sheen { to { background-position: -60% 0; } }
+
+.jt-row { width: 16rem; justify-content: space-between; border-bottom: 1px solid var(--line); }
+.jt-row::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1.5px; background: var(--ink); transform: scaleX(0); transform-origin: left; transition: transform 0.45s var(--ez); }
+.jt-row b { font-weight: 500; font-size: 14px; color: var(--mute); transition: transform 0.35s var(--ez), color 0.3s; }
+.jt-row:hover::after { transform: scaleX(1); }
+.jt-row:hover b { transform: translateX(-4px); color: var(--ink); }
+
+.jt-chip { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 16px; border-radius: 999px; background: #fff; box-shadow: inset 0 0 0 1.5px rgba(17,24,39,0.2); font-weight: 600; transition: background-color 0.3s, box-shadow 0.3s; }
+.jt-chip i { display: inline-block; width: 0; overflow: hidden; transition: width 0.35s var(--sp); }
+.jt-chip i::before { content: "\2713"; }
+.jt-chip[data-on="true"] { background: var(--tint3); box-shadow: inset 0 0 0 1.5px var(--ink); }
+.jt-chip[data-on="true"] i { width: 12px; }

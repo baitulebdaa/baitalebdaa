@@ -3,7 +3,10 @@
 import dynamic from "next/dynamic";
 import { useState } from "react";
 import { createPortal } from "react-dom";
-import { Box, Calendar, Check, Curtains, Home, Minus, Plus, Services, StageMake, StageVisualize, WhatsappLogo, ArrowUpRight, ChevronDown } from "./icons";
+import { Calendar, Minus, Plus, WhatsappLogo, ArrowUpRight } from "./icons";
+import { budgetCategories } from "../data/budget-categories";
+import { HERO_IMAGE_BY_SERVICE } from "../data/service-photos";
+import "./estimator-panel.css";
 import { useBusiness, useI18n } from "../i18n/I18nProvider";
 import { Reveal } from "./Shared";
 import { sliderFillPosition } from "../lib/slider";
@@ -14,7 +17,6 @@ import { track } from "../lib/analytics";
 const SiteVisitModal = dynamic(() => import("./SiteVisitModal").then((m) => m.SiteVisitModal), { ssr: false });
 const QuoteModal = dynamic(() => import("./QuoteModal").then((m) => m.QuoteModal), { ssr: false });
 const AED = new Intl.NumberFormat("en-AE", { maximumFractionDigits: 0 });
-const SCOPE_ICONS = { "villa-renovation": Home, "office-fit-out": Services, "kitchen-design": Box, "custom-wardrobes": StageMake, curtains: Curtains, "interior-design": StageVisualize };
 
 // The cost estimator (6 Nov 2026), built only from published prices (lib/pricing.js
 // SERVICE_ESTIMATORS), so it can never quote a rate the price list does not have.
@@ -25,7 +27,7 @@ const SCOPE_ICONS = { "villa-renovation": Home, "office-fit-out": Services, "kit
 // not repeat themselves); "Don't know your measurements?" opens the site visit form instead.
 // Both go through the page's own forms when it passes onRequestQuote / onBookSurvey, otherwise
 // the estimator opens its own. Renders nothing for a service without a published price.
-export function ServiceEstimator({ service, scopes, heading, inclusions = [], onBookSurvey, onRequestQuote }) {
+export function ServiceEstimator({ service, serviceName, scopes, heading, inclusions = [], onBookSurvey, onRequestQuote }) {
   const { lang, dict } = useI18n();
   const business = useBusiness();
   const t = dict.estimatorSection;
@@ -37,11 +39,12 @@ export function ServiceEstimator({ service, scopes, heading, inclusions = [], on
   const [addons, setAddons] = useState([]);
   const [visit, setVisit] = useState(null);
   const [quote, setQuote] = useState(null);
-  if (!config) return null;
+  const category = scopes ? budgetCategories[scope] : null;
+  if (!config && !category?.quote) return null;
 
   const chooseScope = (key) => {
     setScope(key);
-    setSize(serviceEstimator(key).size ?? 0);
+    setSize(serviceEstimator(key)?.size ?? 0);
     setLevel(0);
     setAddons([]);
   };
@@ -51,6 +54,50 @@ export function ServiceEstimator({ service, scopes, heading, inclusions = [], on
     return setVisit({ size: sqft });
   };
 
+  return (
+    <section className={`section estimator-section est${heading ? "" : " estimator-section--compact"} est--service`}>
+      <div className="shell">
+        {heading && (
+          <Reveal className="section-heading section-heading--center estimator-heading">
+            <p className="micro">{heading.kicker}</p>
+            <h2 className="section-title">{heading.title}</h2>
+            <p className="lede">{heading.subtitle}</p>
+          </Reveal>
+        )}
+
+        <div className={`budget-panel${scopes ? "" : " budget-panel--single"}`}>
+          {scopes && <aside className="budget-menu" aria-label={t.scopeStep}>
+            <label className="budget-mobile">{t.scopeStep}
+              <select value={scope} onChange={e => chooseScope(e.target.value)}>
+                {scopes.map(key => <option key={key} value={key}>{budgetCategories[key][lang]}</option>)}
+              </select>
+            </label>
+            <div className="budget-tabs">
+              {scopes.map(key => <button key={key} type="button" aria-pressed={scope === key} onClick={() => chooseScope(key)}>
+                <span>{budgetCategories[key][lang]}</span><bdi>{serviceEstimator(key) ? AED.format(serviceEstimator(key).items[0].min) : (lang === "ar" ? "حسب الطلب" : "On request")}</bdi>
+              </button>)}
+            </div>
+          </aside>}
+          {config ? <CalculatorBody {...{ config, size, level, addons, setSize, setLevel, setAddons, lang, dict, business, t, s, onRequestQuote, setQuote, book, scope, inclusions }} serviceName={category?.[lang] || serviceName} /> :
+            <div className="budget-main"><h3>{category[lang]}</h3>
+              <p className="budget-rate">{lang === "ar" ? "عرض سعر بعد المعاينة" : "Quoted after a site survey"}</p>
+              <p>{lang === "ar" ? "أرسل المقاسات ونطاق العمل لطلب عرض سعر مفصّل." : "Share your measurements and the work you need for an itemised quote."}</p>
+              <div className="budget-actions"><button type="button" onClick={() => { track("cta_click", { cta: "quote", cta_location: "estimator", service: category.quote }); setQuote({ estimate: category[lang] }); }}>{s.requestQuote} <ArrowUpRight size={16}/></button>
+              <a href={`https://wa.me/${business.whatsapp}?text=${encodeURIComponent(category[lang])}`} target="_blank" rel="noopener noreferrer" data-cta-location="estimator"><WhatsappLogo size={18}/>{t.whatsapp}</a></div>
+              <button type="button" className="budget-survey" onClick={() => book(undefined)}><Calendar size={15}/>{s.unsureLink}</button>
+            </div>}
+          <img className="budget-photo" src={category ? `/assets/${category.photo}` : HERO_IMAGE_BY_SERVICE[scope] || "/assets/living-room-tv-unit-floating-shelves-curtains.jpeg"} alt="" loading="lazy" />
+        </div>
+      </div>
+      {quote && createPortal(<QuoteModal open service={category?.quote || quoteServiceFor(scope)} estimate={quote.estimate} source="estimator" onClose={() => setQuote(null)} />, document.body)}
+      {/* Into <body>: on the homepage this section has content-visibility (styles.css), whose
+          containment would place a position: fixed form relative to the section, not the screen. */}
+      {visit && createPortal(<SiteVisitModal open size={visit.size} onClose={() => setVisit(null)} />, document.body)}
+    </section>
+  );
+}
+
+function CalculatorBody({ config, size, level, addons, setSize, setLevel, setAddons, lang, dict, business, t, s, onRequestQuote, setQuote, book, scope, inclusions, serviceName }) {
   const number = (value) => value.toLocaleString(lang === "ar" ? "ar-AE" : "en-US");
   const isPackage = config.mode === "package";
   const sizeLabel = { area: s.areaStep, length: s.lengthStep, count: s.countStep }[config.mode];
@@ -92,180 +139,46 @@ export function ServiceEstimator({ service, scopes, heading, inclusions = [], on
     : dict.pricingPage.joineryDisclaimer;
   const waMessage = s.whatsappMessage.replace("{choice}", choice).replace("{size}", isPackage ? "" : `, ${number(size)} ${unit}`);
 
-  // Step numbers: the scope choice (homepage), the size, the level, the add-ons.
-  let step = 0;
-  const scopeStep = scopes ? ++step : null;
-  const sizeStep = isPackage ? null : ++step;
-  const levelStep = isPackage || config.items.length > 1 ? ++step : null;
-  const addonStep = config.addons.length > 0 ? ++step : null;
-
   return (
-    <section className={`section estimator-section est${heading ? "" : " estimator-section--compact"} est--service`}>
-      <div className="shell">
-        {heading && (
-          <Reveal className="section-heading section-heading--center estimator-heading">
-            <p className="micro">{heading.kicker}</p>
-            <h2 className="section-title">{heading.title}</h2>
-            <p className="lede">{heading.subtitle}</p>
-          </Reveal>
-        )}
-
-        <Reveal className="est-card" delay={100}>
-          <div className="est-controls">
-            {scopes && (
-              <div className="est-step">
-                <p className="est-step__label"><span>{scopeStep}</span>{t.scopeStep}</p>
-                {/* Phones (13 Nov 2026, owner): the choices are one dropdown; larger screens keep the cards. */}
-                <label className="est-scope-select">
-                  <span className="sr-only">{t.scopeStep}</span>
-                  <select value={scope} onChange={(event) => chooseScope(event.target.value)}>
-                    {scopes.map((key) => (
-                      <option key={key} value={key}>{s.scopes[key].label}</option>
-                    ))}
-                  </select>
-                  <ChevronDown size={18} aria-hidden="true" />
-                </label>
-                <div className="est-scopes est-scopes--grid" role="radiogroup" aria-label={t.scopeStep}>
-                  {scopes.map((key) => {
-                    const Icon = SCOPE_ICONS[key] || Home;
-                    return (
-                      <button type="button" key={key} role="radio" aria-checked={scope === key} className={`est-scope ${scope === key ? "is-on" : ""}`} onClick={() => chooseScope(key)}>
-                        <span className="est-scope__icon"><Icon size={20} /></span>
-                        <span className="est-scope__text">
-                          <strong>{s.scopes[key].label}</strong>
-                          <small>{s.scopes[key].note}</small>
-                        </span>
-                      </button>
-                    );
-                  })}
+          <div className="budget-main">
+            <h3>{serviceName || s.scopes[scope]?.label || label(item)}</h3>
+            <p className="budget-rate"><bdi>{formatPrice(item, lang)}</bdi></p>
+            <p className="budget-info">{itemNote}</p>
+            {(config.items.length > 1 || config.addons.length > 0) && <div className="budget-options">
+              {config.items.length > 1 && <label className="budget-level-select">{isPackage ? s.packageStep : s.levelStep}
+                <select value={level} onChange={e => setLevel(Number(e.target.value))}>
+                  {config.items.map((option,i) => <option key={option.id} value={i}>{label(option)} · {formatPrice(option, lang)}</option>)}
+                </select>
+              </label>}
+              {config.items.length > 1 && <fieldset className="budget-level-list">
+                <legend>{isPackage ? s.packageStep : s.levelStep}</legend>
+                {config.items.map((option, i) => <button type="button" key={option.id} aria-pressed={level === i} onClick={() => setLevel(i)}>{label(option)} · {formatPrice(option, lang)}</button>)}
+              </fieldset>}
+              {config.addons.map(addon => <label className="budget-addon" key={addon.id}><input type="checkbox" checked={addons.includes(addon.id)} onChange={() => toggleAddon(addon.id)} />{label(addon)} · {formatPrice(addon, lang)}</label>)}
+            </div>}
+            <div className="budget-calc">
+              {!isPackage && <>
+                <span>{sizeLabel}</span>
+                <div className="budget-stepper">
+                  <button type="button" aria-label={t.smaller} disabled={size <= config.min} onClick={() => setClamped(size - config.nudge)}><Minus size={16}/></button>
+                  <bdi>{number(size)} {unit}</bdi>
+                  <button type="button" aria-label={t.larger} disabled={size >= config.max} onClick={() => setClamped(size + config.nudge)}><Plus size={16}/></button>
                 </div>
-              </div>
-            )}
-
-            {sizeStep && (
-              <div className="est-step">
-                <p className="est-step__label"><span>{sizeStep}</span>{sizeLabel}</p>
-                <div className="est-size">
-                  <button type="button" className="est-size__btn" onClick={() => setClamped(size - config.nudge)} aria-label={t.smaller} disabled={size <= config.min}>
-                    <Minus size={20} />
-                  </button>
-                  <p className="est-size__value" aria-live="polite">
-                    <strong>{number(size)}</strong> <span>{unit}</span>
-                  </p>
-                  <button type="button" className="est-size__btn" onClick={() => setClamped(size + config.nudge)} aria-label={t.larger} disabled={size >= config.max}>
-                    <Plus size={20} />
-                  </button>
-                </div>
-                <input
-                  type="range"
-                  min={config.min}
-                  max={config.max}
-                  step={config.step}
-                  value={size}
-                  onChange={(e) => setSize(Number(e.target.value))}
-                  className="est-slider"
-                  aria-label={sizeLabel}
-                  style={{ "--fill": sliderFillPosition(size, config.min, config.max, 24) }}
-                />
-                <div className="est-ticks">
-                  <span>{number(config.min)}</span>
-                  <span>{number(config.max)} {unit}</span>
-                </div>
-                {sizeNote && <p className="est-step__note">{sizeNote}</p>}
-                <div className="est-presets" role="group" aria-label={t.presets}>
-                  {config.presets.map((preset) => (
-                    <button type="button" key={preset} className={`est-preset ${size === preset ? "is-on" : ""}`} onClick={() => setSize(preset)} aria-pressed={size === preset}>
-                      {number(preset)}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {levelStep && (
-              <div className="est-step">
-                <p className="est-step__label"><span>{levelStep}</span>{isPackage ? s.packageStep : s.levelStep}</p>
-                <div className="est-scopes" role="radiogroup" aria-label={isPackage ? s.packageStep : s.levelStep}>
-                  {config.items.map((option, i) => (
-                    <button type="button" key={option.id} role="radio" aria-checked={item === option} className={`est-scope ${item === option ? "is-on" : ""}`} onClick={() => setLevel(i)}>
-                      <span className="est-scope__text">
-                        <strong>{label(option)}</strong>
-                        <small>{formatPrice(option, lang)}</small>
-                      </span>
-                      <span className="est-scope__tick" aria-hidden="true"><Check size={18} /></span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {addonStep && (
-              <div className="est-step">
-                <p className="est-step__label"><span>{addonStep}</span>{s.addonsStep}</p>
-                <div className="est-scopes">
-                  {config.addons.map((addon) => (
-                    <button type="button" key={addon.id} role="checkbox" aria-checked={addons.includes(addon.id)} className={`est-scope ${addons.includes(addon.id) ? "is-on" : ""}`} onClick={() => toggleAddon(addon.id)}>
-                      <span className="est-scope__text">
-                        <strong>{label(addon)}</strong>
-                        <small>{formatPrice(addon, lang)}</small>
-                      </span>
-                      <span className="est-scope__tick" aria-hidden="true"><Check size={18} /></span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-
-          <div className="est-result">
-            <p className="est-result__badge">{isPackage ? s.resultPackage : s.result}</p>
-            <p className="est-result__label">{choice}</p>
-            <p className={`est-result__price${high ? " est-result__price--range" : ""}`} aria-live="polite">
-              {!high && <small>{s.from}</small>}
-              <span>AED</span>
-              <strong>{high ? `${AED.format(low)}–${AED.format(high)}` : AED.format(low)}</strong>
-            </p>
-            <p className="est-result__note">{t.disclaimer}</p>
-
-            {inclusions.length > 0 && (
-              <>
-                <p className="est-result__included">{t.included}</p>
-                <ul className="est-result__list">
-                  {inclusions.map((line) => (
-                    <li key={line}>
-                      <Check size={18} /> {line}
-                    </li>
-                  ))}
-                </ul>
-              </>
-            )}
-
-            <div className="est-result__actions">
-              <button type="button" className="est-cta" onClick={requestQuote}>
-                {s.requestQuote} <ArrowUpRight size={16} />
-              </button>
-              <a className="est-cta est-cta--ghost" href={`https://wa.me/${business.whatsapp}?text=${encodeURIComponent(waMessage)}`} target="_blank" rel="noopener noreferrer" data-cta-location="estimator">
-                <WhatsappLogo size={20} /> {t.whatsapp}
-              </a>
+              </>}
+              <p className="budget-total" aria-live="polite">{isPackage ? s.resultPackage : s.result} <strong><bdi>{figure}</bdi></strong></p>
+              {!isPackage && <div className="budget-scale">
+                <input type="range" min={config.min} max={config.max} step={config.step} value={size} onChange={e => setSize(Number(e.target.value))} aria-label={sizeLabel} className="est-slider" style={{ "--fill": sliderFillPosition(size, config.min, config.max, 24) }} />
+                {config.presets.map(preset => <button type="button" key={preset} aria-pressed={size === preset} onClick={() => setSize(preset)}>{number(preset)}</button>)}
+              </div>}
+              <small>{t.disclaimer}</small>
             </div>
-            <p className="est-unsure">
-              {s.unsure}{" "}
-              <button type="button" onClick={() => book(undefined)}><Calendar size={15} /> {s.unsureLink}</button>
-            </p>
-            <details className="est-how">
-              <summary>{s.howTitle}</summary>
-              <p>{s.how[config.mode]}</p>
-              <p>{itemNote}</p>
-              <p>{dict.pricingPage.globalDisclaimer}</p>
-            </details>
+            <div className="budget-actions">
+              <button type="button" onClick={requestQuote}>{s.requestQuote} <ArrowUpRight size={16}/></button>
+              <a href={`https://wa.me/${business.whatsapp}?text=${encodeURIComponent(waMessage)}`} target="_blank" rel="noopener noreferrer" data-cta-location="estimator"><WhatsappLogo size={18}/>{t.whatsapp}</a>
+            </div>
+            <button className="budget-survey" type="button" onClick={() => book(undefined)}><Calendar size={15}/>{s.unsureLink}</button>
+            <details><summary>{s.howTitle}</summary><p>{s.how[config.mode]}</p>{sizeNote && <p>{sizeNote}</p>}{inclusions.length > 0 && <ul>{inclusions.map(line => <li key={line}>{line}</li>)}</ul>}<p>{dict.pricingPage.globalDisclaimer}</p></details>
           </div>
-        </Reveal>
-      </div>
-      {quote && createPortal(<QuoteModal open service={quoteServiceFor(scope)} estimate={quote.estimate} source="estimator" onClose={() => setQuote(null)} />, document.body)}
-      {/* Into <body>: on the homepage this section has content-visibility (styles.css), whose
-          containment would place a position: fixed form relative to the section, not the screen. */}
-      {visit && createPortal(<SiteVisitModal open size={visit.size} onClose={() => setVisit(null)} />, document.body)}
-    </section>
   );
 }
 

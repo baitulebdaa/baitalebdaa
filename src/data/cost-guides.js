@@ -330,7 +330,8 @@ function kitchenCabinetCost(lang) {
 <p>إن كان التوزيع مناسباً والسباكة في مكانها، فقد تكفي خزائن جديدة. أما نقل الحوض أو الموقد أو فتح المطبخ على المعيشة فهو مشروع <a href="/ar/kitchen-renovation/dubai">تجديد مطبخ</a> كامل يشمل السباكة والكهرباء والتهوية.</p>
 
 <h2>متى تطلب عرض سعر؟</h2>
-<p>جهّز مقاسات تقريبية وصوراً للمطبخ الحالي وقائمة بالأجهزة التي ستُركّب. المعاينة الأولى مجانية. تعرّف على <a href="/ar/kitchen-design/dubai">خدمة تصميم المطابخ في دبي</a> أو راجع <a href="/ar/pricing">قائمة الأسعار</a>.</p>`,
+<p>جهّز مقاسات تقريبية وصوراً للمطبخ الحالي وقائمة بالأجهزة التي ستُركّب. المعاينة الأولى مجانية. تعرّف على <a href="/ar/kitchen-design/dubai">خدمة تصميم المطابخ في دبي</a> أو راجع <a href="/ar/pricing">قائمة الأسعار</a>.</p>
+<p><a href="/ar/media/kitchen-cabinet-refacing-vs-replacement-dubai">هل تجدّد واجهات المطبخ أم تستبدل الخزائن بالكامل؟</a></p>`,
     };
   }
   return {
@@ -383,7 +384,8 @@ function kitchenCabinetCost(lang) {
 <p>If the layout works and the plumbing is where you want it, new cabinets may be all you need. Moving the sink or hob, or opening the kitchen to the living area, turns it into a full <a href="/en/kitchen-renovation/dubai">kitchen renovation</a> with plumbing, electrics and ventilation.</p>
 
 <h2>When to ask for a quote</h2>
-<p>Have rough measurements, photos of the current kitchen and a list of the appliances you plan to fit. The first site survey is free. See our <a href="/en/kitchen-design/dubai">kitchen design service in Dubai</a> or the <a href="/en/pricing">full price list</a>.</p>`,
+<p>Have rough measurements, photos of the current kitchen and a list of the appliances you plan to fit. The first site survey is free. See our <a href="/en/kitchen-design/dubai">kitchen design service in Dubai</a> or the <a href="/en/pricing">full price list</a>.</p>
+<p><a href="/en/media/kitchen-cabinet-refacing-vs-replacement-dubai">Should you reface or replace your kitchen cabinets?</a></p>`,
   };
 }
 

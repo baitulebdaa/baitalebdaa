@@ -13,3 +13,14 @@ export const REAL_PROJECT_SLUGS = new Set([
 export function isPublishedProject(slug) {
   return REAL_PROJECT_SLUGS.has(slug);
 }
+
+// Every card whose project has a real detail page uses that page's own hero photo
+// (first image in its images array), so the card matches what it links to.
+export const HERO_IMAGE_BY_SLUG = {
+  "government-authority": "/assets/tv-wall-unit-led-display-shelves.jpeg",
+  "dubai-hills-estate-villa": "/assets/living-room-wood-slat-wall-lounge-seating.jpeg",
+  "palm-jumeirah-penthouse": "/assets/luxury-living-room-stone-tv-wall-fireplace.jpeg",
+  "downtown-dubai-tech-hq": "/assets/tv-media-wall-floating-console-fireplace.jpeg",
+  "al-barari-eco-villa": "/assets/contemporary-living-room-wall-panelling-track-lighting.jpeg",
+  "saadiyat-island-villa": "/assets/modern-living-room-beige-sofa-curtain-wall-panels.jpeg",
+};

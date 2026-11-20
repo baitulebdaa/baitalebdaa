@@ -1,0 +1,229 @@
+/* Waiting: loaders, progress and counters. */
+@property --jw-p { syntax: "<number>"; inherits: false; initial-value: 0; }
+@property --jw-pc { syntax: "<integer>"; inherits: false; initial-value: 0; }
+
+.jw-bubbles { position: relative; width: 76px; height: 90px; }
+.jw-bubbles i { position: absolute; bottom: 0; left: calc(var(--i) * 14px); width: 12px; height: 12px; border-radius: 50%; border: 1.5px solid var(--ink); opacity: 0; animation: jm-rise 2.2s ease-in infinite; animation-delay: calc(var(--i) * 0.4s); }
+
+.jw-mop { position: relative; width: 12px; height: 84px; transform-origin: 50% 0; animation: jm-sway 1.6s ease-in-out infinite alternate; }
+.jw-mop::before { content: ""; position: absolute; left: 5px; top: 0; width: 2px; height: 66px; background: var(--ink); }
+.jw-mop i { position: absolute; left: -14px; bottom: 0; width: 40px; height: 18px; border-radius: 4px 4px 10px 10px; background: repeating-linear-gradient(90deg, var(--ink) 0 2px, transparent 2px 5px); }
+
+.jw-vac { position: relative; width: 150px; height: 38px; border-radius: 8px; background: #dfe5d8; overflow: hidden; }
+.jw-vac::before { content: ""; position: absolute; inset: 0; background: #fff; transform-origin: left; animation: jw-vacfill 2.4s ease-in-out infinite; }
+.jw-vac i { position: absolute; top: 7px; left: 0; width: 18px; height: 24px; border-radius: 5px; background: var(--lime); box-shadow: inset 0 0 0 1.5px var(--ink); animation: jw-vachead 2.4s ease-in-out infinite; }
+@keyframes jw-vacfill { 0% { transform: scaleX(0); } 80%, 100% { transform: scaleX(1); } }
+@keyframes jw-vachead { 0% { transform: translateX(0); } 80%, 100% { transform: translateX(132px); } }
+
+.jw-level { position: relative; width: 160px; height: 14px; border-radius: 999px; background: #fff; box-shadow: inset 0 0 0 1.5px rgba(17,24,39,0.15); overflow: hidden; }
+.jw-level::before { content: ""; position: absolute; inset: 0; background: var(--lime); transform-origin: left; animation: jw-fill 3s var(--ez) infinite; }
+@keyframes jw-fill { 0% { transform: scaleX(0); } 70%, 100% { transform: scaleX(1); } }
+
+.jw-puff { display: flex; gap: 12px; }
+.jw-puff i { width: 14px; height: 14px; border-radius: 50%; background: var(--ink); animation: jw-puff 1.2s ease-in-out infinite; animation-delay: calc(var(--i) * 0.18s); }
+@keyframes jw-puff { 0%, 100% { transform: scale(0.4); opacity: 0.3; } 40% { transform: scale(1.1); opacity: 1; } }
+
+.jw-dry { width: 60px; height: 60px; border-radius: 50%; background: conic-gradient(var(--ink) calc(var(--jw-p) * 1%), rgba(17,24,39,0.12) 0); -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 7px), #000 calc(100% - 6px)); mask: radial-gradient(farthest-side, transparent calc(100% - 7px), #000 calc(100% - 6px)); animation: jw-dry 2.4s linear infinite; }
+.jw-countdown { animation-duration: 4s; animation-direction: reverse; }
+@keyframes jw-dry { to { --jw-p: 100; } }
+
+.jw-brush { position: relative; width: 64px; height: 64px; animation: jm-spin 1.6s linear infinite; }
+.jw-brush i { position: absolute; left: 30px; top: 0; width: 4px; height: 16px; border-radius: 2px; background: var(--ink); transform-origin: 2px 32px; transform: rotate(calc(var(--i) * 45deg)); opacity: calc(0.25 + var(--i) * 0.1); }
+
+.jw-twinkle { display: flex; gap: 14px; }
+.jw-twinkle i { width: 20px; height: 20px; background: var(--ink); clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%); animation: jm-tw 1.5s ease-in-out infinite; animation-delay: calc(var(--i) * 0.25s); }
+
+/* Refined 14 Nov (owner: too dark): a light misted pane with a soft frame, and a lime
+   blade with a thin ink edge instead of a solid black bar. */
+.jw-pane { position: relative; width: 120px; height: 86px; border-radius: 6px; background: radial-gradient(circle at 30% 40%, #fff 0 2px, transparent 3px) 0 0 / 18px 16px, #eceff0; box-shadow: inset 0 0 0 1.5px rgba(17, 24, 39, 0.35); overflow: hidden; }
+.jw-pane::before { content: ""; position: absolute; inset: 1.5px; background: linear-gradient(170deg, #fff 0 70%, #f4faee); transform-origin: top; animation: jw-clear 2.6s var(--ez) infinite; }
+.jw-pane i { position: absolute; left: 8px; right: 8px; top: 0; height: 5px; border-radius: 3px; background: var(--lime); box-shadow: inset 0 0 0 1px rgba(17, 24, 39, 0.55); animation: jw-blade 2.6s var(--ez) infinite; }
+@keyframes jw-clear { 0% { transform: scaleY(0); } 75%, 100% { transform: scaleY(1); } }
+@keyframes jw-blade { 0% { transform: translateY(0); } 75%, 100% { transform: translateY(82px); } }
+
+.jw-bucket { position: relative; width: 62px; height: 58px; border: 2px solid var(--ink); border-top-width: 0; border-radius: 0 0 16px 16px; overflow: hidden; background: #fff; }
+.jw-bucket i { position: absolute; left: -20%; right: -20%; bottom: -10px; height: 36px; background: var(--lime); animation: jm-sway 2s ease-in-out infinite alternate; }
+
+.jw-typing { display: flex; gap: 6px; padding: 13px 16px; border-radius: 18px 18px 18px 4px; background: #fff; box-shadow: inset 0 0 0 1.5px rgba(17,24,39,0.12); }
+.jw-typing i { width: 8px; height: 8px; border-radius: 50%; background: var(--mute); animation: jw-type 1.2s ease-in-out infinite; animation-delay: calc(var(--i) * 0.15s); }
+@keyframes jw-type { 0%, 60%, 100% { transform: translateY(0); opacity: 0.4; } 30% { transform: translateY(-6px); opacity: 1; } }
+
+.jw-suds { position: relative; width: 68px; height: 68px; }
+.jw-suds i { position: absolute; left: 50%; top: 50%; width: 11px; height: 11px; margin: -5.5px; border-radius: 50%; border: 1.5px solid var(--ink); transform: rotate(calc(var(--i) * 45deg)) translateY(-26px); animation: jw-suds 1.2s ease-in-out infinite; animation-delay: calc(var(--i) * 0.15s); }
+@keyframes jw-suds { 0%, 100% { scale: 0.5; } 50% { scale: 1.15; } }
+
+.jw-tank { position: relative; width: 48px; height: 88px; border-radius: 10px; border: 2px solid var(--ink); overflow: hidden; background: #fff; }
+.jw-tank::before { content: ""; position: absolute; inset: 0; background: linear-gradient(var(--lime), #c9f2aa); transform-origin: bottom; animation: jw-tank 3s ease-in-out infinite alternate; }
+@keyframes jw-tank { from { transform: scaleY(0.1); } to { transform: scaleY(0.9); } }
+
+.jw-wisps { display: flex; gap: 16px; align-items: flex-end; height: 74px; }
+.jw-wisps i { width: 2px; height: 36px; border-radius: 2px; background: rgba(17,24,39,0.45); opacity: 0; animation: jw-wisp 2s ease-in-out infinite; animation-delay: calc(var(--i) * 0.35s); }
+@keyframes jw-wisp { 0% { transform: translateY(16px) skewX(0); opacity: 0; } 40% { opacity: 1; transform: translateY(0) skewX(14deg); } 100% { transform: translateY(-22px) skewX(-14deg); opacity: 0; } }
+
+.jw-drop { position: relative; width: 80px; height: 96px; }
+.jw-drop i { position: absolute; left: 34px; top: 0; width: 12px; height: 16px; border-radius: 50% 50% 55% 55% / 35% 35% 65% 65%; background: var(--ink); animation: jw-drop 1.6s ease-in infinite; }
+.jw-drop::after { content: ""; position: absolute; left: 50%; bottom: 6px; width: 64px; height: 14px; margin-left: -32px; border-radius: 50%; border: 1.5px solid var(--ink); opacity: 0; animation: jw-ripple 1.6s ease-out infinite; }
+@keyframes jw-drop { 0% { transform: translateY(0) scale(0.5); opacity: 0; } 10% { opacity: 1; } 55% { transform: translateY(66px) scale(1); opacity: 1; } 56%, 100% { opacity: 0; transform: translateY(66px); } }
+@keyframes jw-ripple { 0%, 55% { transform: scale(0.2); opacity: 0; } 60% { opacity: 1; } 100% { transform: scale(1); opacity: 0; } }
+
+.jw-rings { position: relative; width: 84px; height: 84px; }
+.jw-rings i { position: absolute; inset: 0; border-radius: 50%; border: 1.5px solid var(--ink); opacity: 0; animation: jm-ring 2.4s ease-out infinite; animation-delay: calc(var(--i) * 0.8s); }
+
+.jw-streaks { position: relative; width: 120px; height: 82px; border-radius: 6px; background: #fff; box-shadow: inset 0 0 0 2px var(--ink); overflow: hidden; }
+.jw-streaks i { position: absolute; top: -30%; left: -30%; width: 7px; height: 160%; background: var(--tint3); transform: rotate(25deg); animation: jw-streak 2.4s ease-in-out infinite; animation-delay: calc(var(--i) * 0.2s); }
+@keyframes jw-streak { to { left: 130%; } }
+
+.jw-curtain { position: relative; width: 116px; height: 82px; border-top: 3px solid var(--ink); overflow: hidden; }
+.jw-curtain i { position: absolute; top: 0; bottom: 0; width: 50%; background: repeating-linear-gradient(90deg, var(--lime) 0 8px, #bdf09a 8px 12px); animation: jw-curtain 2.4s ease-in-out infinite alternate; }
+.jw-curtain i:first-child { left: 0; transform-origin: left; }
+.jw-curtain i:last-child { right: 0; transform-origin: right; }
+@keyframes jw-curtain { from { transform: scaleX(1); } to { transform: scaleX(0.25); } }
+
+.jw-clock { position: relative; width: 66px; height: 66px; border-radius: 50%; border: 2px solid var(--ink); }
+.jw-clock::before { content: ""; position: absolute; left: 50%; top: 50%; width: 6px; height: 6px; margin: -3px; border-radius: 50%; background: var(--ink); }
+.jw-clock i { position: absolute; left: 50%; bottom: 50%; width: 2px; height: 24px; margin-left: -1px; background: var(--ink); transform-origin: bottom; animation: jm-spin 3s linear infinite; }
+
+.jw-hours { height: 1.2em; overflow: hidden; font-size: 30px; font-weight: 700; line-height: 1.2; }
+.jw-hours span { display: block; animation: jw-hours 6s var(--ez) infinite; }
+.jw-hours b { display: block; }
+@keyframes jw-hours { 0%, 18% { transform: translateY(0); } 25%, 43% { transform: translateY(-1.2em); } 50%, 68% { transform: translateY(-2.4em); } 75%, 93% { transform: translateY(-3.6em); } 100% { transform: translateY(-4.8em); } }
+
+.jw-stepdots { display: flex; align-items: center; background: linear-gradient(var(--ink), var(--ink)) center / 80% 2px no-repeat; }
+.jw-stepdots i { width: 16px; height: 16px; border-radius: 50%; box-shadow: inset 0 0 0 2px var(--ink); background: #fff; animation: jw-stepdot 2.4s infinite; animation-delay: calc(var(--i) * 0.6s); }
+.jw-stepdots i + i { margin-left: 30px; }
+@keyframes jw-stepdot { 0%, 15% { background: #fff; } 25%, 85% { background: var(--lime); } 100% { background: #fff; } }
+
+.jw-checks { display: grid; gap: 9px; }
+.jw-checks i { display: flex; align-items: center; gap: 8px; width: 120px; height: 14px; }
+.jw-checks i::before { content: ""; width: 14px; height: 14px; border-radius: 4px; box-shadow: inset 0 0 0 1.5px var(--ink); animation: jw-box 3s infinite; animation-delay: calc(var(--i) * 0.5s); }
+.jw-checks i::after { content: ""; flex: 1; height: 6px; border-radius: 3px; background: rgba(17,24,39,0.15); }
+@keyframes jw-box { 0%, 20% { background: transparent; } 30%, 90% { background: var(--lime); } 100% { background: transparent; } }
+
+.jw-broom { position: relative; width: 136px; height: 42px; border-bottom: 2px solid var(--ink); }
+.jw-broom::before { content: ""; position: absolute; bottom: 0; left: 0; width: 4px; height: 32px; border-radius: 2px; background: var(--ink); transform: rotate(-20deg); transform-origin: bottom; animation: jw-broom 2.4s ease-in-out infinite; }
+.jw-broom i { position: absolute; bottom: 4px; left: calc(26px + var(--i) * 22px); width: 5px; height: 5px; border-radius: 50%; background: rgba(17,24,39,0.5); animation: jw-swept 2.4s ease-in-out infinite; animation-delay: calc(var(--i) * 0.25s); }
+@keyframes jw-broom { 0% { left: 0; } 80%, 100% { left: 126px; } }
+@keyframes jw-swept { 0%, 20% { transform: none; opacity: 1; } 60% { transform: translate(40px, -6px); opacity: 0; } 100% { opacity: 0; } }
+
+.jw-fan { position: relative; width: 66px; height: 66px; border-radius: 50%; box-shadow: inset 0 0 0 2px var(--ink); animation: jm-spin 1.2s linear infinite; }
+.jw-fan i { position: absolute; left: 50%; top: 50%; width: 24px; height: 12px; margin-top: -6px; border-radius: 0 12px 12px 0; background: var(--lime); box-shadow: inset 0 0 0 1.5px var(--ink); transform-origin: 0 50%; transform: rotate(calc(var(--i) * 120deg)); }
+
+.jw-air { display: grid; gap: 9px; width: 130px; }
+.jw-air i { height: 2px; border-radius: 2px; background: var(--ink); transform-origin: left; animation: jw-air 1.6s ease-in-out infinite; animation-delay: calc(var(--i) * 0.2s); }
+@keyframes jw-air { 0% { transform: translateX(-30%) scaleX(0.2); opacity: 0; } 50% { opacity: 1; transform: translateX(0) scaleX(0.7); } 100% { transform: translateX(60%) scaleX(0.2); opacity: 0; } }
+
+.jw-foam { position: relative; width: 72px; height: 60px; }
+.jw-foam i { position: absolute; width: 26px; height: 26px; border-radius: 50%; background: #fff; box-shadow: inset 0 0 0 1.5px var(--ink); animation: jw-foam 2.4s var(--sp) infinite; animation-delay: calc(var(--i) * 0.2s); }
+.jw-foam i:nth-child(1) { left: 4px; bottom: 0; } .jw-foam i:nth-child(2) { left: 23px; bottom: 0; } .jw-foam i:nth-child(3) { left: 42px; bottom: 0; } .jw-foam i:nth-child(4) { left: 23px; bottom: 20px; }
+@keyframes jw-foam { 0% { transform: scale(0); } 20%, 80% { transform: scale(1); } 100% { transform: scale(0); } }
+
+.jw-orbit { position: relative; width: 66px; height: 66px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px rgba(17,24,39,0.2); animation: jm-spin 1.4s linear infinite; }
+.jw-orbit i { position: absolute; left: 50%; top: -5px; width: 10px; height: 10px; margin-left: -5px; border-radius: 50%; background: var(--ink); }
+
+.jw-shine { position: relative; display: grid; place-items: center; width: 64px; height: 64px; }
+.jw-shine i { width: 34px; height: 34px; background: var(--ink); clip-path: polygon(50% 0, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0 50%, 40% 40%); animation: jw-shine 1.6s ease-in-out infinite; }
+.jw-shine::after { content: ""; position: absolute; inset: 4px; border-radius: 50%; border: 1.5px solid var(--ink); animation: jm-ring 1.6s ease-out infinite; }
+@keyframes jw-shine { 0%, 100% { transform: scale(0.6); } 50% { transform: scale(1); } }
+
+.jw-settle { position: relative; width: 126px; height: 84px; border-bottom: 2px solid var(--ink); }
+.jw-settle i { position: absolute; top: 0; left: calc(8px + var(--i) * 20px); width: 4px; height: 4px; border-radius: 50%; background: rgba(17,24,39,0.55); animation: jw-settle 3s ease-in infinite; animation-delay: calc(var(--i) * 0.35s); }
+@keyframes jw-settle { 0% { transform: translate(0, 0); opacity: 0; } 10% { opacity: 1; } 90% { transform: translate(6px, 78px); opacity: 1; } 100% { opacity: 0; transform: translate(6px, 78px); } }
+
+.jw-sponge { position: relative; width: 2px; height: 42px; margin-bottom: 40px; background: var(--ink); transform-origin: top; animation: jm-sway 1.4s ease-in-out infinite alternate; }
+.jw-sponge::after { content: ""; position: absolute; left: -23px; top: 42px; width: 48px; height: 30px; border-radius: 7px; background: radial-gradient(circle, rgba(17,24,39,0.28) 1.5px, transparent 2px) 0 0 / 8px 8px, var(--lime); box-shadow: inset 0 0 0 1.5px var(--ink); }
+
+.jw-wave { width: 150px; height: 20px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='20'%3E%3Cpath d='M0 10 Q7 2 14 10 T28 10' fill='none' stroke='%23111827' stroke-width='2'/%3E%3C/svg%3E") repeat-x 0 50% / 28px 20px; animation: jw-wave 1s linear infinite; }
+@keyframes jw-wave { to { background-position: 28px 50%; } }
+
+.jw-skel { display: grid; gap: 10px; width: 170px; }
+.jw-skel i { height: 12px; border-radius: 6px; background: linear-gradient(90deg, #e3e8de 0 40%, #f8faf6 50%, #e3e8de 60%) 100% 0 / 250% 100%; animation: jw-shim 1.4s linear infinite; }
+.jw-skel i:nth-child(2) { width: 80%; } .jw-skel i:nth-child(3) { width: 58%; }
+@keyframes jw-shim { to { background-position: -50% 0; } }
+
+.jw-pricesk span { padding: 0 6px; font-size: 30px; font-weight: 700; border-radius: 6px; animation: jw-pricesk 3s infinite; }
+@keyframes jw-pricesk { 0%, 45% { color: transparent; background: #e3e8de; } 55%, 100% { color: var(--ink); background: transparent; } }
+
+.jw-indet { position: relative; width: 170px; height: 6px; border-radius: 3px; background: rgba(17,24,39,0.1); overflow: hidden; }
+.jw-indet i { position: absolute; top: 0; bottom: 0; width: 40%; border-radius: 3px; background: var(--lime); box-shadow: inset 0 0 0 1px rgba(17,24,39,0.25); animation: jw-indet 1.3s ease-in-out infinite; }
+@keyframes jw-indet { from { left: -40%; } to { left: 100%; } }
+
+.jw-seg { display: flex; gap: 5px; }
+.jw-seg i { width: 24px; height: 8px; border-radius: 4px; background: rgba(17,24,39,0.12); animation: jw-seg 2.5s infinite; animation-delay: calc(var(--i) * 0.25s); }
+@keyframes jw-seg { 0%, 10% { background: rgba(17,24,39,0.12); } 20%, 70% { background: var(--ink); } 80%, 100% { background: rgba(17,24,39,0.12); } }
+
+.jw-bounce { display: flex; gap: 9px; align-items: flex-end; height: 44px; }
+.jw-bounce i { width: 13px; height: 13px; border-radius: 50%; background: var(--lime); box-shadow: inset 0 0 0 1.5px var(--ink); animation: jw-bounce 0.9s ease-in-out infinite alternate; animation-delay: calc(var(--i) * 0.15s); }
+@keyframes jw-bounce { from { transform: translateY(0) scale(1.2, 0.8); } to { transform: translateY(-26px) scale(1); } }
+
+.jw-morph { width: 42px; height: 42px; background: var(--lime); box-shadow: inset 0 0 0 2px var(--ink); animation: jw-morph 2s ease-in-out infinite alternate; }
+@keyframes jw-morph { from { border-radius: 8px; transform: rotate(0); } to { border-radius: 50%; transform: rotate(180deg); } }
+
+.jw-twin { position: relative; width: 54px; height: 54px; }
+.jw-twin i { position: absolute; inset: 8px; border-radius: 6px; box-shadow: inset 0 0 0 2px var(--ink); animation: jm-spin 2s linear infinite; }
+.jw-twin i:last-child { background: rgba(159,232,112,0.5); animation-direction: reverse; }
+
+.jw-pair { position: relative; width: 64px; height: 64px; }
+.jw-pair i { position: absolute; left: 50%; top: 50%; width: 11px; height: 11px; margin: -5.5px; border-radius: 50%; background: var(--ink); animation: jw-pair 1.6s linear infinite; }
+.jw-pair i:last-child { background: var(--lime); box-shadow: inset 0 0 0 1.5px var(--ink); animation-direction: reverse; }
+@keyframes jw-pair { from { transform: rotate(0) translateX(26px); } to { transform: rotate(360deg) translateX(26px); } }
+
+.jw-rinse { display: grid; place-items: center; width: 66px; height: 66px; border-radius: 50%; border: 3px solid var(--ink); }
+.jw-rinse i { width: 42px; height: 42px; border-radius: 50%; background: conic-gradient(var(--lime) 0 40%, transparent 40%); animation: jm-spin 0.9s linear infinite; }
+
+.jw-drum { position: relative; display: grid; place-items: center; width: 72px; height: 82px; padding-top: 12px; border-radius: 10px; box-shadow: inset 0 0 0 2px var(--ink); }
+.jw-drum::before { content: ""; position: absolute; top: 8px; left: 10px; width: 20px; height: 4px; border-radius: 2px; background: var(--ink); }
+.jw-drum i { position: relative; width: 46px; height: 46px; border-radius: 50%; box-shadow: inset 0 0 0 2px var(--ink); overflow: hidden; }
+.jw-drum i::after { content: ""; position: absolute; left: -30%; right: -30%; top: 52%; height: 100%; border-radius: 40%; background: var(--lime); animation: jm-spin 2s linear infinite; }
+
+.jw-scan { position: relative; display: grid; gap: 9px; width: 160px; }
+.jw-scan i { height: 10px; border-radius: 5px; background: rgba(17,24,39,0.12); }
+.jw-scan::after { content: ""; position: absolute; left: -6px; right: -6px; top: 0; height: 2px; background: var(--lime); box-shadow: 0 0 0 1px rgba(17,24,39,0.2); animation: jw-scan 1.8s ease-in-out infinite alternate; }
+@keyframes jw-scan { to { top: 100%; } }
+
+.jw-pin { position: relative; width: 40px; height: 74px; }
+.jw-pin i { position: absolute; left: 8px; top: 0; width: 24px; height: 24px; border-radius: 50% 50% 50% 0; background: var(--lime); box-shadow: inset 0 0 0 2px var(--ink); animation: jw-pin 1.8s var(--sp) infinite; }
+.jw-pin::after { content: ""; position: absolute; left: 10px; bottom: 4px; width: 20px; height: 6px; border-radius: 50%; background: rgba(17,24,39,0.2); }
+@keyframes jw-pin { 0% { transform: translateY(-20px) rotate(-45deg); opacity: 0; } 30% { opacity: 1; } 50%, 100% { transform: translateY(34px) rotate(-45deg); } }
+
+.jw-route { position: relative; width: 150px; height: 3px; background: repeating-linear-gradient(90deg, var(--ink) 0 8px, transparent 8px 14px); animation: jw-route 0.6s linear infinite; }
+.jw-route::before, .jw-route::after { content: ""; position: absolute; top: 50%; width: 12px; height: 12px; margin-top: -6px; border-radius: 50%; }
+.jw-route::before { left: -8px; background: var(--ink); }
+.jw-route::after { right: -8px; background: var(--lime); box-shadow: inset 0 0 0 2px var(--ink); }
+@keyframes jw-route { to { background-position: 14px 0; } }
+
+.jw-van { position: relative; width: 170px; height: 52px; border-bottom: 2px solid var(--ink); overflow: hidden; }
+.jw-van::before { content: ""; position: absolute; bottom: 9px; left: 0; width: 46px; height: 24px; border-radius: 6px 14px 4px 4px; background: var(--lime); box-shadow: inset 0 0 0 2px var(--ink); animation: jw-van 3s ease-in-out infinite; }
+.jw-van i { position: absolute; bottom: 2px; left: calc(8px + var(--i) * 22px); width: 12px; height: 12px; border-radius: 50%; background: var(--ink); animation: jw-van 3s ease-in-out infinite; }
+@keyframes jw-van { 0% { transform: translateX(-10px); opacity: 0; } 15%, 85% { opacity: 1; } 100% { transform: translateX(124px); opacity: 0; } }
+
+.jw-slots { display: flex; gap: 6px; }
+.jw-slots b { padding: 6px 10px; border-radius: 999px; font-size: 13px; background: #fff; box-shadow: inset 0 0 0 1.5px rgba(17,24,39,0.15); animation: jw-slot 3.2s infinite; animation-delay: calc(var(--i) * 0.8s); }
+@keyframes jw-slot { 0%, 24% { background: var(--tint3); box-shadow: inset 0 0 0 1.5px var(--ink); } 25%, 100% { background: #fff; box-shadow: inset 0 0 0 1.5px rgba(17,24,39,0.15); } }
+
+.jw-roller { display: flex; align-items: baseline; gap: 2px; font-size: 32px; font-weight: 700; }
+.jw-roller small { margin-right: 6px; font-size: 15px; color: var(--mute); }
+.jw-roller span { display: inline-block; height: 1.15em; overflow: hidden; line-height: 1.15; }
+.jw-roller b { display: block; animation: jw-roll 3.2s var(--ez) infinite; animation-delay: calc(var(--i) * 0.15s); }
+.jw-roller em { display: block; font-style: normal; }
+@keyframes jw-roll { 0% { transform: translateY(0); } 55%, 100% { transform: translateY(calc(var(--d) * -1.15em)); } }
+
+.jw-pct { position: relative; display: grid; place-items: center; width: 74px; height: 74px; border-radius: 50%; background: conic-gradient(var(--ink) calc(var(--jw-pc) * 1%), rgba(17,24,39,0.12) 0); counter-reset: jw-pc var(--jw-pc); animation: jw-pct 3s ease-in-out infinite; }
+.jw-pct::before { content: ""; position: absolute; inset: 6px; border-radius: 50%; background: var(--tint); }
+.jw-pct::after { content: counter(jw-pc) "%"; position: relative; font-size: 15px; font-weight: 700; }
+@keyframes jw-pct { 0% { --jw-pc: 0; } 80%, 100% { --jw-pc: 100; } }
+
+.jw-popb { position: relative; display: grid; place-items: center; width: 64px; height: 64px; }
+.jw-popb i { width: 42px; height: 42px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px var(--ink), inset -7px -7px 0 -4px rgba(255,255,255,0.95); animation: jw-popb 2s ease-in infinite; }
+.jw-popb::after { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 2px dashed var(--ink); opacity: 0; animation: jw-popr 2s ease-out infinite; }
+@keyframes jw-popb { 0% { transform: scale(0.2); } 70% { transform: scale(1); } 72%, 100% { transform: scale(0); } }
+@keyframes jw-popr { 0%, 70% { opacity: 0; transform: scale(0.8); } 72% { opacity: 1; } 100% { opacity: 0; transform: scale(1.4); } }
+
+.jw-towel { position: relative; width: 92px; height: 58px; perspective: 220px; }
+.jw-towel::before { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 29px; border-radius: 0 0 6px 6px; background: var(--lime); box-shadow: inset 0 0 0 2px var(--ink); }
+.jw-towel i { position: absolute; left: 0; right: 0; top: 0; height: 29px; border-radius: 6px 6px 0 0; background: #c9f2aa; box-shadow: inset 0 0 0 2px var(--ink); transform-origin: bottom; animation: jw-fold 2s ease-in-out infinite alternate; }
+@keyframes jw-fold { from { transform: rotateX(0); } to { transform: rotateX(180deg); } }
+
+.jw-mist { position: relative; width: 126px; height: 64px; }
+.jw-mist::before { content: ""; position: absolute; left: 0; top: 24px; width: 20px; height: 16px; border-radius: 4px; background: var(--ink); }
+.jw-mist i { position: absolute; left: 22px; top: 30px; width: 5px; height: 5px; border-radius: 50%; background: rgba(17,24,39,0.45); animation: jw-mist 1.4s ease-out infinite; animation-delay: calc(var(--i) * 0.12s); }
+@keyframes jw-mist { from { transform: translate(0, 0); opacity: 1; } to { transform: translate(96px, calc((var(--i) - 2.5) * 9px)); opacity: 0; } }

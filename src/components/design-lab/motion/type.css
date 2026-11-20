@@ -1,0 +1,177 @@
+/* Type: headlines, prices and numbers. Arabic is only ever split by words. */
+.jy-wipe { animation: jy-wipe 0.9s var(--ez) both; }
+@keyframes jy-wipe { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0); } }
+
+.jy-steam { animation: jy-steam 1.2s ease-out both; }
+@keyframes jy-steam { from { filter: blur(8px); opacity: 0.2; } to { filter: blur(0); opacity: 1; } }
+
+.jy-lrise > span { animation: jm-fadeup 0.5s var(--ez) both; animation-delay: calc(var(--i) * 40ms); }
+
+.jy-ldrop > span, .jy-digits > span { animation: jy-ldrop 0.7s var(--sp) both; animation-delay: calc(var(--i) * 55ms); }
+.jy-digits > span { animation-delay: calc(var(--i) * 90ms); }
+@keyframes jy-ldrop { from { transform: translateY(-30px); opacity: 0; } to { transform: none; opacity: 1; } }
+
+.jy-wfade > span { animation: jy-fade 0.6s ease both; animation-delay: calc(var(--i) * 180ms); }
+@keyframes jy-fade { from { opacity: 0; } to { opacity: 1; } }
+
+.jy-scrub > span { animation: jy-scrub 0.7s linear both; animation-delay: calc(var(--i) * 30ms); }
+@keyframes jy-scrub { 0% { transform: translate(-2px, 1px) rotate(-6deg); opacity: 0.3; } 25% { transform: translate(2px, -1px) rotate(5deg); } 50% { transform: translate(-1px, 1px) rotate(-3deg); } 75% { transform: translate(1px, 0) rotate(2deg); } 100% { transform: none; opacity: 1; } }
+
+.jy-shinepass span { background: linear-gradient(100deg, var(--ink) 40%, #a3aab5 50%, var(--ink) 60%) 120% 0 / 250% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: jy-shinepass 3s ease-in-out infinite; }
+@keyframes jy-shinepass { 0%, 30% { background-position: 120% 0; } 100% { background-position: -30% 0; } }
+
+.jy-mopline span { padding-bottom: 2px; background: linear-gradient(var(--tint3), var(--tint3)) no-repeat 0 100% / 0 45%; animation: jy-size 0.8s 0.2s var(--ez) both; --jy-to: 100% 45%; }
+.jy-marker span { padding: 0 4px; background: linear-gradient(var(--tint3), var(--tint3)) no-repeat 0 0 / 0 100%; animation: jy-marker 0.7s 0.2s var(--ez) both; }
+@keyframes jy-size { to { background-size: 100% 45%; } }
+@keyframes jy-marker { to { background-size: 100% 100%; } }
+
+.jy-count b { font-variant-numeric: tabular-nums; }
+
+.jy-flip { display: grid; place-items: center; min-height: 52px; padding: 0 18px; border-radius: 12px; background: #fff; box-shadow: inset 0 0 0 1.5px rgba(17,24,39,0.15); font-size: 18px; font-weight: 700; overflow: hidden; perspective: 300px; }
+.jy-flip span { animation: jy-flipup 0.5s var(--sp) both; }
+@keyframes jy-flipup { from { transform: translateY(100%) rotateX(-60deg); opacity: 0; } to { transform: none; opacity: 1; } }
+
+.jy-pricespark { position: relative; padding-right: 22px; }
+.jy-pricespark i { position: absolute; right: 0; top: -4px; width: 16px; height: 16px; background: var(--ink); clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%); animation: jy-spark 0.6s 0.5s var(--sp) both; }
+@keyframes jy-spark { from { transform: scale(0) rotate(-90deg); } to { transform: scale(1) rotate(0); } }
+
+.jy-type { position: relative; display: inline-block; font-size: 20px; font-weight: 700; }
+.jy-type span { display: inline-block; clip-path: inset(0 100% 0 0); animation: jy-reveal 2.2s steps(26) both; }
+.jy-type::after { content: ""; position: absolute; top: 0.1em; left: 0; width: 2px; height: 1.1em; background: var(--ink); animation: jy-caret 2.2s steps(26) both, jm-blink 0.8s steps(1) infinite; }
+@keyframes jy-reveal { to { clip-path: inset(0); } }
+@keyframes jy-caret { to { left: 100%; } }
+
+.jy-query { display: flex; align-items: center; width: 16rem; height: 44px; padding: 0 14px; border-radius: 10px; background: #fff; box-shadow: inset 0 0 0 1.5px rgba(17,24,39,0.15); font-size: 15px; }
+.jy-query span { display: inline-block; clip-path: inset(0 100% 0 0); animation: jy-query 5s steps(21) infinite; }
+@keyframes jy-query { 0% { clip-path: inset(0 100% 0 0); } 50%, 90% { clip-path: inset(0); } 100% { clip-path: inset(0 100% 0 0); } }
+
+.jy-rotator, .jy-slot, .jy-time, .jy-ticker { white-space: nowrap; }
+.jy-rotator > span:first-child, .jy-slot span, .jy-time span, .jy-ticker span { display: inline-block; height: 1.2em; overflow: hidden; line-height: 1.2; vertical-align: bottom; }
+.jy-rotator b, .jy-slot b, .jy-time b, .jy-ticker b { display: block; }
+.jy-rotator em, .jy-slot em, .jy-time em, .jy-ticker em { display: block; font-style: normal; }
+.jy-rotator b { animation: jy-rot 8s var(--ez) infinite; }
+.jy-time { font-variant-numeric: tabular-nums; }
+.jy-time b { animation: jy-rot 6s var(--ez) infinite; }
+@keyframes jy-rot { 0%, 20% { transform: translateY(0); } 25%, 45% { transform: translateY(-1.2em); } 50%, 70% { transform: translateY(-2.4em); } 75%, 95% { transform: translateY(-3.6em); } 100% { transform: translateY(-4.8em); } }
+.jy-slot b { animation: jy-slot 1.3s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+@keyframes jy-slot { from { transform: translateY(0); filter: blur(2px); } to { transform: translateY(-4.8em); filter: blur(0); } }
+.jy-ticker b { animation: jy-tick 7.5s var(--ez) infinite; }
+@keyframes jy-tick { 0%, 16% { transform: translateY(0); } 20%, 36% { transform: translateY(-1.2em); } 40%, 56% { transform: translateY(-2.4em); } 60%, 76% { transform: translateY(-3.6em); } 80%, 96% { transform: translateY(-4.8em); } 100% { transform: translateY(-6em); } }
+
+.jy-track { animation: jy-track 1s var(--ez) both; }
+@keyframes jy-track { from { letter-spacing: 0.5em; opacity: 0; } to { letter-spacing: -0.01em; opacity: 1; } }
+
+.jy-zoom { animation: jy-zoom 0.8s var(--ez) both; }
+@keyframes jy-zoom { from { transform: scale(1.15); filter: blur(6px); opacity: 0; } to { transform: none; filter: none; opacity: 1; } }
+
+.jy-mask { overflow: hidden; }
+.jy-mask span { display: inline-block; animation: jy-mask 0.7s var(--ez) both; }
+@keyframes jy-mask { from { transform: translateY(110%); } to { transform: none; } }
+
+.jy-lines span { display: block; animation: jm-fadeup 0.6s var(--ez) both; }
+.jy-lines span + span { animation-delay: 0.22s; }
+
+.jy-inkfill span { background: linear-gradient(90deg, var(--ink) 50%, #b8bec7 50%) 100% 0 / 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: jy-inkfill 1s 0.2s var(--ez) both; }
+@keyframes jy-inkfill { to { background-position: 0 0; } }
+
+.jy-outline span { color: transparent; -webkit-text-stroke: 1px var(--ink); animation: jy-outline 1.2s 0.3s ease both; }
+@keyframes jy-outline { to { color: var(--ink); } }
+
+.jy-squeegee { position: relative; overflow: hidden; padding: 0 6px; }
+.jy-squeegee::after { content: ""; position: absolute; top: 0; bottom: 0; left: -30%; width: 22%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.95), transparent); animation: jy-sq 3s ease-in-out infinite; }
+@keyframes jy-sq { 0%, 40% { left: -30%; } 100% { left: 130%; } }
+
+.jy-bubble > span { animation: jy-bubble 0.6s var(--sp) both; animation-delay: calc(var(--i) * 45ms); }
+@keyframes jy-bubble { from { transform: scale(0); opacity: 0; } to { transform: none; opacity: 1; } }
+
+.jy-wavel > span { animation: jy-wavel 1.6s ease-in-out infinite; animation-delay: calc(var(--i) * 90ms); }
+@keyframes jy-wavel { 0%, 100% { transform: none; } 50% { transform: translateY(-6px); } }
+
+.jy-eyebrow { display: flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; color: var(--mute); }
+.jy-eyebrow::before { content: ""; width: 28px; height: 2px; background: var(--ink); transform-origin: left; animation: jy-grow 0.5s var(--ez) both; }
+.jy-eyebrow span { animation: jy-slidein 0.5s 0.35s var(--ez) both; }
+@keyframes jy-grow { from { transform: scaleX(0); } }
+@keyframes jy-slidein { from { opacity: 0; transform: translateX(-10px); } }
+
+.jy-para { display: grid; gap: 4px; font-size: 15px; color: var(--mute); text-align: start; }
+.jy-para span { animation: jm-fadeup 0.5s var(--ez) both; }
+.jy-para span:nth-child(2) { animation-delay: 0.25s; }
+.jy-para span:nth-child(3) { animation-delay: 0.5s; }
+
+.jy-strike s { position: relative; color: var(--mute); }
+.jy-strike s::after { content: ""; position: absolute; left: -2px; right: -2px; top: 54%; height: 2px; background: var(--ink); transform: scaleX(0); transform-origin: left; animation: jy-strikeline 0.5s 0.3s var(--ez) forwards; }
+.jy-strike b { animation: jy-fade 0.6s 1s both; }
+@keyframes jy-strikeline { to { transform: scaleX(1); } }
+
+.jy-tick { display: flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 700; }
+.jy-tick svg { width: 22px; height: 22px; }
+.jy-tick path, .jy-sdraw path { fill: none; stroke: var(--ink); stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
+.jy-tick path { stroke-width: 2.5; animation: jy-draw 0.5s var(--ez) forwards; }
+.jy-tick span { animation: jy-fade 0.5s 0.45s both; }
+@keyframes jy-draw { to { stroke-dashoffset: 0; } }
+
+.jy-open { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 700; }
+.jy-open i { position: relative; width: 9px; height: 9px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 0 1.5px var(--ink); }
+.jy-open i::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--lime); animation: jy-ping 1.6s ease-out infinite; }
+@keyframes jy-ping { from { transform: scale(1); opacity: 0.9; } to { transform: scale(2.8); opacity: 0; } }
+
+.jy-shrink { display: block; min-width: 14rem; padding: 12px 16px; border-radius: 12px; background: #fff; box-shadow: inset 0 0 0 1.5px rgba(17,24,39,0.12); text-align: start; transition: padding 0.4s var(--ez); }
+.jy-shrink span { display: inline-block; font-size: 26px; font-weight: 700; transform-origin: left center; transition: transform 0.45s var(--ez); }
+.jy-shrink[data-on="true"] { padding: 2px 16px; }
+.jy-shrink[data-on="true"] span { transform: scale(0.62); }
+
+.jy-wblur > span { animation: jy-wblur 0.7s ease both; animation-delay: calc(var(--i) * 200ms); }
+@keyframes jy-wblur { from { filter: blur(6px); opacity: 0; } to { filter: none; opacity: 1; } }
+
+.jy-circle { animation: jy-circle 1s var(--ez) both; }
+@keyframes jy-circle { from { clip-path: circle(0 at 50% 50%); } to { clip-path: circle(75% at 50% 50%); } }
+
+.jy-skew { animation: jy-skew 0.7s var(--sp) both; }
+@keyframes jy-skew { from { transform: translateX(-40px) skewX(-18deg); opacity: 0; } to { transform: none; opacity: 1; } }
+
+.jy-flip3d { perspective: 400px; }
+.jy-flip3d > span { transform-origin: 50% 0; animation: jy-flip3d 0.6s var(--ez) both; animation-delay: calc(var(--i) * 60ms); }
+@keyframes jy-flip3d { from { transform: rotateX(-90deg); opacity: 0; } to { transform: none; opacity: 1; } }
+
+.jy-dropline { position: relative; padding-bottom: 10px; }
+.jy-dropline::after { content: ""; position: absolute; left: 50%; bottom: 0; width: 8px; height: 8px; margin-left: -4px; border-radius: 4px; background: var(--ink); animation: jy-dropline 1.1s var(--ez) both; }
+@keyframes jy-dropline { 0% { transform: translateY(-40px); opacity: 0; } 40% { transform: none; opacity: 1; width: 8px; height: 8px; left: 50%; margin-left: -4px; } 100% { width: 100%; height: 3px; left: 0; margin-left: 0; } }
+
+.jy-unit { min-height: 52px; padding: 0 20px; border-radius: 12px; background: #fff; box-shadow: inset 0 0 0 1.5px rgba(17,24,39,0.15); font-size: 20px; font-weight: 700; }
+.jy-unit span { display: inline-block; animation: jy-unit 0.5s ease both; }
+@keyframes jy-unit { from { filter: blur(6px); opacity: 0; transform: scale(0.96); } to { filter: none; opacity: 1; transform: none; } }
+
+.jy-vat { display: flex; align-items: baseline; gap: 8px; }
+.jy-vat b { font-size: 32px; animation: jy-zoomin 0.5s var(--sp) both; }
+.jy-vat span { font-size: 13px; color: var(--mute); animation: jy-slidein 0.5s 0.5s var(--ez) both; }
+@keyframes jy-zoomin { from { transform: scale(0.6); opacity: 0; } }
+
+.jy-numpop { display: inline-block; animation: jm-pop 0.4s var(--sp); }
+
+.jy-sweep span { padding: 0 4px; background: linear-gradient(90deg, transparent 0 33%, var(--tint3) 33% 66%, transparent 66%) 100% 0 / 300% 100% no-repeat; animation: jy-sweep 1.4s 0.2s var(--ez) both; }
+@keyframes jy-sweep { to { background-position: 0 0; } }
+
+.jy-glintl > span { animation: jy-glintl 2.4s infinite; animation-delay: calc(var(--i) * 0.12s); }
+@keyframes jy-glintl { 0%, 12%, 100% { opacity: 1; } 6% { opacity: 0.3; } }
+
+.jy-marquee { width: 100%; overflow: hidden; white-space: nowrap; font-size: 15px; font-weight: 700; -webkit-mask: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+.jy-marquee span { display: inline-block; animation: jy-marquee 22s linear infinite; }
+@keyframes jy-marquee { to { transform: translateX(-50%); } }
+
+.jy-bilingual { display: grid; }
+.jy-bilingual span { grid-area: 1 / 1; animation: jy-bi 5s ease-in-out infinite; }
+.jy-bilingual span:last-child { animation-delay: -2.5s; }
+@keyframes jy-bi { 0%, 40% { opacity: 1; filter: none; } 50%, 90% { opacity: 0; filter: blur(4px); } 100% { opacity: 1; filter: none; } }
+
+.jy-focus > span { animation: jy-focus 4.5s infinite both; animation-delay: calc(var(--i) * 1.5s); }
+@keyframes jy-focus { 0% { filter: blur(3px); opacity: 0.4; } 6%, 30% { filter: none; opacity: 1; } 36%, 100% { filter: blur(3px); opacity: 0.4; } }
+
+.jy-both span { padding-bottom: 6px; background: linear-gradient(var(--ink), var(--ink)) no-repeat left bottom / 0 2px, linear-gradient(var(--ink), var(--ink)) no-repeat right bottom / 0 2px; animation: jy-both 0.8s 0.2s var(--ez) both; }
+@keyframes jy-both { to { background-size: 50% 2px, 50% 2px; } }
+
+.jy-sdraw { display: inline-flex; align-items: flex-start; gap: 4px; }
+.jy-sdraw svg { width: 22px; height: 22px; margin-top: -6px; }
+.jy-sdraw path { stroke-width: 1.4; animation: jy-draw 0.9s 0.3s var(--ez) forwards; }
+
+.jy-hlcycle > span { padding: 0 2px; border-radius: 4px; animation: jy-hl 4s infinite; animation-delay: calc(var(--i) * 1s); }
+@keyframes jy-hl { 0%, 22% { background: var(--tint3); } 25%, 100% { background: transparent; } }

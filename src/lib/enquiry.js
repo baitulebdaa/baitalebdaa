@@ -33,6 +33,8 @@ export const QUOTE_SERVICE_EN = {
 
 // Service page slug (seo-pages.json) or estimator choice (lib/pricing.js) -> quote service.
 const FROM_SLUG = {
+  "media-walls": "joinery",
+  "dressing-units": "joinery",
   "interior-design": "interior-design",
   "residential-interior-design": "interior-design",
   "commercial-interior-design": "office",
