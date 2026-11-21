@@ -7,7 +7,7 @@ import { dictionaries } from "./dictionaries.js";
 const withoutBody = ({ content, ...card }) => card;
 
 export function getClientDictionary(lang) {
-  const dict = dictionaries[lang] || dictionaries.en;
+  const { privacyPolicyPage, termsPage, ...dict } = dictionaries[lang] || dictionaries.en;
   return {
     ...dict,
     mediaPage: {

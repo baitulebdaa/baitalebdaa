@@ -8,20 +8,20 @@ import { adminDb, isFirestoreConfigured } from "./admin/firebase";
 
 export const BUSINESS_TAG = "business";
 
-export const getBusiness = unstable_cache(
-  async () => {
-    if (!isFirestoreConfigured()) return DEFAULT_BUSINESS;
-    try {
-      const doc = await adminDb().collection("settings").doc("business").get();
-      return mergeBusiness(doc.exists ? doc.data() : null);
-    } catch (error) {
-      console.error("Reading the business details failed; using defaults:", error);
-      return DEFAULT_BUSINESS;
-    }
-  },
+const cachedBusiness = unstable_cache(
+  readBusinessFresh,
   ["business-details"],
-  { tags: [BUSINESS_TAG], revalidate: 3600 }
+  { tags: [BUSINESS_TAG], revalidate: 86400 }
 );
+
+export async function getBusiness() {
+  try {
+    return await cachedBusiness();
+  } catch (error) {
+    console.error("Reading the business details failed; using defaults:", error);
+    return DEFAULT_BUSINESS;
+  }
+}
 
 /** For the admin panel: the current details straight from Firestore, not the site's cache. */
 export async function readBusinessFresh() {

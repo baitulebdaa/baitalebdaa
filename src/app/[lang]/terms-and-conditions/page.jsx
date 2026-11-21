@@ -15,7 +15,7 @@ export default async function TermsAndConditionsPage({ params }) {
   return (
     <>
       <BreadcrumbSchema lang={lang} path="terms-and-conditions" title={t.navTitle || t.metaTitle} />
-      <TermsAndConditions />
+      <TermsAndConditions copy={t} />
     </>
   );
 }

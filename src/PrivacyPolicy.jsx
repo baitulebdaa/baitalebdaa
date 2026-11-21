@@ -4,10 +4,9 @@ import { useState } from "react";
 import { useI18n } from "./i18n/I18nProvider";
 import { Header, Footer, Reveal, PhotoHero } from "./components/Shared";
 
-export default function PrivacyPolicy() {
+export default function PrivacyPolicy({ copy: t }) {
   const { lang, dict } = useI18n();
   const [menuOpen, setMenuOpen] = useState(false);
-  const t = dict.privacyPolicyPage;
 
   return (
     <>

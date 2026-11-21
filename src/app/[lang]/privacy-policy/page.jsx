@@ -15,7 +15,7 @@ export default async function PrivacyPolicyPage({ params }) {
   return (
     <>
       <BreadcrumbSchema lang={lang} path="privacy-policy" title={t.navTitle || t.metaTitle} />
-      <PrivacyPolicy />
+      <PrivacyPolicy copy={t} />
     </>
   );
 }
