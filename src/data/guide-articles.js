@@ -1,3 +1,4 @@
+import { wardrobeRenovationGuide } from "./wardrobe-renovation-guide.js";
 import { kitchenRefacingGuide } from "./kitchen-refacing-guide.js";
 import { homeOfficeGuide } from "./home-office-guide.js";
 import { restaurantGuide } from "./restaurant-guide.js";
@@ -13,6 +14,7 @@ import { restaurantGuide } from "./restaurant-guide.js";
 const AUTHOR = { en: "Awais ul Haq, CEO of Bait Al Ebdaa", ar: "Awais ul Haq، الرئيس التنفيذي لبيت الإبداع" };
 
 export const GUIDE_ARTICLE_DATES = {
+  "wardrobe-renovation-or-replacement-dubai": "2026-11-21",
   "kitchen-cabinet-refacing-vs-replacement-dubai": "2026-11-20",
   "restaurant-interior-design-dubai-pre-lease-guide": "2026-11-19",
   "home-office-renovation-cost-dubai": "2026-11-18",
@@ -20,6 +22,7 @@ export const GUIDE_ARTICLE_DATES = {
 };
 
 const DATE_LABELS = {
+  "2026-11-21": { en: "November 21, 2026", ar: "٢١ نوفمبر ٢٠٢٦" },
   "2026-11-20": { en: "November 20, 2026", ar: "٢٠ نوفمبر ٢٠٢٦" },
   "2026-11-19": { en: "November 19, 2026", ar: "١٩ نوفمبر ٢٠٢٦" },
   "2026-11-18": { en: "November 18, 2026" },
@@ -27,6 +30,7 @@ const DATE_LABELS = {
 };
 
 const IMAGE = {
+  "wardrobe-renovation-or-replacement-dubai": "/assets/walk-in-closet-island-led-ceiling.jpeg",
   "kitchen-cabinet-refacing-vs-replacement-dubai": "/assets/coffee-corner-white-cabinet-wine-cooler-led-shelves.jpeg",
   "restaurant-interior-design-dubai-pre-lease-guide": "/assets/modern-dining-room-pendant-lights-oak-table.jpeg",
   "home-office-renovation-cost-dubai": "/assets/built-in-wardrobe-study-desk-wood-shelves.jpeg",
@@ -232,6 +236,7 @@ ${li("No trade licence or comparable finished projects when you ask for them.")}
 }
 
 const BUILDERS = {
+  "wardrobe-renovation-or-replacement-dubai": wardrobeRenovationGuide,
   "kitchen-cabinet-refacing-vs-replacement-dubai": kitchenRefacingGuide,
   "restaurant-interior-design-dubai-pre-lease-guide": restaurantGuide,
   "home-office-renovation-cost-dubai": homeOfficeGuide,

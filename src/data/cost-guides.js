@@ -286,6 +286,7 @@ function kitchenCabinetCost(lang) {
       metaDescription: `تفصيل خزائن المطبخ في دبي من ${P("kitchen-laminate")}: كيف يُحتسب السعر، وفرق التشطيبات، وما الذي يضاف إلى الميزانية.`,
       description: "دليل أسعار خزائن المطبخ في دبي: كيف يعمل التسعير بالمتر الطولي، ومستويات التشطيب الثلاثة لدينا، وأمثلة محسوبة، وما الذي يغيّر عرض السعر وما الذي لا يشمله.",
       content: `${reviewed.ar}
+<p>تبدأ تكلفة خزائن مطبخ مستقيم بطول ${straight} أمتار بتشطيب اللامينيت من ${times("kitchen-laminate", straight, "ar")} قبل الضريبة. ولمطبخ على شكل حرف L بطول إجمالي ${lTotal} متر، تبدأ من ${times("kitchen-laminate", lTotal, "ar")}. اطلب بيان تكلفة سطح العمل والأجهزة وفك الخزائن القديمة بشكل منفصل.</p>
 <p>تُسعّر <strong>خزائن المطبخ</strong> في دبي غالباً بالمتر الطولي، فالرقم الأول الذي تسمعه يكون عادة «كذا درهم للمتر». يشرح هذا الدليل معنى ذلك، وأسعار مستويات التشطيب الثلاثة لدينا، والقرارات التي تغيّر عرض السعر عند <strong>تفصيل خزائن المطبخ</strong>.</p>
 
 <h2>كيف يُحتسب سعر المطبخ بالمتر الطولي؟</h2>
@@ -336,11 +337,11 @@ function kitchenCabinetCost(lang) {
   }
   return {
     title: "Kitchen Cabinet Cost in Dubai: Prices per Linear Metre Explained",
-    seoTitle: "Kitchen Cabinet Price in Dubai: 2026 Guide | Bait Al Ebdaa",
-    metaDescription: `Custom kitchen cabinets in Dubai from ${P("kitchen-laminate")}: how linear-metre pricing works, what finishes cost and what to budget for.`,
+    seoTitle: "Kitchen Cabinet Cost in Dubai per Linear Metre",
+    metaDescription: `Dubai kitchen cabinets start at ${P("kitchen-laminate")}. See budgets for straight and L-shaped kitchens and check which items are priced separately.`,
     description: "A guide to kitchen cabinet prices in Dubai: how linear-metre pricing works, our three finish levels, worked examples, what changes a quote and what a cabinet price leaves out.",
     content: `${reviewed.en}
-<p>Custom <strong>kitchen cabinets in Dubai</strong> are usually priced per linear metre, so the first number you hear tends to be "so many dirhams a metre". This guide explains what that means, what Bait Al Ebdaa's three finish levels cost, and which decisions change a quote.</p>
+<p>Our laminate kitchen cabinets in Dubai start at ${P("kitchen-laminate")}. For a straight ${straight}-metre run, allow from ${times("kitchen-laminate", straight, "en")} before VAT. For an L-shaped run measuring ${lShape[0]} m and ${lShape[1]} m, the starting cabinet budget is ${times("kitchen-laminate", lTotal, "en")}. Ask for worktops, appliances and any removal work to be listed separately.</p>
 
 <h2>How kitchen cabinets are priced</h2>
 <p>A linear metre is the length of the cabinet run along the wall. In a straight kitchen it is the length of wall covered by cabinets; in an L-shaped kitchen, both legs are added together; an island is usually counted separately.</p>
@@ -402,6 +403,7 @@ function customWardrobeCost(lang) {
       description: "دليل أسعار تفصيل خزائن الملابس في دبي: التسعير بالمتر الطولي، ومستويات التشطيب الثلاثة لدينا، وأمثلة لغرفة نوم وغرفة رئيسية وغرفة ملابس، وما يغيّر السعر.",
       content: `${reviewedNovember.ar}
 <h2>كم يكلف تجديد غرفة الملابس في دبي؟</h2>
+<p>إذا احتاجت غرفة الملابس إلى خزائن لامينيت جديدة بطول ${walkIn} أمتار طولية، فتبدأ ميزانية الخزائن من ${times("wardrobe-laminate", walkIn, "ar")} قبل الضريبة. اطلب تسعير فك الخزائن القديمة وإصلاح الجدران والجزيرة بشكل منفصل. وإذا بقيت الهياكل، فيُحسب التجديد بحسب الأبواب والأدراج والتجهيزات المطلوب استبدالها.</p>
 <p>إذا أبقيت هياكل الخزائن، اطلب تسعيراً منفصلاً للأبواب والأدراج والمفصلات والتركيب. أما عند الاستبدال الكامل، فيبدأ سعر خزائن اللامينيت الجديدة لدى بيت الإبداع من ${P("wardrobe-laminate")} قبل الضريبة. بطول ${bedroom} متر يبدأ المثال من ${times("wardrobe-laminate", bedroom, "ar")}. تأكد من بند إزالة الخزائن القديمة في عرض السعر.</p>
 <p>الخزانة المدمجة من أكثر قطع النجارة طلباً في منازل دبي، وسعرها يختلف كثيراً بحسب الطول والأبواب والتقسيم الداخلي والتشطيب. يشرح هذا الدليل كيف تُحسب <strong>أسعار تفصيل خزائن الملابس</strong> لدينا، مع أمثلة محسوبة من أسعارنا المنشورة.</p>
 
@@ -450,10 +452,10 @@ function customWardrobeCost(lang) {
   return {
     title: "Custom Wardrobe Cost in Dubai: Fitted Wardrobe and Walk-In Prices",
     seoTitle: "Closet Renovation Cost in Dubai: Fitted Wardrobe Prices",
-    metaDescription: "Planning a walk-in closet renovation in Dubai? Compare new fitted wardrobe prices per linear metre and see what to ask for in a renovation quote.",
+    metaDescription: "Compare Dubai closet renovation options, from replacing doors to fitting a new walk-in wardrobe. See a 9-metre cabinet budget and which costs to itemise.",
     description: "A guide to custom wardrobe prices in Dubai: linear-metre pricing, our three finish levels, worked examples for a bedroom, a master bedroom and a walk-in closet, and what changes the price.",
     content: `${reviewedNovember.en}
-<p>If you're budgeting for a wardrobe in Dubai, first decide which parts of the existing closet you want to keep. For new fitted wardrobes, the starting price depends on the length of the cabinets and the finish you choose.</p>
+<p>A walk-in closet with ${walkIn} linear metres of new laminate cabinetry in Dubai starts at ${times("wardrobe-laminate", walkIn, "en")} before VAT at our published rate of ${P("wardrobe-laminate")}. This covers the starting cabinet budget. Ask for a separate figure for stripping out the existing closet, making good the walls and fitting an island. If you are keeping the frames, ask for a quote based on the actual doors, drawers and fittings you want replaced.</p>
 
 <h2>How much does it cost to renovate a walk-in closet in Dubai?</h2>
 <p>If the cabinet frames are in good condition, ask for an itemised quote for replacement doors, drawers and fittings. If you plan to replace the cabinetry, measure the length of each wall that will have new units and ask whether the quote includes removal of the old ones.</p>
@@ -593,8 +595,8 @@ function officeFitOutCost(lang) {
   }
   return {
     title: "Office Fit-Out Cost in Dubai: Price per Sq Ft and What Drives It",
-    seoTitle: "Office Fit-Out Cost in Dubai (2026): Price per Sq Ft",
-    metaDescription: `Dubai office fit-out costs: ${P("office-essential")} for our essential finish. Compare levels, sample budgets, MEP work and approval fees before leasing.`,
+    seoTitle: `Dubai Office Fit-Out Cost: Essential from ${times("office-essential", 1, "en")}/sq ft`,
+    metaDescription: `Budget ${times("office-essential", 1000, "en")} to ${times("office-essential", 1000, "en", "max")} before VAT for a 1,000 sq ft essential office fit-out. Compare finishes and check which fees are extra.`,
     description: "A guide to office fit-out costs in Dubai: the price per square foot at three finish levels, worked examples for small and mid-size offices, approval and design costs, and how to compare quotes.",
     content: `${reviewedNovember.en}
 <p>Bait Al Ebdaa prices an essential office fit-out in Dubai at ${P("office-essential")}, excluding VAT. For a 1,000 sq ft office, that gives an indicative budget of ${times("office-essential", 1000, "en")} to ${times("office-essential", 1000, "en", "max")} before VAT and separately quoted costs. Start with the area you will actually fit out, then check what the landlord hands over and which works the contractor has included.</p>

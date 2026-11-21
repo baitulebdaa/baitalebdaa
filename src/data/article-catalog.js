@@ -10,7 +10,8 @@ export const ARTICLE_DATES = {
 };
 
 export const ARTICLE_UPDATED_DATES = {
-  "custom-wardrobe-cost-dubai": "2026-11-19",
+  "custom-wardrobe-cost-dubai": "2026-11-21",
+  "kitchen-cabinet-cost-dubai": "2026-11-21",
 };
 
 export const ARTICLE_SEO_TITLES = {
